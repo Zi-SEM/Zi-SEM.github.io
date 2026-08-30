@@ -1,1 +1,18 @@
-/* css styles */
+/* Homepage topic cards */
+
+.grid > div {
+  padding: 1.25rem 1.4rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.grid > div h3 {
+  margin-top: 0;
+  margin-bottom: 0.6rem;
+}
+
+.grid > div p {
+  margin-bottom: 0;
+}/* css styles */

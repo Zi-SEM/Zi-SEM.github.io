@@ -1,13 +1,18 @@
 ---
 title: "Research Explained"
+listing:
+  contents: posts
+  type: default
+  sort: "date desc"
+  include:
+    categories: "Research Explained"
+  sort-ui: false
+  filter-ui: false
+toc: false
 ---
 
-# Research Explained
+Academic papers are necessarily compact and specialized. Important engineering ideas can therefore be difficult to see behind the equations, methodology, and technical details.
 
-Published research explained through engineering problems, physical interpretation, methods, results, and practical
-implications.
+**Research Explained** revisits published research from a broader perspective: the engineering problem, the underlying physical or conceptual idea, the method used to address it, and what the results mean in practice.
 
-Articles in this section will follow the general structure:
-
-**Engineering problem → Why it matters → Existing approaches → Core idea → Method → Results → Engineering
-interpretation → Practical implications**
+## Articles

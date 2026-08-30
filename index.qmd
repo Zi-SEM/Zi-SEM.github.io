@@ -4,33 +4,46 @@ listing:
   contents: posts
   sort: "date desc"
   type: default
-  categories: true
+  categories: false
   sort-ui: false
   filter-ui: false
 page-layout: full
 title-block-banner: true
+toc: false
 ---
 
 Research · Education · Mechanics · Technical Writing
 
-This site explains structural engineering and mechanics from the perspective of research, education, computation, and technical communication.
+This site explains structural engineering and mechanics through research, education, and technical communication.
 
-## Main Topics
+## Explore
 
-### Research Explained
+:::: {.grid}
 
-Published research explained in a broader engineering context, with emphasis on physical interpretation and practical significance.
+::: {.g-col-12 .g-col-md-6}
+### [Research Explained](research.qmd)
 
-### Engineering Mechanics
+Published research explained through engineering problems, physical interpretation, methods, results, and practical implications.
+:::
 
-Concepts in structural mechanics, mechanics of materials, fracture, fatigue, numerical methods, and related subjects.
+::: {.g-col-12 .g-col-md-6}
+### [Engineering Mechanics](mechanics.qmd)
 
-### Z Diagram
+Structural mechanics, mechanics of materials, fracture, fatigue, numerical methods, and related topics.
+:::
 
-Development and application of the Z Diagram as a framework for understanding and teaching engineering mechanics.
+::: {.g-col-12 .g-col-md-6}
+### [Z Diagram](z-diagram.qmd)
 
-### LaTeX & Writing
+A framework for understanding and teaching engineering mechanics through connected physical and mathematical concepts.
+:::
 
-Practical LaTeX, technical writing, scientific communication, and AI-assisted workflows for engineers and researchers.
+::: {.g-col-12 .g-col-md-6}
+### [LaTeX & Writing](latex-writing.qmd)
 
-## Recent Articles
+Practical LaTeX, scientific writing, and AI-assisted workflows for engineers and researchers.
+:::
+
+::::
+
+## Latest Articles
