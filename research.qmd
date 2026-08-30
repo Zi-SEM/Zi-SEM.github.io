@@ -1,0 +1,13 @@
+---
+title: "Research Explained"
+---
+
+# Research Explained
+
+Published research explained through engineering problems, physical interpretation, methods, results, and practical
+implications.
+
+Articles in this section will follow the general structure:
+
+**Engineering problem → Why it matters → Existing approaches → Core idea → Method → Results → Engineering
+interpretation → Practical implications**

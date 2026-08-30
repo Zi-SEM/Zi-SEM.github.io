@@ -1,0 +1,31 @@
+project:
+  type: website
+
+website:
+  title: "Zi’s Structural Engineering & Mechanics"
+
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: research.qmd
+        text: Research Explained
+      - href: mechanics.qmd
+        text: Engineering Mechanics
+      - href: z-diagram.qmd
+        text: Z Diagram
+      - href: latex-writing.qmd
+        text: LaTeX & Writing
+      - href: about.qmd
+        text: About
+
+    right:
+      - icon: youtube
+        href: https://www.youtube.com/@semlabtv4824
+        aria-label: SEMLAB YouTube
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true

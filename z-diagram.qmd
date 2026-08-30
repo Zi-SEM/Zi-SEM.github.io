@@ -1,0 +1,9 @@
+---
+title: "Z Diagram"
+---
+
+# Z Diagram
+
+The Z Diagram is an educational framework for organizing and connecting concepts in engineering mechanics.
+
+This section will develop the framework through examples, diagrams, and teaching applications.

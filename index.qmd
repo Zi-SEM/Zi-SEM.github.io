@@ -1,0 +1,36 @@
+---
+title: "Zi’s Structural Engineering & Mechanics"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: true
+  sort-ui: false
+  filter-ui: false
+page-layout: full
+title-block-banner: true
+---
+
+Research · Education · Mechanics · Technical Writing
+
+This site explains structural engineering and mechanics from the perspective of research, education, computation, and technical communication.
+
+## Main Topics
+
+### Research Explained
+
+Published research explained in a broader engineering context, with emphasis on physical interpretation and practical significance.
+
+### Engineering Mechanics
+
+Concepts in structural mechanics, mechanics of materials, fracture, fatigue, numerical methods, and related subjects.
+
+### Z Diagram
+
+Development and application of the Z Diagram as a framework for understanding and teaching engineering mechanics.
+
+### LaTeX & Writing
+
+Practical LaTeX, technical writing, scientific communication, and AI-assisted workflows for engineers and researchers.
+
+## Recent Articles

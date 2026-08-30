@@ -1,0 +1,10 @@
+---
+title: "Engineering Mechanics"
+---
+
+# Engineering Mechanics
+
+Notes and explanations on structural mechanics, mechanics of materials, fracture mechanics, fatigue, continuum
+mechanics, and computational mechanics.
+
+The emphasis is on connecting equations with their physical and engineering meaning.

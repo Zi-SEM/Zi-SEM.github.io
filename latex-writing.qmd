@@ -1,0 +1,9 @@
+---
+title: "LaTeX & Writing"
+---
+
+# LaTeX & Writing
+
+Practical methods for writing engineering papers, reports, lecture notes, and technical documents using LaTeX.
+
+This section will also cover AI-assisted technical writing and reproducible engineering workflows.

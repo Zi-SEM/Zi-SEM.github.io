@@ -1,0 +1,25 @@
+---
+title: "About"
+---
+
+# Goangseup Zi
+
+![Goangseup Zi](profile.jpg){width=220}
+
+I am a professor of structural engineering and mechanics at Korea University.
+
+My research and teaching interests include structural engineering & mechanics, offshore
+wind structures, digital transformations, computational mechanics, fracture mechanics, and engineering education.
+
+This blog is intended to explain engineering research and mechanics in a form that is useful to researchers, practicing
+engineers, and students.
+
+## Author
+
+**Goangseup Zi**
+Also published as **G. Zi**
+
+## Academic Homepage
+
+[Structural Engineering and Mechanics Laboratory](https://structure.korea.ac.kr)
+[SEMLAB YouTube Channel](https://www.youtube.com/@semlabtv4824)
