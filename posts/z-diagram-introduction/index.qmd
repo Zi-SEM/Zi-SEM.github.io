@@ -1,0 +1,482 @@
+---
+title: "The Z Diagram: Connecting Force, Stress, Strain, and Displacement"
+subtitle: "A unified view of equilibrium, compatibility, constitutive behavior, and energy in structural mechanics"
+author: "Goangseup Zi"
+date: "2026-08-30"
+categories:
+  - Z Diagram
+  - Engineering Mechanics
+  - Structural Mechanics
+  - Mechanics of Materials
+description: "An introduction to the Z Diagram as a unified framework connecting force equilibrium, constitutive behavior, displacement compatibility, and energy across structural and material-point scales."
+toc: true
+toc-depth: 2
+---
+
+Structural mechanics is usually taught as a sequence of separate topics:
+
+- equilibrium,
+- stress,
+- strain,
+- constitutive equations,
+- displacement,
+- compatibility,
+- and energy.
+
+Students often learn each of these correctly, yet still struggle to see how they belong to one coherent mechanical system.
+
+The **Z Diagram** is a compact framework for organizing these ideas around four fundamental quantities:
+
+$$
+F,\qquad \sigma,\qquad \varepsilon,\qquad u
+$$
+
+where $F$ is force at the structural scale, $\sigma$ is stress at the material-point scale, $\varepsilon$ is strain at the material-point scale, and $u$ is displacement at the structural scale.
+
+The purpose of the diagram is not merely to arrange four variables. It is to show how **equilibrium, constitutive behavior, compatibility, and energy** connect structural response to material response.
+
+## The basic structure
+
+The standard Z Diagram can be understood through three mechanical relations:
+
+$$
+F \longleftrightarrow \sigma
+$$
+
+through **force equilibrium**,
+
+$$
+\sigma \longleftrightarrow \varepsilon
+$$
+
+through the **constitutive equation or constitutive law**, and
+
+$$
+\varepsilon \longleftrightarrow u
+$$
+
+through **displacement compatibility**.
+
+The complete chain is therefore
+
+$$
+\boxed{
+F
+\;\longleftrightarrow\;
+\sigma
+\;\longleftrightarrow\;
+\varepsilon
+\;\longleftrightarrow\;
+u
+}
+$$
+
+with a different physical principle governing each connection.
+
+![The Z Diagram. Force and displacement form an energy-conjugate pair at the structural scale, while stress and strain form an energy-conjugate pair at the material-point scale. The two scales are connected through force equilibrium and displacement compatibility, with constitutive behavior relating stress and strain.](z-diagram-standard.png){#fig-z-diagram fig-align="center" width="90%"}
+
+## Two analysis directions, one mechanical system
+
+A structural problem may be approached from either end.
+
+If the applied force is known, the reasoning may proceed as
+
+$$
+F
+\rightarrow
+\sigma
+\rightarrow
+\varepsilon
+\rightarrow
+u.
+$$
+
+The applied force is first related to the internal stress field by equilibrium. The stress is then related to strain through the constitutive law, and the strain field is finally related to displacement through compatibility.
+
+The same system can be traversed in the opposite direction:
+
+$$
+u
+\rightarrow
+\varepsilon
+\rightarrow
+\sigma
+\rightarrow
+F.
+$$
+
+Here, a prescribed displacement determines strain through compatibility. The constitutive law converts strain into stress, and equilibrium relates the stress field to the corresponding force.
+
+These are not different mechanics theories. They are simply **different directions through the same set of physical relations**.
+
+For that reason, the Z Diagram does not require separate names for the two directions. What matters is where the analysis begins and how the mechanical relations are followed until the required quantity is obtained.
+
+## Structural scale and material-point scale
+
+The four variables naturally form two levels.
+
+At the **structural scale**,
+
+$$
+(F,u)
+$$
+
+describe the overall force-displacement response.
+
+At the **material-point scale**,
+
+$$
+(\sigma,\varepsilon)
+$$
+
+describe the local stress-strain response.
+
+The Z Diagram therefore connects the global response of a structure with the local response of the material.
+
+A structural analysis is never only about forces and displacements, and a constitutive model is never useful in isolation. The two scales must communicate through equilibrium and compatibility.
+
+## Energy-conjugate pairs
+
+The Z Diagram also has an energy interpretation.
+
+At the structural scale, force and displacement are an **energy-conjugate pair**:
+
+$$
+(F,u).
+$$
+
+At the material-point scale, stress and strain form another energy-conjugate pair:
+
+$$
+(\sigma,\varepsilon).
+$$
+
+For an incremental change of state, the external work is represented by
+
+$$
+dW_{\mathrm{external}}
+=
+F\,du,
+$$
+
+while the corresponding internal work at the material level is
+
+$$
+dW_{\mathrm{internal}}
+=
+\int_V \sigma\,d\varepsilon\,dV.
+$$
+
+For a mechanically consistent system, these two descriptions must represent the same energy transfer:
+
+$$
+\boxed{
+F\,du
+=
+\int_V \sigma\,d\varepsilon\,dV
+}
+$$
+
+under the appropriate assumptions and boundary conditions.
+
+This equality is central to the Z Diagram.
+
+The force-displacement layer and the stress-strain layer are not merely analogous descriptions. They must be **energetically consistent**.
+
+## Linear elasticity as the simplest example
+
+Consider a uniform one-dimensional bar of length $L$, cross-sectional area $A$, and Young's modulus $E$, loaded axially by a force $F$.
+
+Starting from force,
+
+$$
+F
+\rightarrow
+\sigma
+\rightarrow
+\varepsilon
+\rightarrow
+u,
+$$
+
+equilibrium gives
+
+$$
+\sigma = \frac{F}{A}.
+$$
+
+For linear elasticity,
+
+$$
+\sigma = E\varepsilon,
+$$
+
+so
+
+$$
+\varepsilon = \frac{\sigma}{E}
+=
+\frac{F}{AE}.
+$$
+
+Compatibility gives
+
+$$
+u = \varepsilon L,
+$$
+
+hence
+
+$$
+\boxed{
+u = \frac{FL}{AE}
+}
+$$
+
+which is the familiar axial-displacement equation.
+
+The important point is not the formula itself. The point is the sequence of mechanical ideas that produces it:
+
+$$
+\boxed{
+F
+\overset{\text{equilibrium}}{\longrightarrow}
+\sigma
+\overset{\text{constitutive law}}{\longrightarrow}
+\varepsilon
+\overset{\text{compatibility}}{\longrightarrow}
+u
+}
+$$
+
+## The reverse direction
+
+Suppose instead that the displacement $u$ is prescribed.
+
+Compatibility gives
+
+$$
+\varepsilon = \frac{u}{L}.
+$$
+
+The constitutive law gives
+
+$$
+\sigma = E\varepsilon
+=
+E\frac{u}{L}.
+$$
+
+Equilibrium then gives
+
+$$
+F = \sigma A
+=
+\frac{EA}{L}u.
+$$
+
+Thus,
+
+$$
+\boxed{
+F = \frac{EA}{L}u
+}
+$$
+
+and the same mechanical system has been traversed in the opposite direction:
+
+$$
+\boxed{
+u
+\overset{\text{compatibility}}{\longrightarrow}
+\varepsilon
+\overset{\text{constitutive law}}{\longrightarrow}
+\sigma
+\overset{\text{equilibrium}}{\longrightarrow}
+F.
+}
+$$
+
+## Energy equivalence in the one-dimensional bar
+
+For the same linear bar, the structural strain energy is
+
+$$
+U_{\mathrm{external}}
+=
+\frac{1}{2}Fu.
+$$
+
+At the material level,
+
+$$
+U_{\mathrm{internal}}
+=
+\int_V \frac{1}{2}\sigma\varepsilon\,dV.
+$$
+
+For a uniform bar,
+
+$$
+U_{\mathrm{internal}}
+=
+\frac{1}{2}\sigma\varepsilon AL.
+$$
+
+Using
+
+$$
+\sigma=\frac{F}{A}
+$$
+
+and
+
+$$
+\varepsilon=\frac{u}{L},
+$$
+
+we obtain
+
+$$
+U_{\mathrm{internal}}
+=
+\frac{1}{2}
+\left(\frac{F}{A}\right)
+\left(\frac{u}{L}\right)
+AL
+=
+\frac{1}{2}Fu.
+$$
+
+Therefore,
+
+$$
+\boxed{
+U_{\mathrm{external}}
+=
+U_{\mathrm{internal}}
+}
+$$
+
+as required.
+
+The equality of the two energy descriptions is not an extra result added after the mechanics is solved. It is a consistency condition linking the two levels of the diagram.
+
+## Beyond linear mechanics
+
+The Z Diagram is not restricted to linear elasticity.
+
+The equilibrium relation may be linear or nonlinear. The compatibility relation may involve small or finite deformation. The constitutive relation may describe nonlinear elasticity, plasticity, damage, viscoelasticity, fracture-related constitutive behavior, or other material models.
+
+In a nonlinear problem, the familiar triangular energy expression
+
+$$
+\frac{1}{2}Fu
+$$
+
+is generally replaced by the work integral
+
+$$
+W_{\mathrm{external}}
+=
+\int F\,du.
+$$
+
+Likewise, internal work is expressed more generally as
+
+$$
+W_{\mathrm{internal}}
+=
+\int_V
+\left(
+\int \sigma\,d\varepsilon
+\right)dV.
+$$
+
+The central structure remains unchanged:
+
+$$
+\boxed{
+\text{equilibrium}
+\quad+\quad
+\text{constitutive behavior}
+\quad+\quad
+\text{compatibility}
+}
+$$
+
+with energetic consistency between the structural and material-point descriptions.
+
+## Why the Z Diagram is useful
+
+The Z Diagram provides a compact answer to a question that appears repeatedly in mechanics:
+
+> How do forces applied to a structure eventually become displacements?
+
+The answer is not a single equation.
+
+Force must first be converted into an internal stress state through equilibrium. Stress must be related to strain through a constitutive model. Strain must then satisfy compatibility with the displacement field.
+
+The reverse reasoning is equally valid.
+
+That makes the diagram useful for distinguishing clearly between equilibrium equations, constitutive equations, compatibility equations, global structural quantities, local material quantities, and energy-conjugate variables.
+
+It also provides a common framework for understanding methods that may initially appear unrelated. Classical mechanics of materials, structural analysis, finite element analysis, nonlinear mechanics, and constitutive modeling all operate within the same basic structure.
+
+## A framework rather than a formula
+
+The Z Diagram should not be viewed as another formula to memorize.
+
+Its purpose is organizational.
+
+It provides a way to ask, at any point in a mechanics problem:
+
+- What quantity do I know?
+- At what scale is it defined?
+- Which physical law connects it to the next quantity?
+- Am I using equilibrium, a constitutive law, or compatibility?
+- Is the energy representation consistent between the structural and material scales?
+
+Once these questions are explicit, many mechanics derivations become easier to interpret.
+
+The mathematical details may change from one problem to another.
+
+The structure of the reasoning does not.
+
+## Takeaway
+
+The Z Diagram connects four fundamental mechanical quantities,
+
+$$
+\boxed{
+F,\quad \sigma,\quad \varepsilon,\quad u
+}
+$$
+
+through three essential relations: **force equilibrium, constitutive behavior, and displacement compatibility**.
+
+When proceeding from force to displacement, the sequence is
+
+$$
+F \rightarrow \sigma \rightarrow \varepsilon \rightarrow u,
+$$
+
+and when proceeding from displacement to force, the sequence is reversed.
+
+At the same time,
+
+$$
+(F,u)
+$$
+
+and
+
+$$
+(\sigma,\varepsilon)
+$$
+
+form energy-conjugate pairs at the structural and material-point scales.
+
+The energy represented at these two levels must be consistent.
+
+That combination of **equilibrium, compatibility, constitutive behavior, scale, and energy** is the core idea of the Z Diagram.

@@ -1,9 +1,18 @@
 ---
 title: "Z Diagram"
+listing:
+  contents: posts
+  type: default
+  sort: "date desc"
+  include:
+    categories: "Z Diagram"
+  sort-ui: false
+  filter-ui: false
+toc: false
 ---
 
-# Z Diagram
+The **Z Diagram** is a framework for connecting the fundamental concepts of engineering mechanics through equilibrium, compatibility, constitutive behavior, and energy.
 
-The Z Diagram is an educational framework for organizing and connecting concepts in engineering mechanics.
+It connects force, stress, strain, and displacement while distinguishing between structural-scale and material-point-scale descriptions.
 
-This section will develop the framework through examples, diagrams, and teaching applications.
+## Articles
