@@ -3,7 +3,7 @@ project:
 
 website:
   title: "Zi’s Structural Engineering & Mechanics"
-
+  site-url: "https://zi-sem.github.io"
   google-analytics: "G-KMJ4BZJHNR"    
 
   navbar:
