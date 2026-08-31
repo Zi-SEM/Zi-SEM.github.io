@@ -4,6 +4,8 @@ project:
 website:
   title: "Zi’s Structural Engineering & Mechanics"
 
+  google-analytics: "G-KMJ4BZJHNR"    
+
   navbar:
     left:
       - href: index.qmd
@@ -13,7 +15,7 @@ website:
       - href: mechanics.qmd
         text: Engineering Mechanics
       - href: z-diagram.qmd
-        text: Z Diagram
+        text: Z-Diagram
       - href: latex-writing.qmd
         text: LaTeX & Writing
       - href: about.qmd
@@ -22,7 +24,7 @@ website:
     right:
       - icon: youtube
         href: https://www.youtube.com/@semlabtv4824
-        aria-label: SEMLAB YouTube
+        aria-label: SEMLAB YouTube        
 
 format:
   html:
