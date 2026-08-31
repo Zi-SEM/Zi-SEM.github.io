@@ -1,10 +1,18 @@
 ---
 title: "Engineering Mechanics"
+listing:
+  contents: posts
+  type: default
+  sort: "date desc"
+  include:
+    categories: "Engineering Mechanics"
+  sort-ui: false
+  filter-ui: false
+toc: false
 ---
 
-# Engineering Mechanics
-
-Notes and explanations on structural mechanics, mechanics of materials, fracture mechanics, fatigue, continuum
-mechanics, and computational mechanics.
+Notes and explanations on structural mechanics, mechanics of materials, fracture mechanics, fatigue, continuum mechanics, and computational mechanics.
 
 The emphasis is on connecting equations with their physical and engineering meaning.
+
+## Articles
