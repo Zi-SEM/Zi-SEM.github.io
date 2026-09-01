@@ -1,0 +1,871 @@
+---
+title: "Where Does the Strain Tensor Appear?"
+subtitle: "From traction work to internal strain energy"
+author: "Goangseup Zi"
+date: "2026-09-01"
+categories:
+  - Engineering Mechanics
+  - Mechanics of Materials
+  - Strain
+  - Continuum Mechanics
+description: "Why is strain the symmetric part of the displacement gradient? Starting from boundary traction work, we
+derive the strain tensor through equilibrium and energy considerations."
+toc: true
+toc-depth: 2
+---
+
+## From stress to strain
+
+In the previous article, we asked what the stress tensor really represents.
+
+Starting from an imaginary internal cut, we found that the Cauchy stress tensor provides the local mapping
+
+$$
+\mathbf n
+\quad\xrightarrow{\;\boldsymbol{\sigma}\;}
+\quad
+\mathbf t^{(\mathbf n)},
+$$
+
+or
+
+$$
+\mathbf t^{(\mathbf n)}
+=
+\boldsymbol{\sigma}\mathbf n.
+$$
+
+The stress tensor therefore tells us how internal force is transmitted across an arbitrarily oriented surface.
+
+But this immediately raises another question.
+
+**What deformation measure naturally pairs with stress when mechanical work is considered?**
+
+We often write the internal virtual work as
+
+$$
+\delta W_{\mathrm{int}}
+=
+\int_\Omega
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\varepsilon}
+\,dV.
+$$
+
+This formula is fundamental in solid mechanics and finite element analysis.
+
+But why does the strain tensor $\boldsymbol{\varepsilon}$ appear here?
+
+Why not simply the displacement gradient $\nabla\mathbf u$?
+
+The answer follows naturally from **traction work, equilibrium, and the symmetry of the stress tensor**.
+
+---
+
+## Start from traction work
+
+Consider a body occupying a region $\Omega$ with boundary $\partial\Omega$.
+
+Let $\mathbf t$ denote the traction acting on the boundary and $\delta\mathbf u$ an admissible virtual displacement.
+
+The virtual work done by the surface tractions is
+
+$$
+\delta W_t
+=
+\int_{\partial\Omega}
+\mathbf t\cdot\delta\mathbf u
+\,dA.
+$$
+
+From Cauchy's traction law,
+
+$$
+\mathbf t
+=
+\boldsymbol{\sigma}\mathbf n,
+$$
+
+where $\mathbf n$ is the outward unit normal to the boundary.
+
+Therefore,
+
+$$
+\delta W_t
+=
+\int_{\partial\Omega}
+(\boldsymbol{\sigma}\mathbf n)
+\cdot
+\delta\mathbf u
+\,dA.
+$$
+
+This is where the result of the previous stress-tensor discussion becomes the starting point of the present one.
+
+We now want to transform this **boundary work** into a quantity defined throughout the volume.
+
+---
+
+## From the boundary to the volume
+
+Using indicial notation,
+
+$$
+\delta W_t
+=
+\int_{\partial\Omega}
+\sigma_{ij}n_j\delta u_i
+\,dA.
+$$
+
+Applying the divergence theorem gives
+
+$$
+\delta W_t
+=
+\int_\Omega
+(\sigma_{ij}\delta u_i)_{,j}
+\,dV.
+$$
+
+Expanding the derivative,
+
+$$
+\delta W_t
+=
+\int_\Omega
+\sigma_{ij,j}\delta u_i
+\,dV
++
+\int_\Omega
+\sigma_{ij}\delta u_{i,j}
+\,dV.
+$$
+
+Two terms have appeared.
+
+The first involves the divergence of stress.
+
+The second involves the displacement gradient.
+
+Equilibrium tells us what to do with the first.
+
+---
+
+## Equilibrium removes the body-force contribution
+
+The local equilibrium equation is
+
+$$
+\sigma_{ij,j}+b_i=0,
+$$
+
+where $b_i$ denotes the body force per unit volume.
+
+Thus,
+
+$$
+\sigma_{ij,j}
+=
+-b_i.
+$$
+
+Substituting into the traction-work expression,
+
+$$
+\delta W_t
+=
+-
+\int_\Omega
+b_i\delta u_i
+\,dV
++
+\int_\Omega
+\sigma_{ij}\delta u_{i,j}
+\,dV.
+$$
+
+The total external virtual work includes both surface tractions and body forces:
+
+$$
+\delta W_{\mathrm{ext}}
+=
+\delta W_t
++
+\int_\Omega
+b_i\delta u_i
+\,dV.
+$$
+
+The body-force terms cancel, leaving
+
+$$
+\boxed{
+\delta W_{\mathrm{ext}}
+=
+\int_\Omega
+\sigma_{ij}\delta u_{i,j}
+\,dV
+}
+$$
+
+or, in tensor notation,
+
+$$
+\boxed{
+\delta W_{\mathrm{ext}}
+=
+\int_\Omega
+\boldsymbol{\sigma}:
+\delta\nabla\mathbf u
+\,dV
+}
+$$
+
+This result is important.
+
+Starting from forces acting on the boundary and applying equilibrium, we arrive naturally at a volume integral
+involving **stress and the displacement gradient**.
+
+But we have not yet obtained the strain tensor.
+
+---
+
+## The displacement gradient contains two different motions
+
+The displacement gradient can be decomposed into symmetric and antisymmetric parts:
+
+$$
+\delta u_{i,j}
+=
+\delta\varepsilon_{ij}
++
+\delta\omega_{ij},
+$$
+
+where
+
+$$
+\delta\varepsilon_{ij}
+=
+\frac{1}{2}
+\left(
+\delta u_{i,j}
++
+\delta u_{j,i}
+\right)
+$$
+
+and
+
+$$
+\delta\omega_{ij}
+=
+\frac{1}{2}
+\left(
+\delta u_{i,j}
+-
+\delta u_{j,i}
+\right).
+$$
+
+In tensor form,
+
+$$
+\delta\nabla\mathbf u
+=
+\delta\boldsymbol{\varepsilon}
++
+\delta\boldsymbol{\omega}.
+$$
+
+The symmetric part,
+
+$$
+\boxed{
+\boldsymbol{\varepsilon}
+=
+\frac{1}{2}
+\left(
+\nabla\mathbf u
++
+\nabla\mathbf u^T
+\right),
+}
+$$
+
+is the familiar **small-strain tensor**.
+
+The antisymmetric part,
+
+$$
+\boldsymbol{\omega}
+=
+\frac{1}{2}
+\left(
+\nabla\mathbf u
+-
+\nabla\mathbf u^T
+\right),
+$$
+
+represents infinitesimal rotation.
+
+The question is now very precise:
+
+**Which part of the displacement gradient performs internal work against the stress tensor?**
+
+---
+
+## Why rotation disappears from the work
+
+Substitute the decomposition into the work expression:
+
+$$
+\boldsymbol{\sigma}:
+\delta\nabla\mathbf u
+=
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\varepsilon}
++
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\omega}.
+$$
+
+For the classical Cauchy continuum, the stress tensor is symmetric:
+
+$$
+\sigma_{ij}
+=
+\sigma_{ji}.
+$$
+
+Meanwhile, the infinitesimal rotation tensor is antisymmetric:
+
+$$
+\delta\omega_{ij}
+=
+-\delta\omega_{ji}.
+$$
+
+The double contraction of a symmetric tensor with an antisymmetric tensor vanishes:
+
+$$
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\omega}
+=
+0.
+$$
+
+Therefore,
+
+$$
+\boldsymbol{\sigma}:
+\delta\nabla\mathbf u
+=
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\varepsilon}.
+$$
+
+Consequently,
+
+$$
+\boxed{
+\delta W_{\mathrm{ext}}
+=
+\int_\Omega
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\varepsilon}
+\,dV
+}
+$$
+
+and, under equilibrium, this is identified with the internal virtual work:
+
+$$
+\boxed{
+\delta W_{\mathrm{int}}
+=
+\int_\Omega
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\varepsilon}
+\,dV.
+}
+$$
+
+Now the strain tensor has appeared.
+
+---
+
+## Why does the strain tensor appear?
+
+This derivation gives a physical answer.
+
+We did **not** begin by defining the strain tensor and then searching for a use for it.
+
+Instead, we began with the work done by physical tractions.
+
+Through Cauchy's traction law, the divergence theorem, and equilibrium, the boundary work became
+
+$$
+\boldsymbol{\sigma}:
+\delta\nabla\mathbf u.
+$$
+
+The displacement gradient contains both deformation and rotation.
+
+But because the Cauchy stress tensor is symmetric, the rotational part performs no work:
+
+$$
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\omega}
+=
+0.
+$$
+
+What remains is the symmetric part:
+
+$$
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\varepsilon}.
+$$
+
+So the small-strain tensor
+
+$$
+\boxed{
+\boldsymbol{\varepsilon}
+=
+\frac12
+\left(
+\nabla\mathbf u+\nabla\mathbf u^T
+\right)
+}
+$$
+
+emerges naturally as the deformation measure that is **work-conjugate to the Cauchy stress tensor in the small-strain
+formulation**.
+
+This is one reason the strain tensor occupies such a fundamental position in mechanics.
+
+---
+
+## From internal work to strain energy
+
+The incremental internal work density is
+
+$$
+dU
+=
+\boldsymbol{\sigma}:
+d\boldsymbol{\varepsilon}.
+$$
+
+For linear elastic loading,
+
+$$
+\boldsymbol{\sigma}
+=
+\mathbb C:\boldsymbol{\varepsilon},
+$$
+
+where $\mathbb C$ is the fourth-order elasticity tensor.
+
+The strain-energy density becomes
+
+$$
+U
+=
+\int
+\boldsymbol{\sigma}:
+d\boldsymbol{\varepsilon}.
+$$
+
+For linear elasticity,
+
+$$
+\boxed{
+U
+=
+\frac12
+\boldsymbol{\sigma}:
+\boldsymbol{\varepsilon}
+}
+$$
+
+or equivalently,
+
+$$
+\boxed{
+U
+=
+\frac12
+\boldsymbol{\varepsilon}:
+\mathbb C:
+\boldsymbol{\varepsilon}.
+}
+$$
+
+Stress and strain are therefore not merely two quantities related by a constitutive equation.
+
+They form an **energy-conjugate pair**.
+
+Their contraction has the meaning of work or energy per unit volume.
+
+---
+
+## Connection to the Z Diagram
+
+This gives a deeper interpretation of the central part of the Z Diagram:
+
+$$
+F
+\longleftrightarrow
+\sigma
+\longleftrightarrow
+\varepsilon
+\longleftrightarrow
+u.
+$$
+
+The previous article concentrated on
+
+$$
+F
+\longleftrightarrow
+\sigma,
+$$
+
+showing how equilibrium connects structural forces with the local stress state.
+
+The present derivation concentrates on
+
+$$
+\boxed{
+\sigma
+\longleftrightarrow
+\varepsilon.
+}
+$$
+
+The connection is fundamentally energetic:
+
+$$
+dU
+=
+\boldsymbol{\sigma}:
+d\boldsymbol{\varepsilon}.
+$$
+
+At the material-point scale, stress and strain are energy-conjugate quantities.
+
+At the structural scale, force and displacement form the corresponding work pair.
+
+Schematically,
+
+$$
+\boxed{
+\mathbf F\cdot d\mathbf u
+\quad\longleftrightarrow\quad
+\boldsymbol{\sigma}:
+d\boldsymbol{\varepsilon}
+}
+$$
+
+or, for the whole body,
+
+$$
+dW_{\mathrm{external}}
+=
+\int_\Omega
+dW_{\mathrm{internal}}.
+$$
+
+This is one of the reasons energy provides such a powerful way of connecting the different quantities appearing in
+structural mechanics.
+
+---
+
+## Beyond small strain
+
+The same idea continues into finite-deformation mechanics, but the appropriate deformation measure depends on the
+configuration being used.
+
+### Current configuration
+
+Let the deformed body occupy $\Omega_t$.
+
+The external power due to surface traction is
+
+$$
+P_{\mathrm{ext}}
+=
+\int_{\partial\Omega_t}
+\mathbf t\cdot\mathbf v
+\,da.
+$$
+
+Using Cauchy's traction law and the divergence theorem gives
+
+$$
+P_{\mathrm{ext}}
+=
+\int_{\Omega_t}
+\boldsymbol{\sigma}:
+\nabla\mathbf v
+\,dv.
+$$
+
+The velocity gradient can be decomposed as
+
+$$
+\nabla\mathbf v
+=
+\mathbf d+\mathbf w,
+$$
+
+where
+
+$$
+\mathbf d
+=
+\frac12
+\left(
+\nabla\mathbf v+\nabla\mathbf v^T
+\right)
+$$
+
+is the rate-of-deformation tensor and
+
+$$
+\mathbf w
+=
+\frac12
+\left(
+\nabla\mathbf v-\nabla\mathbf v^T
+\right)
+$$
+
+is the spin tensor.
+
+Again, because
+
+$$
+\boldsymbol{\sigma}
+=
+\boldsymbol{\sigma}^T,
+$$
+
+we have
+
+$$
+\boldsymbol{\sigma}:\mathbf w=0.
+$$
+
+Thus,
+
+$$
+\boxed{
+P_{\mathrm{ext}}
+=
+\int_{\Omega_t}
+\boldsymbol{\sigma}:\mathbf d
+\,dv.
+}
+$$
+
+The Cauchy stress $\boldsymbol{\sigma}$ and the rate-of-deformation tensor $\mathbf d$ form the corresponding
+power-conjugate pair in the current configuration.
+
+---
+
+## Reference configuration
+
+For finite deformation, introduce the deformation gradient
+
+$$
+\mathbf F
+=
+\frac{\partial\mathbf x}{\partial\mathbf X}
+$$
+
+and
+
+$$
+J=\det\mathbf F.
+$$
+
+The First Piola--Kirchhoff stress is
+
+$$
+\mathbf P
+=
+J\boldsymbol{\sigma}\mathbf F^{-T}.
+$$
+
+The power expression referred to the reference configuration can be written as
+
+$$
+\boxed{
+P_{\mathrm{ext}}
+=
+\int_{\Omega_0}
+\mathbf P:\dot{\mathbf F}
+\,dV.
+}
+$$
+
+Thus,
+
+$$
+\mathbf P
+\quad\text{and}\quad
+\dot{\mathbf F}
+$$
+
+form another work-conjugate pair.
+
+Alternatively, define the Green--Lagrange strain
+
+$$
+\mathbf E
+=
+\frac12
+\left(
+\mathbf F^T\mathbf F-\mathbf I
+\right).
+$$
+
+Its work-conjugate stress is the Second Piola--Kirchhoff stress $\mathbf S$, giving
+
+$$
+\boxed{
+P_{\mathrm{ext}}
+=
+\int_{\Omega_0}
+\mathbf S:\dot{\mathbf E}
+\,dV.
+}
+$$
+
+So the particular stress and strain measures change with the formulation, but the underlying requirement remains the
+same:
+
+**the stress and deformation measures must form a consistent work-conjugate pair.**
+
+---
+
+## One principle, several formulations
+
+The small- and finite-deformation expressions can now be viewed together.
+
+For small strain,
+
+$$
+\boxed{
+\int_{\partial\Omega}
+\mathbf t\cdot\delta\mathbf u\,dA
+=
+\int_\Omega
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\varepsilon}
+\,dV.
+}
+$$
+
+For finite deformation in the current configuration,
+
+$$
+\boxed{
+\int_{\partial\Omega_t}
+\mathbf t\cdot\mathbf v\,da
+=
+\int_{\Omega_t}
+\boldsymbol{\sigma}:\mathbf d\,dv.
+}
+$$
+
+And in the reference configuration,
+
+$$
+\boxed{
+\int_{\Omega_0}
+\mathbf P:\dot{\mathbf F}\,dV
+=
+\int_{\Omega_0}
+\mathbf S:\dot{\mathbf E}\,dV.
+}
+$$
+
+The mathematical quantities change, but the energetic principle connecting external action to internal deformation
+remains.
+
+---
+
+## Watch the lecture
+
+This derivation is also discussed in my Mechanics of Materials lecture.
+
+{{< video https://youtu.be/i3yDGYlKvQk >}}
+
+---
+
+## Takeaway
+
+Why does the strain tensor appear in mechanics?
+
+Start from the work of surface tractions:
+
+$$
+\mathbf t\cdot\delta\mathbf u.
+$$
+
+Use Cauchy's traction law, equilibrium, and the divergence theorem, and the corresponding volume quantity becomes
+
+$$
+\boldsymbol{\sigma}:
+\delta\nabla\mathbf u.
+$$
+
+Then decompose the displacement gradient:
+
+$$
+\delta\nabla\mathbf u
+=
+\delta\boldsymbol{\varepsilon}
++
+\delta\boldsymbol{\omega}.
+$$
+
+Because stress is symmetric,
+
+$$
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\omega}
+=
+0.
+$$
+
+What remains is
+
+$$
+\boxed{
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\varepsilon}.
+}
+$$
+
+Thus the strain tensor is not merely a convenient symmetrization of the displacement gradient.
+
+It emerges naturally from the mechanics of **internal work**.
+
+And this leads to one of the central energy relationships in solid mechanics:
+
+$$
+\boxed{
+dU
+=
+\boldsymbol{\sigma}:
+d\boldsymbol{\varepsilon}.
+}
+$$
