@@ -18,7 +18,9 @@ Engineering decisions are rarely made from a single number.
 
 When selecting a structural system, a construction method, or an offshore wind substructure, we may need to consider cost, construction duration, technical maturity, environmental impact, financing risk, maintenance, public acceptance, and many other criteria.
 
-At first glance, using **more criteria** seems safer. More information should lead to a better decision.
+At first glance, using **more criteria** seems safer.
+
+More information should lead to a better decision.
 
 But there is a hidden problem:
 
@@ -55,9 +57,13 @@ So the first four criteria are not truly independent.
 
 If all six criteria are treated separately, **economic performance may effectively receive several votes**, while environmental impact receives only one.
 
-This is not necessarily an intentional bias. It is a **structural bias produced by redundant criteria**.
+This is not necessarily an intentional bias.
+
+It is a **structural bias produced by redundant criteria**.
 
 The problem becomes more serious as the number of criteria grows.
+
+---
 
 ## Why conventional AHP can be vulnerable
 
@@ -79,7 +85,29 @@ That assumption is often difficult to satisfy in real engineering problems.
 
 In our offshore wind study, for example, **project-financing risk** and **insurance-underwriting risk** had a correlation coefficient of **0.81**.
 
-Likewise, **social acceptance by local communities** and **applicability of environmental impact assessments** had a correlation of **0.65**.
+Likewise, **social acceptance by local communities** and **applicability of environmental impact assessments** had a correlation of **0.65**. :contentReference[oaicite:1]{index=1}
+
+![Examples of correlations among the evaluation criteria. Strong correlations indicate that some apparently separate criteria contain overlapping information.](Fig03.png){fig-align="center" width="90%"}
+
+The figure makes the problem visible.
+
+Some criteria are only weakly related, but others form strongly correlated groups.
+
+For example,
+
+$$
+r(X_{11},X_{12})=0.81
+$$
+
+for project-financing risk and insurance-underwriting risk.
+
+Similarly,
+
+$$
+r(X_{13},X_{15})=0.65
+$$
+
+for social acceptance and applicability of environmental impact assessments. :contentReference[oaicite:2]{index=2}
 
 These are different criteria in name, but they clearly contain shared information.
 
@@ -91,39 +119,57 @@ A more fundamental question should come first:
 
 > **Are these criteria really independent dimensions of the decision?**
 
+---
+
 ## Fix the decision structure before assigning weights
 
 Our approach was to place **Exploratory Factor Analysis (EFA)** before AHP.
 
-The logic is simple.
+Instead of asking experts to assign weights immediately to a long list of potentially overlapping criteria, we first examine the structure hidden inside the data.
 
-```{mermaid}
-flowchart TD
-    A["Many evaluation criteria"] --> B["Measure correlations"]
-    B --> C["Exploratory Factor Analysis"]
-    C --> D["Independent latent factors"]
-    D --> E["AHP pairwise comparison"]
-    E --> F["Factor weights"]
-    F --> G["Final evaluation of alternatives"]
-```
+![Conceptual workflow of the integrated EFA–AHP approach. Correlations among criteria are identified first, EFA restructures them into major latent factors, and AHP then assigns importance to those factors.](Fig02.png){fig-align="center" width="95%"}
 
-Instead of asking experts to assign weights immediately to a long list of possibly overlapping criteria, we first examine the structure hidden inside the data.
+The important change is one of **sequence**.
+
+Conventional approaches often begin by assigning weights directly to individual criteria.
+
+The integrated approach instead asks:
+
+1. Which criteria are correlated?
+2. Can those correlations be represented by a smaller number of underlying factors?
+3. Which of those factors should carry greater engineering importance?
 
 EFA searches for a smaller number of **latent factors** that explain why several observed criteria move together.
 
 In other words, EFA asks:
 
-> What underlying concepts are these criteria actually measuring?
+> **What underlying concepts are these criteria actually measuring?**
+
+Only after this information structure has been clarified is AHP used to assign relative importance.
+
+This separation is central to the method.
+
+---
 
 ## From 18 criteria to four underlying factors
 
 Our offshore wind application began with **18 evaluation criteria** covering constructability, economic feasibility, project risk, and social and environmental impacts.
 
-The survey involved **164 professionals** from academia, industry, and public institutions engaged in offshore wind development.
+The survey involved **164 professionals** from academia, industry, and public institutions engaged in offshore wind development. :contentReference[oaicite:3]{index=3}
 
-Before performing factor analysis, we checked whether the dataset was suitable for EFA. The Kaiser–Meyer–Olkin measure was **0.868**, and Bartlett's test rejected the hypothesis that the correlation matrix was an identity matrix.
+Before performing factor analysis, we checked whether the dataset was suitable for EFA.
 
-The analysis showed that the 18 criteria could be represented by **four major independent factors**, explaining 60.30% of the cumulative variance.
+The Kaiser–Meyer–Olkin measure was
+
+$$
+\mathrm{KMO}=0.868,
+$$
+
+and Bartlett's test rejected the hypothesis that the correlation matrix was an identity matrix. :contentReference[oaicite:4]{index=4}
+
+The scree plot leveled off after the fourth factor, and the first four factors explained **60.30% of the cumulative variance**.
+
+Accordingly, the 18 correlated criteria were reduced to four major factors. :contentReference[oaicite:5]{index=5}
 
 They were interpreted as:
 
@@ -134,15 +180,51 @@ They were interpreted as:
 | **Site conditions** | fabrication conditions and construction feasibility |
 | **Life-cycle cost** | construction cost, construction duration, O&M cost |
 
+The factor-loading results showed, for example, that social acceptance, environmental impact and noise, and EIA applicability loaded strongly onto the same socio-environmental factor, while project-financing risk and insurance-underwriting risk loaded strongly onto the technological and investment-risk factor. :contentReference[oaicite:6]{index=6}
+
 This is the key transformation.
 
 Instead of assigning importance independently to 18 partly redundant criteria, the decision is reorganized around **four broader and statistically independent dimensions**.
+
+---
+
+## A useful engineering analogy
+
+There is a useful analogy with structural dynamics.
+
+Structural engineers routinely simplify complicated systems without trying to preserve every degree of freedom.
+
+In modal analysis, a structure may have a very large number of degrees of freedom, but only a limited number of dominant modes contribute significantly to the response of interest.
+
+![Analogy between structural modal analysis and exploratory factor analysis. In both cases, a large set of variables is reduced to a smaller set of dominant components that retain the important information.](Fig01.png){fig-align="center" width="95%"}
+
+The analogy is not exact, but it is conceptually useful.
+
+In structural modal analysis,
+
+- many degrees of freedom describe the structure,
+- eigenvalue analysis identifies mode shapes,
+- only the dominant modes may be retained for practical analysis.
+
+In EFA,
+
+- many evaluation criteria describe the decision problem,
+- the correlation matrix and eigenvalue analysis reveal latent structure,
+- only the major factors that explain a substantial portion of the information are retained.
+
+The objective in both cases is not simply to remove variables.
+
+It is to retain the **dominant independent information** while reducing redundancy.
+
+This analogy was also part of the rationale used in the study, where structural model reduction was discussed as a way to interpret dimensionality reduction in EFA. :contentReference[oaicite:7]{index=7}
+
+---
 
 ## What EFA does—and what it does not do
 
 EFA does **not** tell us which factor should be considered most important.
 
-It only identifies the structure of the information.
+It identifies the structure of the information.
 
 For example, it can reveal that construction cost, construction duration, and O&M cost largely belong to a common life-cycle-cost dimension.
 
@@ -161,15 +243,17 @@ In our example, five evaluators representing academic, client, and contractor pe
 | Site conditions | 0.192 |
 | Socio-environmental impact | 0.121 |
 
-All evaluator consistency ratios were below 0.1, indicating acceptable consistency in the pairwise comparisons.
+All evaluator consistency ratios were below 0.1, indicating acceptable consistency in the pairwise comparisons. :contentReference[oaicite:8]{index=8}
 
 So the two methods play different roles:
 
-**EFA organizes the information.**
+> **EFA organizes the information.**
 
-**AHP introduces engineering priorities.**
+> **AHP introduces engineering priorities.**
 
 That separation is important.
+
+---
 
 ## Application to offshore wind substructures
 
@@ -182,7 +266,7 @@ We tested the framework using four fixed offshore wind substructure alternatives
 
 Each alternative had different strengths.
 
-For example, the suction bucket scored strongly in the socio-environmental factor but poorly in technological and investment risks. The postpiled jacket performed well under site conditions, while the monopile performed well in life-cycle cost.
+For example, the suction bucket achieved the highest socio-environmental factor score, the prepiled jacket the highest technological and investment-risk score, the postpiled jacket the highest site-condition score, and the monopile the highest life-cycle-cost score. :contentReference[oaicite:9]{index=9}
 
 Once the factor scores and AHP-derived weights were combined, the final scores were:
 
@@ -197,17 +281,31 @@ At first sight, the monopile therefore appears to be the preferred option.
 
 But engineering decisions should not stop at ranking.
 
+---
+
 ## The highest score is not always the whole story
 
-The monopile exceeded the prepiled jacket by only **0.025** in the final score.
+The monopile exceeded the prepiled jacket by only
 
-When we examined the variation among stakeholder evaluations, the prepiled jacket showed a slightly smaller standard deviation than the monopile (**0.388 versus 0.405**).
+$$
+0.025
+$$
+
+in the final score.
+
+When we examined the variation among stakeholder evaluations, the prepiled jacket showed a slightly smaller standard deviation than the monopile:
+
+$$
+0.388
+\quad\text{versus}\quad
+0.405.
+$$
 
 A two-sample statistical test also showed that their mean difference was not statistically significant:
 
 - \(p = 0.571\),
 - 95% confidence interval: \((-0.061,\ 0.111)\),
-- Cohen's \(d = 0.062\).
+- Cohen's \(d = 0.062\). :contentReference[oaicite:10]{index=10}
 
 This leads to an important engineering interpretation.
 
@@ -215,18 +313,54 @@ If the objective is simply to maximize the average score, the monopile ranks fir
 
 But if the project places greater value on **stakeholder consensus and stability of judgment**, the prepiled jacket may be equally defensible—and potentially preferable.
 
-Decision-making is therefore not just about generating a ranking. It is also about understanding **how reliable that ranking is**.
+Decision-making is therefore not just about generating a ranking.
+
+It is also about understanding **how reliable that ranking is**.
+
+---
 
 ## Did removing redundancy actually help?
 
 We compared the integrated EFA–AHP approach with conventional AHP.
 
-The improvement was substantial.
+The difference in the distributions of evaluation scores is visually clear.
 
-The integrated method produced:
+![Comparison of evaluation-score distributions obtained using conventional AHP without EFA and the integrated EFA–AHP approach. The integrated framework produces more distinct distributions among the alternatives.](Fig04.png){fig-align="center" width="95%"}
+
+With conventional AHP alone, the distributions of several alternatives substantially overlap.
+
+After EFA is introduced before the weighting step, the distributions become more clearly differentiated.
+
+The quantitative comparison showed the same tendency.
+
+The conventional AHP produced mean values of
+
+$$
+\mathrm{CV}=17.45
+$$
+
+and
+
+$$
+\mathrm{SNR}=0.08,
+$$
+
+whereas the integrated EFA–AHP produced
+
+$$
+\mathrm{CV}=4.28
+$$
+
+and
+
+$$
+\mathrm{SNR}=0.32.
+$$
+
+This corresponds to
 
 - a **75.41% reduction in the coefficient of variation**, and
-- a **3.08-fold increase in the signal-to-noise ratio**.
+- a **3.08-fold increase in the signal-to-noise ratio**. :contentReference[oaicite:11]{index=11}
 
 In this study, those changes indicated that the resulting evaluations were more stable and that the alternatives were more clearly distinguishable.
 
@@ -234,21 +368,47 @@ The important point is not that EFA somehow makes expert judgment objective.
 
 It does not.
 
-Rather, it helps prevent the decision structure itself from giving excessive influence to groups of strongly correlated criteria.
+Rather, EFA helps prevent the decision structure itself from giving excessive influence to groups of strongly correlated criteria.
 
-## A useful engineering analogy
+---
 
-Structural engineers routinely reduce complicated systems to their essential behavior.
+## Why the improvement occurs
 
-In dynamic analysis, for example, model reduction can remove degrees of freedom that contribute little independent information while retaining the dominant structural response.
+The improvement can be understood conceptually.
 
-The idea here is similar.
+Suppose three highly correlated criteria all represent essentially the same underlying concern.
 
-A decision problem may contain many observable criteria, but the number of genuinely independent decision dimensions can be much smaller.
+If conventional AHP assigns separate weights to all three, that concern may enter the final evaluation three times.
 
-The objective is therefore not to preserve the largest possible number of criteria.
+Schematically,
 
-It is to preserve the **independent information** contained in those criteria.
+$$
+\text{shared information}
+\rightarrow
+\begin{cases}
+X_1\\
+X_2\\
+X_3
+\end{cases}
+\rightarrow
+\text{multiple weighted contributions}.
+$$
+
+EFA instead attempts to identify their common latent component:
+
+$$
+(X_1,X_2,X_3)
+\rightarrow
+F_1.
+$$
+
+The weighting process is then applied to the factor rather than repeatedly to overlapping manifestations of the same information.
+
+The objective is therefore not simply dimensional reduction.
+
+It is **redundancy control before weighting**.
+
+---
 
 ## A general workflow for less biased multicriteria decisions
 
@@ -256,16 +416,14 @@ The broader lesson extends beyond offshore wind.
 
 When many evaluation criteria are used, a practical workflow is:
 
-```{mermaid}
-flowchart LR
-    A["Define candidate criteria"] --> B["Collect evaluation data"]
-    B --> C["Check correlations"]
-    C --> D["Test suitability for factor analysis"]
-    D --> E["Extract and interpret latent factors"]
-    E --> F["Assign importance to factors"]
-    F --> G["Evaluate alternatives"]
-    G --> H["Check sensitivity and stakeholder variation"]
-```
+1. **Define candidate criteria.**
+2. **Collect evaluation data.**
+3. **Examine correlations among the criteria.**
+4. **Check whether the dataset is suitable for factor analysis.**
+5. **Extract and interpret latent factors.**
+6. **Assign relative importance to those factors.**
+7. **Evaluate the alternatives.**
+8. **Check sensitivity and stakeholder variation.**
 
 This framework can be useful whenever criteria are likely to overlap—for example:
 
@@ -281,19 +439,27 @@ The essential principle is simple:
 
 > **Do not assign weights before understanding the structure of the criteria.**
 
+---
+
 ## What this method does not solve
 
 There are important limitations.
 
 First, the initial list of criteria may itself be incomplete.
 
+EFA can reorganize the information that has been collected, but it cannot identify an important consideration that was never included in the evaluation.
+
 Second, the offshore wind example used simplified environmental and economic assumptions. Actual projects involve time-varying wind, waves, currents, costs, and uncertainty.
 
 Third, the method treated evaluators as having equal decision-making competence, even though expertise and experience can vary.
 
-Finally, AHP weights still come from subjective pairwise comparisons. EFA can reduce redundancy among the criteria, but it cannot remove the preferences of the decision-makers.
+Finally, AHP weights still come from subjective pairwise comparisons.
 
-A future direction is therefore to combine the framework with data-driven weighting approaches when adequate empirical data are available.
+EFA can reduce redundancy among the criteria, but it cannot remove the preferences of the decision-makers.
+
+The original study therefore identifies evaluator-specific weighting and more data-driven weighting approaches as possible directions for future research. :contentReference[oaicite:12]{index=12}
+
+---
 
 ## Takeaway
 
@@ -301,7 +467,7 @@ Bias in engineering decision-making does not always come from an obviously biase
 
 It can be embedded in the **structure of the evaluation itself**.
 
-If several criteria contain the same information, treating them as independent may unintentionally amplify one dimension of the decision.
+If several criteria contain overlapping information, treating them as independent may unintentionally amplify one dimension of the decision.
 
 The EFA–AHP approach addresses this problem in two stages:
 
@@ -311,6 +477,10 @@ The EFA–AHP approach addresses this problem in two stages:
 The result is not a perfectly objective decision.
 
 But it is a decision whose structure is more transparent, less redundant, and easier to justify.
+
+The engineering principle can be summarized in one sentence:
+
+> **Understand the information structure before assigning importance to it.**
 
 ---
 
