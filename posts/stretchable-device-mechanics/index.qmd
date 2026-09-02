@@ -1,6 +1,6 @@
 ---
 title: "How Can Rigid Electronics Become Stretchable?"
-subtitle: "The mechanics of putting deformation where it can be tolerated"
+subtitle: "A structural engineer’s route into stretchable electronics—and the mechanics of putting deformation where it can be tolerated"
 author: "Goangseup Zi"
 date: "2026-09-02"
 categories:
@@ -8,43 +8,44 @@ categories:
   - Stretchable Electronics
   - Solid Mechanics
   - Finite Element Analysis
-description: "Stretchable electronics do not require every component to stretch. A decade-long collaboration shows how geometry, stiffness contrast, strain isolation, and
-compliant interconnections can redirect deformation away from fragile devices."
+description: "How a collaboration between structural mechanics and chemical engineering led to a simple principle for stretchable devices: protect fragile functional components by controlling where deformation occurs."
 toc: true
 toc-depth: 2
 ---
 
-Electronic devices are usually built from materials that do not like large deformation.
+I did not start this research because I was working on semiconductors, batteries, or wearable electronics.
 
-Semiconductor layers, metallic electrodes, batteries, sensors, and displays may tolerate only small strains before their electrical performance deteriorates or their
-components crack.
+My background is structural engineering and mechanics.
 
-Yet today we routinely talk about flexible displays, wearable sensors, foldable phones, and even electronics that can be stretched with the human body.
+Around 2010, Prof. Jeong Sook Ha in the Department of Chemical Engineering at Korea University was developing highly deformable electronic devices. Her group was interested in electronics that could bend, fold, twist, or stretch while maintaining their electrical function.
 
-This raises a mechanics question:
+That created a mechanics problem.
 
-> **How can an electronic system undergo very large deformation when many of its functional components cannot?**
+Many of the functional materials used in electronic devices can tolerate only small strains. Yet the complete device may need to deform by tens of percent.
 
-One answer is surprisingly familiar to a structural engineer.
+Prof. Ha invited me to collaborate on this question.
 
-**Do not require every component to accommodate the same deformation.**
+From my perspective, the problem looked surprisingly familiar:
 
-Instead, design the structure so that deformation occurs where it can be tolerated and is suppressed where it cannot.
+> **How can a structure undergo large global deformation while protecting vulnerable components from large local strain?**
 
-This idea became a recurring theme in a collaboration that I began around 2010 with Prof. Jeong Sook Ha in Chemical Engineering at Korea University.
+That question began a collaboration that continued for more than a decade and led to around fifteen coauthored papers on deformable semiconductors, logic circuits, sensors, energy-storage devices, integrated wearable systems, and stretchable displays.
 
-Her group was developing highly deformable electronic devices. My role came from a rather different field: structural mechanics.
+The electronic technologies changed.
 
-Over more than a decade, we worked together on semiconductor devices, sensors, energy-storage devices, and integrated stretchable systems. The electronic functions changed
-considerably.
+**The mechanics question did not.**
 
-The mechanics problem remained remarkably similar.
+Today, foldable phones and deformable electronic devices are familiar consumer technologies. When we began this work, however, such devices were still largely research concepts.
+
+Looking back, what interests me most is not simply that the devices became stretchable.
+
+It is **how mechanics made that possible**.
 
 ---
 
-## Stretchability is not the same as material stretchability
+## The mechanics problem behind stretchable electronics
 
-Suppose a device is attached to a substrate subjected to a macroscopic tensile strain
+Suppose an electronic device is attached to a substrate subjected to a macroscopic tensile strain
 
 $$
 \varepsilon_\mathrm{global}
@@ -52,45 +53,83 @@ $$
 \frac{L-L_0}{L_0}.
 $$
 
-If every part of the system follows this deformation uniformly, then a 30% extension of the system would imply approximately 30% strain everywhere.
+If every part of the system followed that deformation uniformly, a 30% extension of the complete device would imply approximately 30% strain in its functional components.
 
-For many electronic materials, that would be disastrous.
+For many electronic materials, that would be unacceptable.
 
-But there is no mechanical requirement that the strain must be uniform.
+But mechanics gives us another possibility.
 
-Compatibility requires the connected system to deform continuously. It does **not** require every material point to experience the same strain.
+There is no requirement that strain must be uniform.
 
-That distinction changes the design problem completely.
+Compatibility requires a connected structure to deform continuously. It does **not** require every material point to experience the same strain.
+
+This distinction changes the engineering question.
 
 Instead of asking
 
-> How can we make the semiconductor survive 30% strain?
+> How can we make a semiconductor survive 30% strain?
 
 we can ask
 
-> **How can a system extend by 30% while keeping the semiconductor strain below its allowable level?**
+> **How can the complete device stretch by 30% while keeping the semiconductor strain below its allowable level?**
 
 That is a structural-mechanics problem.
 
 ---
 
-## The first strategy: turn stretching into geometry
+## Stretchability does not mean that everything stretches
 
-One of our early approaches used thin interconnections on a prestrained elastomeric substrate.
+This distinction is fundamental.
 
-When the prestrain was released, the interconnections buckled out of plane.
+A system can undergo a large change in overall dimensions while individual components experience only small material strains.
 
-![Thin interconnections can accommodate large macroscopic deformation through geometric changes rather than large material strain. The important feature is the separation
-between deformation of the overall substrate and strain in the active electronic region.](Fig01.png){fig-alt="Stretchable nanowire electronic device on a deformable substrate
-showing buckled interconnections"}
+Structural engineers encounter this idea routinely.
 
-The mechanism is familiar from structural mechanics.
+A spring extends substantially even though the strain in the wire remains relatively small.
 
-A straight member subjected to axial displacement must accommodate that displacement primarily through axial strain before instability occurs.
+A cable changes configuration primarily through geometry.
 
-A curved or buckled member has another possibility: it can change its geometry.
+An expansion joint accommodates movement so that the neighboring structure does not have to.
 
-Schematically,
+A base-isolation system concentrates earthquake deformation in a deliberately compliant layer.
+
+The same philosophy can be applied to electronics.
+
+The objective is not
+
+$$
+\varepsilon_\mathrm{device}
+=
+\varepsilon_\mathrm{global}.
+$$
+
+We want
+
+$$
+\boxed{
+\varepsilon_\mathrm{device}
+\ll
+\varepsilon_\mathrm{global}.
+}
+$$
+
+The problem therefore becomes one of **strain management**.
+
+---
+
+## Our first approach: let geometry take the deformation
+
+One of the early strategies in our collaboration was to use thin interconnections on a prestrained elastomeric substrate.
+
+When the prestrain was released, the interconnections developed nonplanar, buckled configurations.
+
+![Thin interconnections can accommodate large macroscopic deformation through geometric changes rather than large material strain. The important feature is the separation between deformation of the overall substrate and strain in the active electronic region.](Fig01.png){fig-align="center" width="90%"}
+
+This immediately provided another way to accommodate subsequent stretching.
+
+Instead of requiring the material itself to elongate by the full imposed displacement, the interconnection could change its geometry.
+
+Conceptually,
 
 $$
 \Delta L_\mathrm{system}
@@ -100,59 +139,80 @@ $$
 \Delta L_\mathrm{geometry}.
 $$
 
-This is a conceptual decomposition rather than a general finite-deformation identity, but it captures the essential idea.
+This is not intended as a general finite-deformation identity.
 
-If geometric reconfiguration accounts for most of the imposed displacement, material strain can remain small.
+It is a mechanical picture.
 
-The same principle appears in springs, bellows, corrugated sheets, cables, and compliant mechanisms.
+If geometric reconfiguration accounts for a large part of the imposed displacement, material strain can remain comparatively small.
 
-Stretchable electronics brought it to another length scale.
+The same principle appears in
 
----
+- springs,
+- corrugated sheets,
+- bellows,
+- serpentine traces,
+- cables,
+- and compliant mechanisms.
 
-## Large system deformation does not imply large device strain
-
-This distinction between **global deformation** and **local strain** became increasingly important in our work.
-
-In stretchable SWCNT logic devices, for example, the system could accommodate prestrain up to 30%, while classical lamination analysis estimated local strains below
-approximately 0.6% in the SWCNT channel and Pd electrode regions.
-
-The electronics therefore did not survive because the semiconductor somehow became capable of sustaining 30% strain.
-
-The architecture prevented that strain from reaching the critical region.
-
-This gives the first general mechanics principle:
-
-> **What matters to a vulnerable component is not the deformation of the whole structure, but the local strain transmitted to that component.**
-
-This statement is equally true for an electronic device and for a large engineering structure.
+Stretchable electronics simply use it at a much smaller scale.
 
 ---
 
-## A more powerful idea: engineer the stiffness distribution
+## Global deformation and local strain are different quantities
 
-Buckling and serpentine interconnections provide geometric strain relief.
+This distinction became increasingly important as our work progressed.
 
-But another possibility is even more directly connected to structural mechanics.
+For example, in stretchable single-walled carbon nanotube logic devices, the complete system could accommodate substantial macroscopic stretching while the calculated local strains in critical channel and electrode regions remained much smaller.
 
-Consider two bonded regions having very different stiffnesses.
+The device did not survive because the semiconductor suddenly became capable of sustaining the complete global deformation.
 
-One is stiff and contains the functional device.
+It survived because the architecture prevented most of that deformation from reaching the vulnerable region.
 
-The other is soft and is allowed to deform.
+That led us toward a broader design principle:
 
-Under an imposed global displacement, deformation does not distribute uniformly between them.
+> **What matters to a vulnerable component is not how much the whole system deforms, but how much local strain reaches that component.**
 
-The compliant region attracts deformation.
+This is just as true for an electronic device as it is for a bridge, offshore structure, or mechanical system.
 
-This led us to heterogeneous substrates consisting of **stiff islands embedded in or connected by a soft elastomer**.
+---
 
-![The heterogeneous substrate deliberately creates stiff regions for functional devices and soft regions for deformation. The objective is not uniform strain but controlled
-strain localization.](Fig02.png){fig-alt="Heterogeneous stretchable substrate with stiff device islands and soft connecting regions"}
+## Then we changed the question
 
-The principle can be understood with a simple one-dimensional analogy.
+Geometry can relieve strain.
 
-Consider two regions in series:
+But we eventually arrived at a more powerful question:
+
+> **Can we deliberately decide where the strain should go?**
+
+Suppose a deformable substrate contains regions with very different stiffnesses.
+
+Some regions are deliberately made stiff and carry the functional electronic components.
+
+The regions between them remain very soft.
+
+When the complete substrate is stretched, the strain does not distribute uniformly.
+
+The soft material accepts most of the deformation.
+
+The stiff regions remain comparatively undeformed.
+
+![The heterogeneous substrate deliberately creates stiff regions for functional devices and soft regions for deformation. The objective is not uniform strain but controlled strain localization.](Fig02.png){fig-align="center" width="90%"}
+
+This was an important conceptual transition.
+
+We were no longer merely making an electronic component more flexible.
+
+We were **designing the deformation field of the complete system**.
+
+---
+
+## Why stiffness contrast redirects deformation
+
+A simple one-dimensional analogy helps explain the mechanism.
+
+Consider two regions connected in series.
+
+Their total elongation is
 
 $$
 \Delta
@@ -183,49 +243,57 @@ $$
 E_1A_1 \gg E_2A_2,
 $$
 
-most of the displacement occurs in region 2.
+then most of the displacement occurs in region 2.
 
-The actual stretchable substrate is a multidimensional finite-deformation problem, so this simple series model is not quantitatively equivalent.
+The real stretchable substrate is a multidimensional finite-deformation problem, so this simple model is only a conceptual analogy.
 
-But the physical principle is the same:
+But the physical principle is correct:
 
-> **Give the deformation a mechanically preferable place to go.**
+> **Give deformation a mechanically preferable place to go.**
+
+This principle became central to our stretchable-device designs.
 
 ---
 
-## Strain isolation is a structural design problem
+## Finite element analysis showed where the strain went
 
-Finite element analysis made this idea visible.
+This is where my own background in structural mechanics became particularly useful.
 
-In one of our stretchable microsupercapacitor systems, stiff islands carried the active devices while a much softer polymer film connected neighboring islands.
+The device may be electronic, but the question
 
-Under 40% applied uniaxial strain, the calculated strain was approximately 0.47% on the stiff islands but reached approximately 107% in the soft region between them.
+> Where does the strain go?
+
+is exactly the kind of question computational mechanics is designed to answer.
+
+Finite element analysis allowed us to visualize the strain field rather than infer stretchability only from the imposed global deformation.
+
+![Finite element strain contours reveal the central mechanics of the design. Although the complete system is strongly stretched, deformation is concentrated in the compliant regions while the device islands remain nearly undeformed.](Fig03.png){fig-align="center" width="90%"}
+
+In one of our stretchable microsupercapacitor systems, for example, stiff islands carried the functional devices while much softer polymer regions connected neighboring islands.
+
+Under large imposed deformation, the calculated strain on the stiff islands remained small while very large deformation developed in the compliant regions.
 
 The deformation had not disappeared.
 
 It had been **redistributed**.
 
-![Finite element strain contours reveal the central mechanics of the design. Although the complete system is strongly stretched, deformation is concentrated in the compliant
-regions while the device islands remain nearly undeformed.](Fig03.png){fig-alt="Finite element strain distribution of stretchable device showing strain concentration in soft
-regions"}
+That is the essential mechanics.
 
-This is perhaps the most important figure in this article.
+---
 
-At first sight, a highly nonuniform strain field might look undesirable.
+## In this problem, strain concentration can be desirable
 
-In conventional structural design we often worry about strain or stress concentrations.
+Structural engineers are trained to be suspicious of stress and strain concentrations.
 
-Here the opposite is true.
+Usually for good reason.
 
-The concentration is intentional.
+A severe concentration can initiate yielding, fracture, fatigue, or delamination.
 
-The objective is not
+Stretchable-device design introduces an interesting reversal.
 
-$$
-\varepsilon(\mathbf{x}) \approx \text{constant}.
-$$
+A strongly nonuniform strain field can be exactly what we want.
 
-Instead, we want
+We deliberately seek
 
 $$
 \varepsilon_\mathrm{device}
@@ -241,364 +309,546 @@ $$
 \varepsilon_\mathrm{device}.
 $$
 
-The strain field itself becomes a design variable.
+The important requirement is that the highly strained region must be made from a material and geometry capable of tolerating that deformation.
+
+So the design objective is not to eliminate strain concentration everywhere.
+
+It is to decide
+
+> **where strain concentration is acceptable and where it is not.**
+
+That is a much more general mechanics principle.
 
 ---
 
-## From strain reduction to strain suppression
+## Protect the device by sacrificing deformation elsewhere
 
-The idea was subsequently pushed further.
+This way of thinking is familiar in structural engineering.
 
-Instead of simply using relatively stiff polymer islands, stiff PET films could be locally implanted inside a very soft Ecoflex substrate.
+Consider seismic isolation.
 
-The stiffness contrast became enormous.
+A conventional structure might attempt to resist earthquake-induced deformation by making its structural members stronger and stiffer.
 
-In the biaxially stretchable microsupercapacitor array, finite element analysis indicated that the maximum strain in the protected device region was below approximately
-**0.02%**, even when the substrate was subjected to 70% uniaxial or 50% biaxial strain.
+An isolated structure takes a different approach.
 
-Meanwhile, strain in the surrounding Ecoflex could exceed 250%.
+A deliberately compliant region is introduced so that a substantial portion of the deformation occurs there rather than in vulnerable structural components.
 
-This result sounds paradoxical only if we confuse global strain with local strain.
+The analogy is conceptual rather than mathematically identical.
 
-The system is highly stretchable precisely because the deformation is **extremely nonuniform**.
+But the design philosophy is remarkably similar:
 
-The electronics are protected because another part of the structure willingly takes the deformation.
+> **Protect the functional region by giving deformation somewhere safer to go.**
 
----
-
-## The interconnection has a different job
-
-Protecting the device islands creates another mechanics problem.
-
-The islands must still communicate electrically.
-
-If two nearly rigid islands move apart, the electrical interconnection between them must accommodate the relative displacement.
-
-This led to two complementary approaches in our work.
-
-One was geometrically compliant metallic interconnections, including serpentine structures that could deform out of plane.
-
-The other was liquid-metal interconnections embedded inside soft substrates.
-
-A liquid-metal conductor does not have to preserve the geometry of a conventional solid wire while the surrounding substrate deforms.
-
-The functional system therefore becomes mechanically heterogeneous:
-
-- stiff regions protect sensitive devices,
-- soft regions accommodate deformation,
-- compliant or liquid interconnections maintain electrical continuity.
-
-Stretchability emerges from the **architecture of the system**, not from a single extraordinary material.
+Stretchable electronics use soft polymers, geometric interconnections, stiff islands, and other mechanisms to accomplish essentially this task.
 
 ---
 
-## The same mechanics survived while the electronics changed
+## The idea became more extreme
 
-Over the following years, the electronic applications became increasingly sophisticated.
+As the collaboration continued, the stiffness contrast between protected and deformable regions became increasingly deliberate.
 
-The same mechanics architecture was applied to microsupercapacitors, pressure sensors, gas sensors, body-attached multisensor systems, solar-powered devices, and displays.
+In later microsupercapacitor systems, stiff polymer films could be locally implanted inside very soft elastomeric substrates.
 
-For example, an encapsulated microsupercapacitor system used stiff PET platforms in Ecoflex so that, under 30% uniaxial stretching, strain on the MSCs was approximately zero
-while the thin Ecoflex regions between them experienced much larger deformation.
+The functional device then occupied the mechanically protected region.
 
-Later, stretchable QD-LED arrays used stiff NOA63 islands in a soft Eco-PDMS substrate together with liquid-metal interconnections.
+Under large uniaxial or biaxial stretching, finite element analysis showed that the strain in the protected device region could remain extremely small while the surrounding elastomer underwent very large deformation.
 
-The QD-LED system operated under 50% uniaxial and 30% biaxial stretching.
+At first this seems paradoxical:
 
-![The later QD-LED array shows the maturation of the concept: functional display pixels remain on protected islands while the surrounding elastomer and liquid-metal
-interconnections accommodate the macroscopic deformation.](Fig04.png){fig-alt="Stretchable QD-LED array under uniaxial and biaxial deformation with FEM strain distributions"}
+> How can a system stretch enormously if an important part of it hardly stretches at all?
 
-The electronic device had changed dramatically.
+But there is no paradox.
 
-The mechanical principle had not.
+The system is highly stretchable **because its deformation is nonuniform**.
 
 ---
 
-## Why this is structural mechanics
+## The interconnections must solve a different mechanics problem
 
-At first sight, a microsupercapacitor or semiconductor array may seem far removed from civil and structural engineering.
+Once the functional devices are placed on nearly rigid islands, another problem appears.
 
-Mechanically, however, the questions are familiar.
+The islands move relative to one another.
 
-Where does deformation occur?
+They still need electrical connections.
 
-Where should stiffness be placed?
+A conventional straight metallic wire may not tolerate the required relative displacement.
 
-Where should compliance be introduced?
+So the interconnection must itself be mechanically designed.
 
-How does geometry transform imposed displacement into local strain?
+Two important strategies appeared repeatedly in our work.
 
-Where will stress or strain concentrate?
+One was a long, thin serpentine metallic interconnection.
 
-How can a vulnerable component be isolated from global deformation?
+The serpentine geometry converts imposed extension into bending, rotation, and out-of-plane motion.
 
-These are structural mechanics questions independent of scale.
+Another was the use of liquid-metal interconnections embedded inside soft polymers.
 
-A bridge may be hundreds of meters long and an electronic device only millimeters or micrometers.
+A liquid conductor can change shape with its surrounding channel without accumulating strain in the same way as a conventional solid metallic line.
 
-The governing reasoning remains recognizable:
+The complete stretchable system therefore becomes mechanically heterogeneous:
 
 $$
-\text{loading}
-\rightarrow
-\text{deformation field}
-\rightarrow
-\text{strain}
-\rightarrow
-\text{stress}
-\rightarrow
-\text{failure or survival}.
+\boxed{
+\begin{aligned}
+\text{stiff islands}
+&\rightarrow
+\text{protect functional devices},\\
+\text{soft substrate}
+&\rightarrow
+\text{accommodate deformation},\\
+\text{compliant interconnections}
+&\rightarrow
+\text{maintain electrical continuity}.
+\end{aligned}
+}
 $$
 
-For stretchable electronics, the most important step is often the second one:
+Stretchability is an **architectural property**.
+
+---
+
+## The devices changed, but the mechanics remained
+
+Over more than a decade of collaboration, Prof. Ha's group developed increasingly sophisticated devices.
+
+We worked together on systems involving
+
+- nanowire electronics,
+- logic devices,
+- microsupercapacitors,
+- pressure and strain sensors,
+- gas sensors,
+- integrated energy-storage and sensing systems,
+- wearable devices,
+- and stretchable displays.
+
+The materials changed.
+
+The fabrication methods changed.
+
+The electronic functions changed.
+
+But the mechanical question remained almost unchanged:
+
+$$
+\boxed{
+\text{Where should the deformation go?}
+}
+$$
+
+That continuity is what I find most interesting in retrospect.
+
+The mechanics was not specific to one semiconductor, one sensor, or one battery technology.
+
+It provided a general way to integrate mechanically vulnerable functional components into highly deformable systems.
+
+---
+
+## Integration made the mechanics more important
+
+A single stretchable component is already a challenging problem.
+
+A complete device system is harder.
+
+Consider a wearable system containing
+
+- a sensor,
+- an energy-storage device,
+- electrical interconnections,
+- and possibly an energy-harvesting component.
+
+Each may have different allowable strains.
+
+Each may have different stiffness.
+
+Each may fail by a different mechanism.
+
+Our integrated systems therefore required the substrate itself to become a mechanical architecture.
+
+For example, in the integrated graphene gas-sensor and micro-supercapacitor system, stiff SU-8 platforms were inserted beneath the sensitive functional components while long serpentine interconnections accommodated the surrounding deformation.
+
+The system could operate while subjected to large macroscopic stretching.
+
+The important point is not simply the percentage strain achieved.
+
+It is **how the strain field was engineered so that different components could coexist on the same deformable substrate**.
+
+---
+
+## Eventually, the mechanics supported a display
+
+A particularly satisfying later development was a stretchable array of quantum-dot light-emitting diodes.
+
+![The later QD-LED array shows the maturation of the concept: functional display pixels remain on protected islands while the surrounding elastomer and compliant interconnections accommodate the macroscopic deformation.](Fig04.png){fig-align="center" width="90%"}
+
+The application looks very different from the early nanowire devices.
+
+Yet mechanically the architecture is recognizable.
+
+Functional elements occupy protected regions.
+
+A soft surrounding material accommodates macroscopic deformation.
+
+Compliant interconnections maintain connectivity between moving regions.
+
+The same principle that began as a way of protecting individual electronic components had become an architecture for an integrated stretchable display.
+
+---
+
+## And then foldable electronics became ordinary
+
+When we began this collaboration around 2010, highly deformable electronics still felt futuristic.
+
+Today, in 2026, foldable smartphones are common consumer products.
+
+Stretchable displays, electronic skin, wearable health-monitoring systems, and deformable energy-storage devices remain active research and development areas.
+
+Our work should not be interpreted as a direct technological lineage to today's commercial foldable phones.
+
+Commercial devices involve many materials, architectures, manufacturing technologies, and contributions from a much broader research community.
+
+But the underlying mechanics problem is closely related.
+
+A foldable or stretchable electronic system must somehow reconcile
+
+$$
+\text{large device-scale deformation}
+$$
+
+with
+
+$$
+\text{small allowable strain in vulnerable components}.
+$$
+
+That is the problem we had been studying from the beginning.
+
+---
+
+## What did structural mechanics contribute?
+
+This collaboration also changed how I think about the role of mechanics in multidisciplinary research.
+
+Mechanics can be used after a device has been designed:
+
+> Calculate the strain.
+
+> Calculate the stress.
+
+> Explain why it failed.
+
+But that is only one role.
+
+A more powerful role is to ask before fabrication:
+
+> Where should the stiff material go?
+
+> Where should the soft material go?
+
+> Which geometry should accommodate deformation?
+
+> Where should a device be positioned?
+
+> How should neighboring islands be connected?
+
+> What strain field do we actually want?
+
+Then mechanics is no longer merely an analysis tool.
+
+It becomes a **design tool**.
+
+That, in my view, was one of the most important contributions of structural mechanics to our collaboration.
+
+---
+
+## The next question: can we design the strain field itself?
+
+Our earlier finite element analyses generally answered a forward problem:
+
+> Given this geometry and these materials, where will the strain go?
+
+Today we can formulate a more ambitious inverse problem:
+
+> **Given the strain field we want, what structure should we build?**
+
+Suppose the active electronic region occupies a domain $\Omega_d$.
+
+One possible mechanics objective is
+
+$$
+\min
+\left[
+\max_{\mathbf{x}\in\Omega_d}
+\varepsilon_\mathrm{eq}(\mathbf{x})
+\right],
+$$
+
+while requiring the complete system to achieve a prescribed global deformation.
+
+The design variables could include
+
+- island geometry,
+- island spacing,
+- local substrate thickness,
+- material stiffness,
+- interconnection geometry,
+- interface geometry,
+- and spatial stiffness distribution.
+
+This naturally connects stretchable electronics with topology optimization and inverse structural design.
+
+---
+
+## Future devices will require finite-deformation mechanics
+
+Simple uniaxial stretching is only the beginning.
+
+Real devices experience combinations of
+
+- stretching,
+- bending,
+- twisting,
+- biaxial deformation,
+- contact,
+- wrinkling,
+- and repeated folding.
+
+Human skin is particularly complicated.
+
+A wearable device attached to the body experiences a continuously changing multiaxial deformation field.
+
+Future mechanics models therefore need to address
+
+$$
+\text{large deformation}
++
+\text{material nonlinearity}
++
+\text{contact}
++
+\text{multiaxial loading}.
+$$
+
+These are standard subjects in nonlinear solid mechanics.
+
+Their application to deformable electronics remains rich with possibilities.
+
+---
+
+## Surviving once is not enough
+
+Another important shift concerns durability.
+
+Demonstrating that a device survives one large stretch establishes feasibility.
+
+A commercial device may have to survive thousands or millions of deformation cycles.
+
+The problem then moves from elasticity toward
+
+- fatigue,
+- fracture,
+- interface debonding,
+- delamination,
+- progressive damage,
+- and cyclic degradation.
+
+This may become particularly important near the edges of stiff islands.
+
+Strain is suppressed inside the island, but large gradients can develop near the transition between stiff and soft materials.
+
+Protecting one region can move the mechanical problem somewhere else.
+
+So future designs must consider not only
+
+$$
+\varepsilon_\mathrm{device},
+$$
+
+but also
+
+$$
+\text{interface durability}.
+$$
+
+---
+
+## Mechanics should eventually be coupled directly to device physics
+
+The ultimate design quantity may not even be strain.
+
+Different functional materials respond differently to mechanical deformation.
+
+For one semiconductor, a certain strain may change mobility.
+
+For another device, strain may change contact resistance.
+
+For a battery, repeated deformation may damage interfaces or alter transport pathways.
+
+For a display, deformation may change optical or electrical performance.
+
+The more complete design chain is therefore
 
 $$
 \boxed{
 \text{global deformation}
-\not\Rightarrow
-\text{uniform local strain}
-}
-$$
-
-Once that is understood, the design space becomes much larger.
-
----
-
-## A structural analogy: seismic isolation
-
-There is a useful analogy with earthquake engineering.
-
-A conventional structure may attempt to resist seismic deformation by making structural members stronger and stiffer.
-
-A base-isolated structure takes a different approach.
-
-It deliberately introduces a region where deformation is allowed to occur.
-
-The objective is not to eliminate displacement.
-
-It is to **control where the displacement occurs** so that vulnerable parts of the structure experience less damaging deformation.
-
-Stretchable electronics follow a conceptually similar strategy.
-
-The analogy is not mathematically identical, but the design philosophy is remarkably close:
-
-> **Protect the functional region by giving deformation somewhere safer to go.**
-
----
-
-## Mechanics as an enabling technology
-
-This experience also changed my view of what mechanics contributes to multidisciplinary research.
-
-Mechanics is sometimes introduced after a device has already been developed, simply to calculate stress or explain why something failed.
-
-Its more powerful role comes earlier.
-
-Mechanics can determine the architecture.
-
-If a semiconductor can tolerate only a small strain, that does not necessarily impose the stretchability limit of the complete device.
-
-Instead we can ask:
-
-- What stiffness distribution isolates the semiconductor?
-- What geometry converts extension into rotation or out-of-plane motion?
-- Where should compliant regions be placed?
-- How should neighboring rigid islands be connected?
-- What local strain results from a prescribed macroscopic deformation?
-
-These questions turn mechanics from an **analysis tool** into a **design tool**.
-
-That was an important part of my contribution to this long collaboration.
-
----
-
-## What comes next?
-
-The early question was:
-
-> Can we make an electronic system stretch?
-
-Today the more interesting question is:
-
-> **Can we design its deformation field?**
-
-That opens several opportunities for mechanics.
-
-### Optimize the stiffness field
-
-Instead of manually choosing the size and spacing of stiff islands, one could formulate the substrate as an optimization problem.
-
-For example,
-
-$$
-\min_{\rho(\mathbf{x})}
-\max_{\Omega_\mathrm{device}}
-\varepsilon_\mathrm{eq}(\mathbf{x})
-$$
-
-subject to constraints on global stretchability, device area, manufacturability, and perhaps electrical connectivity.
-
-The spatial stiffness distribution $\rho(\mathbf{x})$ then becomes part of the design.
-
-Topology optimization and computational mechanics could generate architectures that are difficult to discover by intuition alone.
-
-### Design for multiaxial deformation
-
-Human skin and practical foldable devices rarely experience simple uniaxial tension.
-
-They bend, twist, stretch biaxially, wrinkle, and contact other surfaces.
-
-The mechanics therefore moves naturally toward finite deformation, nonlinear constitutive behavior, contact, and multiaxial loading.
-
-### Design for fatigue, not just maximum strain
-
-A device that survives one 50% stretch is not necessarily a durable device.
-
-Repeated folding and stretching introduce questions of:
-
-- interfacial fatigue,
-- delamination,
-- crack initiation,
-- cyclic damage,
-- liquid-metal channel reliability,
-- and progressive changes in elastomer properties.
-
-For practical devices, the problem increasingly becomes one of **fracture and fatigue mechanics**.
-
-### Treat interfaces as structural components
-
-As strain in the active device approaches zero, other locations may become critical.
-
-Edges of stiff islands, bonded interfaces, electrical contacts, and transitions between materials can develop strong gradients.
-
-Protecting one component can simply move the mechanical problem somewhere else.
-
-Future designs therefore need to optimize not only the islands and soft substrate, but also their interfaces.
-
-### Couple mechanics with device performance
-
-Ultimately the quantity to minimize may not be mechanical strain itself.
-
-A semiconductor, battery, sensor, or display responds differently to deformation.
-
-The more general problem is
-
-$$
-\text{deformation}
 \rightarrow
 \text{local mechanics}
 \rightarrow
-\text{change in device physics}
+\text{device physics}
 \rightarrow
 \text{functional performance}.
+}
 $$
 
-The next generation of computational design should couple these levels directly.
+Future computational design should increasingly connect these levels rather than treating mechanical strain as an isolated output.
 
 ---
 
-## From finite element analysis to inverse design
+## From finite element analysis to mechanics-informed AI
 
-There is another important change ahead.
+There is also an interesting opportunity for AI-assisted design.
 
-In much of our earlier work, finite element analysis answered the question:
-
-> If we build this geometry, where will the strain go?
-
-Future computational mechanics can reverse the question:
-
-> **If this is the strain field we want, what geometry should we build?**
-
-That is an inverse problem.
-
-With topology optimization, reduced-order models, surrogate models, and machine learning, it becomes possible to search large families of heterogeneous structures
-automatically.
-
-The design target might be something like:
+A conventional finite element model answers:
 
 $$
-\varepsilon_\mathrm{device}<\varepsilon_\mathrm{allowable}
+\text{design}
+\rightarrow
+\text{response}.
 $$
 
-while maximizing
+But if thousands or millions of possible island shapes, stiffness distributions, and interconnection geometries are available, direct trial-and-error design becomes inefficient.
+
+Reduced-order models, surrogate models, topology optimization, and machine learning could instead help solve
 
 $$
-\varepsilon_\mathrm{global},
+\text{desired response}
+\rightarrow
+\text{design}.
 $$
 
-subject to electrical, thermal, manufacturing, and durability constraints.
+The important point is that AI should not replace mechanics.
 
-That would turn the original idea of strain isolation into a systematic mechanics-based design framework.
+Mechanics defines
+
+- equilibrium,
+- compatibility,
+- constitutive behavior,
+- admissible deformation modes,
+- failure constraints,
+- and meaningful design variables.
+
+AI can then help explore the enormous design space efficiently.
+
+That combination may allow the next generation of stretchable devices to move from intuitive strain isolation toward **systematic deformation-field design**.
 
 ---
 
-## The broader lesson
+## Mechanics does not care about scale
 
-When we started this collaboration more than a decade ago, foldable and stretchable electronics were still largely research concepts.
+Perhaps the most satisfying lesson from this collaboration is that mechanics is remarkably indifferent to the scale of the object.
 
-Today flexible displays and foldable smartphones are commercial products.
+A civil engineer may normally think about
 
-Our research should not be interpreted as a direct technological lineage to those products. The materials, manufacturing processes, and commercial architectures are much
-broader than any one research program.
+- bridges,
+- buildings,
+- offshore platforms,
+- concrete structures,
+- or large structural systems.
 
-But the mechanics question is the same one we were asking from the beginning:
+Stretchable electronics may be only millimeters or micrometers in scale.
 
-> How can a system undergo large deformation without imposing damaging strain on its functional components?
+But the questions remain familiar:
 
-The answer that emerged repeatedly from our work is simple.
+$$
+F
+\rightarrow
+\sigma
+\rightarrow
+\varepsilon
+\rightarrow
+u.
+$$
 
-**Do not make every component follow the global deformation.**
+Where does deformation occur?
 
-Control the deformation field.
+What controls the strain field?
 
-Use geometry to absorb displacement.
+How does stiffness affect load transfer?
 
-Use stiffness contrast to redirect strain.
+Where will damage initiate?
 
-Use compliant interconnections to connect protected regions.
+How can a vulnerable component be mechanically protected?
 
-And use mechanics to determine where deformation should—and should not—occur.
+The scale and materials change.
+
+The mechanics does not.
 
 ---
 
 ## Engineering takeaway
 
+A stretchable electronic system does not require every component to become stretchable.
+
+It requires us to understand the deformation field and deliberately control where deformation occurs.
+
+Geometry can absorb displacement.
+
+Stiffness contrast can redirect strain.
+
+Soft regions can protect stiff functional components.
+
+Compliant interconnections can preserve connectivity while those components move relative to one another.
+
+The principle that emerged repeatedly from our collaboration can therefore be stated very simply:
+
 > **A stretchable structure does not require every component to stretch. It requires deformation to occur in the right places.**
 
-That principle applies far beyond electronics.
+And perhaps the next generation of this research should ask an even more ambitious question:
 
-It is a general principle of structural mechanics.
+> **Instead of calculating where the strain goes, can we design exactly where we want it to go?**
 
 ---
 
 ## Original research
 
-Shin, G., Bae, M. Y., Lee, H. J., Hong, S. K., Yoon, C. H., Zi, G., Rogers, J. A., & Ha, J. S. (2011).
-*SnO2 Nanowire Logic Devices on Deformable Nonplanar Substrates.*
-ACS Nano, 5(12), 10009–10016.
+This article reflects a long-running collaboration with Prof. Jeong Sook Ha and her research group at Korea University. Selected papers illustrating the evolution of the mechanics concepts discussed here include:
+
+Shin, G., Bae, M. Y., Lee, H. J., Hong, S. K., Yoon, C. H., Zi, G., Rogers, J. A., & Ha, J. S. (2011).  
+**SnO2 Nanowire Logic Devices on Deformable Nonplanar Substrates.**  
+*ACS Nano, 5*(12), 10009–10016.  
 DOI: 10.1021/nn203790a
 
-Yoon, J., Shin, G., Kim, J., Moon, Y. S., Lee, S.-J., Zi, G., & Ha, J. S. (2014).
-*Fabrication of Stretchable Single-Walled Carbon Nanotube Logic Devices.*
-Small, 10(14), 2910–2917.
+Yoon, J., Shin, G., Kim, J., Moon, Y. S., Lee, S.-J., Zi, G., & Ha, J. S. (2014).  
+**Fabrication of Stretchable Single-Walled Carbon Nanotube Logic Devices.**  
+*Small, 10*(14), 2910–2917.  
 DOI: 10.1002/smll.201303779
 
-Yoon, J., Hong, S. Y., Lim, Y., Lee, S.-J., Zi, G., & Ha, J. S. (2014).
-*Design and Fabrication of Novel Stretchable Device Arrays on a Deformable Polymer Substrate with Embedded Liquid-Metal Interconnections.*
-Advanced Materials, 26, 6580–6586.
+Yoon, J., Hong, S. Y., Lim, Y., Lee, S.-J., Zi, G., & Ha, J. S. (2014).  
+**Design and Fabrication of Novel Stretchable Device Arrays on a Deformable Polymer Substrate with Embedded Liquid-Metal Interconnections.**  
+*Advanced Materials, 26*, 6580–6586.  
 DOI: 10.1002/adma.201402588
 
-Lim, Y., Yoon, J., Yun, J., Kim, D., Hong, S. Y., Lee, S.-J., Zi, G., & Ha, J. S. (2014).
-*Biaxially Stretchable, Integrated Array of High Performance Microsupercapacitors.*
-ACS Nano, 8(11), 11639–11650.
+Lim, Y., Yoon, J., Yun, J., Kim, D., Hong, S. Y., Lee, S.-J., Zi, G., & Ha, J. S. (2014).  
+**Biaxially Stretchable, Integrated Array of High Performance Microsupercapacitors.**  
+*ACS Nano, 8*(11), 11639–11650.  
 DOI: 10.1021/nn504925s
 
-Kim, H., Yoon, J., Lee, G., Paik, S.-H., Choi, G., Kim, D., Kim, B.-M., Zi, G., & Ha, J. S. (2016).
-*Encapsulated, High-Performance, Stretchable Array of Stacked Planar Micro-Supercapacitors as Waterproof Wearable Energy Storage Devices.*
-ACS Applied Materials & Interfaces, 8, 16016–16025.
+Yun, J., Lim, Y., Jang, G. N., Kim, D., Lee, S.-J., Park, H., Hong, S. Y., Lee, G., Zi, G., & Ha, J. S. (2016).  
+**Stretchable Patterned Graphene Gas Sensor Driven by Integrated Micro-Supercapacitor Array.**  
+*Nano Energy, 19*, 401–414.  
+DOI: 10.1016/j.nanoen.2015.11.023
+
+Kim, H., Yoon, J., Lee, G., Paik, S.-H., Choi, G., Kim, D., Kim, B.-M., Zi, G., & Ha, J. S. (2016).  
+**Encapsulated, High-Performance, Stretchable Array of Stacked Planar Micro-Supercapacitors as Waterproof Wearable Energy Storage Devices.**  
+*ACS Applied Materials & Interfaces, 8*, 16016–16025.  
 DOI: 10.1021/acsami.6b03504
 
-Lee, Y., Kim, D. S., Jin, S. W., Lee, H., Jeong, Y. R., You, I., Zi, G., & Ha, J. S. (2022).
-*Stretchable Array of CdSe/ZnS Quantum-Dot Light Emitting Diodes for Visual Display of Bio-Signals.*
-Chemical Engineering Journal, 427, 130858.
+Yun, J., Song, C., Lee, H., Park, H., Jeong, Y. R., Kim, J. W., Jin, S. W., Oh, S. Y., Sun, L., Zi, G., & Ha, J. S. (2018).  
+**Stretchable Array of High-Performance Micro-Supercapacitors Charged with Solar Cells for Wireless Powering of an Integrated Strain Sensor.**  
+*Nano Energy, 49*, 644–654.  
+DOI: 10.1016/j.nanoen.2018.05.017
+
+Lee, Y., Kim, D. S., Jin, S. W., Lee, H., Jeong, Y. R., You, I., Zi, G., & Ha, J. S. (2022).  
+**Stretchable Array of CdSe/ZnS Quantum-Dot Light Emitting Diodes for Visual Display of Bio-Signals.**  
+*Chemical Engineering Journal, 427*, 130858.  
 DOI: 10.1016/j.cej.2021.130858
