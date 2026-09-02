@@ -28,7 +28,7 @@ But there is a hidden problem:
 
 If several criteria measure essentially the same underlying concern, that concern can be counted repeatedly. The final ranking may then become unintentionally biased toward one aspect of the decision.
 
-This was the motivation behind our recent study on offshore wind substructure selection:
+This was the motivation behind our study on offshore wind substructure selection:
 
 **S. Lee, Y. Kang, Y. Kim, S. Kim, and G. Zi,  
 "Integrated EFA–AHP decision-making framework for fixed offshore wind energy substructures,"  
@@ -85,31 +85,11 @@ That assumption is often difficult to satisfy in real engineering problems.
 
 In our offshore wind study, for example, **project-financing risk** and **insurance-underwriting risk** had a correlation coefficient of **0.81**.
 
-Likewise, **social acceptance by local communities** and **applicability of environmental impact assessments** had a correlation of **0.65**. :contentReference[oaicite:1]{index=1}
-
-![Examples of correlations among the evaluation criteria. Strong correlations indicate that some apparently separate criteria contain overlapping information.](Fig03.png){fig-align="center" width="90%"}
-
-The figure makes the problem visible.
-
-Some criteria are only weakly related, but others form strongly correlated groups.
-
-For example,
-
-$$
-r(X_{11},X_{12})=0.81
-$$
-
-for project-financing risk and insurance-underwriting risk.
-
-Similarly,
-
-$$
-r(X_{13},X_{15})=0.65
-$$
-
-for social acceptance and applicability of environmental impact assessments. :contentReference[oaicite:2]{index=2}
+Likewise, **social acceptance by local communities** and **applicability of environmental impact assessments** had a correlation of **0.65**.
 
 These are different criteria in name, but they clearly contain shared information.
+
+![Examples of correlations among the evaluation criteria. Strong correlations indicate that some apparently separate criteria contain overlapping information.](Fig03.png){fig-align="center" width="90%"}
 
 The question is therefore not simply:
 
@@ -125,19 +105,9 @@ A more fundamental question should come first:
 
 Our approach was to place **Exploratory Factor Analysis (EFA)** before AHP.
 
-Instead of asking experts to assign weights immediately to a long list of potentially overlapping criteria, we first examine the structure hidden inside the data.
+Instead of asking experts to assign weights immediately to a long list of possibly overlapping criteria, we first examine the structure hidden inside the data.
 
 ![Conceptual workflow of the integrated EFA–AHP approach. Correlations among criteria are identified first, EFA restructures them into major latent factors, and AHP then assigns importance to those factors.](Fig02.png){fig-align="center" width="95%"}
-
-The important change is one of **sequence**.
-
-Conventional approaches often begin by assigning weights directly to individual criteria.
-
-The integrated approach instead asks:
-
-1. Which criteria are correlated?
-2. Can those correlations be represented by a smaller number of underlying factors?
-3. Which of those factors should carry greater engineering importance?
 
 EFA searches for a smaller number of **latent factors** that explain why several observed criteria move together.
 
@@ -155,7 +125,7 @@ This separation is central to the method.
 
 Our offshore wind application began with **18 evaluation criteria** covering constructability, economic feasibility, project risk, and social and environmental impacts.
 
-The survey involved **164 professionals** from academia, industry, and public institutions engaged in offshore wind development. :contentReference[oaicite:3]{index=3}
+The survey involved **164 professionals** from academia, industry, and public institutions engaged in offshore wind development.
 
 Before performing factor analysis, we checked whether the dataset was suitable for EFA.
 
@@ -165,11 +135,9 @@ $$
 \mathrm{KMO}=0.868,
 $$
 
-and Bartlett's test rejected the hypothesis that the correlation matrix was an identity matrix. :contentReference[oaicite:4]{index=4}
+and Bartlett's test rejected the hypothesis that the correlation matrix was an identity matrix.
 
-The scree plot leveled off after the fourth factor, and the first four factors explained **60.30% of the cumulative variance**.
-
-Accordingly, the 18 correlated criteria were reduced to four major factors. :contentReference[oaicite:5]{index=5}
+The analysis showed that the 18 criteria could be represented by **four major independent factors**, explaining **60.30%** of the cumulative variance.
 
 They were interpreted as:
 
@@ -179,8 +147,6 @@ They were interpreted as:
 | **Technological and investment risks** | technology maturity, project-financing risk, insurance risk |
 | **Site conditions** | fabrication conditions and construction feasibility |
 | **Life-cycle cost** | construction cost, construction duration, O&M cost |
-
-The factor-loading results showed, for example, that social acceptance, environmental impact and noise, and EIA applicability loaded strongly onto the same socio-environmental factor, while project-financing risk and insurance-underwriting risk loaded strongly onto the technological and investment-risk factor. :contentReference[oaicite:6]{index=6}
 
 This is the key transformation.
 
@@ -216,8 +182,6 @@ The objective in both cases is not simply to remove variables.
 
 It is to retain the **dominant independent information** while reducing redundancy.
 
-This analogy was also part of the rationale used in the study, where structural model reduction was discussed as a way to interpret dimensionality reduction in EFA. :contentReference[oaicite:7]{index=7}
-
 ---
 
 ## What EFA does—and what it does not do
@@ -243,7 +207,7 @@ In our example, five evaluators representing academic, client, and contractor pe
 | Site conditions | 0.192 |
 | Socio-environmental impact | 0.121 |
 
-All evaluator consistency ratios were below 0.1, indicating acceptable consistency in the pairwise comparisons. :contentReference[oaicite:8]{index=8}
+All evaluator consistency ratios were below 0.1, indicating acceptable consistency in the pairwise comparisons.
 
 So the two methods play different roles:
 
@@ -266,7 +230,7 @@ We tested the framework using four fixed offshore wind substructure alternatives
 
 Each alternative had different strengths.
 
-For example, the suction bucket achieved the highest socio-environmental factor score, the prepiled jacket the highest technological and investment-risk score, the postpiled jacket the highest site-condition score, and the monopile the highest life-cycle-cost score. :contentReference[oaicite:9]{index=9}
+For example, the suction bucket scored strongly in the socio-environmental factor but poorly in technological and investment risks. The postpiled jacket performed well under site conditions, while the monopile performed well in life-cycle cost.
 
 Once the factor scores and AHP-derived weights were combined, the final scores were:
 
@@ -303,9 +267,9 @@ $$
 
 A two-sample statistical test also showed that their mean difference was not statistically significant:
 
-- \(p = 0.571\),
-- 95% confidence interval: \((-0.061,\ 0.111)\),
-- Cohen's \(d = 0.062\). :contentReference[oaicite:10]{index=10}
+- $p = 0.571$,
+- 95% confidence interval: $(-0.061,\ 0.111)$,
+- Cohen's $d = 0.062$.
 
 This leads to an important engineering interpretation.
 
@@ -323,44 +287,14 @@ It is also about understanding **how reliable that ranking is**.
 
 We compared the integrated EFA–AHP approach with conventional AHP.
 
-The difference in the distributions of evaluation scores is visually clear.
-
 ![Comparison of evaluation-score distributions obtained using conventional AHP without EFA and the integrated EFA–AHP approach. The integrated framework produces more distinct distributions among the alternatives.](Fig04.png){fig-align="center" width="95%"}
 
-With conventional AHP alone, the distributions of several alternatives substantially overlap.
+The improvement was substantial.
 
-After EFA is introduced before the weighting step, the distributions become more clearly differentiated.
-
-The quantitative comparison showed the same tendency.
-
-The conventional AHP produced mean values of
-
-$$
-\mathrm{CV}=17.45
-$$
-
-and
-
-$$
-\mathrm{SNR}=0.08,
-$$
-
-whereas the integrated EFA–AHP produced
-
-$$
-\mathrm{CV}=4.28
-$$
-
-and
-
-$$
-\mathrm{SNR}=0.32.
-$$
-
-This corresponds to
+The integrated method produced:
 
 - a **75.41% reduction in the coefficient of variation**, and
-- a **3.08-fold increase in the signal-to-noise ratio**. :contentReference[oaicite:11]{index=11}
+- a **3.08-fold increase in the signal-to-noise ratio**.
 
 In this study, those changes indicated that the resulting evaluations were more stable and that the alternatives were more clearly distinguishable.
 
@@ -368,17 +302,17 @@ The important point is not that EFA somehow makes expert judgment objective.
 
 It does not.
 
-Rather, EFA helps prevent the decision structure itself from giving excessive influence to groups of strongly correlated criteria.
+Rather, it helps prevent the decision structure itself from giving excessive influence to groups of strongly correlated criteria.
 
 ---
 
 ## Why the improvement occurs
 
-The improvement can be understood conceptually.
+The mechanism can be understood conceptually.
 
-Suppose three highly correlated criteria all represent essentially the same underlying concern.
+Suppose several highly correlated criteria represent essentially the same underlying concern.
 
-If conventional AHP assigns separate weights to all three, that concern may enter the final evaluation three times.
+If conventional AHP assigns separate weights to each criterion, the same information may enter the final evaluation repeatedly.
 
 Schematically,
 
@@ -404,7 +338,7 @@ $$
 
 The weighting process is then applied to the factor rather than repeatedly to overlapping manifestations of the same information.
 
-The objective is therefore not simply dimensional reduction.
+The objective is therefore not merely dimensional reduction.
 
 It is **redundancy control before weighting**.
 
@@ -457,7 +391,7 @@ Finally, AHP weights still come from subjective pairwise comparisons.
 
 EFA can reduce redundancy among the criteria, but it cannot remove the preferences of the decision-makers.
 
-The original study therefore identifies evaluator-specific weighting and more data-driven weighting approaches as possible directions for future research. :contentReference[oaicite:12]{index=12}
+A future direction is therefore to combine the framework with more data-driven or evaluator-specific weighting approaches when suitable information is available.
 
 ---
 
