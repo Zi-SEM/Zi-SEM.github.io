@@ -1,3 +1,18 @@
+# Quarto generated files
 /.quarto/
-**/*.quarto_ipynb
 _site/
+**/*.quarto_ipynb
+
+# Temporary/editor files
+*.tmp
+*.bak
+*~
+*.swp
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Python caches that may appear during utility work
+__pycache__/
+*.py[cod]
