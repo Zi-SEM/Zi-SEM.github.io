@@ -1,13 +1,14 @@
 ---
 title: "How Should an Engineer Write a Research Paper?"
-subtitle: "Build the paper around one question, the evidence needed to answer it, and the engineering meaning of the answer"
+subtitle: "Creativity, consistency, and completeness—from the research question to publication"
 author: "Goangseup Zi"
 date: "2026-09-03"
 categories:
   - LaTeX & Writing
   - Scientific Writing
   - Research
-description: "A research paper is not a collection of sections. It is a carefully constructed path from a research question through evidence to an answer."
+  - Engineering Education
+description: "A practical philosophy for writing engineering research papers, organized around the CCC rule: Creativity, Consistency, and Completeness."
 toc: true
 toc-depth: 2
 ---
@@ -16,42 +17,225 @@ I have often told my students:
 
 > **Writing is like paving a highway from your brain to the reader.**
 
-You know what you did.
+You know your research intimately.
 
-You know why you did it.
+You remember why the problem interested you, which approaches failed, why you changed the experiment, what surprised you in the results, and how you eventually reached your conclusion.
 
-You have seen the calculations fail, the experiments behave unexpectedly, the model improve, and eventually the results begin to make sense.
+The reader knows none of this.
 
-The reader has seen none of this.
+Scientific writing therefore has a very practical purpose:
 
-The purpose of scientific writing is to build a sufficiently clear road that the reader can travel from the problem you started with to the conclusion you reached.
+> **Build a sufficiently clear road so that another researcher can travel from your question to your conclusion.**
 
-That sounds obvious.
+For many years, I have summarized what I expect from a research paper using three words:
 
-But many research papers are written in almost the opposite way.
+$$
+\boxed{
+\text{Creativity}
+\quad+\quad
+\text{Consistency}
+\quad+\quad
+\text{Completeness}
+}
+$$
 
-They are organized around **what the researcher did**:
+I call this the **CCC rule**.
 
-> We developed this model.
-> We performed these experiments.
-> We calculated these cases.
-> We obtained these graphs.
+These three requirements apply not only to individual sentences. They apply to the entire research paper.
 
-A good paper should instead be organized around **what the reader needs to understand**.
+---
 
-The difference is fundamental.
+## The CCC rule
+
+### Creativity
+
+A paper must contain something worth communicating.
+
+That usually means something **new**:
+
+- a new theory,
+- a new method,
+- new experimental evidence,
+- a new application,
+- a new interpretation,
+- an unexpected mechanism,
+- or a useful extension of an existing principle.
+
+The key word for publication is therefore
+
+$$
+\boxed{\text{NEW}.}
+$$
+
+Creativity does not necessarily mean inventing an entirely new field.
+
+A new interpretation of an existing phenomenon may be scientifically important.
+
+A known principle applied successfully to a difficult engineering problem may also be valuable.
+
+But the reader should be able to answer:
+
+> **What do I know after reading this paper that I did not know before?**
+
+---
+
+### Consistency
+
+Every part of the paper must belong to the same research story.
+
+The chain should look like
+
+$$
+\boxed{
+\text{Title}
+\rightarrow
+\text{Abstract}
+\rightarrow
+\text{Question}
+\rightarrow
+\text{Method}
+\rightarrow
+\text{Results}
+\rightarrow
+\text{Discussion}
+\rightarrow
+\text{Conclusions}.
+}
+$$
+
+The title should describe the work that is actually presented.
+
+The abstract should summarize the same work.
+
+The results should answer the question posed in the introduction.
+
+The conclusions should be supported by those results.
+
+Figures and tables should contain the same data reported in the text.
+
+Symbols, terminology, units, and definitions should remain consistent throughout the manuscript.
+
+A paper should behave like **one system**, not several sections written independently.
+
+---
+
+### Completeness
+
+Completeness does not mean including everything that happened during the research.
+
+It means including everything the reader needs in order to understand and verify the argument.
+
+Thus,
+
+$$
+\boxed{
+\text{Completeness}
+\neq
+\text{maximum amount of information}.
+}
+$$
+
+Instead,
+
+$$
+\boxed{
+\text{Completeness}
+=
+\text{no essential gap between question and conclusion}.
+}
+$$
+
+A paper may be short and complete.
+
+It may also be long and incomplete.
+
+This distinction is important.
+
+---
+
+## Why publish at all?
+
+Research has limited value to the scientific community until it is communicated.
+
+A published article creates a record of
+
+- what problem was studied,
+- what was discovered,
+- how the result was obtained,
+- and what contribution was made.
+
+Publication also allows other researchers to
+
+- examine the work,
+- challenge it,
+- reproduce it,
+- improve it,
+- and build upon it.
+
+A conference paper and a journal article may serve different purposes.
+
+A conference presentation may introduce work in progress or stimulate discussion.
+
+A journal article should normally provide a more complete, durable account of the research.
+
+Publication is therefore not merely an administrative step after doing research.
+
+It is part of the research process itself.
+
+---
+
+## Before writing: is there actually a paper?
+
+Before worrying about English, LaTeX, journal format, or figure placement, I ask several more fundamental questions.
+
+### Is there a creative contribution?
+
+Can I say clearly what is new?
+
+For example:
+
+> We discovered that...
+
+> We developed...
+
+> We demonstrated...
+
+> We found that the conventional assumption fails when...
+
+> We provide a new interpretation of...
+
+If the novelty cannot be stated clearly, the research story may not yet be mature.
+
+### Are the results reproducible?
+
+For experimental work, another researcher should be able to understand the materials, specimens, loading conditions, equipment, measurements, and processing needed to reproduce the essential results.
+
+For theoretical or computational work, the hypotheses, assumptions, governing equations, numerical procedures, boundary conditions, and validation should be clear enough to reproduce the analysis.
+
+### Are the results consistent?
+
+Check whether
+
+- repeated tests agree reasonably,
+- numerical trends are physically credible,
+- tables and figures agree,
+- units are consistent,
+- reported values do not change between sections,
+- and the explanation is compatible with the evidence.
+
+### Is the logic complete?
+
+Can the reader follow the reasoning without being asked to make an unsupported jump?
+
+These questions already contain the CCC rule.
 
 ---
 
 ## A research paper is a story
 
-A scientific paper is not an archive of everything that happened during a research project.
+A paper is not simply a container for everything produced during a project.
 
-It is a story.
-
-But it is not a story in the literary sense.
-
-Its basic structure is much simpler:
+It is a story with a particular structure:
 
 $$
 \boxed{
@@ -59,157 +243,32 @@ $$
 \rightarrow
 \text{Effort to answer}
 \rightarrow
-\text{Answer}
+\text{Answer}.
 }
 $$
 
-The introduction establishes the question.
-
-The method explains how you attempted to answer it.
-
-The results provide the evidence.
-
-The discussion explains what that evidence means.
-
-The conclusions state the answer.
-
-Once this structure is clear, many decisions about scientific writing become easier.
-
-The first question when writing a paper should therefore not be
-
-> How should I write the introduction?
-
-It should be
-
-> **What is the question that this paper answers?**
-
-If that question is unclear to the author, it will almost certainly be unclear to the reader.
-
----
-
-## Before writing: what is new?
-
-Before worrying about grammar, figures, journal formatting, or references, ask a more fundamental question:
-
-> **Is there something worth publishing?**
-
-The keyword is:
-
-$$
-\boxed{\text{NEW}}
-$$
-
-A publishable contribution does not necessarily require an entirely new theory.
-
-Novelty can take several forms.
-
-You may have
-
-- developed a new theory or method,
-- produced new experimental evidence,
-- discovered a previously unknown mechanism,
-- extended an existing method into a new regime,
-- demonstrated a useful engineering application,
-- identified an important limitation of an accepted approach,
-- or provided a new interpretation of known observations.
-
-The important point is that after reading the paper, the reader should know something that was not adequately known before.
-
-A useful test is to complete this sentence:
-
-> **This paper is worth reading because it shows that ________.**
-
-If you cannot complete that sentence clearly, the paper may not yet have a sufficiently defined contribution.
-
----
-
-## New is not enough
-
-Novelty alone does not make a research paper convincing.
-
-Before writing, I also ask whether
-
-- the data are reproducible from the stated procedure,
-- the results are internally consistent,
-- the evidence supports the claims,
-- and the logic from the evidence to the conclusion is complete.
-
-This gives another useful chain:
+For an engineering paper, I would expand this slightly:
 
 $$
 \boxed{
-\text{Novelty}
-+
-\text{Evidence}
-+
-\text{Logic}
+\text{Problem}
 \rightarrow
-\text{Contribution}
+\text{Question}
+\rightarrow
+\text{Method}
+\rightarrow
+\text{Evidence}
+\rightarrow
+\text{Interpretation}
+\rightarrow
+\text{Engineering meaning}.
 }
 $$
 
-A surprising result with weak evidence is not a strong paper.
-
-A large amount of reliable data without a new question may not be a strong paper either.
-
-A good research article needs both.
-
----
-
-## Find the paper before writing the paper
-
-Research rarely happens in the clean sequence presented in the final publication.
-
-A numerical study may involve
-
-- failed models,
-- parameter studies,
-- debugging,
-- discarded formulations,
-- unexpected observations,
-- and many calculations that ultimately contribute little to the final conclusion.
-
-Experiments are similar.
-
-The researcher may test many specimens, modify the setup, repeat measurements, and investigate several possible explanations.
-
-The paper should not reproduce that history chronologically.
-
-Before writing, reorganize the research intellectually.
-
-Ask:
-
-1. What was the engineering question?
-2. What information was required to answer it?
-3. Which results actually provide that information?
-4. What is the most important conclusion?
-5. What does the reader need to know to believe that conclusion?
-
-This is the point at which the **paper** emerges from the **research project**.
-
-They are not the same thing.
-
----
-
-## Write an outline before writing sentences
-
-Once the central question is clear, I prefer to outline the paper before writing paragraphs.
-
-For example:
+This is more useful than beginning with the conventional headings
 
 ```text
-Engineering problem
-↓
-What is already known?
-↓
-What remains unresolved?
-↓
-Our idea
-↓
-Method needed to test the idea
-↓
-Critical results
-↓
-Interpretation
-↓
-Answer to the original question
+Introduction
+Methods
+Results
+Conclusions
