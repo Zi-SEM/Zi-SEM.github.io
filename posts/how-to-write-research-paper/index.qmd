@@ -1,0 +1,215 @@
+---
+title: "How Should an Engineer Write a Research Paper?"
+subtitle: "Build the paper around one question, the evidence needed to answer it, and the engineering meaning of the answer"
+author: "Goangseup Zi"
+date: "2026-09-03"
+categories:
+  - LaTeX & Writing
+  - Scientific Writing
+  - Research
+description: "A research paper is not a collection of sections. It is a carefully constructed path from a research question through evidence to an answer."
+toc: true
+toc-depth: 2
+---
+
+I have often told my students:
+
+> **Writing is like paving a highway from your brain to the reader.**
+
+You know what you did.
+
+You know why you did it.
+
+You have seen the calculations fail, the experiments behave unexpectedly, the model improve, and eventually the results begin to make sense.
+
+The reader has seen none of this.
+
+The purpose of scientific writing is to build a sufficiently clear road that the reader can travel from the problem you started with to the conclusion you reached.
+
+That sounds obvious.
+
+But many research papers are written in almost the opposite way.
+
+They are organized around **what the researcher did**:
+
+> We developed this model.
+> We performed these experiments.
+> We calculated these cases.
+> We obtained these graphs.
+
+A good paper should instead be organized around **what the reader needs to understand**.
+
+The difference is fundamental.
+
+---
+
+## A research paper is a story
+
+A scientific paper is not an archive of everything that happened during a research project.
+
+It is a story.
+
+But it is not a story in the literary sense.
+
+Its basic structure is much simpler:
+
+$$
+\boxed{
+\text{Question}
+\rightarrow
+\text{Effort to answer}
+\rightarrow
+\text{Answer}
+}
+$$
+
+The introduction establishes the question.
+
+The method explains how you attempted to answer it.
+
+The results provide the evidence.
+
+The discussion explains what that evidence means.
+
+The conclusions state the answer.
+
+Once this structure is clear, many decisions about scientific writing become easier.
+
+The first question when writing a paper should therefore not be
+
+> How should I write the introduction?
+
+It should be
+
+> **What is the question that this paper answers?**
+
+If that question is unclear to the author, it will almost certainly be unclear to the reader.
+
+---
+
+## Before writing: what is new?
+
+Before worrying about grammar, figures, journal formatting, or references, ask a more fundamental question:
+
+> **Is there something worth publishing?**
+
+The keyword is:
+
+$$
+\boxed{\text{NEW}}
+$$
+
+A publishable contribution does not necessarily require an entirely new theory.
+
+Novelty can take several forms.
+
+You may have
+
+- developed a new theory or method,
+- produced new experimental evidence,
+- discovered a previously unknown mechanism,
+- extended an existing method into a new regime,
+- demonstrated a useful engineering application,
+- identified an important limitation of an accepted approach,
+- or provided a new interpretation of known observations.
+
+The important point is that after reading the paper, the reader should know something that was not adequately known before.
+
+A useful test is to complete this sentence:
+
+> **This paper is worth reading because it shows that ________.**
+
+If you cannot complete that sentence clearly, the paper may not yet have a sufficiently defined contribution.
+
+---
+
+## New is not enough
+
+Novelty alone does not make a research paper convincing.
+
+Before writing, I also ask whether
+
+- the data are reproducible from the stated procedure,
+- the results are internally consistent,
+- the evidence supports the claims,
+- and the logic from the evidence to the conclusion is complete.
+
+This gives another useful chain:
+
+$$
+\boxed{
+\text{Novelty}
++
+\text{Evidence}
++
+\text{Logic}
+\rightarrow
+\text{Contribution}
+}
+$$
+
+A surprising result with weak evidence is not a strong paper.
+
+A large amount of reliable data without a new question may not be a strong paper either.
+
+A good research article needs both.
+
+---
+
+## Find the paper before writing the paper
+
+Research rarely happens in the clean sequence presented in the final publication.
+
+A numerical study may involve
+
+- failed models,
+- parameter studies,
+- debugging,
+- discarded formulations,
+- unexpected observations,
+- and many calculations that ultimately contribute little to the final conclusion.
+
+Experiments are similar.
+
+The researcher may test many specimens, modify the setup, repeat measurements, and investigate several possible explanations.
+
+The paper should not reproduce that history chronologically.
+
+Before writing, reorganize the research intellectually.
+
+Ask:
+
+1. What was the engineering question?
+2. What information was required to answer it?
+3. Which results actually provide that information?
+4. What is the most important conclusion?
+5. What does the reader need to know to believe that conclusion?
+
+This is the point at which the **paper** emerges from the **research project**.
+
+They are not the same thing.
+
+---
+
+## Write an outline before writing sentences
+
+Once the central question is clear, I prefer to outline the paper before writing paragraphs.
+
+For example:
+
+```text
+Engineering problem
+↓
+What is already known?
+↓
+What remains unresolved?
+↓
+Our idea
+↓
+Method needed to test the idea
+↓
+Critical results
+↓
+Interpretation
+↓
+Answer to the original question
