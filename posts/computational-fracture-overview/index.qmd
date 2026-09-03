@@ -1,0 +1,482 @@
+---
+title: "Why Is Computational Fracture So Difficult?"
+subtitle: "From remeshing to XFEM and XEFG: representing a discontinuity that moves through the numerical approximation"
+author: "Goangseup Zi"
+date: "2026-09-03"
+categories:
+  - Research Explained
+  - Computational Fracture
+  - XFEM
+  - XEFG
+description: "An engineering-mechanics view of why crack growth is numerically difficult, and how enrichment methods such as XFEM and XEFG separate the crack geometry from the background discretization."
+toc: true
+toc-depth: 2
+---
+
+A crack creates a peculiar problem for computational mechanics.
+
+Before cracking, we normally approximate a continuous displacement field over a body. After a crack appears, the displacement field can become discontinuous across an internal surface. The crack may then grow, turn, branch, join another crack, or cut through elements that were never designed to contain it.
+
+The physical body changes its internal topology while the numerical mesh would prefer to remain unchanged.
+
+That is the central difficulty.
+
+I was very active in computational fracture for many years. Much of my work in this field involved the **extended finite element method (XFEM)** and its meshfree counterpart, the **extended element-free Galerkin method (XEFG)**, together with dynamic fracture, cohesive cracks, multiple-crack growth, three-dimensional crack tracking, phantom-node formulations, and related methods.
+
+Looking back, I think the most useful way to explain this work is not paper by paper.
+
+The engineering question is:
+
+> **How can a numerical approximation represent a crack that moves independently of the discretization?**
+
+That question connects a large part of the work.
+
+## Why ordinary finite elements have difficulty with cracks
+
+In a standard finite element approximation,
+
+$$
+\mathbf{u}^h(\mathbf{x})
+=
+\sum_I N_I(\mathbf{x})\mathbf{u}_I,
+$$
+
+the interpolation is built from shape functions attached to the mesh.
+
+This is extremely effective as long as the displacement field has the regularity assumed by the interpolation.
+
+A crack changes that.
+
+Across a crack surface, the displacement may jump:
+
+$$
+[\![\mathbf{u}]\!] \neq \mathbf{0}.
+$$
+
+Near a classical crack tip, the stress and strain fields can also contain strong gradients or singular asymptotic behavior.
+
+If the crack is forced to follow element boundaries, the numerical representation becomes easy, but the mesh begins to influence the crack path.
+
+If the crack is allowed to cut arbitrarily through elements, then the approximation must somehow represent a discontinuity that is **not built into the original mesh connectivity**.
+
+Historically, one solution was remeshing:
+
+```text
+grow crack
+→ modify mesh
+→ project state variables
+→ solve again
+→ grow crack
+→ remesh again
+```
+
+This can work, but repeated remeshing is burdensome. It introduces projection between successive meshes, complicates history-dependent problems, and makes multiple cracks, branching, and dynamic propagation increasingly difficult.
+
+The deeper idea behind XFEM was to avoid making the mesh carry all the geometric information about the crack.
+
+## The key idea: separate the crack from the mesh
+
+The ordinary finite element space can be enriched with additional functions that contain information about the discontinuity.
+
+A schematic enriched approximation is
+
+$$
+\mathbf{u}^h(\mathbf{x})
+=
+\sum_I N_I(\mathbf{x})\mathbf{u}_I
++
+\sum_{J\in\mathcal{N}_c}
+N_J(\mathbf{x})\Psi_J(\mathbf{x})\mathbf{a}_J,
+$$
+
+where the first term is the ordinary approximation and the second provides additional degrees of freedom associated with the crack.
+
+The important feature is conceptual:
+
+```text
+background mesh
+    represents the body
+
+enrichment
+    represents information missing from the ordinary approximation
+```
+
+The crack is therefore allowed to pass through an element without requiring that the element boundary coincide with the crack.
+
+![A cohesive crack can be represented as an internal discontinuity inside a body, with the crack geometry described independently of the external boundary and loading. This separation between the physical discontinuity and the background discretization is the basis of the enriched viewpoint. Adapted from Zi and Belytschko (2003).](Fig01.png){#fig-domain-crack fig-align="center" width="62%"}
+
+Figure @fig-domain-crack looks simple, but it contains the essential shift in viewpoint.
+
+The crack is an internal geometric object.
+
+The mesh is a discretization device.
+
+They do not have to be the same object.
+
+> **Do not force the mesh to represent the crack. Give the approximation enough information to represent the crack independently of the mesh.**
+
+This became one of the most powerful ideas in computational fracture.
+
+## Why the crack tip is more difficult than the crack interior
+
+Representing a fully developed displacement jump is relatively straightforward.
+
+The crack tip is harder.
+
+Along the open part of the crack, the two sides are separated. At the tip, however, the crack opening must close properly.
+
+This means that simply enriching every cut element with the same discontinuous function does not automatically produce the correct kinematics near the tip.
+
+One of my early contributions with Ted Belytschko addressed precisely this issue for cohesive cracks.
+
+Instead of treating the crack-tip element as an awkward exception that required the conventional branch-function construction, we developed new crack-tip formulations that allowed the crack to end inside an element while maintaining the required crack closure.
+
+That work had a practical objective:
+
+> make arbitrary crack growth easier to implement while retaining a clean enriched representation.
+
+This concern reappeared repeatedly in later methods, including XEFG and phantom-node formulations.
+
+The crack interior is a discontinuity problem.
+
+The crack tip is simultaneously a **discontinuity-termination problem and a propagation problem**.
+
+## Crack geometry also has to move
+
+Once the approximation can represent a crack, another question appears:
+
+> Where is the crack?
+
+For a growing crack, the geometry itself must evolve.
+
+Level-set descriptions became useful because the crack could be represented by nodal scalar fields rather than by constantly rebuilding mesh topology.
+
+For example, one field can describe the signed distance normal to the crack and another can help locate the tip.
+
+This creates an important separation:
+
+```text
+finite element mesh
+    ↓
+approximation space
+
+level-set or geometric representation
+    ↓
+crack position and crack tip
+
+fracture criterion
+    ↓
+where the crack moves next
+```
+
+The numerical method therefore needs more than a stress calculation.
+
+It needs a representation of **evolving geometry**.
+
+## Dynamic fracture makes the problem even harder
+
+In static crack growth, a crack may be advanced incrementally after checking a fracture criterion.
+
+In dynamic fracture, the crack propagates while inertia is important.
+
+Now several questions are coupled:
+
+- When does the crack start?
+- In which direction does it move?
+- How fast does it move?
+- How is cohesive energy dissipated?
+- How should the discontinuity be updated during time integration?
+- Can the crack path remain independent of the element orientation?
+
+Our XFEM work on dynamic fracture used local partition-of-unity enrichment together with level sets so that arbitrary crack paths could be represented without remeshing.
+
+![A dynamic mixed-mode crack evolves through the fixed triangular mesh while the mesh itself remains unchanged. The important point is not the particular crack path, but that the crack geometry can advance independently of the element edges. Adapted from Zi et al. (2005).](Fig02.png){#fig-dynamic-crack fig-align="center" width="78%"}
+
+Figure @fig-dynamic-crack shows the numerical idea directly.
+
+The crack moves.
+
+The background mesh does not.
+
+That may sound obvious today, but it addresses one of the most persistent practical problems in numerical fracture.
+
+## Multiple cracks change the topology, not just the geometry
+
+A single smooth crack is only the beginning.
+
+Real fracture can involve:
+
+- several cracks initiating at different locations,
+- crack competition,
+- crack shielding,
+- coalescence,
+- branching,
+- crack junctions,
+- and eventually a connected fracture network.
+
+In our work on multiple crack growth, XFEM was used together with implicit crack descriptions so that cracks could grow and interconnect without remeshing.
+
+This is a much more demanding problem than advancing one crack tip.
+
+When two cracks join, the topology of the discontinuity network changes.
+
+A good numerical representation should not require a completely different algorithm every time that topology changes.
+
+This is one reason enrichment-based approaches became attractive: the mesh can remain a background structure while the discontinuity network evolves separately.
+
+## From XFEM to XEFG
+
+The next question was natural.
+
+If enrichment can be added to finite element approximation spaces, can the same concept be used with meshfree approximations?
+
+This led to work on the **extended element-free Galerkin method (XEFG)**.
+
+Meshfree methods already avoid fixed element connectivity and use domains of influence around particles. That gives them attractive properties for large deformation and evolving discontinuities, but traditional meshfree crack treatments also had difficulties, particularly near crack tips and in maintaining accurate discontinuous fields.
+
+XEFG imports the partition-of-unity enrichment idea into the meshfree approximation.
+
+The comparison is conceptually useful.
+
+![In XFEM, enrichment is associated with nodes of elements intersected by the crack. In XEFG, the same discontinuity concept acts through particle domains of influence. The meshfree support introduces additional geometric freedom, but also changes how the crack tip and partial support intersections must be handled. Adapted from Rabczuk and Zi (2007).](Fig03.png){#fig-xfem-xefg fig-align="center" width="78%"}
+
+In the meshfree setting, the support of a particle may be fully cut, partially cut, or contain the crack tip.
+
+That makes the kinematic problem somewhat different from the finite element case.
+
+Our XEFG work addressed cohesive cracks in static and dynamic settings, later extending the concept to three-dimensional crack initiation, propagation, branching, and junction.
+
+The physical problem remained the same.
+
+The numerical representation changed.
+
+## Why branch enrichment became an important issue
+
+Classical XFEM for linear elastic fracture mechanics often uses analytical near-tip branch functions motivated by the asymptotic crack-tip solution.
+
+This can provide excellent accuracy when the asymptotic field is appropriate.
+
+But cohesive fracture raises a different question.
+
+If the crack-tip behavior is governed by a cohesive law rather than the classical traction-free LEFM singular field, should we always impose the classical branch enrichment?
+
+Our work explored formulations in which cohesive cracks could be represented **without conventional crack-tip branch enrichment**.
+
+That was not merely an attempt to shorten an equation.
+
+It was an attempt to make the numerical representation more closely reflect the assumed fracture mechanics.
+
+This distinction is important:
+
+> An enrichment function is not just a numerical trick. It is prior information inserted into the approximation space.
+
+Therefore the enrichment should be compatible with the physics we are trying to represent.
+
+## Three-dimensional fracture changes the difficulty again
+
+A crack in two dimensions is represented by a line.
+
+A crack in three dimensions is a surface bounded by a crack front.
+
+That seemingly small change creates several major numerical problems.
+
+The method must describe:
+
+- a moving surface,
+- a moving crack front,
+- local crack-front orientation,
+- propagation direction along that front,
+- curved surfaces,
+- branching surfaces,
+- and junctions between cracks.
+
+Our later XEFG and partition-of-unity work placed significant emphasis on this three-dimensional problem.
+
+The difficulty is not just computational cost.
+
+It is geometric consistency.
+
+A badly tracked crack surface can produce artificial kinks, discontinuous normals, or incorrect junction topology even if the underlying stress solution is otherwise accurate.
+
+This is why three-dimensional computational fracture is partly a mechanics problem and partly a computational-geometry problem.
+
+## Other representations emerged for good reasons
+
+XFEM and XEFG were not the end of computational fracture.
+
+Some later work in the uploaded collection explores related or alternative representations:
+
+- phantom-node methods,
+- cracking-particle approaches,
+- extended isogeometric formulations,
+- multiscale coupling,
+- peridynamics,
+- and phase-field fracture.
+
+These approaches make different choices about where the discontinuity is represented.
+
+A sharp enriched method says, in effect:
+
+```text
+the crack is geometrically sharp
+and the approximation is modified around it
+```
+
+A phase-field model says:
+
+```text
+replace the sharp crack by a narrow continuous damage zone
+```
+
+Peridynamics reformulates the mechanics through nonlocal interactions so that bond failure can represent fracture without requiring the classical local PDE structure at the crack.
+
+A phantom-node formulation represents separated material portions through overlapping element descriptions rather than explicit enrichment functions.
+
+These are not merely competing numerical brands.
+
+They are different answers to the same fundamental question:
+
+> **How should a changing discontinuity be represented inside a numerical model?**
+
+That question is more fundamental than the name of the method.
+
+## My computational-fracture work forms a sequence
+
+Looking across the papers, I see a fairly clear progression.
+
+### 1. Make arbitrary cracks independent of the mesh
+
+Early XFEM work addressed cohesive crack tips, dynamic cracks, and multiple crack growth without remeshing.
+
+### 2. Make the representation robust when cracks grow and interact
+
+The work expanded to crack junctions, coalescence, dynamic propagation, and alternative tip treatments.
+
+### 3. Move the enrichment idea into meshfree approximation
+
+XEFG introduced discontinuous enrichment into element-free Galerkin approximations and developed it for static, dynamic, and three-dimensional cohesive fracture.
+
+### 4. Extend the geometry and application domain
+
+Later studies treated three-dimensional crack surfaces, reinforced concrete, shells, piezoelectric materials, and multiscale problems.
+
+### 5. Explore alternative fracture representations
+
+Phantom-node methods, cracking particles, peridynamics, and phase-field formulations reflect the broader evolution of computational fracture.
+
+For this reason, I do not think my computational-fracture work should be compressed into a single article.
+
+This article should serve as the entrance to a series.
+
+## The computational-fracture series
+
+The planned sequence is:
+
+### 1. Why Is Computational Fracture So Difficult?
+
+The present overview: discontinuity, evolving geometry, remeshing, enrichment, and the progression from XFEM to XEFG and beyond.
+
+### 2. How Does XFEM Let a Crack Cut Through the Mesh?
+
+The mechanics of partition-of-unity enrichment, jump functions, crack-tip treatment, level sets, cohesive cracks, and why remeshing can be avoided.
+
+### 3. Why Did We Extend XFEM into Meshfree Methods?
+
+XEFG, domains of influence, partial and complete cuts, cohesive crack-tip closure, branch-enrichment issues, and three-dimensional crack growth.
+
+### 4. How Do Multiple Cracks Branch, Join, and Form a Fracture Network?
+
+Multiple-crack growth, coalescence, junctions, fatigue-crack interaction, dynamic branching, and three-dimensional crack tracking.
+
+### 5. Is Enrichment the Only Way to Represent a Crack?
+
+Phantom nodes, cracking particles, phase field, peridynamics, and what is gained or lost when the representation of the discontinuity changes.
+
+### 6. How Does Computational Fracture Move Across Scales and Structural Forms?
+
+Shell fracture, piezoelectric fracture, multiscale methods, graphene and nanocomposites, and how the same fracture question changes with scale and governing physics.
+
+A final retrospective article may later be useful:
+
+### 7. What Did Enriched Methods Teach Us About Computational Mechanics?
+
+A broader reflection on approximation spaces, prior physical information, geometry-independent discretization, and the continuing influence of enrichment concepts beyond fracture.
+
+## The broader mechanics lesson
+
+The most interesting lesson from XFEM is not merely that cracks can be simulated without remeshing.
+
+It is a more general computational-mechanics principle:
+
+> **When the ordinary approximation cannot represent an important feature of the solution, enrich the approximation with the missing information rather than forcing the discretization to imitate the physics.**
+
+For fracture, the missing information is the discontinuity and, depending on the formulation, the crack-tip behavior.
+
+For other problems, the missing information may be an interface, a singularity, a localized mode, or another known feature of the solution.
+
+That is why the ideas developed in computational fracture have importance beyond fracture itself.
+
+The mesh is only a numerical scaffold.
+
+The approximation should represent the mechanics.
+
+---
+
+## Original research
+
+Zi, G., & Belytschko, T. (2003).  
+**New crack-tip elements for XFEM and applications to cohesive cracks.**  
+*International Journal for Numerical Methods in Engineering, 57*, 2221-2240.  
+https://doi.org/10.1002/nme.849
+
+Belytschko, T., Chen, H., Xu, J., & Zi, G. (2003).  
+**Dynamic crack propagation based on loss of hyperbolicity and a new discontinuous enrichment.**  
+*International Journal for Numerical Methods in Engineering, 58*, 1873-1905.  
+https://doi.org/10.1002/nme.941
+
+Zi, G., Song, J.-H., Budyn, E., Lee, S.-H., & Belytschko, T. (2004).  
+**A method for growing multiple cracks without remeshing and its application to fatigue crack growth.**  
+*Modelling and Simulation in Materials Science and Engineering, 12*, 901-915.  
+https://doi.org/10.1088/0965-0393/12/5/009
+
+Budyn, E., Zi, G., Moës, N., & Belytschko, T. (2004).  
+**A method for multiple crack growth in brittle materials without remeshing.**  
+*International Journal for Numerical Methods in Engineering, 61*, 1741-1770.  
+https://doi.org/10.1002/nme.1130
+
+Lee, S.-H., Song, J.-H., Yoon, Y.-C., Zi, G., & Belytschko, T. (2004).  
+**Combined extended and superimposed finite element method for cracks.**  
+*International Journal for Numerical Methods in Engineering, 59*, 1119-1136.  
+https://doi.org/10.1002/nme.908
+
+Zi, G., Chen, H., Xu, J., & Belytschko, T. (2005).  
+**The extended finite element method for dynamic fractures.**  
+*Shock and Vibration, 12*, 9-23.
+
+Rabczuk, T., & Zi, G. (2007).  
+**A meshfree method based on the local partition of unity for cohesive cracks.**  
+*Computational Mechanics, 39*, 743-760.  
+https://doi.org/10.1007/s00466-006-0067-4
+
+Zi, G., Rabczuk, T., & Wall, W. (2007).  
+**Extended meshfree methods without branch enrichment for cohesive cracks.**  
+*Computational Mechanics, 40*, 367-382.  
+https://doi.org/10.1007/s00466-006-0115-0
+
+Rabczuk, T., Bordas, S., & Zi, G. (2007).  
+**A three-dimensional meshfree method for continuous multiple-crack initiation, propagation and junction in statics and dynamics.**  
+*Computational Mechanics, 40*, 473-495.  
+https://doi.org/10.1007/s00466-006-0122-1
+
+Bordas, S., Rabczuk, T., & Zi, G. (2008).  
+**Three-dimensional crack initiation, propagation, branching and junction in non-linear materials by an extended meshfree method without asymptotic enrichment.**  
+*Engineering Fracture Mechanics, 75*, 943-960.
+
+Rabczuk, T., Zi, G., Gerstenberger, A., & Wall, W. A. (2008).  
+**A new crack tip element for the phantom-node method with arbitrary cohesive cracks.**  
+*International Journal for Numerical Methods in Engineering, 75*, 577-599.  
+https://doi.org/10.1002/nme.2273
+
+Rabczuk, T., Bordas, S., & Zi, G. (2010).  
+**On three-dimensional modelling of crack growth using partition of unity methods.**  
+*Computers & Structures, 88*, 1391-1411.
