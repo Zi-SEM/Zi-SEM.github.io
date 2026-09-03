@@ -1,274 +1,634 @@
 ---
-title: "How Should an Engineer Write a Research Paper?"
-subtitle: "Creativity, consistency, and completeness—from the research question to publication"
+title: "How I Built a Reusable LaTeX System for Research Writing"
+subtitle: "A long-term workflow built around a stable template, shared packages and commands, one identifier for every reference, and reusable technical content"
 author: "Goangseup Zi"
 date: "2026-09-03"
 categories:
   - LaTeX & Writing
   - Scientific Writing
-  - Research
-  - Engineering Education
-description: "A practical philosophy for writing engineering research papers, organized around the CCC rule: Creativity, Consistency, and Completeness."
-toc: true
-toc-depth: 2
+  - LaTeX
+  - BibTeX
 ---
 
-I have often told my students:
+For me, LaTeX is not simply a typesetting program.
 
-> **Writing is like paving a highway from your brain to the reader.**
+It is the **infrastructure of research writing**.
 
-You know your research intimately.
+Over many years of writing technical papers, equations, reports, lectures, and presentations, I gradually developed a system in which the scientific content is separated from the formatting required by a particular journal or document type.
 
-You remember why the problem interested you, which approaches failed, why you changed the experiment, what surprised you in the results, and how you eventually reached your conclusion.
+The basic idea is simple:
 
-The reader knows none of this.
+> **Write the technical content in a stable system. Change the presentation only when the purpose changes.**
 
-Scientific writing therefore has a very practical purpose:
+This distinction has become increasingly important to me because individual papers come and go, journals have different formats, and presentation styles continue to change. The underlying research material, however, should remain reusable.
 
-> **Build a sufficiently clear road so that another researcher can travel from your question to your conclusion.**
+My system therefore has several persistent components:
 
-For many years, I have summarized what I expect from a research paper using three words:
+```text
+template.tex
+      ↓
+zipackage.tex + zicommand.tex
+      ↓
+paper-specific manuscript
+      ↓
+figures and equations
+      ↓
+BibTeX citations
+      ↓
+reference.bib
+      ↓
+keyed source PDFs
+```
 
-$$
-\boxed{
-\text{Creativity}
-\quad+\quad
-\text{Consistency}
-\quad+\quad
-\text{Completeness}
-}
-$$
+The same technical material can later be converted into a publisher's journal format, reused in another paper, or reorganized into a Beamer presentation.
 
-I call this the **CCC rule**.
+The important point is not any individual file.
 
-These three requirements apply not only to individual sentences. They apply to the entire research paper.
+It is the **system connecting them**.
 
----
+## Why I do not begin with a journal template
 
-## The CCC rule
+When starting a research paper, I normally do not begin by adapting my thinking to the formatting rules of the target journal.
 
-### Creativity
+Instead, I begin from my own `template.tex`.
 
-A paper must contain something worth communicating.
+This gives me a familiar and stable writing environment. The manuscript develops around the research question, equations, figures, references, results, and discussion rather than around the visual style of a publisher.
 
-That usually means something **new**:
+This creates a useful separation:
 
-- a new theory,
-- a new method,
-- new experimental evidence,
-- a new application,
-- a new interpretation,
-- an unexpected mechanism,
-- or a useful extension of an existing principle.
+```text
+scientific writing
+        ≠
+journal formatting
+```
 
-The key word for publication is therefore
+The scientific paper should first become correct, coherent, and complete as a technical document.
 
-$$
-\boxed{\text{NEW}.}
-$$
+Only later do I change the styling for the journal of choice.
 
-Creativity does not necessarily mean inventing an entirely new field.
+That may involve changing:
 
-A new interpretation of an existing phenomenon may be scientifically important.
+- the document class,
+- front matter,
+- title and author formatting,
+- section styles,
+- bibliography style,
+- figure placement rules,
+- table formatting,
+- supplementary-material conventions,
+- or publisher-specific commands.
 
-A known principle applied successfully to a difficult engineering problem may also be valuable.
+The research content should not have to be rebuilt simply because the journal changes.
 
-But the reader should be able to answer:
+This is one of the main reasons I prefer a personal LaTeX writing environment.
 
-> **What do I know after reading this paper that I did not know before?**
+> **The manuscript changes from paper to paper. The research-writing infrastructure does not.**
 
----
+## My starting point: `template.tex`
 
-### Consistency
+Every new manuscript begins from a reusable template.
 
-Every part of the paper must belong to the same research story.
+The purpose of `template.tex` is not to contain the scientific content of a particular paper. Its role is to establish the environment in which that content will be written.
 
-The chain should look like
+A typical starting structure defines the locations of common resources, loads my shared packages and commands, establishes the local figure directory, and connects the manuscript to the master bibliography.
 
-$$
-\boxed{
-\text{Title}
-\rightarrow
-\text{Abstract}
-\rightarrow
-\text{Question}
-\rightarrow
-\text{Method}
-\rightarrow
-\text{Results}
-\rightarrow
-\text{Discussion}
-\rightarrow
-\text{Conclusions}.
-}
-$$
+Conceptually, the template does something like this:
 
-The title should describe the work that is actually presented.
+```latex
+% common paths
+\newcommand{\rootpath}{...}
+\newcommand{\commonpath}{...}
 
-The abstract should summarize the same work.
+% shared infrastructure
+\input{\commonpath/zipackage.tex}
+\input{\commonpath/zicommand.tex}
 
-The results should answer the question posed in the introduction.
+% local figures
+\graphicspath{{./}}
 
-The conclusions should be supported by those results.
+% manuscript begins here
+\begin{document}
 
-Figures and tables should contain the same data reported in the text.
+...
 
-Symbols, terminology, units, and definitions should remain consistent throughout the manuscript.
+\bibliography{.../reference}
 
-A paper should behave like **one system**, not several sections written independently.
+\end{document}
+```
 
----
+The exact path definitions can change with the computer or folder structure, but the principle remains the same.
 
-### Completeness
+A new paper should not require me to reconstruct my entire LaTeX environment.
 
-Completeness does not mean including everything that happened during the research.
+I start with the infrastructure already in place and concentrate on the research.
 
-It means including everything the reader needs in order to understand and verify the argument.
+This also makes the beginning of a new project much less arbitrary. I already know where equations, figures, references, commands, and shared settings belong.
 
-Thus,
+## Shared packages: `zipackage.tex`
 
-$$
-\boxed{
-\text{Completeness}
-\neq
-\text{maximum amount of information}.
-}
-$$
+A technical paper repeatedly needs the same kinds of LaTeX support.
 
-Instead,
+Mathematics, graphics, tables, bibliography handling, algorithms, nomenclature, TikZ, and theorem-like environments are not unique requirements of one manuscript. They recur across many projects.
 
-$$
-\boxed{
-\text{Completeness}
-=
-\text{no essential gap between question and conclusion}.
-}
-$$
+I therefore collect the packages that I commonly use in a shared file, `zipackage.tex`.
 
-A paper may be short and complete.
+Representative parts include packages such as:
 
-It may also be long and incomplete.
+```latex
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{appendix}
+\usepackage[noprefix]{nomencl}
+\usepackage[comma,numbers,sort&compress]{natbib}
 
-This distinction is important.
+\usepackage{tikz}
+\usepackage{pgfplots}
 
----
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+```
 
-## Why publish at all?
+The file has grown over time to support the kinds of technical documents I actually write.
 
-Research has limited value to the scientific community until it is communicated.
+It includes recurring support for such things as:
 
-A published article creates a record of
+- mathematical notation,
+- symbols,
+- graphics and PDF graphics,
+- hyperlinks,
+- tables,
+- appendices,
+- nomenclature,
+- bibliography management,
+- TikZ drawings,
+- PGFPlots,
+- theorem-like constructs,
+- algorithms,
+- and other technical-writing needs.
 
-- what problem was studied,
-- what was discovered,
-- how the result was obtained,
-- and what contribution was made.
+The main advantage is not that I can load many packages at once.
 
-Publication also allows other researchers to
+The real advantage is that **repeated technical configuration has one authoritative location**.
 
-- examine the work,
-- challenge it,
-- reproduce it,
-- improve it,
-- and build upon it.
+If a recurring setting has to be corrected or improved, I can change it in the common infrastructure rather than repair the same issue separately in many manuscripts.
 
-A conference paper and a journal article may serve different purposes.
+This is similar to software development: repeated functionality should not be copied unnecessarily into every project.
 
-A conference presentation may introduce work in progress or stimulate discussion.
+At the same time, I would not recommend that another researcher simply copy a large package file and load everything.
 
-A journal article should normally provide a more complete, durable account of the research.
+A useful shared package file should grow gradually from real writing needs.
 
-Publication is therefore not merely an administrative step after doing research.
+Mine reflects years of mechanics and engineering writing.
 
-It is part of the research process itself.
+## Shared commands: `zicommand.tex`
 
----
+The second common file, `zicommand.tex`, is even more personal.
 
-## Before writing: is there actually a paper?
-
-Before worrying about English, LaTeX, journal format, or figure placement, I ask several more fundamental questions.
-
-### Is there a creative contribution?
-
-Can I say clearly what is new?
+At first glance, custom commands may look like typing shortcuts.
 
 For example:
 
-> We discovered that...
+```latex
+\newcommand{\sig}{\sigma}
+\newcommand{\eps}{\epsilon}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\del}{\delta}
+\newcommand{\Del}{\Delta}
+\newcommand{\la}{\lambda}
+\newcommand{\om}{\omega}
+```
 
-> We developed...
+But after many years, the command set becomes much more than a collection of abbreviations.
 
-> We demonstrated...
+It becomes a **personal technical vocabulary**.
 
-> We found that the conventional assumption fails when...
+My command file contains recurring notation and formatting associated with engineering mechanics, including commands for:
 
-> We provide a new interpretation of...
+- tensors,
+- bold symbols,
+- jump notation,
+- units,
+- cross-references,
+- table formatting,
+- TikZ dimensioning,
+- hypotheses and theorem-like constructs,
+- revision marking,
+- and technical notation accumulated through repeated research projects.
 
-If the novelty cannot be stated clearly, the research story may not yet be mature.
+For example, revision commands can be defined once:
 
-### Are the results reproducible?
+```latex
+\newcommand{\chgI}[1]{{\color{DarkRed}{#1}}}
+\newcommand{\chgII}[1]{{\color{DarkBlue}{#1}}}
+```
 
-For experimental work, another researcher should be able to understand the materials, specimens, loading conditions, equipment, measurements, and processing needed to reproduce the essential results.
+Then the revision mechanism can be used consistently throughout a manuscript.
 
-For theoretical or computational work, the hypotheses, assumptions, governing equations, numerical procedures, boundary conditions, and validation should be clear enough to reproduce the analysis.
+This suggests a deeper principle:
 
-### Are the results consistent?
+> **Commands should represent concepts, not merely save keystrokes.**
 
-Check whether
-
-- repeated tests agree reasonably,
-- numerical trends are physically credible,
-- tables and figures agree,
-- units are consistent,
-- reported values do not change between sections,
-- and the explanation is compatible with the evidence.
-
-### Is the logic complete?
-
-Can the reader follow the reasoning without being asked to make an unsupported jump?
-
-These questions already contain the CCC rule.
-
----
-
-## A research paper is a story
-
-A paper is not simply a container for everything produced during a project.
-
-It is a story with a particular structure:
-
-$$
-\boxed{
-\text{Question}
-\rightarrow
-\text{Effort to answer}
-\rightarrow
-\text{Answer}.
-}
-$$
-
-For an engineering paper, I would expand this slightly:
-
-$$
-\boxed{
-\text{Problem}
-\rightarrow
-\text{Question}
-\rightarrow
-\text{Method}
-\rightarrow
-\text{Evidence}
-\rightarrow
-\text{Interpretation}
-\rightarrow
-\text{Engineering meaning}.
-}
-$$
-
-This is more useful than beginning with the conventional headings
+The relationship is
 
 ```text
-Introduction
-Methods
-Results
-Conclusions
+physical or writing concept
+        ↓
+personal LaTeX command
+        ↓
+printed notation
+```
+
+This helps maintain consistency.
+
+If I decide to change how a quantity is represented, I can often change the command definition rather than manually searching for every occurrence in a long manuscript.
+
+For technical writing, that is particularly valuable because notation is part of the argument. A symbol should not silently change meaning or appearance halfway through a paper.
+
+This connects directly to one part of my broader CCC writing principle: **Consistency**.
+
+## One master bibliography: `reference.bib`
+
+I also maintain one large BibTeX database rather than starting a new bibliography from zero for each paper.
+
+The file, `reference.bib`, has accumulated over many years.
+
+It contains ordinary bibliographic information, but over time it has become much more than a mechanism for producing a reference list.
+
+The database includes such information as:
+
+- authors,
+- titles,
+- journals,
+- years,
+- volumes and pages,
+- DOI and URL information where available,
+- journal abbreviations,
+- subject keywords,
+- and in some entries additional notes or abstracts.
+
+I also use journal `@STRING` definitions for recurring abbreviations such as
+
+```text
+CMAME
+IJNME
+IJSS
+JEM
+JSE
+OE
+...
+```
+
+and subject codes accumulated around my research areas, for example:
+
+```text
+FR    fracture mechanics
+PL    plasticity
+XF    XFEM
+FS    floating structures / hydromechanics
+FAT   fatigue
+HE    hydroelasticity
+...
+```
+
+As the database grows, it becomes a record of the literature that has accompanied my research career.
+
+For this reason, I no longer regard `reference.bib` simply as a bibliography generator.
+
+> **It is a personal research-memory database.**
+
+## One identifier for the citation, metadata, and PDF
+
+The most important part of my reference system is the relationship between BibTeX and the original PDF files.
+
+I keep the source papers themselves in a large reference archive.
+
+The rule is simple:
+
+> **The PDF filename is identical to the BibTeX key.**
+
+Suppose I assign a paper the key
+
+```text
+AlSNah18
+```
+
+I cite it in LaTeX as
+
+```latex
+\cite{AlSNah18}
+```
+
+The corresponding entry in `reference.bib` begins with
+
+```bibtex
+@article{AlSNah18,
+  ...
+}
+```
+
+and the original source paper is stored as
+
+```text
+AlSNah18.pdf
+```
+
+Therefore the same identifier connects three different things:
+
+```text
+\cite{AlSNah18}
+        ↕
+@article{AlSNah18,...}
+        ↕
+AlSNah18.pdf
+```
+
+or, more generally,
+
+```text
+citation
+   ↕
+bibliographic metadata
+   ↕
+original source document
+```
+
+This is one of the most useful habits I have developed.
+
+![My research-paper archive. Each PDF filename is the BibTeX key used in my master bibliography and LaTeX manuscripts. A citation key therefore points not only to bibliographic metadata but also directly to the original source document.](Fig01.png){#fig-reference-archive fig-align="center" width="95%"}
+
+Figure @fig-reference-archive shows part of the actual archive.
+
+The filenames are not arbitrary descriptions of the papers. They are the same identifiers used in BibTeX.
+
+This means that when I encounter a citation key in an old manuscript, I can immediately find the corresponding source PDF.
+
+The key is therefore not only a citation label.
+
+It is the permanent identity of the reference within my research system.
+
+> **Give every reference one identifier, and use that same identifier everywhere.**
+
+## How I add a new reference
+
+When I obtain a new paper, I add it to the system through a consistent sequence.
+
+```text
+1. Obtain the paper
+2. Verify or create the BibTeX metadata
+3. Assign the BibTeX key
+4. Rename the PDF using exactly the same key
+5. Store the PDF in the reference archive
+6. Cite the paper using that same key
+```
+
+For example:
+
+```text
+BibTeX key      AlSNah18
+BibTeX record   @article{AlSNah18,...}
+PDF file        AlSNah18.pdf
+LaTeX citation  \cite{AlSNah18}
+```
+
+Nothing has to be translated from one naming system into another.
+
+That becomes increasingly important after the archive contains hundreds or thousands of papers.
+
+A descriptive filename may be meaningful when a paper is first downloaded, but years later it may be difficult to remember exactly how it was named.
+
+A permanent citation key solves that problem.
+
+The manuscript itself tells me how to retrieve the original paper.
+
+## How I start a new manuscript
+
+With the persistent infrastructure already established, beginning a new research paper becomes systematic.
+
+My workflow is approximately:
+
+```text
+1. Start from template.tex
+2. Define the root and common paths
+3. Load zipackage.tex
+4. Load zicommand.tex
+5. Set the local figure directory
+6. Write the paper-specific manuscript
+7. Store figures with the manuscript
+8. Cite literature using keys from reference.bib
+9. Retrieve source PDFs using those same keys
+10. Compile and revise in the stable environment
+11. Adapt the finished manuscript to the target journal template
+```
+
+The important distinction is between what belongs to a **particular paper** and what belongs to my **research-writing infrastructure**.
+
+Paper-specific material includes:
+
+```text
+manuscript
+figures
+tables
+calculations
+results
+journal-specific files
+```
+
+The persistent layer includes:
+
+```text
+template.tex
+zipackage.tex
+zicommand.tex
+reference.bib
+References/*.pdf
+```
+
+This separation is what makes the workflow reusable.
+
+## The journal template comes later
+
+Eventually, a manuscript must satisfy the requirements of a specific journal.
+
+At that point I may have to move the scientific content into a publisher's class file or template.
+
+But by then the main intellectual work has already been done.
+
+The equations exist.
+
+The figures exist.
+
+The references exist.
+
+The notation is consistent.
+
+The argument has been developed.
+
+The conversion is therefore primarily a change in presentation and submission structure rather than a reconstruction of the research paper.
+
+Conceptually:
+
+```text
+my stable manuscript
+        ↓
+scientific content completed
+        ↓
+target journal selected
+        ↓
+publisher class/template applied
+        ↓
+final submission
+```
+
+This way of working is especially useful when the target journal changes during the publication process.
+
+The research should not be locked into the visual assumptions of the first journal considered.
+
+## LaTeX content is reusable beyond papers
+
+Another important benefit of this system is that LaTeX content is not limited to a single journal manuscript.
+
+A research project produces many reusable objects:
+
+- equations,
+- symbols,
+- derivations,
+- figures,
+- TikZ drawings,
+- tables,
+- references,
+- explanations,
+- and technical terminology.
+
+Because these objects are stored as structured source material, they can be reorganized for other purposes.
+
+One of the clearest examples is **Beamer**.
+
+Material developed for a paper can later be reused in a presentation:
+
+```text
+research idea
+      ↓
+LaTeX equations + figures + references
+      ↓
+journal manuscript
+      │
+      ├──→ another journal format
+      │
+      ├──→ conference paper
+      │
+      ├──→ Beamer presentation
+      │
+      ├──→ lecture material
+      │
+      └──→ later technical writing
+```
+
+The point is not simply that Beamer can make presentation slides.
+
+The more important point is that **the same technical source can serve more than one communication purpose**.
+
+An equation written carefully for a paper does not need to be reconstructed in PowerPoint.
+
+A TikZ figure can often be reused.
+
+Technical notation remains the same.
+
+Bibliographic keys remain the same.
+
+The research content can therefore move from one document form to another with much less duplication.
+
+This is where LaTeX becomes more than a typesetting tool.
+
+It becomes a reusable representation of technical knowledge.
+
+## Why the system becomes more valuable with time
+
+The value of this approach is modest when writing the first paper.
+
+It becomes much larger after many papers.
+
+A shared command file may initially save only a few keystrokes.
+
+After years of work, it encodes a substantial part of one's technical notation.
+
+A BibTeX database may initially contain a few dozen references.
+
+After decades, it becomes a map of the literature encountered throughout a research career.
+
+A PDF naming rule may initially look unnecessarily strict.
+
+After thousands of citations, it provides a direct connection between old manuscripts and their original sources.
+
+This leads to an important difference between ordinary document organization and research infrastructure.
+
+```text
+individual papers are temporary
+research infrastructure is persistent
+```
+
+Each new project uses the infrastructure, but it also contributes to it.
+
+New commands may be added.
+
+New packages may become necessary.
+
+New references enter the bibliography and PDF archive.
+
+New figures and explanations may later become teaching material.
+
+The system therefore grows with the research itself.
+
+## A foundation for a future research knowledge system
+
+There is another consequence that has become increasingly interesting with the development of AI-assisted research tools.
+
+The citation key already connects several forms of information:
+
+```text
+BibTeX metadata
+      +
+source PDF
+      +
+topic keywords
+      +
+manuscript citations
+```
+
+That structure could support future tools for:
+
+- semantic literature search,
+- citation verification,
+- topic clustering,
+- literature maps,
+- retrieval-augmented generation,
+- source-grounded AI writing,
+- and reconstruction of one's own research history.
+
+I do not yet regard this as the primary reason for maintaining the system.
+
+The system was developed to solve a much more basic problem: how to write technical research efficiently and consistently over a long period.
+
+But a well-structured research archive has consequences that extend beyond LaTeX itself.
+
+Once references, source documents, notation, and manuscripts already have persistent identities and relationships, they are much easier to connect to new computational tools.
+
+## The main principle
+
+Looking back, the most important feature of my LaTeX workflow is not any package, command, template, or bibliography style.
+
+It is the decision to treat research writing as a persistent system rather than a sequence of isolated documents.
+
+My papers change.
+
+My research topics evolve.
+
+Journal formats change.
+
+Presentation formats change.
+
+But the underlying infrastructure continues to accumulate value.
+
+That is why I would summarize the entire workflow in one principle:
+
+> **Do not organize research around individual documents. Build a persistent writing system from which individual documents are produced.**
