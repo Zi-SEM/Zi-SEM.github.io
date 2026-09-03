@@ -1,0 +1,64 @@
+---
+title: "How I Organize LaTeX, BibTeX, and Research Papers for Journal Writing"
+subtitle: "A reusable manuscript system built around templates, shared commands, and one identifier for every reference"
+author: "Goangseup Zi"
+date: "2026-09-03"
+categories:
+  - LaTeX & Writing
+  - Scientific Writing
+  - LaTeX
+  - BibTeX
+description: "A practical workflow for scientific manuscript writing using a reusable LaTeX template, shared packages and commands, a master BibTeX database, and PDF files named by their BibTeX keys."
+toc: true
+toc-depth: 2
+---
+
+I have written research papers in LaTeX for many years.
+
+Over time, I found that the difficult part was not writing an equation such as
+
+$$
+\sigma = E\varepsilon.
+$$
+
+The real difficulty was managing everything around the manuscript:
+
+- packages,
+- personal commands,
+- figures,
+- references,
+- journal styles,
+- old papers,
+- bibliographic information,
+- and the source PDFs behind each citation.
+
+If each new paper begins by rebuilding all of this, scientific writing becomes unnecessarily repetitive.
+
+So I gradually developed a simple rule:
+
+> **The manuscript should change from paper to paper. The writing infrastructure should not.**
+
+My workflow separates the reusable parts of LaTeX from the content of an individual manuscript and connects the bibliography directly to my archive of research papers.
+
+The system itself is simple.
+
+Its value comes from using the same structure consistently over many years.
+
+## A paper should not start from an empty file
+
+When beginning a new journal article, I do not start from an empty LaTeX document and then try to remember which packages, commands, colors, and citation settings I used in the previous paper.
+
+I start from a manuscript template.
+
+A simplified version of my working structure is:
+
+```latex
+\documentclass[12pt]{article}
+
+\newcommand{\rootfolder}{D:/Dropbox/Zi}
+\newcommand{\graphicfolder}{./figures/}
+
+\input{\rootfolder/zipackage}
+\input{\rootfolder/zicommand}
+
+\graphicspath{\graphicfolder}
