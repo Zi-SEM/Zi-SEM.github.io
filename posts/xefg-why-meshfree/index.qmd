@@ -2,7 +2,7 @@
 title: "Why Extend XFEM into a Meshfree Method?"
 subtitle: "From element enrichment to XEFG: what changes when the approximation is built from particles and domains of influence"
 author: "Goangseup Zi"
-date: "2026-09-03"
+date: "2026-09-04"
 categories:
   - Research Explained
   - Computational Fracture
@@ -145,6 +145,10 @@ The problem is analogous to the crack-tip issue in XFEM, but its geometry is exp
 
 This is why moving from XFEM to XEFG was not just a matter of replacing one shape-function symbol with another.
 
+![A crack interacts with meshfree domains of influence differently depending on whether a support is uncut, completely cut, or contains the crack tip. The figure should be read as a kinematic map: enrichment is activated according to how the discontinuity intersects the support, not according to element connectivity. Adapted from Rabczuk and Zi (2007).](Fig01.png){#fig-xefg-support fig-align="center" width="78%"}
+
+Figure @fig-xefg-support shows the key geometric difference between XFEM and XEFG. In XFEM, we usually ask how a crack cuts an element and its associated nodal supports. In XEFG, the corresponding question is how the crack cuts overlapping **domains of influence**. The physical discontinuity is the same, but the bookkeeping of the approximation changes.
+
 ## Why meshfree methods were attractive for fracture
 
 Fracture creates evolving geometry.
@@ -237,6 +241,10 @@ The general lesson is broader than XEFG:
 An enrichment function is a modeling decision.
 
 It should be justified by the solution behavior we expect.
+
+![Cohesive fracture can be represented in XEFG without imposing the classical LEFM crack-tip branch enrichment. The important point is not the absence of a particular mathematical function by itself, but that the approximation is designed around the regularized cohesive crack-tip mechanics. Adapted from Zi, Rabczuk, and Wall (2007).](Fig02.png){#fig-xefg-no-branch fig-align="center" width="78%"}
+
+Figure @fig-xefg-no-branch illustrates an important modeling choice. If the cohesive law already regularizes the crack-tip response, inserting a classical singular asymptotic field is not automatically necessary. The enrichment should supply the **missing kinematics**, not mathematical structure that the assumed fracture model does not require.
 
 ## The crack is still independent of the background approximation
 
@@ -332,33 +340,17 @@ crack surface
 
 This is where the separation between background approximation and crack geometry becomes especially valuable.
 
-## Crack junctions are a topological problem
+![Three-dimensional XEFG allows an evolving crack to be represented as a surface bounded by a moving crack front. Curvature, propagation, branching, and junctions therefore become problems of both fracture mechanics and evolving geometry. Adapted from the three-dimensional XEFG work of Rabczuk, Bordas, and Zi (2007).](Fig03.png){#fig-xefg-3d fig-align="center" width="82%"}
 
-Suppose two cracks grow toward each other.
+Figure @fig-xefg-3d shows why three-dimensional fracture is qualitatively harder than its two-dimensional counterpart. The numerical method is no longer tracking only a crack-tip point. It must maintain a physically meaningful **surface and crack front** while that geometry evolves through the background approximation.
 
-Eventually they may intersect.
+## Crack junctions point to the next problem
 
-Before intersection, there are two independent discontinuity surfaces.
+When two cracks meet, the difficulty is no longer merely geometric. The **topology of the discontinuity network changes**.
 
-After intersection, they form a connected crack network.
+An enriched meshfree representation can update the crack description and the affected support domains without forcing the entire background discretization to be rebuilt. But maintaining crack-front orientation, junction geometry, integration domains, and physically meaningful propagation remains a substantial problem.
 
-That is a topological change.
-
-A conventional conforming discretization may require substantial modification to represent the new geometry.
-
-An enriched meshfree representation can instead update the crack description and the affected support domains.
-
-This does not make the problem trivial.
-
-The method still has to maintain:
-
-- correct discontinuity orientation,
-- crack-front geometry,
-- enrichment consistency,
-- integration domains,
-- and physically meaningful propagation.
-
-But it avoids making the entire discretization topology follow every change in the fracture topology.
+That topic deserves separate treatment. The next article will therefore examine multiple cracks, competition, branching, coalescence, junctions, and fracture-network evolution in detail.
 
 ## What does XEFG gain over XFEM?
 
