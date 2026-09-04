@@ -12,6 +12,8 @@ toc: true
 toc-depth: 2
 ---
 
+**Computational Fracture Series:** [← Overview](../computational-fracture-overview/) · Article 2 of 7 · [Next: XEFG →](../xefg-why-meshfree/)
+
 In an ordinary finite element analysis, the mesh does two jobs at once.
 
 It discretizes the body, but it also strongly constrains the functions that can be represented inside that body.
@@ -631,6 +633,12 @@ And the broader computational-mechanics principle is:
 > **Do not make the discretization imitate difficult physics when the missing physics can be represented directly in the approximation.**
 
 ---
+
+## Continue the series
+
+[← **Series overview: Why Is Computational Fracture So Difficult?**](../computational-fracture-overview/)
+
+[**Next: Why Extend XFEM into a Meshfree Method? →**](../xefg-why-meshfree/)
 
 ## Original research
 

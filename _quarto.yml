@@ -1,5 +1,8 @@
 project:
   type: website
+  render:
+    - "*.qmd"
+    - "posts/**/*.qmd"
   resources:
     - googleb0a668f4b09f47d9.html
 

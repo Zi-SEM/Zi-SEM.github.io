@@ -13,6 +13,8 @@ toc: true
 toc-depth: 2
 ---
 
+**Computational Fracture Series:** Article 1 of 7 · [Next: XFEM →](../xfem-crack-through-mesh/)
+
 A crack creates a peculiar problem for computational mechanics.
 
 Before cracking, we normally approximate a continuous displacement field over a body. After a crack appears, the displacement field can become discontinuous across an internal surface. The crack may then grow, turn, branch, join another crack, or cut through elements that were never designed to contain it.
@@ -368,39 +370,36 @@ For this reason, I do not think my computational-fracture work should be compres
 
 This article should serve as the entrance to a series.
 
-## The computational-fracture series
+## Computational Fracture Series
 
-The planned sequence is:
+This article is the gateway to a series on computational fracture. The first three articles are now available; the remaining articles are planned as the series develops.
 
-### 1. Why Is Computational Fracture So Difficult?
+### Published
 
-The present overview: discontinuity, evolving geometry, remeshing, enrichment, and the progression from XFEM to XEFG and beyond.
+**1. Why Is Computational Fracture So Difficult?**  
+*This article.* An overview of discontinuity, evolving geometry, remeshing, enrichment, and the progression from XFEM to XEFG and later fracture representations.
 
-### 2. How Does XFEM Let a Crack Cut Through the Mesh?
+**2. [How Does XFEM Let a Crack Cut Through the Mesh?](../xfem-crack-through-mesh/)**  
+How partition-of-unity enrichment gives the approximation the displacement jump and crack-tip kinematics that ordinary finite elements cannot represent.
 
-The mechanics of partition-of-unity enrichment, jump functions, crack-tip treatment, level sets, cohesive cracks, and why remeshing can be avoided.
+**3. [Why Extend XFEM into a Meshfree Method?](../xefg-why-meshfree/)**  
+How the same enrichment idea moves from finite elements to particle domains of influence, cohesive XEFG, and three-dimensional crack growth.
 
-### 3. Why Did We Extend XFEM into Meshfree Methods?
+### Coming next
 
-XEFG, domains of influence, partial and complete cuts, cohesive crack-tip closure, branch-enrichment issues, and three-dimensional crack growth.
+**4. How Do Multiple Cracks Branch, Join, and Form a Fracture Network?**  
+Multiple-crack growth, fatigue, crack competition, branching, coalescence, junctions, topology evolution, and three-dimensional crack tracking.
 
-### 4. How Do Multiple Cracks Branch, Join, and Form a Fracture Network?
+**5. Is Enrichment the Only Way to Represent a Crack?**  
+Phantom-node methods, cracking-particle methods, peridynamics, phase-field fracture, and the trade-off between sharp and diffuse crack representations.
 
-Multiple-crack growth, coalescence, junctions, fatigue-crack interaction, dynamic branching, and three-dimensional crack tracking.
+**6. How Does Computational Fracture Move Across Scales and Structural Forms?**  
+Reinforced concrete, piezoelectric materials, shells, multiscale coupling, atomistics, graphene, and nanocomposites.
 
-### 5. Is Enrichment the Only Way to Represent a Crack?
+**7. What Did Enriched Methods Teach Us About Computational Mechanics?**  
+A retrospective synthesis on approximation spaces, prior physical information, geometry-independent discretization, and what enrichment contributed beyond fracture.
 
-Phantom nodes, cracking particles, phase field, peridynamics, and what is gained or lost when the representation of the discontinuity changes.
-
-### 6. How Does Computational Fracture Move Across Scales and Structural Forms?
-
-Shell fracture, piezoelectric fracture, multiscale methods, graphene and nanocomposites, and how the same fracture question changes with scale and governing physics.
-
-A final retrospective article may later be useful:
-
-### 7. What Did Enriched Methods Teach Us About Computational Mechanics?
-
-A broader reflection on approximation spaces, prior physical information, geometry-independent discretization, and the continuing influence of enrichment concepts beyond fracture.
+> **Series principle:** The mesh is only a numerical scaffold. The approximation should represent the mechanics.
 
 ## The broader mechanics lesson
 

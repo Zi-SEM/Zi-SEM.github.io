@@ -14,6 +14,8 @@ toc: true
 toc-depth: 2
 ---
 
+**Computational Fracture Series:** [← Overview](../computational-fracture-overview/) · [← XFEM](../xfem-crack-through-mesh/) · Article 3 of 7
+
 XFEM changed an important assumption in computational fracture.
 
 A crack did not have to coincide with the finite element mesh.
@@ -481,7 +483,7 @@ At that point, the difficulty is no longer just representing a discontinuity.
 
 It is representing an evolving **topology of discontinuities**.
 
-That will be the subject of the next article in this series.
+That is the subject planned for **Article 4**, which has not yet been published.
 
 ## Engineering takeaway
 
@@ -506,6 +508,14 @@ And the broader computational lesson is:
 > **Choose the numerical scaffold for convenience; design the approximation around the physics.**
 
 ---
+
+## Continue the series
+
+[← **Previous: How Does XFEM Let a Crack Cut Through the Mesh?**](../xfem-crack-through-mesh/)
+
+[**Series overview: Why Is Computational Fracture So Difficult?**](../computational-fracture-overview/)
+
+**Coming next — Article 4:** *How Do Multiple Cracks Branch, Join, and Form a Fracture Network?*
 
 ## Original research
 
