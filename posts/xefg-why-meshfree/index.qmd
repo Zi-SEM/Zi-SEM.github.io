@@ -14,7 +14,7 @@ toc: true
 toc-depth: 2
 ---
 
-**Computational Fracture Series:** [← Overview](../computational-fracture-overview/) · [← XFEM](../xfem-crack-through-mesh/) · Article 3 of 7
+**Computational Fracture Series:** [← Overview](../computational-fracture-overview/) · [← XFEM](../xfem-crack-through-mesh/) · Article 3 of 7 · [Next: Multiple cracks →](../multiple-cracks-fracture-network/)
 
 XFEM changed an important assumption in computational fracture.
 
@@ -483,7 +483,7 @@ At that point, the difficulty is no longer just representing a discontinuity.
 
 It is representing an evolving **topology of discontinuities**.
 
-That is the subject planned for **Article 4**, which has not yet been published.
+That problem is developed in **Article 4**, where multiple cracks, branching, coalescence, junctions, and fracture-network topology are treated directly.
 
 ## Engineering takeaway
 
@@ -515,7 +515,7 @@ And the broader computational lesson is:
 
 [**Series overview: Why Is Computational Fracture So Difficult?**](../computational-fracture-overview/)
 
-**Coming next — Article 4:** *How Do Multiple Cracks Branch, Join, and Form a Fracture Network?*
+[**Next: How Do Multiple Cracks Branch, Join, and Form a Fracture Network? →**](../multiple-cracks-fracture-network/)
 
 ## Original research
 

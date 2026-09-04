@@ -385,10 +385,10 @@ How partition-of-unity enrichment gives the approximation the displacement jump 
 **3. [Why Extend XFEM into a Meshfree Method?](../xefg-why-meshfree/)**  
 How the same enrichment idea moves from finite elements to particle domains of influence, cohesive XEFG, and three-dimensional crack growth.
 
-### Coming next
-
-**4. How Do Multiple Cracks Branch, Join, and Form a Fracture Network?**  
+**4. [How Do Multiple Cracks Branch, Join, and Form a Fracture Network?](../multiple-cracks-fracture-network/)**  
 Multiple-crack growth, fatigue, crack competition, branching, coalescence, junctions, topology evolution, and three-dimensional crack tracking.
+
+### Coming next
 
 **5. Is Enrichment the Only Way to Represent a Crack?**  
 Phantom-node methods, cracking-particle methods, peridynamics, phase-field fracture, and the trade-off between sharp and diffuse crack representations.
