@@ -2,12 +2,12 @@
 title: "How Does XFEM Let a Crack Cut Through the Mesh?"
 subtitle: "The approximation space—not the element boundary—is given the information needed to represent fracture"
 author: "Goangseup Zi"
-date: "2026-09-03"
+date: "2026-09-04"
 categories:
   - Research Explained
   - Computational Fracture
   - XFEM
-description: "A mechanics-oriented explanation of XFEM: partition-of-unity enrichment, displacement jumps, crack-tip treatment, level sets, cohesive fracture, dynamic propagation, and multiple cracks without remeshing."
+description: "A mechanics-oriented explanation of XFEM: partition-of-unity enrichment, displacement jumps, cohesive crack-tip treatment, evolving crack geometry, and dynamic fracture without remeshing."
 toc: true
 toc-depth: 2
 ---
@@ -271,7 +271,36 @@ This illustrates a broader principle about enrichment:
 
 > **The enrichment function should reflect the physics that is missing from the ordinary approximation.**
 
+![A cohesive crack must terminate inside the crack-tip element while its displacement jump closes toward the tip. This is the kinematic problem addressed by the new XFEM crack-tip formulation. Source: Zi and Belytschko (2003); replace this placeholder with the selected original-paper figure.](Fig01.png){#fig-cohesive-tip fig-align="center" width="72%"}
+
+Figure @fig-cohesive-tip should be read from **kinematics to consequence**: the crack is allowed to cut the element, but the discontinuity cannot simply continue through the tip. The crack-tip treatment supplies the missing closure condition without forcing the mesh boundary to coincide with the crack.
+
 Using a sophisticated enrichment simply because it is mathematically available is not necessarily better.
+
+## Another way to localize crack-tip resolution
+
+Enrichment was not the only way we explored the separation between the crack and the global mesh.
+
+In the combined extended and superimposed finite element method, the background finite element model is retained while a specialized local mesh is superimposed near the crack tip. The extended approximation handles the discontinuity away from the tip, while the local superimposed discretization supplies additional resolution where the crack-tip field demands it.
+
+Conceptually,
+
+```text
+global mesh
+→ efficient representation of the structure
+
+XFEM enrichment
+→ crack discontinuity independent of global element edges
+
+local superimposed mesh
+→ additional crack-tip resolution where it is useful
+```
+
+The important idea is not to refine the entire global mesh merely because one small region contains difficult fracture mechanics.
+
+![The combined extended and superimposed finite element method separates the global structural discretization from a local crack-tip discretization. Source: Lee et al. (2004); replace this placeholder with the selected original-paper figure.](Fig03.png){#fig-superimposed fig-align="center" width="74%"}
+
+Figure @fig-superimposed illustrates a broader computational strategy: **put numerical resolution where the physics requires it, rather than making the whole discretization pay the same cost.**
 
 ## The mesh and the crack now become separate geometries
 
@@ -408,30 +437,17 @@ fixed numerical mesh
 
 This made complex dynamic crack trajectories much more manageable.
 
-## Multiple cracks reveal the real advantage
+![Dynamic fracture represented with a discontinuous enriched approximation. The crack evolves through the background discretization rather than being constrained to element boundaries. Source: Belytschko, Chen, Xu, and Zi (2003), Fig. 12.](Fig02.png){#fig-dynamic-fracture fig-align="center" width="80%"}
 
-A single crack is useful for understanding the method.
+Figure @fig-dynamic-fracture is important for what it demonstrates numerically: the physical discontinuity evolves while the background discretization remains a computational scaffold. The crack path is therefore governed by the fracture formulation rather than by a requirement that it follow element edges.
 
-Multiple cracks reveal why the idea matters.
+## Multiple cracks point to the next problem
 
-Suppose several cracks nucleate and propagate.
+Once one crack can move independently of the mesh, the natural next question is what happens when several cracks evolve at the same time.
 
-They may:
+Our subsequent work treated multiple crack growth, fatigue, coalescence, and changing crack topology without reconstructing the background mesh after every event. Those problems reveal another level of difficulty: the numerical method must follow not only moving crack tips, but an evolving **network of discontinuities**.
 
-- approach each other,
-- shield or amplify one another,
-- turn,
-- coalesce,
-- create junctions,
-- or form a connected fracture path.
-
-The problem is no longer just moving one crack tip.
-
-The topology of the discontinuity network changes.
-
-Our work on multiple cracks and fatigue crack growth used enrichment so that the cracks could evolve without reconstructing the entire mesh after every change.
-
-This was an important step because real fracture frequently involves **networks of discontinuities**, not a single ideal crack.
+That deserves its own article. Here, the important point is simply that geometry-independent enrichment makes such topology-changing problems possible without making remeshing the central algorithm.
 
 ## What information should enrichment contain?
 
