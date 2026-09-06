@@ -5,6 +5,7 @@ author: "Goangseup Zi"
 date: "2026-09-04"
 categories:
   - Research Explained
+  - Computational Mechanics & Fracture
   - Computational Fracture
   - XFEM
 description: "A mechanics-oriented explanation of XFEM: partition-of-unity enrichment, displacement jumps, cohesive crack-tip treatment, evolving crack geometry, and dynamic fracture without remeshing."

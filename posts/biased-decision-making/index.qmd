@@ -5,6 +5,7 @@ author: "Goangseup Zi"
 date: "2026-08-30"
 categories:
   - Research Explained
+  - Engineering Decisions
   - Decision Making
   - Offshore Wind
   - EFA

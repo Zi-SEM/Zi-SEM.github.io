@@ -1,0 +1,19 @@
+---
+title: "Computational Mechanics & Fracture"
+listing:
+  contents:
+    - "../posts/*/index.qmd"
+  type: default
+  sort: "date desc"
+  include:
+    categories: "Computational Mechanics & Fracture"
+  sort-ui: false
+  filter-ui: false
+toc: false
+---
+
+Research on fracture and computational mechanics, from XFEM and XEFG to interacting cracks, alternative representations, multiscale models, and general lessons for numerical mechanics.
+
+[← Back to **Research Explained**](../research.qmd)
+
+## Articles

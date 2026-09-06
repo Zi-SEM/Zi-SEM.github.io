@@ -5,6 +5,7 @@ author: "Goangseup Zi"
 date: "2026-09-04"
 categories:
   - Research Explained
+  - Computational Mechanics & Fracture
   - Computational Fracture
   - XFEM
   - Phase Field

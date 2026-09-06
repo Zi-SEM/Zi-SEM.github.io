@@ -1,7 +1,8 @@
 ---
 title: "Research Explained"
 listing:
-  contents: posts
+  contents:
+    - "posts/*/index.qmd"
   type: default
   sort: "date desc"
   include:
@@ -15,4 +16,32 @@ Academic papers are necessarily compact and specialized. Important engineering i
 
 **Research Explained** revisits published research from a broader perspective: the engineering problem, the underlying physical or conceptual idea, the method used to address it, and what the results mean in practice.
 
-## Articles
+## Research areas
+
+::: {.grid}
+::: {.g-col-12 .g-col-md-6}
+### [Computational Mechanics & Fracture](research/computational-mechanics-fracture.qmd)
+
+XFEM, XEFG, multiple cracks, alternative crack representations, multiscale fracture, and the broader lessons of enriched computational mechanics.
+:::
+
+::: {.g-col-12 .g-col-md-6}
+### [Offshore & Ocean Engineering](research/offshore-ocean-engineering.qmd)
+
+Offshore wind structures, floating systems, wave-energy devices, structural flexibility, and the mechanics behind offshore response.
+:::
+
+::: {.g-col-12 .g-col-md-6}
+### [Concrete & Materials](research/concrete-materials.qmd)
+
+Concrete durability, reactive particles, industrial by-products, material deterioration, and the mechanics connecting microstructure to engineering performance.
+:::
+
+::: {.g-col-12 .g-col-md-6}
+### [Engineering Decisions](research/engineering-decisions.qmd)
+
+Decision frameworks for engineering problems, including bias reduction, factor structure, weighting, and evidence-based comparison.
+:::
+:::
+
+## All Research Explained

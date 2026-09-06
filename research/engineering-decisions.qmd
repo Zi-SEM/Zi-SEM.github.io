@@ -1,0 +1,19 @@
+---
+title: "Engineering Decisions"
+listing:
+  contents:
+    - "../posts/*/index.qmd"
+  type: default
+  sort: "date desc"
+  include:
+    categories: "Engineering Decisions"
+  sort-ui: false
+  filter-ui: false
+toc: false
+---
+
+Research on how engineering decisions can be made more consistently by separating evidence, latent structure, weighting, and judgment.
+
+[← Back to **Research Explained**](../research.qmd)
+
+## Articles

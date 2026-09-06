@@ -5,6 +5,7 @@ author: "Goangseup Zi"
 date: "2026-09-01"
 categories:
   - Research Explained
+  - Concrete & Materials
   - Concrete
   - Steel Slag
   - Sustainable Construction

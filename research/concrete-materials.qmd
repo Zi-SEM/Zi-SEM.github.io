@@ -1,0 +1,19 @@
+---
+title: "Concrete & Materials"
+listing:
+  contents:
+    - "../posts/*/index.qmd"
+  type: default
+  sort: "date desc"
+  include:
+    categories: "Concrete & Materials"
+  sort-ui: false
+  filter-ui: false
+toc: false
+---
+
+Research on concrete, reactive materials, durability, industrial by-products, and the physical mechanisms that govern material performance.
+
+[← Back to **Research Explained**](../research.qmd)
+
+## Articles

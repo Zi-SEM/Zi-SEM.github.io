@@ -5,6 +5,7 @@ author: "Goangseup Zi"
 date: "2026-09-02"
 categories:
   - Research Explained
+  - Offshore & Ocean Engineering
   - Wave Energy
   - Offshore Engineering
   - Structural Dynamics
