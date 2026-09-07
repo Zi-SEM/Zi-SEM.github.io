@@ -27,35 +27,57 @@ Our current research is organized around four major areas.
 
 ### Offshore Structures and Offshore Wind
 
-We study support structures for offshore wind turbines and installation vessels for large offshore structures. Our work includes fatigue assessment under the marine environment, extreme-load assessment, structural optimization, monitoring, and the development of analysis methods for offshore structural systems.
+We study **fixed and floating offshore wind energy substructures**, with particular emphasis on structural analysis, transportation and installation (T&I), and the development of new structural concepts.
 
-The laboratory is also developing **X-SEA**, a finite-element analysis program for offshore wind support structures.
+Our interest is not limited to analyzing existing structural types. An important objective is to develop **new and potentially revolutionary structural systems** that respond to the engineering challenges of offshore wind energy. This requires us to consider structural mechanics together with hydrodynamics, foundations, mooring systems, fabrication, transportation, installation, and operation. We use various computational and experimental tools depending on the engineering problem rather than relying on a single analysis platform.
 
-The engineering challenge is intrinsically multidisciplinary. Structural deformation interacts with waves, hydrodynamic loading, soil or foundation behavior, mooring systems, wind-turbine loading, fatigue, and construction constraints. Mechanics provides the framework for connecting these effects.
+Our work is also closely connected to the development of engineering practice in Korea. Prof. Goangseup Zi leads a specialized committee of the **Korean Society of Civil Engineers (KSCE)** for offshore wind energy and plants and has served as a principal author of Korean design and construction guidelines for offshore wind energy substructures. This interaction between research and engineering standards helps us identify problems that matter not only academically but also in actual design and construction.
+
+For us, offshore wind engineering is therefore more than the analysis of structures under environmental loads. It connects **mechanics, structural innovation, analysis, construction, and engineering practice**.
 
 ### Digital Transformation of Construction Standards
 
-We study how construction standards can move from documents written only for human readers toward engineering information that can also be interpreted by computers and AI.
+The **digital transformation of design and construction standards** is becoming increasingly important as engineering enters the AI era.
 
-Our research applies natural-language processing and structured information methods to the digitalization of construction standards. The objective is not to eliminate conventional engineering documents, but to allow **human-readable and machine-readable standards to coexist**.
+Conventional standards are primarily documents written for human readers. AI and computational engineering systems, however, require engineering requirements to be represented in forms that machines can retrieve, interpret, and apply reliably. Our research therefore investigates how conventional design and construction standards can be transformed into **structured, machine-accessible engineering knowledge** while preserving the documents required by human engineers.
 
-Digital construction standards can support **Automatic Compliance Check (ACC)** of BIM deliverables and, ultimately, computational workflows that assist engineers in evaluating and optimizing structural designs.
+A central objective is to build standard-code data that allows AI to reach the correct engineering requirements **without relying on unsupported generation or hallucination**. In our work, we have developed structured standard-code data and an AI-accessible framework designed to provide deterministic access to the applicable provisions. The goal is not simply to ask a language model to read a standard, but to construct an information architecture in which the AI is guided to the authoritative engineering requirement.
+
+This provides a foundation for **Automatic Compliance Check (ACC)**, BIM-based design checking, engineering knowledge retrieval, and ultimately AI-assisted design and optimization.
+
+Our work in this area is part of a broader **AX (AI Transformation)** direction and is closely aligned with the digital transformation objectives of the Korean **Ministry of Land, Infrastructure and Transport (MOLIT)**.
+
+The broader engineering question is:
+
+> **How can engineering knowledge written for humans be transformed so that both engineers and AI can use the same authoritative standards reliably?**
 
 ### Concrete, Materials, and Deterioration
 
-We study concrete deterioration and material behavior by combining mechanics, chemistry, computation, and experiment.
+Our current research focuses on the **combined deterioration of concrete and concrete structures**.
 
-One major topic is the development of **chemo-mechanical models** for quantitatively analyzing coupled deterioration of concrete structures. This includes the interaction among transport, chemical reactions, microstructural evolution, damage, and cracking. We also study the mechanics associated with carbon-dioxide penetration and changes in concrete microstructure.
+Concrete deterioration is rarely governed by a single isolated mechanism. Transport of moisture and aggressive substances, chemical reactions, changes in microstructure, mechanical damage, and cracking interact with one another. Damage may alter transport properties, which can accelerate further chemical or physical deterioration. The problem is therefore inherently coupled.
 
-Experimental work includes methods for evaluating the **biaxial strength of concrete**. We also investigate high-performance concrete incorporating waste glass, including materials intended to improve resistance to environments involving heavy deicing-salt exposure. These experimental studies are closely connected to our theoretical work on coupled deterioration.
+We develop **chemo-mechanical and computational models** for quantitatively describing these interactions. Particular interests include transport and reaction processes, microstructural evolution, damage and cracking, and the mechanics associated with environmental deterioration such as carbonation.
+
+Experimental and material research complements this theoretical work. We have investigated high-performance concrete incorporating waste materials such as waste glass, including materials intended to improve resistance to aggressive environments involving deicing salts. Connecting material-scale observations with structural-scale deterioration is an important part of this research direction.
+
+The laboratory has also conducted earlier research on topics such as the **biaxial strength of concrete**. That work forms part of our research history rather than our present principal research direction.
+
+Our current emphasis is broader:
+
+> **How do interacting chemical, transport, material, and mechanical processes determine the long-term performance of concrete structures?**
 
 ### Computational Mechanics and Fracture
 
 Computational mechanics provides methods for studying structural and material behavior that cannot be understood adequately through simple closed-form models alone.
 
-Our research has included fracture and damage mechanics, nonlinear analysis, enriched finite-element and meshfree methods, multiple-crack representation, and numerical methods for structural systems. The objective is not merely to make a numerical model more sophisticated. A computational method should represent the essential mechanics of the problem while remaining interpretable and verifiable.
+Our research has included fracture and damage mechanics, nonlinear analysis, enriched finite-element and meshfree methods, multiple-crack representation, and numerical methods for structural systems. These methods have been applied across different length scales, from material fracture to large structural systems.
 
-> **A numerical result becomes engineering knowledge only when we can explain why it makes mechanical sense.**
+The objective, however, is not merely to make a numerical model more sophisticated. A computational model should contain the mechanics necessary to explain the phenomenon while remaining interpretable, verifiable, and computationally meaningful.
+
+This leads to a principle that applies throughout our computational research:
+
+> **Use computation to reveal mechanics, not to hide it.**
 
 # What Is Research?
 
@@ -194,15 +216,94 @@ Keep a short README or equivalent note in a project folder describing its purpos
 
 ![**An earlier SEM Lab directory-organization scheme.** The specific folder names may evolve, but references, proposals, projects, presentations, papers, code, and experiments should remain organized so that the logic of the work is visible.](lab-orientation/Fig04.png){fig-align="center" width="85%"}
 
-## Keep a Traceable File History
+## File Naming: Keep the Current File Number-Free
 
-For files that are not naturally handled by version control, a simple explicit naming convention can preserve earlier versions while keeping the current working file easy to identify.
+For files that are revised repeatedly, SEM Lab has traditionally used one simple rule:
 
-![**A file-versioning convention used in the laboratory.** The current working file keeps the base filename, while previous versions are retained with numbered suffixes. The important principle is traceability: do not overwrite or delete the history of important engineering work.](lab-orientation/Fig05.png){fig-align="center" width="90%"}
+> **The current file keeps the base name. Older versions receive numbers.**
 
-For source code and text-based technical documents, Git is generally a better version-history mechanism. Explicit versioned filenames can still be useful for spreadsheets, CAD files, presentation files, proprietary analysis files, and other binary engineering documents.
+For example, if the working file is `FRPsheet.xls`, the first revision does **not** become `FRPsheet1.xls`. Instead, the old `FRPsheet.xls` is archived as `FRPsheet1.xls`, and the new current file again takes the name `FRPsheet.xls`. The same operation is repeated at every revision.
 
-Use version control for code and text-based technical work when appropriate. Backups and version control solve different problems; important work may need both.
+```text
+Current:
+FRPsheet.xls
+
+After one revision:
+FRPsheet1.xls   <- previous version
+FRPsheet.xls    <- current version
+
+After three revisions:
+FRPsheet1.xls
+FRPsheet2.xls
+FRPsheet3.xls   <- most recent version before the current one
+FRPsheet.xls    <- current version
+```
+
+The numbering therefore belongs to the **history**, not to the current file. At any time, the file without a number is the file to use now, while the file with the highest number is the version immediately preceding it.
+
+![**SEM Lab file-naming convention.** The current working file always keeps the base filename without a number. Before it is revised, the existing current file is archived with the next number. The highest numbered file is therefore the most recent version immediately before the current file.](lab-orientation/Fig05.png){fig-align="center" width="95%"}
+
+### Why not use `final`?
+
+A common alternative eventually produces names such as:
+
+```text
+FRPsheet-final.xls
+FRPsheet-final-real.xls
+FRPsheet-final-realfinal.xls
+FRPsheet-final-last.xls
+```
+
+Such names become ambiguous because words such as *final* no longer tell us which file is actually current or which one immediately preceded it. The number-free-current convention answers both questions immediately:
+
+```text
+FRPsheet.xls     = use this file now
+FRPsheet3.xls    = the immediately previous version
+```
+
+### Why stable filenames matter in a large project
+
+The convention becomes especially useful when many files form one working system. A LaTeX project, for example, may contain:
+
+```text
+paper.tex
+commands.tex
+tables.tex
+references.bib
+```
+
+and a program may contain:
+
+```text
+main.py
+solver.py
+material.py
+postprocess.py
+```
+
+These files refer to one another. If the name of the current file changes every time it is revised, references, imports, scripts, build commands, or other dependent files may also have to be changed. Keeping the live filename stable avoids this unnecessary propagation of version information through the project.
+
+For example, a LaTeX master file can always contain:
+
+```latex
+\input{commands.tex}
+\input{tables.tex}
+```
+
+regardless of how many historical copies of `commands.tex` or `tables.tex` have accumulated. Similarly, a program can continue to import `solver.py` because `solver.py` always means **the version currently used by the project**.
+
+The underlying distinction is simple:
+
+```text
+base filename      -> functional identity: what the project uses now
+numbered filename  -> historical identity: where an old version sits in the history
+```
+
+This convention is particularly useful for spreadsheets, CAD files, presentations, proprietary engineering files, and other files for which explicit archived copies are convenient. Git provides a more powerful history for source code and text-based documents, but the same design principle remains valuable: **the working project should refer to stable current filenames rather than filenames that encode temporary ideas such as `final` or `real-final`.**
+
+> **Keep the current filename stable. Put version information on the old files, not on the file the project currently uses.**
+
+Backups and version history solve different problems. Important research work may need both.
 
 > **If a result cannot be reconstructed, it is not yet a reliable research result.**
 
