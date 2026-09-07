@@ -10,7 +10,7 @@ project:
 website:
   title: "Zi’s Structural Engineering & Mechanics"
   site-url: "https://zi-sem.github.io"
-  google-analytics: "G-KMJ4BZJHNR"    
+  google-analytics: "G-KMJ4BZJHNR"
 
   navbar:
     left:
@@ -24,13 +24,17 @@ website:
         text: Z-Diagram
       - href: latex-writing.qmd
         text: LaTeX & Writing
-      - href: about.qmd
-        text: About
+      - text: About
+        menu:
+          - href: about.qmd
+            text: About Zi-SEM
+          - href: lab-orientation.qmd
+            text: Lab Orientation
 
     right:
       - icon: youtube
         href: https://www.youtube.com/@semlabtv4824
-        aria-label: SEMLAB YouTube        
+        aria-label: SEMLAB YouTube
 
 format:
   html:

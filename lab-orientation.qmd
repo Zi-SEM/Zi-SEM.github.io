@@ -1,0 +1,301 @@
+---
+title: "Lab Orientation"
+subtitle: "How We Do Research in the Structural Engineering and Mechanics Laboratory"
+toc: true
+page-layout: article
+---
+
+# Structural Engineering and Mechanics Laboratory
+
+The **Structural Engineering and Mechanics Laboratory (SEM Lab)** at Korea University applies **applied mechanics** to the development and analysis of structural systems across different length scales.
+
+The structural system of interest may therefore range from a complete structure to a structural member and further down to the material scale:
+
+$$
+\text{Structures}
+\;\longleftrightarrow\;
+\text{Members}
+\;\longleftrightarrow\;
+\text{Materials}.
+$$
+
+The scale changes, but the central habit of thought remains the same: **understand the mechanics governing the system before relying on a computational or experimental result.**
+
+Our current research is organized around four major areas.
+
+## Our Research Areas
+
+### Offshore Structures and Offshore Wind
+
+We study support structures for offshore wind turbines and installation vessels for large offshore structures. Our work includes fatigue assessment under the marine environment, extreme-load assessment, structural optimization, monitoring, and the development of analysis methods for offshore structural systems.
+
+The laboratory is also developing **X-SEA**, a finite-element analysis program for offshore wind support structures.
+
+The engineering challenge is intrinsically multidisciplinary. Structural deformation interacts with waves, hydrodynamic loading, soil or foundation behavior, mooring systems, wind-turbine loading, fatigue, and construction constraints. Mechanics provides the framework for connecting these effects.
+
+### Digital Transformation of Construction Standards
+
+We study how construction standards can move from documents written only for human readers toward engineering information that can also be interpreted by computers and AI.
+
+Our research applies natural-language processing and structured information methods to the digitalization of construction standards. The objective is not to eliminate conventional engineering documents, but to allow **human-readable and machine-readable standards to coexist**.
+
+Digital construction standards can support **Automatic Compliance Check (ACC)** of BIM deliverables and, ultimately, computational workflows that assist engineers in evaluating and optimizing structural designs.
+
+### Concrete, Materials, and Deterioration
+
+We study concrete deterioration and material behavior by combining mechanics, chemistry, computation, and experiment.
+
+One major topic is the development of **chemo-mechanical models** for quantitatively analyzing coupled deterioration of concrete structures. This includes the interaction among transport, chemical reactions, microstructural evolution, damage, and cracking. We also study the mechanics associated with carbon-dioxide penetration and changes in concrete microstructure.
+
+Experimental work includes methods for evaluating the **biaxial strength of concrete**. We also investigate high-performance concrete incorporating waste glass, including materials intended to improve resistance to environments involving heavy deicing-salt exposure. These experimental studies are closely connected to our theoretical work on coupled deterioration.
+
+### Computational Mechanics and Fracture
+
+Computational mechanics provides methods for studying structural and material behavior that cannot be understood adequately through simple closed-form models alone.
+
+Our research has included fracture and damage mechanics, nonlinear analysis, enriched finite-element and meshfree methods, multiple-crack representation, and numerical methods for structural systems. The objective is not merely to make a numerical model more sophisticated. A computational method should represent the essential mechanics of the problem while remaining interpretable and verifiable.
+
+> **A numerical result becomes engineering knowledge only when we can explain why it makes mechanical sense.**
+
+# What Is Research?
+
+Research is not simply the production of papers, graphs, simulations, or experimental data. It is a repeated process of asking a meaningful question, finding what is already known, constructing an explanation or model, testing it, learning from failure, and communicating what has been learned.
+
+A useful way to think about research is as a cycle:
+
+$$
+\text{Question}
+\rightarrow
+\text{Study}
+\rightarrow
+\text{Model or Experiment}
+\rightarrow
+\text{Evidence}
+\rightarrow
+\text{Interpretation}
+\rightarrow
+\text{New Question}.
+$$
+
+The cycle rarely proceeds perfectly in one direction. Results force us to reconsider assumptions. Experiments expose weaknesses in models. Computations reveal questions that were not obvious at the beginning.
+
+## The Crow and the Pitcher
+
+![**The crow and the pitcher as a metaphor for research.** The point is not to memorize the crow's solution, but to learn how to transform an inaccessible problem into one that can be solved.](lab-orientation/Fig01.png){fig-align="center" width="85%"}
+
+
+A long-standing metaphor in our lab orientation is **the crow and the pitcher**. The crow cannot simply reach the water. It changes the problem by repeatedly dropping stones into the pitcher until the water rises.
+
+The lesson is not the particular trick used by the crow. The important lesson is that a researcher must learn how to **change an apparently inaccessible problem into one that can be solved**.
+
+A student may initially want to learn the final trick from an experienced researcher. Research training is different. The objective is to develop the ability to find the trick independently.
+
+# The Researcher Above and Below the Waterline
+
+Successful researchers are often seen through their visible achievements: papers, citations, expertise, confidence, leadership, and recognition.
+
+Much of the work that creates those achievements is invisible. It includes reading, programming, experiments, failed calculations, data processing, figure preparation, proposals, documentation, communication, learning small technical skills, and sometimes pursuing an approach that ultimately produces no publishable result.
+
+This is the **iceberg of research**.
+
+![**The research iceberg.** Visible achievements rest on a much larger body of reading, repeated work, failed attempts, technical skills, proposals, communication, and sustained thinking.](lab-orientation/Fig02.png){fig-align="center" width="85%"}
+
+> **Research competence is built mostly below the waterline.**
+
+Do not judge the value of a day only by whether it produced a final result. At the same time, invisible effort must gradually accumulate into understanding, reproducible evidence, and useful research output.
+
+# Build a Strong Foundation
+
+## See Problems Through Mechanics
+
+A central principle of SEM Lab is simple:
+
+> **Try to see every engineering problem through mechanics first.**
+
+Strengthen your foundation in structural mechanics, mechanics of materials, continuum mechanics, elasticity, dynamics, fracture, and the mathematical tools required by your research.
+
+Software can calculate a result. Mechanics helps you decide whether the result is plausible.
+
+When you encounter an unfamiliar problem, ask questions such as:
+
+- What are the relevant forces and boundary conditions?
+- What must satisfy equilibrium?
+- What deformation is kinematically possible?
+- What constitutive behavior connects stress and strain?
+- Where is energy stored, dissipated, or transferred?
+- What length and time scales govern the phenomenon?
+
+These questions remain useful whether the problem involves a concrete microstructure, a propagating crack, an offshore wind substructure, or a digital engineering model.
+
+## Read Papers and Books
+
+Reading cannot be replaced by searching for isolated answers. Papers show how current research questions are framed; books provide the deeper structure that individual papers often assume.
+
+Make reading a routine part of research rather than something done only when an immediate problem appears.
+
+## Learn from Other People
+
+Talk to researchers in your own field and in other fields. A useful idea often arrives from a person who approaches the same problem from a different direction.
+
+Your teachers are not limited to your advisor or your university.
+
+# Learn the Tools—but Do Not Confuse Tools with Research
+
+Research requires many tools: writing, data processing, experiments, literature search, drawing, communication, programming, simulation, idea development, and data management.
+
+![**Research requires a system of tools.** The particular software changes with time, but effective research depends on combining communication, writing, data processing, simulation, programming, experiments, searching, drawing, ideas, and backup.](lab-orientation/Fig03.png){fig-align="center" width="90%"}
+
+Become competent with them. More importantly, learn to select and combine them efficiently.
+
+> **Tools make research possible. They do not decide what question is worth asking.**
+
+A sophisticated simulation cannot rescue a poorly posed research question, and a large dataset cannot replace physical interpretation.
+
+# Work Efficiently
+
+Research contains a surprising amount of repetitive work. Reduce unnecessary repetition whenever possible.
+
+Use scripts, functions, macros, reusable plotting routines, document templates, and automated workflows. Plan the order of tasks before starting them. Collaborate when collaboration genuinely reduces duplication or brings complementary expertise.
+
+A traditional phrase in our lab orientation was:
+
+> **Use your nut, not the muscle.**
+
+The tools have changed—from office macros and spreadsheet functions to Python, Git, LaTeX, automated pipelines, and AI—but the principle has not. **Do not repeatedly perform by hand what can be made systematic and reproducible.**
+
+Templates developed in the laboratory should be shared when they can save other members time. If you improve a common tool or template, make the improvement reusable by the next person.
+
+# Protect Your Research
+
+Research data are difficult or impossible to recreate once lost. Protect them accordingly.
+
+Keep multiple backups of important research material. Separate original data from processed data. Preserve the information required to reproduce figures and conclusions. Do not casually delete shared or server data.
+
+A useful modern project structure is, for example:
+
+```text
+project-name/
+├── README.md
+├── references/
+├── data/
+│   ├── raw/
+│   └── processed/
+├── code/
+├── experiments/
+├── models/
+├── figures/
+├── presentations/
+└── papers/
+```
+
+The exact folders depend on the project. The principle is more important than the names: **someone—including your future self—should be able to understand what the files mean.**
+
+Keep a short README or equivalent note in a project folder describing its purpose, important files, assumptions, and current status.
+
+![**An earlier SEM Lab directory-organization scheme.** The specific folder names may evolve, but references, proposals, projects, presentations, papers, code, and experiments should remain organized so that the logic of the work is visible.](lab-orientation/Fig04.png){fig-align="center" width="85%"}
+
+## Keep a Traceable File History
+
+For files that are not naturally handled by version control, a simple explicit naming convention can preserve earlier versions while keeping the current working file easy to identify.
+
+![**A file-versioning convention used in the laboratory.** The current working file keeps the base filename, while previous versions are retained with numbered suffixes. The important principle is traceability: do not overwrite or delete the history of important engineering work.](lab-orientation/Fig05.png){fig-align="center" width="90%"}
+
+For source code and text-based technical documents, Git is generally a better version-history mechanism. Explicit versioned filenames can still be useful for spreadsheets, CAD files, presentation files, proprietary analysis files, and other binary engineering documents.
+
+Use version control for code and text-based technical work when appropriate. Backups and version control solve different problems; important work may need both.
+
+> **If a result cannot be reconstructed, it is not yet a reliable research result.**
+
+# Take Ownership of Your Project
+
+The general principle of project assignment in SEM Lab is that a student should progressively become capable of working independently on an assigned research problem. Large projects may naturally require several researchers.
+
+Receiving a project means accepting responsibility for understanding it, planning the work, reporting problems, and moving it forward. Project assignments may change when the research direction changes, when another project better matches a student's background, or when responsibilities need to be reorganized.
+
+Your advisor can define a direction, challenge an assumption, suggest a method, or help remove an obstacle. The intellectual ownership of your research should nevertheless increase as you develop.
+
+> **Take ownership of the problem, not merely ownership of the assigned task.**
+
+## Manage Your Time
+
+Set aside protected time for research. Meetings, classes, administrative tasks, and deadlines will naturally fill a calendar. Research requiring concentrated thought rarely appears automatically in the remaining gaps.
+
+Maintain a reliable and professional working routine, but judge research commitment by sustained intellectual engagement and responsibility rather than by visible busyness alone.
+
+When you do not know something, saying so is appropriate—but it should normally be followed by investigation:
+
+> **I do not know yet. I will find out.**
+
+# Working as a Laboratory
+
+A laboratory also has shared work: maintaining common resources, organizing activities, communicating project information, and solving practical problems that do not belong to a single paper or thesis.
+
+## Lab Manager
+
+The lab manager coordinates shared laboratory responsibilities and distributes common tasks when necessary. This role does not have to belong to the most senior student.
+
+Because coordination itself requires substantial time, other members should respect the role and avoid unnecessarily increasing the manager's workload. A well-functioning laboratory depends on members completing shared responsibilities reliably rather than leaving coordination to one person.
+
+## Collaboration
+
+Help other members when your knowledge can save them unnecessary effort, and document solutions that are likely to be needed again.
+
+At the same time, collaboration does not mean transferring intellectual responsibility for your own research to someone else. Learn from others, but understand your own models, data, assumptions, and conclusions.
+
+# Writing Is Part of Research
+
+Research is not complete when the computation finishes or the experiment ends. The result must be interpreted and communicated.
+
+A long-standing principle in our lab orientation is:
+
+> **Publishing is the final step of research.**
+
+Writing forces you to identify the actual question, distinguish evidence from interpretation, expose missing logic, and decide what the result contributes.
+
+Develop the ability to write technical material independently in English. Advisors and collaborators can improve a manuscript, but they should not substitute for the researcher's responsibility to explain the work.
+
+A useful paper should allow the reader to understand:
+
+1. What engineering question was asked?
+2. Why does it matter?
+3. What was done to answer it?
+4. What evidence was obtained?
+5. Why does the result make engineering sense?
+6. What can and cannot be concluded from it?
+
+# Authorship Means Contribution and Responsibility
+
+Authorship is not automatically earned by being associated with a project. It should reflect substantial contribution to the intellectual content or execution of the research and responsibility for the resulting publication.
+
+The first author normally plays a leading role in the work and makes a major contribution to developing the paper and writing it. Corresponding authorship reflects responsibility for the research and publication process and is determined according to the actual research and supervisory roles.
+
+> **Authorship reflects contribution and responsibility—not simply participation.**
+
+Specific authorship decisions should be discussed early when several researchers contribute to the same work.
+
+# Research Support and Responsibilities
+
+Student support may come from funded research projects, teaching-assistant positions, scholarships, or other university arrangements. The available form and level of support can vary with projects, responsibilities, funding conditions, and university policies.
+
+Students participating in funded research are expected to contribute meaningfully to the objectives and responsibilities of the project. Teaching assistants likewise have responsibilities associated with supporting undergraduate education.
+
+# Joining SEM Lab
+
+Capable and motivated students and researchers are essential to all of these activities. SEM Lab is open to people who are interested in developing the ability to understand engineering problems deeply and contribute to research responsibly.
+
+Our four principal research areas are:
+
+- **Offshore Structures and Offshore Wind**
+- **Digital Transformation of Construction Standards**
+- **Concrete, Materials, and Deterioration**
+- **Computational Mechanics and Fracture**
+
+If you are interested in joining or working with the laboratory, please contact **Goangseup Zi** at [g-zi@korea.ac.kr](mailto:g-zi@korea.ac.kr).
+
+More information about the laboratory is available at the [Structural Engineering and Mechanics Laboratory website](https://structure.korea.ac.kr).
+
+# The Principle to Remember
+
+Many details in this orientation will change as tools, projects, and research topics evolve. The underlying research habits should remain useful.
+
+> **Learn the mechanics. Own the problem. Use the tools well. Protect your work. Explain why the result makes engineering sense.**
