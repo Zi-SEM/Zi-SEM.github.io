@@ -1,0 +1,19 @@
+---
+title: "Offshore Wind Energy"
+listing:
+  contents:
+    - "../posts/*/index.qmd"
+  type: default
+  sort: "date desc"
+  include:
+    categories: "Offshore Wind Energy"
+  sort-ui: false
+  filter-ui: false
+toc: false
+---
+
+Fixed and floating offshore wind energy substructures are studied through structural mechanics, hydrodynamics, transportation and installation, new structural concepts, and engineering decision-making.
+
+The common question is not only whether an offshore system works, but **why its structural and physical behavior makes engineering sense**.
+
+## Articles in this category

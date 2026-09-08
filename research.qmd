@@ -1,47 +1,87 @@
 ---
 title: "Research Explained"
-listing:
-  contents:
-    - "posts/*/index.qmd"
-  type: default
-  sort: "date desc"
-  include:
-    categories: "Research Explained"
-  sort-ui: false
-  filter-ui: false
 toc: false
+page-layout: full
+listing:
+  - id: offshore
+    contents:
+      - "posts/*/index.qmd"
+    type: default
+    sort: "date desc"
+    include:
+      categories: "Offshore Wind Energy"
+    sort-ui: false
+    filter-ui: false
+
+  - id: digital
+    contents:
+      - "posts/*/index.qmd"
+    type: default
+    sort: "date desc"
+    include:
+      categories: "Digital Transformation & AI"
+    sort-ui: false
+    filter-ui: false
+
+  - id: concrete
+    contents:
+      - "posts/*/index.qmd"
+    type: default
+    sort: "date desc"
+    include:
+      categories: "Concrete & Materials"
+    sort-ui: false
+    filter-ui: false
+
+  - id: computational
+    contents:
+      - "posts/*/index.qmd"
+    type: default
+    sort: "date desc"
+    include:
+      categories: "Computational Mechanics & Fracture"
+    sort-ui: false
+    filter-ui: false
 ---
 
 Academic papers are necessarily compact and specialized. Important engineering ideas can therefore be difficult to see behind the equations, methodology, and technical details.
 
-**Research Explained** revisits published research from a broader perspective: the engineering problem, the underlying physical or conceptual idea, the method used to address it, and what the results mean in practice.
+**Research Explained** revisits published research and ongoing research directions from a broader perspective: the engineering problem, the underlying physical or conceptual idea, the method used to address it, and what the results mean in practice.
 
-## Research areas
+The articles are organized around four research directions.
 
-::: {.grid}
-::: {.g-col-12 .g-col-md-6}
-### [Offshore & Ocean Engineering](research/offshore-ocean-engineering.qmd)
+## Offshore Wind Energy
 
-Offshore wind structures, floating systems, wave-energy devices, structural flexibility, and the mechanics behind offshore response.
+Fixed and floating offshore wind substructures, structural response, motion control, transportation and installation, new structural concepts, and engineering decision-making for offshore wind.
+
+[Explore this research area →](research/offshore-wind-energy.qmd)
+
+::: {#offshore}
 :::
 
-::: {.g-col-12 .g-col-md-6}
-### [Concrete & Materials](research/concrete-materials.qmd)
+## Digital Transformation & AI
 
-Concrete durability, reactive particles, industrial by-products, material deterioration, and the mechanics connecting microstructure to engineering performance.
+Digital construction standards, machine-readable engineering knowledge, ontology, automatic compliance checking, BIM-linked applications, digital engineering examples, and AI-assisted engineering.
+
+[Explore this research area →](research/digital-transformation-ai.qmd)
+
+::: {#digital}
 :::
 
-::: {.g-col-12 .g-col-md-6}
-### [Engineering Decisions](research/engineering-decisions.qmd)
+## Concrete & Materials
 
-Decision frameworks for engineering problems, including bias reduction, factor structure, weighting, and evidence-based comparison.
+Concrete durability, coupled deterioration, reactive particles, industrial by-products, sustainable materials, and the mechanics connecting microstructure to engineering performance.
+
+[Explore this research area →](research/concrete-materials.qmd)
+
+::: {#concrete}
 :::
 
-::: {.g-col-12 .g-col-md-6}
-### [Computational Mechanics & Fracture](research/computational-mechanics-fracture.qmd)
+## Computational Mechanics & Fracture
 
 XFEM, XEFG, multiple cracks, alternative crack representations, multiscale fracture, and the broader lessons of enriched computational mechanics.
-:::
-:::
 
-## All Research Explained
+[Explore this research area →](research/computational-mechanics-fracture.qmd)
+
+::: {#computational}
+:::

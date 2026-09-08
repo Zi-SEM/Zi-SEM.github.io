@@ -1,0 +1,21 @@
+---
+title: "Digital Transformation & AI"
+listing:
+  contents:
+    - "../posts/*/index.qmd"
+  type: default
+  sort: "date desc"
+  include:
+    categories: "Digital Transformation & AI"
+  sort-ui: false
+  filter-ui: false
+toc: false
+---
+
+Engineering AI becomes more reliable when authoritative engineering knowledge is structured before the AI uses it.
+
+This research area covers digital construction standards, machine-readable engineering knowledge, rule units, ontology, automatic compliance checking, BIM-linked applications, digital engineering examples, and AI-assisted engineering.
+
+> **Structure the engineering knowledge before asking AI to reason with it.**
+
+## Articles in this category
