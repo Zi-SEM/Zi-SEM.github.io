@@ -10,7 +10,17 @@ listing:
     type: default
     sort: "date desc"
     include:
-      categories: "Offshore & Ocean Engineering"
+      categories: "Offshore Wind Energy"
+    sort-ui: false
+    filter-ui: false
+
+  - id: digital
+    contents:
+      - "posts/*/index.qmd"
+    type: default
+    sort: "date desc"
+    include:
+      categories: "Digital Transformation & AI"
     sort-ui: false
     filter-ui: false
 
@@ -21,16 +31,6 @@ listing:
     sort: "date desc"
     include:
       categories: "Concrete & Materials"
-    sort-ui: false
-    filter-ui: false
-
-  - id: decisions
-    contents:
-      - "posts/*/index.qmd"
-    type: default
-    sort: "date desc"
-    include:
-      categories: "Engineering Decisions"
     sort-ui: false
     filter-ui: false
 
@@ -100,14 +100,14 @@ The Z Diagram is the conceptual starting point of this site. It connects force, 
 ::: {#offshore}
 :::
 
+## Digital Transformation & AI
+
+::: {#digital}
+:::
+
 ## Concrete & Materials
 
 ::: {#concrete}
-:::
-
-## Engineering Decisions
-
-::: {#decisions}
 :::
 
 ## Computational Mechanics & Fracture
