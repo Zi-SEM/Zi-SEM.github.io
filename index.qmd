@@ -1,15 +1,58 @@
 ---
 title: "Zi’s Structural Engineering & Mechanics"
-listing:
-  contents: posts
-  sort: "date desc"
-  type: default
-  categories: false
-  sort-ui: false
-  filter-ui: false
 page-layout: full
 title-block-banner: true
 toc: false
+listing:
+  - id: offshore
+    contents:
+      - "posts/*/index.qmd"
+    type: default
+    sort: "date desc"
+    include:
+      categories: "Offshore & Ocean Engineering"
+    sort-ui: false
+    filter-ui: false
+
+  - id: concrete
+    contents:
+      - "posts/*/index.qmd"
+    type: default
+    sort: "date desc"
+    include:
+      categories: "Concrete & Materials"
+    sort-ui: false
+    filter-ui: false
+
+  - id: decisions
+    contents:
+      - "posts/*/index.qmd"
+    type: default
+    sort: "date desc"
+    include:
+      categories: "Engineering Decisions"
+    sort-ui: false
+    filter-ui: false
+
+  - id: computational
+    contents:
+      - "posts/*/index.qmd"
+    type: default
+    sort: "date desc"
+    include:
+      categories: "Computational Mechanics & Fracture"
+    sort-ui: false
+    filter-ui: false
+
+  - id: mechanics
+    contents:
+      - "posts/*/index.qmd"
+    type: default
+    sort: "date desc"
+    include:
+      categories: "Engineering Mechanics"
+    sort-ui: false
+    filter-ui: false
 ---
 
 Research · Education · Mechanics · Technical Writing
@@ -33,7 +76,7 @@ Structural mechanics, mechanics of materials, fracture, fatigue, numerical metho
 :::
 
 ::: {.g-col-12 .g-col-md-6}
-### [Z Diagram](z-diagram.qmd)
+### [Z-Diagram](z-diagram.qmd)
 
 A framework for understanding and teaching engineering mechanics through connected physical and mathematical concepts.
 :::
@@ -46,4 +89,33 @@ Practical LaTeX, scientific writing, and AI-assisted workflows for engineers and
 
 ::::
 
-## Latest Articles
+## Zi’s Structural Engineering & Mechanics
+
+### [The Z Diagram: Connecting Force, Stress, Strain, and Displacement](posts/z-diagram-introduction/)
+
+The Z Diagram is the conceptual starting point of this site. It connects force, stress, strain, and displacement through equilibrium, constitutive behavior, compatibility, and work and energy.
+
+## Offshore Wind Energy
+
+::: {#offshore}
+:::
+
+## Concrete & Materials
+
+::: {#concrete}
+:::
+
+## Engineering Decisions
+
+::: {#decisions}
+:::
+
+## Computational Mechanics & Fracture
+
+::: {#computational}
+:::
+
+## Engineering Mechanics
+
+::: {#mechanics}
+:::

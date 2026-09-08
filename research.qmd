@@ -20,12 +20,6 @@ Academic papers are necessarily compact and specialized. Important engineering i
 
 ::: {.grid}
 ::: {.g-col-12 .g-col-md-6}
-### [Computational Mechanics & Fracture](research/computational-mechanics-fracture.qmd)
-
-XFEM, XEFG, multiple cracks, alternative crack representations, multiscale fracture, and the broader lessons of enriched computational mechanics.
-:::
-
-::: {.g-col-12 .g-col-md-6}
 ### [Offshore & Ocean Engineering](research/offshore-ocean-engineering.qmd)
 
 Offshore wind structures, floating systems, wave-energy devices, structural flexibility, and the mechanics behind offshore response.
@@ -41,6 +35,12 @@ Concrete durability, reactive particles, industrial by-products, material deteri
 ### [Engineering Decisions](research/engineering-decisions.qmd)
 
 Decision frameworks for engineering problems, including bias reduction, factor structure, weighting, and evidence-based comparison.
+:::
+
+::: {.g-col-12 .g-col-md-6}
+### [Computational Mechanics & Fracture](research/computational-mechanics-fracture.qmd)
+
+XFEM, XEFG, multiple cracks, alternative crack representations, multiscale fracture, and the broader lessons of enriched computational mechanics.
 :::
 :::
 
