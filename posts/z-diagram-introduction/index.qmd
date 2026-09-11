@@ -185,39 +185,39 @@ The force-displacement layer and the stress-strain layer are not merely analogou
 
 ## The principle of virtual work: what changes in the Z-Diagram?
 
-The standard Z-Diagram includes the constitutive connection between stress and strain because a complete structural analysis normally needs it. The **principle of virtual work (PVW)** is different. It does not require a constitutive relation between $\\sigma$ and $\\varepsilon$.
+The standard Z-Diagram includes the constitutive connection between stress and strain because a complete structural analysis normally needs it. The **principle of virtual work (PVW)** is different. It does not require a constitutive relation between $\sigma$ and $\varepsilon$.
 
-![The Z-Diagram viewed through the principle of virtual work. The stress and strain sides are deliberately not connected by a constitutive arrow. Equilibrium connects $F$ to $\\sigma$, while compatibility connects $u$ to $\\varepsilon$; virtual work pairs the two sides energetically without requiring a stress--strain law.](z-diagram-pvw.png){#fig-z-diagram-pvw fig-align="center" width="90%"}
+![The Z-Diagram viewed through the principle of virtual work. The stress and strain sides are deliberately not connected by a constitutive arrow. Equilibrium connects $F$ to $\sigma$, while compatibility connects $u$ to $\varepsilon$; virtual work pairs the two sides energetically without requiring a stress--strain law.](z-diagram-pvw.png){#fig-z-diagram-pvw fig-align="center" width="90%"}
 
-This missing $\\sigma$--$\\varepsilon$ connection is the important feature of @fig-z-diagram-pvw, not an omission.
+This missing $\sigma$--$\varepsilon$ connection is the important feature of @fig-z-diagram-pvw, not an omission.
 
-For a virtual displacement $\\delta u$ that is kinematically admissible, compatibility generates a corresponding virtual strain $\\delta\\varepsilon$. Independently, a statically admissible force system $F$ is associated with a stress field $\\sigma$ through equilibrium. In schematic form,
+For a virtual displacement $\delta u$ that is kinematically admissible, compatibility generates a corresponding virtual strain $\delta\varepsilon$. Independently, a statically admissible force system $F$ is associated with a stress field $\sigma$ through equilibrium. In schematic form,
 
 $$
-F \\longleftrightarrow \\sigma
-\\qquad\\text{and}\\qquad
-\\delta u \\longleftrightarrow \\delta\\varepsilon.
+F \longleftrightarrow \sigma
+\qquad\text{and}\qquad
+\delta u \longleftrightarrow \delta\varepsilon.
 $$
 
 The two sides are then connected by work: 
 
 $$
-\\boxed{
-\\delta W_{\\mathrm{ext}}
+\boxed{
+\delta W_{\mathrm{ext}}
 =
-F\\,\\delta u
+F\,\delta u
 =
-\\int_V \\sigma\\,\\delta\\varepsilon\\,dV
+\int_V \sigma\,\delta\varepsilon\,dV
 =
-\\delta W_{\\mathrm{int}}
+\delta W_{\mathrm{int}}
 }
 $$
 
-for the simple one-force representation used here. More generally, body forces, surface tractions, and multiple generalized forces contribute to the external virtual work, and stress and virtual strain are contracted tensorially as $\\boldsymbol{\\sigma}:\\delta\\boldsymbol{\\varepsilon}$.
+for the simple one-force representation used here. More generally, body forces, surface tractions, and multiple generalized forces contribute to the external virtual work, and stress and virtual strain are contracted tensorially as $\boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}$.
 
 The key point is that **equilibrium and compatibility are independent requirements**. Equilibrium says whether the force and stress fields are statically admissible. Compatibility says whether the displacement and strain fields are kinematically admissible. Neither statement by itself tells us how the material behaves.
 
-That is why no constitutive arrow is needed between $\\sigma$ and $\\varepsilon$ in the PVW version of the diagram. The virtual strain is obtained from the virtual displacement, not from the stress. Likewise, the stress field is constrained by equilibrium, not generated from the virtual strain through a material law. The equality of virtual external and internal work connects these independently admissible fields.
+That is why no constitutive arrow is needed between $\sigma$ and $\varepsilon$ in the PVW version of the diagram. The virtual strain is obtained from the virtual displacement, not from the stress. Likewise, the stress field is constrained by equilibrium, not generated from the virtual strain through a material law. The equality of virtual external and internal work connects these independently admissible fields.
 
 This distinction is easy to miss because, when we actually **solve** a deformable-body boundary-value problem, equilibrium and compatibility alone are not sufficient. A constitutive law is then needed to select the physical response from the admissible fields. PVW itself, however, is a statement of mechanical balance and kinematics; it is not a stress--strain law.
 
@@ -226,52 +226,52 @@ This distinction is easy to miss because, when we actually **solve** a deformabl
 There is another useful way to read the same diagram. Instead of displacement and strain, use their rates,
 
 $$
- u \\rightarrow \\dot u,
- \\qquad
- \\varepsilon \\rightarrow \\dot\\varepsilon.
+ u \rightarrow \dot u,
+ \qquad
+ \varepsilon \rightarrow \dot\varepsilon.
 $$
 
 Force is power-conjugate to velocity, and stress is power-conjugate to strain rate. Thus the corresponding power balance is
 
 $$
-\\boxed{
-P_{\\mathrm{ext}}
+\boxed{
+P_{\mathrm{ext}}
 =
-F\\,\\dot u
+F\,\dot u
 =
-\\int_V \\sigma\\,\\dot\\varepsilon\\,dV
+\int_V \sigma\,\dot\varepsilon\,dV
 =
-P_{\\mathrm{int}}.
+P_{\mathrm{int}}.
 }
 $$
 
 In three dimensions,
 
 $$
-P_{\\mathrm{int}}
+P_{\mathrm{int}}
 =
-\\int_V
-\\boldsymbol{\\sigma}:\\dot{\\boldsymbol{\\varepsilon}}\,dV.
+\int_V
+\boldsymbol{\sigma}:\dot{\boldsymbol{\varepsilon}}\,dV.
 $$
 
-This rate form makes the conjugacy especially clear. $F$ and $u$ are energy conjugates because $F\\,du$ is work; equivalently, $F$ and $\\dot u$ are power conjugates because $F\\dot u$ is power. At the material-point scale, $\\sigma$ and $\\varepsilon$ are energy conjugates in the incremental sense $\\sigma\\,d\\varepsilon$, while $\\sigma$ and $\\dot\\varepsilon$ are power conjugates through $\\sigma\\dot\\varepsilon$.
+This rate form makes the conjugacy especially clear. $F$ and $u$ are energy conjugates because $F\,du$ is work; equivalently, $F$ and $\dot u$ are power conjugates because $F\dot u$ is power. At the material-point scale, $\sigma$ and $\varepsilon$ are energy conjugates in the incremental sense $\sigma\,d\varepsilon$, while $\sigma$ and $\dot\varepsilon$ are power conjugates through $\sigma\dot\varepsilon$.
 
 So the Z-Diagram can be read in two closely related forms:
 
 $$
 (F,u)
-\\quad\\leftrightarrow\\quad
-(\\sigma,\\varepsilon)
-\\qquad \\text{through work},
+\quad\leftrightarrow\quad
+(\sigma,\varepsilon)
+\qquad \text{through work},
 $$
 
 or
 
 $$
-(F,\\dot u)
-\\quad\\leftrightarrow\\quad
-(\\sigma,\\dot\\varepsilon)
-\\qquad \\text{through power}.
+(F,\dot u)
+\quad\leftrightarrow\quad
+(\sigma,\dot\varepsilon)
+\qquad \text{through power}.
 $$
 
 The mechanics is the same. The rate form simply expresses the transfer instantaneously rather than over a displacement increment.
