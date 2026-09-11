@@ -1,14 +1,14 @@
 ---
-title: "The Z Diagram: Connecting Force, Stress, Strain, and Displacement"
+title: "The Z-Diagram: Connecting Force, Stress, Strain, and Displacement"
 subtitle: "A unified view of equilibrium, compatibility, constitutive behavior, and energy in structural mechanics"
 author: "Goangseup Zi"
 date: "2026-08-30"
 categories:
-  - Z Diagram
+  - Z-Diagram
   - Engineering Mechanics
   - Structural Mechanics
   - Mechanics of Materials
-description: "An introduction to the Z Diagram as a unified framework connecting force equilibrium, constitutive behavior, displacement compatibility, and energy across structural and material-point scales."
+description: "An introduction to the Z-Diagram as a unified framework connecting force equilibrium, constitutive behavior, displacement compatibility, and energy across structural and material-point scales."
 toc: true
 toc-depth: 2
 ---
@@ -25,7 +25,7 @@ Structural mechanics is usually taught as a sequence of separate topics:
 
 Students often learn each of these correctly, yet still struggle to see how they belong to one coherent mechanical system.
 
-The **Z Diagram** is a compact framework for organizing these ideas around four fundamental quantities:
+The **Z-Diagram** is a compact framework for organizing these ideas around four fundamental quantities:
 
 $$
 F,\qquad \sigma,\qquad \varepsilon,\qquad u
@@ -37,7 +37,7 @@ The purpose of the diagram is not merely to arrange four variables. It is to sho
 
 ## The basic structure
 
-The standard Z Diagram can be understood through three mechanical relations:
+The standard Z-Diagram can be understood through three mechanical relations:
 
 $$
 F \longleftrightarrow \sigma
@@ -73,7 +73,7 @@ $$
 
 with a different physical principle governing each connection.
 
-![The Z Diagram. Force and displacement form an energy-conjugate pair at the structural scale, while stress and strain form an energy-conjugate pair at the material-point scale. The two scales are connected through force equilibrium and displacement compatibility, with constitutive behavior relating stress and strain.](z-diagram-standard.png){#fig-z-diagram fig-align="center" width="90%"}
+![The Z-Diagram. Force and displacement form an energy-conjugate pair at the structural scale, while stress and strain form an energy-conjugate pair at the material-point scale. The two scales are connected through force equilibrium and displacement compatibility, with constitutive behavior relating stress and strain.](z-diagram-standard.png){#fig-z-diagram fig-align="center" width="90%"}
 
 ## Two analysis directions, one mechanical system
 
@@ -109,7 +109,7 @@ Here, a prescribed displacement determines strain through compatibility. The con
 
 These are not different mechanics theories. They are simply **different directions through the same set of physical relations**.
 
-For that reason, the Z Diagram does not require separate names for the two directions. What matters is where the analysis begins and how the mechanical relations are followed until the required quantity is obtained.
+For that reason, the Z-Diagram does not require separate names for the two directions. What matters is where the analysis begins and how the mechanical relations are followed until the required quantity is obtained.
 
 ## Structural scale and material-point scale
 
@@ -131,13 +131,13 @@ $$
 
 describe the local stress-strain response.
 
-The Z Diagram therefore connects the global response of a structure with the local response of the material.
+The Z-Diagram therefore connects the global response of a structure with the local response of the material.
 
 A structural analysis is never only about forces and displacements, and a constitutive model is never useful in isolation. The two scales must communicate through equilibrium and compatibility.
 
 ## Energy-conjugate pairs
 
-The Z Diagram also has an energy interpretation.
+The Z-Diagram also has an energy interpretation.
 
 At the structural scale, force and displacement are an **energy-conjugate pair**:
 
@@ -179,9 +179,102 @@ $$
 
 under the appropriate assumptions and boundary conditions.
 
-This equality is central to the Z Diagram.
+This equality is central to the Z-Diagram.
 
 The force-displacement layer and the stress-strain layer are not merely analogous descriptions. They must be **energetically consistent**.
+
+## The principle of virtual work: what changes in the Z-Diagram?
+
+The standard Z-Diagram includes the constitutive connection between stress and strain because a complete structural analysis normally needs it. The **principle of virtual work (PVW)** is different. It does not require a constitutive relation between $\\sigma$ and $\\varepsilon$.
+
+![The Z-Diagram viewed through the principle of virtual work. The stress and strain sides are deliberately not connected by a constitutive arrow. Equilibrium connects $F$ to $\\sigma$, while compatibility connects $u$ to $\\varepsilon$; virtual work pairs the two sides energetically without requiring a stress--strain law.](z-diagram-pvw.png){#fig-z-diagram-pvw fig-align="center" width="90%"}
+
+This missing $\\sigma$--$\\varepsilon$ connection is the important feature of @fig-z-diagram-pvw, not an omission.
+
+For a virtual displacement $\\delta u$ that is kinematically admissible, compatibility generates a corresponding virtual strain $\\delta\\varepsilon$. Independently, a statically admissible force system $F$ is associated with a stress field $\\sigma$ through equilibrium. In schematic form,
+
+$$
+F \\longleftrightarrow \\sigma
+\\qquad\\text{and}\\qquad
+\\delta u \\longleftrightarrow \\delta\\varepsilon.
+$$
+
+The two sides are then connected by work: 
+
+$$
+\\boxed{
+\\delta W_{\\mathrm{ext}}
+=
+F\\,\\delta u
+=
+\\int_V \\sigma\\,\\delta\\varepsilon\\,dV
+=
+\\delta W_{\\mathrm{int}}
+}
+$$
+
+for the simple one-force representation used here. More generally, body forces, surface tractions, and multiple generalized forces contribute to the external virtual work, and stress and virtual strain are contracted tensorially as $\\boldsymbol{\\sigma}:\\delta\\boldsymbol{\\varepsilon}$.
+
+The key point is that **equilibrium and compatibility are independent requirements**. Equilibrium says whether the force and stress fields are statically admissible. Compatibility says whether the displacement and strain fields are kinematically admissible. Neither statement by itself tells us how the material behaves.
+
+That is why no constitutive arrow is needed between $\\sigma$ and $\\varepsilon$ in the PVW version of the diagram. The virtual strain is obtained from the virtual displacement, not from the stress. Likewise, the stress field is constrained by equilibrium, not generated from the virtual strain through a material law. The equality of virtual external and internal work connects these independently admissible fields.
+
+This distinction is easy to miss because, when we actually **solve** a deformable-body boundary-value problem, equilibrium and compatibility alone are not sufficient. A constitutive law is then needed to select the physical response from the admissible fields. PVW itself, however, is a statement of mechanical balance and kinematics; it is not a stress--strain law.
+
+### The same idea written as power
+
+There is another useful way to read the same diagram. Instead of displacement and strain, use their rates,
+
+$$
+ u \\rightarrow \\dot u,
+ \\qquad
+ \\varepsilon \\rightarrow \\dot\\varepsilon.
+$$
+
+Force is power-conjugate to velocity, and stress is power-conjugate to strain rate. Thus the corresponding power balance is
+
+$$
+\\boxed{
+P_{\\mathrm{ext}}
+=
+F\\,\\dot u
+=
+\\int_V \\sigma\\,\\dot\\varepsilon\\,dV
+=
+P_{\\mathrm{int}}.
+}
+$$
+
+In three dimensions,
+
+$$
+P_{\\mathrm{int}}
+=
+\\int_V
+\\boldsymbol{\\sigma}:\\dot{\\boldsymbol{\\varepsilon}}\,dV.
+$$
+
+This rate form makes the conjugacy especially clear. $F$ and $u$ are energy conjugates because $F\\,du$ is work; equivalently, $F$ and $\\dot u$ are power conjugates because $F\\dot u$ is power. At the material-point scale, $\\sigma$ and $\\varepsilon$ are energy conjugates in the incremental sense $\\sigma\\,d\\varepsilon$, while $\\sigma$ and $\\dot\\varepsilon$ are power conjugates through $\\sigma\\dot\\varepsilon$.
+
+So the Z-Diagram can be read in two closely related forms:
+
+$$
+(F,u)
+\\quad\\leftrightarrow\\quad
+(\\sigma,\\varepsilon)
+\\qquad \\text{through work},
+$$
+
+or
+
+$$
+(F,\\dot u)
+\\quad\\leftrightarrow\\quad
+(\\sigma,\\dot\\varepsilon)
+\\qquad \\text{through power}.
+$$
+
+The mechanics is the same. The rate form simply expresses the transfer instantaneously rather than over a displacement increment.
 
 ## Linear elasticity as the simplest example
 
@@ -364,7 +457,7 @@ The equality of the two energy descriptions is not an extra result added after t
 
 ## Beyond linear mechanics
 
-The Z Diagram is not restricted to linear elasticity.
+The Z-Diagram is not restricted to linear elasticity.
 
 The equilibrium relation may be linear or nonlinear. The compatibility relation may involve small or finite deformation. The constitutive relation may describe nonlinear elasticity, plasticity, damage, viscoelasticity, fracture-related constitutive behavior, or other material models.
 
@@ -407,9 +500,9 @@ $$
 
 with energetic consistency between the structural and material-point descriptions.
 
-## Why the Z Diagram is useful
+## Why the Z-Diagram is useful
 
-The Z Diagram provides a compact answer to a question that appears repeatedly in mechanics:
+The Z-Diagram provides a compact answer to a question that appears repeatedly in mechanics:
 
 > How do forces applied to a structure eventually become displacements?
 
@@ -425,7 +518,7 @@ It also provides a common framework for understanding methods that may initially
 
 ## A framework rather than a formula
 
-The Z Diagram should not be viewed as another formula to memorize.
+The Z-Diagram should not be viewed as another formula to memorize.
 
 Its purpose is organizational.
 
@@ -445,7 +538,7 @@ The structure of the reasoning does not.
 
 ## Takeaway
 
-The Z Diagram connects four fundamental mechanical quantities,
+The Z-Diagram connects four fundamental mechanical quantities,
 
 $$
 \boxed{
@@ -479,4 +572,6 @@ form energy-conjugate pairs at the structural and material-point scales.
 
 The energy represented at these two levels must be consistent.
 
-That combination of **equilibrium, compatibility, constitutive behavior, scale, and energy** is the core idea of the Z Diagram.
+The principle of virtual work reveals an additional point that is hidden in the usual $F \leftrightarrow \sigma \leftrightarrow \varepsilon \leftrightarrow u$ chain: **equilibrium and compatibility can be stated independently of the constitutive law**. A statically admissible stress field and a kinematically admissible virtual displacement field meet through virtual work, not through a $\sigma$--$\varepsilon$ material relation. In rate form, the same statement becomes a power balance between $(F,\dot u)$ and $(\sigma,\dot\varepsilon)$.
+
+That combination of **equilibrium, compatibility, constitutive behavior, scale, work, and power** is the core idea of the Z-Diagram.
