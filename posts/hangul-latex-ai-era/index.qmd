@@ -10,25 +10,20 @@ toc: true
 toc-depth: 2
 ---
 
-I recently published a Korean book using LaTeX.
 
-Its ISBN is **9791199253803**.
+I recently published a Korean engineering textbook using LaTeX.
 
-That experience left me with a stronger impression than simply:
+The book is my Korean translation of F. G. Nielsen's 2024 Cambridge University Press textbook on offshore wind energy, written as an introductory text for engineers. The Korean edition has ISBN **9791199253803**.
 
-> LaTeX can handle Hangul.
+![The Korean edition of F. G. Nielsen's 2024 introductory textbook on offshore wind energy. I translated the book into Korean and prepared the Korean edition using LaTeX. Producing a complete engineering textbook—with equations, figures, tables, cross-references, technical terminology, and mixed Korean and English text—showed me that Hangul and LaTeX can work very effectively together.](Fig01.png){#fig-korean-offshore-wind-book fig-align="center" width="75%"}
 
-Of course it can.
+Preparing an entire engineering textbook is quite different from testing whether a few Korean sentences can be compiled in LaTeX. A textbook has chapters, equations, figures, tables, cross-references, citations, technical terminology, Korean and English text, and mathematical notation that must remain consistent over hundreds of pages.
 
-The more interesting question is this:
+After going through that process, I came away with a fairly simple conclusion:
 
-> **Why do Hangul and LaTeX seem to fit each other so naturally?**
+> **Hangul works very well with LaTeX.**
 
-And there is another question behind it.
-
-If they fit so well, why does producing a serious Korean document in LaTeX still require more effort than it should?
-
-I think the answer has less to do with Hangul or LaTeX themselves than with the **ecosystem surrounding them**.
+The remaining problem is not whether Hangul can be typeset in LaTeX. It is whether we have built a sufficiently rich **Hangul-LaTeX ecosystem** to make this way of writing accessible to everyone.
 
 This becomes particularly interesting now because AI is changing the way we write.
 
@@ -38,7 +33,7 @@ My view is increasingly simple:
 
 And Hangul may be particularly well suited to that environment.
 
-![Hangul, LaTeX, and AI are different systems, but they share an important advantage: explicit structure. Hangul composes written forms from systematic elements; LaTeX represents document structure explicitly; AI can work effectively on that structured representation.](Fig01.png){#fig-hangul-latex-ai fig-align="center" width="100%"}
+![Hangul, LaTeX, and AI are different systems, but they share an important advantage: explicit structure. Hangul composes written forms from systematic elements; LaTeX represents document structure explicitly; AI can work effectively on that structured representation.](Fig02.png){#fig-hangul-latex-ai fig-align="center" width="100%"}
 
 ## Hangul is not just another set of characters
 
