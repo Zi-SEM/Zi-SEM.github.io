@@ -1,0 +1,765 @@
+---
+title: "How Should Engineers Build Tables in LaTeX?"
+subtitle: "From multi-level experimental tables to cleaner, more maintainable technical documents"
+author: "Goangseup Zi"
+date: "2026-09-13"
+categories:
+  - LaTeX & Writing
+description: "A practical guide to building engineering tables in LaTeX, using grouped headers, multirow cells, units, numerical alignment, and modern table packages."
+toc: true
+toc-depth: 2
+---
+
+Tables look simple until engineering data are involved.
+
+A real engineering table may need to show:
+
+- several levels of headings,
+- grouped test conditions,
+- physical units,
+- repeated specimen classes,
+- averages and coefficients of variation,
+- missing data,
+- and enough numbers that visual alignment starts to matter.
+
+At that point, a table is no longer just a grid.
+
+It is a compact representation of the structure of the experiment.
+
+That is why LaTeX tables are worth learning properly.
+
+The basic `tabular` environment is already powerful, but the most useful engineering tables usually depend on a small number of additional ideas:
+
+$$
+\boxed{
+\text{column structure}
++
+\text{grouped headings}
++
+\text{row grouping}
++
+\text{units}
++
+\text{numerical alignment}
+}
+$$
+
+The important question is therefore not:
+
+> How do I draw a table in LaTeX?
+
+A better question is:
+
+> **How do I make the structure of the data visible?**
+
+## What my existing template is doing
+
+My working LaTeX template already contains several fairly sophisticated examples.
+
+One table presents a concrete mix proportion with a two-level header. The first four columns contain individual variables, while four later columns are grouped under the heading `weight`. This is done with `\multicolumn`. Several heading cells extend vertically across two rows using `\multirow`, and `\cline{5-8}` draws only the horizontal rule beneath the grouped heading.
+
+The core pattern is:
+
+```latex
+\begin{table}[htb]
+\centering
+\caption{The mix proportion of the concretes.}
+\begin{small}
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+\hlinewd{1.5pt}
+\multirow{2}{*}{...} &
+\multirow{2}{*}{...} &
+\multirow{2}{*}{...} &
+\multirow{2}{*}{...} &
+\multicolumn{4}{|c|}{weight [kgf]} &
+\multirow{2}{*}{SP} &
+\multirow{2}{*}{AE} \\
+\cline{5-8}
+& & & & w & c & s & g & & \\
+\hline
+...
+\hlinewd{1.5pt}
+\end{tabular}
+\end{small}
+\label{st:tab.mix}
+\end{table}
+```
+
+This is an important pattern because the physical organization of the data is directly visible in the LaTeX source.
+
+The table is saying:
+
+```text
+mix properties | constituent weights | admixtures
+```
+
+rather than simply placing ten unrelated columns next to one another.
+
+A second table in the template goes further. It groups several rows under labels such as apparent modulus, stiffness, and maximum load using `\multirow`, while `\cline{2-7}` separates the entries inside each group. Nested `tabular` environments are used to break long labels such as `partially removed` over two lines.
+
+A third example groups three biaxial-test columns and three uniaxial-test columns under separate headings using `\multicolumn`.
+
+These are exactly the kinds of structures that appear repeatedly in experimental mechanics and structural engineering.
+
+## Start from the data hierarchy
+
+Before writing any LaTeX, I find it useful to sketch the logical hierarchy of the table.
+
+Suppose the data have this form:
+
+```text
+Test type
+├── Biaxial
+│   ├── B3
+│   ├── B6
+│   └── B12
+└── Uniaxial
+    ├── U3
+    ├── U6
+    └── U12
+```
+
+The LaTeX table should preserve that hierarchy.
+
+That immediately suggests:
+
+```latex
+\multicolumn{3}{c}{Biaxial test}
+```
+
+and
+
+```latex
+\multicolumn{3}{c}{Uniaxial test}
+```
+
+followed by a second header row containing the individual test labels.
+
+This is more than formatting.
+
+The table header is carrying engineering information.
+
+## `\multicolumn`: one heading over several columns
+
+The first command every technical LaTeX user should understand is `\multicolumn`.
+
+Its form is
+
+```latex
+\multicolumn{number of columns}{alignment}{content}
+```
+
+For example,
+
+```latex
+\multicolumn{3}{c}{Biaxial test}
+```
+
+means that one cell occupies three columns.
+
+A grouped engineering table can therefore be written as
+
+```latex
+\begin{tabular}{c c c c c c c}
+\hline
+\multirow{2}{*}{No.} &
+\multicolumn{3}{c}{Biaxial test} &
+\multicolumn{3}{c}{Uniaxial test} \\
+\cline{2-7}
+& B3 & B6 & B12 & U3 & U6 & U12 \\
+\hline
+...
+\end{tabular}
+```
+
+The first row tells the reader what the large groups mean.
+
+The second row resolves each group into individual variables.
+
+## `\multirow`: one label for several rows
+
+Engineering tables often contain another hierarchy.
+
+For example:
+
+```text
+Stiffness
+  specimen 1
+  specimen 2
+  specimen 3
+  average
+```
+
+Writing `stiffness` four times would obscure that these rows form one logical group.
+
+The `multirow` package solves this:
+
+```latex
+\multirow{4}{*}{Stiffness}
+  & specimen 1 & ... \\
+  & specimen 2 & ... \\
+  & specimen 3 & ... \\
+  & average    & ... \\
+```
+
+This is especially useful for:
+
+- material properties,
+- loading conditions,
+- specimen groups,
+- damage states,
+- analysis methods,
+- and parameter studies.
+
+I would regard `multirow` as an almost essential package for engineering tables.
+
+## Partial horizontal lines with `\cline`
+
+Once rows or columns are grouped, a full-width `\hline` is often too strong.
+
+The existing template uses commands such as
+
+```latex
+\cline{5-8}
+```
+
+and
+
+```latex
+\cline{2-7}
+```
+
+A `\cline{5-8}` rule begins at column 5 and ends at column 8.
+
+That lets us visually separate subheadings without breaking the larger grouping.
+
+This works, but there is now a better option for many publication-quality tables: `booktabs`.
+
+## Why I recommend `booktabs`
+
+Traditional LaTeX tables often look like this:
+
+```latex
+\begin{tabular}{|c|c|c|}
+\hline
+A & B & C \\
+\hline
+...
+\hline
+\end{tabular}
+```
+
+There is nothing technically wrong with that.
+
+But dense vertical and horizontal grid lines make a technical table harder to read, especially when it contains many numerical columns.
+
+The `booktabs` package provides
+
+```latex
+\toprule
+\midrule
+\bottomrule
+```
+
+and the partial rule
+
+```latex
+\cmidrule(lr){2-4}
+```
+
+A grouped header can then be written as
+
+```latex
+\begin{tabular}{lcccccc}
+\toprule
+& \multicolumn{3}{c}{Biaxial test}
+& \multicolumn{3}{c}{Uniaxial test} \\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+No. & B3 & B6 & B12 & U3 & U6 & U12 \\
+\midrule
+...
+\bottomrule
+\end{tabular}
+```
+
+The result is visually lighter and usually easier to scan.
+
+For journal papers and books, this would now be my default style unless a publisher explicitly requires grid lines.
+
+## One issue in my existing template: `\hlinewd`
+
+The template uses commands such as
+
+```latex
+\hlinewd{1.5pt}
+```
+
+to draw a heavier top or bottom rule.
+
+That command is not defined in the uploaded template itself. The preamble imports my external files `zipackage`, `zicommand`, and `rgb`, so its exact definition must be in one of those files.
+
+That works well inside my own environment, but it has one disadvantage:
+
+> the table is not completely portable by itself.
+
+If I send the table to someone who does not have my private command definitions, `\hlinewd` may fail.
+
+For reusable examples and public templates, I would therefore prefer either standard LaTeX commands or `booktabs`.
+
+This is an important general principle:
+
+> **A personal macro is useful when it reduces repeated work. A public example is better when its dependencies are obvious.**
+
+## Do not type units as ordinary text
+
+The existing tables include units such as
+
+```latex
+$[\rm MPa]$
+```
+
+and
+
+```latex
+$\rm [kg/m^3]$
+```
+
+This works, but I would modernize it.
+
+For scientific and engineering documents, I strongly recommend `siunitx`.
+
+For example:
+
+```latex
+\usepackage{siunitx}
+```
+
+Then write
+
+```latex
+\si{\mega\pascal}
+```
+
+or
+
+```latex
+\si{\kilogram\per\cubic\metre}
+```
+
+A column heading becomes
+
+```latex
+Apparent modulus (\si{\mega\pascal})
+```
+
+The major advantage is not merely typography.
+
+It gives one consistent representation of units throughout the entire document.
+
+If I later decide to change spacing or unit style, the document can be changed systematically rather than editing hundreds of tables manually.
+
+That is exactly the reason I like LaTeX in the first place.
+
+## `siunitx` is even more useful for numbers
+
+Consider a column containing
+
+```text
+0.36
+1.22
+24.6
+22033
+```
+
+A normal centered `c` column centers the character strings.
+
+It does not understand that these are numbers.
+
+`siunitx` provides the `S` column type:
+
+```latex
+\begin{tabular}{l S S S}
+```
+
+The values can then be aligned numerically, including decimal markers.
+
+For an engineering table, this is a significant improvement.
+
+Compare:
+
+```text
+  1.2
+ 12.34
+  0.056
+```
+
+with numbers aligned at the decimal position.
+
+The second representation is easier to compare quantitatively because the reader's eye does not have to reconstruct the place value.
+
+This is one of the packages I would recommend most strongly for Zi-SEM technical writing.
+
+## `makecell`: cleaner multiline headings
+
+My older tables often use nested tables:
+
+```latex
+\begin{tabular}{c}
+partially \\
+removed
+\end{tabular}
+```
+
+This works, but it is verbose.
+
+The `makecell` package gives a simpler alternative:
+
+```latex
+\makecell{partially \\ removed}
+```
+
+Likewise,
+
+```latex
+\makecell{apparent modulus\\(\si{\mega\pascal})}
+```
+
+is easier to read than inserting a miniature `tabular` environment inside a cell.
+
+For tables with many multiline headings, `makecell` noticeably improves source readability.
+
+## `array`: define better column types
+
+The standard column types are
+
+```text
+l   left
+c   center
+r   right
+```
+
+Engineering tables often need more control.
+
+The `array` package lets us define reusable column types.
+
+For example:
+
+```latex
+\usepackage{array}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+```
+
+Then
+
+```latex
+\begin{tabular}{L{3cm} C{2cm} C{2cm}}
+```
+
+creates fixed-width columns while preserving useful alignment.
+
+This is particularly helpful for tables containing explanations or long engineering terminology rather than only numbers.
+
+## `tabularx`: let one column absorb the available width
+
+Sometimes a table contains one description column and several compact numerical columns.
+
+For example:
+
+```text
+Failure mode | Description | Load | Displacement
+```
+
+The description should use whatever horizontal space remains.
+
+`tabularx` provides the `X` column:
+
+```latex
+\usepackage{tabularx}
+
+\begin{tabularx}{\textwidth}{l X S S}
+```
+
+The `X` column expands or contracts automatically to make the table fit `\textwidth`.
+
+This is much better than repeatedly guessing widths such as `p{7.3cm}`.
+
+## `longtable`: when the data are longer than one page
+
+The flexural-strength example in my template already contains more than thirty data rows.
+
+For still larger datasets, the ordinary `table` float cannot break across pages.
+
+That is where `longtable` is useful:
+
+```latex
+\usepackage{longtable}
+```
+
+It allows a table to continue over several pages and can repeat the header automatically.
+
+This is useful for:
+
+- specimen inventories,
+- material-property databases,
+- parameter studies,
+- design tables,
+- experimental datasets,
+- and appendices.
+
+I would not use `longtable` for a table that comfortably fits on one page. But once a table must genuinely span pages, it is the proper tool.
+
+## `threeparttable`: notes belong to the table
+
+Engineering tables frequently need notes such as:
+
+```text
+* Mean value from three specimens.
+** Specimen excluded because of instrumentation failure.
+```
+
+Putting such explanations into the main caption quickly becomes awkward.
+
+The `threeparttable` package provides a clean structure:
+
+```latex
+\begin{threeparttable}
+\caption{Test results.}
+
+\begin{tabular}{...}
+...
+\end{tabular}
+
+\begin{tablenotes}
+\item[a] Mean of three tests.
+\item[b] Sensor failure.
+\end{tablenotes}
+\end{threeparttable}
+```
+
+This keeps the caption, table, and notes as one semantic unit.
+
+## A modernized version of the mix table
+
+The original mix-proportion table is structurally good.
+
+I would keep the same hierarchy but modernize the typography.
+
+For example:
+
+```latex
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{siunitx}
+
+\begin{table}[htbp]
+\centering
+\caption{Mix proportions of the concretes.}
+\label{tab:mix}
+
+\begin{tabular}{
+  S[table-format=2.0]
+  S[table-format=3.0]
+  S[table-format=1.0]
+  S[table-format=2.1]
+  *{4}{S[table-format=4.1]}
+  S[table-format=1.0]
+  S[table-format=1.0]
+}
+\toprule
+{\multirow{2}{*}{\makecell{w/c\\(\%)}}} &
+{\multirow{2}{*}{\makecell{Slump\\(\si{\milli\metre})}}} &
+{\multirow{2}{*}{\makecell{Air\\(\%)}}} &
+{\multirow{2}{*}{\makecell{s/a\\(\%)}}} &
+\multicolumn{4}{c}{Weight} &
+{\multirow{2}{*}{SP}} &
+{\multirow{2}{*}{AE}} \\
+\cmidrule(lr){5-8}
+& & & &
+{w} & {c} & {s} & {g} & & \\
+\midrule
+35 & 120 & 5 & 39.5 & 193.9 & 553.9 & 64.0 & 1036.3 & 0 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+```
+
+The engineering structure is essentially unchanged.
+
+What has improved is:
+
+- fewer heavy grid lines,
+- clearer grouping,
+- explicit unit handling,
+- better multiline headings,
+- and numerical alignment.
+
+That is the kind of modernization I would make without changing the information itself.
+
+## A practical package set for engineering tables
+
+For most of my technical documents, I would recommend starting with:
+
+```latex
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{siunitx}
+\usepackage{makecell}
+\usepackage{threeparttable}
+```
+
+and adding
+
+```latex
+\usepackage{longtable}
+```
+
+only when multipage tables are needed.
+
+Their roles are different:
+
+| Package | Main purpose |
+|---|---|
+| `booktabs` | high-quality horizontal rules |
+| `multirow` | cells spanning several rows |
+| `array` | custom column definitions |
+| `tabularx` | automatic width management |
+| `siunitx` | units and numerical alignment |
+| `makecell` | multiline headings and cells |
+| `threeparttable` | table notes |
+| `longtable` | multipage tables |
+
+I would regard `booktabs`, `multirow`, and `siunitx` as the three most valuable additions for engineering work.
+
+## Packages I would use only when necessary
+
+More packages are not automatically better.
+
+A complicated preamble eventually becomes another system that has to be maintained.
+
+For example, colored cells can be useful in presentations or design summaries, and `xcolor` together with table-color support can do this well. But color should communicate information, not decorate a numerical table.
+
+Landscape tables can be handled with packages such as `pdflscape`, but a table that requires landscape orientation may first deserve a structural rethink.
+
+Likewise, scaling an entire table with
+
+```latex
+\resizebox{\textwidth}{!}{...}
+```
+
+is convenient, but it should not be the first response to an oversized table. Scaling can make the text unreadably small.
+
+A better sequence is usually:
+
+$$
+\boxed{
+\text{simplify}
+\rightarrow
+\text{group}
+\rightarrow
+\text{manage widths}
+\rightarrow
+\text{split if necessary}
+\rightarrow
+\text{scale only as a last resort}
+}
+$$
+
+## The table should expose the experiment
+
+There is a deeper reason I prefer structured tables.
+
+Consider a table with the hierarchy
+
+```text
+maximum load
+├── specimen 1
+├── specimen 2
+├── specimen 3
+├── average
+└── ratio to reference
+```
+
+That organization tells the reader how the result was constructed.
+
+The rows are not independent numbers.
+
+They belong to a measurement process:
+
+$$
+\text{individual tests}
+\rightarrow
+\text{summary statistic}
+\rightarrow
+\text{engineering comparison}.
+$$
+
+A good table makes that logic visible before the reader even studies the numbers.
+
+This is exactly the same principle that applies to equations and figures.
+
+The presentation should expose the mechanics of the argument rather than hide it.
+
+## Why this becomes even more useful with AI
+
+Tables are another place where AI and LaTeX fit naturally.
+
+If the structure is explicit, I can ask an AI to:
+
+- add a new test series,
+- convert units,
+- compute and insert summary rows,
+- reorder groups,
+- change a table from grid style to `booktabs`,
+- align numerical columns with `siunitx`,
+- detect inconsistent units,
+- or convert a CSV dataset into a LaTeX table.
+
+Because the result remains plain text, every change can still be inspected with Git.
+
+This is very different from asking an AI to manipulate a visually formatted table whose underlying structure is hidden inside a binary document.
+
+Again, the key principle is the same:
+
+> **AI becomes more useful when the document structure is explicit.**
+
+## My preferred table workflow
+
+For a new engineering table, I would now use the following reasoning.
+
+First ask:
+
+> What is the hierarchy of the data?
+
+Then decide which cells are groups and which are individual measurements.
+
+Use `\multicolumn` for horizontal grouping and `\multirow` for vertical grouping.
+
+Use `booktabs` to separate logical regions rather than drawing a box around every cell.
+
+Use `siunitx` whenever the table contains physical units or columns of numbers.
+
+Use `makecell` for compact multiline headings.
+
+Use `tabularx` when text columns must adapt to the page width.
+
+Use `longtable` only when the table genuinely extends across pages.
+
+And before adding another package, ask whether the difficulty comes from LaTeX or from the structure of the table itself.
+
+A complicated table often becomes much easier once the engineering hierarchy is made explicit.
+
+That is the real advantage of LaTeX.
+
+It does not merely draw the table.
+
+It lets us describe **what the table means**.
+
+## Source example
+
+The examples discussed here are taken from my working LaTeX template, which uses `tabular`, `\multicolumn`, `\multirow`, `\cline`, nested `tabular` cells, and a custom `\hlinewd` command in several engineering-table examples. The template also loads my own external package and command files, so some personal macros are intentionally defined outside the template itself.
