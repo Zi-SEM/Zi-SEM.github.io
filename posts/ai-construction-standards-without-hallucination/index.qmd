@@ -10,6 +10,7 @@ categories:
 image: Fig02.png
 ---
 
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
 Generative AI can read an enormous amount of text. But an engineering standard is not merely text.
 
 A design provision has a place in a hierarchy. It may depend on definitions in another document, refer to several other clauses, require particular input variables, prescribe a sequence of calculations, and finally lead to an engineering judgment. If those relationships are not explicit, an AI system must reconstruct them from prose every time it answers a question.
