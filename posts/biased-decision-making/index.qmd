@@ -5,9 +5,8 @@ author: "Goangseup Zi"
 date: "2026-08-30"
 categories:
   - Research Explained
-  - Engineering Decisions
+  - Offshore Wind Energy
   - Decision Making
-  - Offshore Wind
   - EFA
   - AHP
 description: "A practical explanation of how correlated evaluation criteria can bias multicriteria engineering decisions, and how an integrated EFA–AHP framework can reduce redundancy and improve decision reliability."

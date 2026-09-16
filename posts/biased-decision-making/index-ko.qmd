@@ -5,9 +5,8 @@ author: "Goangseup Zi"
 date: "2026-08-30"
 categories:
   - Research Explained
-  - Engineering Decisions
+  - Offshore Wind Energy
   - Decision Making
-  - Offshore Wind
   - EFA
   - AHP
 description: "서로 상관된 평가기준이 다기준 공학 의사결정을 어떻게 편향시킬 수 있는지, 그리고 탐색적 요인분석과 AHP를 결합해 중복을 줄이는 원리를 설명한다."
