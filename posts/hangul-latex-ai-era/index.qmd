@@ -5,7 +5,25 @@ author: "Goangseup Zi"
 date: "2026-09-13"
 categories:
   - LaTeX & Writing
-description: "Why Hangul and LaTeX are particularly well suited to technical writing in the AI era, and why Korea needs a stronger Hangul-LaTeX ecosystem."
+description: "Why do Hangul and LaTeX work so well for technical writing in the AI era? A Korean engineering textbook experience shows how structured LaTeX source can support AI-assisted scientific writing, reproducible documents, and a stronger Korean LaTeX ecosystem."
+keywords:
+  - Hangul LaTeX
+  - Korean LaTeX
+  - LaTeX Korean
+  - Korean typesetting
+  - LaTeX Korean textbook
+  - LaTeX technical writing
+  - LaTeX scientific writing
+  - AI LaTeX
+  - AI technical writing
+  - AI scientific writing
+  - structured documents
+  - structured technical writing
+  - human AI writing
+  - Korean LaTeX ecosystem
+  - XeTeXko
+  - LuaTeXko
+  - ko.TeX
 toc: true
 toc-depth: 2
 ---
