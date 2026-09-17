@@ -10,6 +10,21 @@ categories:
   - Multiphysics
   - Corrosion
   - Alkali-Silica Reaction
+keywords:
+  - concrete durability
+  - coupled concrete durability
+  - concrete durability modeling
+  - multiphysics concrete
+  - carbonation and chloride ingress
+  - chloride ingress in concrete
+  - reinforcement corrosion
+  - corrosion-induced cracking
+  - alkali-silica reaction
+  - ASR concrete
+  - chemo-mechanical model
+  - concrete service life prediction
+  - concrete deterioration mechanisms
+  - transport in concrete
 description: "A mechanics-oriented view of concrete durability as a coupled multiphysics problem involving moisture, ions, gases, chemical reactions, evolving solids, corrosion, and cracking."
 toc: true
 toc-depth: 2
