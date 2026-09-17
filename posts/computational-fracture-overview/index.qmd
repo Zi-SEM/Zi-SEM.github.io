@@ -9,10 +9,31 @@ categories:
   - Computational Fracture
   - XFEM
   - XEFG
+keywords:
+  - "computational fracture mechanics"
+  - "fracture mechanics"
+  - "crack propagation"
+  - "crack growth"
+  - "XFEM"
+  - "extended finite element method"
+  - "XEFG"
+  - "extended element-free Galerkin method"
+  - "meshfree fracture"
+  - "cohesive crack"
+  - "crack-tip enrichment"
+  - "partition of unity"
+  - "level set method"
+  - "dynamic fracture"
+  - "multiple cracks"
+  - "crack branching"
+  - "crack coalescence"
+  - "remeshing"
 description: "An engineering-mechanics view of why crack growth is numerically difficult, and how enrichment methods such as XFEM and XEFG separate the crack geometry from the background discretization."
 toc: true
 toc-depth: 2
 ---
+
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
 
 **Computational Fracture Series:** Article 1 of 7 · [Next: XFEM →](../xfem-crack-through-mesh/)
 
@@ -391,7 +412,7 @@ Multiple-crack growth, fatigue, crack competition, branching, coalescence, junct
 
 ### Coming next
 
-**5. Is Enrichment the Only Way to Represent a Crack?**  
+**5. [Is Enrichment the Only Way to Represent a Crack?](../alternative-crack-representations/)**  
 Phantom-node methods, cracking-particle methods, peridynamics, phase-field fracture, and the trade-off between sharp and diffuse crack representations.
 
 **6. How Does Computational Fracture Move Across Scales and Structural Forms?**  
