@@ -9,7 +9,24 @@ categories:
   - Offshore Engineering
   - Hydroelasticity
 image: Fig01.png
+keywords:
+  - floating structure frequency domain
+  - floating offshore wind turbine
+  - frequency-domain analysis
+  - hydroelasticity
+  - fluid-structure interaction
+  - potential flow theory
+  - added mass
+  - radiation damping
+  - hydrostatic restoring stiffness
+  - wave excitation force
+  - response amplitude operator
+  - RAO
+  - floating wind turbine dynamics
+  - mooring stiffness
 ---
+
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
 
 A floating structure is both a structure and a body moving in water.
 
