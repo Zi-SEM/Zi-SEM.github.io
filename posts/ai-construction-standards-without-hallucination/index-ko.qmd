@@ -1,13 +1,36 @@
 ---
 title: "건설 엔니지어링 실무에서 AI를 환각 없이 믿고 사용할 수 있을까?"
 subtitle: "더 좋은 프롬프트보다, 더 필요한 것은 건설기준 지식의 구조화다"
-author: "Goangseup Zi"
+author: "지광습"
 date: "2026-06-26"
 categories:
   - Research Explained
   - Digital Transformation & AI
   - Digital Construction Standards
 lang: ko
+keywords:
+  - "디지털 건설기준"
+  - "건설기준"
+  - "KDS"
+  - "KCS"
+  - "공학 AI"
+  - "건설 AI"
+  - "AI 환각"
+  - "생성형 AI"
+  - "LLM"
+  - "대규모 언어모델"
+  - "기계가독형 건설기준"
+  - "기계실행형 건설기준"
+  - "자동 적합성 검토"
+  - "자동 법규 검토"
+  - "ACC"
+  - "BIM"
+  - "RuleUnit"
+  - "룰유닛"
+  - "공학 지식 구조화"
+  - "지식그래프"
+  - "온톨로지"
+  - "디지털 전환"
 image: Fig02.png
 ---
 

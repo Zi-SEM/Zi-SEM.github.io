@@ -7,6 +7,26 @@ categories:
   - Research Explained
   - Digital Transformation & AI
   - Digital Construction Standards
+keywords:
+  - "digital construction standards"
+  - "construction standards"
+  - "engineering AI"
+  - "AI hallucination"
+  - "large language models"
+  - "LLM"
+  - "machine-readable standards"
+  - "machine-executable standards"
+  - "automated compliance checking"
+  - "automatic compliance check"
+  - "ACC"
+  - "BIM"
+  - "RuleUnit"
+  - "rule unit"
+  - "engineering knowledge representation"
+  - "knowledge graph"
+  - "ontology"
+  - "engineering knowledge structure"
+  - "digital transformation"
 image: Fig02.png
 ---
 

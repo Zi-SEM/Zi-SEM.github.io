@@ -9,7 +9,25 @@ categories:
   - Concrete
   - Steel Slag
   - Sustainable Construction
-description: "BOF slag can expand and crack cementitious materials because of free CaO. Our studies show that controlling particle size—not simply grinding as finely as possible—provides a practical route to stable and energy-efficient utilization."
+keywords:
+  - BOF slag
+  - basic oxygen furnace slag
+  - steel slag
+  - BOF slag concrete
+  - steel slag concrete
+  - BOF slag particle size
+  - steel slag particle size
+  - free CaO
+  - free lime
+  - slag expansion
+  - concrete cracking
+  - particle size effect
+  - critical particle size
+  - slag grinding
+  - grinding energy
+  - cementitious materials
+  - sustainable construction materials
+description: "How fine should BOF slag be for use in concrete? This article explains how BOF slag particle size, free CaO, slag content, expansion, cracking, and grinding energy interact, and why ultrafine grinding is not always necessary."
 toc: true
 toc-depth: 2
 ---

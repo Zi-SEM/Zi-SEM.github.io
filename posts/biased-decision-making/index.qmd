@@ -10,6 +10,22 @@ categories:
   - EFA
   - AHP
 description: "A practical explanation of how correlated evaluation criteria can bias multicriteria engineering decisions, and how an integrated EFA–AHP framework can reduce redundancy and improve decision reliability."
+keywords:
+  - multicriteria decision making
+  - multi-criteria decision-making
+  - MCDM
+  - Analytic Hierarchy Process
+  - AHP
+  - Exploratory Factor Analysis
+  - EFA
+  - EFA-AHP
+  - correlated criteria
+  - redundant criteria
+  - decision bias
+  - engineering decision making
+  - offshore wind substructure selection
+  - fixed offshore wind substructures
+  - offshore wind decision making
 toc: true
 toc-depth: 2
 ---

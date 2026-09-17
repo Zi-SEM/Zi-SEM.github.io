@@ -1,7 +1,7 @@
 ---
 title: "평가기준이 많으면 의사결정이 더 공정해질까?"
 subtitle: "서로 상관된 기준이 같은 정보를 반복해서 반영하는 문제와 EFA–AHP의 역할"
-author: "Goangseup Zi"
+author: "지광습"
 date: "2026-08-30"
 categories:
   - Research Explained
@@ -10,6 +10,23 @@ categories:
   - EFA
   - AHP
 description: "서로 상관된 평가기준이 다기준 공학 의사결정을 어떻게 편향시킬 수 있는지, 그리고 탐색적 요인분석과 AHP를 결합해 중복을 줄이는 원리를 설명한다."
+keywords:
+  - 다기준 의사결정
+  - 다기준 의사결정 방법
+  - MCDM
+  - 계층적 분석 기법
+  - 계층분석법
+  - AHP
+  - 탐색적 요인분석
+  - EFA
+  - EFA-AHP
+  - 평가기준 상관관계
+  - 평가기준 중복
+  - 의사결정 편향
+  - 공학 의사결정
+  - 해상풍력 지지구조 선정
+  - 고정식 해상풍력 지지구조
+  - 해상풍력 의사결정
 lang: ko
 toc: true
 toc-depth: 2

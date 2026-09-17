@@ -10,6 +10,20 @@ categories:
   - XFEM
   - Phase Field
   - Peridynamics
+keywords:
+  - "fracture mechanics"
+  - "computational fracture mechanics"
+  - "crack representation"
+  - "crack propagation"
+  - "displacement discontinuity"
+  - "XFEM"
+  - "XEFG"
+  - "enrichment"
+  - "phantom node method"
+  - "cracking particle method"
+  - "peridynamics"
+  - "phase-field fracture"
+  - "cohesive crack model"
 description: "A mechanics-oriented comparison of alternative ways to represent fracture, asking where the information that a material has lost continuity should live in a numerical formulation."
 toc: true
 toc-depth: 2

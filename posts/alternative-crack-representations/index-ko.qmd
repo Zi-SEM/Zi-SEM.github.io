@@ -1,7 +1,7 @@
 ---
 title: "균열을 표현하려면 반드시 변위공간을 부가적으로 확충(enrichment)해야 하는가?"
 subtitle: "변위공간 확충에서부터  phantom node, cracking particle, peridynamics, phase field까지"
-author: "Goangseup Zi"
+author: "지광습"
 date: "2026-09-04"
 categories:
   - Research Explained
@@ -10,6 +10,24 @@ categories:
   - XFEM
   - Phase Field
   - Peridynamics
+keywords:
+  - "파괴역학"
+  - "계산파괴역학"
+  - "균열 해석"
+  - "균열 표현"
+  - "균열 성장"
+  - "변위 불연속"
+  - "확장유한요소법"
+  - "XFEM"
+  - "확장무요소법"
+  - "XEFG"
+  - "변위공간 확충"
+  - "phantom node"
+  - "cracking particle"
+  - "peridynamics"
+  - "phase field"
+  - "페이즈필드 파괴"
+  - "점성균열"
 description: "재료가 연속적인 변형 특성을 잃고 불연속적인 균열이 생성되었다는 정보를 수치해석의 어디에 담을 것인가라는 질문을 중심으로 여러 파괴해석 기법을 역학적으로 비교한다."
 lang: ko
 toc: true
