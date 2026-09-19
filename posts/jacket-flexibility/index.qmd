@@ -11,9 +11,24 @@ categories:
   - Structural Dynamics
 description: "A jacket offshore wind turbine may look like a simple frame, but its global stiffness depends strongly on
 load transfer through the transition piece, local deformation of tubular joints, and pile-soil interaction."
+keywords:
+  - jacket-supported offshore wind turbine
+  - offshore wind jacket structure
+  - jacket substructure
+  - transition piece
+  - tubular joint
+  - local joint flexibility
+  - pile-soil interaction
+  - offshore wind structural dynamics
+  - natural frequency
+  - global structural stiffness
+  - load transfer
+  - offshore wind support structure
 toc: true
 toc-depth: 2
 ---
+
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
 
 A jacket-supported offshore wind turbine looks familiar to a structural engineer.
 
