@@ -8,6 +8,23 @@ categories:
   - Computational Mechanics & Fracture
   - Computational Fracture
   - Multiscale Mechanics
+keywords:
+  - "computational fracture mechanics"
+  - "fracture mechanics"
+  - "multiscale fracture"
+  - "multiscale modeling"
+  - "crack propagation"
+  - "crack growth"
+  - "cohesive crack"
+  - "fracture process zone"
+  - "XFEM"
+  - "extended finite element method"
+  - "Arlequin method"
+  - "continuum-atomistic coupling"
+  - "molecular dynamics"
+  - "graphene fracture"
+  - "computational homogenization"
+  - "adaptive multiscale method"  
 image: Fig01.png
 ---
 
