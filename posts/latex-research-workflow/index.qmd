@@ -8,6 +8,25 @@ categories:
   - Scientific Writing
   - LaTeX
   - BibTeX
+description: "A practical LaTeX research workflow built around a reusable template, shared commands, a master BibTeX database, persistent citation keys, and reusable technical content."
+keywords:
+  - LaTeX research workflow
+  - LaTeX scientific writing
+  - LaTeX research paper
+  - LaTeX paper template
+  - academic writing workflow
+  - scientific writing workflow
+  - research writing system
+  - BibTeX reference management
+  - BibTeX citation key
+  - research paper PDF management
+  - academic literature management
+  - LaTeX custom commands
+  - LaTeX shared packages
+  - reusable LaTeX workflow
+  - LaTeX Beamer workflow
+  - research knowledge management
+  - AI research workflow
 ---
 
 <div class="language-switch">**English** | [한글](index-ko.qmd)</div>
