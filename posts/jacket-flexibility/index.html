@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Goangseup Zi">
+<meta name="dcterms.date" content="2026-09-02">
+<meta name="description" content="A jacket offshore wind turbine may look like a simple frame, but its global stiffness depends strongly on load transfer through the transition piece, local deformation of tubular joints, and pile-soil interaction.">
+
+<title>Where Does the Flexibility of a Jacket-Supported Offshore Wind Turbine Really Come From? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research Explained</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../z-diagram.html"> 
+<span class="menu-text">Z-Diagram</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../latex-writing.html"> 
+<span class="menu-text">LaTeX &amp; Writing</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#start-with-the-load-path" id="toc-start-with-the-load-path" class="nav-link active" data-scroll-target="#start-with-the-load-path">Start with the load path</a></li>
+  <li><a href="#the-transition-piece-is-a-load-distribution-structure" id="toc-the-transition-piece-is-a-load-distribution-structure" class="nav-link" data-scroll-target="#the-transition-piece-is-a-load-distribution-structure">The transition piece is a load-distribution structure</a></li>
+  <li><a href="#high-stress-can-reveal-a-poor-load-path" id="toc-high-stress-can-reveal-a-poor-load-path" class="nav-link" data-scroll-target="#high-stress-can-reveal-a-poor-load-path">High stress can reveal a poor load path</a></li>
+  <li><a href="#but-load-transfer-is-only-the-beginning" id="toc-but-load-transfer-is-only-the-beginning" class="nav-link" data-scroll-target="#but-load-transfer-is-only-the-beginning">But load transfer is only the beginning</a></li>
+  <li><a href="#a-tubular-joint-is-not-a-mathematical-point" id="toc-a-tubular-joint-is-not-a-mathematical-point" class="nav-link" data-scroll-target="#a-tubular-joint-is-not-a-mathematical-point">A tubular joint is not a mathematical point</a></li>
+  <li><a href="#local-flexibility-changes-the-whole-turbine" id="toc-local-flexibility-changes-the-whole-turbine" class="nav-link" data-scroll-target="#local-flexibility-changes-the-whole-turbine">Local flexibility changes the whole turbine</a></li>
+  <li><a href="#then-we-reach-another-interface-the-seabed" id="toc-then-we-reach-another-interface-the-seabed" class="nav-link" data-scroll-target="#then-we-reach-another-interface-the-seabed">Then we reach another interface: the seabed</a></li>
+  <li><a href="#foundation-modeling-changes-the-predicted-dynamics" id="toc-foundation-modeling-changes-the-predicted-dynamics" class="nav-link" data-scroll-target="#foundation-modeling-changes-the-predicted-dynamics">Foundation modeling changes the predicted dynamics</a></li>
+  <li><a href="#joint-flexibility-and-foundation-flexibility-act-together" id="toc-joint-flexibility-and-foundation-flexibility-act-together" class="nav-link" data-scroll-target="#joint-flexibility-and-foundation-flexibility-act-together">Joint flexibility and foundation flexibility act together</a></li>
+  <li><a href="#why-do-many-small-flexibilities-matter-so-much" id="toc-why-do-many-small-flexibilities-matter-so-much" class="nav-link" data-scroll-target="#why-do-many-small-flexibilities-matter-so-much">Why do many small flexibilities matter so much?</a></li>
+  <li><a href="#the-critical-flexibility-may-be-concentrated-at-interfaces" id="toc-the-critical-flexibility-may-be-concentrated-at-interfaces" class="nav-link" data-scroll-target="#the-critical-flexibility-may-be-concentrated-at-interfaces">The critical flexibility may be concentrated at interfaces</a></li>
+  <li><a href="#local-mechanics-can-control-global-dynamics" id="toc-local-mechanics-can-control-global-dynamics" class="nav-link" data-scroll-target="#local-mechanics-can-control-global-dynamics">Local mechanics can control global dynamics</a></li>
+  <li><a href="#why-this-matters-especially-for-offshore-wind-turbines" id="toc-why-this-matters-especially-for-offshore-wind-turbines" class="nav-link" data-scroll-target="#why-this-matters-especially-for-offshore-wind-turbines">Why this matters especially for offshore wind turbines</a></li>
+  <li><a href="#simplification-is-not-the-problem" id="toc-simplification-is-not-the-problem" class="nav-link" data-scroll-target="#simplification-is-not-the-problem">Simplification is not the problem</a></li>
+  <li><a href="#stiffness-is-a-system-property" id="toc-stiffness-is-a-system-property" class="nav-link" data-scroll-target="#stiffness-is-a-system-property">Stiffness is a system property</a></li>
+  <li><a href="#what-should-an-engineer-look-for" id="toc-what-should-an-engineer-look-for" class="nav-link" data-scroll-target="#what-should-an-engineer-look-for">What should an engineer look for?</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#engineering-takeaway" id="toc-engineering-takeaway" class="nav-link" data-scroll-target="#engineering-takeaway">Engineering takeaway</a></li>
+  <li><a href="#original-research" id="toc-original-research" class="nav-link" data-scroll-target="#original-research">Original research</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Where Does the Flexibility of a Jacket-Supported Offshore Wind Turbine Really Come From?</h1>
+<p class="subtitle lead">Why transition pieces, tubular joints, and foundations matter as much as the jacket members</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Research Explained</div>
+    <div class="quarto-category">Offshore &amp; Ocean Engineering</div>
+    <div class="quarto-category">Offshore Wind Energy</div>
+    <div class="quarto-category">Structural Engineering</div>
+    <div class="quarto-category">Structural Dynamics</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    A jacket offshore wind turbine may look like a simple frame, but its global stiffness depends strongly on load transfer through the transition piece, local deformation of tubular joints, and pile-soil interaction.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Goangseup Zi </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 2, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>A jacket-supported offshore wind turbine looks familiar to a structural engineer.</p>
+<p>There is a tower.</p>
+<p>Below it is a three-dimensional steel frame composed of tubular legs and braces.</p>
+<p>Below that are piles embedded in the seabed.</p>
+<p>It is tempting to idealize the whole system as</p>
+<p><span class="math display">\[
+\text{tower}
+\rightarrow
+\text{frame members}
+\rightarrow
+\text{fixed support}.
+\]</span></p>
+<p>Then structural stiffness appears to be determined mainly by familiar member properties such as</p>
+<p><span class="math display">\[
+EA
+\qquad\text{and}\qquad
+EI.
+\]</span></p>
+<p>But a real jacket-supported offshore wind turbine is more complicated.</p>
+<p>The tower load must first be redistributed through a <strong>transition piece</strong>. The tubular braces connect to chord walls that deform locally. Finally, the piles themselves deform together with the surrounding soil.</p>
+<p>A more realistic structural chain is therefore</p>
+<p><span class="math display">\[
+\boxed{
+\text{Tower}
+\rightarrow
+\text{Transition piece}
+\rightarrow
+\text{Tubular joints}
+\rightarrow
+\text{Jacket members}
+\rightarrow
+\text{Piles}
+\rightarrow
+\text{Soil}
+}
+\]</span></p>
+<p>Every part of this chain contributes to the response.</p>
+<p>This leads to a useful engineering question:</p>
+<blockquote class="blockquote">
+<p><strong>Where does the flexibility of a jacket-supported offshore wind turbine really come from?</strong></p>
+</blockquote>
+<p>Two of our studies approached this question from different scales.</p>
+<p>The first investigated how the transition piece transfers loads from the tower into the jacket.</p>
+<p>The second examined how local joint flexibility and pile-soil interaction change the dynamic response of the entire offshore wind turbine. :contentReference<span data-index="0">oaicite:0</span></p>
+<p>Together, they reveal a broader structural principle:</p>
+<blockquote class="blockquote">
+<p><strong>The members are not the whole structure. The interfaces are part of the stiffness too.</strong></p>
+</blockquote>
+<hr>
+<section id="start-with-the-load-path" class="level2">
+<h2 class="anchored" data-anchor-id="start-with-the-load-path">Start with the load path</h2>
+<p>Before discussing stiffness, consider what the structure actually has to do.</p>
+<p>Wind acting on the rotor and tower produces forces and large overturning moments.</p>
+<p>Those actions must travel downward:</p>
+<p><span class="math display">\[
+\text{Rotor}
+\rightarrow
+\text{Tower}
+\rightarrow
+\text{Transition piece}
+\rightarrow
+\text{Jacket}
+\rightarrow
+\text{Foundation}
+\rightarrow
+\text{Ground}.
+\]</span></p>
+<p>The tower and jacket, however, have very different geometries.</p>
+<p>The tower is essentially a single large tubular shell.</p>
+<p>The jacket consists of spatially separated legs connected by braces.</p>
+<p>The transition piece therefore has to transform the forces and moments carried by one structural system into forces that can be carried by another.</p>
+<p>This is the first important interface.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig01.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figcaption>A jacket-supported offshore wind turbine. The transition piece connects the single tubular tower to the spatially separated jacket legs, while the piles continue below the seabed into the soil.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="the-transition-piece-is-a-load-distribution-structure" class="level2">
+<h2 class="anchored" data-anchor-id="the-transition-piece-is-a-load-distribution-structure">The transition piece is a load-distribution structure</h2>
+<p>Unlike a monopile-supported turbine, a jacket-supported offshore wind turbine requires a special structural region between the tower and jacket.</p>
+<p>The tower load must be redistributed through this transition piece because of the large geometric difference between the tower and the jacket.</p>
+<p>Our transition-piece study therefore treated the ability of the transition piece to redistribute and transfer forces from the tower as a central determinant of structural performance.</p>
+<p>Several transition-piece concepts were investigated numerically, including brace-type, box-girder-type, composite-plate-type, and single-web-type configurations.</p>
+<p>But the most interesting lesson was not which configuration ranked first.</p>
+<p>It was what the stress distributions revealed about <strong>load transfer</strong>.</p>
+<hr>
+</section>
+<section id="high-stress-can-reveal-a-poor-load-path" class="level2">
+<h2 class="anchored" data-anchor-id="high-stress-can-reveal-a-poor-load-path">High stress can reveal a poor load path</h2>
+<p>Consider a conventional brace-type transition piece.</p>
+<p>In the basic configuration, the maximum stress reached approximately</p>
+<p><span class="math display">\[
+329~\text{MPa}.
+\]</span></p>
+<p>More revealing than the magnitude was its location.</p>
+<p>The maximum stress occurred in the <strong>tower can wall</strong>, rather than in the brace or deck.</p>
+<p>This indicated that the brace was not effectively redistributing and transmitting the tower load downward into the jacket.</p>
+<p>The tower can was still carrying too much of the action.</p>
+<p>A reinforcing ring was then added near the brace-can connection.</p>
+<p>The maximum can-wall stress fell from approximately</p>
+<p><span class="math display">\[
+329~\text{MPa}
+\]</span></p>
+<p>to</p>
+<p><span class="math display">\[
+187~\text{MPa}.
+\]</span></p>
+<p>But a new stress concentration appeared around the brace-can-reinforcing-ring connection.</p>
+<p>Why?</p>
+<p>Because the reinforcement had changed the load path.</p>
+<p>Part of the load previously carried primarily through the tower can was now being transferred into the brace.</p>
+<p>This is an important way to interpret finite-element stress contours:</p>
+<blockquote class="blockquote">
+<p><strong>A stress concentration is often telling us where the load is being forced to change direction or transfer between components.</strong></p>
+</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig02.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>Evolution of the brace-type transition piece. The stress contours show that reinforcement does more than reduce a numerical maximum: it changes how load is transferred from the tower can through the braces toward the jacket legs.</figcaption>
+</figure>
+</div>
+<p>The study subsequently modified the brace and its connection geometry to improve downward load transfer.</p>
+<p>In one configuration, the maximum brace and deck stresses decreased by approximately 19.6% and 18.4%, respectively.</p>
+<p>But making the tubular brace still larger did not continue this improvement.</p>
+<p>The larger configuration produced higher brace stress and greater structural weight.</p>
+<p>So,</p>
+<p><span class="math display">\[
+\boxed{
+\text{more material}
+\not\Rightarrow
+\text{better load transfer}.
+}
+\]</span></p>
+<p>The geometry of the load path matters.</p>
+<hr>
+</section>
+<section id="but-load-transfer-is-only-the-beginning" class="level2">
+<h2 class="anchored" data-anchor-id="but-load-transfer-is-only-the-beginning">But load transfer is only the beginning</h2>
+<p>Suppose we have designed an efficient transition piece.</p>
+<p>We could now construct a global frame model of the jacket using beam elements.</p>
+<p>At first glance, the structural problem appears straightforward.</p>
+<p>Each member contributes familiar axial and bending stiffness:</p>
+<p><span class="math display">\[
+EA
+\qquad\text{and}\qquad
+EI.
+\]</span></p>
+<p>But this contains a hidden assumption.</p>
+<p>What happens where one tubular member meets another?</p>
+<p>In a conventional frame model, the brace and chord are often connected by an ideal rigid joint.</p>
+<p>The member axes meet, and compatibility is enforced at the connection.</p>
+<p>The mathematical joint has no deformation of its own.</p>
+<p>The real tubular joint does.</p>
+<hr>
+</section>
+<section id="a-tubular-joint-is-not-a-mathematical-point" class="level2">
+<h2 class="anchored" data-anchor-id="a-tubular-joint-is-not-a-mathematical-point">A tubular joint is not a mathematical point</h2>
+<p>Consider a brace welded to a larger tubular chord.</p>
+<p>When the brace transmits force and moment into the chord, the chord wall deforms locally.</p>
+<p>The connection therefore has its own compliance.</p>
+<p>If the undeformed angle between members is <span class="math inline">\(\theta_0\)</span>, an ideal rigid-joint model essentially preserves that joint geometry:</p>
+<p><span class="math display">\[
+\theta_R=\theta_0.
+\]</span></p>
+<p>A real flexible tubular joint can deform so that</p>
+<p><span class="math display">\[
+\theta_F\neq\theta_0.
+\]</span></p>
+<p>This deformation is called <strong>local joint flexibility (LJF)</strong>.</p>
+<p>The 2024 study considered three ways of representing the brace-chord connection:</p>
+<ul>
+<li>rigid joint,</li>
+<li>center-to-center (CTC) joint,</li>
+<li>local joint flexibility (LJF) model. :contentReference<span data-index="1">oaicite:1</span></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig03.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Three representations of a tubular chord-brace joint: rigid, center-to-center (CTC), and local joint flexibility (LJF). The LJF model allows the chord wall to deform locally, introducing a deformation mechanism that an ideal rigid frame joint suppresses.</figcaption>
+</figure>
+</div>
+<p>The rigid model suppresses local chord deformation.</p>
+<p>The CTC model extends the brace axis to the chord centerline but still cannot accurately represent the detailed flexible response of the tubular joint.</p>
+<p>The LJF model introduces the local compliance associated with the actual chord-brace connection. :contentReference<span data-index="2">oaicite:2</span></p>
+<p>This seems like a local modeling detail.</p>
+<p>But its influence is global.</p>
+<hr>
+</section>
+<section id="local-flexibility-changes-the-whole-turbine" class="level2">
+<h2 class="anchored" data-anchor-id="local-flexibility-changes-the-whole-turbine">Local flexibility changes the whole turbine</h2>
+<p>For a vibrating structure, the natural frequencies follow the familiar eigenvalue problem</p>
+<p><span class="math display">\[
+\left(
+\mathbf{K}
+-
+\omega^2\mathbf{M}
+\right)\boldsymbol{\phi}
+=
+\mathbf{0}.
+\]</span></p>
+<p>The important quantity here is not simply the stiffness of each individual member.</p>
+<p>It is the stiffness matrix of the <strong>entire assembled system</strong>:</p>
+<p><span class="math display">\[
+\mathbf{K}_{\mathrm{system}}.
+\]</span></p>
+<p>If local joint deformation is suppressed, the assembled structure becomes artificially stiff.</p>
+<p>That changes</p>
+<p><span class="math display">\[
+\mathbf{K}_{\mathrm{system}},
+\]</span></p>
+<p>which changes</p>
+<p><span class="math display">\[
+\omega,
+\]</span></p>
+<p>and therefore changes the predicted natural frequency</p>
+<p><span class="math display">\[
+f=\frac{\omega}{2\pi}.
+\]</span></p>
+<p>The 2024 study showed exactly this behavior.</p>
+<p>The rigid-joint model produced a first natural frequency of</p>
+<p><span class="math display">\[
+0.324~\text{Hz},
+\]</span></p>
+<p>while the LJF model gave</p>
+<p><span class="math display">\[
+0.301~\text{Hz}.
+\]</span></p>
+<p>Compared with the LJF model, the rigid and CTC models predicted maximum transition-piece fore-aft displacements that were respectively <strong>19.79% and 16.38% lower</strong>.</p>
+<p>At the same time, their predicted maximum member stresses were <strong>54.12% and 32.08% higher</strong> than those obtained using the LJF model. :contentReference<span data-index="3">oaicite:3</span></p>
+<p>So neglecting local joint deformation does not introduce one simple conservative error.</p>
+<p>It changes different response quantities in different ways.</p>
+<p>A model can be conservative for stress while simultaneously being non-conservative for displacement.</p>
+<p>That distinction is important.</p>
+<hr>
+</section>
+<section id="then-we-reach-another-interface-the-seabed" class="level2">
+<h2 class="anchored" data-anchor-id="then-we-reach-another-interface-the-seabed">Then we reach another interface: the seabed</h2>
+<p>Even if the tubular joints are modeled correctly, another simplification remains.</p>
+<p>Where does the jacket end?</p>
+<p>A convenient structural model may place a fixed boundary at the seabed:</p>
+<p><span class="math display">\[
+u=0,
+\qquad
+\theta=0.
+\]</span></p>
+<p>But a pile does not actually stop at the mudline.</p>
+<p>It continues into the soil.</p>
+<p>Under lateral loading, the pile bends and the surrounding soil deforms.</p>
+<p>The foundation therefore contributes another source of flexibility.</p>
+<p>This is <strong>pile-soil interaction</strong>.</p>
+<p>The 2024 study compared four foundation representations:</p>
+<ul>
+<li>fixed foundation (FF),</li>
+<li>equivalent coupled springs (ECS),</li>
+<li>apparent fixity length (AFL),</li>
+<li>distributed nonlinear springs (DNS). :contentReference<span data-index="4">oaicite:4</span></li>
+</ul>
+<p>The DNS model represents soil resistance using nonlinear springs distributed along the pile and was used as the higher-fidelity reference for comparison.</p>
+<hr>
+</section>
+<section id="foundation-modeling-changes-the-predicted-dynamics" class="level2">
+<h2 class="anchored" data-anchor-id="foundation-modeling-changes-the-predicted-dynamics">Foundation modeling changes the predicted dynamics</h2>
+<p>Using the DNS model as reference, the fixed-foundation model predicted a first natural frequency of</p>
+<p><span class="math display">\[
+0.304~\text{Hz},
+\]</span></p>
+<p>compared with</p>
+<p><span class="math display">\[
+0.283~\text{Hz}
+\]</span></p>
+<p>for DNS.</p>
+<p>That is a <strong>7.42% increase</strong>.</p>
+<p>The equivalent coupled-spring model gave a similar overestimate of <strong>7.07%</strong>. :contentReference<span data-index="5">oaicite:5</span></p>
+<p>The difference in displacement was even larger.</p>
+<p>The maximum transition-piece fore-aft displacement was</p>
+<p><span class="math display">\[
+0.130~\text{m}
+\]</span></p>
+<p>for the fixed-foundation model and</p>
+<p><span class="math display">\[
+0.189~\text{m}
+\]</span></p>
+<p>for the DNS model.</p>
+<p>Thus, the fixed-foundation assumption underestimated the displacement by <strong>31.36%</strong> relative to DNS.</p>
+<p>The apparent-fixity-length model behaved in the opposite direction for some quantities.</p>
+<p>Its maximum displacement and member stress were respectively <strong>12.42% and 10.70% higher</strong> than those from the DNS model. :contentReference<span data-index="6">oaicite:6</span></p>
+<p>This is another important lesson.</p>
+<p>There is no universal correction such as</p>
+<blockquote class="blockquote">
+<p><strong>“A fixed foundation is always conservative.”</strong></p>
+</blockquote>
+<p>It depends on <strong>which response quantity is being examined</strong>.</p>
+<hr>
+</section>
+<section id="joint-flexibility-and-foundation-flexibility-act-together" class="level2">
+<h2 class="anchored" data-anchor-id="joint-flexibility-and-foundation-flexibility-act-together">Joint flexibility and foundation flexibility act together</h2>
+<p>The most revealing comparison comes when both effects are considered simultaneously.</p>
+<p>Four models were compared:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Joint</th>
+<th>Foundation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Rigid &amp; FF</td>
+<td>Rigid</td>
+<td>Fixed</td>
+</tr>
+<tr class="even">
+<td>LJF &amp; FF</td>
+<td>Flexible</td>
+<td>Fixed</td>
+</tr>
+<tr class="odd">
+<td>Rigid &amp; DNS</td>
+<td>Rigid</td>
+<td>Flexible</td>
+</tr>
+<tr class="even">
+<td>LJF &amp; DNS</td>
+<td>Flexible</td>
+<td>Flexible</td>
+</tr>
+</tbody>
+</table>
+<p>The LJF &amp; DNS model represents both local joint flexibility and pile-soil flexibility and was used as the higher-fidelity reference.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig04.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>Combined influence of joint and foundation modeling on global structural response. Accounting for both local joint flexibility (LJF) and distributed pile-soil interaction (DNS) changes the predicted natural frequency, transition-piece displacement, and member stress, showing how local deformation mechanisms propagate into global dynamics.</figcaption>
+</figure>
+</div>
+<p>The corresponding results were: :contentReference<span data-index="7">oaicite:7</span></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 26%">
+<col style="width: 26%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th style="text-align: right;">First natural frequency</th>
+<th style="text-align: right;">Maximum TP displacement</th>
+<th style="text-align: right;">Maximum member stress</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Rigid &amp; FF</td>
+<td style="text-align: right;">0.324 Hz</td>
+<td style="text-align: right;">0.124 m</td>
+<td style="text-align: right;">67.341 MPa</td>
+</tr>
+<tr class="even">
+<td>LJF &amp; FF</td>
+<td style="text-align: right;">0.301 Hz</td>
+<td style="text-align: right;">0.155 m</td>
+<td style="text-align: right;">43.694 MPa</td>
+</tr>
+<tr class="odd">
+<td>Rigid &amp; DNS</td>
+<td style="text-align: right;">0.317 Hz</td>
+<td style="text-align: right;">0.147 m</td>
+<td style="text-align: right;">60.032 MPa</td>
+</tr>
+<tr class="even">
+<td><strong>LJF &amp; DNS</strong></td>
+<td style="text-align: right;"><strong>0.279 Hz</strong></td>
+<td style="text-align: right;"><strong>0.216 m</strong></td>
+<td style="text-align: right;"><strong>52.848 MPa</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Relative to LJF &amp; DNS, the completely rigidized Rigid &amp; FF model predicted a first natural frequency <strong>16.13% higher</strong> and a maximum transition-piece displacement <strong>42.30% lower</strong>. :contentReference<span data-index="8">oaicite:8</span></p>
+<p>This is too large to dismiss as a small modeling detail.</p>
+<p>The model is describing a substantially different mechanical system.</p>
+<hr>
+</section>
+<section id="why-do-many-small-flexibilities-matter-so-much" class="level2">
+<h2 class="anchored" data-anchor-id="why-do-many-small-flexibilities-matter-so-much">Why do many small flexibilities matter so much?</h2>
+<p>The reason becomes clearer if we stop thinking of the jacket as a collection of beam elements and instead think of it as a sequence of deformable structural regions.</p>
+<p>Very schematically,</p>
+<p><span class="math display">\[
+\text{tower}
+-
+\text{TP}
+-
+\text{joint}
+-
+\text{member}
+-
+\text{joint}
+-
+\text{pile}
+-
+\text{soil}.
+\]</span></p>
+<p>Under a generalized load <span class="math inline">\(F\)</span>, the total displacement can be viewed conceptually as</p>
+<p><span class="math display">\[
+u_{\mathrm{total}}
+=
+u_{\mathrm{TP}}
++
+u_{\mathrm{members}}
++
+u_{\mathrm{joints}}
++
+u_{\mathrm{foundation}}.
+\]</span></p>
+<p>This is not intended as a literal decomposition for a three-dimensional coupled jacket system.</p>
+<p>It is a useful mechanical picture.</p>
+<p>If a numerical model assumes</p>
+<p><span class="math display">\[
+u_{\mathrm{joints}}=0
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+u_{\mathrm{foundation}}=0,
+\]</span></p>
+<p>the total displacement becomes smaller.</p>
+<p>The corresponding effective stiffness,</p>
+<p><span class="math display">\[
+k_{\mathrm{eff}}
+\sim
+\frac{F}{u_{\mathrm{total}}},
+\]</span></p>
+<p>becomes larger.</p>
+<p>The natural frequency then tends to increase because, schematically,</p>
+<p><span class="math display">\[
+f
+\propto
+\sqrt{\frac{k_{\mathrm{eff}}}{m}}.
+\]</span></p>
+<p>So the change in natural frequency is not mysterious.</p>
+<p>The simplified model has removed real deformation mechanisms from the system.</p>
+<hr>
+</section>
+<section id="the-critical-flexibility-may-be-concentrated-at-interfaces" class="level2">
+<h2 class="anchored" data-anchor-id="the-critical-flexibility-may-be-concentrated-at-interfaces">The critical flexibility may be concentrated at interfaces</h2>
+<p>This leads to a broader structural observation.</p>
+<p>The long tubular members are visually dominant.</p>
+<p>But they are not necessarily where the most important modeling uncertainty resides.</p>
+<p>Significant deformation mechanisms can be concentrated at</p>
+<p><span class="math display">\[
+\boxed{
+\text{interfaces}
+}
+\]</span></p>
+<p>such as</p>
+<ul>
+<li>tower-transition-piece load transfer,</li>
+<li>brace-chord joints,</li>
+<li>pile-soil interaction.</li>
+</ul>
+<p>The transition-piece study showed that changing local geometry can substantially alter how load flows from the tower into the jacket.</p>
+<p>The later dynamic study showed that allowing local chord deformation and pile-soil deformation changes the stiffness and dynamic response of the entire turbine. :contentReference<span data-index="9">oaicite:9</span></p>
+<p>These results operate at different scales, but they tell the same mechanical story.</p>
+<hr>
+</section>
+<section id="local-mechanics-can-control-global-dynamics" class="level2">
+<h2 class="anchored" data-anchor-id="local-mechanics-can-control-global-dynamics">Local mechanics can control global dynamics</h2>
+<p>This is perhaps the most important connection between the two studies.</p>
+<p>The transition-piece problem initially appears <strong>local</strong>:</p>
+<blockquote class="blockquote">
+<p>How should the tower load enter the jacket?</p>
+</blockquote>
+<p>The tubular-joint problem also appears <strong>local</strong>:</p>
+<blockquote class="blockquote">
+<p>How much does the chord wall deform when a brace transfers load into it?</p>
+</blockquote>
+<p>Pile-soil interaction likewise appears to be a <strong>foundation detail</strong>:</p>
+<blockquote class="blockquote">
+<p>How does the pile deform against the surrounding soil?</p>
+</blockquote>
+<p>But each local mechanism contributes to global flexibility.</p>
+<p>And global flexibility determines dynamic properties such as</p>
+<p><span class="math display">\[
+f_n,
+\qquad
+u(t),
+\qquad
+\sigma(t).
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\boxed{
+\text{local load transfer}
+\rightarrow
+\text{local deformation}
+\rightarrow
+\text{global stiffness}
+\rightarrow
+\text{global dynamic response}
+}
+\]</span></p>
+<p>This is why seemingly small modeling decisions at joints and foundations can alter predictions for the entire offshore wind turbine.</p>
+<hr>
+</section>
+<section id="why-this-matters-especially-for-offshore-wind-turbines" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-matters-especially-for-offshore-wind-turbines">Why this matters especially for offshore wind turbines</h2>
+<p>For many conventional structures, a moderate error in natural frequency may not dominate design.</p>
+<p>Offshore wind turbines are different.</p>
+<p>They operate continuously under cyclic aerodynamic and hydrodynamic excitation.</p>
+<p>The structural natural frequencies must therefore be considered relative to excitation frequencies associated with rotor rotation and blade passing.</p>
+<p>In the 2024 study, the rotor rotational-frequency range was approximately</p>
+<p><span class="math display">\[
+0.115\text{--}0.202~\text{Hz},
+\]</span></p>
+<p>while the blade-passing range was approximately</p>
+<p><span class="math display">\[
+0.345\text{--}0.606~\text{Hz}.
+\]</span></p>
+<p>The rigid-joint model produced a first natural frequency of</p>
+<p><span class="math display">\[
+0.324~\text{Hz},
+\]</span></p>
+<p>placing it close to the blade-passing-frequency region considered in the analysis.</p>
+<p>Accounting for both LJF and DNS foundation flexibility reduced the corresponding first natural frequency to</p>
+<p><span class="math display">\[
+0.279~\text{Hz}.
+\]</span></p>
+<p>Thus, modeling flexibility can change not only calculated displacement and stress.</p>
+<p>It can alter the engineer’s interpretation of the <strong>dynamic separation between structural and excitation frequencies</strong>. :contentReference<span data-index="10">oaicite:10</span></p>
+<hr>
+</section>
+<section id="simplification-is-not-the-problem" class="level2">
+<h2 class="anchored" data-anchor-id="simplification-is-not-the-problem">Simplification is not the problem</h2>
+<p>This does not mean that every jacket offshore wind turbine should always be modeled using detailed shell elements, full three-dimensional soil continua, and highly expensive nonlinear simulations.</p>
+<p>Engineering analysis necessarily uses idealization.</p>
+<p>The real question is:</p>
+<blockquote class="blockquote">
+<p><strong>Which deformation mechanisms can safely be simplified, and which ones control the response we care about?</strong></p>
+</blockquote>
+<p>Frame elements remain extremely useful because they make analysis of large jacket structures computationally efficient.</p>
+<p>Simplified foundation models can also be appropriate.</p>
+<p>The 2024 study itself examined simplified models precisely because practical engineering requires them. It further found that different simplified models behave differently as soil and pile stiffness change. :contentReference<span data-index="11">oaicite:11</span></p>
+<p>The important point is to understand what each simplification removes.</p>
+<p>A rigid joint removes local chord deformation.</p>
+<p>A fixed foundation removes pile-soil deformation.</p>
+<p>A simplified transition piece may remove the actual mechanism by which tower loads are redistributed into the jacket legs.</p>
+<p>If those deformation mechanisms are important to the response quantity being studied, the simplification becomes important too.</p>
+<hr>
+</section>
+<section id="stiffness-is-a-system-property" class="level2">
+<h2 class="anchored" data-anchor-id="stiffness-is-a-system-property">Stiffness is a system property</h2>
+<p>Structural engineers often associate stiffness with a member property:</p>
+<p><span class="math display">\[
+EA,
+\qquad
+EI,
+\qquad
+GJ.
+\]</span></p>
+<p>These quantities are fundamental.</p>
+<p>But the offshore jacket example reminds us that <strong>global structural stiffness is not obtained from member stiffness alone</strong>.</p>
+<p>It emerges from the assembled system:</p>
+<p><span class="math display">\[
+\boxed{
+\text{Global stiffness}
+=
+\text{members}
++
+\text{connections}
++
+\text{load-transfer regions}
++
+\text{foundation interaction}.
+}
+\]</span></p>
+<p>This is a conceptual statement rather than a literal additive stiffness equation.</p>
+<p>Its purpose is to emphasize where deformation can occur.</p>
+<p>A sophisticated beam model with perfectly rigid joints and perfectly fixed foundations may therefore be less representative than a relatively simple model that captures the dominant flexibility mechanisms correctly.</p>
+<hr>
+</section>
+<section id="what-should-an-engineer-look-for" class="level2">
+<h2 class="anchored" data-anchor-id="what-should-an-engineer-look-for">What should an engineer look for?</h2>
+<p>When constructing or reviewing a jacket offshore wind turbine model, it is useful to ask:</p>
+<p><strong>How does the tower load enter the jacket?</strong></p>
+<p>Is the transition-piece geometry providing a rational load path, or is stress being forced through localized regions?</p>
+<p><strong>Are the tubular joints really rigid?</strong></p>
+<p>If local chord-wall deformation contributes significantly to the response, a rigid beam intersection may overestimate stiffness.</p>
+<p><strong>Where is the foundation assumed to be fixed?</strong></p>
+<p>Does that boundary condition represent the actual pile-soil system sufficiently well for the response being investigated?</p>
+<p><strong>Which response quantity matters?</strong></p>
+<p>Natural frequency, displacement, member stress, and fatigue may respond differently to the same modeling simplification.</p>
+<p>This last point is particularly important.</p>
+<p>A modeling assumption that appears conservative for one quantity can be non-conservative for another.</p>
+<hr>
+</section>
+<section id="limitations" class="level2">
+<h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
+<p>The results discussed here come from two specific numerical studies and should not be interpreted as universal correction factors for all jacket-supported offshore wind turbines.</p>
+<p>The transition-piece study used an NREL 5-MW reference turbine and a specific jacket geometry and environmental condition. The structural comparisons were made for the particular transition-piece concepts examined in that study.</p>
+<p>The joint- and foundation-flexibility study likewise used a specific 5-MW jacket-supported OWT, soil profile, environmental conditions, joint formulations, and foundation models. It also simplified the turbine-blade-hub system as a lumped mass and represented aerodynamic loading in simplified form. :contentReference<span data-index="12">oaicite:12</span></p>
+<p>Therefore, values such as</p>
+<p><span class="math display">\[
+16.13\%,
+\qquad
+42.30\%,
+\]</span></p>
+<p>should not be applied as general correction factors.</p>
+<p>Their importance is conceptual:</p>
+<blockquote class="blockquote">
+<p><strong>Neglected interface flexibility can be large enough to materially change the predicted response of the entire structure.</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="engineering-takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="engineering-takeaway">Engineering takeaway</h2>
+<p>A jacket offshore wind turbine is easy to draw as a frame.</p>
+<p>But mechanically, it is a chain of load-transfer and deformation mechanisms:</p>
+<p><span class="math display">\[
+\text{Tower}
+\rightarrow
+\text{Transition piece}
+\rightarrow
+\text{Tubular joints}
+\rightarrow
+\text{Jacket members}
+\rightarrow
+\text{Piles}
+\rightarrow
+\text{Soil}.
+\]</span></p>
+<p>The members matter.</p>
+<p>But so do the places where the members meet, where the load changes its path, and where the structure enters the ground.</p>
+<p>That leads to the central engineering principle:</p>
+<blockquote class="blockquote">
+<p><strong>The members are not the whole structure. The interfaces are part of the stiffness too.</strong></p>
+</blockquote>
+<p>And when a numerical model appears unexpectedly stiff, the first question should not always be:</p>
+<blockquote class="blockquote">
+<p><strong>Are the members too large?</strong></p>
+</blockquote>
+<p>It may be more useful to ask:</p>
+<blockquote class="blockquote">
+<p><strong>Which real deformation mechanism did the model remove?</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="original-research" class="level2">
+<h2 class="anchored" data-anchor-id="original-research">Original research</h2>
+<p><strong>Ma, C., &amp; Zi, G. (2022).</strong> <em>Comparative study on the structural behavior of a transition piece for offshore wind turbine with jacket support.</em> <em>Steel and Composite Structures</em>, 43(3), 363–373. DOI: 10.12989/scs.2022.43.3.363</p>
+<p><strong>Ma, C., Saghi, H., Choo, Y.-W., Ju, Y. K., Yoo, C., &amp; Zi, G. (2024).</strong> <em>Influence of different foundation models on the dynamic response of jacket offshore wind turbines with local joint flexibility.</em> <em>Steel and Composite Structures</em>, 53(5), 629–651. DOI: 10.12989/scs.2024.53.5.629</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

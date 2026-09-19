@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Goangseup Zi">
+<meta name="dcterms.date" content="2026-09-04">
+
+<title>Why Is a Mooring Line More Than a Nonlinear Spring? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research Explained</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../z-diagram.html"> 
+<span class="menu-text">Z-Diagram</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../latex-writing.html"> 
+<span class="menu-text">LaTeX &amp; Writing</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-lost-when-a-mooring-line-becomes-a-spring" id="toc-what-is-lost-when-a-mooring-line-becomes-a-spring" class="nav-link active" data-scroll-target="#what-is-lost-when-a-mooring-line-becomes-a-spring">What is lost when a mooring line becomes a spring?</a></li>
+  <li><a href="#start-with-a-small-segment" id="toc-start-with-a-small-segment" class="nav-link" data-scroll-target="#start-with-a-small-segment">Start with a small segment</a></li>
+  <li><a href="#why-write-the-equation-in-the-initial-configuration" id="toc-why-write-the-equation-in-the-initial-configuration" class="nav-link" data-scroll-target="#why-write-the-equation-in-the-initial-configuration">Why write the equation in the initial configuration?</a></li>
+  <li><a href="#geometry-and-tension-are-coupled" id="toc-geometry-and-tension-are-coupled" class="nav-link" data-scroll-target="#geometry-and-tension-are-coupled">Geometry and tension are coupled</a></li>
+  <li><a href="#the-same-mechanics-can-be-written-through-virtual-work" id="toc-the-same-mechanics-can-be-written-through-virtual-work" class="nav-link" data-scroll-target="#the-same-mechanics-can-be-written-through-virtual-work">The same mechanics can be written through virtual work</a></li>
+  <li><a href="#from-a-continuous-line-to-finite-elements" id="toc-from-a-continuous-line-to-finite-elements" class="nav-link" data-scroll-target="#from-a-continuous-line-to-finite-elements">From a continuous line to finite elements</a></li>
+  <li><a href="#gravity-and-buoyancy-act-together" id="toc-gravity-and-buoyancy-act-together" class="nav-link" data-scroll-target="#gravity-and-buoyancy-act-together">Gravity and buoyancy act together</a></li>
+  <li><a href="#drag-depends-on-relative-velocity-not-line-velocity-alone" id="toc-drag-depends-on-relative-velocity-not-line-velocity-alone" class="nav-link" data-scroll-target="#drag-depends-on-relative-velocity-not-line-velocity-alone">Drag depends on relative velocity, not line velocity alone</a></li>
+  <li><a href="#normal-and-tangential-drag-are-different" id="toc-normal-and-tangential-drag-are-different" class="nav-link" data-scroll-target="#normal-and-tangential-drag-are-different">Normal and tangential drag are different</a></li>
+  <li><a href="#the-external-force-must-be-updated-along-the-line" id="toc-the-external-force-must-be-updated-along-the-line" class="nav-link" data-scroll-target="#the-external-force-must-be-updated-along-the-line">The external force must be updated along the line</a></li>
+  <li><a href="#why-solve-the-problem-in-time" id="toc-why-solve-the-problem-in-time" class="nav-link" data-scroll-target="#why-solve-the-problem-in-time">Why solve the problem in time?</a></li>
+  <li><a href="#newmark-beta-time-integration" id="toc-newmark-beta-time-integration" class="nav-link" data-scroll-target="#newmark-beta-time-integration">Newmark-<span class="math inline">\(\beta\)</span> time integration</a></li>
+  <li><a href="#first-verification-can-the-line-find-its-static-equilibrium" id="toc-first-verification-can-the-line-find-its-static-equilibrium" class="nav-link" data-scroll-target="#first-verification-can-the-line-find-its-static-equilibrium">First verification: can the line find its static equilibrium?</a></li>
+  <li><a href="#second-verification-move-the-fairlead" id="toc-second-verification-move-the-fairlead" class="nav-link" data-scroll-target="#second-verification-move-the-fairlead">Second verification: move the fairlead</a></li>
+  <li><a href="#what-does-this-mean-for-a-floating-structure" id="toc-what-does-this-mean-for-a-floating-structure" class="nav-link" data-scroll-target="#what-does-this-mean-for-a-floating-structure">What does this mean for a floating structure?</a></li>
+  <li><a href="#when-is-an-equivalent-mooring-stiffness-enough" id="toc-when-is-an-equivalent-mooring-stiffness-enough" class="nav-link" data-scroll-target="#when-is-an-equivalent-mooring-stiffness-enough">When is an equivalent mooring stiffness enough?</a></li>
+  <li><a href="#frequency-domain-and-time-domain-answer-different-questions" id="toc-frequency-domain-and-time-domain-answer-different-questions" class="nav-link" data-scroll-target="#frequency-domain-and-time-domain-answer-different-questions">Frequency domain and time domain answer different questions</a></li>
+  <li><a href="#engineering-takeaway" id="toc-engineering-takeaway" class="nav-link" data-scroll-target="#engineering-takeaway">Engineering takeaway</a></li>
+  <li><a href="#previous-article" id="toc-previous-article" class="nav-link" data-scroll-target="#previous-article">Previous article</a></li>
+  <li><a href="#source-note-and-further-reading" id="toc-source-note-and-further-reading" class="nav-link" data-scroll-target="#source-note-and-further-reading">Source note and further reading</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Why Is a Mooring Line More Than a Nonlinear Spring?</h1>
+<p class="subtitle lead">A mechanics-based introduction to mooring-line dynamics in the time domain</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Engineering Mechanics</div>
+    <div class="quarto-category">Mooring</div>
+    <div class="quarto-category">Offshore Engineering</div>
+    <div class="quarto-category">Structural Dynamics</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Goangseup Zi </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 4, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Mooring lines keep floating structures in position.</p>
+<p>In a simplified floating-body model, a mooring system is often represented by an equivalent stiffness. Around an equilibrium configuration, that approximation can be extremely useful.</p>
+<p>But what is hidden inside that stiffness?</p>
+<p>A real mooring line has mass. Its geometry changes. Its tension depends on deformation. It is subjected to gravity and buoyancy. It moves relative to the surrounding water and therefore experiences hydrodynamic drag.</p>
+<p>So the force at the fairlead is not determined by displacement alone.</p>
+<p>The central engineering question is:</p>
+<blockquote class="blockquote">
+<p><strong>When does a mooring line stop behaving like a restoring spring and have to be treated as a dynamic structure of its own?</strong></p>
+</blockquote>
+<p>The key principle is:</p>
+<blockquote class="blockquote">
+<p><strong>A mooring line does not merely provide restoring stiffness. Its own mass, deformation, fluid interaction, and motion determine the force transmitted to the floating structure.</strong></p>
+</blockquote>
+<section id="what-is-lost-when-a-mooring-line-becomes-a-spring" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-lost-when-a-mooring-line-becomes-a-spring">What is lost when a mooring line becomes a spring?</h2>
+<p>Suppose the fairlead displacement is <span class="math inline">\(u\)</span>.</p>
+<p>A simple linearized model might write</p>
+<p><span class="math display">\[
+F_m = k_m u,
+\]</span></p>
+<p>where <span class="math inline">\(k_m\)</span> is an equivalent mooring stiffness.</p>
+<p>A nonlinear quasi-static model may improve this to</p>
+<p><span class="math display">\[
+F_m = F_m(u).
+\]</span></p>
+<p>These models can describe how the equilibrium restoring force changes with fairlead position.</p>
+<p>But a dynamic mooring line contains additional state information.</p>
+<p>At a given instant, its force can depend on</p>
+<ul>
+<li>its current configuration,</li>
+<li>its axial strain,</li>
+<li>its velocity,</li>
+<li>the surrounding water velocity,</li>
+<li>inertia of the line,</li>
+<li>gravity,</li>
+<li>buoyancy,</li>
+<li>and hydrodynamic drag.</li>
+</ul>
+<p>Therefore, two states with the same fairlead position do not necessarily have the same fairlead tension.</p>
+<p>That is the fundamental reason a dynamic line cannot, in general, be reduced to a displacement-only spring.</p>
+</section>
+<section id="start-with-a-small-segment" class="level2">
+<h2 class="anchored" data-anchor-id="start-with-a-small-segment">Start with a small segment</h2>
+<p>The cleanest way to understand the dynamics is to isolate a small segment.</p>
+<p>Let <span class="math inline">\(S\)</span> denote the coordinate in the initial configuration. A segment of initial length <span class="math inline">\(dS\)</span> deforms to a current length <span class="math inline">\(dS^*\)</span>.</p>
+<div id="fig-segment" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-segment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig01.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:82.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-segment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: A mooring-line segment before and after deformation. The initial segment <span class="math inline">\(dS\)</span> becomes <span class="math inline">\(dS^*\)</span>, while the internal tension changes from <span class="math inline">\(\mathbf{T}\)</span> to <span class="math inline">\(\mathbf{T}+d\mathbf{T}\)</span> and distributed external force <span class="math inline">\(\mathbf{f}\)</span> acts along the segment.
+</figcaption>
+</figure>
+</div>
+<p>Force equilibrium in the deformed configuration gives</p>
+<p><span class="math display">\[
+\rho^* \ddot{\mathbf r}\,dS^*
+=
+d\mathbf T
++
+\mathbf f\,dS^*,
+\]</span></p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\(\rho^*\)</span> is mass per unit current length,</li>
+<li><span class="math inline">\(\mathbf r\)</span> is the current position,</li>
+<li><span class="math inline">\(\mathbf T\)</span> is the internal tensile-force vector,</li>
+<li>and <span class="math inline">\(\mathbf f\)</span> is distributed external force per unit current length.</li>
+</ul>
+<p>The external force may contain gravity, buoyancy, and hydrodynamic drag.</p>
+<p>For a highly slender mooring line, the formulation considered here neglects diffraction and radiation effects and treats the surrounding-fluid contribution through distributed forces such as buoyancy and drag.</p>
+</section>
+<section id="why-write-the-equation-in-the-initial-configuration" class="level2">
+<h2 class="anchored" data-anchor-id="why-write-the-equation-in-the-initial-configuration">Why write the equation in the initial configuration?</h2>
+<p>The geometry is changing, so <span class="math inline">\(dS^*\)</span> is not constant.</p>
+<p>Compatibility gives</p>
+<p><span class="math display">\[
+dS^*
+=
+(1+\varepsilon)dS,
+\]</span></p>
+<p>where <span class="math inline">\(\varepsilon\)</span> is the axial strain measure used in the formulation.</p>
+<p>Mass conservation gives</p>
+<p><span class="math display">\[
+\rho^*dS^*
+=
+\rho dS,
+\]</span></p>
+<p>where <span class="math inline">\(\rho\)</span> is mass per unit initial length.</p>
+<p>Using these relations, equilibrium can be written with respect to the fixed initial coordinate <span class="math inline">\(S\)</span>:</p>
+<p><span class="math display">\[
+\rho\ddot{\mathbf r}
+=
+\frac{\partial\mathbf T}{\partial S}
++
+(1+\varepsilon)\mathbf f.
+\]</span></p>
+<p>This transformation is computationally useful.</p>
+<p>The line moves through space, but the material coordinate used for discretization remains attached to the initial line.</p>
+</section>
+<section id="geometry-and-tension-are-coupled" class="level2">
+<h2 class="anchored" data-anchor-id="geometry-and-tension-are-coupled">Geometry and tension are coupled</h2>
+<p>For an elastic line, the tensile-force vector is</p>
+<p><span class="math display">\[
+\mathbf T
+=
+E\varepsilon A\mathbf n_t,
+\]</span></p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\(E\)</span> is Young’s modulus,</li>
+<li><span class="math inline">\(A\)</span> is the reference cross-sectional area,</li>
+<li>and <span class="math inline">\(\mathbf n_t\)</span> is the unit tangent to the current line.</li>
+</ul>
+<p>Because</p>
+<p><span class="math display">\[
+\mathbf n_t
+=
+\frac{\partial\mathbf r}{\partial S^*},
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+dS^*
+=
+(1+\varepsilon)dS,
+\]</span></p>
+<p>we obtain</p>
+<p><span class="math display">\[
+\mathbf T
+=
+EA
+\frac{\varepsilon}{1+\varepsilon}
+\frac{\partial\mathbf r}{\partial S}.
+\]</span></p>
+<p>Substituting this into equilibrium gives the governing equation</p>
+<p><span class="math display">\[
+\rho\ddot{\mathbf r}
+=
+\frac{\partial}{\partial S}
+\left[
+EA
+\frac{\varepsilon}{1+\varepsilon}
+\frac{\partial\mathbf r}{\partial S}
+\right]
++
+(1+\varepsilon)\mathbf f.
+\]</span></p>
+<p>This equation already explains why the line is nonlinear.</p>
+<p>The internal-force direction changes with geometry, while the strain and tension change with deformation.</p>
+<p>The geometry determines the force.</p>
+<p>The force changes the geometry.</p>
+<p>That feedback is the essence of geometric nonlinearity in a mooring line.</p>
+</section>
+<section id="the-same-mechanics-can-be-written-through-virtual-work" class="level2">
+<h2 class="anchored" data-anchor-id="the-same-mechanics-can-be-written-through-virtual-work">The same mechanics can be written through virtual work</h2>
+<p>For the line, the virtual-work statement can be written as</p>
+<p><span class="math display">\[
+\delta W_{\mathrm{kin}}
+=
+\delta W_{\mathrm{ext}}
+-
+\delta W_{\mathrm{int}}.
+\]</span></p>
+<p>The terms are</p>
+<p><span class="math display">\[
+\delta W_{\mathrm{kin}}
+=
+\int_L
+\rho\,\delta\mathbf r\cdot\ddot{\mathbf r}\,dS,
+\]</span></p>
+<p><span class="math display">\[
+\delta W_{\mathrm{ext}}
+=
+\int_L
+\delta\mathbf r\cdot(1+\varepsilon)\mathbf f\,dS,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\delta W_{\mathrm{int}}
+=
+\int_L
+\frac{\partial\delta\mathbf r}{\partial S}
+\cdot\mathbf T\,dS.
+\]</span></p>
+<p>This form is useful because it leads directly to a finite-element discretization.</p>
+</section>
+<section id="from-a-continuous-line-to-finite-elements" class="level2">
+<h2 class="anchored" data-anchor-id="from-a-continuous-line-to-finite-elements">From a continuous line to finite elements</h2>
+<p>Interpolate the position by one-dimensional shape functions,</p>
+<p><span class="math display">\[
+\mathbf r(S,t)
+=
+N_J(S)\mathbf r_J(t),
+\]</span></p>
+<p>and similarly,</p>
+<p><span class="math display">\[
+\delta\mathbf r(S,t)
+=
+N_I(S)\delta\mathbf r_I(t).
+\]</span></p>
+<p>The discrete equation becomes</p>
+<p><span class="math display">\[
+\mathbf M\ddot{\mathbf r}
++
+\mathbf C\dot{\mathbf r}
++
+\mathbf K\mathbf r
+=
+\mathbf f^{\mathrm{ext}}.
+\]</span></p>
+<p>This looks deceptively similar to an ordinary linear structural-dynamics equation.</p>
+<p>But here the stiffness and external force depend on the evolving state of the line.</p>
+<p>For an element,</p>
+<p><span class="math display">\[
+M_{IJ}^{e}
+=
+\int_{L_e}
+\rho N_I N_J\,dS,
+\]</span></p>
+<p>while the stiffness contribution takes the form</p>
+<p><span class="math display">\[
+K_{IJ}^{e}
+=
+\int_{L_e}
+\frac{dN_I}{dS}
+EA\frac{\varepsilon}{1+\varepsilon}
+\frac{dN_J}{dS}
+\,dS.
+\]</span></p>
+<p>The distributed external force is</p>
+<p><span class="math display">\[
+f_I^{e,\mathrm{ext}}
+=
+\int_{L_e}
+N_I(1+\varepsilon)\mathbf f\,dS,
+\]</span></p>
+<p>with concentrated nodal forces added where required.</p>
+<p>The matrices are assembled in the usual finite-element manner.</p>
+<p>So the numerical framework is familiar.</p>
+<p>The nonlinear physics enters through the current geometry, strain, and fluid-relative velocity.</p>
+</section>
+<section id="gravity-and-buoyancy-act-together" class="level2">
+<h2 class="anchored" data-anchor-id="gravity-and-buoyancy-act-together">Gravity and buoyancy act together</h2>
+<p>The gravity force per unit current length is</p>
+<p><span class="math display">\[
+\mathbf f_g
+=
+-\frac{\rho g}{1+\varepsilon}\mathbf e_3.
+\]</span></p>
+<p>The buoyancy force acts upward.</p>
+<p>With the density definitions used in the source formulation, the combined gravity and buoyancy contribution becomes</p>
+<p><span class="math display">\[
+\mathbf f_g+\mathbf f_b
+=
+\frac{\rho_w-\rho_c}{\rho_c}
+\frac{\rho g}{1+\varepsilon}
+\mathbf e_3,
+\]</span></p>
+<p>where <span class="math inline">\(\rho_w\)</span> is water density and <span class="math inline">\(\rho_c\)</span> is the nominal material density of the cable.</p>
+<p>This term determines the submerged weight that strongly influences the equilibrium configuration.</p>
+<p>For a heavy line, gravity dominates.</p>
+<p>As buoyancy increases, the effective submerged weight decreases.</p>
+<p>The static shape is therefore already a fluid–structure problem even before dynamic drag is introduced.</p>
+</section>
+<section id="drag-depends-on-relative-velocity-not-line-velocity-alone" class="level2">
+<h2 class="anchored" data-anchor-id="drag-depends-on-relative-velocity-not-line-velocity-alone">Drag depends on relative velocity, not line velocity alone</h2>
+<p>This is one of the most important points in the formulation.</p>
+<p>The relevant velocity is</p>
+<p><span class="math display">\[
+\mathbf v_r
+=
+\dot{\mathbf r}
+-
+\mathbf v_w,
+\]</span></p>
+<p>where <span class="math inline">\(\dot{\mathbf r}\)</span> is line velocity and <span class="math inline">\(\mathbf v_w\)</span> is water velocity.</p>
+<p>The fluid does not care how fast the line moves relative to the seabed.</p>
+<p>It responds to how fast the line moves <strong>relative to the surrounding water</strong>.</p>
+<div id="fig-relative-velocity" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-relative-velocity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig02.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:82.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-relative-velocity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: The relative velocity <span class="math inline">\(\mathbf v_r=\dot{\mathbf r}-\mathbf v_w\)</span> is decomposed into components tangential and normal to the current mooring-line geometry. Hydrodynamic drag is then evaluated separately in these directions.
+</figcaption>
+</figure>
+</div>
+<p>The current unit tangent is <span class="math inline">\(\mathbf n_t\)</span>.</p>
+<p>The tangential relative velocity is obtained by projection,</p>
+<p><span class="math display">\[
+\mathbf v_{rt}
+=
+(\mathbf n_t\otimes\mathbf n_t)\cdot\mathbf v_r.
+\]</span></p>
+<p>The normal component follows from</p>
+<p><span class="math display">\[
+\mathbf v_{rn}
+=
+\mathbf v_r-\mathbf v_{rt},
+\]</span></p>
+<p>or</p>
+<p><span class="math display">\[
+\mathbf v_{rn}
+=
+(\mathbf I-\mathbf n_t\otimes\mathbf n_t)\cdot\mathbf v_r.
+\]</span></p>
+<p>There is a subtle mechanical point here.</p>
+<p>The <strong>tangential direction</strong> comes from the current geometry of the cable.</p>
+<p>But the direction of the normal relative motion cannot be determined from cable geometry alone. It depends on the relative-velocity vector.</p>
+<p>That is why vector decomposition is preferable to assigning a single geometrical “normal” to a three-dimensional cable.</p>
+</section>
+<section id="normal-and-tangential-drag-are-different" class="level2">
+<h2 class="anchored" data-anchor-id="normal-and-tangential-drag-are-different">Normal and tangential drag are different</h2>
+<p>Different drag coefficients may be used in the normal and tangential directions.</p>
+<p>In the source formulation,</p>
+<p><span class="math display">\[
+\mathbf f_d
+=
+\mathbf f_{dn}
++
+\mathbf f_{dt},
+\]</span></p>
+<p>with</p>
+<p><span class="math display">\[
+\mathbf f_{dn}
+=
+-
+\frac{B_{wn}(\varepsilon)}{1+\varepsilon}
+\sqrt{\mathbf v_{rn}\cdot\mathbf v_{rn}}\,
+\mathbf v_{rn},
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\mathbf f_{dt}
+=
+-
+\frac{B_{wt}(\varepsilon)}{1+\varepsilon}
+\sqrt{\mathbf v_{rt}\cdot\mathbf v_{rt}}\,
+\mathbf v_{rt}.
+\]</span></p>
+<p>The drag is therefore nonlinear in relative velocity.</p>
+<p>This immediately explains why a purely frequency-domain representation of the complete mooring-line dynamics is not as straightforward as the linearized floating-body formulation in the companion article.</p>
+<p>The line configuration changes.</p>
+<p>The velocity direction changes.</p>
+<p>The drag changes quadratically with relative velocity.</p>
+<p>And all three evolve together.</p>
+</section>
+<section id="the-external-force-must-be-updated-along-the-line" class="level2">
+<h2 class="anchored" data-anchor-id="the-external-force-must-be-updated-along-the-line">The external force must be updated along the line</h2>
+<p>The element external-force vector combines concentrated loads with gravity, buoyancy, and drag:</p>
+<p><span class="math display">\[
+\mathbf f_I^{e,\mathrm{ext}}
+=
+\mathbf I_{IK}\mathbf F_K
++
+\frac{L_e}{2}
+\int_{-1}^{+1}
+N_I
+\left(
+\mathbf f_g
++
+\mathbf f_b
++
+\mathbf f_{dn}
++
+\mathbf f_{dt}
+\right)d\xi.
+\]</span></p>
+<p>For the two-node linear element used in the note, strain is constant within an element.</p>
+<p>Drag, however, depends on interpolated velocity and therefore must be evaluated at the integration points.</p>
+<p>This is another reason dynamic analysis is an evolving state problem rather than a single static force–displacement calculation.</p>
+</section>
+<section id="why-solve-the-problem-in-time" class="level2">
+<h2 class="anchored" data-anchor-id="why-solve-the-problem-in-time">Why solve the problem in time?</h2>
+<p>The previous article showed the great advantage of frequency-domain analysis:</p>
+<p>a harmonic linear system becomes a complex algebraic equation.</p>
+<p>For the mooring line, the situation is different.</p>
+<p>At every time step,</p>
+<pre class="text"><code>current position
+      ↓
+current geometry
+      ↓
+strain and tension
+      ↓
+relative velocity
+      ↓
+hydrodynamic drag
+      ↓
+acceleration
+      ↓
+new position</code></pre>
+<p>The state changes the forces, and the forces change the state.</p>
+<p>A time-marching method follows this feedback directly.</p>
+</section>
+<section id="newmark-beta-time-integration" class="level2">
+<h2 class="anchored" data-anchor-id="newmark-beta-time-integration">Newmark-<span class="math inline">\(\beta\)</span> time integration</h2>
+<p>The source note uses the Newmark-<span class="math inline">\(\beta\)</span> method.</p>
+<p>Given the state at time step <span class="math inline">\(k\)</span>, predictors for velocity and position are</p>
+<p><span class="math display">\[
+\widetilde{\dot{\mathbf r}}_{k+1}
+=
+\dot{\mathbf r}_k
++
+(1-\gamma)\Delta t\,\ddot{\mathbf r}_k,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\widetilde{\mathbf r}_{k+1}
+=
+\mathbf r_k
++
+\Delta t\,\dot{\mathbf r}_k
++
+\left(
+\frac{1}{2}-\beta
+\right)
+\Delta t^2\ddot{\mathbf r}_k.
+\]</span></p>
+<p>The mass, stiffness, strain, relative velocity, and external forces are then evaluated using the predicted state.</p>
+<p>The discrete equilibrium equation provides the new acceleration.</p>
+<p>Finally,</p>
+<p><span class="math display">\[
+\dot{\mathbf r}_{k+1}
+=
+\widetilde{\dot{\mathbf r}}_{k+1}
++
+\gamma\Delta t\,\ddot{\mathbf r}_{k+1},
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\mathbf r_{k+1}
+=
+\widetilde{\mathbf r}_{k+1}
++
+\beta\Delta t^2\ddot{\mathbf r}_{k+1}.
+\]</span></p>
+<p>The source note identifies <span class="math inline">\(\beta=1/4\)</span> and <span class="math inline">\(\gamma=1/2\)</span> for the implicit average-acceleration form, <span class="math inline">\(\beta=1/6\)</span> and <span class="math inline">\(\gamma=1/2\)</span> for the linear-acceleration method, and <span class="math inline">\(\beta=0\)</span> and <span class="math inline">\(\gamma=1/2\)</span> for the central-difference form.</p>
+<p>The important point for this article is not the particular integration scheme.</p>
+<p>It is what must be updated during integration.</p>
+<blockquote class="blockquote">
+<p><strong>The dynamic state of the line must be reconstructed repeatedly because geometry, tension, and hydrodynamic loading depend on that state.</strong></p>
+</blockquote>
+</section>
+<section id="first-verification-can-the-line-find-its-static-equilibrium" class="level2">
+<h2 class="anchored" data-anchor-id="first-verification-can-the-line-find-its-static-equilibrium">First verification: can the line find its static equilibrium?</h2>
+<p>A dynamic formulation should first recover a sensible equilibrium when dynamic excitation is absent.</p>
+<p>The source example uses</p>
+<ul>
+<li>30 nodes,</li>
+<li>initial line length <span class="math inline">\(L=21\)</span> m,</li>
+<li>initial diameter <span class="math inline">\(D=0.0034\)</span> m,</li>
+<li>Young’s modulus <span class="math inline">\(E=37.45\)</span> GPa,</li>
+<li>tangential drag coefficient <span class="math inline">\(C_{dt}=0.67\)</span>,</li>
+<li>normal drag coefficient <span class="math inline">\(C_{dn}=1.4\)</span>.</li>
+</ul>
+<p>With gravity and buoyancy and no wave loading, the line converges toward its equilibrium configuration.</p>
+<div id="fig-static-verification" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-static-verification-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig03.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:82.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-static-verification-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Calculated and experimental equilibrium configurations of a mooring line fixed at its two ends in still water. The two curves nearly coincide over the line length.
+</figcaption>
+</figure>
+</div>
+<p>The experimental fairlead tension reported in the note is</p>
+<p><span class="math display">\[
+T_{\mathrm{exp}}=14.8\ \mathrm{N},
+\]</span></p>
+<p>while the simulation gives</p>
+<p><span class="math display">\[
+T_{\mathrm{sim}}=14.48\ \mathrm{N}.
+\]</span></p>
+<p>The reported relative error is</p>
+<p><span class="math display">\[
+2.2\%.
+\]</span></p>
+<p>This verification is important because the dynamic model must reproduce the equilibrium balance among elasticity, geometry, gravity, and buoyancy before its transient response is trusted.</p>
+</section>
+<section id="second-verification-move-the-fairlead" class="level2">
+<h2 class="anchored" data-anchor-id="second-verification-move-the-fairlead">Second verification: move the fairlead</h2>
+<p>The more revealing test is dynamic.</p>
+<p>In the source example, the fairlead is moved periodically with</p>
+<p><span class="math display">\[
+T=1.58\ \mathrm{s}
+\]</span></p>
+<p>and displacement amplitude</p>
+<p><span class="math display">\[
+A=0.25\ \mathrm{m}.
+\]</span></p>
+<p>The resulting fairlead tension is compared with the experimental history.</p>
+<div id="fig-dynamic-verification" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dynamic-verification-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig04.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:86.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dynamic-verification-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Time-dependent fairlead tension when the fairlead is moved periodically. The numerical solution reproduces the repeated experimental tension cycles, showing that the model captures the dominant dynamic response.
+</figcaption>
+</figure>
+</div>
+<p>Figure <a href="#fig-dynamic-verification" class="quarto-xref">Figure&nbsp;4</a> demonstrates something that the static force–displacement curve cannot show.</p>
+<p>The fairlead force is an evolving dynamic response.</p>
+<p>It emerges from the combined effects of</p>
+<ul>
+<li>line inertia,</li>
+<li>changing geometry,</li>
+<li>elastic tension,</li>
+<li>gravity and buoyancy,</li>
+<li>and velocity-dependent drag.</li>
+</ul>
+<p>This is precisely what is lost when the entire line is represented by a single spring.</p>
+</section>
+<section id="what-does-this-mean-for-a-floating-structure" class="level2">
+<h2 class="anchored" data-anchor-id="what-does-this-mean-for-a-floating-structure">What does this mean for a floating structure?</h2>
+<p>The mooring line and floating body interact through the fairlead.</p>
+<p>The body motion becomes a boundary condition for the line.</p>
+<p>The line dynamics determine the fairlead force.</p>
+<p>That force then acts back on the floating body.</p>
+<p>Conceptually,</p>
+<pre class="text"><code>floating-body motion
+        ↓
+fairlead motion
+        ↓
+mooring-line dynamics
+        ↓
+fairlead tension
+        ↓
+floating-body force</code></pre>
+<p>This is another fluid–structure interaction loop.</p>
+<p>The line is itself a structure interacting with water, and it is simultaneously coupled to the global floating structure.</p>
+</section>
+<section id="when-is-an-equivalent-mooring-stiffness-enough" class="level2">
+<h2 class="anchored" data-anchor-id="when-is-an-equivalent-mooring-stiffness-enough">When is an equivalent mooring stiffness enough?</h2>
+<p>The detailed dynamic model does not mean that equivalent stiffness should never be used.</p>
+<p>A linearized stiffness can be very effective when</p>
+<ul>
+<li>motion remains close to an equilibrium configuration,</li>
+<li>the main interest is global floating-body response,</li>
+<li>line inertia is secondary,</li>
+<li>velocity-dependent drag is not important,</li>
+<li>and dynamic tension amplification is not the quantity of interest.</li>
+</ul>
+<p>That is why equivalent mooring stiffness fits naturally into a linear frequency-domain floating-body model.</p>
+<p>But the approximation should be recognized for what it is.</p>
+<p>It replaces the evolving internal mechanics of the line by a local relation between fairlead displacement and restoring force.</p>
+<p>When line dynamics matter, the internal state must return to the model.</p>
+</section>
+<section id="frequency-domain-and-time-domain-answer-different-questions" class="level2">
+<h2 class="anchored" data-anchor-id="frequency-domain-and-time-domain-answer-different-questions">Frequency domain and time domain answer different questions</h2>
+<p>The companion frequency-domain article described a linearized floating system in terms of</p>
+<p><span class="math display">\[
+\text{inertia}
++
+\text{damping}
++
+\text{restoring action}
+=
+\text{excitation}.
+\]</span></p>
+<p>That representation is efficient because the relevant effects can be linearized around an equilibrium state.</p>
+<p>The present mooring-line formulation instead follows</p>
+<p><span class="math display">\[
+\text{configuration}
+\rightarrow
+\text{strain}
+\rightarrow
+\text{tension}
+\rightarrow
+\text{fluid-relative velocity}
+\rightarrow
+\text{drag}
+\rightarrow
+\text{motion}.
+\]</span></p>
+<p>The distinction is not simply a choice between two numerical methods.</p>
+<p>It reflects the structure of the mechanics.</p>
+<blockquote class="blockquote">
+<p><strong>Use a frequency-domain representation when linearization preserves the physics you need. Follow the system in time when the evolving state itself controls the forces.</strong></p>
+</blockquote>
+</section>
+<section id="engineering-takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="engineering-takeaway">Engineering takeaway</h2>
+<p>A mooring line may look simple because it is slender and carries primarily tension.</p>
+<p>Its dynamics are not simple.</p>
+<p>The line’s restoring force is generated by an evolving mechanical system involving geometry, elasticity, inertia, submerged weight, and fluid drag.</p>
+<p>So the principle to remember is:</p>
+<blockquote class="blockquote">
+<p><strong>A mooring line does not merely provide restoring stiffness. Its own mass, deformation, fluid interaction, and motion determine the force transmitted to the floating structure.</strong></p>
+</blockquote>
+<p>Or, more compactly:</p>
+<blockquote class="blockquote">
+<p><strong>A mooring line is a dynamic structure, not just a nonlinear spring.</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="previous-article" class="level2">
+<h2 class="anchored" data-anchor-id="previous-article">Previous article</h2>
+<p><strong>How Does a Flexible Floating Structure Respond to Waves in the Frequency Domain?</strong></p>
+<p>The previous article explains how structural mass and stiffness combine with hydrodynamic added mass, radiation damping, hydrostatic restoring stiffness, and wave excitation in a linear frequency-domain formulation.</p>
+</section>
+<section id="source-note-and-further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="source-note-and-further-reading">Source note and further reading</h2>
+<p>This article is developed from the author’s working note, <strong>Fluid-structure interaction for a floating body</strong> (September 4, 2026), particularly its section on mooring-line dynamics in the time domain.</p>
+<p>Belytschko, T., Liu, W. K., &amp; Moran, B. (2000).<br>
+<strong>Nonlinear Finite Elements for Continua and Structures.</strong><br>
+John Wiley &amp; Sons.</p>
+<p><strong>Verification-source note.</strong> The working note compares the static and dynamic calculations with experimental data, but reference [1] in the current draft is incomplete. The experimental source should be identified before the verification figures are attributed to an external publication.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

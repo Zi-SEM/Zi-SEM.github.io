@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Goangseup Zi">
+<meta name="dcterms.date" content="2026-09-04">
+<meta name="description" content="A mechanics-oriented explanation of XFEM: partition-of-unity enrichment, displacement jumps, cohesive crack-tip treatment, evolving crack geometry, and dynamic fracture without remeshing.">
+
+<title>How Does XFEM Let a Crack Cut Through the Mesh? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research Explained</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../z-diagram.html"> 
+<span class="menu-text">Z-Diagram</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../latex-writing.html"> 
+<span class="menu-text">LaTeX &amp; Writing</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#what-is-missing-from-the-ordinary-finite-element-approximation" id="toc-what-is-missing-from-the-ordinary-finite-element-approximation" class="nav-link active" data-scroll-target="#what-is-missing-from-the-ordinary-finite-element-approximation">What is missing from the ordinary finite element approximation?</a></li>
+  <li><a href="#the-old-solution-move-the-mesh-with-the-crack" id="toc-the-old-solution-move-the-mesh-with-the-crack" class="nav-link" data-scroll-target="#the-old-solution-move-the-mesh-with-the-crack">The old solution: move the mesh with the crack</a></li>
+  <li><a href="#partition-of-unity-gives-us-a-way-to-add-information" id="toc-partition-of-unity-gives-us-a-way-to-add-information" class="nav-link" data-scroll-target="#partition-of-unity-gives-us-a-way-to-add-information">Partition of unity gives us a way to add information</a></li>
+  <li><a href="#representing-the-crack-interior" id="toc-representing-the-crack-interior" class="nav-link" data-scroll-target="#representing-the-crack-interior">Representing the crack interior</a></li>
+  <li><a href="#but-the-crack-cannot-remain-open-through-its-tip" id="toc-but-the-crack-cannot-remain-open-through-its-tip" class="nav-link" data-scroll-target="#but-the-crack-cannot-remain-open-through-its-tip">But the crack cannot remain open through its tip</a></li>
+  <li><a href="#cohesive-cracks-change-what-we-should-expect-at-the-tip" id="toc-cohesive-cracks-change-what-we-should-expect-at-the-tip" class="nav-link" data-scroll-target="#cohesive-cracks-change-what-we-should-expect-at-the-tip">Cohesive cracks change what we should expect at the tip</a></li>
+  <li><a href="#another-way-to-localize-crack-tip-resolution" id="toc-another-way-to-localize-crack-tip-resolution" class="nav-link" data-scroll-target="#another-way-to-localize-crack-tip-resolution">Another way to localize crack-tip resolution</a></li>
+  <li><a href="#the-mesh-and-the-crack-now-become-separate-geometries" id="toc-the-mesh-and-the-crack-now-become-separate-geometries" class="nav-link" data-scroll-target="#the-mesh-and-the-crack-now-become-separate-geometries">The mesh and the crack now become separate geometries</a></li>
+  <li><a href="#integration-becomes-harder-even-though-remeshing-disappears" id="toc-integration-becomes-harder-even-though-remeshing-disappears" class="nav-link" data-scroll-target="#integration-becomes-harder-even-though-remeshing-disappears">Integration becomes harder even though remeshing disappears</a></li>
+  <li><a href="#growing-cracks-without-remeshing" id="toc-growing-cracks-without-remeshing" class="nav-link" data-scroll-target="#growing-cracks-without-remeshing">Growing cracks without remeshing</a></li>
+  <li><a href="#dynamic-fracture-the-crack-moves-while-the-body-accelerates" id="toc-dynamic-fracture-the-crack-moves-while-the-body-accelerates" class="nav-link" data-scroll-target="#dynamic-fracture-the-crack-moves-while-the-body-accelerates">Dynamic fracture: the crack moves while the body accelerates</a></li>
+  <li><a href="#multiple-cracks-point-to-the-next-problem" id="toc-multiple-cracks-point-to-the-next-problem" class="nav-link" data-scroll-target="#multiple-cracks-point-to-the-next-problem">Multiple cracks point to the next problem</a></li>
+  <li><a href="#what-information-should-enrichment-contain" id="toc-what-information-should-enrichment-contain" class="nav-link" data-scroll-target="#what-information-should-enrichment-contain">What information should enrichment contain?</a></li>
+  <li><a href="#is-xfem-always-better-than-remeshing" id="toc-is-xfem-always-better-than-remeshing" class="nav-link" data-scroll-target="#is-xfem-always-better-than-remeshing">Is XFEM always better than remeshing?</a></li>
+  <li><a href="#xfem-and-the-z-diagram" id="toc-xfem-and-the-z-diagram" class="nav-link" data-scroll-target="#xfem-and-the-z-diagram">XFEM and the Z Diagram</a></li>
+  <li><a href="#what-xfem-changed-conceptually" id="toc-what-xfem-changed-conceptually" class="nav-link" data-scroll-target="#what-xfem-changed-conceptually">What XFEM changed conceptually</a></li>
+  <li><a href="#from-xfem-to-xefg" id="toc-from-xfem-to-xefg" class="nav-link" data-scroll-target="#from-xfem-to-xefg">From XFEM to XEFG</a></li>
+  <li><a href="#engineering-takeaway" id="toc-engineering-takeaway" class="nav-link" data-scroll-target="#engineering-takeaway">Engineering takeaway</a></li>
+  <li><a href="#continue-the-series" id="toc-continue-the-series" class="nav-link" data-scroll-target="#continue-the-series">Continue the series</a></li>
+  <li><a href="#original-research" id="toc-original-research" class="nav-link" data-scroll-target="#original-research">Original research</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">How Does XFEM Let a Crack Cut Through the Mesh?</h1>
+<p class="subtitle lead">The approximation space—not the element boundary—is given the information needed to represent fracture</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Research Explained</div>
+    <div class="quarto-category">Computational Mechanics &amp; Fracture</div>
+    <div class="quarto-category">Computational Fracture</div>
+    <div class="quarto-category">XFEM</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    A mechanics-oriented explanation of XFEM: partition-of-unity enrichment, displacement jumps, cohesive crack-tip treatment, evolving crack geometry, and dynamic fracture without remeshing.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Goangseup Zi </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 4, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Computational Fracture Series:</strong> <a href="../computational-fracture-overview/">← Overview</a> · Article 2 of 7 · <a href="../xefg-why-meshfree/">Next: XEFG →</a></p>
+<p>In an ordinary finite element analysis, the mesh does two jobs at once.</p>
+<p>It discretizes the body, but it also strongly constrains the functions that can be represented inside that body.</p>
+<p>For most structural problems this is exactly what we want.</p>
+<p>Fracture is different.</p>
+<p>A crack introduces an internal displacement discontinuity that may cut directly through an element. If the finite element approximation remains unchanged, it has no way to represent that jump inside the element.</p>
+<p>The traditional response is obvious:</p>
+<blockquote class="blockquote">
+<p>Make the mesh follow the crack.</p>
+</blockquote>
+<p>That works, but as the crack grows the mesh must also change.</p>
+<p>The extended finite element method (XFEM) asks a fundamentally different question:</p>
+<blockquote class="blockquote">
+<p><strong>Why should the mesh have to follow the crack at all?</strong></p>
+</blockquote>
+<p>Instead of modifying the mesh to imitate the geometry of the discontinuity, XFEM modifies the <strong>approximation space</strong> so that the displacement field can contain the discontinuity.</p>
+<p>That distinction is the central idea of this article.</p>
+<blockquote class="blockquote">
+<p><strong>XFEM does not make the mesh follow the discontinuity. It makes the approximation space capable of containing the discontinuity.</strong></p>
+</blockquote>
+<section id="what-is-missing-from-the-ordinary-finite-element-approximation" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-missing-from-the-ordinary-finite-element-approximation">What is missing from the ordinary finite element approximation?</h2>
+<p>Consider the standard finite element approximation</p>
+<p><span class="math display">\[
+\mathbf{u}^h(\mathbf{x})
+=
+\sum_{I=1}^{n}
+N_I(\mathbf{x})\mathbf{u}_I,
+\]</span></p>
+<p>where <span class="math inline">\(N_I\)</span> are the usual shape functions and <span class="math inline">\(\mathbf{u}_I\)</span> are nodal displacement degrees of freedom.</p>
+<p>Inside an ordinary element, this interpolation produces a displacement field with the continuity implied by those shape functions.</p>
+<p>Now introduce a crack.</p>
+<p>Across the crack faces,</p>
+<p><span class="math display">\[
+[\![\mathbf{u}]\!]
+=
+\mathbf{u}^{+}-\mathbf{u}^{-}
+\neq \mathbf{0}.
+\]</span></p>
+<p>The physical solution contains a jump.</p>
+<p>The ordinary finite element space does not.</p>
+<p>This is the numerical conflict.</p>
+<p>We can resolve it geometrically by placing element boundaries along the crack, because displacement continuity is not enforced between disconnected element faces.</p>
+<p>But then the crack path becomes tied to the mesh.</p>
+<p>For a stationary crack whose geometry is known beforehand, this may be acceptable.</p>
+<p>For a growing crack, it becomes restrictive.</p>
+</section>
+<section id="the-old-solution-move-the-mesh-with-the-crack" class="level2">
+<h2 class="anchored" data-anchor-id="the-old-solution-move-the-mesh-with-the-crack">The old solution: move the mesh with the crack</h2>
+<p>Suppose the crack advances through a conventional finite element mesh.</p>
+<p>A typical remeshing procedure is</p>
+<pre class="text"><code>solve
+→ determine crack growth
+→ extend the crack
+→ construct a new mesh
+→ transfer variables
+→ solve again</code></pre>
+<p>For a single slowly growing crack this is possible.</p>
+<p>But fracture problems quickly become more difficult.</p>
+<p>What happens when:</p>
+<ul>
+<li>the crack turns sharply?</li>
+<li>several cracks grow simultaneously?</li>
+<li>cracks coalesce?</li>
+<li>a crack branches?</li>
+<li>the material is history dependent?</li>
+<li>the crack propagates dynamically?</li>
+</ul>
+<p>The numerical machinery for maintaining the mesh can become comparable in complexity to the fracture calculation itself.</p>
+<p>This motivated a different philosophy:</p>
+<pre class="text"><code>keep the background mesh
+        +
+change the approximation locally</code></pre>
+</section>
+<section id="partition-of-unity-gives-us-a-way-to-add-information" class="level2">
+<h2 class="anchored" data-anchor-id="partition-of-unity-gives-us-a-way-to-add-information">Partition of unity gives us a way to add information</h2>
+<p>The key mathematical mechanism behind XFEM is the partition-of-unity property of finite element shape functions:</p>
+<p><span class="math display">\[
+\sum_I N_I(\mathbf{x}) = 1.
+\]</span></p>
+<p>Because of this property, additional functions can be introduced locally through products with the ordinary shape functions.</p>
+<p>A generic enriched approximation can be written as</p>
+<p><span class="math display">\[
+\mathbf{u}^h(\mathbf{x})
+=
+\sum_{I\in\mathcal{N}}
+N_I(\mathbf{x})\mathbf{u}_I
++
+\sum_{J\in\mathcal{N}_{\mathrm{enr}}}
+N_J(\mathbf{x})
+\Psi(\mathbf{x})\mathbf{a}_J.
+\]</span></p>
+<p>The first term is the ordinary finite element approximation.</p>
+<p>The second term contains new degrees of freedom <span class="math inline">\(\mathbf{a}_J\)</span> multiplied by an enrichment function <span class="math inline">\(\Psi\)</span>.</p>
+<p>This changes what the approximation can represent <strong>without changing the background mesh topology</strong>.</p>
+<p>The enrichment is therefore not just an additional numerical term.</p>
+<p>It contains information that the original approximation lacks.</p>
+<p>For fracture, the most obvious missing information is the displacement jump.</p>
+</section>
+<section id="representing-the-crack-interior" class="level2">
+<h2 class="anchored" data-anchor-id="representing-the-crack-interior">Representing the crack interior</h2>
+<p>For a crack that completely cuts the support of an enriched node, a discontinuous function can distinguish the two sides of the crack.</p>
+<p>Schematically, a Heaviside-type function may be written as</p>
+<p><span class="math display">\[
+H(\mathbf{x})
+=
+\begin{cases}
++1, &amp; \mathbf{x}\ \text{on one side of the crack},\\
+-1, &amp; \mathbf{x}\ \text{on the other side}.
+\end{cases}
+\]</span></p>
+<p>Then an enriched field contains terms such as</p>
+<p><span class="math display">\[
+N_J(\mathbf{x})H(\mathbf{x})\mathbf{a}_J.
+\]</span></p>
+<p>Because <span class="math inline">\(H\)</span> jumps across the crack, the approximation can jump there too.</p>
+<p>This is the essential mechanism.</p>
+<p>The element itself has not been split into two conventional elements.</p>
+<p>Its interpolation has been given enough freedom to represent two different displacement states on opposite sides of the crack.</p>
+<p>This leads to a useful interpretation:</p>
+<pre class="text"><code>ordinary DOFs
+    describe the regular displacement field
+
+enriched DOFs
+    describe the additional kinematics created by the crack</code></pre>
+<p>The crack is therefore represented in the <strong>solution space</strong>, not by forcing the element boundaries to trace it.</p>
+</section>
+<section id="but-the-crack-cannot-remain-open-through-its-tip" class="level2">
+<h2 class="anchored" data-anchor-id="but-the-crack-cannot-remain-open-through-its-tip">But the crack cannot remain open through its tip</h2>
+<p>A discontinuous enrichment works naturally along the interior of a crack.</p>
+<p>The crack tip is more subtle.</p>
+<p>Behind the tip,</p>
+<p><span class="math display">\[
+[\![\mathbf{u}]\!] \neq 0.
+\]</span></p>
+<p>Ahead of the tip, the material is still connected, so</p>
+<p><span class="math display">\[
+[\![\mathbf{u}]\!] = 0.
+\]</span></p>
+<p>The displacement jump must therefore terminate correctly.</p>
+<p>This is one of the central difficulties in enriched fracture formulations.</p>
+<p>Classical XFEM for linear elastic fracture mechanics often introduces near-tip branch functions derived from the asymptotic crack-tip solution.</p>
+<p>In two-dimensional isotropic LEFM, the local displacement structure contains functions of the form</p>
+<p><span class="math display">\[
+\sqrt{r}\,
+\left\{
+\sin\frac{\theta}{2},
+\cos\frac{\theta}{2},
+\sin\frac{\theta}{2}\sin\theta,
+\cos\frac{\theta}{2}\sin\theta
+\right\},
+\]</span></p>
+<p>where <span class="math inline">\((r,\theta)\)</span> are local polar coordinates at the crack tip.</p>
+<p>These functions are valuable because they insert known crack-tip behavior directly into the approximation.</p>
+<p>But this raises an important modeling question:</p>
+<blockquote class="blockquote">
+<p>What if the fracture model is cohesive rather than classical LEFM?</p>
+</blockquote>
+</section>
+<section id="cohesive-cracks-change-what-we-should-expect-at-the-tip" class="level2">
+<h2 class="anchored" data-anchor-id="cohesive-cracks-change-what-we-should-expect-at-the-tip">Cohesive cracks change what we should expect at the tip</h2>
+<p>In a cohesive crack model, traction does not necessarily drop immediately to zero when the discontinuity forms.</p>
+<p>Instead, traction is related to the crack opening.</p>
+<p>Conceptually,</p>
+<p><span class="math display">\[
+\mathbf{t}
+=
+\mathbf{t}\left([\![\mathbf{u}]\!]\right).
+\]</span></p>
+<p>The area under the traction-separation relation represents fracture energy.</p>
+<p>This changes the local crack-tip physics.</p>
+<p>The classical traction-free LEFM asymptotic field is no longer automatically the natural description of the cohesive tip.</p>
+<p>One of my early contributions with Ted Belytschko addressed this issue directly.</p>
+<p>We developed new crack-tip elements for XFEM so that a cohesive crack could terminate inside an element while the opening closed appropriately at the tip.</p>
+<p>The objective was practical as well as theoretical:</p>
+<ul>
+<li>avoid unnecessary remeshing,</li>
+<li>permit arbitrary crack growth,</li>
+<li>maintain cohesive crack closure,</li>
+<li>and simplify crack-tip treatment.</li>
+</ul>
+<p>This illustrates a broader principle about enrichment:</p>
+<blockquote class="blockquote">
+<p><strong>The enrichment function should reflect the physics that is missing from the ordinary approximation.</strong></p>
+</blockquote>
+<div id="fig-cohesive-tip" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cohesive-tip-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig01.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:72.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cohesive-tip-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: A cohesive crack must terminate inside the crack-tip element while its displacement jump closes toward the tip. This is the kinematic problem addressed by the new XFEM crack-tip formulation. Source: Zi and Belytschko (2003); replace this placeholder with the selected original-paper figure.
+</figcaption>
+</figure>
+</div>
+<p>Figure <a href="#fig-cohesive-tip" class="quarto-xref">Figure&nbsp;1</a> should be read from <strong>kinematics to consequence</strong>: the crack is allowed to cut the element, but the discontinuity cannot simply continue through the tip. The crack-tip treatment supplies the missing closure condition without forcing the mesh boundary to coincide with the crack.</p>
+<p>Using a sophisticated enrichment simply because it is mathematically available is not necessarily better.</p>
+</section>
+<section id="another-way-to-localize-crack-tip-resolution" class="level2">
+<h2 class="anchored" data-anchor-id="another-way-to-localize-crack-tip-resolution">Another way to localize crack-tip resolution</h2>
+<p>Enrichment was not the only way we explored the separation between the crack and the global mesh.</p>
+<p>In the combined extended and superimposed finite element method, the background finite element model is retained while a specialized local mesh is superimposed near the crack tip. The extended approximation handles the discontinuity away from the tip, while the local superimposed discretization supplies additional resolution where the crack-tip field demands it.</p>
+<p>Conceptually,</p>
+<pre class="text"><code>global mesh
+→ efficient representation of the structure
+
+XFEM enrichment
+→ crack discontinuity independent of global element edges
+
+local superimposed mesh
+→ additional crack-tip resolution where it is useful</code></pre>
+<p>The important idea is not to refine the entire global mesh merely because one small region contains difficult fracture mechanics.</p>
+<div id="fig-superimposed" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-superimposed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig03.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:74.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-superimposed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: The combined extended and superimposed finite element method separates the global structural discretization from a local crack-tip discretization. Source: Lee et al.&nbsp;(2004); replace this placeholder with the selected original-paper figure.
+</figcaption>
+</figure>
+</div>
+<p>Figure <a href="#fig-superimposed" class="quarto-xref">Figure&nbsp;2</a> illustrates a broader computational strategy: <strong>put numerical resolution where the physics requires it, rather than making the whole discretization pay the same cost.</strong></p>
+</section>
+<section id="the-mesh-and-the-crack-now-become-separate-geometries" class="level2">
+<h2 class="anchored" data-anchor-id="the-mesh-and-the-crack-now-become-separate-geometries">The mesh and the crack now become separate geometries</h2>
+<p>Once the crack no longer has to coincide with element edges, we need a way to describe its position independently of the mesh.</p>
+<p>This is where implicit descriptions such as level sets become useful.</p>
+<p>One scalar field can indicate which side of the crack a point lies on. Another can locate the crack tip relative to the crack direction.</p>
+<p>Conceptually,</p>
+<p><span class="math display">\[
+\phi(\mathbf{x}) = 0
+\]</span></p>
+<p>may describe the crack surface or its supporting surface, while a second function helps identify the tip.</p>
+<p>The important idea is not the exact notation.</p>
+<p>It is the separation of responsibilities:</p>
+<pre class="text"><code>mesh
+→ numerical discretization of the body
+
+crack description
+→ geometry of the discontinuity
+
+enrichment
+→ kinematics associated with the discontinuity
+
+fracture criterion
+→ crack initiation and propagation</code></pre>
+<p>These four pieces can evolve with a degree of independence.</p>
+<p>That modularity is one reason XFEM became so useful.</p>
+</section>
+<section id="integration-becomes-harder-even-though-remeshing-disappears" class="level2">
+<h2 class="anchored" data-anchor-id="integration-becomes-harder-even-though-remeshing-disappears">Integration becomes harder even though remeshing disappears</h2>
+<p>Removing remeshing does not make fracture numerically trivial.</p>
+<p>A crack cutting through an element divides the integration domain.</p>
+<p>The displacement approximation may be discontinuous even though the element remains geometrically intact.</p>
+<p>Therefore ordinary Gauss integration over the uncut element may no longer be appropriate.</p>
+<p>The integration procedure must recognize the internal discontinuity.</p>
+<p>A common strategy is to subdivide the cut element into integration subdomains that conform to the crack for quadrature purposes.</p>
+<p>This is an important distinction:</p>
+<blockquote class="blockquote">
+<p>The mesh does not have to conform to the crack, but the numerical integration must still understand where the crack is.</p>
+</blockquote>
+<p>XFEM therefore trades one difficulty for another.</p>
+<p>It greatly reduces topological remeshing, but introduces challenges in:</p>
+<ul>
+<li>enrichment selection,</li>
+<li>numerical integration,</li>
+<li>blending regions,</li>
+<li>conditioning,</li>
+<li>crack-tip treatment,</li>
+<li>and evolving crack geometry.</li>
+</ul>
+<p>This is a recurring lesson in computational mechanics.</p>
+<p>A powerful representation does not eliminate numerical difficulty.</p>
+<p>It moves the difficulty to a place where it may be easier to control.</p>
+</section>
+<section id="growing-cracks-without-remeshing" class="level2">
+<h2 class="anchored" data-anchor-id="growing-cracks-without-remeshing">Growing cracks without remeshing</h2>
+<p>Once the crack geometry and the approximation are separated, crack growth becomes conceptually much cleaner.</p>
+<p>A propagation step can be thought of as</p>
+<pre class="text"><code>solve current configuration
+        ↓
+evaluate fracture criterion
+        ↓
+determine propagation direction
+        ↓
+extend crack geometry
+        ↓
+update enriched nodes
+        ↓
+integrate new cut domains
+        ↓
+solve again</code></pre>
+<p>The background finite element connectivity need not be rebuilt.</p>
+<p>This was central to our work on arbitrary and multiple crack growth.</p>
+<p>The benefit becomes especially apparent when several cracks are present.</p>
+<p>With conventional remeshing, each crack modifies the geometric constraints imposed on the next mesh.</p>
+<p>With enrichment, multiple cracks can be treated as evolving discontinuity objects embedded in the same background discretization.</p>
+</section>
+<section id="dynamic-fracture-the-crack-moves-while-the-body-accelerates" class="level2">
+<h2 class="anchored" data-anchor-id="dynamic-fracture-the-crack-moves-while-the-body-accelerates">Dynamic fracture: the crack moves while the body accelerates</h2>
+<p>Dynamic fracture adds inertia:</p>
+<p><span class="math display">\[
+\mathbf{M}\ddot{\mathbf{u}}
++
+\mathbf{f}_{\mathrm{int}}
+=
+\mathbf{f}_{\mathrm{ext}}.
+\]</span></p>
+<p>Now the crack evolves during a transient structural response.</p>
+<p>The calculation must determine not only whether the crack grows, but how the moving discontinuity interacts with stress waves, inertia, cohesive dissipation, and rapidly changing local fields.</p>
+<p>In our dynamic XFEM work, local partition-of-unity enrichment and implicit crack descriptions allowed cracks to propagate along arbitrary paths while the triangular background mesh remained fixed.</p>
+<p>The important achievement was not merely producing a curved crack.</p>
+<p>It was maintaining the separation:</p>
+<pre class="text"><code>moving physical discontinuity
+        ≠
+fixed numerical mesh</code></pre>
+<p>This made complex dynamic crack trajectories much more manageable.</p>
+<div id="fig-dynamic-fracture" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dynamic-fracture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig02.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dynamic-fracture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Dynamic fracture represented with a discontinuous enriched approximation. The crack evolves through the background discretization rather than being constrained to element boundaries. Source: Belytschko, Chen, Xu, and Zi (2003), Fig. 12.
+</figcaption>
+</figure>
+</div>
+<p>Figure <a href="#fig-dynamic-fracture" class="quarto-xref">Figure&nbsp;3</a> is important for what it demonstrates numerically: the physical discontinuity evolves while the background discretization remains a computational scaffold. The crack path is therefore governed by the fracture formulation rather than by a requirement that it follow element edges.</p>
+</section>
+<section id="multiple-cracks-point-to-the-next-problem" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-cracks-point-to-the-next-problem">Multiple cracks point to the next problem</h2>
+<p>Once one crack can move independently of the mesh, the natural next question is what happens when several cracks evolve at the same time.</p>
+<p>Our subsequent work treated multiple crack growth, fatigue, coalescence, and changing crack topology without reconstructing the background mesh after every event. Those problems reveal another level of difficulty: the numerical method must follow not only moving crack tips, but an evolving <strong>network of discontinuities</strong>.</p>
+<p>That deserves its own article. Here, the important point is simply that geometry-independent enrichment makes such topology-changing problems possible without making remeshing the central algorithm.</p>
+</section>
+<section id="what-information-should-enrichment-contain" class="level2">
+<h2 class="anchored" data-anchor-id="what-information-should-enrichment-contain">What information should enrichment contain?</h2>
+<p>XFEM suggests a very general computational question:</p>
+<blockquote class="blockquote">
+<p>What does the exact or expected solution know that the ordinary approximation does not?</p>
+</blockquote>
+<p>For a crack interior:</p>
+<pre class="text"><code>missing information = displacement jump</code></pre>
+<p>For a classical crack tip:</p>
+<pre class="text"><code>missing information = characteristic near-tip field</code></pre>
+<p>For a material interface:</p>
+<pre class="text"><code>missing information = derivative or field discontinuity</code></pre>
+<p>For other localized phenomena, another enrichment may be appropriate.</p>
+<p>The finite element polynomial basis does not have to discover every difficult feature from scratch.</p>
+<p>If physically justified information is already known, it can be inserted into the approximation.</p>
+<p>This is why enrichment is more than a fracture technique.</p>
+<p>It is an approximation strategy.</p>
+</section>
+<section id="is-xfem-always-better-than-remeshing" class="level2">
+<h2 class="anchored" data-anchor-id="is-xfem-always-better-than-remeshing">Is XFEM always better than remeshing?</h2>
+<p>No.</p>
+<p>If a crack path is known and simple, a conforming mesh may be perfectly adequate.</p>
+<p>If the geometry is fixed, the additional implementation complexity of enrichment may not be justified.</p>
+<p>XFEM becomes especially attractive when the discontinuity:</p>
+<ul>
+<li>is not known beforehand,</li>
+<li>moves through the body,</li>
+<li>changes topology,</li>
+<li>interacts with other cracks,</li>
+<li>or would otherwise require repeated remeshing.</li>
+</ul>
+<p>There are also costs.</p>
+<p>Enriched systems may have:</p>
+<ul>
+<li>additional degrees of freedom,</li>
+<li>conditioning problems,</li>
+<li>difficult quadrature,</li>
+<li>blending errors,</li>
+<li>complicated three-dimensional crack tracking,</li>
+<li>and nontrivial implementation requirements.</li>
+</ul>
+<p>The engineering question should therefore not be:</p>
+<blockquote class="blockquote">
+<p>Is XFEM superior to FEM?</p>
+</blockquote>
+<p>XFEM <strong>is</strong> a finite element method.</p>
+<p>The useful question is:</p>
+<blockquote class="blockquote">
+<p><strong>Does enriching the approximation solve the particular representation problem more effectively than modifying the discretization?</strong></p>
+</blockquote>
+</section>
+<section id="xfem-and-the-z-diagram" class="level2">
+<h2 class="anchored" data-anchor-id="xfem-and-the-z-diagram">XFEM and the Z Diagram</h2>
+<p>There is an interesting connection with the Z Diagram:</p>
+<p><span class="math display">\[
+F \leftrightarrow \sigma \leftrightarrow \varepsilon \leftrightarrow u.
+\]</span></p>
+<p>For an uncracked continuum, we often imagine displacement <span class="math inline">\(u\)</span> as a sufficiently smooth field from which strain is obtained through spatial differentiation.</p>
+<p>A crack interrupts that simple picture.</p>
+<p>The displacement field contains a discontinuity.</p>
+<p>The strain description must distinguish the regular deformation of the bulk material from the localized separation at the crack.</p>
+<p>The constitutive description may also split into:</p>
+<pre class="text"><code>bulk material
+    stress ↔ strain
+
+crack interface
+    traction ↔ opening displacement</code></pre>
+<p>These are both energy-conjugate descriptions, but they operate on different kinematic objects.</p>
+<p>For the bulk,</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}:\dot{\boldsymbol{\varepsilon}}
+\]</span></p>
+<p>represents stress power per unit volume.</p>
+<p>For a cohesive crack,</p>
+<p><span class="math display">\[
+\mathbf{t}\cdot[\![\dot{\mathbf{u}}]\!]
+\]</span></p>
+<p>represents power per unit crack area.</p>
+<p>XFEM gives the numerical displacement approximation enough structure to carry both the regular deformation and the displacement jump.</p>
+<p>This is one reason fracture is such an instructive mechanics problem: it exposes assumptions about continuity that are usually invisible in ordinary finite element analysis.</p>
+</section>
+<section id="what-xfem-changed-conceptually" class="level2">
+<h2 class="anchored" data-anchor-id="what-xfem-changed-conceptually">What XFEM changed conceptually</h2>
+<p>The historical importance of XFEM is often summarized as:</p>
+<blockquote class="blockquote">
+<p>cracks can be modeled without remeshing.</p>
+</blockquote>
+<p>That is true, but I think it understates the deeper idea.</p>
+<p>The more general shift was:</p>
+<pre class="text"><code>OLD QUESTION
+How should the mesh be modified
+to represent the solution?
+
+        ↓
+
+NEW QUESTION
+How should the approximation space be modified
+to represent the solution?</code></pre>
+<p>This distinction influenced many later computational methods.</p>
+<p>Once we accept that the approximation can carry information independently of the mesh, the same philosophy can be extended to interfaces, inclusions, singularities, localization, meshfree methods, isogeometric methods, and other enriched formulations.</p>
+</section>
+<section id="from-xfem-to-xefg" class="level2">
+<h2 class="anchored" data-anchor-id="from-xfem-to-xefg">From XFEM to XEFG</h2>
+<p>The next step in my own work followed naturally.</p>
+<p>If the key idea is enrichment of the approximation rather than modification of the mesh, what happens when the underlying approximation is itself meshfree?</p>
+<p>That question led to the <strong>extended element-free Galerkin method (XEFG)</strong>.</p>
+<p>The finite element mesh is replaced by particles and their domains of influence, but the essential challenge remains:</p>
+<blockquote class="blockquote">
+<p>How should a discontinuity cut through the support of the approximation?</p>
+</blockquote>
+<p>That will be the subject of the next article in this series.</p>
+</section>
+<section id="engineering-takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="engineering-takeaway">Engineering takeaway</h2>
+<p>The most memorable lesson of XFEM is not a particular enrichment equation.</p>
+<p>It is the distinction between <strong>discretization</strong> and <strong>approximation</strong>.</p>
+<p>A mesh is a numerical scaffold.</p>
+<p>It does not have to reproduce every geometric feature of the physical solution.</p>
+<p>When the ordinary approximation lacks an essential feature, we can add that information directly to the approximation space.</p>
+<p>For fracture, that feature is the discontinuity.</p>
+<p>So the engineering principle is:</p>
+<blockquote class="blockquote">
+<p><strong>XFEM does not make the mesh follow the crack. It makes the approximation space capable of containing the crack.</strong></p>
+</blockquote>
+<p>And the broader computational-mechanics principle is:</p>
+<blockquote class="blockquote">
+<p><strong>Do not make the discretization imitate difficult physics when the missing physics can be represented directly in the approximation.</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="continue-the-series" class="level2">
+<h2 class="anchored" data-anchor-id="continue-the-series">Continue the series</h2>
+<p><a href="../computational-fracture-overview/">← <strong>Series overview: Why Is Computational Fracture So Difficult?</strong></a></p>
+<p><a href="../xefg-why-meshfree/"><strong>Next: Why Extend XFEM into a Meshfree Method? →</strong></a></p>
+</section>
+<section id="original-research" class="level2">
+<h2 class="anchored" data-anchor-id="original-research">Original research</h2>
+<p>Zi, G., &amp; Belytschko, T. (2003).<br>
+<strong>New crack-tip elements for XFEM and applications to cohesive cracks.</strong><br>
+<em>International Journal for Numerical Methods in Engineering, 57</em>, 2221–2240.<br>
+https://doi.org/10.1002/nme.849</p>
+<p>Belytschko, T., Chen, H., Xu, J., &amp; Zi, G. (2003).<br>
+<strong>Dynamic crack propagation based on loss of hyperbolicity and a new discontinuous enrichment.</strong><br>
+<em>International Journal for Numerical Methods in Engineering, 58</em>, 1873–1905.<br>
+https://doi.org/10.1002/nme.941</p>
+<p>Zi, G., Song, J.-H., Budyn, E., Lee, S.-H., &amp; Belytschko, T. (2004).<br>
+<strong>A method for growing multiple cracks without remeshing and its application to fatigue crack growth.</strong><br>
+<em>Modelling and Simulation in Materials Science and Engineering, 12</em>, 901–915.<br>
+https://doi.org/10.1088/0965-0393/12/5/009</p>
+<p>Budyn, E., Zi, G., Moës, N., &amp; Belytschko, T. (2004).<br>
+<strong>A method for multiple crack growth in brittle materials without remeshing.</strong><br>
+<em>International Journal for Numerical Methods in Engineering, 61</em>, 1741–1770.<br>
+https://doi.org/10.1002/nme.1130</p>
+<p>Lee, S.-H., Song, J.-H., Yoon, Y.-C., Zi, G., &amp; Belytschko, T. (2004).<br>
+<strong>Combined extended and superimposed finite element method for cracks.</strong><br>
+<em>International Journal for Numerical Methods in Engineering, 59</em>, 1119–1136.<br>
+https://doi.org/10.1002/nme.908</p>
+<p>Zi, G., Chen, H., Xu, J., &amp; Belytschko, T. (2005).<br>
+<strong>The extended finite element method for dynamic fractures.</strong><br>
+<em>Shock and Vibration, 12</em>, 9–23.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

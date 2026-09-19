@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="지광습">
+<meta name="keywords" content="다기준 의사결정, 다기준 의사결정 방법, MCDM, 계층적 분석 기법, 계층분석법, AHP, 탐색적 요인분석, EFA, EFA-AHP, 평가기준 상관관계, 평가기준 중복, 의사결정 편향, 공학 의사결정, 해상풍력 지지구조 선정, 고정식 해상풍력 지지구조, 해상풍력 의사결정">
+<meta name="description" content="서로 상관된 평가기준이 다기준 공학 의사결정을 어떻게 편향시킬 수 있는지, 그리고 탐색적 요인분석과 AHP를 결합해 중복을 줄이는 원리를 설명한다.">
+
+<title>평가기준이 많으면 의사결정이 더 공정해질까? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research Explained</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../z-diagram.html"> 
+<span class="menu-text">Z-Diagram</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../latex-writing.html"> 
+<span class="menu-text">LaTeX &amp; Writing</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul class="collapse">
+  <li><a href="#편향은-사람에게만-생기는-것이-아니다" id="toc-편향은-사람에게만-생기는-것이-아니다" class="nav-link active" data-scroll-target="#편향은-사람에게만-생기는-것이-아니다">편향은 사람에게만 생기는 것이 아니다</a></li>
+  <li><a href="#ahp에서-가중치를-잘-정하면-해결되지-않을까" id="toc-ahp에서-가중치를-잘-정하면-해결되지-않을까" class="nav-link" data-scroll-target="#ahp에서-가중치를-잘-정하면-해결되지-않을까">AHP에서 가중치를 잘 정하면 해결되지 않을까?</a></li>
+  <li><a href="#가중치를-정하기-전에-평가구조부터-정리하자" id="toc-가중치를-정하기-전에-평가구조부터-정리하자" class="nav-link" data-scroll-target="#가중치를-정하기-전에-평가구조부터-정리하자">가중치를 정하기 전에 평가구조부터 정리하자</a></li>
+  <li><a href="#개-기준에서-네-개의-독립적인-요인으로" id="toc-개-기준에서-네-개의-독립적인-요인으로" class="nav-link" data-scroll-target="#개-기준에서-네-개의-독립적인-요인으로">18개 기준에서 네 개의 독립적인 요인으로</a></li>
+  <li><a href="#구조동역학으로-생각하면-조금-더-쉽다" id="toc-구조동역학으로-생각하면-조금-더-쉽다" class="nav-link" data-scroll-target="#구조동역학으로-생각하면-조금-더-쉽다">구조동역학으로 생각하면 조금 더 쉽다</a></li>
+  <li><a href="#efa는-중요도를-결정하지-않는다" id="toc-efa는-중요도를-결정하지-않는다" class="nav-link" data-scroll-target="#efa는-중요도를-결정하지-않는다">EFA는 중요도를 결정하지 않는다</a></li>
+  <li><a href="#실제-해상풍력-지지구조를-평가하면" id="toc-실제-해상풍력-지지구조를-평가하면" class="nav-link" data-scroll-target="#실제-해상풍력-지지구조를-평가하면">실제 해상풍력 지지구조를 평가하면</a></li>
+  <li><a href="#등이라는-것만으로-충분한가" id="toc-등이라는-것만으로-충분한가" class="nav-link" data-scroll-target="#등이라는-것만으로-충분한가">1등이라는 것만으로 충분한가?</a></li>
+  <li><a href="#중복을-제거하니-실제로-좋아졌는가" id="toc-중복을-제거하니-실제로-좋아졌는가" class="nav-link" data-scroll-target="#중복을-제거하니-실제로-좋아졌는가">중복을 제거하니 실제로 좋아졌는가?</a></li>
+  <li><a href="#왜-이런-개선이-생기는가" id="toc-왜-이런-개선이-생기는가" class="nav-link" data-scroll-target="#왜-이런-개선이-생기는가">왜 이런 개선이 생기는가?</a></li>
+  <li><a href="#다른-공학-의사결정에도-적용할-수-있을까" id="toc-다른-공학-의사결정에도-적용할-수-있을까" class="nav-link" data-scroll-target="#다른-공학-의사결정에도-적용할-수-있을까">다른 공학 의사결정에도 적용할 수 있을까?</a></li>
+  <li><a href="#그렇다고-모든-편향이-없어지는-것은-아니다" id="toc-그렇다고-모든-편향이-없어지는-것은-아니다" class="nav-link" data-scroll-target="#그렇다고-모든-편향이-없어지는-것은-아니다">그렇다고 모든 편향이 없어지는 것은 아니다</a></li>
+  <li><a href="#결국-편향은-어디에-숨어-있었나" id="toc-결국-편향은-어디에-숨어-있었나" class="nav-link" data-scroll-target="#결국-편향은-어디에-숨어-있었나">결국 편향은 어디에 숨어 있었나?</a></li>
+  <li><a href="#original-research" id="toc-original-research" class="nav-link" data-scroll-target="#original-research">Original research</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">평가기준이 많으면 의사결정이 더 공정해질까?</h1>
+<p class="subtitle lead">서로 상관된 기준이 같은 정보를 반복해서 반영하는 문제와 EFA–AHP의 역할</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Research Explained</div>
+    <div class="quarto-category">Offshore Wind Energy</div>
+    <div class="quarto-category">Decision Making</div>
+    <div class="quarto-category">EFA</div>
+    <div class="quarto-category">AHP</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    서로 상관된 평가기준이 다기준 공학 의사결정을 어떻게 편향시킬 수 있는지, 그리고 탐색적 요인분석과 AHP를 결합해 중복을 줄이는 원리를 설명한다.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">저자</div>
+    <div class="quarto-title-meta-contents">
+             <p>지광습 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">공개</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">2026년 8월 30일</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+<div>
+  <div class="keywords">
+    <div class="block-title">키워드</div>
+    <p>다기준 의사결정, 다기준 의사결정 방법, MCDM, 계층적 분석 기법, 계층분석법, AHP, 탐색적 요인분석, EFA, EFA-AHP, 평가기준 상관관계, 평가기준 중복, 의사결정 편향, 공학 의사결정, 해상풍력 지지구조 선정, 고정식 해상풍력 지지구조, 해상풍력 의사결정</p>
+  </div>
+</div>
+
+</header>
+
+
+<div class="language-switch">
+<a href="../../posts/biased-decision-making/index.html">English</a> | <strong>한글</strong>
+</div>
+<p>건설사업에서는 끊임없이 선택을 한다.</p>
+<p>기획 단계에서는 사업성, 입지, 경제성과 환경성을 검토하고, 설계 단계에서는 구조형식과 공법, 재료를 정한다. 시공 단계로 넘어가도 공정계획과 시공방법을 선택해야 하고, 이후에는 유지관리 방안까지 결정해야 한다.</p>
+<p>이런 문제는 하나의 기술적 기준만으로 답을 내리기 어렵다. 경제성, 시공성, 안전성, 환경성, 사업위험, 사회적 수용성처럼 성격이 다른 기준을 함께 봐야 한다. 그래서 건설 분야에서는 다기준 의사결정(Multi-Criteria Decision-Making, MCDM)이 널리 사용된다.</p>
+<p>그런데 평가기준을 많이 넣으면 의사결정이 더 공정해질까?</p>
+<p>얼핏 보면 그렇다. 빠뜨리는 항목 없이 가능한 한 많은 기준을 검토하는 편이 더 합리적으로 보인다.</p>
+<p>문제는 <strong>평가기준의 수와 독립적인 정보의 수가 같지 않다</strong>는 데 있다.</p>
+<blockquote class="blockquote">
+<p><strong>평가기준이 많다고 해서 서로 독립적인 판단정보가 많아지는 것은 아니다.</strong></p>
+</blockquote>
+<p>예를 들어 공사기간이 늘어나면 장비 운용기간과 인건비가 증가하고, 결과적으로 전체 공사비에도 영향을 준다. 공사기간, 장비 운용비, 인건비, 공사비를 각각 독립된 기준으로 놓으면 이름은 네 개지만 상당한 공통정보를 포함하게 된다.</p>
+<p>이들을 각각 별개의 기준으로 평가하면 경제성과 관련된 하나의 특성이 여러 경로를 통해 최종평가에 반복적으로 반영될 수 있다. 반면 환경성과 관련된 항목이 하나뿐이라면 그 특성은 한 번만 반영된다.</p>
+<p>누구도 의도적으로 경제성에 높은 가중치를 주지 않았는데도 <strong>평가 항목의 구성과 세분화 정도 자체가 결과를 편향시킬 수 있는 것</strong>이다.</p>
+<p>이 문제가 우리가 고정식 해상풍력 지지구조의 의사결정 방법을 연구하게 된 출발점이었다.</p>
+<p><strong>S. Lee, Y. Kang, Y. Kim, S. Kim, and G. Zi,<br>
+“Integrated EFA–AHP decision-making framework for fixed offshore wind energy substructures,”<br>
+<em>Ocean Engineering</em>, Vol. 349, 124094, 2026.</strong></p>
+<p><a href="https://doi.org/10.1016/j.oceaneng.2025.124094">Original paper</a></p>
+<p>따라서 가중치를 정하기 전에 더 근본적인 질문을 해야 한다.</p>
+<p><strong>설정한 평가 항목들이 실제로 서로 다른 판단정보를 제공하고 있는가?</strong></p>
+<section id="편향은-사람에게만-생기는-것이-아니다" class="level2">
+<h2 class="anchored" data-anchor-id="편향은-사람에게만-생기는-것이-아니다">편향은 사람에게만 생기는 것이 아니다</h2>
+<p>다음 여섯 가지 기준으로 여러 설계안을 비교한다고 생각해보자.</p>
+<ul>
+<li>공사비</li>
+<li>공사기간</li>
+<li>장비 임대비</li>
+<li>인건비</li>
+<li>유지관리비</li>
+<li>환경영향</li>
+</ul>
+<p>여섯 가지나 고려했으니 상당히 균형 잡힌 평가처럼 보인다.</p>
+<p>문제는 앞의 네 기준이 서로 연결되어 있다는 것이다. 공사기간은 인건비와 장비 임대비에 영향을 주고, 이 비용들은 다시 전체 공사비에 들어간다.</p>
+<p>따라서 여섯 개의 이름이 있다고 해서 여섯 개의 독립된 정보가 있는 것은 아니다.</p>
+<p>이들을 모두 별개의 기준으로 취급하면 <strong>경제성과 관련된 정보가 최종 평가에 여러 번 들어갈 수 있다.</strong> 환경영향은 한 번 들어가는데 경제성은 이름만 달리해서 몇 번 들어가는 셈이다.</p>
+<p>이것은 평가자가 의도적으로 만든 편향이 아니다.</p>
+<p><strong>중복된 기준이 만들어내는 구조적 편향</strong>이다.</p>
+<p>기준이 많아질수록 이 문제는 오히려 눈에 잘 보이지 않는다.</p>
+</section>
+<section id="ahp에서-가중치를-잘-정하면-해결되지-않을까" class="level2">
+<h2 class="anchored" data-anchor-id="ahp에서-가중치를-잘-정하면-해결되지-않을까">AHP에서 가중치를 잘 정하면 해결되지 않을까?</h2>
+<p>AHP(Analytic Hierarchy Process, 계층적 분석 기법)는 공학 분야에서 널리 사용되는 다기준 의사결정 방법이다.</p>
+<p>절차도 직관적이다.</p>
+<ol type="1">
+<li>평가기준을 정한다.</li>
+<li>기준 사이의 상대적 중요도를 쌍대비교한다.</li>
+<li>가중치를 계산한다.</li>
+<li>대안을 평가한다.</li>
+<li>최종 점수를 계산한다.</li>
+</ol>
+<p>전문가의 판단을 정량적인 가중치로 바꿀 수 있고, 판단의 일관성도 확인할 수 있다는 장점이 있다.</p>
+<p>하지만 문제는 그보다 앞에 있다.</p>
+<p><strong>서로 다른 이름의 기준들이 실제로 독립적인가?</strong></p>
+<p>AHP는 주어진 평가구조 안에서 전문가의 선호와 중요도를 체계적으로 산정하는 데 강점이 있다. 그러나 평가 항목 사이의 중복성과 상관성을 자동으로 제거하는 방법은 아니다. 평가구조가 적절하지 않다면 정교하게 가중치를 산정해도 그 구조를 그대로 반영하게 된다.</p>
+<p>다시 말해, <strong>계산의 정밀성이 평가구조의 타당성을 보장하지는 않는다.</strong></p>
+<p>우리의 해상풍력 연구에서는 <strong>프로젝트 파이낸싱(Project Financing, PF) 위험</strong>과 <strong>보험 인수 위험</strong>의 상관계수가 <strong>0.81</strong>이었다.</p>
+<p>또한 <strong>지역주민 수용성</strong>과 <strong>환경영향평가 적용성</strong> 사이의 상관계수는 <strong>0.65</strong>였다.</p>
+<p>이름은 서로 다른 기준이지만 상당한 정보를 공유하고 있다는 뜻이다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig03.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>평가기준 사이 상관관계의 예. 강한 상관관계가 나타난다는 것은 서로 다른 이름의 기준 안에 중복된 정보가 들어 있음을 의미한다.</figcaption>
+</figure>
+</div>
+<p>따라서 “어느 기준이 더 중요한가?”라고 묻기 전에 한 가지를 먼저 물어야 한다.</p>
+<blockquote class="blockquote">
+<p><strong>이 기준들이 정말 서로 다른 의사결정 차원을 나타내는가?</strong></p>
+</blockquote>
+</section>
+<section id="가중치를-정하기-전에-평가구조부터-정리하자" class="level2">
+<h2 class="anchored" data-anchor-id="가중치를-정하기-전에-평가구조부터-정리하자">가중치를 정하기 전에 평가구조부터 정리하자</h2>
+<p>우리가 택한 방법은 AHP 앞에 <strong>탐색적 요인분석(Exploratory Factor Analysis, EFA)</strong>을 두는 것이었다.</p>
+<p>서로 중복될 수 있는 긴 기준 목록에 곧바로 가중치를 주지 않고, 먼저 데이터 속에 숨어 있는 구조를 확인한다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig02.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>EFA–AHP 통합 방법의 개념적 절차. 먼저 평가기준 사이의 상관관계를 확인하고, EFA를 통해 주요 잠재요인으로 재구성한 뒤, 그 요인들 사이의 중요도를 AHP로 결정한다.</figcaption>
+</figure>
+</div>
+<p>EFA는 다수의 관측변수 사이에 존재하는 상관구조를 이용해, 이들 변수에 공통적으로 내재된 소수의 <strong>잠재요인(latent factor)</strong>을 찾는 방법이다.</p>
+<p>공학적으로 표현하면 질문은 이렇다.</p>
+<blockquote class="blockquote">
+<p><strong>서로 다른 이름으로 나열된 평가 항목들이 실제로는 어떤 공통된 판단축을 공유하고 있는가?</strong></p>
+</blockquote>
+<p>그 정보구조를 먼저 정리한 다음에 AHP를 이용해 상대적인 중요도를 정한다.</p>
+<p>여기서 EFA와 AHP의 역할을 섞지 않는 것이 중요하다.</p>
+</section>
+<section id="개-기준에서-네-개의-독립적인-요인으로" class="level2">
+<h2 class="anchored" data-anchor-id="개-기준에서-네-개의-독립적인-요인으로">18개 기준에서 네 개의 독립적인 요인으로</h2>
+<p>해상풍력 적용에서는 시공성, 경제성, 사업위험, 사회·환경영향 등을 나타내는 <strong>18개 평가기준</strong>에서 출발했다.</p>
+<p>설문에는 해상풍력 개발과 관련된 학계, 산업계 및 공공기관 전문가 <strong>164명</strong>이 참여했다.</p>
+<p>요인분석을 하기 전에 자료가 EFA에 적합한지도 확인했다.</p>
+<p>Kaiser–Meyer–Olkin 지표는</p>
+<p><span class="math display">\[
+\mathrm{KMO}=0.868
+\]</span></p>
+<p>이었고, Bartlett 검정에서는 상관행렬이 단위행렬이라는 가설이 기각되었다.</p>
+<p>분석 결과 18개 기준은 누적분산의 <strong>60.30%</strong>를 설명하는 <strong>네 개의 주요 독립요인</strong>으로 정리할 수 있었다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>요인</th>
+<th>대표적인 의미</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>사회·환경적 영향</strong></td>
+<td>주민 수용성, 환경영향과 소음, 환경영향평가 적용성, 해체</td>
+</tr>
+<tr class="even">
+<td><strong>기술 및 투자 위험</strong></td>
+<td>기술 성숙도, 프로젝트 금융위험, 보험위험</td>
+</tr>
+<tr class="odd">
+<td><strong>현장조건</strong></td>
+<td>제작 조건과 시공 가능성</td>
+</tr>
+<tr class="even">
+<td><strong>생애주기 비용</strong></td>
+<td>공사비, 공사기간, 운영·유지관리비</td>
+</tr>
+</tbody>
+</table>
+<p>여기서 중요한 것은 18개를 4개로 줄였다는 숫자 자체가 아니다.</p>
+<p><strong>서로 중복되는 정보를 묶어, 18개의 세부 평가 항목을 보다 명확하고 직교적인 네 개의 판단축으로 평가구조를 재구성했다는 것</strong>이다.</p>
+</section>
+<section id="구조동역학으로-생각하면-조금-더-쉽다" class="level2">
+<h2 class="anchored" data-anchor-id="구조동역학으로-생각하면-조금-더-쉽다">구조동역학으로 생각하면 조금 더 쉽다</h2>
+<p>구조공학에서는 복잡한 시스템의 모든 자유도를 항상 그대로 들고 계산하지 않는다.</p>
+<p>모드해석을 생각해보자. 매우 많은 자유도를 가진 구조물이라도 관심 있는 응답에는 몇 개의 지배적인 모드가 훨씬 크게 기여할 수 있다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig01.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>구조물의 모드해석과 탐색적 요인분석의 개념적 유사성. 두 경우 모두 많은 변수 속에서 중요한 정보를 지배하는 더 적은 수의 성분을 찾아낸다.</figcaption>
+</figure>
+</div>
+<p>물론 EFA와 구조물의 모드해석이 같은 해석이라는 뜻은 아니다. 다만 많은 변수에서 지배적인 성분을 추출해 전체 구조를 이해한다는 점에서 개념적으로 비교해볼 수 있다.</p>
+<p>구조물의 모드해석에서는</p>
+<ul>
+<li>많은 자유도가 구조계를 기술하고,</li>
+<li>고유치해석을 통해 모드형상을 구하며,</li>
+<li>관심 응답에 중요한 지배모드를 선택할 수 있다.</li>
+</ul>
+<p>EFA에서는</p>
+<ul>
+<li>많은 평가기준이 의사결정 문제를 기술하고,</li>
+<li>상관행렬과 고유치 분석을 통해 잠재구조를 찾으며,</li>
+<li>정보의 상당 부분을 설명하는 주요 요인을 남긴다.</li>
+</ul>
+<p>두 경우 모두 목적은 변수를 무조건 없애는 것이 아니다.</p>
+<p><strong>중복을 줄이면서 지배적인 독립 정보를 남기는 것</strong>이다.</p>
+</section>
+<section id="efa는-중요도를-결정하지-않는다" class="level2">
+<h2 class="anchored" data-anchor-id="efa는-중요도를-결정하지-않는다">EFA는 중요도를 결정하지 않는다</h2>
+<p>여기서 오해하면 안 되는 것이 있다.</p>
+<p>EFA가 어느 요인이 더 중요하다고 결정해 주는 것은 아니다.</p>
+<p>예를 들어 공사비, 공사기간, 운영·유지관리비가 하나의 생애주기 비용 요인으로 묶인다는 것은 알려줄 수 있다. 하지만 생애주기 비용이 기술위험보다 더 중요한지는 통계가 결정할 문제가 아니다.</p>
+<p>그것은 여전히 공학적 판단과 사업의 우선순위에 달려 있다.</p>
+<p>그래서 그 다음에 AHP를 사용한다.</p>
+<p>EFA로 기준을 보다 독립적인 요인으로 정리한 뒤, 그 요인 사이의 상대적인 중요도를 AHP로 정한다.</p>
+<p>이 연구에서는 학계, 발주자 및 시공자의 관점을 대표하는 5명의 평가자가 다음과 같은 통합 가중치를 도출했다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>요인</th>
+<th style="text-align: right;">가중치</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>기술 및 투자 위험</td>
+<td style="text-align: right;">0.443</td>
+</tr>
+<tr class="even">
+<td>생애주기 비용</td>
+<td style="text-align: right;">0.245</td>
+</tr>
+<tr class="odd">
+<td>현장조건</td>
+<td style="text-align: right;">0.192</td>
+</tr>
+<tr class="even">
+<td>사회·환경적 영향</td>
+<td style="text-align: right;">0.121</td>
+</tr>
+</tbody>
+</table>
+<p>모든 평가자의 일관성 비율(consistency ratio)은 0.1보다 작아 쌍대비교의 일관성이 허용 가능한 수준이었다.</p>
+<p>두 방법의 역할은 분명히 다르다.</p>
+<blockquote class="blockquote">
+<p><strong>EFA는 평가자료에 나타난 상관관계를 바탕으로 평가기준의 구조를 정리한다.</strong></p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>AHP는 그렇게 정리된 판단기준 가운데 무엇을 상대적으로 중요하게 볼 것인지 결정한다.</strong></p>
+</blockquote>
+<p>결국 <strong>평가구조와 사업별 우선순위를 분리하는 것</strong>이 EFA–AHP 통합 방법의 핵심이다.</p>
+</section>
+<section id="실제-해상풍력-지지구조를-평가하면" class="level2">
+<h2 class="anchored" data-anchor-id="실제-해상풍력-지지구조를-평가하면">실제 해상풍력 지지구조를 평가하면</h2>
+<p>우리는 네 가지 고정식 해상풍력 지지구조 대안을 비교했다.</p>
+<ul>
+<li>모노파일(monopile)</li>
+<li>포스트파일 재킷(postpiled jacket)</li>
+<li>프리파일 재킷(prepiled jacket)</li>
+<li>석션버켓(suction bucket)</li>
+</ul>
+<p>각 대안의 장단점은 서로 달랐다.</p>
+<p>예를 들어 석션버켓은 사회·환경 요인에서는 좋은 평가를 받았지만 기술 및 투자 위험에서는 낮은 평가를 받았다. 포스트파일 재킷은 현장조건에서 좋은 평가를 받았고, 모노파일은 생애주기 비용에서 좋은 평가를 받았다.</p>
+<p>요인점수와 AHP 가중치를 결합한 최종 점수는 다음과 같았다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>대안</th>
+<th style="text-align: right;">최종 점수</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>모노파일</strong></td>
+<td style="text-align: right;"><strong>0.127</strong></td>
+</tr>
+<tr class="even">
+<td>프리파일 재킷</td>
+<td style="text-align: right;">0.102</td>
+</tr>
+<tr class="odd">
+<td>포스트파일 재킷</td>
+<td style="text-align: right;">0.056</td>
+</tr>
+<tr class="even">
+<td>석션버켓</td>
+<td style="text-align: right;">-0.284</td>
+</tr>
+</tbody>
+</table>
+<p>순위만 보면 모노파일이 가장 좋은 대안이다.</p>
+<p>하지만 공학적인 의사결정은 여기서 끝내면 안 된다.</p>
+</section>
+<section id="등이라는-것만으로-충분한가" class="level2">
+<h2 class="anchored" data-anchor-id="등이라는-것만으로-충분한가">1등이라는 것만으로 충분한가?</h2>
+<p>모노파일과 프리파일 재킷의 최종 점수 차이는</p>
+<p><span class="math display">\[
+0.025
+\]</span></p>
+<p>에 불과했다.</p>
+<p>평가자 사이의 변동을 확인해보면 프리파일 재킷의 표준편차는 모노파일보다 약간 작았다.</p>
+<p><span class="math display">\[
+0.388
+\quad\text{versus}\quad
+0.405.
+\]</span></p>
+<p>두 표본의 통계검정에서도 평균 차이는 통계적으로 유의하지 않았다.</p>
+<ul>
+<li><span class="math inline">\(p = 0.571\)</span></li>
+<li>95% 신뢰구간: <span class="math inline">\((-0.061,\ 0.111)\)</span></li>
+<li>Cohen’s <span class="math inline">\(d = 0.062\)</span></li>
+</ul>
+<p>이 결과는 꽤 중요한 공학적 의미를 갖는다.</p>
+<p>평균점수만 최대화한다면 모노파일이 1위다.</p>
+<p>하지만 사업에서 <strong>이해관계자의 합의와 판단의 안정성</strong>을 더 중요하게 본다면 프리파일 재킷 역시 충분히 타당한 선택이고, 경우에 따라서는 오히려 더 적절할 수 있다.</p>
+<p>결국 의사결정에서 중요한 것은 순위를 하나 만드는 것만이 아니다.</p>
+<p><strong>그 순위를 얼마나 믿을 수 있는가까지 확인해야 한다.</strong></p>
+</section>
+<section id="중복을-제거하니-실제로-좋아졌는가" class="level2">
+<h2 class="anchored" data-anchor-id="중복을-제거하니-실제로-좋아졌는가">중복을 제거하니 실제로 좋아졌는가?</h2>
+<p>통합 EFA–AHP 방법을 기존 AHP와 비교했다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig04.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>EFA를 사용하지 않은 기존 AHP와 통합 EFA–AHP에서 얻은 평가점수 분포의 비교. 통합 방법에서는 대안 사이의 분포가 보다 뚜렷하게 구분된다.</figcaption>
+</figure>
+</div>
+<p>이 연구에서는 상당한 차이가 나타났다.</p>
+<p>통합 방법은</p>
+<ul>
+<li><strong>변동계수를 75.41% 감소</strong>시켰고,</li>
+<li><strong>신호대잡음비(SNR)를 3.08배 증가</strong>시켰다.</li>
+</ul>
+<p>이 연구의 자료와 설정에서는 평가결과가 더 안정되고 대안 사이의 구별도 더 뚜렷해졌다는 의미다.</p>
+<p>그렇다고 EFA가 전문가 판단을 객관적인 것으로 바꾸어 준다는 뜻은 아니다.</p>
+<p>그 역할은 훨씬 구체적이다.</p>
+<p><strong>평가기준 간 상관구조를 먼저 정리하여, 동일하거나 유사한 판단정보가 여러 항목을 통해 최종평가에 반복적으로 들어가는 효과를 줄이는 것</strong>이다.</p>
+</section>
+<section id="왜-이런-개선이-생기는가" class="level2">
+<h2 class="anchored" data-anchor-id="왜-이런-개선이-생기는가">왜 이런 개선이 생기는가?</h2>
+<p>원리는 간단하다.</p>
+<p>서로 강하게 상관된 여러 기준이 사실 하나의 공통 관심사를 나타낸다고 해보자.</p>
+<p>기존 AHP에서 각각 별도의 가중치를 주면 같은 정보가 최종 평가에 반복해서 들어갈 수 있다.</p>
+<p><span class="math display">\[
+\text{공유된 정보}
+\rightarrow
+\begin{cases}
+X_1\\
+X_2\\
+X_3
+\end{cases}
+\rightarrow
+\text{여러 번의 가중 기여}.
+\]</span></p>
+<p>EFA는 이들에 공통으로 들어 있는 잠재성분을 찾으려고 한다.</p>
+<p><span class="math display">\[
+(X_1,X_2,X_3)
+\rightarrow
+F_1.
+\]</span></p>
+<p>그 다음에는 서로 겹치는 세 표현에 각각 가중치를 주는 대신 그 요인에 가중치를 준다.</p>
+<p>따라서 목적은 단순히 평가 항목의 수를 줄이는 것이 아니다.</p>
+<p><strong>가중치를 산정하기 전에 평가기준 간 상관성과 중복성을 확인하고, 평가구조 자체를 먼저 정리하는 것</strong>이다.</p>
+</section>
+<section id="다른-공학-의사결정에도-적용할-수-있을까" class="level2">
+<h2 class="anchored" data-anchor-id="다른-공학-의사결정에도-적용할-수-있을까">다른 공학 의사결정에도 적용할 수 있을까?</h2>
+<p>이 생각은 해상풍력에만 국한되지 않는다.</p>
+<p>평가기준이 많고 서로 중복될 가능성이 있는 문제라면 다음과 같은 순서가 합리적이다.</p>
+<ol type="1">
+<li>후보 평가기준을 정한다.</li>
+<li>평가자료를 수집한다.</li>
+<li>기준 사이의 상관관계를 확인한다.</li>
+<li>자료가 요인분석에 적합한지 검토한다.</li>
+<li>잠재요인을 추출하고 공학적으로 해석한다.</li>
+<li>요인 사이의 상대적 중요도를 결정한다.</li>
+<li>대안을 평가한다.</li>
+<li>민감도와 이해관계자별 변동을 확인한다.</li>
+</ol>
+<p>예를 들면 인프라 계획, 구조시스템 선정, 공법 선정, 지속가능성 평가, 기술 선정, 입지 선정, 투자 의사결정 등에 같은 문제가 나타날 수 있다.</p>
+<p>결국 순서는 이것이다.</p>
+<blockquote class="blockquote">
+<p><strong>가중치를 주기 전에 평가기준의 정보구조부터 이해하자.</strong></p>
+</blockquote>
+</section>
+<section id="그렇다고-모든-편향이-없어지는-것은-아니다" class="level2">
+<h2 class="anchored" data-anchor-id="그렇다고-모든-편향이-없어지는-것은-아니다">그렇다고 모든 편향이 없어지는 것은 아니다</h2>
+<p>이 방법에도 분명한 한계가 있다.</p>
+<p>첫째, 처음 만든 평가기준 목록 자체에 중요한 항목이 빠져 있을 수 있다. EFA는 수집된 정보를 재구성할 수 있을 뿐, 애초에 조사하지 않은 중요한 기준을 새로 찾아내지는 못한다.</p>
+<p>둘째, 이 해상풍력 사례에서는 환경 및 경제 조건을 단순화하였다. 실제 사업에서는 바람, 파랑, 조류, 비용과 여러 불확실성이 시간에 따라 변한다.</p>
+<p>셋째, 평가자의 전문성과 경험이 서로 다를 수 있음에도 이 연구에서는 평가자들의 의사결정 역량을 동일하게 취급했다.</p>
+<p>마지막으로 AHP의 가중치는 여전히 주관적인 쌍대비교에서 나온다.</p>
+<p>따라서 EFA는 평가기준 사이의 중복을 줄일 수 있지만 <strong>의사결정자의 선호 자체를 없애지는 않는다.</strong></p>
+<p>향후에는 적절한 자료가 확보된다면 보다 데이터 기반의 가중치 결정이나 평가자별 전문성을 반영하는 방법과 결합할 수 있다.</p>
+</section>
+<section id="결국-편향은-어디에-숨어-있었나" class="level2">
+<h2 class="anchored" data-anchor-id="결국-편향은-어디에-숨어-있었나">결국 편향은 어디에 숨어 있었나?</h2>
+<p>공학 의사결정의 편향이 항상 평가자의 주관에서만 생기는 것은 아니다.</p>
+<p>때로는 <strong>평가 항목을 구성하는 단계에서 이미 편향이 들어갈 수 있다.</strong></p>
+<p>여러 기준이 같은 정보를 공유하는데도 이를 서로 독립적인 기준처럼 다루면 특정 의사결정 차원이 의도하지 않게 증폭될 수 있다.</p>
+<p>EFA–AHP의 역할은 이를 두 단계로 나누는 것이다.</p>
+<ol type="1">
+<li><strong>EFA로 서로 중복된 기준에서 독립적인 잠재요인을 찾고,</strong></li>
+<li><strong>AHP로 그 요인들 사이에 공학적 우선순위를 부여한다.</strong></li>
+</ol>
+<p>이렇게 한다고 완전히 객관적인 의사결정이 되는 것은 아니다.</p>
+<p>하지만 무엇이 중복되었고, 어디에서 판단이 들어갔는지가 훨씬 분명해진다.</p>
+<p>이 글에서 기억할 원칙은 하나다.</p>
+<blockquote class="blockquote">
+<p><strong>중요도를 정하기 전에 정보의 구조부터 이해하자.</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="original-research" class="level2">
+<h2 class="anchored" data-anchor-id="original-research">Original research</h2>
+<p>Lee, S., Kang, Y., Kim, Y., Kim, S., &amp; Zi, G. (2026).<br>
+<strong>Integrated EFA–AHP decision-making framework for fixed offshore wind energy substructures.</strong><br>
+<em>Ocean Engineering, 349</em>, 124094.<br>
+https://doi.org/10.1016/j.oceaneng.2025.124094</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

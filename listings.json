@@ -1,0 +1,120 @@
+[
+  {
+    "listing": "/z-diagram.html",
+    "items": []
+  },
+  {
+    "listing": "/research/offshore-ocean-engineering.html",
+    "items": [
+      "/posts/jacket-flexibility/index.html",
+      "/posts/nearshore-wave-energy/index.html",
+      "/posts/passive-fowt-motion-control/index.html"
+    ]
+  },
+  {
+    "listing": "/research/digital-transformation-ai.html",
+    "items": [
+      "/posts/ai-construction-standards-without-hallucination/index.html"
+    ]
+  },
+  {
+    "listing": "/research/computational-mechanics-fracture.html",
+    "items": [
+      "/posts/alternative-crack-representations/index.html",
+      "/posts/how-much-physics-does-a-crack-need/index.html",
+      "/posts/lessons-from-enriched-methods/index.html",
+      "/posts/multiple-cracks-fracture-network/index.html",
+      "/posts/xefg-why-meshfree/index.html",
+      "/posts/xfem-crack-through-mesh/index.html",
+      "/posts/computational-fracture-overview/index.html"
+    ]
+  },
+  {
+    "listing": "/latex-writing.html",
+    "items": [
+      "/posts/hangul-latex-ai-era/index.html",
+      "/posts/latex-engineering-tables/index.html",
+      "/posts/why-use-latex-beamer/index.html",
+      "/posts/how-to-write-research-paper/index.html",
+      "/posts/latex-research-workflow/index.html"
+    ]
+  },
+  {
+    "listing": "/index.html",
+    "items": [
+      "/posts/offshore-wind-civil-engineering/index.html",
+      "/posts/jacket-flexibility/index.html",
+      "/posts/passive-fowt-motion-control/index.html",
+      "/posts/biased-decision-making/index.html",
+      "/posts/ai-construction-standards-without-hallucination/index.html",
+      "/posts/coupled-concrete-durability/index.html",
+      "/posts/reactive-waste-particle-size/index.html",
+      "/posts/bof-slag-particle-size/index.html",
+      "/posts/alternative-crack-representations/index.html",
+      "/posts/how-much-physics-does-a-crack-need/index.html",
+      "/posts/lessons-from-enriched-methods/index.html",
+      "/posts/multiple-cracks-fracture-network/index.html",
+      "/posts/xefg-why-meshfree/index.html",
+      "/posts/xfem-crack-through-mesh/index.html",
+      "/posts/computational-fracture-overview/index.html",
+      "/posts/floating-structure-frequency-domain/index.html",
+      "/posts/mooring-line-dynamics/index.html",
+      "/posts/stretchable-device-mechanics/index.html",
+      "/posts/strain-tensor-energy/index.html",
+      "/posts/stress-tensor/index.html",
+      "/posts/z-diagram-introduction/index.html"
+    ]
+  },
+  {
+    "listing": "/mechanics.html",
+    "items": [
+      "/posts/floating-structure-frequency-domain/index.html",
+      "/posts/mooring-line-dynamics/index.html",
+      "/posts/stretchable-device-mechanics/index.html",
+      "/posts/strain-tensor-energy/index.html",
+      "/posts/stress-tensor/index.html",
+      "/posts/z-diagram-introduction/index.html"
+    ]
+  },
+  {
+    "listing": "/research.html",
+    "items": [
+      "/posts/offshore-wind-civil-engineering/index.html",
+      "/posts/jacket-flexibility/index.html",
+      "/posts/passive-fowt-motion-control/index.html",
+      "/posts/biased-decision-making/index.html",
+      "/posts/ai-construction-standards-without-hallucination/index.html",
+      "/posts/coupled-concrete-durability/index.html",
+      "/posts/reactive-waste-particle-size/index.html",
+      "/posts/bof-slag-particle-size/index.html",
+      "/posts/alternative-crack-representations/index.html",
+      "/posts/how-much-physics-does-a-crack-need/index.html",
+      "/posts/lessons-from-enriched-methods/index.html",
+      "/posts/multiple-cracks-fracture-network/index.html",
+      "/posts/xefg-why-meshfree/index.html",
+      "/posts/xfem-crack-through-mesh/index.html",
+      "/posts/computational-fracture-overview/index.html"
+    ]
+  },
+  {
+    "listing": "/research/concrete-materials.html",
+    "items": [
+      "/posts/coupled-concrete-durability/index.html",
+      "/posts/reactive-waste-particle-size/index.html",
+      "/posts/bof-slag-particle-size/index.html"
+    ]
+  },
+  {
+    "listing": "/research/engineering-decisions.html",
+    "items": []
+  },
+  {
+    "listing": "/research/offshore-wind-energy.html",
+    "items": [
+      "/posts/offshore-wind-civil-engineering/index.html",
+      "/posts/jacket-flexibility/index.html",
+      "/posts/passive-fowt-motion-control/index.html",
+      "/posts/biased-decision-making/index.html"
+    ]
+  }
+]

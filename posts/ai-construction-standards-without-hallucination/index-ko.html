@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="지광습">
+<meta name="keywords" content="디지털 건설기준, 건설기준, KDS, KCS, 공학 AI, 건설 AI, AI 환각, 생성형 AI, LLM, 대규모 언어모델, 기계가독형 건설기준, 기계실행형 건설기준, 자동 적합성 검토, 자동 법규 검토, ACC, BIM, RuleUnit, 룰유닛, 공학 지식 구조화, 지식그래프, 온톨로지, 디지털 전환">
+
+<title>건설 엔니지어링 실무에서 AI를 환각 없이 믿고 사용할 수 있을까? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research Explained</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../z-diagram.html"> 
+<span class="menu-text">Z-Diagram</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../latex-writing.html"> 
+<span class="menu-text">LaTeX &amp; Writing</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#ai가-없어도-건설기준은-원래-어렵다" id="toc-ai가-없어도-건설기준은-원래-어렵다" class="nav-link active" data-scroll-target="#ai가-없어도-건설기준은-원래-어렵다">AI가 없어도 건설기준은 원래 어렵다</a></li>
+  <li><a href="#기준서-pdf를-llm에게-입력해-주면-되는-것-아닌가" id="toc-기준서-pdf를-llm에게-입력해-주면-되는-것-아닌가" class="nav-link" data-scroll-target="#기준서-pdf를-llm에게-입력해-주면-되는-것-아닌가">기준서 PDF를 LLM에게 입력해 주면 되는 것 아닌가?</a></li>
+  <li><a href="#pdf를-만드는-것이-디지털화는-아니다" id="toc-pdf를-만드는-것이-디지털화는-아니다" class="nav-link" data-scroll-target="#pdf를-만드는-것이-디지털화는-아니다">PDF를 만드는 것이 디지털화는 아니다</a></li>
+  <li><a href="#ruleunit-문장을-공학-논리로-바꾸는-단위" id="toc-ruleunit-문장을-공학-논리로-바꾸는-단위" class="nav-link" data-scroll-target="#ruleunit-문장을-공학-논리로-바꾸는-단위">RuleUnit: 문장을 공학 논리로 바꾸는 단위</a></li>
+  <li><a href="#그러면-환각은-없어지는가" id="toc-그러면-환각은-없어지는가" class="nav-link" data-scroll-target="#그러면-환각은-없어지는가">그러면 환각은 없어지는가?</a></li>
+  <li><a href="#기준이-계산-가능해지면-acc가-가능해진다" id="toc-기준이-계산-가능해지면-acc가-가능해진다" class="nav-link" data-scroll-target="#기준이-계산-가능해지면-acc가-가능해진다">기준이 계산 가능해지면 ACC가 가능해진다</a></li>
+  <li><a href="#디지털-건설기준은-재사용-가능한-공학-지식이-된다" id="toc-디지털-건설기준은-재사용-가능한-공학-지식이-된다" class="nav-link" data-scroll-target="#디지털-건설기준은-재사용-가능한-공학-지식이-된다">디지털 건설기준은 재사용 가능한 공학 지식이 된다</a></li>
+  <li><a href="#ai-시대에는-무엇이-달라지는가" id="toc-ai-시대에는-무엇이-달라지는가" class="nav-link" data-scroll-target="#ai-시대에는-무엇이-달라지는가">AI 시대에는 무엇이 달라지는가?</a></li>
+  <li><a href="#ai-전환은-ai를-붙이기-전에-시작된다" id="toc-ai-전환은-ai를-붙이기-전에-시작된다" class="nav-link" data-scroll-target="#ai-전환은-ai를-붙이기-전에-시작된다">AI 전환은 AI를 붙이기 전에 시작된다</a></li>
+  <li><a href="#우리가-만들려는-것은-건설기준-챗봇이-아니다" id="toc-우리가-만들려는-것은-건설기준-챗봇이-아니다" class="nav-link" data-scroll-target="#우리가-만들려는-것은-건설기준-챗봇이-아니다">우리가 만들려는 것은 ’건설기준 챗봇’이 아니다</a></li>
+  <li><a href="#프로젝트-상태" id="toc-프로젝트-상태" class="nav-link" data-scroll-target="#프로젝트-상태">프로젝트 상태</a></li>
+  <li><a href="#프로젝트-자료" id="toc-프로젝트-자료" class="nav-link" data-scroll-target="#프로젝트-자료">프로젝트 자료</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">건설 엔니지어링 실무에서 AI를 환각 없이 믿고 사용할 수 있을까?</h1>
+<p class="subtitle lead">더 좋은 프롬프트보다, 더 필요한 것은 건설기준 지식의 구조화다</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Research Explained</div>
+    <div class="quarto-category">Digital Transformation &amp; AI</div>
+    <div class="quarto-category">Digital Construction Standards</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">저자</div>
+    <div class="quarto-title-meta-contents">
+             <p>지광습 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">공개</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">2026년 6월 26일</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+<div>
+  <div class="keywords">
+    <div class="block-title">키워드</div>
+    <p>디지털 건설기준, 건설기준, KDS, KCS, 공학 AI, 건설 AI, AI 환각, 생성형 AI, LLM, 대규모 언어모델, 기계가독형 건설기준, 기계실행형 건설기준, 자동 적합성 검토, 자동 법규 검토, ACC, BIM, RuleUnit, 룰유닛, 공학 지식 구조화, 지식그래프, 온톨로지, 디지털 전환</p>
+  </div>
+</div>
+
+</header>
+
+
+<div class="language-switch">
+<a href="../../posts/ai-construction-standards-without-hallucination/index.html">English</a> | <strong>한글</strong>
+</div>
+<p>나도 요즘은 AI를 거의 끼고 생활한다. 내 주변 많은 분들도, 요즘은 먼저 AI에게 물어본다. 건설기준도 예외는 아니다.</p>
+<p>KDS/KCS 기준서를 PDF로 AI에게 입력한후 질문을 하면 제법 그럴듯하게 답을 한다. 필요한 조항도 찾아주고, 복잡한 문장을 풀어서 설명하기도 한다. 얼핏 보면 이제 두꺼운 기준서를 직접 뒤질 필요가 없어 보인다.</p>
+<p>문제는 그 다음이다.</p>
+<p><strong>그 답을 믿고 실제 설계를 해도 되는가?</strong></p>
+<p>건설기준은 단순한 문장이 아니다. 하나의 설계 조항은 기준 체계 안에서 특정한 위치를 가지고 있고, 다른 기준의 정의를 가져오기도 하며, 여러 조항을 참조하기도 한다. 필요한 입력변수가 있고 계산 순서가 있으며, 마지막에는 공학적인 판단으로 이어진다.</p>
+<p>이 관계가 명시적으로 정리되어 있지 않다면 AI는 질문을 받을 때마다 문장 속에서 그 관계를 다시 추론해야 한다.</p>
+<p>공학에서 이것은 상당히 위험한 방식이다.</p>
+<p>그래서 질문을 조금 바꿀 필요가 있다.</p>
+<blockquote class="blockquote">
+<p><strong>AI가 건설기준을 어떻게 잘 읽게 할 것인가?</strong></p>
+</blockquote>
+<p>보다는,</p>
+<blockquote class="blockquote">
+<p><strong>사람과 AI가 동일한 공인된 공학 지식을 신뢰성 있게 사용할 수 있도록 건설기준 자체를 어떻게 구조화할 것인가?</strong></p>
+</blockquote>
+<p>이 질문이 우리가 진행하고 있는 디지털 건설기준 연구의 핵심이다.</p>
+<section id="ai가-없어도-건설기준은-원래-어렵다" class="level2">
+<h2 class="anchored" data-anchor-id="ai가-없어도-건설기준은-원래-어렵다">AI가 없어도 건설기준은 원래 어렵다</h2>
+<p>설계를 해 본 사람이라면 잘 안다.</p>
+<p>하나의 설계 문제를 해결하는 데 필요한 내용이 한 조항에 모두 들어 있는 경우는 많지 않다. 여러 설계기준과 시방서에 흩어져 있고, 다른 조항을 다시 참조하며, 계산서와 도면까지 연결된다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig01.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption><strong>문서 중심의 건설기준은 지식이 분산되어 있다는 문제가 있다.</strong> 하나의 설계 또는 시공 업무에 필요한 내용이 여러 기준과 참조 조항에 흩어져 있고, 계산서와 도면 역시 서로 연결되어 있다. 따라서 문제는 단순히 문장을 찾는 것이 아니라 이 정보들 사이의 공학적 관계를 다시 구성하는 데 있다.</figcaption>
+</figure>
+</div>
+<p>그림 1에서 왼쪽을 보면 하나의 업무에 필요한 요구사항이 여러 기준과 조항에 분산되어 있다. 참조 하나를 놓치면 필요한 공학적 요구사항의 일부를 놓칠 수 있다.</p>
+<p>오른쪽도 중요하다. 실제 설계와 시공에서는 기준서, 구조계산서, 도면이 따로 존재하는 것이 아니다. 서로 연결되어 하나의 공학적 의사결정 과정을 만든다.</p>
+<p>숙련된 기술자는 경험을 통해 머릿속에서 이 관계를 자연스럽게 구성한다.</p>
+<p>컴퓨터에게도 그런 방식으로 일하라고 하면 문제가 생긴다.</p>
+<p>즉, 기존의 문서형 건설기준에는 본질적으로 <strong>지식구조의 문제</strong>가 존재한다.</p>
+</section>
+<section id="기준서-pdf를-llm에게-입력해-주면-되는-것-아닌가" class="level2">
+<h2 class="anchored" data-anchor-id="기준서-pdf를-llm에게-입력해-주면-되는-것-아닌가">기준서 PDF를 LLM에게 입력해 주면 되는 것 아닌가?</h2>
+<p>LLM은 언어를 이해하고 설명하는 데 매우 뛰어나다.</p>
+<p>그렇다고 기준 문서가 바로 전산공간에서 추론과 계산이 가능한 형태로 전환되는 것은 아니다.</p>
+<p>예를 들어 어떤 기준 조항에서 허용값을 두 계산값 중 작은 값으로 정하도록 했다고 하자. 사람은 문장을 읽고 쉽게 이해할 수 있다.</p>
+<p>하지만 실제 공학용 전산시스템에서는 그것만으로 부족하다.</p>
+<p>시스템은 적어도 다음을 알아야 한다.</p>
+<ul>
+<li>두 입력값이 무엇인가?</li>
+<li>각각은 어디에서 정의되는가?</li>
+<li>단위와 공학적 의미는 무엇인가?</li>
+<li>출력값은 무엇인가?</li>
+<li>어떤 비교 연산을 수행해야 하는가?</li>
+<li>이 규칙의 원문은 어느 기준의 어느 조항인가?</li>
+<li>계산 결과를 어떻게 검증할 것인가?</li>
+</ul>
+<p>여기에 여러 기준과 조항이 연결되기 시작하면 문제는 훨씬 복잡해진다.</p>
+<p>결국 프롬프트를 잘 쓰는 것만으로는 근본적인 문제가 해결되지 않는다.</p>
+<p><strong>공학 지식이 문서 속에 암묵적으로 남아 있는 한, AI는 그 논리를 계속 다시 추론해야 한다.</strong></p>
+<p>우리가 하려는 것은 반대다.</p>
+<p>먼저 그 논리를 명시적으로 구성한다.</p>
+</section>
+<section id="pdf를-만드는-것이-디지털화는-아니다" class="level2">
+<h2 class="anchored" data-anchor-id="pdf를-만드는-것이-디지털화는-아니다">PDF를 만드는 것이 디지털화는 아니다</h2>
+<p>디지털 건설기준은 종이 문서를 PDF로 바꾸는 것에서 시작하지 않는다.</p>
+<p>실제 설계와 시공 업무가 어떻게 진행되는지를 먼저 보고, 그 과정에 어떤 기준이 어떻게 연계죄는 것인지를 파악해야 한다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig02.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption><strong>디지털 건설기준은 문서를 전자파일로 바꾸는 것 이상을 요구한다.</strong> 실제 설계·시공 절차와 관련 기준을 연결하고, 그 관계를 라이브러리와 온톨로지 DB로 구조화하며, 개별 요구사항을 계산 가능한 디지털 RuleUnit으로 변환하여 실제 공학 업무에 활용할 수 있어야 한다.</figcaption>
+</figure>
+</div>
+<p>그림 2의 구조는 크게 세 단계로 볼 수 있다.</p>
+<p>첫째, <strong>설계·시공 실무 맵</strong>을 만든다. 실제 업무 절차를 정리하고 각 단계에서 어떤 기준이 필요한지를 파악하여 연결한다.</p>
+<p>둘째, 그 정보를 <strong>디지털 건설기준 DB</strong>로 구조화한다. 여기에는 라이브러리와 온톨로지 같은 지식구조가 포함된다.</p>
+<p>셋째, 이렇게 구조화된 정보를 실제 설계와 시공 업무에 활용한다.</p>
+<p>따라서 중요한 변화는</p>
+<p><span class="math display">\[
+\text{종이 문서} \rightarrow \text{PDF}
+\]</span></p>
+<p>가 아니다.</p>
+<p>실제로 필요한 변화는</p>
+<p><span class="math display">\[
+\text{문서}
+\rightarrow
+\text{구조화된 공학 지식}
+\rightarrow
+\text{컴퓨터가 사용할 수 있는 논리}
+\]</span></p>
+<p>이다.</p>
+<p>PDF는 저장 형식 측면에서는 디지털이다.</p>
+<p>하지만 <strong>지식구조까지 디지털인 것은 아니다.</strong></p>
+</section>
+<section id="ruleunit-문장을-공학-논리로-바꾸는-단위" class="level2">
+<h2 class="anchored" data-anchor-id="ruleunit-문장을-공학-논리로-바꾸는-단위">RuleUnit: 문장을 공학 논리로 바꾸는 단위</h2>
+<p>여기서 중요한 것이 <strong>RuleUnit</strong>이다.</p>
+<p>RuleUnit은 사람이 읽도록 작성된 기준 조항에서 실제 공학 논리를 분리해 명시적으로 표현한다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig03.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption><strong>RuleUnit은 문장으로 표현된 기준 조항을 명시적이고 실행 가능한 공학 논리로 바꾼다.</strong> 기준 조항을 분석해 논리 흐름을 찾고, 입력·출력 변수에 표준화된 디지털 이름을 부여하며, 메타데이터로 출처와 적용 맥락을 보존하고, 마지막으로 기준이 요구하는 연산을 코드로 구현한다. 결국 디지털화하는 것은 문장 자체가 아니라 그 문장 안에 들어 있는 공학 규칙이다.</figcaption>
+</figure>
+</div>
+<p>그림 3의 예를 보자.</p>
+<p>기준 문장에는 말뚝 몸체의 허용압축하중과 지반의 허용지지력을 이용해 허용축방향 지지력을 결정하는 규칙이 들어 있다.</p>
+<p>기술자가 보면 논리가 어렵지 않을 수 있다.</p>
+<p>하지만 컴퓨터에게는 그 논리를 암묵적으로 남겨둘 이유가 없다.</p>
+<p>RuleUnit에서는 이를 다음과 같은 요소로 분리한다.</p>
+<ol type="1">
+<li><strong>메타데이터</strong> — 이 요구사항이 어디에서 왔고 무엇에 관한 것인가?</li>
+<li><strong>논리 흐름</strong> — 어떤 판단과 계산을 어떤 순서로 수행하는가?</li>
+<li><strong>디지털 변수</strong> — 공학량을 어떤 표준화된 변수로 표현하는가?</li>
+<li><strong>디지털 코드</strong> — 기준에서 요구하는 연산을 어떻게 실행하는가?</li>
+</ol>
+<p>여기서 AI의 역할이 달라진다.</p>
+<p>기준 문장을 보고 매번 계산 논리를 새로 만들어 내라고 하는 것이 아니다. 이미 구조화되고 검증된 공학 규칙을 찾아 사용하도록 하는 것이다.</p>
+<p>여기서 중요한 것은 바로 이것이다.</p>
+<blockquote class="blockquote">
+<p><strong>AI에게 기준 문서에서 공학 논리를 매번 다시 추론하게 하지 말자. 한 번 제대로 구조화하고, 그 다음부터는 그 지식을 사용하게 하자.</strong></p>
+</blockquote>
+</section>
+<section id="그러면-환각은-없어지는가" class="level2">
+<h2 class="anchored" data-anchor-id="그러면-환각은-없어지는가">그러면 환각은 없어지는가?</h2>
+<p>여기서는 조금 조심해서 말해야 한다.</p>
+<p>’환각 없는 AI’라고 하면 마치 어떤 질문에도 틀린 답을 하지 않는 시스템을 만들 수 있다는 의미로 들릴 수 있다.</p>
+<p>현재 우리의 연구 방향은 그런 것이 아니다.</p>
+<p>공학에서 AI 환각 문제의 일부는 LLM 자체의 문제이지만, 다른 일부는 <strong>정보구조의 문제</strong>다.</p>
+<p>서로 느슨하게 연결된 수많은 문서를 AI에게 주면 AI는 스스로 처리해야 할 일이 많아진다. AI가 스스로 처리하는 일은,사람이 그 인과관계를 추적하는 것이 불가능하다.</p>
+<p>어떤 조항이 적용되는지 찾아야 하고, 참조 관계를 따라가야 하고, 정의와 요구사항을 구분해야 하며, 계산 순서도 복원해야 한다.</p>
+<p>즉, 암묵적인 관계가 하나 늘어날 때마다 AI가 추론해야 할 것도 하나씩 늘어나며 오류의 개연성도 증가한다.</p>
+<p>우리가 줄이고 싶은 것이 바로 이것이다.</p>
+<p>질문을</p>
+<blockquote class="blockquote">
+<p>“이 기준에서는 어떻게 하라고 하는 건가?”</p>
+</blockquote>
+<p>에서</p>
+<blockquote class="blockquote">
+<p>“적용되는 공인 RuleUnit과 그 의존관계, 변수, 실행 논리를 찾아서 이 검토 결과를 설명해다오.”</p>
+</blockquote>
+<p>로 바꾸는 것이다.</p>
+<p>물론 이것만으로 모든 AI 응답에 대해 환각이 영이라고 보장할 수는 없다. 그런 주장을 하려면 환각을 명확하게 정의하고 충분한 검증 체계를 만들어 실제로 시험해야 한다.</p>
+<p>하지만 공학적으로 방향은 분명하다.</p>
+<blockquote class="blockquote">
+<p><strong>AI가 추측해야 하는 부분은 줄이고, 명시적으로 제공되는 공인된 공학 지식은 늘린다.</strong></p>
+</blockquote>
+</section>
+<section id="기준이-계산-가능해지면-acc가-가능해진다" class="level2">
+<h2 class="anchored" data-anchor-id="기준이-계산-가능해지면-acc가-가능해진다">기준이 계산 가능해지면 ACC가 가능해진다</h2>
+<p>기준 요구사항이 컴퓨터가 사용할 수 있는 형태가 되면 실제 공학 업무 흐름에 직접 들어갈 수 있다.</p>
+<p>대표적인 것이 <strong>자동 적합성 검토(Automatic Compliance Check, ACC)</strong>다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig04.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption><strong>디지털 건설기준은 BIM 기반 설계검토와 직접 연결될 수 있다.</strong> 모델에서 설계값을 가져오고, 건설기준 인터페이스를 통해 적용 기준을 불러오며, 적합성 검토를 수행한 뒤 그 결과를 검토 가능한 형태로 출력한다. 기준이 설계 옆에 놓인 참고문서가 아니라 계산 절차의 일부가 되는 것이다.</figcaption>
+</figure>
+</div>
+<p>그림 4는 BIM 환경에서 이 과정을 보여준다.</p>
+<p>목적은 기술자를 없애는 것이 아니다.</p>
+<p>반복적으로 기준을 찾고 값을 옮기고 동일한 검토를 수행하는 일을 줄이면서, 무엇을 근거로 판단했는지를 더 명확하게 만드는 것이다.</p>
+<p>제대로 된 적합성 검토 시스템이라면 기술자는 최소한 다음 질문에 답할 수 있어야 한다.</p>
+<ul>
+<li>어떤 기준 요구사항을 검토했는가?</li>
+<li>어떤 설계값을 사용했는가?</li>
+<li>어느 버전의 기준을 적용했는가?</li>
+<li>어떤 계산 또는 논리 검토를 수행했는가?</li>
+<li>왜 적합 또는 부적합이라는 결론이 나왔는가?</li>
+</ul>
+<p>챗봇이 답을 하나 내놓고 “믿으세요” 하는 것과는 전혀 다르다.</p>
+<p>공학 AI에서는 <strong>추적성(traceability)도 정확성의 일부</strong>다.</p>
+</section>
+<section id="디지털-건설기준은-재사용-가능한-공학-지식이-된다" class="level2">
+<h2 class="anchored" data-anchor-id="디지털-건설기준은-재사용-가능한-공학-지식이-된다">디지털 건설기준은 재사용 가능한 공학 지식이 된다</h2>
+<p>이 개념은 공식적인 기준 검토에만 적용되는 것이 아니다.</p>
+<p>기존의 설계 예제집에도 상당한 공학 지식이 들어 있다. 대표적인 설계 사례, 계산 절차, 설명, 적용 기준, 검증된 결과가 모두 포함되어 있다.</p>
+<p>문제는 책에 적힌 예제는 입력값과 계산 순서가 페이지 위에 고정되어 있다는 것이다.</p>
+<p>이것도 구조화할 수 있다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig05.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption><strong>디지털 예제집은 검증된 공학 예제를 재사용 가능한 지식자산으로 바꾼다.</strong> 설계 사례, 계산, 설명, 적용 기준, 검증 결과를 먼저 구조화하고, 이를 입력값을 바꿀 수 있는 실행 모델로 만든 뒤 교육, 설계검토, 협업 등 다양한 공학 업무에서 다시 활용할 수 있다.</figcaption>
+</figure>
+</div>
+<p>그림 5의 과정을 간단히 쓰면</p>
+<p><span class="math display">\[
+\text{구조화}
+\rightarrow
+\text{모델화}
+\rightarrow
+\text{활용}
+\]</span></p>
+<p>이다.</p>
+<p>예제에 들어 있는 공학 지식을 먼저 구조화한다. 고정된 계산을 입력값에 따라 실행할 수 있는 모델로 만든다. 그러면 교육, 실무 검토, 협업, AI 기반 공학 업무에서 다시 사용할 수 있다.</p>
+<p>그래서 나는 디지털 전환을 단순히 종이를 파일로 바꾸는 것으로 보지 않는다.</p>
+<p><strong>공학 지식을 다시 사용할 수 있는 계산 자산으로 바꾸는 것이 진짜 디지털 전환이다.</strong></p>
+</section>
+<section id="ai-시대에는-무엇이-달라지는가" class="level2">
+<h2 class="anchored" data-anchor-id="ai-시대에는-무엇이-달라지는가">AI 시대에는 무엇이 달라지는가?</h2>
+<p>사실 디지털 건설기준은 생성형 AI가 등장하기 전에도 필요했다.</p>
+<p>BIM 연계, 자동 검토, 데이터베이스, 소프트웨어 간 정보교환을 위해서 이미 필요했다.</p>
+<p>그런데 AI가 등장하면서 필요성이 훨씬 커졌다.</p>
+<p>LLM의 장점은 사람과 정보 사이의 인터페이스를 아주 유연하게 만들어 준다는 것이다. 기술자는 복잡한 DB 구조를 직접 찾아다니지 않고 자연어로 질문할 수 있다.</p>
+<p>하지만 인터페이스가 유연하다고 해서 그 아래의 공학 지식까지 모호해도 된다는 뜻은 아니다.</p>
+<p>우리가 원하는 조합은 다음과 같다.</p>
+<p><span class="math display">\[
+\boxed{
+\text{자연어의 유연성}
++
+\text{구조화된 공인 지식}
++
+\text{실행 가능한 공학 논리}
+}
+\]</span></p>
+<p>LLM은 기술자의 질문 의도를 이해하고 결과를 설명하는 데 사용할 수 있다.</p>
+<p>디지털 건설기준은 판단의 공학적 근거를 제공한다.</p>
+<p>그리고 확률적인 언어 생성에 맡겨서는 안 되는 계산과 검토는 실행 가능한 RuleUnit이 담당한다.</p>
+<p>각자의 역할을 구분하는 것이 중요하다.</p>
+</section>
+<section id="ai-전환은-ai를-붙이기-전에-시작된다" class="level2">
+<h2 class="anchored" data-anchor-id="ai-전환은-ai를-붙이기-전에-시작된다">AI 전환은 AI를 붙이기 전에 시작된다</h2>
+<p>기존 업무에 AI를 하나 붙이면 AI 전환이 된다고 생각하기 쉽다.</p>
+<p>건설기준에서는 순서가 반대다.</p>
+<p>기존 정보가 여러 문서에 흩어져 있고, 표현이 일관되지 않으며, 중요한 관계를 사람이 알아서 해석해야 하는 상태라면 아무리 좋은 LLM을 붙여도 그 자체로 신뢰할 수 있는 공학 시스템이 되지는 않는다.</p>
+<p>먼저 지식 인프라가 바뀌어야 한다.</p>
+<p>그래서 AI 시대에 디지털 건설기준이 더 중요하다.</p>
+<p>기존의 건설기준 문서를 BIM, 계산 기반 검토, 데이터베이스, 온톨로지, 실행 가능한 규칙, 자연어 AI 인터페이스와 연결할 수 있기 때문이다.</p>
+<p>이 문제는 건설기준에만 해당하지 않는다.</p>
+<blockquote class="blockquote">
+<p><strong>공학 AI의 신뢰성은 AI 모델이 얼마나 똑똑한가에만 달려 있지 않다. AI에게 어떤 구조와 권위를 가진 공학 정보를 주는가에도 달려 있다.</strong></p>
+</blockquote>
+<p>더 짧게 말하면,</p>
+<blockquote class="blockquote">
+<p><strong>AI에게 추론시키기 전에 공학 지식부터 구조화하자.</strong></p>
+</blockquote>
+</section>
+<section id="우리가-만들려는-것은-건설기준-챗봇이-아니다" class="level2">
+<h2 class="anchored" data-anchor-id="우리가-만들려는-것은-건설기준-챗봇이-아니다">우리가 만들려는 것은 ’건설기준 챗봇’이 아니다</h2>
+<p>이 글에서 설명한 내용은 현재 진행 중인 디지털 건설기준 및 AI 기반 공학 활용 연구의 일부다.</p>
+<p>설계·시공 기준 맵, 건설기준 라이브러리와 온톨로지, 실행 가능한 RuleUnit, BIM 기반 자동 적합성 검토, 공사시방서 자동 생성, 현장 활용, 디지털 공학 예제집 등으로 확장할 수 있다.</p>
+<p>하지만 장기적인 목표를 ’건설기준을 잘 대답하는 챗봇’으로 잡으면 너무 작다.</p>
+<p>우리가 만들고 싶은 것은 <strong>사람이 읽는 건설기준과 컴퓨터가 사용하는 건설기준이 동일한 공인된 공학 요구사항을 공유하는 정보 환경</strong>이다.</p>
+<p>문서를 잘 검색하는 것보다 훨씬 어려운 문제다.</p>
+<p>하지만 공학 AI를 실제로 사용하려면 훨씬 필요한 문제이기도 하다.</p>
+</section>
+<section id="프로젝트-상태" class="level2">
+<h2 class="anchored" data-anchor-id="프로젝트-상태">프로젝트 상태</h2>
+<p>이 글은 현재 <strong>진행 중인 R&amp;D 프로젝트</strong>에서 개발하고 있는 개념과 기술을 설명한다. 완료된 동료평가 연구의 최종 결과를 보고하는 글이 아니라, 연구의 공학적 문제와 구조를 설명하기 위한 글이다. 따라서 구체적인 성능에 관한 주장은 별도의 정의와 검증이 이루어진 범위에서만 해석해야 한다.</p>
+</section>
+<section id="프로젝트-자료" class="level2">
+<h2 class="anchored" data-anchor-id="프로젝트-자료">프로젝트 자료</h2>
+<p><strong>Digital Construction Standards and AI-Based Application Technologies</strong><br>
+고려대학교 구조공학 및 역학연구실 발표자료, 2026년 6월 26일.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Goangseup Zi">
+<meta name="dcterms.date" content="2026-09-03">
+<meta name="keywords" content="concrete durability, coupled concrete durability, concrete durability modeling, multiphysics concrete, carbonation and chloride ingress, chloride ingress in concrete, reinforcement corrosion, corrosion-induced cracking, alkali-silica reaction, ASR concrete, chemo-mechanical model, concrete service life prediction, concrete deterioration mechanisms, transport in concrete">
+<meta name="description" content="A mechanics-oriented view of concrete durability as a coupled multiphysics problem involving moisture, ions, gases, chemical reactions, evolving solids, corrosion, and cracking.">
+
+<title>Why Can’t We Study Concrete Durability One Mechanism at a Time? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research Explained</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../z-diagram.html"> 
+<span class="menu-text">Z-Diagram</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../latex-writing.html"> 
+<span class="menu-text">LaTeX &amp; Writing</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#the-traditional-picture-is-too-simple" id="toc-the-traditional-picture-is-too-simple" class="nav-link active" data-scroll-target="#the-traditional-picture-is-too-simple">The traditional picture is too simple</a></li>
+  <li><a href="#example-1-carbonation-and-chloride-ingress-are-not-independent" id="toc-example-1-carbonation-and-chloride-ingress-are-not-independent" class="nav-link" data-scroll-target="#example-1-carbonation-and-chloride-ingress-are-not-independent">Example 1: carbonation and chloride ingress are not independent</a></li>
+  <li><a href="#a-coupled-durability-problem-needs-state-variables-not-labels" id="toc-a-coupled-durability-problem-needs-state-variables-not-labels" class="nav-link" data-scroll-target="#a-coupled-durability-problem-needs-state-variables-not-labels">A coupled durability problem needs state variables, not labels</a></li>
+  <li><a href="#example-2-corrosion-creates-the-crack-that-accelerates-corrosion" id="toc-example-2-corrosion-creates-the-crack-that-accelerates-corrosion" class="nav-link" data-scroll-target="#example-2-corrosion-creates-the-crack-that-accelerates-corrosion">Example 2: corrosion creates the crack that accelerates corrosion</a></li>
+  <li><a href="#example-3-asr-requires-chemistry-moisture-and-mechanics-in-sequence" id="toc-example-3-asr-requires-chemistry-moisture-and-mechanics-in-sequence" class="nav-link" data-scroll-target="#example-3-asr-requires-chemistry-moisture-and-mechanics-in-sequence">Example 3: ASR requires chemistry, moisture, and mechanics in sequence</a></li>
+  <li><a href="#hydration-and-nanoscale-solid-growth-belong-in-the-same-picture" id="toc-hydration-and-nanoscale-solid-growth-belong-in-the-same-picture" class="nav-link" data-scroll-target="#hydration-and-nanoscale-solid-growth-belong-in-the-same-picture">Hydration and nanoscale solid growth belong in the same picture</a></li>
+  <li><a href="#an-apparent-contradiction-carbonation-can-accelerate-chloride-damageor-improve-chloride-resistance" id="toc-an-apparent-contradiction-carbonation-can-accelerate-chloride-damageor-improve-chloride-resistance" class="nav-link" data-scroll-target="#an-apparent-contradiction-carbonation-can-accelerate-chloride-damageor-improve-chloride-resistance">An apparent contradiction: carbonation can accelerate chloride damage—or improve chloride resistance</a></li>
+  <li><a href="#durability-has-several-characteristic-scales" id="toc-durability-has-several-characteristic-scales" class="nav-link" data-scroll-target="#durability-has-several-characteristic-scales">Durability has several characteristic scales</a></li>
+  <li><a href="#why-single-mechanism-tests-are-still-necessary" id="toc-why-single-mechanism-tests-are-still-necessary" class="nav-link" data-scroll-target="#why-single-mechanism-tests-are-still-necessary">Why single-mechanism tests are still necessary</a></li>
+  <li><a href="#probability-makes-the-coupling-even-more-important" id="toc-probability-makes-the-coupling-even-more-important" class="nav-link" data-scroll-target="#probability-makes-the-coupling-even-more-important">Probability makes the coupling even more important</a></li>
+  <li><a href="#what-should-a-future-durability-model-contain" id="toc-what-should-a-future-durability-model-contain" class="nav-link" data-scroll-target="#what-should-a-future-durability-model-contain">What should a future durability model contain?</a></li>
+  <li><a href="#my-own-route-through-this-problem" id="toc-my-own-route-through-this-problem" class="nav-link" data-scroll-target="#my-own-route-through-this-problem">My own route through this problem</a></li>
+  <li><a href="#engineering-takeaway" id="toc-engineering-takeaway" class="nav-link" data-scroll-target="#engineering-takeaway">Engineering takeaway</a></li>
+  <li><a href="#original-research" id="toc-original-research" class="nav-link" data-scroll-target="#original-research">Original research</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Why Can’t We Study Concrete Durability One Mechanism at a Time?</h1>
+<p class="subtitle lead">Concrete ages through interacting transport, chemistry, microstructure, and mechanics—not through isolated deterioration mechanisms</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Research Explained</div>
+    <div class="quarto-category">Concrete &amp; Materials</div>
+    <div class="quarto-category">Concrete Durability</div>
+    <div class="quarto-category">Multiphysics</div>
+    <div class="quarto-category">Corrosion</div>
+    <div class="quarto-category">Alkali-Silica Reaction</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    A mechanics-oriented view of concrete durability as a coupled multiphysics problem involving moisture, ions, gases, chemical reactions, evolving solids, corrosion, and cracking.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Goangseup Zi </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 3, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+<div>
+  <div class="keywords">
+    <div class="block-title">Keywords</div>
+    <p>concrete durability, coupled concrete durability, concrete durability modeling, multiphysics concrete, carbonation and chloride ingress, chloride ingress in concrete, reinforcement corrosion, corrosion-induced cracking, alkali-silica reaction, ASR concrete, chemo-mechanical model, concrete service life prediction, concrete deterioration mechanisms, transport in concrete</p>
+  </div>
+</div>
+
+</header>
+
+
+<p>Concrete durability is often taught as a collection of separate problems.</p>
+<p>We study chloride ingress.<br>
+We study carbonation.<br>
+We study freezing and thawing.<br>
+We study alkali-silica reaction.<br>
+We study reinforcement corrosion.</p>
+<p>This separation is useful in the classroom and often unavoidable in laboratory testing.</p>
+<p>But real concrete does not know which chapter of the textbook we are studying.</p>
+<p>A concrete structure experiences <strong>mechanical deformation, moisture transport, ion migration, gas diffusion, chemical reactions, hydration, dissolution and precipitation of solids, corrosion, and cracking at the same time</strong>.</p>
+<p>More importantly, these processes interact.</p>
+<p>A crack changes transport.<br>
+Transport changes chemical reaction.<br>
+Chemical reaction changes pore structure.<br>
+Pore structure changes transport again.<br>
+Reaction products may expand and generate stress.<br>
+Stress creates more cracks.</p>
+<p>That is why concrete durability becomes much more difficult than solving several independent diffusion problems.</p>
+<p>For more than a decade, a significant part of my research has dealt with different pieces of this coupled problem—from carbonation and chloride ingress to reinforcement corrosion and alkali-silica reaction (ASR). I remain interested in it because the central difficulty has not disappeared:</p>
+<blockquote class="blockquote">
+<p><strong>Concrete durability is the evolution of a reactive porous solid under interacting transport, chemical, and mechanical processes.</strong></p>
+</blockquote>
+<p>This article explains why that statement matters.</p>
+<section id="the-traditional-picture-is-too-simple" class="level2">
+<h2 class="anchored" data-anchor-id="the-traditional-picture-is-too-simple">The traditional picture is too simple</h2>
+<p>A simple durability model often starts with something like Fickian diffusion:</p>
+<p><span class="math display">\[
+\frac{\partial C}{\partial t}
+=
+\nabla \cdot \left(D\nabla C\right),
+\]</span></p>
+<p>where <span class="math inline">\(C\)</span> is the concentration of a transported species and <span class="math inline">\(D\)</span> is a diffusion coefficient.</p>
+<p>This equation is extremely useful.</p>
+<p>But what exactly is <span class="math inline">\(D\)</span>?</p>
+<p>If the pore structure changes because of carbonation, hydration, precipitation, dissolution, or cracking, the diffusion coefficient should change.</p>
+<p>And what exactly is being transported?</p>
+<p>Chloride may exist as free chloride in the pore solution or may be chemically bound. Carbonation can change that binding capacity and release previously bound chloride. Moisture changes the pathways available to gases and ions. Temperature changes reaction and transport rates.</p>
+<p>Even the threshold for reinforcement depassivation may evolve as the chemical condition of the pore solution changes.</p>
+<p>So the actual problem is closer to</p>
+<pre class="text"><code>environment
+    ↓
+moisture / ions / gases / heat
+    ↓
+transport through pores
+    ↓
+chemical and electrochemical reactions
+    ↓
+solid formation, dissolution, and pore-structure change
+    ↓
+stress, strain, expansion, and cracking
+    ↓
+new transport paths
+    ↺</code></pre>
+<p>The last arrow is the important one.</p>
+<p>The material through which diffusion occurs is itself changing.</p>
+</section>
+<section id="example-1-carbonation-and-chloride-ingress-are-not-independent" class="level2">
+<h2 class="anchored" data-anchor-id="example-1-carbonation-and-chloride-ingress-are-not-independent">Example 1: carbonation and chloride ingress are not independent</h2>
+<p>Carbonation and chloride ingress provide a particularly clear example.</p>
+<p>A conventional durability assessment may calculate a carbonation depth and a chloride profile independently and then compare each with a corrosion criterion.</p>
+<p>That approach implicitly assumes that carbonation does not substantially change chloride transport.</p>
+<p>But carbonation changes the chemistry and microstructure of concrete.</p>
+<p>In our combined carbonation-chloride model, we considered coupled transport of carbon dioxide, chloride ions, moisture, and heat. Carbonation also changed the pore structure and chloride-binding capacity.</p>
+<p>One particularly important mechanism is the decomposition of chloride-bearing Friedel’s salt during carbonation. Chloride that had been chemically bound can be released back into the pore solution.</p>
+<p>Schematically,</p>
+<p><span class="math display">\[
+\text{bound chloride}
+\;\xrightarrow{\text{carbonation}}\;
+\text{free chloride in pore solution}.
+\]</span></p>
+<p>The significance is easy to miss if the two deterioration mechanisms are solved independently.</p>
+<p>The chloride concentration is not governed only by chloride entering from the exposed surface. A chemical reaction occurring inside the concrete can create an <strong>internal source of free chloride</strong>.</p>
+<div id="fig-carbonation-chloride" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-carbonation-chloride-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig01.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:78.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-carbonation-chloride-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Carbonation changes the chloride profile rather than simply advancing beside it. The upper plot shows how the carbonation front and free-chloride distribution vary with CO2 exposure. The lower plot shows the engineering consequence: in the illustrative calculation, coupling carbonation with chloride ingress moved the corrosion-initiation condition substantially earlier than the uncoupled treatment. Adapted from Zhu et al.&nbsp;(2016).
+</figcaption>
+</figure>
+</div>
+<p>Figure <a href="#fig-carbonation-chloride" class="quarto-xref">Figure&nbsp;1</a> illustrates the point.</p>
+<p>The important observation is not merely that carbonation exists at the same time as chloride ingress.</p>
+<p>It is that carbonation <strong>changes the chloride problem itself</strong>.</p>
+<p>In the illustrative example in that study, the calculated corrosion-initiation time was reduced by about 40% when the combined mechanism was considered.</p>
+<p>That result has a broader engineering meaning:</p>
+<blockquote class="blockquote">
+<p><strong>When one deterioration process changes the state variables governing another process, adding two independent predictions is not enough.</strong></p>
+</blockquote>
+</section>
+<section id="a-coupled-durability-problem-needs-state-variables-not-labels" class="level2">
+<h2 class="anchored" data-anchor-id="a-coupled-durability-problem-needs-state-variables-not-labels">A coupled durability problem needs state variables, not labels</h2>
+<p>The words <em>carbonation</em>, <em>chloride ingress</em>, <em>ASR</em>, and <em>corrosion</em> are useful names for recognizable deterioration phenomena.</p>
+<p>But computationally, it is often more useful to think in terms of evolving state variables.</p>
+<p>For example:</p>
+<ul>
+<li>moisture content or relative humidity,</li>
+<li>temperature,</li>
+<li>carbon dioxide concentration,</li>
+<li>free and bound chloride,</li>
+<li>oxygen concentration,</li>
+<li>alkali concentration,</li>
+<li>calcium concentration,</li>
+<li>pH,</li>
+<li>degree of carbonation,</li>
+<li>porosity,</li>
+<li>characteristic pore size,</li>
+<li>reaction-product content,</li>
+<li>corrosion current,</li>
+<li>mechanical damage,</li>
+<li>strain and stress.</li>
+</ul>
+<p>The deterioration label is then an emergent result of interactions among these variables.</p>
+<p>This way of thinking is familiar in mechanics.</p>
+<p>A structural engineer does not usually say that equilibrium, constitutive behavior, and compatibility are three unrelated structural problems. They are different parts of one mechanical system.</p>
+<p>Durability should often be viewed in the same way.</p>
+</section>
+<section id="example-2-corrosion-creates-the-crack-that-accelerates-corrosion" class="level2">
+<h2 class="anchored" data-anchor-id="example-2-corrosion-creates-the-crack-that-accelerates-corrosion">Example 2: corrosion creates the crack that accelerates corrosion</h2>
+<p>After reinforcement depassivation, the coupling becomes even stronger.</p>
+<p>Corrosion is an electrochemical process. Iron dissolves, oxygen participates in cathodic reactions, corrosion products form, and the rust occupies a larger effective volume than the consumed steel.</p>
+<p>That expansion generates pressure on the surrounding concrete.</p>
+<p>Once cracking starts, the transport problem changes.</p>
+<p>The cracked concrete provides easier pathways for moisture, oxygen, carbon dioxide, and chloride ions.</p>
+<p>Therefore the sequence is not simply</p>
+<pre class="text"><code>chloride
+→ corrosion
+→ crack</code></pre>
+<p>but rather</p>
+<pre class="text"><code>chloride / carbonation
+→ depassivation
+→ electrochemical corrosion
+→ rust expansion
+→ cracking
+→ faster transport
+→ changed corrosion
+→ further cracking</code></pre>
+<p>This is a genuine feedback loop.</p>
+<p>In our two-dimensional mechano-chemical corrosion model, mass transport, carbonation, electrochemical reactions, rust expansion, and concrete cracking were coupled. The anode region was not fixed in advance; it developed as local chemical conditions changed.</p>
+<div id="fig-crack-feedback" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-crack-feedback-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig03.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:92.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-crack-feedback-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: The calculated free-chloride concentration and degree of carbonation after 40 years change when corrosion-induced mechanical damage is included. The comparison demonstrates the feedback direction that is often missing from durability analysis: damage is not only the result of transport—it changes subsequent transport. Adapted from Zhu and Zi (2017).
+</figcaption>
+</figure>
+</div>
+<p>Figure <a href="#fig-crack-feedback" class="quarto-xref">Figure&nbsp;2</a> is, to me, one of the clearest demonstrations of why durability must be treated as a coupled problem.</p>
+<p>If cracking were only an output quantity, we could calculate transport first and mechanics later.</p>
+<p>But once cracking modifies transport, the two calculations cannot remain one-way.</p>
+<p>In the example studied, including mechanical damage substantially accelerated chloride arrival at parts of the reinforcement. At one reported location, the calculated corrosion-initiation time decreased from more than 60 years to about 28 years when the damage feedback was included.</p>
+<p>The exact number belongs to that particular numerical example.</p>
+<p>The general principle is more important:</p>
+<blockquote class="blockquote">
+<p><strong>Damage changes the environment experienced by the material inside the structure.</strong></p>
+</blockquote>
+</section>
+<section id="example-3-asr-requires-chemistry-moisture-and-mechanics-in-sequence" class="level2">
+<h2 class="anchored" data-anchor-id="example-3-asr-requires-chemistry-moisture-and-mechanics-in-sequence">Example 3: ASR requires chemistry, moisture, and mechanics in sequence</h2>
+<p>Alkali-silica reaction looks different from reinforcement corrosion, but it exposes the same multiphysics structure.</p>
+<p>ASR begins with chemical attack on reactive silica.</p>
+<p>Alkali participates in forming an ASR product. The product then imbibes water and swells. The swelling generates pressure on the surrounding solid skeleton. That pressure causes expansion and damage.</p>
+<p>A useful conceptual sequence is</p>
+<pre class="text"><code>alkali transport
+→ silica reaction
+→ formation of basic ASR gel
+→ water imbibition
+→ gel swelling
+→ expansive pressure
+→ mechanical damage</code></pre>
+<p>In our chemo-mechanical ASR model, the <strong>formation of the basic gel</strong> and the <strong>swelling of the gel</strong> were deliberately separated.</p>
+<p>The first is controlled primarily by the chemical availability of alkali.</p>
+<p>The second requires moisture.</p>
+<p>This distinction matters because the amount of reaction product and its swelling capacity are not the same physical quantity.</p>
+<div id="fig-asr-evolution" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-asr-evolution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig02.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:72.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-asr-evolution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: The ASR model tracks the progression of free alkali, reactive silica, basic ASR gel, free calcium, and C-S-H formed through alkali recycling. The figure emphasizes that durability is not governed by a single reaction front: several chemical fields and evolving solid phases coexist and interact. Adapted from Sun et al.&nbsp;(2020).
+</figcaption>
+</figure>
+</div>
+<p>Figure <a href="#fig-asr-evolution" class="quarto-xref">Figure&nbsp;3</a> shows this internal evolution at the scale of a reactive aggregate.</p>
+<p>Calcium adds another level of coupling. Calcium entering the reacted layer can replace alkali and form C-S-H-like products. The chemical composition of the gel influences its capacity to swell.</p>
+<p>Therefore ASR cannot be understood completely by asking only:</p>
+<blockquote class="blockquote">
+<p>How fast does alkali diffuse?</p>
+</blockquote>
+<p>We also need to ask:</p>
+<ul>
+<li>How much reactive silica remains?</li>
+<li>What reaction products form?</li>
+<li>How much water reaches the gel?</li>
+<li>What is the chemical composition of the product?</li>
+<li>How much swelling can that product generate?</li>
+<li>What stress does the swelling impose on the surrounding concrete?</li>
+<li>How does the resulting damage alter subsequent transport?</li>
+</ul>
+<p>The difficulty is not an excessively complicated equation.</p>
+<p>The difficulty is that <strong>the material is changing across multiple scales</strong>.</p>
+</section>
+<section id="hydration-and-nanoscale-solid-growth-belong-in-the-same-picture" class="level2">
+<h2 class="anchored" data-anchor-id="hydration-and-nanoscale-solid-growth-belong-in-the-same-picture">Hydration and nanoscale solid growth belong in the same picture</h2>
+<p>Concrete begins evolving from the moment water contacts cement.</p>
+<p>Hydration consumes water and unhydrated phases while creating new solids. These solids progressively construct the load-bearing skeleton and pore network.</p>
+<p>Later durability reactions continue modifying that network.</p>
+<p>Carbonation can dissolve or consume some phases and precipitate calcium carbonate.</p>
+<p>ASR creates reaction products around or inside reactive aggregates.</p>
+<p>Corrosion creates solid rust products at the steel-concrete interface.</p>
+<p>At sufficiently small scales, durability is therefore inseparable from <strong>where solids grow, dissolve, and reorganize</strong>.</p>
+<p>This is why a fixed value of porosity is often not enough.</p>
+<p>Two concretes with the same total porosity can behave differently if their pore connectivity, pore-size distribution, saturation, and solid-phase distribution differ.</p>
+<p>The important variable for transport is not simply how much empty space exists.</p>
+<p>It is whether that space forms connected pathways.</p>
+</section>
+<section id="an-apparent-contradiction-carbonation-can-accelerate-chloride-damageor-improve-chloride-resistance" class="level2">
+<h2 class="anchored" data-anchor-id="an-apparent-contradiction-carbonation-can-accelerate-chloride-damageor-improve-chloride-resistance">An apparent contradiction: carbonation can accelerate chloride damage—or improve chloride resistance</h2>
+<p>Coupling also warns us against turning an observed mechanism into a universal rule.</p>
+<p>Our earlier work on mature reinforced concrete showed how carbonation can accelerate chloride-related corrosion through changes in binding, pore structure, pH, and chloride release.</p>
+<p>But accelerated carbonation can also be deliberately used at early age to densify some concrete systems.</p>
+<p>In recent work on carbon-eating concrete incorporating electric-arc-furnace slag, accelerated carbonation produced calcium-carbonate-rich surface densification and reduced pore volume near the exposed surface. The carbonated specimens showed lower chloride penetration than their non-carbonated counterparts.</p>
+<div id="fig-carbonation-beneficial" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-carbonation-beneficial-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig04.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:58.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-carbonation-beneficial-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: In the accelerated-carbonation study, both ordinary concrete and carbon-eating concrete showed reduced charge passage and chloride penetration depth after carbonation curing. This does not contradict the earlier combined-deterioration studies: the materials, age, exposure history, pore structure, and chemical state are different. Adapted from Lee et al.&nbsp;(2025).
+</figcaption>
+</figure>
+</div>
+<p>This is an important reminder.</p>
+<p>It would be wrong to conclude either</p>
+<blockquote class="blockquote">
+<p>carbonation always makes chloride ingress worse</p>
+</blockquote>
+<p>or</p>
+<blockquote class="blockquote">
+<p>carbonation always improves chloride resistance.</p>
+</blockquote>
+<p>The effect depends on the material state and the pathway by which that state was reached.</p>
+<p>Early accelerated carbonation of a designed material can create dense reaction products and refine surface pores.</p>
+<p>Long-term environmental carbonation of reinforced concrete can reduce alkalinity, modify chloride binding, release bound chloride, and contribute to reinforcement depassivation.</p>
+<p>The word <em>carbonation</em> is the same.</p>
+<p>The coupled state of the material is not.</p>
+<p>This is exactly why mechanistic modeling is necessary.</p>
+</section>
+<section id="durability-has-several-characteristic-scales" class="level2">
+<h2 class="anchored" data-anchor-id="durability-has-several-characteristic-scales">Durability has several characteristic scales</h2>
+<p>Another source of difficulty is scale.</p>
+<p>At the nanoscale and microscale, we may care about:</p>
+<ul>
+<li>hydration products,</li>
+<li>ion binding,</li>
+<li>gel chemistry,</li>
+<li>precipitation and dissolution,</li>
+<li>pore geometry.</li>
+</ul>
+<p>At the mesoscale, we may care about:</p>
+<ul>
+<li>aggregates,</li>
+<li>interfacial transition zones,</li>
+<li>localized reaction,</li>
+<li>distributed microcracking.</li>
+</ul>
+<p>At the structural scale, we care about:</p>
+<ul>
+<li>cover thickness,</li>
+<li>exposure boundaries,</li>
+<li>crack networks,</li>
+<li>reinforcement layout,</li>
+<li>corrosion initiation and propagation,</li>
+<li>stiffness and load-carrying capacity,</li>
+<li>service life and reliability.</li>
+</ul>
+<p>A useful model does not necessarily resolve every scale explicitly.</p>
+<p>That would often be computationally impossible.</p>
+<p>The challenge is to decide <strong>which small-scale mechanisms must survive in the larger-scale model</strong>.</p>
+<p>For example, we do not need to simulate every Friedel’s salt crystal to represent carbonation-induced release of bound chloride.</p>
+<p>But the release mechanism may need to appear as a source term in the macroscopic mass balance.</p>
+<p>Likewise, we do not need to model every ASR molecule.</p>
+<p>But the model must distinguish formation of reaction product from moisture-driven swelling if those two processes control different aspects of the observed expansion.</p>
+<p>This is model reduction with physical meaning.</p>
+</section>
+<section id="why-single-mechanism-tests-are-still-necessary" class="level2">
+<h2 class="anchored" data-anchor-id="why-single-mechanism-tests-are-still-necessary">Why single-mechanism tests are still necessary</h2>
+<p>None of this means that isolated durability tests are useless.</p>
+<p>They are essential.</p>
+<p>A chloride migration test can identify transport characteristics.</p>
+<p>A carbonation test can characterize carbonation resistance.</p>
+<p>An ASR expansion test can reveal aggregate reactivity.</p>
+<p>A freeze-thaw test can compare mixture performance.</p>
+<p>The problem occurs when we move from <strong>material characterization</strong> to <strong>service-life prediction</strong> and assume that the isolated mechanisms remain independent in the real structure.</p>
+<p>Single-mechanism experiments help identify components of the problem.</p>
+<p>Combined models ask how those components interact.</p>
+<p>The distinction is important:</p>
+<pre class="text"><code>laboratory isolation
+    helps us understand a mechanism
+
+structural exposure
+    requires us to understand interaction</code></pre>
+</section>
+<section id="probability-makes-the-coupling-even-more-important" class="level2">
+<h2 class="anchored" data-anchor-id="probability-makes-the-coupling-even-more-important">Probability makes the coupling even more important</h2>
+<p>Durability parameters are uncertain.</p>
+<p>Cover thickness varies.</p>
+<p>Surface chloride concentration varies.</p>
+<p>Humidity and temperature vary.</p>
+<p>Diffusion coefficients vary.</p>
+<p>Chemical threshold values vary.</p>
+<p>Material composition varies.</p>
+<p>For this reason, service-life prediction is naturally probabilistic.</p>
+<p>But probabilistic analysis does not repair an incomplete physical model.</p>
+<p>If the deterministic model assumes independent carbonation and chloride ingress when the mechanisms are actually coupled, adding sophisticated probability distributions only quantifies uncertainty around the wrong physical structure.</p>
+<p>In our probabilistic study of combined carbonation and chloride ingress, the coupled calculation predicted a much higher probability of corrosion initiation than treating the mechanisms independently.</p>
+<p>A later simplified probabilistic model was developed because the comprehensive coupled formulation was computationally expensive.</p>
+<p>That progression is itself instructive:</p>
+<pre class="text"><code>understand the coupled physics
+→ construct the comprehensive model
+→ identify dominant variables
+→ simplify without destroying the coupling
+→ perform practical reliability analysis</code></pre>
+<p>This is usually safer than starting with a simple independent model and adding empirical correction factors without knowing which interactions matter.</p>
+</section>
+<section id="what-should-a-future-durability-model-contain" class="level2">
+<h2 class="anchored" data-anchor-id="what-should-a-future-durability-model-contain">What should a future durability model contain?</h2>
+<p>There is no universal model that must include everything.</p>
+<p>The appropriate level of coupling depends on the engineering question.</p>
+<p>But for difficult long-term durability problems, I would think in terms of five interacting layers.</p>
+<section id="mechanical-fields" class="level3">
+<h3 class="anchored" data-anchor-id="mechanical-fields">1. Mechanical fields</h3>
+<p>Stress, strain, deformation, cracking, and damage.</p>
+</section>
+<section id="transport-fields" class="level3">
+<h3 class="anchored" data-anchor-id="transport-fields">2. Transport fields</h3>
+<p>Moisture, heat, ions, gases, and sometimes electrical potential.</p>
+</section>
+<section id="chemical-and-electrochemical-reactions" class="level3">
+<h3 class="anchored" data-anchor-id="chemical-and-electrochemical-reactions">3. Chemical and electrochemical reactions</h3>
+<p>Carbonation, chloride binding and release, hydration, ASR chemistry, corrosion reactions, dissolution, and precipitation.</p>
+</section>
+<section id="evolving-microstructure" class="level3">
+<h3 class="anchored" data-anchor-id="evolving-microstructure">4. Evolving microstructure</h3>
+<p>Porosity, pore-size distribution, connectivity, reaction layers, newly formed solids, and damaged pathways.</p>
+</section>
+<section id="structural-consequence" class="level3">
+<h3 class="anchored" data-anchor-id="structural-consequence">5. Structural consequence</h3>
+<p>Reinforcement depassivation, corrosion loss, cracking, stiffness degradation, strength reduction, and probability of reaching an unacceptable state.</p>
+<p>The key requirement is not to maximize the number of equations.</p>
+<p>It is to retain the feedback loops that control the engineering outcome.</p>
+</section>
+</section>
+<section id="my-own-route-through-this-problem" class="level2">
+<h2 class="anchored" data-anchor-id="my-own-route-through-this-problem">My own route through this problem</h2>
+<p>My work in this area has not followed a single deterioration mechanism.</p>
+<p>The questions gradually moved across scales and couplings.</p>
+<p>Early experimental work examined concrete exposed to combined freeze-thaw action and de-icing salts, including the influence of waste-glass sludge on strength, chloride penetration, scaling, and freeze-thaw resistance.</p>
+<p>The carbonation-chloride studies then focused on why two major causes of reinforcement depassivation should not be treated independently.</p>
+<p>That led naturally to probabilistic service-life analysis.</p>
+<p>The corrosion work extended the chain beyond initiation:</p>
+<pre class="text"><code>transport
+→ depassivation
+→ electrochemistry
+→ rust
+→ expansive pressure
+→ cracking
+→ altered transport</code></pre>
+<p>The ASR studies approached another deterioration mechanism but again required transport, reaction, evolving solid products, water uptake, and mechanical damage.</p>
+<p>More recent carbonation work has moved toward deliberately using reaction and microstructure evolution to <strong>improve</strong> performance rather than merely predict deterioration.</p>
+<p>The common subject is therefore not chloride, carbonation, corrosion, ASR, glass, or slag individually.</p>
+<p>It is the coupled evolution of concrete.</p>
+<p>That is the research problem that still interests me.</p>
+</section>
+<section id="engineering-takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="engineering-takeaway">Engineering takeaway</h2>
+<p>The most important lesson is simple:</p>
+<blockquote class="blockquote">
+<p><strong>Concrete durability is not a collection of independent deterioration mechanisms. It is the coupled evolution of transport, reaction, microstructure, and mechanics.</strong></p>
+</blockquote>
+<p>A useful durability model therefore should not be judged primarily by how many mechanisms it contains.</p>
+<p>It should be judged by whether it preserves the interactions that change the engineering answer.</p>
+<p>When a chemical reaction changes transport, couple it.</p>
+<p>When damage changes transport, couple it.</p>
+<p>When moisture controls swelling, couple it.</p>
+<p>When newly formed solids change pore connectivity, couple it.</p>
+<p>And when the interaction is weak enough to ignore, demonstrate why.</p>
+<p>That is how a complicated multiphysics problem becomes an engineering model rather than merely a large collection of equations.</p>
+<hr>
+</section>
+<section id="original-research" class="level2">
+<h2 class="anchored" data-anchor-id="original-research">Original research</h2>
+<p>Zhu, X., Zi, G., Cao, Z., &amp; Cheng, X. (2016).<br>
+<strong>Combined effect of carbonation and chloride ingress in concrete.</strong><br>
+<em>Construction and Building Materials, 110</em>, 369–380.<br>
+https://doi.org/10.1016/j.conbuildmat.2016.02.034</p>
+<p>Zhu, X., Zi, G., Lee, W., Kim, S., &amp; Kong, J. (2016).<br>
+<strong>Probabilistic analysis of reinforcement corrosion due to the combined action of carbonation and chloride ingress in concrete.</strong><br>
+<em>Construction and Building Materials, 124</em>, 667–680.<br>
+https://doi.org/10.1016/j.conbuildmat.2016.07.120</p>
+<p>Zhu, X., &amp; Zi, G. (2017).<br>
+<strong>A 2D mechano-chemical model for the simulation of reinforcement corrosion and concrete damage.</strong><br>
+<em>Construction and Building Materials, 137</em>, 330–344.<br>
+https://doi.org/10.1016/j.conbuildmat.2017.01.103</p>
+<p>Zhu, X., Zi, G., Sun, L., &amp; You, I. (2019).<br>
+<strong>A simplified probabilistic model for the combined action of carbonation and chloride ingress.</strong><br>
+<em>Magazine of Concrete Research.</em><br>
+https://doi.org/10.1680/jmacr.18.00140</p>
+<p>Sun, L., Zhu, X., Zhuang, X., &amp; Zi, G. (2020).<br>
+<strong>Chemo-Mechanical Model for the Expansion of Concrete due to Alkali Silica Reaction.</strong><br>
+<em>Applied Sciences, 10</em>, 3807.<br>
+https://doi.org/10.3390/app10113807</p>
+<p>Sun, L., Zhu, X., Kim, M., &amp; Zi, G. (2021).<br>
+<strong>Alkali-silica reaction and strength of concrete with pretreated glass particles as fine aggregates.</strong><br>
+<em>Construction and Building Materials, 271</em>, 121809.<br>
+https://doi.org/10.1016/j.conbuildmat.2020.121809</p>
+<p>Kim, J., Moon, J.-H., Shim, J. W., Sim, J., Lee, H.-G., &amp; Zi, G. (2014).<br>
+<strong>Durability properties of a concrete with waste glass sludge exposed to freeze-and-thaw condition and de-icing salt.</strong><br>
+<em>Construction and Building Materials, 66</em>, 398–402.<br>
+https://doi.org/10.1016/j.conbuildmat.2014.05.081</p>
+<p>You, I., Zi, G., Yoo, D.-Y., &amp; Lange, D. A. (2019).<br>
+<strong>Durability of Concrete Containing Liquid Crystal Display Glass Powder for Pavement.</strong><br>
+<em>ACI Materials Journal, 116</em>(6).<br>
+https://doi.org/10.14359/51716814</p>
+<p>Lee, O., Parr, J.-L. M., Zi, G., &amp; Yoon, Y.-S. (2025).<br>
+<strong>Optimizing accelerated carbonation of carbon-eating concrete on early age microstructure and durability improvement.</strong><br>
+<em>Construction and Building Materials, 491</em>, 142654.<br>
+https://doi.org/10.1016/j.conbuildmat.2025.142654</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

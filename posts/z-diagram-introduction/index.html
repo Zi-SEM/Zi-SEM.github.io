@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Goangseup Zi">
+<meta name="dcterms.date" content="2026-08-30">
+<meta name="description" content="An introduction to the Z-Diagram as a unified framework connecting force equilibrium, constitutive behavior, displacement compatibility, and energy across structural and material-point scales.">
+
+<title>The Z-Diagram: Connecting Force, Stress, Strain, and Displacement – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research Explained</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../z-diagram.html"> 
+<span class="menu-text">Z-Diagram</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../latex-writing.html"> 
+<span class="menu-text">LaTeX &amp; Writing</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#the-basic-structure" id="toc-the-basic-structure" class="nav-link active" data-scroll-target="#the-basic-structure">The basic structure</a></li>
+  <li><a href="#two-analysis-directions-one-mechanical-system" id="toc-two-analysis-directions-one-mechanical-system" class="nav-link" data-scroll-target="#two-analysis-directions-one-mechanical-system">Two analysis directions, one mechanical system</a></li>
+  <li><a href="#structural-scale-and-material-point-scale" id="toc-structural-scale-and-material-point-scale" class="nav-link" data-scroll-target="#structural-scale-and-material-point-scale">Structural scale and material-point scale</a></li>
+  <li><a href="#energy-conjugate-pairs" id="toc-energy-conjugate-pairs" class="nav-link" data-scroll-target="#energy-conjugate-pairs">Energy-conjugate pairs</a></li>
+  <li><a href="#the-principle-of-virtual-work-what-changes-in-the-z-diagram" id="toc-the-principle-of-virtual-work-what-changes-in-the-z-diagram" class="nav-link" data-scroll-target="#the-principle-of-virtual-work-what-changes-in-the-z-diagram">The principle of virtual work: what changes in the Z-Diagram?</a></li>
+  <li><a href="#linear-elasticity-as-the-simplest-example" id="toc-linear-elasticity-as-the-simplest-example" class="nav-link" data-scroll-target="#linear-elasticity-as-the-simplest-example">Linear elasticity as the simplest example</a></li>
+  <li><a href="#the-reverse-direction" id="toc-the-reverse-direction" class="nav-link" data-scroll-target="#the-reverse-direction">The reverse direction</a></li>
+  <li><a href="#energy-equivalence-in-the-one-dimensional-bar" id="toc-energy-equivalence-in-the-one-dimensional-bar" class="nav-link" data-scroll-target="#energy-equivalence-in-the-one-dimensional-bar">Energy equivalence in the one-dimensional bar</a></li>
+  <li><a href="#beyond-linear-mechanics" id="toc-beyond-linear-mechanics" class="nav-link" data-scroll-target="#beyond-linear-mechanics">Beyond linear mechanics</a></li>
+  <li><a href="#why-the-z-diagram-is-useful" id="toc-why-the-z-diagram-is-useful" class="nav-link" data-scroll-target="#why-the-z-diagram-is-useful">Why the Z-Diagram is useful</a></li>
+  <li><a href="#a-framework-rather-than-a-formula" id="toc-a-framework-rather-than-a-formula" class="nav-link" data-scroll-target="#a-framework-rather-than-a-formula">A framework rather than a formula</a></li>
+  <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">The Z-Diagram: Connecting Force, Stress, Strain, and Displacement</h1>
+<p class="subtitle lead">A unified view of equilibrium, compatibility, constitutive behavior, and energy in structural mechanics</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Z-Diagram</div>
+    <div class="quarto-category">Engineering Mechanics</div>
+    <div class="quarto-category">Structural Mechanics</div>
+    <div class="quarto-category">Mechanics of Materials</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    An introduction to the Z-Diagram as a unified framework connecting force equilibrium, constitutive behavior, displacement compatibility, and energy across structural and material-point scales.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Goangseup Zi </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 30, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Structural mechanics is usually taught as a sequence of separate topics:</p>
+<ul>
+<li>equilibrium,</li>
+<li>stress,</li>
+<li>strain,</li>
+<li>constitutive equations,</li>
+<li>displacement,</li>
+<li>compatibility,</li>
+<li>and energy.</li>
+</ul>
+<p>Students often learn each of these correctly, yet still struggle to see how they belong to one coherent mechanical system.</p>
+<p>The <strong>Z-Diagram</strong> is a compact framework for organizing these ideas around four fundamental quantities:</p>
+<p><span class="math display">\[
+F,\qquad \sigma,\qquad \varepsilon,\qquad u
+\]</span></p>
+<p>where <span class="math inline">\(F\)</span> is force at the structural scale, <span class="math inline">\(\sigma\)</span> is stress at the material-point scale, <span class="math inline">\(\varepsilon\)</span> is strain at the material-point scale, and <span class="math inline">\(u\)</span> is displacement at the structural scale.</p>
+<p>The purpose of the diagram is not merely to arrange four variables. It is to show how <strong>equilibrium, constitutive behavior, compatibility, and energy</strong> connect structural response to material response.</p>
+<section id="the-basic-structure" class="level2">
+<h2 class="anchored" data-anchor-id="the-basic-structure">The basic structure</h2>
+<p>The standard Z-Diagram can be understood through three mechanical relations:</p>
+<p><span class="math display">\[
+F \longleftrightarrow \sigma
+\]</span></p>
+<p>through <strong>force equilibrium</strong>,</p>
+<p><span class="math display">\[
+\sigma \longleftrightarrow \varepsilon
+\]</span></p>
+<p>through the <strong>constitutive equation or constitutive law</strong>, and</p>
+<p><span class="math display">\[
+\varepsilon \longleftrightarrow u
+\]</span></p>
+<p>through <strong>displacement compatibility</strong>.</p>
+<p>The complete chain is therefore</p>
+<p><span class="math display">\[
+\boxed{
+F
+\;\longleftrightarrow\;
+\sigma
+\;\longleftrightarrow\;
+\varepsilon
+\;\longleftrightarrow\;
+u
+}
+\]</span></p>
+<p>with a different physical principle governing each connection.</p>
+<div id="fig-z-diagram" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-z-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="z-diagram-standard.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-z-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The Z-Diagram. Force and displacement form an energy-conjugate pair at the structural scale, while stress and strain form an energy-conjugate pair at the material-point scale. The two scales are connected through force equilibrium and displacement compatibility, with constitutive behavior relating stress and strain.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="two-analysis-directions-one-mechanical-system" class="level2">
+<h2 class="anchored" data-anchor-id="two-analysis-directions-one-mechanical-system">Two analysis directions, one mechanical system</h2>
+<p>A structural problem may be approached from either end.</p>
+<p>If the applied force is known, the reasoning may proceed as</p>
+<p><span class="math display">\[
+F
+\rightarrow
+\sigma
+\rightarrow
+\varepsilon
+\rightarrow
+u.
+\]</span></p>
+<p>The applied force is first related to the internal stress field by equilibrium. The stress is then related to strain through the constitutive law, and the strain field is finally related to displacement through compatibility.</p>
+<p>The same system can be traversed in the opposite direction:</p>
+<p><span class="math display">\[
+u
+\rightarrow
+\varepsilon
+\rightarrow
+\sigma
+\rightarrow
+F.
+\]</span></p>
+<p>Here, a prescribed displacement determines strain through compatibility. The constitutive law converts strain into stress, and equilibrium relates the stress field to the corresponding force.</p>
+<p>These are not different mechanics theories. They are simply <strong>different directions through the same set of physical relations</strong>.</p>
+<p>For that reason, the Z-Diagram does not require separate names for the two directions. What matters is where the analysis begins and how the mechanical relations are followed until the required quantity is obtained.</p>
+</section>
+<section id="structural-scale-and-material-point-scale" class="level2">
+<h2 class="anchored" data-anchor-id="structural-scale-and-material-point-scale">Structural scale and material-point scale</h2>
+<p>The four variables naturally form two levels.</p>
+<p>At the <strong>structural scale</strong>,</p>
+<p><span class="math display">\[
+(F,u)
+\]</span></p>
+<p>describe the overall force-displacement response.</p>
+<p>At the <strong>material-point scale</strong>,</p>
+<p><span class="math display">\[
+(\sigma,\varepsilon)
+\]</span></p>
+<p>describe the local stress-strain response.</p>
+<p>The Z-Diagram therefore connects the global response of a structure with the local response of the material.</p>
+<p>A structural analysis is never only about forces and displacements, and a constitutive model is never useful in isolation. The two scales must communicate through equilibrium and compatibility.</p>
+</section>
+<section id="energy-conjugate-pairs" class="level2">
+<h2 class="anchored" data-anchor-id="energy-conjugate-pairs">Energy-conjugate pairs</h2>
+<p>The Z-Diagram also has an energy interpretation.</p>
+<p>At the structural scale, force and displacement are an <strong>energy-conjugate pair</strong>:</p>
+<p><span class="math display">\[
+(F,u).
+\]</span></p>
+<p>At the material-point scale, stress and strain form another energy-conjugate pair:</p>
+<p><span class="math display">\[
+(\sigma,\varepsilon).
+\]</span></p>
+<p>For an incremental change of state, the external work is represented by</p>
+<p><span class="math display">\[
+dW_{\mathrm{external}}
+=
+F\,du,
+\]</span></p>
+<p>while the corresponding internal work at the material level is</p>
+<p><span class="math display">\[
+dW_{\mathrm{internal}}
+=
+\int_V \sigma\,d\varepsilon\,dV.
+\]</span></p>
+<p>For a mechanically consistent system, these two descriptions must represent the same energy transfer:</p>
+<p><span class="math display">\[
+\boxed{
+F\,du
+=
+\int_V \sigma\,d\varepsilon\,dV
+}
+\]</span></p>
+<p>under the appropriate assumptions and boundary conditions.</p>
+<p>This equality is central to the Z-Diagram.</p>
+<p>The force-displacement layer and the stress-strain layer are not merely analogous descriptions. They must be <strong>energetically consistent</strong>.</p>
+</section>
+<section id="the-principle-of-virtual-work-what-changes-in-the-z-diagram" class="level2">
+<h2 class="anchored" data-anchor-id="the-principle-of-virtual-work-what-changes-in-the-z-diagram">The principle of virtual work: what changes in the Z-Diagram?</h2>
+<p>The standard Z-Diagram includes the constitutive connection between stress and strain because a complete structural analysis normally needs it. The <strong>principle of virtual work (PVW)</strong> is different. It does not require a constitutive relation between <span class="math inline">\(\sigma\)</span> and <span class="math inline">\(\varepsilon\)</span>.</p>
+<div id="fig-z-diagram-pvw" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-z-diagram-pvw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="z-diagram-pvw.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-z-diagram-pvw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: The Z-Diagram viewed through the principle of virtual work. The stress and strain sides are deliberately not connected by a constitutive arrow. Equilibrium connects <span class="math inline">\(F\)</span> to <span class="math inline">\(\sigma\)</span>, while compatibility connects <span class="math inline">\(u\)</span> to <span class="math inline">\(\varepsilon\)</span>; virtual work pairs the two sides energetically without requiring a stress–strain law.
+</figcaption>
+</figure>
+</div>
+<p>This missing <span class="math inline">\(\sigma\)</span>–<span class="math inline">\(\varepsilon\)</span> connection is the important feature of <a href="#fig-z-diagram-pvw" class="quarto-xref">Figure&nbsp;2</a>, not an omission.</p>
+<p>For a virtual displacement <span class="math inline">\(\delta u\)</span> that is kinematically admissible, compatibility generates a corresponding virtual strain <span class="math inline">\(\delta\varepsilon\)</span>. Independently, a statically admissible force system <span class="math inline">\(F\)</span> is associated with a stress field <span class="math inline">\(\sigma\)</span> through equilibrium. In schematic form,</p>
+<p><span class="math display">\[
+F \longleftrightarrow \sigma
+\qquad\text{and}\qquad
+\delta u \longleftrightarrow \delta\varepsilon.
+\]</span></p>
+<p>The two sides are then connected by work:</p>
+<p><span class="math display">\[
+\boxed{
+\delta W_{\mathrm{ext}}
+=
+F\,\delta u
+=
+\int_V \sigma\,\delta\varepsilon\,dV
+=
+\delta W_{\mathrm{int}}
+}
+\]</span></p>
+<p>for the simple one-force representation used here. More generally, body forces, surface tractions, and multiple generalized forces contribute to the external virtual work, and stress and virtual strain are contracted tensorially as <span class="math inline">\(\boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}\)</span>.</p>
+<p>The key point is that <strong>equilibrium and compatibility are independent requirements</strong>. Equilibrium says whether the force and stress fields are statically admissible. Compatibility says whether the displacement and strain fields are kinematically admissible. Neither statement by itself tells us how the material behaves.</p>
+<p>That is why no constitutive arrow is needed between <span class="math inline">\(\sigma\)</span> and <span class="math inline">\(\varepsilon\)</span> in the PVW version of the diagram. The virtual strain is obtained from the virtual displacement, not from the stress. Likewise, the stress field is constrained by equilibrium, not generated from the virtual strain through a material law. The equality of virtual external and internal work connects these independently admissible fields.</p>
+<p>This distinction is easy to miss because, when we actually <strong>solve</strong> a deformable-body boundary-value problem, equilibrium and compatibility alone are not sufficient. A constitutive law is then needed to select the physical response from the admissible fields. PVW itself, however, is a statement of mechanical balance and kinematics; it is not a stress–strain law.</p>
+<section id="the-same-idea-written-as-power" class="level3">
+<h3 class="anchored" data-anchor-id="the-same-idea-written-as-power">The same idea written as power</h3>
+<p>There is another useful way to read the same diagram. Instead of displacement and strain, use their rates,</p>
+<p><span class="math display">\[
+u \rightarrow \dot u,
+\qquad
+\varepsilon \rightarrow \dot\varepsilon.
+\]</span></p>
+<p>Force is power-conjugate to velocity, and stress is power-conjugate to strain rate. Thus the corresponding power balance is</p>
+<p><span class="math display">\[
+\boxed{
+P_{\mathrm{ext}}
+=
+F\,\dot u
+=
+\int_V \sigma\,\dot\varepsilon\,dV
+=
+P_{\mathrm{int}}.
+}
+\]</span></p>
+<p>In three dimensions,</p>
+<p><span class="math display">\[
+P_{\mathrm{int}}
+=
+\int_V
+\boldsymbol{\sigma}:\dot{\boldsymbol{\varepsilon}}\,dV.
+\]</span></p>
+<p>This rate form makes the conjugacy especially clear. <span class="math inline">\(F\)</span> and <span class="math inline">\(u\)</span> are energy conjugates because <span class="math inline">\(F\,du\)</span> is work; equivalently, <span class="math inline">\(F\)</span> and <span class="math inline">\(\dot u\)</span> are power conjugates because <span class="math inline">\(F\dot u\)</span> is power. At the material-point scale, <span class="math inline">\(\sigma\)</span> and <span class="math inline">\(\varepsilon\)</span> are energy conjugates in the incremental sense <span class="math inline">\(\sigma\,d\varepsilon\)</span>, while <span class="math inline">\(\sigma\)</span> and <span class="math inline">\(\dot\varepsilon\)</span> are power conjugates through <span class="math inline">\(\sigma\dot\varepsilon\)</span>.</p>
+<p>So the Z-Diagram can be read in two closely related forms:</p>
+<p><span class="math display">\[
+(F,u)
+\quad\leftrightarrow\quad
+(\sigma,\varepsilon)
+\qquad \text{through work},
+\]</span></p>
+<p>or</p>
+<p><span class="math display">\[
+(F,\dot u)
+\quad\leftrightarrow\quad
+(\sigma,\dot\varepsilon)
+\qquad \text{through power}.
+\]</span></p>
+<p>The mechanics is the same. The rate form simply expresses the transfer instantaneously rather than over a displacement increment.</p>
+</section>
+</section>
+<section id="linear-elasticity-as-the-simplest-example" class="level2">
+<h2 class="anchored" data-anchor-id="linear-elasticity-as-the-simplest-example">Linear elasticity as the simplest example</h2>
+<p>Consider a uniform one-dimensional bar of length <span class="math inline">\(L\)</span>, cross-sectional area <span class="math inline">\(A\)</span>, and Young’s modulus <span class="math inline">\(E\)</span>, loaded axially by a force <span class="math inline">\(F\)</span>.</p>
+<p>Starting from force,</p>
+<p><span class="math display">\[
+F
+\rightarrow
+\sigma
+\rightarrow
+\varepsilon
+\rightarrow
+u,
+\]</span></p>
+<p>equilibrium gives</p>
+<p><span class="math display">\[
+\sigma = \frac{F}{A}.
+\]</span></p>
+<p>For linear elasticity,</p>
+<p><span class="math display">\[
+\sigma = E\varepsilon,
+\]</span></p>
+<p>so</p>
+<p><span class="math display">\[
+\varepsilon = \frac{\sigma}{E}
+=
+\frac{F}{AE}.
+\]</span></p>
+<p>Compatibility gives</p>
+<p><span class="math display">\[
+u = \varepsilon L,
+\]</span></p>
+<p>hence</p>
+<p><span class="math display">\[
+\boxed{
+u = \frac{FL}{AE}
+}
+\]</span></p>
+<p>which is the familiar axial-displacement equation.</p>
+<p>The important point is not the formula itself. The point is the sequence of mechanical ideas that produces it:</p>
+<p><span class="math display">\[
+\boxed{
+F
+\overset{\text{equilibrium}}{\longrightarrow}
+\sigma
+\overset{\text{constitutive law}}{\longrightarrow}
+\varepsilon
+\overset{\text{compatibility}}{\longrightarrow}
+u
+}
+\]</span></p>
+</section>
+<section id="the-reverse-direction" class="level2">
+<h2 class="anchored" data-anchor-id="the-reverse-direction">The reverse direction</h2>
+<p>Suppose instead that the displacement <span class="math inline">\(u\)</span> is prescribed.</p>
+<p>Compatibility gives</p>
+<p><span class="math display">\[
+\varepsilon = \frac{u}{L}.
+\]</span></p>
+<p>The constitutive law gives</p>
+<p><span class="math display">\[
+\sigma = E\varepsilon
+=
+E\frac{u}{L}.
+\]</span></p>
+<p>Equilibrium then gives</p>
+<p><span class="math display">\[
+F = \sigma A
+=
+\frac{EA}{L}u.
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\boxed{
+F = \frac{EA}{L}u
+}
+\]</span></p>
+<p>and the same mechanical system has been traversed in the opposite direction:</p>
+<p><span class="math display">\[
+\boxed{
+u
+\overset{\text{compatibility}}{\longrightarrow}
+\varepsilon
+\overset{\text{constitutive law}}{\longrightarrow}
+\sigma
+\overset{\text{equilibrium}}{\longrightarrow}
+F.
+}
+\]</span></p>
+</section>
+<section id="energy-equivalence-in-the-one-dimensional-bar" class="level2">
+<h2 class="anchored" data-anchor-id="energy-equivalence-in-the-one-dimensional-bar">Energy equivalence in the one-dimensional bar</h2>
+<p>For the same linear bar, the structural strain energy is</p>
+<p><span class="math display">\[
+U_{\mathrm{external}}
+=
+\frac{1}{2}Fu.
+\]</span></p>
+<p>At the material level,</p>
+<p><span class="math display">\[
+U_{\mathrm{internal}}
+=
+\int_V \frac{1}{2}\sigma\varepsilon\,dV.
+\]</span></p>
+<p>For a uniform bar,</p>
+<p><span class="math display">\[
+U_{\mathrm{internal}}
+=
+\frac{1}{2}\sigma\varepsilon AL.
+\]</span></p>
+<p>Using</p>
+<p><span class="math display">\[
+\sigma=\frac{F}{A}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\varepsilon=\frac{u}{L},
+\]</span></p>
+<p>we obtain</p>
+<p><span class="math display">\[
+U_{\mathrm{internal}}
+=
+\frac{1}{2}
+\left(\frac{F}{A}\right)
+\left(\frac{u}{L}\right)
+AL
+=
+\frac{1}{2}Fu.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+U_{\mathrm{external}}
+=
+U_{\mathrm{internal}}
+}
+\]</span></p>
+<p>as required.</p>
+<p>The equality of the two energy descriptions is not an extra result added after the mechanics is solved. It is a consistency condition linking the two levels of the diagram.</p>
+</section>
+<section id="beyond-linear-mechanics" class="level2">
+<h2 class="anchored" data-anchor-id="beyond-linear-mechanics">Beyond linear mechanics</h2>
+<p>The Z-Diagram is not restricted to linear elasticity.</p>
+<p>The equilibrium relation may be linear or nonlinear. The compatibility relation may involve small or finite deformation. The constitutive relation may describe nonlinear elasticity, plasticity, damage, viscoelasticity, fracture-related constitutive behavior, or other material models.</p>
+<p>In a nonlinear problem, the familiar triangular energy expression</p>
+<p><span class="math display">\[
+\frac{1}{2}Fu
+\]</span></p>
+<p>is generally replaced by the work integral</p>
+<p><span class="math display">\[
+W_{\mathrm{external}}
+=
+\int F\,du.
+\]</span></p>
+<p>Likewise, internal work is expressed more generally as</p>
+<p><span class="math display">\[
+W_{\mathrm{internal}}
+=
+\int_V
+\left(
+\int \sigma\,d\varepsilon
+\right)dV.
+\]</span></p>
+<p>The central structure remains unchanged:</p>
+<p><span class="math display">\[
+\boxed{
+\text{equilibrium}
+\quad+\quad
+\text{constitutive behavior}
+\quad+\quad
+\text{compatibility}
+}
+\]</span></p>
+<p>with energetic consistency between the structural and material-point descriptions.</p>
+</section>
+<section id="why-the-z-diagram-is-useful" class="level2">
+<h2 class="anchored" data-anchor-id="why-the-z-diagram-is-useful">Why the Z-Diagram is useful</h2>
+<p>The Z-Diagram provides a compact answer to a question that appears repeatedly in mechanics:</p>
+<blockquote class="blockquote">
+<p>How do forces applied to a structure eventually become displacements?</p>
+</blockquote>
+<p>The answer is not a single equation.</p>
+<p>Force must first be converted into an internal stress state through equilibrium. Stress must be related to strain through a constitutive model. Strain must then satisfy compatibility with the displacement field.</p>
+<p>The reverse reasoning is equally valid.</p>
+<p>That makes the diagram useful for distinguishing clearly between equilibrium equations, constitutive equations, compatibility equations, global structural quantities, local material quantities, and energy-conjugate variables.</p>
+<p>It also provides a common framework for understanding methods that may initially appear unrelated. Classical mechanics of materials, structural analysis, finite element analysis, nonlinear mechanics, and constitutive modeling all operate within the same basic structure.</p>
+</section>
+<section id="a-framework-rather-than-a-formula" class="level2">
+<h2 class="anchored" data-anchor-id="a-framework-rather-than-a-formula">A framework rather than a formula</h2>
+<p>The Z-Diagram should not be viewed as another formula to memorize.</p>
+<p>Its purpose is organizational.</p>
+<p>It provides a way to ask, at any point in a mechanics problem:</p>
+<ul>
+<li>What quantity do I know?</li>
+<li>At what scale is it defined?</li>
+<li>Which physical law connects it to the next quantity?</li>
+<li>Am I using equilibrium, a constitutive law, or compatibility?</li>
+<li>Is the energy representation consistent between the structural and material scales?</li>
+</ul>
+<p>Once these questions are explicit, many mechanics derivations become easier to interpret.</p>
+<p>The mathematical details may change from one problem to another.</p>
+<p>The structure of the reasoning does not.</p>
+</section>
+<section id="takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
+<p>The Z-Diagram connects four fundamental mechanical quantities,</p>
+<p><span class="math display">\[
+\boxed{
+F,\quad \sigma,\quad \varepsilon,\quad u
+}
+\]</span></p>
+<p>through three essential relations: <strong>force equilibrium, constitutive behavior, and displacement compatibility</strong>.</p>
+<p>When proceeding from force to displacement, the sequence is</p>
+<p><span class="math display">\[
+F \rightarrow \sigma \rightarrow \varepsilon \rightarrow u,
+\]</span></p>
+<p>and when proceeding from displacement to force, the sequence is reversed.</p>
+<p>At the same time,</p>
+<p><span class="math display">\[
+(F,u)
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+(\sigma,\varepsilon)
+\]</span></p>
+<p>form energy-conjugate pairs at the structural and material-point scales.</p>
+<p>The energy represented at these two levels must be consistent.</p>
+<p>The principle of virtual work reveals an additional point that is hidden in the usual <span class="math inline">\(F \leftrightarrow \sigma \leftrightarrow \varepsilon \leftrightarrow u\)</span> chain: <strong>equilibrium and compatibility can be stated independently of the constitutive law</strong>. A statically admissible stress field and a kinematically admissible virtual displacement field meet through virtual work, not through a <span class="math inline">\(\sigma\)</span>–<span class="math inline">\(\varepsilon\)</span> material relation. In rate form, the same statement becomes a power balance between <span class="math inline">\((F,\dot u)\)</span> and <span class="math inline">\((\sigma,\dot\varepsilon)\)</span>.</p>
+<p>That combination of <strong>equilibrium, compatibility, constitutive behavior, scale, work, and power</strong> is the core idea of the Z-Diagram.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

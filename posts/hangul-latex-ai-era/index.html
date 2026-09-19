@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Goangseup Zi">
+<meta name="dcterms.date" content="2026-09-13">
+<meta name="keywords" content="Hangul LaTeX, Korean LaTeX, LaTeX Korean, Korean typesetting, LaTeX Korean textbook, LaTeX technical writing, LaTeX scientific writing, AI LaTeX, AI technical writing, AI scientific writing, structured documents, structured technical writing, human AI writing, Korean LaTeX ecosystem, XeTeXko, LuaTeXko, ko.TeX">
+<meta name="description" content="Why do Hangul and LaTeX work so well for technical writing in the AI era? A Korean engineering textbook experience shows how structured LaTeX source can support AI-assisted scientific writing, reproducible documents, and a stronger Korean LaTeX ecosystem.">
+
+<title>Why Hangul and LaTeX Belong Together in the AI Era – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research Explained</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../z-diagram.html"> 
+<span class="menu-text">Z-Diagram</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../latex-writing.html"> 
+<span class="menu-text">LaTeX &amp; Writing</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#hangul-is-not-just-another-set-of-characters" id="toc-hangul-is-not-just-another-set-of-characters" class="nav-link active" data-scroll-target="#hangul-is-not-just-another-set-of-characters">Hangul is not just another set of characters</a></li>
+  <li><a href="#a-writing-system-built-from-rules" id="toc-a-writing-system-built-from-rules" class="nav-link" data-scroll-target="#a-writing-system-built-from-rules">A writing system built from rules</a></li>
+  <li><a href="#latex-works-in-a-surprisingly-similar-way" id="toc-latex-works-in-a-surprisingly-similar-way" class="nav-link" data-scroll-target="#latex-works-in-a-surprisingly-similar-way">LaTeX works in a surprisingly similar way</a></li>
+  <li><a href="#hangul-and-latex-share-an-important-philosophy" id="toc-hangul-and-latex-share-an-important-philosophy" class="nav-link" data-scroll-target="#hangul-and-latex-share-an-important-philosophy">Hangul and LaTeX share an important philosophy</a></li>
+  <li><a href="#but-latex-used-to-have-a-serious-disadvantage" id="toc-but-latex-used-to-have-a-serious-disadvantage" class="nav-link" data-scroll-target="#but-latex-used-to-have-a-serious-disadvantage">But LaTeX used to have a serious disadvantage</a></li>
+  <li><a href="#ai-changes-the-economics-of-latex" id="toc-ai-changes-the-economics-of-latex" class="nav-link" data-scroll-target="#ai-changes-the-economics-of-latex">AI changes the economics of LaTeX</a></li>
+  <li><a href="#ai-does-not-eliminate-markup" id="toc-ai-does-not-eliminate-markup" class="nav-link" data-scroll-target="#ai-does-not-eliminate-markup">AI does not eliminate markup</a></li>
+  <li><a href="#latex-source-is-becoming-an-interface-between-humans-and-ai" id="toc-latex-source-is-becoming-an-interface-between-humans-and-ai" class="nav-link" data-scroll-target="#latex-source-is-becoming-an-interface-between-humans-and-ai">LaTeX source is becoming an interface between humans and AI</a></li>
+  <li><a href="#then-why-is-korean-latex-still-difficult" id="toc-then-why-is-korean-latex-still-difficult" class="nav-link" data-scroll-target="#then-why-is-korean-latex-still-difficult">Then why is Korean LaTeX still difficult?</a></li>
+  <li><a href="#technical-capability-is-not-the-same-as-an-ecosystem" id="toc-technical-capability-is-not-the-same-as-an-ecosystem" class="nav-link" data-scroll-target="#technical-capability-is-not-the-same-as-an-ecosystem">Technical capability is not the same as an ecosystem</a></li>
+  <li><a href="#what-should-a-hangul-latex-ecosystem-contain" id="toc-what-should-a-hangul-latex-ecosystem-contain" class="nav-link" data-scroll-target="#what-should-a-hangul-latex-ecosystem-contain">What should a Hangul-LaTeX ecosystem contain?</a></li>
+  <li><a href="#there-is-a-positive-feedback-loop" id="toc-there-is-a-positive-feedback-loop" class="nav-link" data-scroll-target="#there-is-a-positive-feedback-loop">There is a positive feedback loop</a></li>
+  <li><a href="#the-source-itself-becomes-knowledge" id="toc-the-source-itself-becomes-knowledge" class="nav-link" data-scroll-target="#the-source-itself-becomes-knowledge">The source itself becomes knowledge</a></li>
+  <li><a href="#hangul-deserves-a-first-class-technical-writing-environment" id="toc-hangul-deserves-a-first-class-technical-writing-environment" class="nav-link" data-scroll-target="#hangul-deserves-a-first-class-technical-writing-environment">Hangul deserves a first-class technical writing environment</a></li>
+  <li><a href="#my-experience-publishing-a-book" id="toc-my-experience-publishing-a-book" class="nav-link" data-scroll-target="#my-experience-publishing-a-book">My experience publishing a book</a></li>
+  <li><a href="#perhaps-latex-arrived-too-early" id="toc-perhaps-latex-arrived-too-early" class="nav-link" data-scroll-target="#perhaps-latex-arrived-too-early">Perhaps LaTeX arrived too early</a></li>
+  <li><a href="#structure-becomes-more-valuable-in-the-ai-era" id="toc-structure-becomes-more-valuable-in-the-ai-era" class="nav-link" data-scroll-target="#structure-becomes-more-valuable-in-the-ai-era">Structure becomes more valuable in the AI era</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Why Hangul and LaTeX Belong Together in the AI Era</h1>
+<p class="subtitle lead">A systematic writing system, a structured document system, and an ecosystem we still need to build</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">LaTeX &amp; Writing</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Why do Hangul and LaTeX work so well for technical writing in the AI era? A Korean engineering textbook experience shows how structured LaTeX source can support AI-assisted scientific writing, reproducible documents, and a stronger Korean LaTeX ecosystem.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Goangseup Zi </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 13, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+<div>
+  <div class="keywords">
+    <div class="block-title">Keywords</div>
+    <p>Hangul LaTeX, Korean LaTeX, LaTeX Korean, Korean typesetting, LaTeX Korean textbook, LaTeX technical writing, LaTeX scientific writing, AI LaTeX, AI technical writing, AI scientific writing, structured documents, structured technical writing, human AI writing, Korean LaTeX ecosystem, XeTeXko, LuaTeXko, ko.TeX</p>
+  </div>
+</div>
+
+</header>
+
+
+<p>I recently published a Korean engineering textbook using LaTeX.</p>
+<p>The book is my Korean translation of F. G. Nielsen’s 2024 Cambridge University Press textbook on offshore wind energy, written as an introductory text for engineers. The Korean edition has ISBN <strong>9791199253803</strong>.</p>
+<div id="fig-korean-offshore-wind-book" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-korean-offshore-wind-book-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig01.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-korean-offshore-wind-book-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The Korean edition of F. G. Nielsen’s 2024 introductory textbook on offshore wind energy. I translated the book into Korean and prepared the Korean edition using LaTeX. Producing a complete engineering textbook—with equations, figures, tables, cross-references, technical terminology, and mixed Korean and English text—showed me that Hangul and LaTeX can work very effectively together.
+</figcaption>
+</figure>
+</div>
+<p>Preparing an entire engineering textbook is quite different from testing whether a few Korean sentences can be compiled in LaTeX. A textbook has chapters, equations, figures, tables, cross-references, citations, technical terminology, Korean and English text, and mathematical notation that must remain consistent over hundreds of pages.</p>
+<p>After going through that process, I came away with a fairly simple conclusion:</p>
+<blockquote class="blockquote">
+<p><strong>Hangul works very well with LaTeX.</strong></p>
+</blockquote>
+<p>The remaining problem is not whether Hangul can be typeset in LaTeX. It is whether we have built a sufficiently rich <strong>Hangul-LaTeX ecosystem</strong> to make this way of writing accessible to everyone.</p>
+<p>This becomes particularly interesting now because AI is changing the way we write.</p>
+<p>My view is increasingly simple:</p>
+<blockquote class="blockquote">
+<p><strong>LaTeX may be a better document system in the AI era than it was before the AI era.</strong></p>
+</blockquote>
+<p>And Hangul may be particularly well suited to that environment.</p>
+<div id="fig-hangul-latex-ai" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hangul-latex-ai-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig02.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hangul-latex-ai-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Hangul, LaTeX, and AI are different systems, but they share an important advantage: explicit structure. Hangul composes written forms from systematic elements; LaTeX represents document structure explicitly; AI can work effectively on that structured representation.
+</figcaption>
+</figure>
+</div>
+<section id="hangul-is-not-just-another-set-of-characters" class="level2">
+<h2 class="anchored" data-anchor-id="hangul-is-not-just-another-set-of-characters">Hangul is not just another set of characters</h2>
+<p>I have always regarded Hangul as an extraordinary writing system.</p>
+<p>That statement can easily become patriotic rhetoric, so it is worth being more precise about what makes Hangul technically interesting.</p>
+<p>The <em>Hunminjeongeum</em> manuscript published in 1446 contains the promulgation of the new alphabet as well as the <em>Haerye</em>, which explains its principles and gives examples. UNESCO registered the manuscript in the Memory of the World International Register in 1997.</p>
+<p>That historical fact matters.</p>
+<p>The system was not merely a collection of symbols to memorize. Its design principles were explicitly explained.</p>
+<p>A Korean syllable such as</p>
+<p><span class="math display">\[
+\text{한}
+\]</span></p>
+<p>is not an indivisible graphical object.</p>
+<p>It is composed from</p>
+<p><span class="math display">\[
+\text{ㅎ} + \text{ㅏ} + \text{ㄴ}.
+\]</span></p>
+<p>There are therefore several levels of structure:</p>
+<p><span class="math display">\[
+\boxed{
+\text{basic elements}
+\rightarrow
+\text{letters}
+\rightarrow
+\text{syllable blocks}
+\rightarrow
+\text{words}
+}
+\]</span></p>
+<p>The visible syllable is compact, but its internal structure remains systematic.</p>
+<p>Hangul is visually block-based while remaining compositionally alphabetic.</p>
+<p>For me, that is one reason Hangul feels surprisingly modern.</p>
+</section>
+<section id="a-writing-system-built-from-rules" class="level2">
+<h2 class="anchored" data-anchor-id="a-writing-system-built-from-rules">A writing system built from rules</h2>
+<p>The important point is not simply that Hangul is easy to learn.</p>
+<p>Its deeper strength is that <strong>a relatively small number of elements and rules generate a very large expressive space</strong>.</p>
+<p>That is a familiar idea to engineers.</p>
+<p>We do not want to memorize the solution of every possible structure. We want a small number of governing principles from which the solutions can be constructed.</p>
+<p>In mechanics, for example,</p>
+<p><span class="math display">\[
+\text{equilibrium}
++
+\text{compatibility}
++
+\text{constitutive behavior}
+\]</span></p>
+<p>can generate the response of an enormous range of structural systems.</p>
+<p>A good system compresses complexity into rules.</p>
+<p>Hangul does something analogous at a completely different level.</p>
+<p>It does not require a unique symbol for every possible syllable. A finite set of elements can be systematically composed.</p>
+<p>That is why I hesitate to describe Hangul merely as “convenient.”</p>
+<p>Its beauty is structural.</p>
+</section>
+<section id="latex-works-in-a-surprisingly-similar-way" class="level2">
+<h2 class="anchored" data-anchor-id="latex-works-in-a-surprisingly-similar-way">LaTeX works in a surprisingly similar way</h2>
+<p>Now consider LaTeX.</p>
+<p>A conventional word processor encourages us to work directly on the visible appearance of a document.</p>
+<p>We select a title and make it larger. We select another line and make it bold. We adjust spacing. We move figures. We modify fonts.</p>
+<p>The document gradually acquires its appearance through many local formatting decisions.</p>
+<p>LaTeX encourages a different way of thinking.</p>
+<p>Instead of saying,</p>
+<blockquote class="blockquote">
+<p>Make this text 18 pt, bold, and put some space above it,</p>
+</blockquote>
+<p>we say:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\section</span>{Introduction}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Instead of manually placing an equation number, we describe an equation:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">equation</span>}</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ss">  </span><span class="sc">\sigma</span><span class="ss"> = E</span><span class="sc">\varepsilon</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">equation</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Instead of manually constructing every citation, we identify a bibliographic source and let the document system determine how it should appear.</p>
+<p>The distinction is fundamental:</p>
+<p><span class="math display">\[
+\boxed{
+\text{describe the structure}
+\neq
+\text{manually construct the appearance}
+}
+\]</span></p>
+<p>LaTeX is therefore not merely a typesetting tool.</p>
+<p>It is a <strong>structured document system</strong>.</p>
+</section>
+<section id="hangul-and-latex-share-an-important-philosophy" class="level2">
+<h2 class="anchored" data-anchor-id="hangul-and-latex-share-an-important-philosophy">Hangul and LaTeX share an important philosophy</h2>
+<p>This is where I see an interesting connection.</p>
+<p>Hangul and LaTeX solve completely different problems, but they share a certain design philosophy.</p>
+<p>Both rely heavily on <strong>composition</strong>.</p>
+<p>For Hangul,</p>
+<p><span class="math display">\[
+\text{elements}
+\rightarrow
+\text{letters}
+\rightarrow
+\text{syllables}.
+\]</span></p>
+<p>For LaTeX,</p>
+<p><span class="math display">\[
+\text{commands}
+\rightarrow
+\text{document structures}
+\rightarrow
+\text{complete document}.
+\]</span></p>
+<p>The comparison should not be pushed too far. Hangul is a writing system; LaTeX is a document preparation system.</p>
+<p>But the common idea is useful:</p>
+<blockquote class="blockquote">
+<p><strong>Structure first, appearance second.</strong></p>
+</blockquote>
+<p>A Hangul syllable has internal structure even though we perceive it visually as one compact block.</p>
+<p>A LaTeX document has semantic structure even though the reader ultimately sees a beautifully typeset page.</p>
+<p>This is one reason I find the combination of Hangul and LaTeX intellectually satisfying.</p>
+</section>
+<section id="but-latex-used-to-have-a-serious-disadvantage" class="level2">
+<h2 class="anchored" data-anchor-id="but-latex-used-to-have-a-serious-disadvantage">But LaTeX used to have a serious disadvantage</h2>
+<p>There is an obvious objection.</p>
+<p>LaTeX has always been powerful. Why, then, has everyone not been using it?</p>
+<p>Because LaTeX makes the writer specify structure explicitly.</p>
+<p>That has a cost.</p>
+<p>You need to learn commands. You encounter compilation errors. You have to understand packages. You sometimes spend half an hour discovering that one missing brace caused the problem.</p>
+<p>Anyone who has used LaTeX seriously knows this experience.</p>
+<p>A word processor hides much of this complexity behind graphical interfaces.</p>
+<p>For many users, that was a decisive advantage.</p>
+<p>The traditional trade-off was roughly:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Conventional word processor</th>
+<th>LaTeX</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Easy immediate interaction</td>
+<td>Explicit structure</td>
+</tr>
+<tr class="even">
+<td>Visual editing</td>
+<td>Text-based editing</td>
+</tr>
+<tr class="odd">
+<td>Low initial learning cost</td>
+<td>Higher initial learning cost</td>
+</tr>
+<tr class="even">
+<td>Local formatting flexibility</td>
+<td>Systematic reproducibility</td>
+</tr>
+</tbody>
+</table>
+<p>For decades, the learning cost of LaTeX was real.</p>
+<p>Then AI arrived.</p>
+</section>
+<section id="ai-changes-the-economics-of-latex" class="level2">
+<h2 class="anchored" data-anchor-id="ai-changes-the-economics-of-latex">AI changes the economics of LaTeX</h2>
+<p>This is where I think something fundamental has changed.</p>
+<p>Consider the following request:</p>
+<blockquote class="blockquote">
+<p>Write the governing equation for linear elasticity, number it, refer to it in the following paragraph, and place the derivation in an appendix.</p>
+</blockquote>
+<p>For an AI system, producing structured text such as</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">equation</span>}</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ss">  </span><span class="sc">\boldsymbol</span><span class="ss">{</span><span class="sc">\sigma</span><span class="ss">}</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  =</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ss">  </span><span class="sc">\mathbb</span><span class="ss">{C}:</span><span class="sc">\boldsymbol</span><span class="ss">{</span><span class="sc">\varepsilon</span><span class="ss">}</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ss">  </span><span class="sc">\label</span><span class="ss">{eq:constitutive}</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">equation</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>is natural.</p>
+<p>The AI can also generate</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Equation~<span class="kw">\eqref</span>{<span class="ex">eq:constitutive</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>and restructure sections, tables, equations, references, lists, and figure environments.</p>
+<p>The output remains text.</p>
+<p>That is important.</p>
+<p>LaTeX source can be read by a human, generated by an AI, compared using Git, modified by a script, searched using ordinary text tools, and compiled reproducibly.</p>
+<p>The document therefore becomes part of a computational workflow.</p>
+<p>What used to be a weakness of LaTeX—</p>
+<blockquote class="blockquote">
+<p>You have to tell the computer explicitly what the document means—</p>
+</blockquote>
+<p>is becoming a strength.</p>
+<p>AI is very good at helping us express that structure.</p>
+</section>
+<section id="ai-does-not-eliminate-markup" class="level2">
+<h2 class="anchored" data-anchor-id="ai-does-not-eliminate-markup">AI does not eliminate markup</h2>
+<p>One might imagine that sufficiently advanced AI will make markup languages unnecessary.</p>
+<p>Perhaps we will simply say:</p>
+<blockquote class="blockquote">
+<p>Make this into a book.</p>
+</blockquote>
+<p>And AI will do everything.</p>
+<p>That will certainly become easier.</p>
+<p>But I do not think this makes explicit document structure less valuable.</p>
+<p>It may make it <strong>more valuable</strong>.</p>
+<p>Suppose an AI modifies a 300-page technical book.</p>
+<p>What do I want to know?</p>
+<p>I want to know:</p>
+<ul>
+<li>which equations changed,</li>
+<li>which references changed,</li>
+<li>whether a section was deleted,</li>
+<li>whether figure numbering remains consistent,</li>
+<li>whether symbols are used consistently,</li>
+<li>whether a bibliography entry was altered,</li>
+<li>and whether the document can be reproduced tomorrow.</li>
+</ul>
+<p>A structured text representation makes these questions much easier to answer.</p>
+<p>The issue is no longer:</p>
+<blockquote class="blockquote">
+<p>Can AI make a beautiful document?</p>
+</blockquote>
+<p>Of course it can.</p>
+<p>The more important question is:</p>
+<blockquote class="blockquote">
+<p><strong>Can humans and AI maintain a large technical document together without losing control of its structure?</strong></p>
+</blockquote>
+<p>That is a different problem.</p>
+<p>And it is exactly the kind of problem for which LaTeX is well suited.</p>
+</section>
+<section id="latex-source-is-becoming-an-interface-between-humans-and-ai" class="level2">
+<h2 class="anchored" data-anchor-id="latex-source-is-becoming-an-interface-between-humans-and-ai">LaTeX source is becoming an interface between humans and AI</h2>
+<p>This leads to a way of thinking about LaTeX that I did not have twenty years ago.</p>
+<p>The <code>.tex</code> file is not merely source code for producing a PDF.</p>
+<p>It can become an <strong>interface between the human author and the AI</strong>.</p>
+<p>The human can say:</p>
+<blockquote class="blockquote">
+<p>This is a theorem.<br>
+This is an equation.<br>
+This is a figure.<br>
+This is a citation.<br>
+This is a chapter.<br>
+This symbol means stress.</p>
+</blockquote>
+<p>The AI can operate on those explicit structures.</p>
+<p>The compiler can then turn them into a finished document.</p>
+<p>Schematically,</p>
+<p><span class="math display">\[
+\boxed{
+\text{human reasoning}
+\leftrightarrow
+\text{AI}
+\leftrightarrow
+\text{structured source}
+\rightarrow
+\text{LaTeX}
+\rightarrow
+\text{document}
+}
+\]</span></p>
+<p>This is very different from treating a document as a collection of pixels on a page.</p>
+<p>For scientific and engineering writing, that difference matters.</p>
+</section>
+<section id="then-why-is-korean-latex-still-difficult" class="level2">
+<h2 class="anchored" data-anchor-id="then-why-is-korean-latex-still-difficult">Then why is Korean LaTeX still difficult?</h2>
+<p>Technically, writing Korean in LaTeX is no longer an exotic task.</p>
+<p>CTAN currently lists a substantial Korean typesetting ecosystem, including <code>kotex-utf</code>, <code>kotex-oblivoir</code>, <code>LuaTeXko</code>, <code>XeTeXko</code>, and related packages. <code>kotex-oblivoir</code>, for example, is a Korean document class based on <code>memoir</code>, and Korean LaTeX introductory documentation is also available.</p>
+<p>I have just published a Korean book this way.</p>
+<p>So the main problem is no longer:</p>
+<blockquote class="blockquote">
+<p>Can LaTeX print Hangul?</p>
+</blockquote>
+<p>It can.</p>
+<p>The more relevant question is:</p>
+<blockquote class="blockquote">
+<p><strong>How much accumulated infrastructure exists around the person trying to do it?</strong></p>
+</blockquote>
+<p>Here the difference between English and Korean remains substantial.</p>
+<p>If I encounter an obscure LaTeX problem in English, there is a good chance that someone has already encountered it.</p>
+<p>There may be documentation, a Stack Exchange discussion, a package example, a university template, a journal class, a GitHub repository, a textbook, or a twenty-year-old mailing-list answer that still solves the problem.</p>
+<p>That accumulated knowledge is an ecosystem.</p>
+<p>Korean LaTeX has strong technical foundations, but its surrounding ecosystem can still be made much richer.</p>
+</section>
+<section id="technical-capability-is-not-the-same-as-an-ecosystem" class="level2">
+<h2 class="anchored" data-anchor-id="technical-capability-is-not-the-same-as-an-ecosystem">Technical capability is not the same as an ecosystem</h2>
+<p>This distinction is important.</p>
+<p>A technology may work perfectly and still be difficult to adopt.</p>
+<p>Suppose a Korean graduate student wants to write a thesis in LaTeX.</p>
+<p>The student does not merely need Hangul characters to appear correctly.</p>
+<p>The student needs:</p>
+<ul>
+<li>a working thesis template,</li>
+<li>Korean and English font handling,</li>
+<li>bibliography examples,</li>
+<li>figure and table conventions,</li>
+<li>Korean indexing,</li>
+<li>PDF bookmarks,</li>
+<li>cross-references,</li>
+<li>equation conventions,</li>
+<li>university-specific formatting,</li>
+<li>examples that compile without modification,</li>
+<li>troubleshooting information,</li>
+<li>and preferably an explanation in Korean.</li>
+</ul>
+<p>For a professor writing a textbook, the requirements are different again.</p>
+<p>For a society publishing a journal, they are different again.</p>
+<p>For engineers producing technical reports, still different.</p>
+<p>An ecosystem emerges when these solutions do not have to be reinvented independently by every user.</p>
+</section>
+<section id="what-should-a-hangul-latex-ecosystem-contain" class="level2">
+<h2 class="anchored" data-anchor-id="what-should-a-hangul-latex-ecosystem-contain">What should a Hangul-LaTeX ecosystem contain?</h2>
+<p>I think we should deliberately build such an ecosystem.</p>
+<p>Not one enormous software project.</p>
+<p>Many small, reusable pieces.</p>
+<section id="korean-first-templates" class="level3">
+<h3 class="anchored" data-anchor-id="korean-first-templates">Korean-first templates</h3>
+<p>We need high-quality templates for:</p>
+<ul>
+<li>textbooks,</li>
+<li>university theses,</li>
+<li>lecture notes,</li>
+<li>technical reports,</li>
+<li>research proposals,</li>
+<li>journal articles,</li>
+<li>conference proceedings,</li>
+<li>presentation slides,</li>
+<li>and engineering calculation documents.</li>
+</ul>
+<p>They should not merely demonstrate that Korean characters compile.</p>
+<p>They should demonstrate <strong>good Korean technical typography</strong>.</p>
+</section>
+<section id="reproducible-examples" class="level3">
+<h3 class="anchored" data-anchor-id="reproducible-examples">Reproducible examples</h3>
+<p>A useful example should be something a new user can download and compile immediately.</p>
+<p>Not:</p>
+<pre class="text"><code>Here are fragments from my preamble.
+Good luck.</code></pre>
+<p>but:</p>
+<pre class="text"><code>example/
+├── main.tex
+├── references.bib
+├── figures/
+└── README.md</code></pre>
+<p>with a known compiler and a known result.</p>
+</section>
+<section id="korean-documentation" class="level3">
+<h3 class="anchored" data-anchor-id="korean-documentation">Korean documentation</h3>
+<p>English documentation will always remain important.</p>
+<p>But if we want Korean students and engineers to adopt LaTeX widely, the first ten minutes should not require deciphering English package documentation.</p>
+<p>The basic workflow should be explainable naturally in Korean.</p>
+</section>
+<section id="font-and-typography-guidance" class="level3">
+<h3 class="anchored" data-anchor-id="font-and-typography-guidance">Font and typography guidance</h3>
+<p>Hangul typography is not simply Latin typography with Korean glyphs substituted.</p>
+<p>Good defaults matter.</p>
+<p>Users should not have to rediscover independently how Korean and Latin fonts interact, how line breaking behaves, how mathematical notation sits beside Korean text, or how headings and captions should be designed.</p>
+</section>
+<section id="ai-ready-workflows" class="level3">
+<h3 class="anchored" data-anchor-id="ai-ready-workflows">AI-ready workflows</h3>
+<p>This is the new part.</p>
+<p>We should provide examples showing how AI can safely assist with:</p>
+<ul>
+<li>generating LaTeX,</li>
+<li>correcting compilation errors,</li>
+<li>restructuring chapters,</li>
+<li>managing references,</li>
+<li>checking notation,</li>
+<li>producing tables,</li>
+<li>converting equations,</li>
+<li>reviewing cross-references,</li>
+<li>and maintaining large documents.</li>
+</ul>
+<p>The goal is not to let AI blindly rewrite a book.</p>
+<p>The goal is to make the document structure sufficiently explicit that <strong>AI assistance remains inspectable</strong>.</p>
+</section>
+</section>
+<section id="there-is-a-positive-feedback-loop" class="level2">
+<h2 class="anchored" data-anchor-id="there-is-a-positive-feedback-loop">There is a positive feedback loop</h2>
+<p>Something interesting happens here.</p>
+<p>Historically, building the ecosystem required experts to spend considerable time writing documentation, examples, templates, and answers.</p>
+<p>AI lowers that cost.</p>
+<p>A LaTeX expert can now create a minimal template and ask AI to help generate documentation, examples, alternative configurations, explanations for beginners, troubleshooting guides, and translations.</p>
+<p>These outputs still require expert verification.</p>
+<p>But the cost of producing them is dramatically reduced.</p>
+<p>So we have a positive feedback loop:</p>
+<p><span class="math display">\[
+\boxed{
+\begin{aligned}
+\text{better Hangul-LaTeX ecosystem}
+&amp;\rightarrow
+\text{more users} \\
+&amp;\rightarrow
+\text{more examples and knowledge} \\
+&amp;\rightarrow
+\text{better AI assistance} \\
+&amp;\rightarrow
+\text{lower adoption cost} \\
+&amp;\rightarrow
+\text{more users}.
+\end{aligned}
+}
+\]</span></p>
+<p>This may be the best time we have ever had to build the ecosystem.</p>
+</section>
+<section id="the-source-itself-becomes-knowledge" class="level2">
+<h2 class="anchored" data-anchor-id="the-source-itself-becomes-knowledge">The source itself becomes knowledge</h2>
+<p>There is another reason this matters for universities and research groups.</p>
+<p>A well-structured LaTeX repository contains more than prose.</p>
+<p>It contains relationships.</p>
+<p>For example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\section</span>{Creep}</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">equation</span>}</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ss">J(t,t')</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ss">=</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="sc">\cdots</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="sc">\label</span><span class="ss">{eq:compliance}</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">equation</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>and elsewhere:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>As shown by Equation~<span class="kw">\eqref</span>{<span class="ex">eq:compliance</span>}, ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Figures, equations, references, sections, definitions, and citations are explicitly connected.</p>
+<p>That makes the source potentially useful for much more than typesetting.</p>
+<p>It can support:</p>
+<ul>
+<li>semantic search,</li>
+<li>knowledge extraction,</li>
+<li>automated consistency checking,</li>
+<li>educational content generation,</li>
+<li>document comparison,</li>
+<li>retrieval-augmented generation,</li>
+<li>and eventually richer knowledge graphs.</li>
+</ul>
+<p>The document is no longer merely the final product.</p>
+<p>Its structured source becomes a reusable knowledge asset.</p>
+<p>For universities, laboratories, standards organizations, and technical societies, this is potentially very important.</p>
+</section>
+<section id="hangul-deserves-a-first-class-technical-writing-environment" class="level2">
+<h2 class="anchored" data-anchor-id="hangul-deserves-a-first-class-technical-writing-environment">Hangul deserves a first-class technical writing environment</h2>
+<p>There is also a broader cultural point.</p>
+<p>A language should not have to retreat to English whenever the subject becomes mathematically or technically sophisticated.</p>
+<p>We should be able to write naturally in Korean while using</p>
+<p><span class="math display">\[
+\nabla\cdot\boldsymbol{\sigma}+\boldsymbol{b}=0,
+\]</span></p>
+<p>derive equations,</p>
+<p><span class="math display">\[
+\delta W
+=
+\int_V
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\varepsilon}\,dV,
+\]</span></p>
+<p>cite international literature, write computer code, and produce a publication-quality book without treating Korean as an inconvenience that must somehow be accommodated.</p>
+<p>Hangul is entirely capable of carrying sophisticated scientific and engineering reasoning.</p>
+<p>The document environment surrounding it should be equally capable.</p>
+</section>
+<section id="my-experience-publishing-a-book" class="level2">
+<h2 class="anchored" data-anchor-id="my-experience-publishing-a-book">My experience publishing a book</h2>
+<p>Publishing a Korean book with LaTeX convinced me that the fundamental technical problem has already been solved.</p>
+<p>Hangul and LaTeX work together.</p>
+<p>What remains is largely an ecosystem problem.</p>
+<p>And ecosystem problems are solvable.</p>
+<p>They are solved by accumulated examples, templates, conventions, documentation, tools, and communities.</p>
+<p>No individual contribution has to be enormous.</p>
+<p>A good thesis template helps.</p>
+<p>A reliable book template helps.</p>
+<p>A clear explanation of Korean font configuration helps.</p>
+<p>A GitHub repository that actually compiles helps.</p>
+<p>A Korean answer to a difficult LaTeX problem helps.</p>
+<p>An AI workflow that has been tested on a real technical manuscript helps.</p>
+<p>Each contribution reduces the cost for the next person.</p>
+</section>
+<section id="perhaps-latex-arrived-too-early" class="level2">
+<h2 class="anchored" data-anchor-id="perhaps-latex-arrived-too-early">Perhaps LaTeX arrived too early</h2>
+<p>There is an irony here.</p>
+<p>LaTeX has existed for decades.</p>
+<p>Its basic philosophy—separating content and structure from presentation—was always powerful.</p>
+<p>But for ordinary users, expressing that structure explicitly required effort.</p>
+<p>AI removes a significant part of that burden.</p>
+<p>Perhaps LaTeX did not become obsolete.</p>
+<p>Perhaps the environment finally caught up with its design philosophy.</p>
+<p>A human no longer has to remember every command.</p>
+<p>We can concentrate increasingly on questions such as:</p>
+<blockquote class="blockquote">
+<p>What is this object?</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Is it an equation, definition, theorem, figure, citation, or section?</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>How is it related to the rest of the argument?</p>
+</blockquote>
+<p>Once those relationships are expressed explicitly, both the computer and the AI can do much of the mechanical work.</p>
+<p>That is precisely where structured document systems become powerful.</p>
+</section>
+<section id="structure-becomes-more-valuable-in-the-ai-era" class="level2">
+<h2 class="anchored" data-anchor-id="structure-becomes-more-valuable-in-the-ai-era">Structure becomes more valuable in the AI era</h2>
+<p>The common prediction is that AI will make document systems less important.</p>
+<p>I think the opposite may be true.</p>
+<p>As AI generates more text, more equations, more figures, more code, and larger documents, <strong>we will need stronger structure to keep control of what is being generated</strong>.</p>
+<p>For scientific and engineering documents, that means explicit equations, references, labels, bibliographies, sections, figures, and source histories.</p>
+<p>LaTeX already thinks this way.</p>
+<p>Hangul, from a very different historical origin, also embodies an unusually systematic approach to constructing written language.</p>
+<p>That is why I believe they belong together.</p>
+<p>Not because Hangul needs LaTeX in order to survive.</p>
+<p>And not because LaTeX needs Hangul.</p>
+<p>But because both remind us of the same powerful idea:</p>
+<blockquote class="blockquote">
+<p><strong>Complexity becomes manageable when it is built from understandable elements according to explicit rules.</strong></p>
+</blockquote>
+<p>In the AI era, that principle becomes more important, not less.</p>
+<p>We already have Hangul.</p>
+<p>We already have LaTeX.</p>
+<p>We already have AI.</p>
+<p>What we still need to build is the <strong>ecosystem that allows the three to work together naturally</strong>.</p>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further reading</h2>
+<ul>
+<li>UNESCO, <em>Hunminjeongum Manuscript</em>, Memory of the World International Register: <a href="https://www.unesco.org/en/memory-world/hunminjeongum-manuscript" class="uri">https://www.unesco.org/en/memory-world/hunminjeongum-manuscript</a></li>
+<li>CTAN, Korean-language typesetting packages: <a href="https://www.ctan.org/topic/korean" class="uri">https://www.ctan.org/topic/korean</a></li>
+<li>CTAN, <code>kotex-oblivoir</code>: <a href="https://ctan.org/pkg/kotex-oblivoir" class="uri">https://ctan.org/pkg/kotex-oblivoir</a></li>
+<li>CTAN, <em>The Not So Short Introduction to LaTeX</em> — Korean edition: <a href="https://ctan.org/pkg/lshort-korean" class="uri">https://ctan.org/pkg/lshort-korean</a></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

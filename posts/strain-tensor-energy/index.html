@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Goangseup Zi">
+<meta name="dcterms.date" content="2026-09-01">
+<meta name="description" content="Why is strain the symmetric part of the displacement gradient? Starting from boundary traction work, we derive the strain tensor through equilibrium and energy considerations.">
+
+<title>Where Does the Strain Tensor Appear? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research Explained</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../z-diagram.html"> 
+<span class="menu-text">Z-Diagram</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../latex-writing.html"> 
+<span class="menu-text">LaTeX &amp; Writing</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#from-stress-to-strain" id="toc-from-stress-to-strain" class="nav-link active" data-scroll-target="#from-stress-to-strain">From stress to strain</a></li>
+  <li><a href="#start-from-traction-work" id="toc-start-from-traction-work" class="nav-link" data-scroll-target="#start-from-traction-work">Start from traction work</a></li>
+  <li><a href="#from-the-boundary-to-the-volume" id="toc-from-the-boundary-to-the-volume" class="nav-link" data-scroll-target="#from-the-boundary-to-the-volume">From the boundary to the volume</a></li>
+  <li><a href="#equilibrium-removes-the-body-force-contribution" id="toc-equilibrium-removes-the-body-force-contribution" class="nav-link" data-scroll-target="#equilibrium-removes-the-body-force-contribution">Equilibrium removes the body-force contribution</a></li>
+  <li><a href="#the-displacement-gradient-contains-two-different-motions" id="toc-the-displacement-gradient-contains-two-different-motions" class="nav-link" data-scroll-target="#the-displacement-gradient-contains-two-different-motions">The displacement gradient contains two different motions</a></li>
+  <li><a href="#why-rotation-disappears-from-the-work" id="toc-why-rotation-disappears-from-the-work" class="nav-link" data-scroll-target="#why-rotation-disappears-from-the-work">Why rotation disappears from the work</a></li>
+  <li><a href="#why-does-the-strain-tensor-appear" id="toc-why-does-the-strain-tensor-appear" class="nav-link" data-scroll-target="#why-does-the-strain-tensor-appear">Why does the strain tensor appear?</a></li>
+  <li><a href="#from-internal-work-to-strain-energy" id="toc-from-internal-work-to-strain-energy" class="nav-link" data-scroll-target="#from-internal-work-to-strain-energy">From internal work to strain energy</a></li>
+  <li><a href="#connection-to-the-z-diagram" id="toc-connection-to-the-z-diagram" class="nav-link" data-scroll-target="#connection-to-the-z-diagram">Connection to the Z Diagram</a></li>
+  <li><a href="#beyond-small-strain" id="toc-beyond-small-strain" class="nav-link" data-scroll-target="#beyond-small-strain">Beyond small strain</a></li>
+  <li><a href="#reference-configuration" id="toc-reference-configuration" class="nav-link" data-scroll-target="#reference-configuration">Reference configuration</a></li>
+  <li><a href="#one-principle-several-formulations" id="toc-one-principle-several-formulations" class="nav-link" data-scroll-target="#one-principle-several-formulations">One principle, several formulations</a></li>
+  <li><a href="#watch-the-lecture" id="toc-watch-the-lecture" class="nav-link" data-scroll-target="#watch-the-lecture">Watch the lecture</a></li>
+  <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Where Does the Strain Tensor Appear?</h1>
+<p class="subtitle lead">From traction work to internal strain energy</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Engineering Mechanics</div>
+    <div class="quarto-category">Mechanics of Materials</div>
+    <div class="quarto-category">Strain</div>
+    <div class="quarto-category">Continuum Mechanics</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Why is strain the symmetric part of the displacement gradient? Starting from boundary traction work, we derive the strain tensor through equilibrium and energy considerations.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Goangseup Zi </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 1, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="from-stress-to-strain" class="level2">
+<h2 class="anchored" data-anchor-id="from-stress-to-strain">From stress to strain</h2>
+<p>In the previous article, we asked what the stress tensor really represents.</p>
+<p>Starting from an imaginary internal cut, we found that the Cauchy stress tensor provides the local mapping</p>
+<p><span class="math display">\[
+\mathbf n
+\quad\xrightarrow{\;\boldsymbol{\sigma}\;}
+\quad
+\mathbf t^{(\mathbf n)},
+\]</span></p>
+<p>or</p>
+<p><span class="math display">\[
+\mathbf t^{(\mathbf n)}
+=
+\boldsymbol{\sigma}\mathbf n.
+\]</span></p>
+<p>The stress tensor therefore tells us how internal force is transmitted across an arbitrarily oriented surface.</p>
+<p>But this immediately raises another question.</p>
+<p><strong>What deformation measure naturally pairs with stress when mechanical work is considered?</strong></p>
+<p>We often write the internal virtual work as</p>
+<p><span class="math display">\[
+\delta W_{\mathrm{int}}
+=
+\int_\Omega
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\varepsilon}
+\,dV.
+\]</span></p>
+<p>This formula is fundamental in solid mechanics and finite element analysis.</p>
+<p>But why does the strain tensor <span class="math inline">\(\boldsymbol{\varepsilon}\)</span> appear here?</p>
+<p>Why not simply the displacement gradient <span class="math inline">\(\nabla\mathbf u\)</span>?</p>
+<p>The answer follows naturally from <strong>traction work, equilibrium, and the symmetry of the stress tensor</strong>.</p>
+<hr>
+</section>
+<section id="start-from-traction-work" class="level2">
+<h2 class="anchored" data-anchor-id="start-from-traction-work">Start from traction work</h2>
+<p>Consider a body occupying a region <span class="math inline">\(\Omega\)</span> with boundary <span class="math inline">\(\partial\Omega\)</span>.</p>
+<p>Let <span class="math inline">\(\mathbf t\)</span> denote the traction acting on the boundary and <span class="math inline">\(\delta\mathbf u\)</span> an admissible virtual displacement.</p>
+<p>The virtual work done by the surface tractions is</p>
+<p><span class="math display">\[
+\delta W_t
+=
+\int_{\partial\Omega}
+\mathbf t\cdot\delta\mathbf u
+\,dA.
+\]</span></p>
+<p>From Cauchy’s traction law,</p>
+<p><span class="math display">\[
+\mathbf t
+=
+\boldsymbol{\sigma}\mathbf n,
+\]</span></p>
+<p>where <span class="math inline">\(\mathbf n\)</span> is the outward unit normal to the boundary.</p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\delta W_t
+=
+\int_{\partial\Omega}
+(\boldsymbol{\sigma}\mathbf n)
+\cdot
+\delta\mathbf u
+\,dA.
+\]</span></p>
+<p>This is where the result of the previous stress-tensor discussion becomes the starting point of the present one.</p>
+<p>We now want to transform this <strong>boundary work</strong> into a quantity defined throughout the volume.</p>
+<hr>
+</section>
+<section id="from-the-boundary-to-the-volume" class="level2">
+<h2 class="anchored" data-anchor-id="from-the-boundary-to-the-volume">From the boundary to the volume</h2>
+<p>Using indicial notation,</p>
+<p><span class="math display">\[
+\delta W_t
+=
+\int_{\partial\Omega}
+\sigma_{ij}n_j\delta u_i
+\,dA.
+\]</span></p>
+<p>Applying the divergence theorem gives</p>
+<p><span class="math display">\[
+\delta W_t
+=
+\int_\Omega
+(\sigma_{ij}\delta u_i)_{,j}
+\,dV.
+\]</span></p>
+<p>Expanding the derivative,</p>
+<p><span class="math display">\[
+\delta W_t
+=
+\int_\Omega
+\sigma_{ij,j}\delta u_i
+\,dV
++
+\int_\Omega
+\sigma_{ij}\delta u_{i,j}
+\,dV.
+\]</span></p>
+<p>Two terms have appeared.</p>
+<p>The first involves the divergence of stress.</p>
+<p>The second involves the displacement gradient.</p>
+<p>Equilibrium tells us what to do with the first.</p>
+<hr>
+</section>
+<section id="equilibrium-removes-the-body-force-contribution" class="level2">
+<h2 class="anchored" data-anchor-id="equilibrium-removes-the-body-force-contribution">Equilibrium removes the body-force contribution</h2>
+<p>The local equilibrium equation is</p>
+<p><span class="math display">\[
+\sigma_{ij,j}+b_i=0,
+\]</span></p>
+<p>where <span class="math inline">\(b_i\)</span> denotes the body force per unit volume.</p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\sigma_{ij,j}
+=
+-b_i.
+\]</span></p>
+<p>Substituting into the traction-work expression,</p>
+<p><span class="math display">\[
+\delta W_t
+=
+-
+\int_\Omega
+b_i\delta u_i
+\,dV
++
+\int_\Omega
+\sigma_{ij}\delta u_{i,j}
+\,dV.
+\]</span></p>
+<p>The total external virtual work includes both surface tractions and body forces:</p>
+<p><span class="math display">\[
+\delta W_{\mathrm{ext}}
+=
+\delta W_t
++
+\int_\Omega
+b_i\delta u_i
+\,dV.
+\]</span></p>
+<p>The body-force terms cancel, leaving</p>
+<p><span class="math display">\[
+\boxed{
+\delta W_{\mathrm{ext}}
+=
+\int_\Omega
+\sigma_{ij}\delta u_{i,j}
+\,dV
+}
+\]</span></p>
+<p>or, in tensor notation,</p>
+<p><span class="math display">\[
+\boxed{
+\delta W_{\mathrm{ext}}
+=
+\int_\Omega
+\boldsymbol{\sigma}:
+\delta\nabla\mathbf u
+\,dV
+}
+\]</span></p>
+<p>This result is important.</p>
+<p>Starting from forces acting on the boundary and applying equilibrium, we arrive naturally at a volume integral involving <strong>stress and the displacement gradient</strong>.</p>
+<p>But we have not yet obtained the strain tensor.</p>
+<hr>
+</section>
+<section id="the-displacement-gradient-contains-two-different-motions" class="level2">
+<h2 class="anchored" data-anchor-id="the-displacement-gradient-contains-two-different-motions">The displacement gradient contains two different motions</h2>
+<p>The displacement gradient can be decomposed into symmetric and antisymmetric parts:</p>
+<p><span class="math display">\[
+\delta u_{i,j}
+=
+\delta\varepsilon_{ij}
++
+\delta\omega_{ij},
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+\delta\varepsilon_{ij}
+=
+\frac{1}{2}
+\left(
+\delta u_{i,j}
++
+\delta u_{j,i}
+\right)
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\delta\omega_{ij}
+=
+\frac{1}{2}
+\left(
+\delta u_{i,j}
+-
+\delta u_{j,i}
+\right).
+\]</span></p>
+<p>In tensor form,</p>
+<p><span class="math display">\[
+\delta\nabla\mathbf u
+=
+\delta\boldsymbol{\varepsilon}
++
+\delta\boldsymbol{\omega}.
+\]</span></p>
+<p>The symmetric part,</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol{\varepsilon}
+=
+\frac{1}{2}
+\left(
+\nabla\mathbf u
++
+\nabla\mathbf u^T
+\right),
+}
+\]</span></p>
+<p>is the familiar <strong>small-strain tensor</strong>.</p>
+<p>The antisymmetric part,</p>
+<p><span class="math display">\[
+\boldsymbol{\omega}
+=
+\frac{1}{2}
+\left(
+\nabla\mathbf u
+-
+\nabla\mathbf u^T
+\right),
+\]</span></p>
+<p>represents infinitesimal rotation.</p>
+<p>The question is now very precise:</p>
+<p><strong>Which part of the displacement gradient performs internal work against the stress tensor?</strong></p>
+<hr>
+</section>
+<section id="why-rotation-disappears-from-the-work" class="level2">
+<h2 class="anchored" data-anchor-id="why-rotation-disappears-from-the-work">Why rotation disappears from the work</h2>
+<p>Substitute the decomposition into the work expression:</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}:
+\delta\nabla\mathbf u
+=
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\varepsilon}
++
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\omega}.
+\]</span></p>
+<p>For the classical Cauchy continuum, the stress tensor is symmetric:</p>
+<p><span class="math display">\[
+\sigma_{ij}
+=
+\sigma_{ji}.
+\]</span></p>
+<p>Meanwhile, the infinitesimal rotation tensor is antisymmetric:</p>
+<p><span class="math display">\[
+\delta\omega_{ij}
+=
+-\delta\omega_{ji}.
+\]</span></p>
+<p>The double contraction of a symmetric tensor with an antisymmetric tensor vanishes:</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\omega}
+=
+0.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}:
+\delta\nabla\mathbf u
+=
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\varepsilon}.
+\]</span></p>
+<p>Consequently,</p>
+<p><span class="math display">\[
+\boxed{
+\delta W_{\mathrm{ext}}
+=
+\int_\Omega
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\varepsilon}
+\,dV
+}
+\]</span></p>
+<p>and, under equilibrium, this is identified with the internal virtual work:</p>
+<p><span class="math display">\[
+\boxed{
+\delta W_{\mathrm{int}}
+=
+\int_\Omega
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\varepsilon}
+\,dV.
+}
+\]</span></p>
+<p>Now the strain tensor has appeared.</p>
+<hr>
+</section>
+<section id="why-does-the-strain-tensor-appear" class="level2">
+<h2 class="anchored" data-anchor-id="why-does-the-strain-tensor-appear">Why does the strain tensor appear?</h2>
+<p>This derivation gives a physical answer.</p>
+<p>We did <strong>not</strong> begin by defining the strain tensor and then searching for a use for it.</p>
+<p>Instead, we began with the work done by physical tractions.</p>
+<p>Through Cauchy’s traction law, the divergence theorem, and equilibrium, the boundary work became</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}:
+\delta\nabla\mathbf u.
+\]</span></p>
+<p>The displacement gradient contains both deformation and rotation.</p>
+<p>But because the Cauchy stress tensor is symmetric, the rotational part performs no work:</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\omega}
+=
+0.
+\]</span></p>
+<p>What remains is the symmetric part:</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\varepsilon}.
+\]</span></p>
+<p>So the small-strain tensor</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol{\varepsilon}
+=
+\frac12
+\left(
+\nabla\mathbf u+\nabla\mathbf u^T
+\right)
+}
+\]</span></p>
+<p>emerges naturally as the deformation measure that is <strong>work-conjugate to the Cauchy stress tensor in the small-strain formulation</strong>.</p>
+<p>This is one reason the strain tensor occupies such a fundamental position in mechanics.</p>
+<hr>
+</section>
+<section id="from-internal-work-to-strain-energy" class="level2">
+<h2 class="anchored" data-anchor-id="from-internal-work-to-strain-energy">From internal work to strain energy</h2>
+<p>The incremental internal work density is</p>
+<p><span class="math display">\[
+dU
+=
+\boldsymbol{\sigma}:
+d\boldsymbol{\varepsilon}.
+\]</span></p>
+<p>For linear elastic loading,</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}
+=
+\mathbb C:\boldsymbol{\varepsilon},
+\]</span></p>
+<p>where <span class="math inline">\(\mathbb C\)</span> is the fourth-order elasticity tensor.</p>
+<p>The strain-energy density becomes</p>
+<p><span class="math display">\[
+U
+=
+\int
+\boldsymbol{\sigma}:
+d\boldsymbol{\varepsilon}.
+\]</span></p>
+<p>For linear elasticity,</p>
+<p><span class="math display">\[
+\boxed{
+U
+=
+\frac12
+\boldsymbol{\sigma}:
+\boldsymbol{\varepsilon}
+}
+\]</span></p>
+<p>or equivalently,</p>
+<p><span class="math display">\[
+\boxed{
+U
+=
+\frac12
+\boldsymbol{\varepsilon}:
+\mathbb C:
+\boldsymbol{\varepsilon}.
+}
+\]</span></p>
+<p>Stress and strain are therefore not merely two quantities related by a constitutive equation.</p>
+<p>They form an <strong>energy-conjugate pair</strong>.</p>
+<p>Their contraction has the meaning of work or energy per unit volume.</p>
+<hr>
+</section>
+<section id="connection-to-the-z-diagram" class="level2">
+<h2 class="anchored" data-anchor-id="connection-to-the-z-diagram">Connection to the Z Diagram</h2>
+<p>This gives a deeper interpretation of the central part of the Z Diagram:</p>
+<p><span class="math display">\[
+F
+\longleftrightarrow
+\sigma
+\longleftrightarrow
+\varepsilon
+\longleftrightarrow
+u.
+\]</span></p>
+<p>The previous article concentrated on</p>
+<p><span class="math display">\[
+F
+\longleftrightarrow
+\sigma,
+\]</span></p>
+<p>showing how equilibrium connects structural forces with the local stress state.</p>
+<p>The present derivation concentrates on</p>
+<p><span class="math display">\[
+\boxed{
+\sigma
+\longleftrightarrow
+\varepsilon.
+}
+\]</span></p>
+<p>The connection is fundamentally energetic:</p>
+<p><span class="math display">\[
+dU
+=
+\boldsymbol{\sigma}:
+d\boldsymbol{\varepsilon}.
+\]</span></p>
+<p>At the material-point scale, stress and strain are energy-conjugate quantities.</p>
+<p>At the structural scale, force and displacement form the corresponding work pair.</p>
+<p>Schematically,</p>
+<p><span class="math display">\[
+\boxed{
+\mathbf F\cdot d\mathbf u
+\quad\longleftrightarrow\quad
+\boldsymbol{\sigma}:
+d\boldsymbol{\varepsilon}
+}
+\]</span></p>
+<p>or, for the whole body,</p>
+<p><span class="math display">\[
+dW_{\mathrm{external}}
+=
+\int_\Omega
+dW_{\mathrm{internal}}.
+\]</span></p>
+<p>This is one of the reasons energy provides such a powerful way of connecting the different quantities appearing in structural mechanics.</p>
+<hr>
+</section>
+<section id="beyond-small-strain" class="level2">
+<h2 class="anchored" data-anchor-id="beyond-small-strain">Beyond small strain</h2>
+<p>The same idea continues into finite-deformation mechanics, but the appropriate deformation measure depends on the configuration being used.</p>
+<section id="current-configuration" class="level3">
+<h3 class="anchored" data-anchor-id="current-configuration">Current configuration</h3>
+<p>Let the deformed body occupy <span class="math inline">\(\Omega_t\)</span>.</p>
+<p>The external power due to surface traction is</p>
+<p><span class="math display">\[
+P_{\mathrm{ext}}
+=
+\int_{\partial\Omega_t}
+\mathbf t\cdot\mathbf v
+\,da.
+\]</span></p>
+<p>Using Cauchy’s traction law and the divergence theorem gives</p>
+<p><span class="math display">\[
+P_{\mathrm{ext}}
+=
+\int_{\Omega_t}
+\boldsymbol{\sigma}:
+\nabla\mathbf v
+\,dv.
+\]</span></p>
+<p>The velocity gradient can be decomposed as</p>
+<p><span class="math display">\[
+\nabla\mathbf v
+=
+\mathbf d+\mathbf w,
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+\mathbf d
+=
+\frac12
+\left(
+\nabla\mathbf v+\nabla\mathbf v^T
+\right)
+\]</span></p>
+<p>is the rate-of-deformation tensor and</p>
+<p><span class="math display">\[
+\mathbf w
+=
+\frac12
+\left(
+\nabla\mathbf v-\nabla\mathbf v^T
+\right)
+\]</span></p>
+<p>is the spin tensor.</p>
+<p>Again, because</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}
+=
+\boldsymbol{\sigma}^T,
+\]</span></p>
+<p>we have</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}:\mathbf w=0.
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\boxed{
+P_{\mathrm{ext}}
+=
+\int_{\Omega_t}
+\boldsymbol{\sigma}:\mathbf d
+\,dv.
+}
+\]</span></p>
+<p>The Cauchy stress <span class="math inline">\(\boldsymbol{\sigma}\)</span> and the rate-of-deformation tensor <span class="math inline">\(\mathbf d\)</span> form the corresponding power-conjugate pair in the current configuration.</p>
+<hr>
+</section>
+</section>
+<section id="reference-configuration" class="level2">
+<h2 class="anchored" data-anchor-id="reference-configuration">Reference configuration</h2>
+<p>For finite deformation, introduce the deformation gradient</p>
+<p><span class="math display">\[
+\mathbf F
+=
+\frac{\partial\mathbf x}{\partial\mathbf X}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+J=\det\mathbf F.
+\]</span></p>
+<p>The First Piola–Kirchhoff stress is</p>
+<p><span class="math display">\[
+\mathbf P
+=
+J\boldsymbol{\sigma}\mathbf F^{-T}.
+\]</span></p>
+<p>The power expression referred to the reference configuration can be written as</p>
+<p><span class="math display">\[
+\boxed{
+P_{\mathrm{ext}}
+=
+\int_{\Omega_0}
+\mathbf P:\dot{\mathbf F}
+\,dV.
+}
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\mathbf P
+\quad\text{and}\quad
+\dot{\mathbf F}
+\]</span></p>
+<p>form another work-conjugate pair.</p>
+<p>Alternatively, define the Green–Lagrange strain</p>
+<p><span class="math display">\[
+\mathbf E
+=
+\frac12
+\left(
+\mathbf F^T\mathbf F-\mathbf I
+\right).
+\]</span></p>
+<p>Its work-conjugate stress is the Second Piola–Kirchhoff stress <span class="math inline">\(\mathbf S\)</span>, giving</p>
+<p><span class="math display">\[
+\boxed{
+P_{\mathrm{ext}}
+=
+\int_{\Omega_0}
+\mathbf S:\dot{\mathbf E}
+\,dV.
+}
+\]</span></p>
+<p>So the particular stress and strain measures change with the formulation, but the underlying requirement remains the same:</p>
+<p><strong>the stress and deformation measures must form a consistent work-conjugate pair.</strong></p>
+<hr>
+</section>
+<section id="one-principle-several-formulations" class="level2">
+<h2 class="anchored" data-anchor-id="one-principle-several-formulations">One principle, several formulations</h2>
+<p>The small- and finite-deformation expressions can now be viewed together.</p>
+<p>For small strain,</p>
+<p><span class="math display">\[
+\boxed{
+\int_{\partial\Omega}
+\mathbf t\cdot\delta\mathbf u\,dA
+=
+\int_\Omega
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\varepsilon}
+\,dV.
+}
+\]</span></p>
+<p>For finite deformation in the current configuration,</p>
+<p><span class="math display">\[
+\boxed{
+\int_{\partial\Omega_t}
+\mathbf t\cdot\mathbf v\,da
+=
+\int_{\Omega_t}
+\boldsymbol{\sigma}:\mathbf d\,dv.
+}
+\]</span></p>
+<p>And in the reference configuration,</p>
+<p><span class="math display">\[
+\boxed{
+\int_{\Omega_0}
+\mathbf P:\dot{\mathbf F}\,dV
+=
+\int_{\Omega_0}
+\mathbf S:\dot{\mathbf E}\,dV.
+}
+\]</span></p>
+<p>The mathematical quantities change, but the energetic principle connecting external action to internal deformation remains.</p>
+<hr>
+</section>
+<section id="watch-the-lecture" class="level2">
+<h2 class="anchored" data-anchor-id="watch-the-lecture">Watch the lecture</h2>
+<p>This derivation is also discussed in my Mechanics of Materials lecture.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/i3yDGYlKvQk" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<hr>
+</section>
+<section id="takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
+<p>Why does the strain tensor appear in mechanics?</p>
+<p>Start from the work of surface tractions:</p>
+<p><span class="math display">\[
+\mathbf t\cdot\delta\mathbf u.
+\]</span></p>
+<p>Use Cauchy’s traction law, equilibrium, and the divergence theorem, and the corresponding volume quantity becomes</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}:
+\delta\nabla\mathbf u.
+\]</span></p>
+<p>Then decompose the displacement gradient:</p>
+<p><span class="math display">\[
+\delta\nabla\mathbf u
+=
+\delta\boldsymbol{\varepsilon}
++
+\delta\boldsymbol{\omega}.
+\]</span></p>
+<p>Because stress is symmetric,</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\omega}
+=
+0.
+\]</span></p>
+<p>What remains is</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\varepsilon}.
+}
+\]</span></p>
+<p>Thus the strain tensor is not merely a convenient symmetrization of the displacement gradient.</p>
+<p>It emerges naturally from the mechanics of <strong>internal work</strong>.</p>
+<p>And this leads to one of the central energy relationships in solid mechanics:</p>
+<p><span class="math display">\[
+\boxed{
+dU
+=
+\boldsymbol{\sigma}:
+d\boldsymbol{\varepsilon}.
+}
+\]</span></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

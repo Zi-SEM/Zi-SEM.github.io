@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Goangseup Zi">
+<meta name="dcterms.date" content="2026-09-02">
+<meta name="description" content="Floating wind turbine motion can be reduced without active control by changing the floater geometry, exploiting internal liquid motion, and modifying wave–structure interaction. Several studies reveal the mechanics behind these passive strategies.">
+
+<title>Can We Reduce the Motion of a Floating Wind Turbine Passively? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research Explained</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../z-diagram.html"> 
+<span class="menu-text">Z-Diagram</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../latex-writing.html"> 
+<span class="menu-text">LaTeX &amp; Writing</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#what-does-passive-control-really-mean" id="toc-what-does-passive-control-really-mean" class="nav-link active" data-scroll-target="#what-does-passive-control-really-mean">What does passive control really mean?</a></li>
+  <li><a href="#strategy-1-let-another-mass-move" id="toc-strategy-1-let-another-mass-move" class="nav-link" data-scroll-target="#strategy-1-let-another-mass-move">Strategy 1: Let another mass move</a></li>
+  <li><a href="#why-use-liquid-instead-of-a-mechanical-mass" id="toc-why-use-liquid-instead-of-a-mechanical-mass" class="nav-link" data-scroll-target="#why-use-liquid-instead-of-a-mechanical-mass">Why use liquid instead of a mechanical mass?</a></li>
+  <li><a href="#the-key-is-phase-not-merely-damping" id="toc-the-key-is-phase-not-merely-damping" class="nav-link" data-scroll-target="#the-key-is-phase-not-merely-damping">The key is phase, not merely damping</a></li>
+  <li><a href="#strategy-2-change-the-floater-itself" id="toc-strategy-2-change-the-floater-itself" class="nav-link" data-scroll-target="#strategy-2-change-the-floater-itself">Strategy 2: Change the floater itself</a></li>
+  <li><a href="#a-barge-does-not-have-to-remain-a-simple-box" id="toc-a-barge-does-not-have-to-remain-a-simple-box" class="nav-link" data-scroll-target="#a-barge-does-not-have-to-remain-a-simple-box">A barge does not have to remain a simple box</a></li>
+  <li><a href="#a-skirt-changes-the-water-that-must-move-with-the-platform" id="toc-a-skirt-changes-the-water-that-must-move-with-the-platform" class="nav-link" data-scroll-target="#a-skirt-changes-the-water-that-must-move-with-the-platform">A skirt changes the water that must move with the platform</a></li>
+  <li><a href="#more-skirt-is-not-always-proportionally-better" id="toc-more-skirt-is-not-always-proportionally-better" class="nav-link" data-scroll-target="#more-skirt-is-not-always-proportionally-better">More skirt is not always proportionally better</a></li>
+  <li><a href="#the-moonpool-is-another-moving-body-of-water" id="toc-the-moonpool-is-another-moving-body-of-water" class="nav-link" data-scroll-target="#the-moonpool-is-another-moving-body-of-water">The moonpool is another moving body of water</a></li>
+  <li><a href="#geometry-alone-produced-a-surprisingly-large-change" id="toc-geometry-alone-produced-a-surprisingly-large-change" class="nav-link" data-scroll-target="#geometry-alone-produced-a-surprisingly-large-change">Geometry alone produced a surprisingly large change</a></li>
+  <li><a href="#strategy-3-optimize-mass-distribution-and-restoring-behavior" id="toc-strategy-3-optimize-mass-distribution-and-restoring-behavior" class="nav-link" data-scroll-target="#strategy-3-optimize-mass-distribution-and-restoring-behavior">Strategy 3: Optimize mass distribution and restoring behavior</a></li>
+  <li><a href="#the-spar-shows-that-mass-placement-can-matter-more-than-mass-itself" id="toc-the-spar-shows-that-mass-placement-can-matter-more-than-mass-itself" class="nav-link" data-scroll-target="#the-spar-shows-that-mass-placement-can-matter-more-than-mass-itself">The spar shows that mass placement can matter more than mass itself</a></li>
+  <li><a href="#structural-flexibility-also-absorbs-energybut-at-a-cost" id="toc-structural-flexibility-also-absorbs-energybut-at-a-cost" class="nav-link" data-scroll-target="#structural-flexibility-also-absorbs-energybut-at-a-cost">Structural flexibility also absorbs energy—but at a cost</a></li>
+  <li><a href="#strategy-4-combine-passive-mechanisms" id="toc-strategy-4-combine-passive-mechanisms" class="nav-link" data-scroll-target="#strategy-4-combine-passive-mechanisms">Strategy 4: Combine passive mechanisms</a></li>
+  <li><a href="#internal-control-and-external-control-are-mechanically-different" id="toc-internal-control-and-external-control-are-mechanically-different" class="nav-link" data-scroll-target="#internal-control-and-external-control-are-mechanically-different">Internal control and external control are mechanically different</a></li>
+  <li><a href="#the-combination-works-particularly-well-for-pitch" id="toc-the-combination-works-particularly-well-for-pitch" class="nav-link" data-scroll-target="#the-combination-works-particularly-well-for-pitch">The combination works particularly well for pitch</a></li>
+  <li><a href="#reducing-one-motion-can-worsen-another" id="toc-reducing-one-motion-can-worsen-another" class="nav-link" data-scroll-target="#reducing-one-motion-can-worsen-another">Reducing one motion can worsen another</a></li>
+  <li><a href="#passive-control-is-fundamentally-a-resonance-problem" id="toc-passive-control-is-fundamentally-a-resonance-problem" class="nav-link" data-scroll-target="#passive-control-is-fundamentally-a-resonance-problem">Passive control is fundamentally a resonance problem</a></li>
+  <li><a href="#three-passive-design-philosophies" id="toc-three-passive-design-philosophies" class="nav-link" data-scroll-target="#three-passive-design-philosophies">Three passive design philosophies</a></li>
+  <li><a href="#the-common-mechanism-is-energy-redistribution" id="toc-the-common-mechanism-is-energy-redistribution" class="nav-link" data-scroll-target="#the-common-mechanism-is-energy-redistribution">The common mechanism is energy redistribution</a></li>
+  <li><a href="#why-passive-control-is-attractive-offshore" id="toc-why-passive-control-is-attractive-offshore" class="nav-link" data-scroll-target="#why-passive-control-is-attractive-offshore">Why passive control is attractive offshore</a></li>
+  <li><a href="#what-the-studies-do-not-yet-prove" id="toc-what-the-studies-do-not-yet-prove" class="nav-link" data-scroll-target="#what-the-studies-do-not-yet-prove">What the studies do not yet prove</a></li>
+  <li><a href="#engineering-takeaway" id="toc-engineering-takeaway" class="nav-link" data-scroll-target="#engineering-takeaway">Engineering takeaway</a></li>
+  <li><a href="#original-research" id="toc-original-research" class="nav-link" data-scroll-target="#original-research">Original research</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Can We Reduce the Motion of a Floating Wind Turbine Passively?</h1>
+<p class="subtitle lead">How geometry, liquid sloshing, and hydrodynamic appendages can control platform motion without active actuation</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Research Explained</div>
+    <div class="quarto-category">Offshore &amp; Ocean Engineering</div>
+    <div class="quarto-category">Offshore Wind Energy</div>
+    <div class="quarto-category">Floating Offshore Wind</div>
+    <div class="quarto-category">Structural Dynamics</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Floating wind turbine motion can be reduced without active control by changing the floater geometry, exploiting internal liquid motion, and modifying wave–structure interaction. Several studies reveal the mechanics behind these passive strategies.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Goangseup Zi </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 2, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>A floating offshore wind turbine has an unavoidable problem.</p>
+<p>It floats.</p>
+<p>Unlike a fixed offshore structure, its foundation is allowed to move under wind and wave loading.</p>
+<p>The platform can undergo six rigid-body motions:</p>
+<p><span class="math display">\[
+\text{surge},\quad
+\text{sway},\quad
+\text{heave},\quad
+\text{roll},\quad
+\text{pitch},\quad
+\text{yaw}.
+\]</span></p>
+<p>Among them, pitch is particularly important for floating wind turbines because even a relatively small platform rotation produces a large displacement at the hub.</p>
+<p>The obvious question is therefore:</p>
+<blockquote class="blockquote">
+<p><strong>Can we reduce the motion of a floating wind turbine without actively controlling it?</strong></p>
+</blockquote>
+<p>The answer is yes.</p>
+<p>But passive motion control does not mean simply making the structure heavier or stiffer.</p>
+<p>A more useful mechanics view is:</p>
+<blockquote class="blockquote">
+<p><strong>Change how the floating system stores, transfers, and dissipates wave energy.</strong></p>
+</blockquote>
+<p>Our recent studies explored several ways of doing exactly that.</p>
+<hr>
+<section id="what-does-passive-control-really-mean" class="level2">
+<h2 class="anchored" data-anchor-id="what-does-passive-control-really-mean">What does passive control really mean?</h2>
+<p>An active control system senses motion and deliberately generates a corrective action.</p>
+<p>A passive system does not.</p>
+<p>It requires no continuously commanded actuator and no external control energy.</p>
+<p>Instead, its response emerges naturally from</p>
+<ul>
+<li>inertia,</li>
+<li>gravity,</li>
+<li>buoyancy,</li>
+<li>internal liquid motion,</li>
+<li>hydrodynamic added mass,</li>
+<li>radiation damping,</li>
+<li>viscous dissipation,</li>
+<li>and structural geometry.</li>
+</ul>
+<p>A simplified floating-body equation illustrates where passive control enters:</p>
+<p><span class="math display">\[
+\left[
+-\omega^2(\mathbf{M}+\mathbf{A})
++i\omega\mathbf{B}
++\mathbf{C}
+\right]\boldsymbol{\xi}
+=
+\mathbf{F}_{\mathrm{wave}},
+\]</span></p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\(\mathbf{M}\)</span> is structural mass,</li>
+<li><span class="math inline">\(\mathbf{A}\)</span> is hydrodynamic added mass,</li>
+<li><span class="math inline">\(\mathbf{B}\)</span> represents damping,</li>
+<li><span class="math inline">\(\mathbf{C}\)</span> represents restoring stiffness,</li>
+<li><span class="math inline">\(\boldsymbol{\xi}\)</span> is the motion response, and</li>
+<li><span class="math inline">\(\mathbf{F}_{\mathrm{wave}}\)</span> is wave excitation.</li>
+</ul>
+<p>A passive device does not need to cancel the wave force directly.</p>
+<p>Instead, it can change</p>
+<p><span class="math display">\[
+\mathbf{A},
+\qquad
+\mathbf{B},
+\qquad
+\mathbf{C},
+\]</span></p>
+<p>or introduce another dynamic subsystem that interacts with the platform.</p>
+<p>That gives us several different strategies.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig01.png" class="img-fluid figure-img" style="width:85.0%"></p>
+<figcaption>A barge-type floating offshore wind turbine equipped with both an internal bidirectional tuned liquid damper and an external horizontal skirt. The two devices act through different passive mechanisms: internal liquid motion and modified external hydrodynamics.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="strategy-1-let-another-mass-move" class="level2">
+<h2 class="anchored" data-anchor-id="strategy-1-let-another-mass-move">Strategy 1: Let another mass move</h2>
+<p>The most familiar passive-control idea comes from structural vibration control.</p>
+<p>Suppose a structure has generalized displacement <span class="math inline">\(x\)</span>.</p>
+<p>If a secondary mass is allowed to move relative to the structure, its inertia can generate a force that opposes the dominant structural motion.</p>
+<p>A tuned mass damper uses a solid mass.</p>
+<p>A <strong>tuned liquid damper (TLD)</strong> uses water.</p>
+<p>When the platform moves, the liquid sloshes.</p>
+<p>If the liquid motion is properly tuned, the resulting force or moment develops a favorable phase relationship with the platform motion.</p>
+<p>Schematically,</p>
+<p><span class="math display">\[
+\text{platform pitch}
+\rightarrow
+\text{liquid sloshing}
+\rightarrow
+\text{counteracting moment}.
+\]</span></p>
+<p>The control action therefore comes from the liquid itself.</p>
+<hr>
+</section>
+<section id="why-use-liquid-instead-of-a-mechanical-mass" class="level2">
+<h2 class="anchored" data-anchor-id="why-use-liquid-instead-of-a-mechanical-mass">Why use liquid instead of a mechanical mass?</h2>
+<p>Liquid has several attractive characteristics for offshore applications.</p>
+<p>It can provide</p>
+<ul>
+<li>inertia,</li>
+<li>gravitational restoring force,</li>
+<li>viscous energy dissipation,</li>
+<li>and impact/sloshing losses</li>
+</ul>
+<p>without requiring a mechanically driven actuator.</p>
+<p>Our studies examined a <strong>bidirectional tuned liquid damper (BTLD)</strong>, which allows sloshing in more than one horizontal direction.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig02.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Concept of a bidirectional tuned liquid damper. Platform motion excites internal liquid sloshing; when properly tuned, the liquid-generated moment acts with a favorable phase lag relative to the platform motion.</figcaption>
+</figure>
+</div>
+<p>The important word is <strong>tuned</strong>.</p>
+<p>The liquid should not simply move.</p>
+<p>Its natural sloshing behavior must interact appropriately with the motion that we want to reduce.</p>
+<hr>
+</section>
+<section id="the-key-is-phase-not-merely-damping" class="level2">
+<h2 class="anchored" data-anchor-id="the-key-is-phase-not-merely-damping">The key is phase, not merely damping</h2>
+<p>Passive motion control is often described simply as “adding damping.”</p>
+<p>That is incomplete.</p>
+<p>For a tuned system, the <strong>phase relationship</strong> is fundamental.</p>
+<p>Consider harmonic platform motion:</p>
+<p><span class="math display">\[
+\theta(t)
+=
+\Theta\sin\omega t.
+\]</span></p>
+<p>The liquid motion produces another moment,</p>
+<p><span class="math display">\[
+M_{\mathrm{liq}}(t)
+=
+M_0\sin(\omega t-\phi).
+\]</span></p>
+<p>If the phase difference <span class="math inline">\(\phi\)</span> is favorable, the liquid-generated moment opposes the excitation that drives pitch.</p>
+<p>Then the effective pitching action becomes smaller.</p>
+<p>This is why tuning the liquid depth, tank dimensions, and internal baffles matters.</p>
+<p>Our early BTLD study found that an optimized BTLD could reduce pitch motion by approximately <strong>10–30%</strong>, depending on wave period and configuration.</p>
+<p>A subsequent comparison of BTLD and bidirectional tuned liquid column damper concepts, together with platform geometry, found reductions of approximately <strong>20–40%</strong> for optimized combinations.</p>
+<p>The important result is not simply the percentage.</p>
+<p>It is that the platform and damper must be treated as <strong>one coupled dynamic system</strong>.</p>
+<hr>
+</section>
+<section id="strategy-2-change-the-floater-itself" class="level2">
+<h2 class="anchored" data-anchor-id="strategy-2-change-the-floater-itself">Strategy 2: Change the floater itself</h2>
+<p>There is another way to reduce motion that requires no added damping device at all:</p>
+<blockquote class="blockquote">
+<p><strong>Change the geometry of the floating structure.</strong></p>
+</blockquote>
+<p>This is perhaps the purest form of passive motion control.</p>
+<p>Changing geometry changes</p>
+<ul>
+<li>displaced volume,</li>
+<li>waterplane geometry,</li>
+<li>center of buoyancy,</li>
+<li>mass distribution,</li>
+<li>moment of inertia,</li>
+<li>hydrostatic restoring characteristics,</li>
+<li>added mass,</li>
+<li>radiation damping,</li>
+<li>and wave diffraction.</li>
+</ul>
+<p>Thus,</p>
+<p><span class="math display">\[
+\text{geometry}
+\rightarrow
+\text{hydrodynamic coefficients}
+\rightarrow
+\text{dynamic response}.
+\]</span></p>
+<p>The structure itself becomes the control system.</p>
+<hr>
+</section>
+<section id="a-barge-does-not-have-to-remain-a-simple-box" class="level2">
+<h2 class="anchored" data-anchor-id="a-barge-does-not-have-to-remain-a-simple-box">A barge does not have to remain a simple box</h2>
+<p>Barge-type floating wind platforms are attractive because they are geometrically simple and have relatively shallow draft.</p>
+<p>But a simple rectangular box is not necessarily hydrodynamically optimal.</p>
+<p>We therefore investigated several geometric modifications:</p>
+<ul>
+<li>an octagonal moonpool,</li>
+<li>a horizontal skirt,</li>
+<li>trapezoidal outer walls.</li>
+</ul>
+<p>The mass of the reference platform was maintained while its geometry was changed.</p>
+<p>This was important.</p>
+<p>Otherwise, reduced motion could simply be attributed to adding more material.</p>
+<p>The objective was instead:</p>
+<blockquote class="blockquote">
+<p><strong>Can we redistribute the same basic structural resources more intelligently?</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="a-skirt-changes-the-water-that-must-move-with-the-platform" class="level2">
+<h2 class="anchored" data-anchor-id="a-skirt-changes-the-water-that-must-move-with-the-platform">A skirt changes the water that must move with the platform</h2>
+<p>Consider a horizontal skirt attached to the floating platform.</p>
+<p>When the platform moves, the skirt forces additional surrounding water to accelerate.</p>
+<p>From the platform’s viewpoint, this behaves like additional inertia.</p>
+<p>This appears in the equations as increased <strong>added mass</strong>:</p>
+<p><span class="math display">\[
+\mathbf{M}_{\mathrm{eff}}
+=
+\mathbf{M}
++
+\mathbf{A}.
+\]</span></p>
+<p>If <span class="math inline">\(\mathbf{A}\)</span> increases, the dynamic properties of the system change.</p>
+<p>The skirt also changes radiation and diffraction behavior.</p>
+<p>In a viscous flow, its edges can additionally generate</p>
+<ul>
+<li>flow separation,</li>
+<li>vortex shedding,</li>
+<li>and viscous energy dissipation.</li>
+</ul>
+<p>So the skirt does not merely add structural area.</p>
+<p>It modifies the fluid–structure interaction itself.</p>
+<hr>
+</section>
+<section id="more-skirt-is-not-always-proportionally-better" class="level2">
+<h2 class="anchored" data-anchor-id="more-skirt-is-not-always-proportionally-better">More skirt is not always proportionally better</h2>
+<p>One of the useful engineering observations was that increasing skirt size eventually produced diminishing returns.</p>
+<p>That makes physical sense.</p>
+<p>The objective is not</p>
+<blockquote class="blockquote">
+<p><strong>make the skirt as large as possible.</strong></p>
+</blockquote>
+<p>It is</p>
+<blockquote class="blockquote">
+<p><strong>make the skirt large enough to create the required hydrodynamic effect.</strong></p>
+</blockquote>
+<p>The same design philosophy appears repeatedly in engineering optimization.</p>
+<p>Once the governing mechanism has saturated, additional material gives progressively less benefit.</p>
+<p>Skirt <strong>position</strong> was also critical.</p>
+<p>In the barge study, changing the position of the skirt could produce very large differences in motion response.</p>
+<p>Thus geometry must be designed together with hydrodynamics rather than treated merely as structural detailing.</p>
+<hr>
+</section>
+<section id="the-moonpool-is-another-moving-body-of-water" class="level2">
+<h2 class="anchored" data-anchor-id="the-moonpool-is-another-moving-body-of-water">The moonpool is another moving body of water</h2>
+<p>The moonpool introduces yet another passive dynamic subsystem.</p>
+<p>The water inside the opening can oscillate relative to the platform.</p>
+<p>This internal fluid has its own characteristic motions, including</p>
+<ul>
+<li>piston-type vertical motion,</li>
+<li>sloshing-type horizontal motion.</li>
+</ul>
+<p>Again, phase matters.</p>
+<p>If the internal water motion develops a favorable phase relation with the structural motion, it can contribute to motion attenuation.</p>
+<p>If instead the two systems approach resonance in an unfavorable way, motion can be amplified.</p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\boxed{
+\text{a passive device can either suppress or amplify motion}
+}
+\]</span></p>
+<p>depending on its dynamic tuning.</p>
+<p>This is a fundamental limitation of passive control.</p>
+<hr>
+</section>
+<section id="geometry-alone-produced-a-surprisingly-large-change" class="level2">
+<h2 class="anchored" data-anchor-id="geometry-alone-produced-a-surprisingly-large-change">Geometry alone produced a surprisingly large change</h2>
+<p>After combining the skirt, moonpool, and trapezoidal platform geometry, the optimized barge configuration showed substantially smaller motion than the original rectangular configuration.</p>
+<p>The study reported approximately</p>
+<ul>
+<li><strong>20% reduction in heave</strong>, and</li>
+<li><strong>up to 70% reduction in pitch</strong></li>
+</ul>
+<p>under the investigated conditions.</p>
+<p>Increasing the moonpool area to approximately</p>
+<p><span class="math display">\[
+400~\mathrm{m^2},
+\]</span></p>
+<p>about 10% of the platform surface area, also produced additional motion reduction before the benefit began to saturate.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig03.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Comparison between the original rectangular barge and the proposed passive geometry under waves from different directions. The optimized skirted and trapezoidal configuration consistently reduces the dominant motion peaks.</figcaption>
+</figure>
+</div>
+<p>The important engineering interpretation is:</p>
+<blockquote class="blockquote">
+<p><strong>A floating structure’s shape is not merely something that carries loads. Its shape determines the hydrodynamic system with which the waves interact.</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="strategy-3-optimize-mass-distribution-and-restoring-behavior" class="level2">
+<h2 class="anchored" data-anchor-id="strategy-3-optimize-mass-distribution-and-restoring-behavior">Strategy 3: Optimize mass distribution and restoring behavior</h2>
+<p>The same principle applies to a very different floating concept: the spar.</p>
+<p>A spar obtains much of its pitch stability from its deep draft and low center of gravity.</p>
+<p>Its motion is therefore strongly affected by</p>
+<ul>
+<li>diameter,</li>
+<li>draft,</li>
+<li>ballast distribution,</li>
+<li>center of gravity,</li>
+<li>and slenderness ratio.</li>
+</ul>
+<p>In our OC3 spar optimization study, the total floater mass and displaced water volume were kept fixed while geometric variables were changed.</p>
+<p>That allows a particularly clean engineering comparison:</p>
+<p><span class="math display">\[
+\text{same mass}
+\quad+\quad
+\text{different geometry}
+\quad\Rightarrow\quad
+\text{different dynamics}.
+\]</span></p>
+<hr>
+</section>
+<section id="the-spar-shows-that-mass-placement-can-matter-more-than-mass-itself" class="level2">
+<h2 class="anchored" data-anchor-id="the-spar-shows-that-mass-placement-can-matter-more-than-mass-itself">The spar shows that mass placement can matter more than mass itself</h2>
+<p>The optimization changed the lower-cylinder diameter, draft, wall thickness, and ballast configuration.</p>
+<p>The final design increased the lower diameter from approximately</p>
+<p><span class="math display">\[
+9.4~\mathrm{m}
+\]</span></p>
+<p>to</p>
+<p><span class="math display">\[
+12.0~\mathrm{m},
+\]</span></p>
+<p>while reducing the draft from</p>
+<p><span class="math display">\[
+120~\mathrm{m}
+\]</span></p>
+<p>to approximately</p>
+<p><span class="math display">\[
+76.9~\mathrm{m}.
+\]</span></p>
+<p>Under the investigated wave conditions, the optimized design reduced the rigid-body RAO peaks by approximately</p>
+<ul>
+<li><strong>20.45% in surge,</strong></li>
+<li><strong>37.44% in heave,</strong></li>
+<li><strong>34.57% in pitch.</strong></li>
+</ul>
+<p>The flexible model showed reductions of approximately</p>
+<ul>
+<li><strong>33.10% in surge,</strong></li>
+<li><strong>44.35% in heave,</strong></li>
+<li><strong>31.85% in pitch.</strong></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig04.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Comparison of the initial and optimized OC3 spar designs and their motion responses. The total mass is maintained, but changing geometry, draft, and mass distribution changes the hydrodynamic and restoring behavior substantially.</figcaption>
+</figure>
+</div>
+<p>This gives another important principle:</p>
+<blockquote class="blockquote">
+<p><strong>Passive control does not necessarily require adding something. Sometimes it means putting the existing mass and buoyancy in better places.</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="structural-flexibility-also-absorbs-energybut-at-a-cost" class="level2">
+<h2 class="anchored" data-anchor-id="structural-flexibility-also-absorbs-energybut-at-a-cost">Structural flexibility also absorbs energy—but at a cost</h2>
+<p>The spar study considered both rigid-body and hydroelastic responses.</p>
+<p>Interestingly, the flexible models generally showed somewhat smaller rigid motion than the corresponding rigid models.</p>
+<p>One physical interpretation is that elastic deformation can absorb part of the wave-induced energy that would otherwise appear as rigid-body motion.</p>
+<p>But this is not free damping.</p>
+<p>Energy entering structural deformation can produce</p>
+<ul>
+<li>stress,</li>
+<li>fatigue damage,</li>
+<li>and local structural demand.</li>
+</ul>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\text{less rigid-body motion}
+\not\Rightarrow
+\text{automatically better structural performance}.
+\]</span></p>
+<p>This is an important distinction when optimizing large floating structures.</p>
+<p>Motion reduction must eventually be considered together with structural integrity and fatigue.</p>
+<hr>
+</section>
+<section id="strategy-4-combine-passive-mechanisms" class="level2">
+<h2 class="anchored" data-anchor-id="strategy-4-combine-passive-mechanisms">Strategy 4: Combine passive mechanisms</h2>
+<p>The next logical question is:</p>
+<blockquote class="blockquote">
+<p><strong>Can several passive mechanisms work together?</strong></p>
+</blockquote>
+<p>Our latest study combined</p>
+<ol type="1">
+<li>an internal BTLD, and</li>
+<li>an external horizontal skirt.</li>
+</ol>
+<p>These mechanisms act differently.</p>
+<p>The BTLD works primarily through</p>
+<p><span class="math display">\[
+\text{internal liquid dynamics}
++
+\text{phase-controlled counteracting moment}
++
+\text{energy dissipation}.
+\]</span></p>
+<p>The skirt works primarily through</p>
+<p><span class="math display">\[
+\text{added mass}
++
+\text{modified diffraction/radiation}
++
+\text{viscous flow effects}.
+\]</span></p>
+<p>Therefore, their actions can be complementary.</p>
+<hr>
+</section>
+<section id="internal-control-and-external-control-are-mechanically-different" class="level2">
+<h2 class="anchored" data-anchor-id="internal-control-and-external-control-are-mechanically-different">Internal control and external control are mechanically different</h2>
+<p>It is useful to distinguish two domains.</p>
+<section id="inside-the-platform" class="level3">
+<h3 class="anchored" data-anchor-id="inside-the-platform">Inside the platform</h3>
+<p>The BTLD changes the dynamics by allowing water to move relative to the structure.</p>
+<p>Energy is transferred into internal liquid motion and dissipated through sloshing and viscous effects.</p>
+</section>
+<section id="outside-the-platform" class="level3">
+<h3 class="anchored" data-anchor-id="outside-the-platform">Outside the platform</h3>
+<p>The skirt changes how the surrounding sea must move with and around the structure.</p>
+<p>It alters hydrodynamic added mass, radiation, diffraction, flow separation, and vortex shedding.</p>
+<p>Thus the combined system attacks the same motion through two different physical routes:</p>
+<p><span class="math display">\[
+\boxed{
+\text{internal sloshing}
++
+\text{external hydrodynamics}
+}
+\]</span></p>
+<hr>
+</section>
+</section>
+<section id="the-combination-works-particularly-well-for-pitch" class="level2">
+<h2 class="anchored" data-anchor-id="the-combination-works-particularly-well-for-pitch">The combination works particularly well for pitch</h2>
+<p>The combined BTLD–skirt study compared four configurations:</p>
+<ul>
+<li>bare platform,</li>
+<li>BTLD only,</li>
+<li>skirt only,</li>
+<li>BTLD + skirt.</li>
+</ul>
+<p>For the design-tuned skirt configuration, the skirt length was</p>
+<p><span class="math display">\[
+L=4~\mathrm{m},
+\]</span></p>
+<p>with a submergence depth of</p>
+<p><span class="math display">\[
+d=10~\mathrm{m}.
+\]</span></p>
+<p>The combined system produced very small pitch RAOs over the investigated period range.</p>
+<p>The minimum reported pitch RAO was approximately</p>
+<p><span class="math display">\[
+0.007
+\]</span></p>
+<p>at a wave period of 8 s, and the pitch RAO remained below approximately 0.026 throughout the analyzed periods.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig05.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>Comparison of the bare platform, BTLD-only, skirt-only, and combined BTLD–skirt configurations. The combination provides strong pitch suppression, while the heave response remains strongly dependent on wave period.</figcaption>
+</figure>
+</div>
+<p>This is perhaps the clearest demonstration of passive motion control in the series of studies.</p>
+<p>But it also reveals an important limitation.</p>
+<hr>
+</section>
+<section id="reducing-one-motion-can-worsen-another" class="level2">
+<h2 class="anchored" data-anchor-id="reducing-one-motion-can-worsen-another">Reducing one motion can worsen another</h2>
+<p>The heave response did not follow the same simple trend as pitch.</p>
+<p>The skirt reduced heave in short and intermediate wave periods.</p>
+<p>But around approximately</p>
+<p><span class="math display">\[
+T=12\text{--}14~\mathrm{s},
+\]</span></p>
+<p>the skirt and combined configurations could produce larger heave response than the bare platform.</p>
+<p>At longer periods, the BTLD had only a minor influence on heave.</p>
+<p>This result is extremely important.</p>
+<p>A passive device changes the <strong>dynamics of the system</strong>.</p>
+<p>It does not simply subtract motion.</p>
+<p>Changing added mass, damping, restoring forces, or an internal resonance changes the entire frequency response.</p>
+<p>Therefore:</p>
+<blockquote class="blockquote">
+<p><strong>A passive device that suppresses one response strongly may shift or amplify another response elsewhere in frequency.</strong></p>
+</blockquote>
+<p>This is why passive-control design must be frequency-aware.</p>
+<hr>
+</section>
+<section id="passive-control-is-fundamentally-a-resonance-problem" class="level2">
+<h2 class="anchored" data-anchor-id="passive-control-is-fundamentally-a-resonance-problem">Passive control is fundamentally a resonance problem</h2>
+<p>Consider a simplified single-degree-of-freedom system:</p>
+<p><span class="math display">\[
+m\ddot{x}
++
+c\dot{x}
++
+kx
+=
+F_0\sin\omega t.
+\]</span></p>
+<p>Its response depends strongly on the relationship between</p>
+<p><span class="math display">\[
+\omega
+\]</span></p>
+<p>and the natural frequency</p>
+<p><span class="math display">\[
+\omega_n=\sqrt{\frac{k}{m}}.
+\]</span></p>
+<p>A passive modification can change</p>
+<p><span class="math display">\[
+m,
+\qquad
+c,
+\qquad
+k,
+\]</span></p>
+<p>or introduce an additional natural frequency.</p>
+<p>Therefore it can</p>
+<ul>
+<li>reduce a resonance peak,</li>
+<li>shift a resonance,</li>
+<li>broaden the response,</li>
+<li>introduce another coupled mode,</li>
+<li>or alter the response differently in different frequency ranges.</li>
+</ul>
+<p>This is why asking</p>
+<blockquote class="blockquote">
+<p>“Does the device reduce motion?”</p>
+</blockquote>
+<p>is incomplete.</p>
+<p>A better question is:</p>
+<blockquote class="blockquote">
+<p><strong>Which motion, at which frequency, and by which physical mechanism?</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="three-passive-design-philosophies" class="level2">
+<h2 class="anchored" data-anchor-id="three-passive-design-philosophies">Three passive design philosophies</h2>
+<p>The studies can therefore be understood through three broad mechanics strategies.</p>
+<section id="change-the-primary-structure" class="level3">
+<h3 class="anchored" data-anchor-id="change-the-primary-structure">1. Change the primary structure</h3>
+<p>Examples:</p>
+<ul>
+<li>spar diameter,</li>
+<li>draft,</li>
+<li>ballast distribution,</li>
+<li>barge wall inclination,</li>
+<li>moonpool size.</li>
+</ul>
+<p>This changes the natural dynamics of the floating structure itself.</p>
+</section>
+<section id="add-a-secondary-dynamic-system" class="level3">
+<h3 class="anchored" data-anchor-id="add-a-secondary-dynamic-system">2. Add a secondary dynamic system</h3>
+<p>Example:</p>
+<ul>
+<li>BTLD or BTLCD.</li>
+</ul>
+<p>The secondary system moves relative to the platform and generates a favorable dynamic reaction.</p>
+</section>
+<section id="modify-fluidstructure-interaction" class="level3">
+<h3 class="anchored" data-anchor-id="modify-fluidstructure-interaction">3. Modify fluid–structure interaction</h3>
+<p>Example:</p>
+<ul>
+<li>skirts and hydrodynamic appendages.</li>
+</ul>
+<p>These change the amount and manner in which the surrounding water participates in the motion.</p>
+<p>The combined BTLD–skirt concept uses the second and third strategies simultaneously.</p>
+<hr>
+</section>
+</section>
+<section id="the-common-mechanism-is-energy-redistribution" class="level2">
+<h2 class="anchored" data-anchor-id="the-common-mechanism-is-energy-redistribution">The common mechanism is energy redistribution</h2>
+<p>These approaches look geometrically very different.</p>
+<p>A 120-m-deep spar is nothing like a sloshing liquid tank.</p>
+<p>A skirt is nothing like ballast.</p>
+<p>Yet they can all be interpreted through the same mechanics idea.</p>
+<p>Wave excitation supplies energy to the floating system.</p>
+<p>Without motion control, much of that energy appears as platform motion:</p>
+<p><span class="math display">\[
+E_{\mathrm{wave}}
+\rightarrow
+E_{\mathrm{platform\ motion}}.
+\]</span></p>
+<p>Passive design changes the available paths:</p>
+<p><span class="math display">\[
+E_{\mathrm{wave}}
+\rightarrow
+\begin{cases}
+E_{\mathrm{rigid\ motion}}\\
+E_{\mathrm{internal\ liquid}}\\
+E_{\mathrm{radiated\ waves}}\\
+E_{\mathrm{viscous\ dissipation}}\\
+E_{\mathrm{elastic\ deformation}}
+\end{cases}
+\]</span></p>
+<p>The objective is not to make the incoming wave energy disappear.</p>
+<p>It is to prevent too much of it from appearing in the motion that matters most to turbine performance.</p>
+<hr>
+</section>
+<section id="why-passive-control-is-attractive-offshore" class="level2">
+<h2 class="anchored" data-anchor-id="why-passive-control-is-attractive-offshore">Why passive control is attractive offshore</h2>
+<p>Passive systems have an important practical advantage.</p>
+<p>The offshore environment makes inspection, repair, and maintenance expensive.</p>
+<p>A control concept that depends on</p>
+<ul>
+<li>sensors,</li>
+<li>actuators,</li>
+<li>continuous power,</li>
+<li>control electronics,</li>
+<li>or complex moving machinery</li>
+</ul>
+<p>introduces additional failure and maintenance requirements.</p>
+<p>A passive system can potentially offer greater robustness because the control mechanism is embedded in</p>
+<ul>
+<li>geometry,</li>
+<li>fluid motion,</li>
+<li>ballast,</li>
+<li>or hydrodynamic interaction.</li>
+</ul>
+<p>This does not mean passive systems are automatically simpler to design.</p>
+<p>Their behavior can actually be highly sensitive to frequency, geometry, and environmental conditions.</p>
+<p>But once properly designed, they do not require continuous active intervention.</p>
+<hr>
+</section>
+<section id="what-the-studies-do-not-yet-prove" class="level2">
+<h2 class="anchored" data-anchor-id="what-the-studies-do-not-yet-prove">What the studies do not yet prove</h2>
+<p>These results should not be interpreted as universal performance values for floating offshore wind turbines.</p>
+<p>The studies considered different numerical models and simplifying assumptions.</p>
+<p>The early BTLD studies primarily considered regular waves and focused on platform hydrodynamics.</p>
+<p>The skirted trapezoidal platform study used linear diffraction-based analysis with equivalent damping and focused mainly on platform response.</p>
+<p>The spar optimization simplified parts of the turbine and mooring system and did not include full stress- and fatigue-based optimization.</p>
+<p>The most recent BTLD–skirt study used high-fidelity CFD and also examined an irregular JONSWAP case, but wind loading and full aeroelastic coupling were outside its scope.</p>
+<p>Therefore, values such as</p>
+<p><span class="math display">\[
+70\%
+\]</span></p>
+<p>pitch reduction or</p>
+<p><span class="math display">\[
+20\text{--}40\%
+\]</span></p>
+<p>motion reduction should be interpreted as results of the specific investigated systems rather than universal design guarantees.</p>
+<p>What is more general is the underlying mechanics.</p>
+<hr>
+</section>
+<section id="engineering-takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="engineering-takeaway">Engineering takeaway</h2>
+<p>A floating wind turbine does not need an active actuator to control every motion.</p>
+<p>Its motion can be changed by designing</p>
+<ul>
+<li><strong>what moves,</strong></li>
+<li><strong>where the mass is,</strong></li>
+<li><strong>how internal water moves,</strong></li>
+<li><strong>how surrounding water moves,</strong></li>
+<li>and <strong>where energy is dissipated.</strong></li>
+</ul>
+<p>Passive motion control is therefore not simply about adding damping.</p>
+<p>It is about <strong>designing the dynamics of the complete floating system</strong>.</p>
+<p>The central engineering principle is:</p>
+<blockquote class="blockquote">
+<p><strong>Do not try only to resist the motion. Give the wave energy a better place to go.</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="original-research" class="level2">
+<h2 class="anchored" data-anchor-id="original-research">Original research</h2>
+<p><strong>Saghi, H., &amp; Zi, G. (2024).</strong> <em>Pitch motion reduction of a barge-type floating offshore wind turbine substructure using a bidirectional tuned liquid damper.</em> <em>Ocean Engineering, 304</em>, 117717. https://doi.org/10.1016/j.oceaneng.2024.117717</p>
+<p><strong>Saghi, H., Ma, C., &amp; Zi, G. (2024).</strong> <em>Bidirectional tuned liquid dampers for stabilizing floating offshore wind turbine substructures.</em> <em>Ocean Engineering, 309</em>, 118553. https://doi.org/10.1016/j.oceaneng.2024.118553</p>
+<p><strong>Kim, H., Saghi, H., Jeon, I., &amp; Zi, G. (2025).</strong> <em>Stabilization of floating offshore wind turbines with a passive stability-enhancing skirted trapezoidal platform.</em> <em>Journal of Marine Science and Engineering, 13</em>, 1658. https://doi.org/10.3390/jmse13091658</p>
+<p><strong>Ma, C., Lee, S., Zhu, X., &amp; Zi, G. (2025).</strong> <em>Design optimization of OC3 spar floater based on rigid motion and hydroelastic response.</em> <em>Ocean Engineering, 334</em>, 121543. https://doi.org/10.1016/j.oceaneng.2025.121543</p>
+<p><strong>Kim, H., Saghi, H., &amp; Zi, G. (2026).</strong> <em>Numerical investigation of motion control of a barge-type floating offshore wind turbine using a bidirectional tuned liquid damper and a horizontal skirt.</em> <em>Ocean Engineering, 355</em>, 125130. https://doi.org/10.1016/j.oceaneng.2026.125130</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

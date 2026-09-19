@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Goangseup Zi">
+<meta name="dcterms.date" content="2026-09-04">
+<meta name="description" content="A mechanics-oriented explanation of multiple-crack growth, fatigue, crack interaction, coalescence, branching, junctions, and three-dimensional fracture-network evolution.">
+
+<title>How Do Multiple Cracks Branch, Join, and Form a Fracture Network? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research Explained</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../z-diagram.html"> 
+<span class="menu-text">Z-Diagram</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../latex-writing.html"> 
+<span class="menu-text">LaTeX &amp; Writing</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#from-one-crack-to-many-cracks" id="toc-from-one-crack-to-many-cracks" class="nav-link active" data-scroll-target="#from-one-crack-to-many-cracks">From one crack to many cracks</a></li>
+  <li><a href="#crack-interaction-is-the-mechanics-behind-the-network" id="toc-crack-interaction-is-the-mechanics-behind-the-network" class="nav-link" data-scroll-target="#crack-interaction-is-the-mechanics-behind-the-network">Crack interaction is the mechanics behind the network</a></li>
+  <li><a href="#fatigue-makes-the-competition-gradual" id="toc-fatigue-makes-the-competition-gradual" class="nav-link" data-scroll-target="#fatigue-makes-the-competition-gradual">Fatigue makes the competition gradual</a></li>
+  <li><a href="#why-mesh-independence-matters-more-for-multiple-cracks" id="toc-why-mesh-independence-matters-more-for-multiple-cracks" class="nav-link" data-scroll-target="#why-mesh-independence-matters-more-for-multiple-cracks">Why mesh independence matters more for multiple cracks</a></li>
+  <li><a href="#junction-is-not-just-two-cracks-touching" id="toc-junction-is-not-just-two-cracks-touching" class="nav-link" data-scroll-target="#junction-is-not-just-two-cracks-touching">Junction is not just two cracks touching</a></li>
+  <li><a href="#coalescence-can-control-structural-degradation" id="toc-coalescence-can-control-structural-degradation" class="nav-link" data-scroll-target="#coalescence-can-control-structural-degradation">Coalescence can control structural degradation</a></li>
+  <li><a href="#why-cracks-often-join-at-an-angle" id="toc-why-cracks-often-join-at-an-angle" class="nav-link" data-scroll-target="#why-cracks-often-join-at-an-angle">Why cracks often join at an angle</a></li>
+  <li><a href="#branching-is-different-from-coalescence" id="toc-branching-is-different-from-coalescence" class="nav-link" data-scroll-target="#branching-is-different-from-coalescence">Branching is different from coalescence</a></li>
+  <li><a href="#three-dimensions-change-everything" id="toc-three-dimensions-change-everything" class="nav-link" data-scroll-target="#three-dimensions-change-everything">Three dimensions change everything</a></li>
+  <li><a href="#crack-front-continuity-is-a-physical-requirement" id="toc-crack-front-continuity-is-a-physical-requirement" class="nav-link" data-scroll-target="#crack-front-continuity-is-a-physical-requirement">Crack-front continuity is a physical requirement</a></li>
+  <li><a href="#junctions-in-three-dimensions-are-especially-difficult" id="toc-junctions-in-three-dimensions-are-especially-difficult" class="nav-link" data-scroll-target="#junctions-in-three-dimensions-are-especially-difficult">Junctions in three dimensions are especially difficult</a></li>
+  <li><a href="#a-fracture-network-is-an-evolving-graph-embedded-in-a-continuum" id="toc-a-fracture-network-is-an-evolving-graph-embedded-in-a-continuum" class="nav-link" data-scroll-target="#a-fracture-network-is-an-evolving-graph-embedded-in-a-continuum">A fracture network is an evolving graph embedded in a continuum</a></li>
+  <li><a href="#why-this-matters-for-quasibrittle-materials" id="toc-why-this-matters-for-quasibrittle-materials" class="nav-link" data-scroll-target="#why-this-matters-for-quasibrittle-materials">Why this matters for quasibrittle materials</a></li>
+  <li><a href="#fatigue-and-monotonic-fracture-emphasize-different-parts-of-the-network-problem" id="toc-fatigue-and-monotonic-fracture-emphasize-different-parts-of-the-network-problem" class="nav-link" data-scroll-target="#fatigue-and-monotonic-fracture-emphasize-different-parts-of-the-network-problem">Fatigue and monotonic fracture emphasize different parts of the network problem</a></li>
+  <li><a href="#what-did-we-learn-from-moving-from-2d-to-3d" id="toc-what-did-we-learn-from-moving-from-2d-to-3d" class="nav-link" data-scroll-target="#what-did-we-learn-from-moving-from-2d-to-3d">What did we learn from moving from 2D to 3D?</a></li>
+  <li><a href="#numerical-freedom-still-requires-physical-rules" id="toc-numerical-freedom-still-requires-physical-rules" class="nav-link" data-scroll-target="#numerical-freedom-still-requires-physical-rules">Numerical freedom still requires physical rules</a></li>
+  <li><a href="#engineering-takeaway" id="toc-engineering-takeaway" class="nav-link" data-scroll-target="#engineering-takeaway">Engineering takeaway</a></li>
+  <li><a href="#continue-the-series" id="toc-continue-the-series" class="nav-link" data-scroll-target="#continue-the-series">Continue the series</a></li>
+  <li><a href="#original-research" id="toc-original-research" class="nav-link" data-scroll-target="#original-research">Original research</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">How Do Multiple Cracks Branch, Join, and Form a Fracture Network?</h1>
+<p class="subtitle lead">The difficult part is no longer one crack path—it is the evolving topology of many interacting discontinuities</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Research Explained</div>
+    <div class="quarto-category">Computational Mechanics &amp; Fracture</div>
+    <div class="quarto-category">Computational Fracture</div>
+    <div class="quarto-category">XFEM</div>
+    <div class="quarto-category">XEFG</div>
+    <div class="quarto-category">Fatigue</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    A mechanics-oriented explanation of multiple-crack growth, fatigue, crack interaction, coalescence, branching, junctions, and three-dimensional fracture-network evolution.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Goangseup Zi </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 4, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Computational Fracture Series:</strong> <a href="../computational-fracture-overview/">← Overview</a> · <a href="../xfem-crack-through-mesh/">← XFEM</a> · <a href="../xefg-why-meshfree/">← XEFG</a> · Article 4 of 7</p>
+<p>A single crack is already a difficult numerical object.</p>
+<p>It introduces a displacement discontinuity, creates a crack tip or crack front, and moves through a body independently of the background discretization.</p>
+<p>But once several cracks are allowed to grow at the same time, the nature of the problem changes.</p>
+<p>The difficulty is no longer simply</p>
+<blockquote class="blockquote">
+<p>Where will this crack go next?</p>
+</blockquote>
+<p>It becomes</p>
+<blockquote class="blockquote">
+<p><strong>How does an evolving population of cracks interact, compete, join, branch, and eventually create a connected fracture network?</strong></p>
+</blockquote>
+<p>That is a different class of problem.</p>
+<p>A crack may stop because another crack shields it.</p>
+<p>Another may accelerate because the stress field is amplified.</p>
+<p>Two cracks may approach each other and coalesce.</p>
+<p>A single crack may branch.</p>
+<p>Several cracks may form a connected path across the body.</p>
+<p>In three dimensions, lines become surfaces and tips become crack fronts.</p>
+<p>The geometry changes.</p>
+<p>More importantly, the <strong>topology changes</strong>.</p>
+<p>This is the central idea of this article:</p>
+<blockquote class="blockquote">
+<p><strong>Multiple-fracture simulation is not merely the repeated solution of a single-crack problem. It is the numerical evolution of a changing discontinuity network.</strong></p>
+</blockquote>
+<section id="from-one-crack-to-many-cracks" class="level2">
+<h2 class="anchored" data-anchor-id="from-one-crack-to-many-cracks">From one crack to many cracks</h2>
+<p>Suppose the body contains a set of cracks</p>
+<p><span class="math display">\[
+\Gamma
+=
+\bigcup_{\alpha=1}^{n_c}\Gamma_\alpha,
+\]</span></p>
+<p>where each <span class="math inline">\(\Gamma_\alpha\)</span> represents one crack.</p>
+<p>For a stationary array of cracks, we can ask how the existing cracks affect stiffness or stress intensity factors.</p>
+<p>For growing cracks, the situation is much harder because every propagation step changes the stress field experienced by all the other crack tips.</p>
+<p>Conceptually,</p>
+<pre class="text"><code>current crack network
+        ↓
+stress field
+        ↓
+driving force at every active tip
+        ↓
+different growth increments and directions
+        ↓
+new crack network
+        ↓
+new stress field
+        ↺</code></pre>
+<p>The cracks are therefore not independent objects.</p>
+<p>They communicate through the mechanical field.</p>
+</section>
+<section id="crack-interaction-is-the-mechanics-behind-the-network" class="level2">
+<h2 class="anchored" data-anchor-id="crack-interaction-is-the-mechanics-behind-the-network">Crack interaction is the mechanics behind the network</h2>
+<p>For two isolated cracks, each crack tip has its own local driving force.</p>
+<p>As the cracks approach one another, their stress fields overlap.</p>
+<p>Depending on orientation and position, one crack may:</p>
+<ul>
+<li>amplify the driving force at another tip,</li>
+<li>shield another tip,</li>
+<li>change its propagation direction,</li>
+<li>or make a junction energetically favorable.</li>
+</ul>
+<p>The important point is that the final fracture pattern is not determined by the initial crack geometry alone.</p>
+<p>It is an <strong>emergent result of repeated mechanical interaction</strong>.</p>
+<p>This is why multiple cracks cannot generally be propagated by solving each crack independently and then combining the answers afterward.</p>
+<p>The global field must be updated as the network evolves.</p>
+</section>
+<section id="fatigue-makes-the-competition-gradual" class="level2">
+<h2 class="anchored" data-anchor-id="fatigue-makes-the-competition-gradual">Fatigue makes the competition gradual</h2>
+<p>Multiple-crack fatigue is particularly instructive because crack evolution occurs over many loading cycles.</p>
+<p>In our 2004 work, the crack-growth period was modeled with linear elastic fracture mechanics and the Paris law,</p>
+<p><span class="math display">\[
+\frac{da}{dN}
+=
+C(\Delta K)^m,
+\]</span></p>
+<p>where <span class="math inline">\(a\)</span> is crack length, <span class="math inline">\(N\)</span> is the number of cycles, <span class="math inline">\(\Delta K\)</span> is the stress-intensity-factor range, and <span class="math inline">\(C\)</span> and <span class="math inline">\(m\)</span> are material parameters.</p>
+<p>For mixed-mode growth, an equivalent stress-intensity measure was used, and the direction was determined from a maximum-hoop-stress criterion.</p>
+<p>The important numerical issue is that the same number of fatigue cycles must be applied to <strong>all active crack tips</strong>, even though their driving forces are different.</p>
+<p>A useful propagation sequence is therefore:</p>
+<pre class="text"><code>evaluate ΔK at every active crack tip
+        ↓
+identify the most active tip
+        ↓
+choose a controlled increment there
+        ↓
+calculate the corresponding ΔN
+        ↓
+advance every other tip according to its own ΔK
+        ↓
+recompute the global field</code></pre>
+<p>This immediately creates crack competition.</p>
+<p>Some tips grow rapidly.</p>
+<p>Some barely move.</p>
+<p>Some eventually become inactive because the local field changes.</p>
+<p>The fracture pattern evolves from interaction, not from a prescribed network.</p>
+</section>
+<section id="why-mesh-independence-matters-more-for-multiple-cracks" class="level2">
+<h2 class="anchored" data-anchor-id="why-mesh-independence-matters-more-for-multiple-cracks">Why mesh independence matters more for multiple cracks</h2>
+<p>For one crack, mesh bias is already undesirable.</p>
+<p>For many cracks, it can become catastrophic.</p>
+<p>If every crack must follow element boundaries, then the mesh provides a hidden network of preferred fracture paths.</p>
+<p>The predicted coalescence pattern can then reflect numerical topology rather than mechanics.</p>
+<p>The attraction of XFEM in our multiple-crack work was that the crack geometry was described independently of the finite element mesh through enrichment and level-set information.</p>
+<p>Cracks could therefore grow and interconnect without remeshing.</p>
+<p>This was not only a convenience.</p>
+<p>It was necessary if we wanted the evolving crack pattern to be governed primarily by the fracture mechanics rather than by the initial mesh.</p>
+<div id="fig-fatigue-mesh" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fatigue-mesh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig01.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:82.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fatigue-mesh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Fatigue-crack patterns obtained with different mesh refinements. The important observation is that the crack network converges as the mesh is refined even though the cracks are not constrained to the element edges. Adapted from Zi et al.&nbsp;(2004), Fig. 7.
+</figcaption>
+</figure>
+</div>
+<p>Figure <a href="#fig-fatigue-mesh" class="quarto-xref">Figure&nbsp;1</a> should be read as a numerical credibility check.</p>
+<p>The crack geometry is complicated, yet the qualitative network becomes stable with mesh refinement.</p>
+<p>That is precisely the behavior we want from a geometry-independent crack representation.</p>
+</section>
+<section id="junction-is-not-just-two-cracks-touching" class="level2">
+<h2 class="anchored" data-anchor-id="junction-is-not-just-two-cracks-touching">Junction is not just two cracks touching</h2>
+<p>When one crack reaches another crack, the geometry changes locally.</p>
+<p>But the more important change is topological.</p>
+<p>Before coalescence, we have two discontinuities:</p>
+<pre class="text"><code>crack A     crack B</code></pre>
+<p>After coalescence, they form one connected discontinuity network:</p>
+<pre class="text"><code>crack A ─┐
+         ├── connected network
+crack B ─┘</code></pre>
+<p>In the 2004 XFEM formulation, a special junction enrichment was not required. The junction could be represented by combining the step enrichments associated with the two cracks and modifying the signed-distance description of the approaching crack.</p>
+<p>This is a subtle but important computational point.</p>
+<p>The network topology changed, but the background finite element connectivity did not have to be rebuilt.</p>
+<blockquote class="blockquote">
+<p><strong>The crack network changed its topology while the mesh retained its topology.</strong></p>
+</blockquote>
+<p>That separation is one of the most powerful consequences of enriched fracture methods.</p>
+</section>
+<section id="coalescence-can-control-structural-degradation" class="level2">
+<h2 class="anchored" data-anchor-id="coalescence-can-control-structural-degradation">Coalescence can control structural degradation</h2>
+<p>Crack growth is often imagined as a smooth reduction in stiffness.</p>
+<p>Multiple-crack interaction shows that this need not be true.</p>
+<p>In the cell containing many randomly oriented cracks studied in our fatigue work, some cracks barely grew because their orientation and local fields were unfavorable. Others propagated and eventually joined neighboring cracks.</p>
+<p>As fatigue progressed, these junctions created increasingly long connected cracks.</p>
+<div id="fig-fifty-cracks" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fifty-cracks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig02.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:68.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fifty-cracks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: A cell containing 50 initially random cracks evolves into a connected fracture pattern as fatigue proceeds. Several cracks remain almost inactive, while others grow and coalesce to form dominant paths. Adapted from Zi et al.&nbsp;(2004), Fig. 8.
+</figcaption>
+</figure>
+</div>
+<p>Figure <a href="#fig-fifty-cracks" class="quarto-xref">Figure&nbsp;2</a> demonstrates something that a single-crack calculation cannot show.</p>
+<p>The structural consequence depends not only on how much total crack length is produced.</p>
+<p>It depends strongly on <strong>connectivity</strong>.</p>
+<p>Two moderate cracks that join may be more damaging than two longer cracks that remain isolated.</p>
+<p>In the example reported in that study, crack junctions were associated with rapid drops in the calculated elastic stiffness. The final connected pattern represented a percolating failure path through the cell.</p>
+<p>This suggests a broader engineering interpretation:</p>
+<blockquote class="blockquote">
+<p><strong>In a multiple-crack system, connectivity may matter more than the sum of individual crack lengths.</strong></p>
+</blockquote>
+<p>That is one reason fracture networks are naturally topological objects.</p>
+</section>
+<section id="why-cracks-often-join-at-an-angle" class="level2">
+<h2 class="anchored" data-anchor-id="why-cracks-often-join-at-an-angle">Why cracks often join at an angle</h2>
+<p>The 50-crack fatigue example also showed that a smaller crack approaching a larger crack could join it at an angle close to a right angle.</p>
+<p>This is not simply a geometric coincidence.</p>
+<p>As a crack tip approaches the stress field of a larger crack, its local mixed-mode state changes. The propagation direction responds to that altered field.</p>
+<p>The resulting junction geometry is therefore a consequence of crack interaction.</p>
+<p>This is an important example of the site’s central question:</p>
+<blockquote class="blockquote">
+<p>Why does the result make engineering sense?</p>
+</blockquote>
+<p>The crack does not know where the neighboring crack is geometrically.</p>
+<p>It responds to the <strong>stress field produced by that crack</strong>.</p>
+<p>The network geometry is a record of the mechanical interaction history.</p>
+</section>
+<section id="branching-is-different-from-coalescence" class="level2">
+<h2 class="anchored" data-anchor-id="branching-is-different-from-coalescence">Branching is different from coalescence</h2>
+<p>Coalescence decreases the number of independent crack fronts when two cracks connect.</p>
+<p>Branching does the opposite.</p>
+<p>A single advancing crack front produces two or more new fronts.</p>
+<p>This makes branching particularly difficult computationally because the algorithm must create new discontinuity geometry during the analysis.</p>
+<p>Under dynamic loading, branching may occur when the local fracture state becomes unstable and more than one physically admissible propagation direction develops.</p>
+<p>In our three-dimensional extended meshfree work, crack branching was incorporated by checking the material stability condition ahead of the front. When sufficiently different failure-plane normals occurred locally, a branch could be introduced.</p>
+<p>The mechanics and topology are therefore coupled:</p>
+<pre class="text"><code>local instability
+        ↓
+multiple admissible directions
+        ↓
+new crack branches
+        ↓
+new crack fronts
+        ↓
+new global stress field</code></pre>
+<p>The method must create the new geometry without losing crack continuity.</p>
+</section>
+<section id="three-dimensions-change-everything" class="level2">
+<h2 class="anchored" data-anchor-id="three-dimensions-change-everything">Three dimensions change everything</h2>
+<p>In two dimensions, a crack network consists of line segments and crack-tip points.</p>
+<p>In three dimensions, each crack becomes a surface and each active boundary becomes a crack front.</p>
+<p>Now coalescence requires the joining of surfaces.</p>
+<p>Branching creates new surfaces.</p>
+<p>An advancing crack front may be curved, and different locations along the front may have different propagation directions.</p>
+<p>The problem becomes</p>
+<pre class="text"><code>2D
+multiple lines
++ tips
++ junction points
+
+        ↓
+
+3D
+multiple surfaces
++ moving fronts
++ surface junctions
++ branching surfaces</code></pre>
+<p>This is not a minor extension of the 2D problem.</p>
+<p>It is a computational-geometry problem embedded inside nonlinear fracture mechanics.</p>
+<p>The three-dimensional XEFG work therefore placed strong emphasis on <strong>crack-path continuity</strong>. A crack front represented inconsistently from one background cell to the next could create artificial kinks or disconnected surfaces.</p>
+</section>
+<section id="crack-front-continuity-is-a-physical-requirement" class="level2">
+<h2 class="anchored" data-anchor-id="crack-front-continuity-is-a-physical-requirement">Crack-front continuity is a physical requirement</h2>
+<p>A numerically generated crack surface should not develop arbitrary gaps or impossible folds simply because different integration cells produce slightly different propagation directions.</p>
+<p>In the 3D meshfree formulation, crack normals obtained from the localization analysis were smoothed to maintain a more consistent propagation surface.</p>
+<p>Adaptive refinement near the crack front was also used to improve geometric resolution.</p>
+<p>This highlights an important modeling principle:</p>
+<blockquote class="blockquote">
+<p><strong>A local fracture criterion is not enough. The evolving geometry must also remain globally admissible.</strong></p>
+</blockquote>
+<p>The crack direction may be decided locally.</p>
+<p>The crack surface must remain globally continuous.</p>
+<p>These are different requirements.</p>
+</section>
+<section id="junctions-in-three-dimensions-are-especially-difficult" class="level2">
+<h2 class="anchored" data-anchor-id="junctions-in-three-dimensions-are-especially-difficult">Junctions in three dimensions are especially difficult</h2>
+<p>When two three-dimensional cracks intersect, we are not joining two lines.</p>
+<p>We are connecting two surfaces.</p>
+<p>The corresponding crack fronts disappear or are modified where the surfaces meet.</p>
+<p>The numerical representation must decide:</p>
+<ul>
+<li>where the intersection occurs,</li>
+<li>which front remains active,</li>
+<li>how the signed-distance or geometric representation changes,</li>
+<li>how enrichment is updated,</li>
+<li>and how artificial overlapping discontinuities are avoided.</li>
+</ul>
+<p>The 3D XEFG formulation explicitly addressed crack junctions within the background integration cells.</p>
+<p>A moving crack was stopped at its intersection with an existing crack so that nonphysical overlapping configurations were not permitted.</p>
+<div id="fig-3d-junction" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3d-junction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig03.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:76.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3d-junction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: A three-dimensional crack-junction rule prevents an advancing crack from passing unrealistically through an existing crack. The moving crack terminates at the intersection, changing the topology of the discontinuity network. Adapted from Rabczuk, Bordas, and Zi (2007), Fig. 16.
+</figcaption>
+</figure>
+</div>
+<p>Figure <a href="#fig-3d-junction" class="quarto-xref">Figure&nbsp;3</a> shows why a crack network requires explicit topology management.</p>
+<p>The calculation is no longer only about evaluating stresses and moving a front.</p>
+<p>It must also enforce what constitutes a physically meaningful connected crack geometry.</p>
+</section>
+<section id="a-fracture-network-is-an-evolving-graph-embedded-in-a-continuum" class="level2">
+<h2 class="anchored" data-anchor-id="a-fracture-network-is-an-evolving-graph-embedded-in-a-continuum">A fracture network is an evolving graph embedded in a continuum</h2>
+<p>There is a useful conceptual analogy.</p>
+<p>A multiple-crack system can be viewed as a graph:</p>
+<pre class="text"><code>crack segments / surfaces
+        ↓
+edges
+
+crack tips / fronts
+        ↓
+active boundaries
+
+junctions
+        ↓
+network nodes</code></pre>
+<p>This analogy is conceptual, not mathematically identical to graph theory.</p>
+<p>The cracks still live inside a continuum and their evolution is controlled by mechanics.</p>
+<p>But the analogy clarifies why topology matters.</p>
+<p>During propagation:</p>
+<ul>
+<li>an active front may extend an existing edge,</li>
+<li>coalescence may create a junction node,</li>
+<li>branching may create new edges and fronts,</li>
+<li>a front may become inactive,</li>
+<li>and a connected path may span the body.</li>
+</ul>
+<p>The state of the system cannot therefore be characterized fully by one crack length.</p>
+<p>It requires information about the <strong>network structure</strong>.</p>
+</section>
+<section id="why-this-matters-for-quasibrittle-materials" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-matters-for-quasibrittle-materials">Why this matters for quasibrittle materials</h2>
+<p>This perspective is particularly relevant to quasibrittle materials such as concrete, rock, ceramics, and many heterogeneous composites.</p>
+<p>Failure is rarely controlled by one perfectly isolated crack from the beginning.</p>
+<p>Instead, distributed defects and microcracks interact and progressively localize.</p>
+<p>The eventual macroscopic fracture may emerge through</p>
+<pre class="text"><code>distributed cracks
+→ selective growth
+→ interaction
+→ coalescence
+→ localization
+→ connected failure path</code></pre>
+<p>This is why multiple-crack simulations are more than complicated versions of textbook fracture specimens.</p>
+<p>They provide a bridge between local fracture mechanics and macroscopic failure.</p>
+</section>
+<section id="fatigue-and-monotonic-fracture-emphasize-different-parts-of-the-network-problem" class="level2">
+<h2 class="anchored" data-anchor-id="fatigue-and-monotonic-fracture-emphasize-different-parts-of-the-network-problem">Fatigue and monotonic fracture emphasize different parts of the network problem</h2>
+<p>Under fatigue loading, cracks can grow slowly while the global structure remains nominally stable.</p>
+<p>This allows interaction and coalescence to develop gradually over many cycles.</p>
+<p>Under dynamic or strongly nonlinear monotonic loading, crack initiation, growth, branching, and junction may occur over very short time scales.</p>
+<p>The numerical framework must therefore distinguish the physical evolution law from the geometric machinery.</p>
+<p>For fatigue, a Paris-type law may govern growth increments.</p>
+<p>For nonlinear or dynamic fracture, a material-stability or cohesive criterion may govern initiation and propagation.</p>
+<p>But in both cases, the geometric problem remains:</p>
+<blockquote class="blockquote">
+<p>How do we update an arbitrary number of interacting discontinuities without losing physical continuity or rebuilding the entire discretization?</p>
+</blockquote>
+<p>That is the common thread connecting the XFEM and XEFG work.</p>
+</section>
+<section id="what-did-we-learn-from-moving-from-2d-to-3d" class="level2">
+<h2 class="anchored" data-anchor-id="what-did-we-learn-from-moving-from-2d-to-3d">What did we learn from moving from 2D to 3D?</h2>
+<p>The progression from the early multiple-crack XFEM calculations to later 3D XEFG work suggests three increasingly difficult levels.</p>
+<section id="level-1-propagation" class="level3">
+<h3 class="anchored" data-anchor-id="level-1-propagation">Level 1: propagation</h3>
+<p>Can an existing crack advance independently of the mesh?</p>
+</section>
+<section id="level-2-interaction-and-topology" class="level3">
+<h3 class="anchored" data-anchor-id="level-2-interaction-and-topology">Level 2: interaction and topology</h3>
+<p>Can several cracks grow, meet, and form new junctions without remeshing?</p>
+</section>
+<section id="level-3-evolving-surfaces" class="level3">
+<h3 class="anchored" data-anchor-id="level-3-evolving-surfaces">Level 3: evolving surfaces</h3>
+<p>Can arbitrary three-dimensional crack surfaces initiate, branch, meet, and remain continuous while the material is nonlinear or dynamic?</p>
+<p>Each level adds something qualitatively new.</p>
+<p>The progression is not simply an increase in the number of degrees of freedom.</p>
+<p>It is an increase in the <strong>information that the fracture representation must manage</strong>.</p>
+</section>
+</section>
+<section id="numerical-freedom-still-requires-physical-rules" class="level2">
+<h2 class="anchored" data-anchor-id="numerical-freedom-still-requires-physical-rules">Numerical freedom still requires physical rules</h2>
+<p>A method capable of creating arbitrary cracks can also create arbitrary nonsense if the fracture rules are poor.</p>
+<p>Geometry independence therefore does not reduce the importance of mechanics.</p>
+<p>It increases it.</p>
+<p>When the crack is no longer forced to follow the mesh, the path must be determined by:</p>
+<ul>
+<li>a physically meaningful crack-initiation criterion,</li>
+<li>a propagation law,</li>
+<li>stress-intensity or material-stability information,</li>
+<li>a cohesive constitutive law where appropriate,</li>
+<li>and consistent rules for branching and junction.</li>
+</ul>
+<p>This is an important inversion.</p>
+<p>With a mesh-constrained crack, numerical geometry may determine too much.</p>
+<p>With a geometry-independent crack, the <strong>fracture model must determine more</strong>.</p>
+<p>That is desirable—but only if the mechanics is sound.</p>
+</section>
+<section id="engineering-takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="engineering-takeaway">Engineering takeaway</h2>
+<p>The main lesson from multiple-crack simulation is not that a computer can draw complicated crack patterns.</p>
+<p>It is that failure changes character when discontinuities begin to interact.</p>
+<p>A single crack asks:</p>
+<blockquote class="blockquote">
+<p>Where does the crack propagate?</p>
+</blockquote>
+<p>A crack network asks:</p>
+<blockquote class="blockquote">
+<p>Which cracks grow, which stop, which interact, which join, where does branching occur, and when does a connected failure path emerge?</p>
+</blockquote>
+<p>That leads to the principle I would keep from this article:</p>
+<blockquote class="blockquote">
+<p><strong>Fracture becomes a network problem when crack interaction changes the topology of the failure path.</strong></p>
+</blockquote>
+<p>And computationally:</p>
+<blockquote class="blockquote">
+<p><strong>Do not track only crack growth. Track the evolution of crack connectivity.</strong></p>
+</blockquote>
+<p>That distinction matters because structural degradation can accelerate when previously separate cracks connect.</p>
+<p>The final failure path is therefore not merely the sum of individual cracks.</p>
+<p>It is an emergent structure created by their interaction.</p>
+<hr>
+</section>
+<section id="continue-the-series" class="level2">
+<h2 class="anchored" data-anchor-id="continue-the-series">Continue the series</h2>
+<p><a href="../xefg-why-meshfree/">← <strong>Previous: Why Extend XFEM into a Meshfree Method?</strong></a></p>
+<p><a href="../computational-fracture-overview/"><strong>Series overview: Why Is Computational Fracture So Difficult?</strong></a></p>
+<p><strong>Coming next — Article 5:</strong> <em>Is Enrichment the Only Way to Represent a Crack?</em></p>
+</section>
+<section id="original-research" class="level2">
+<h2 class="anchored" data-anchor-id="original-research">Original research</h2>
+<p>Zi, G., Song, J.-H., Budyn, E., Lee, S.-H., &amp; Belytschko, T. (2004).<br>
+<strong>A method for growing multiple cracks without remeshing and its application to fatigue crack growth.</strong><br>
+<em>Modelling and Simulation in Materials Science and Engineering, 12</em>, 901–915.<br>
+https://doi.org/10.1088/0965-0393/12/5/009</p>
+<p>Budyn, E., Zi, G., Moës, N., &amp; Belytschko, T. (2004).<br>
+<strong>A method for multiple crack growth in brittle materials without remeshing.</strong><br>
+<em>International Journal for Numerical Methods in Engineering, 61</em>, 1741–1770.<br>
+https://doi.org/10.1002/nme.1130</p>
+<p>Belytschko, T., Chen, H., Xu, J., &amp; Zi, G. (2003).<br>
+<strong>Dynamic crack propagation based on loss of hyperbolicity and a new discontinuous enrichment.</strong><br>
+<em>International Journal for Numerical Methods in Engineering, 58</em>, 1873–1905.<br>
+https://doi.org/10.1002/nme.941</p>
+<p>Rabczuk, T., Bordas, S., &amp; Zi, G. (2007).<br>
+<strong>A three-dimensional meshfree method for continuous multiple-crack initiation, propagation and junction in statics and dynamics.</strong><br>
+<em>Computational Mechanics, 40</em>, 473–495.<br>
+https://doi.org/10.1007/s00466-006-0122-1</p>
+<p>Bordas, S., Rabczuk, T., &amp; Zi, G. (2008).<br>
+<strong>Three-dimensional crack initiation, propagation, branching and junction in non-linear materials by an extended meshfree method without asymptotic enrichment.</strong><br>
+<em>Engineering Fracture Mechanics, 75</em>, 943–960.<br>
+https://doi.org/10.1016/j.engfracmech.2007.05.010</p>
+<p>Rabczuk, T., Bordas, S., &amp; Zi, G. (2010).<br>
+<strong>On three-dimensional modelling of crack growth using partition of unity methods.</strong><br>
+<em>Computers &amp; Structures, 88</em>, 1391–1411.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="지광습">
+<meta name="dcterms.date" content="2026-09-04">
+<meta name="keywords" content="부유식 구조물 주파수영역 해석, 부유식 해상풍력, 부유식 풍력터빈, 주파수영역 해석, 유체-구조 상호작용, 유탄성 해석, 포텐셜 유동, 부가질량, 방사감쇠, 정수력 복원강성, 파랑 가진력, 응답진폭연산자, RAO, 부유체 동역학, 계류 강성">
+
+<title>연성 부유식 구조물은 파랑에 어떻게 응답하는가? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research Explained</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../z-diagram.html"> 
+<span class="menu-text">Z-Diagram</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../latex-writing.html"> 
+<span class="menu-text">LaTeX &amp; Writing</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#먼저-보통의-구조동역학에서-시작해-보자" id="toc-먼저-보통의-구조동역학에서-시작해-보자" class="nav-link active" data-scroll-target="#먼저-보통의-구조동역학에서-시작해-보자">먼저 보통의 구조동역학에서 시작해 보자</a></li>
+  <li><a href="#왜-모드좌표를-사용하는가" id="toc-왜-모드좌표를-사용하는가" class="nav-link" data-scroll-target="#왜-모드좌표를-사용하는가">왜 모드좌표를 사용하는가?</a></li>
+  <li><a href="#조화운동을-가정하면-미분방정식이-대수방정식이-된다" id="toc-조화운동을-가정하면-미분방정식이-대수방정식이-된다" class="nav-link" data-scroll-target="#조화운동을-가정하면-미분방정식이-대수방정식이-된다">조화운동을 가정하면 미분방정식이 대수방정식이 된다</a></li>
+  <li><a href="#유체압력은-속도포텐셜에서-나온다" id="toc-유체압력은-속도포텐셜에서-나온다" class="nav-link" data-scroll-target="#유체압력은-속도포텐셜에서-나온다">유체압력은 속도포텐셜에서 나온다</a></li>
+  <li><a href="#입사파-회절파-방사파는-역할이-다르다" id="toc-입사파-회절파-방사파는-역할이-다르다" class="nav-link" data-scroll-target="#입사파-회절파-방사파는-역할이-다르다">입사파, 회절파, 방사파는 역할이 다르다</a>
+  <ul class="collapse">
+  <li><a href="#입사파와-회절-문제" id="toc-입사파와-회절-문제" class="nav-link" data-scroll-target="#입사파와-회절-문제">입사파와 회절 문제</a></li>
+  <li><a href="#방사-문제" id="toc-방사-문제" class="nav-link" data-scroll-target="#방사-문제">방사 문제</a></li>
+  </ul></li>
+  <li><a href="#부가질량은-구조물에서-바라본-유체의-관성이다" id="toc-부가질량은-구조물에서-바라본-유체의-관성이다" class="nav-link" data-scroll-target="#부가질량은-구조물에서-바라본-유체의-관성이다">부가질량은 구조물에서 바라본 유체의 관성이다</a></li>
+  <li><a href="#방사감쇠는-파가-가져가는-에너지다" id="toc-방사감쇠는-파가-가져가는-에너지다" class="nav-link" data-scroll-target="#방사감쇠는-파가-가져가는-에너지다">방사감쇠는 파가 가져가는 에너지다</a></li>
+  <li><a href="#정수압은-복원강성을-만든다" id="toc-정수압은-복원강성을-만든다" class="nav-link" data-scroll-target="#정수압은-복원강성을-만든다">정수압은 복원강성을 만든다</a></li>
+  <li><a href="#연성-주파수영역-방정식" id="toc-연성-주파수영역-방정식" class="nav-link" data-scroll-target="#연성-주파수영역-방정식">연성 주파수영역 방정식</a></li>
+  <li><a href="#바람도-같은-틀-안에-들어올-수-있다" id="toc-바람도-같은-틀-안에-들어올-수-있다" class="nav-link" data-scroll-target="#바람도-같은-틀-안에-들어올-수-있다">바람도 같은 틀 안에 들어올 수 있다</a></li>
+  <li><a href="#파랑과-바람을-함께-고려하면" id="toc-파랑과-바람을-함께-고려하면" class="nav-link" data-scroll-target="#파랑과-바람을-함께-고려하면">파랑과 바람을 함께 고려하면</a>
+  <ul class="collapse">
+  <li><a href="#관성" id="toc-관성" class="nav-link" data-scroll-target="#관성">관성</a></li>
+  <li><a href="#감쇠" id="toc-감쇠" class="nav-link" data-scroll-target="#감쇠">감쇠</a></li>
+  <li><a href="#복원작용" id="toc-복원작용" class="nav-link" data-scroll-target="#복원작용">복원작용</a></li>
+  <li><a href="#가진" id="toc-가진" class="nav-link" data-scroll-target="#가진">가진</a></li>
+  </ul></li>
+  <li><a href="#복소-응답진폭은-무엇을-의미하는가" id="toc-복소-응답진폭은-무엇을-의미하는가" class="nav-link" data-scroll-target="#복소-응답진폭은-무엇을-의미하는가">복소 응답진폭은 무엇을 의미하는가?</a></li>
+  <li><a href="#왜-물속에서는-공진주파수가-달라지는가" id="toc-왜-물속에서는-공진주파수가-달라지는가" class="nav-link" data-scroll-target="#왜-물속에서는-공진주파수가-달라지는가">왜 물속에서는 공진주파수가 달라지는가?</a></li>
+  <li><a href="#주파수영역-해석은-왜-효율적인가" id="toc-주파수영역-해석은-왜-효율적인가" class="nav-link" data-scroll-target="#주파수영역-해석은-왜-효율적인가">주파수영역 해석은 왜 효율적인가?</a></li>
+  <li><a href="#하지만-그-효율성은-선형화에서-나온다" id="toc-하지만-그-효율성은-선형화에서-나온다" class="nav-link" data-scroll-target="#하지만-그-효율성은-선형화에서-나온다">하지만 그 효율성은 선형화에서 나온다</a></li>
+  <li><a href="#주파수영역-모델에서도-계류-강성이-필요한-이유" id="toc-주파수영역-모델에서도-계류-강성이-필요한-이유" class="nav-link" data-scroll-target="#주파수영역-모델에서도-계류-강성이-필요한-이유">주파수영역 모델에서도 계류 강성이 필요한 이유</a></li>
+  <li><a href="#구조역학과-어떻게-연결되는가" id="toc-구조역학과-어떻게-연결되는가" class="nav-link" data-scroll-target="#구조역학과-어떻게-연결되는가">구조역학과 어떻게 연결되는가?</a></li>
+  <li><a href="#결국-기억해야-할-것은" id="toc-결국-기억해야-할-것은" class="nav-link" data-scroll-target="#결국-기억해야-할-것은">결국 기억해야 할 것은</a></li>
+  <li><a href="#다음-글" id="toc-다음-글" class="nav-link" data-scroll-target="#다음-글">다음 글</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">연성 부유식 구조물은 파랑에 어떻게 응답하는가?</h1>
+<p class="subtitle lead">주파수영역에서 보면 구조물이 움직이는 순간, 주변 물도 동적 시스템의 일부가 된다</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Engineering Mechanics</div>
+    <div class="quarto-category">Fluid-Structure Interaction</div>
+    <div class="quarto-category">Offshore Engineering</div>
+    <div class="quarto-category">Hydroelasticity</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>지광습 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 4, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+<div>
+  <div class="keywords">
+    <div class="block-title">Keywords</div>
+    <p>부유식 구조물 주파수영역 해석, 부유식 해상풍력, 부유식 풍력터빈, 주파수영역 해석, 유체-구조 상호작용, 유탄성 해석, 포텐셜 유동, 부가질량, 방사감쇠, 정수력 복원강성, 파랑 가진력, 응답진폭연산자, RAO, 부유체 동역학, 계류 강성</p>
+  </div>
+</div>
+
+</header>
+
+
+<div class="language-switch">
+<a href="../../posts/floating-structure-frequency-domain/index.html">English</a> | <strong>한글</strong>
+</div>
+<p>부유식 구조물은 구조물이면서 동시에 물속에서 움직이는 물체다.</p>
+<p>파랑은 구조물 표면에 압력을 가하고, 해상풍력터빈이라면 바람도 하중을 가한다. 그런데 문제는 여기서 끝나지 않는다.</p>
+<p>구조물이 움직이면 주변 유체의 운동도 달라진다. 그리고 그렇게 변한 유체의 압력이 다시 구조물에 작용한다.</p>
+<p>이것이 유체-구조 상호작용(fluid-structure interaction)의 핵심이다.</p>
+<p>유연한 부유식 구조물을 생각할 때 공학적으로 가장 중요한 질문은 다음과 같다.</p>
+<blockquote class="blockquote">
+<p><strong>구조물의 변형과 주변 유체의 운동은 어떻게 하나의 연성 동적 시스템이 되는가?</strong></p>
+</blockquote>
+<p>주파수영역 해석은 이 질문에 비교적 명확한 답을 준다. 구조물과 유체의 영향을 우리가 구조동역학에서 익숙하게 보는 네 가지 역할로 나누어 볼 수 있기 때문이다.</p>
+<ul>
+<li>관성,</li>
+<li>감쇠,</li>
+<li>복원강성,</li>
+<li>가진.</li>
+</ul>
+<p>결국 핵심은 이것이다.</p>
+<blockquote class="blockquote">
+<p><strong>물은 단순히 외력을 전달하는 매질이 아니다. 구조물이 움직이기 시작하면, 주변 물도 동적 시스템의 일부가 된다.</strong></p>
+</blockquote>
+<section id="먼저-보통의-구조동역학에서-시작해-보자" class="level2">
+<h2 class="anchored" data-anchor-id="먼저-보통의-구조동역학에서-시작해-보자">먼저 보통의 구조동역학에서 시작해 보자</h2>
+<p>유체를 생각하기 전에 익숙한 구조동역학 방정식부터 보자.</p>
+<p><span class="math display">\[
+\mathbf{M}\ddot{\mathbf{u}}
++
+\mathbf{C}\dot{\mathbf{u}}
++
+\mathbf{K}\mathbf{u}
+=
+\mathbf{f}.
+\]</span></p>
+<p>여기서</p>
+<ul>
+<li><span class="math inline">\(\mathbf{M}\)</span>은 구조물의 질량행렬,</li>
+<li><span class="math inline">\(\mathbf{C}\)</span>는 구조감쇠행렬,</li>
+<li><span class="math inline">\(\mathbf{K}\)</span>는 구조강성행렬,</li>
+<li><span class="math inline">\(\mathbf{f}\)</span>는 외력벡터다.</li>
+</ul>
+<p>부유식 구조물에서는 젖은 표면(wetted surface)에 작용하는 유체압력이 외력에 포함된다.</p>
+<p>가상일의 원리로 쓰면</p>
+<p><span class="math display">\[
+\delta W_{\mathrm{kin}}
+=
+\delta W_{\mathrm{ext}}
+-
+\delta W_{\mathrm{int}}.
+\]</span></p>
+<p>관성항은</p>
+<p><span class="math display">\[
+\delta W_{\mathrm{kin}}
+=
+\int_\Omega
+\rho_s \delta \mathbf{u}\cdot\ddot{\mathbf{u}}
+\,d\Omega,
+\]</span></p>
+<p>중력과 유체압력을 포함하는 외력의 일은</p>
+<p><span class="math display">\[
+\delta W_{\mathrm{ext}}
+=
+-\int_\Omega
+\delta\mathbf{u}\cdot\rho_s g\mathbf{e}_3
+\,d\Omega
++
+\int_{\Gamma_w}
+p\,\delta\mathbf{u}\cdot\mathbf{n}
+\,d\Gamma,
+\]</span></p>
+<p>내력의 일은</p>
+<p><span class="math display">\[
+\delta W_{\mathrm{int}}
+=
+\int_\Omega
+\delta\boldsymbol{\varepsilon}:
+\mathbf{C}:
+\boldsymbol{\varepsilon}
+\,d\Omega.
+\]</span></p>
+<p>공간 이산화를 하면 익숙한 구조동역학 방정식이 나온다.</p>
+<p>여기서 중요한 것은 압력 <span class="math inline">\(p\)</span>가 일반적으로 미리 주어진 값이 아니라는 점이다.</p>
+<p><span class="math inline">\(p\)</span>는 유체가 어떻게 움직이는가에 따라 달라진다.</p>
+<div id="fig-floating-body" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-floating-body-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig01.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-floating-body-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: 파랑과 바람을 받는 유연한 부유식 풍력터빈. 젖은 표면에서는 유체압력이 구조물에 전달되고, 반대로 구조물의 운동은 주변 유동을 변화시킨다. 계류선은 부유체의 위치를 유지한다.
+</figcaption>
+</figure>
+</div>
+<p>Figure <strong>?@fig-floating-body가</strong> 우리가 풀고자 하는 전체 물리 문제다.</p>
+<p>구조물에는 자체 질량과 강성이 있다. 유체에도 자체 동역학이 있다. 둘은 젖은 표면의 압력을 통해 서로 연결된다.</p>
+</section>
+<section id="왜-모드좌표를-사용하는가" class="level2">
+<h2 class="anchored" data-anchor-id="왜-모드좌표를-사용하는가">왜 모드좌표를 사용하는가?</h2>
+<p>유연한 구조물의 모든 자유도를 그대로 풀 수도 있다. 하지만 항상 효율적인 방법은 아니다.</p>
+<p>구조 고유모드를 이용하면 훨씬 간결하게 표현할 수 있다.</p>
+<p><span class="math display">\[
+\mathbf{u}(\mathbf{X},t)
+=
+\sum_\alpha
+\mathbf{\Psi}_\alpha(\mathbf{X})
+\zeta_\alpha(t).
+\]</span></p>
+<p>여기서 <span class="math inline">\(\mathbf{\Psi}_\alpha\)</span>는 구조모드 <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\zeta_\alpha\)</span>는 그 모드의 진폭이다.</p>
+<p>구조행렬을 모드공간으로 투영하면</p>
+<p><span class="math display">\[
+M^*_{\alpha\beta}
+=
+\mathbf{\Psi}_\alpha^T
+\mathbf{M}
+\mathbf{\Psi}_\beta,
+\]</span></p>
+<p><span class="math display">\[
+K^*_{\alpha\beta}
+=
+\mathbf{\Psi}_\alpha^T
+\mathbf{K}
+\mathbf{\Psi}_\beta.
+\]</span></p>
+<p>외력도 마찬가지로 모드하중이 된다.</p>
+<p><span class="math display">\[
+f^*_\alpha
+=
+\mathbf{\Psi}_\alpha^T
+\mathbf{f}.
+\]</span></p>
+<p>이 표현이 특히 유용한 이유는 유체동역학 문제도 같은 구조모드를 기준으로 정리할 수 있기 때문이다.</p>
+<p>각 구조모드에 대응하는 유체의 방사(radiation) 문제가 하나씩 생긴다.</p>
+</section>
+<section id="조화운동을-가정하면-미분방정식이-대수방정식이-된다" class="level2">
+<h2 class="anchored" data-anchor-id="조화운동을-가정하면-미분방정식이-대수방정식이-된다">조화운동을 가정하면 미분방정식이 대수방정식이 된다</h2>
+<p>각진동수 <span class="math inline">\(\omega\)</span>의 조화운동을 가정하자.</p>
+<p><span class="math display">\[
+\zeta_\alpha(t)
+=
+\xi_\alpha e^{i\omega t}.
+\]</span></p>
+<p>그러면</p>
+<p><span class="math display">\[
+\dot{\zeta}_\alpha
+=
+i\omega\xi_\alpha e^{i\omega t},
+\]</span></p>
+<p><span class="math display">\[
+\ddot{\zeta}_\alpha
+=
+-\omega^2\xi_\alpha e^{i\omega t}.
+\]</span></p>
+<p>따라서 구조동역학 방정식은</p>
+<p><span class="math display">\[
+\left[
+-\omega^2\mathbf{M}^*
++
+i\omega\mathbf{C}^*
++
+\mathbf{K}^*
+\right]
+\boldsymbol{\xi}
+=
+\mathbf{f}^*.
+\]</span></p>
+<p>시간에 대한 미분방정식이 주파수에 의존하는 선형 대수방정식으로 바뀌었다.</p>
+<p>이것이 주파수영역 해석의 기본적인 장점이다. 각 <span class="math inline">\(\omega\)</span>마다 복소 선형방정식 하나를 풀면 된다.</p>
+</section>
+<section id="유체압력은-속도포텐셜에서-나온다" class="level2">
+<h2 class="anchored" data-anchor-id="유체압력은-속도포텐셜에서-나온다">유체압력은 속도포텐셜에서 나온다</h2>
+<p>선형 포텐셜 유동이론에서 동압력은 선형화된 Bernoulli 방정식으로부터 구한다.</p>
+<p><span class="math display">\[
+p
+=
+-\rho_w
+\left(
+\frac{\partial\phi}{\partial t}
++
+gX_3
+\right).
+\]</span></p>
+<p>조화운동에서는</p>
+<p><span class="math display">\[
+\frac{\partial\phi}{\partial t}
+=
+i\omega\phi,
+\]</span></p>
+<p>이므로</p>
+<p><span class="math display">\[
+p
+=
+-\rho_w
+\left(
+i\omega\phi
++
+gX_3
+\right).
+\]</span></p>
+<p>속도포텐셜은 유체영역에서</p>
+<p><span class="math display">\[
+\nabla^2\phi=0
+\]</span></p>
+<p>을 만족한다.</p>
+<p>문제는 그 다음이다. <span class="math inline">\(\phi\)</span>는 하나의 물리현상만 나타내는 것이 아니라 서로 다른 원인의 유체운동을 함께 포함한다.</p>
+</section>
+<section id="입사파-회절파-방사파는-역할이-다르다" class="level2">
+<h2 class="anchored" data-anchor-id="입사파-회절파-방사파는-역할이-다르다">입사파, 회절파, 방사파는 역할이 다르다</h2>
+<p>선형 속도포텐셜은 다음과 같이 분해할 수 있다.</p>
+<p><span class="math display">\[
+\phi
+=
+\left[
+A(\phi_I+\phi_D)
++
+\xi_\alpha\phi_\alpha
+\right]
+e^{i\omega t},
+\]</span></p>
+<p>여기서</p>
+<ul>
+<li><span class="math inline">\(\phi_I\)</span>는 입사파(incident wave) 포텐셜,</li>
+<li><span class="math inline">\(\phi_D\)</span>는 회절(diffraction) 포텐셜,</li>
+<li><span class="math inline">\(\phi_\alpha\)</span>는 구조모드 <span class="math inline">\(\alpha\)</span>에 대응하는 방사(radiation) 포텐셜,</li>
+<li><span class="math inline">\(A\)</span>는 파진폭,</li>
+<li><span class="math inline">\(\xi_\alpha\)</span>는 구조물의 모드응답이다.</li>
+</ul>
+<p>이 분해가 주파수영역 유탄성 해석의 물리적 핵심이다.</p>
+<div id="fig-hydro-decomposition" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hydro-decomposition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig02.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:88.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hydro-decomposition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: 유체 문제는 자연스럽게 두 부분으로 나뉜다. 입사파와 회절파는 구조물이 고정되어 있어도 파랑 가진력을 만든다. 반면 구조물의 운동은 방사파를 만들고, 이 방사파가 다시 구조물에 작용하여 부가질량과 방사감쇠로 나타난다.
+</figcaption>
+</figure>
+</div>
+<p>Figure <strong>?@fig-hydro-decomposition에서</strong> 두 문제의 차이를 볼 수 있다.</p>
+<section id="입사파와-회절-문제" class="level3">
+<h3 class="anchored" data-anchor-id="입사파와-회절-문제">입사파와 회절 문제</h3>
+<p>구조물을 고정해 놓고 파랑만 들어온다고 생각해 보자.</p>
+<p>입사파는 구조물 형상 때문에 교란되고 산란 또는 회절파를 만든다. 이때의 압력이 파랑 가진력</p>
+<p><span class="math display">\[
+\mathbf{f}^{\mathrm{ex}}
+\]</span></p>
+<p>을 만든다.</p>
+<p>이 힘은 구조물이 전혀 움직이지 않아도 존재한다.</p>
+</section>
+<section id="방사-문제" class="level3">
+<h3 class="anchored" data-anchor-id="방사-문제">방사 문제</h3>
+<p>이번에는 입사파가 없고 구조물을 강제로 진동시킨다고 생각해 보자.</p>
+<p>구조물의 운동은 주변 유체에 파를 만든다. 그리고 그 방사파가 다시 구조물에 반력을 가한다.</p>
+<p>이 반력은 구조동역학에서 익숙한 두 효과로 나타난다.</p>
+<ul>
+<li>부가관성,</li>
+<li>감쇠.</li>
+</ul>
+<p>이들은 단순한 경험적 보정계수가 아니다. 구조물이 주변 유체 일부를 함께 가속하고, 파의 형태로 에너지를 내보내기 때문에 생기는 역학적 결과다.</p>
+</section>
+</section>
+<section id="부가질량은-구조물에서-바라본-유체의-관성이다" class="level2">
+<h2 class="anchored" data-anchor-id="부가질량은-구조물에서-바라본-유체의-관성이다">부가질량은 구조물에서 바라본 유체의 관성이다</h2>
+<p>물속에서 물체를 가속하면 주변 유체의 일부도 함께 가속해야 한다.</p>
+<p>따라서 구조물은 마치 건조 상태의 구조질량보다 더 큰 관성을 가진 것처럼 거동한다.</p>
+<p>모드공간에서는 이 효과가 부가질량행렬</p>
+<p><span class="math display">\[
+\mathbf{A}^{\mathrm{hydro}}(\omega)
+\]</span></p>
+<p>로 나타난다.</p>
+<p>관성항은</p>
+<p><span class="math display">\[
+-\omega^2
+\left(
+\mathbf{M}^*
++
+\mathbf{A}^{\mathrm{hydro}}
+\right)
+\boldsymbol{\xi}
+\]</span></p>
+<p>가 된다.</p>
+<p>여기서 한 가지 중요한 점은 부가질량이 주파수에 따라 달라질 수 있다는 것이다.</p>
+<p>즉 유체-구조 연성계의 유효관성이 반드시 상수인 것은 아니다. 부유체의 동역학이 건조 구조물의 동역학과 상당히 달라질 수 있는 이유 중 하나다.</p>
+</section>
+<section id="방사감쇠는-파가-가져가는-에너지다" class="level2">
+<h2 class="anchored" data-anchor-id="방사감쇠는-파가-가져가는-에너지다">방사감쇠는 파가 가져가는 에너지다</h2>
+<p>진동하는 물체는 파를 방사한다.</p>
+<p>그 파는 구조물로부터 에너지를 가지고 멀리 나간다. 구조물의 입장에서는 이것이 감쇠로 보인다.</p>
+<p>이에 해당하는 유체동역학적 감쇠행렬이</p>
+<p><span class="math display">\[
+\mathbf{B}^{\mathrm{hydro}}(\omega)
+\]</span></p>
+<p>이고, 방정식에는</p>
+<p><span class="math display">\[
+i\omega
+\mathbf{B}^{\mathrm{hydro}}
+\boldsymbol{\xi}
+\]</span></p>
+<p>로 들어간다.</p>
+<p>물리적 의미는 명확하다.</p>
+<blockquote class="blockquote">
+<p><strong>방사감쇠는 진동하는 구조물이 파의 형태로 에너지를 유체에 내보내면서 생기는 저항이다.</strong></p>
+</blockquote>
+<p>이것은 구조감쇠와 다르다. 구조감쇠는 구조물 내부의 에너지 소산을 나타내지만, 방사감쇠는 구조물의 에너지가 유체파로 전달되는 현상이다.</p>
+</section>
+<section id="정수압은-복원강성을-만든다" class="level2">
+<h2 class="anchored" data-anchor-id="정수압은-복원강성을-만든다">정수압은 복원강성을 만든다</h2>
+<p>중력과 부력은 부유체의 평형위치를 결정한다.</p>
+<p>부유체가 조금 움직이면 잠긴 형상이 변하고 정수압 분포도 달라진다. 이 효과를 평형점 부근에서 선형화하면 정수력 복원행렬</p>
+<p><span class="math display">\[
+\mathbf{C}^{\mathrm{hydro}}
+\]</span></p>
+<p>이 나온다.</p>
+<p>방정식에서는 강성과 같은 형태로</p>
+<p><span class="math display">\[
+\mathbf{C}^{\mathrm{hydro}}
+\boldsymbol{\xi}
+\]</span></p>
+<p>가 된다.</p>
+<p>따라서 물은 관성과 감쇠만 바꾸는 것이 아니다. 복원력도 제공한다.</p>
+<p>구조동역학의 언어로 정리하면 다음과 같다.</p>
+<pre class="text"><code>부유체 주변의 물
+      ↓
+부가질량          → 관성
+방사감쇠          → 감쇠
+정수력 복원       → 강성
+파랑 회절         → 가진</code></pre>
+</section>
+<section id="연성-주파수영역-방정식" class="level2">
+<h2 class="anchored" data-anchor-id="연성-주파수영역-방정식">연성 주파수영역 방정식</h2>
+<p>구조물과 유체의 영향을 모두 모으면</p>
+<p><span class="math display">\[
+\left[
+-\omega^2
+\left(
+\mathbf{M}^*
++
+\mathbf{A}^{\mathrm{hydro}}
+\right)
++
+i\omega
+\left(
+\mathbf{C}^*
++
+\mathbf{B}^{\mathrm{hydro}}
+\right)
++
+\left(
+\mathbf{K}^*
++
+\mathbf{C}^{\mathrm{hydro}}
+\right)
+\right]
+\boldsymbol{\xi}
+=
+A\mathbf{f}^{\mathrm{ex}}.
+\]</span></p>
+<p>형태만 보면 보통의 구조동역학 방정식과 같다.</p>
+<p>차이는 유체가 주요 동적 성분 모두를 바꾼다는 데 있다.</p>
+<div id="fig-frequency-equation" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-frequency-equation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig03.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:92.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-frequency-equation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: 주파수영역 방정식도 구조동역학 방정식과 똑같이 읽을 수 있다. 관성, 감쇠, 복원작용, 가진이다. 구조물과 유체의 항이 같은 역학적 역할 안에 함께 들어갈 뿐이다.
+</figcaption>
+</figure>
+</div>
+<p>Figure <strong>?@fig-frequency-equation처럼</strong> 읽는 것이 이 방정식을 이해하는 가장 좋은 방법이다.</p>
+<p>유체동역학 계수 이름부터 외우지 말고, 각 항이 어떤 역학적 역할을 하는지 먼저 보는 것이 중요하다.</p>
+</section>
+<section id="바람도-같은-틀-안에-들어올-수-있다" class="level2">
+<h2 class="anchored" data-anchor-id="바람도-같은-틀-안에-들어올-수-있다">바람도 같은 틀 안에 들어올 수 있다</h2>
+<p>부유식 풍력터빈에서는 로터 추력이 바람과 움직이는 구조물 사이의 상대속도에 따라 달라진다.</p>
+<p>1차원으로 쓰면</p>
+<p><span class="math display">\[
+T(t)
+=
+\frac{1}{2}
+\rho_a C_T A
+\left[
+v_{\mathrm{wind}}(t)
+-
+\dot{u}(t)
+\right]^2.
+\]</span></p>
+<p>풍속을 평균성분과 변동성분으로 나누면</p>
+<p><span class="math display">\[
+v_{\mathrm{wind}}(t)
+=
+v_0+v_f(t).
+\]</span></p>
+<p>풍속 변동과 구조물 속도가 평균풍속에 비해 작다면 추력을 선형화할 수 있다.</p>
+<p><span class="math display">\[
+T(t)
+\approx
+T_0
++
+T_f(t)
+-
+T_{\dot u}(t).
+\]</span></p>
+<p>세 항의 의미는 서로 다르다.</p>
+<ul>
+<li><span class="math inline">\(T_0\)</span>: 평균 정적 추력,</li>
+<li><span class="math inline">\(T_f\)</span>: 풍속 변동에 의한 가진,</li>
+<li><span class="math inline">\(T_{\dot u}\)</span>: 구조물 운동에 의존하는 공력.</li>
+</ul>
+<p>평균항은 정적 평형문제에 들어가고, 운동의존항은 주파수영역 동역학 방정식에서 추가 감쇠와 같은 역할을 한다.</p>
+</section>
+<section id="파랑과-바람을-함께-고려하면" class="level2">
+<h2 class="anchored" data-anchor-id="파랑과-바람을-함께-고려하면">파랑과 바람을 함께 고려하면</h2>
+<p>선형화한 풍하중까지 포함하면 모드방정식은</p>
+<p><span class="math display">\[
+\left[
+-\omega^2
+\left(
+\mathbf{M}^*
++
+\mathbf{A}^{\mathrm{hydro}}
+\right)
++
+i\omega
+\left(
+\mathbf{C}^*
++
+\mathbf{B}^{\mathrm{hydro}}
++
+\mathbf{B}^{\mathrm{wind}}
+\right)
++
+\left(
+\mathbf{K}^*
++
+\mathbf{C}^{\mathrm{hydro}}
+\right)
+\right]
+\boldsymbol{\xi}
+=
+A\mathbf{f}^{\mathrm{ex}}
++
+\mathbf{f}^{\mathrm{wind}}.
+\]</span></p>
+<p>이 방정식이 유용한 이유는 익숙한 역학적 구조를 그대로 유지하기 때문이다.</p>
+<section id="관성" class="level3">
+<h3 class="anchored" data-anchor-id="관성">관성</h3>
+<p><span class="math display">\[
+-\omega^2
+\left(
+\mathbf{M}^*
++
+\mathbf{A}^{\mathrm{hydro}}
+\right)
+\]</span></p>
+</section>
+<section id="감쇠" class="level3">
+<h3 class="anchored" data-anchor-id="감쇠">감쇠</h3>
+<p><span class="math display">\[
+i\omega
+\left(
+\mathbf{C}^*
++
+\mathbf{B}^{\mathrm{hydro}}
++
+\mathbf{B}^{\mathrm{wind}}
+\right)
+\]</span></p>
+</section>
+<section id="복원작용" class="level3">
+<h3 class="anchored" data-anchor-id="복원작용">복원작용</h3>
+<p><span class="math display">\[
+\mathbf{K}^*
++
+\mathbf{C}^{\mathrm{hydro}}
+\]</span></p>
+</section>
+<section id="가진" class="level3">
+<h3 class="anchored" data-anchor-id="가진">가진</h3>
+<p><span class="math display">\[
+A\mathbf{f}^{\mathrm{ex}}
++
+\mathbf{f}^{\mathrm{wind}}.
+\]</span></p>
+<p>그래서 주파수영역 유체-구조 상호작용은 처음 보이는 것만큼 보통의 구조동역학과 멀리 떨어진 문제가 아니다.</p>
+</section>
+</section>
+<section id="복소-응답진폭은-무엇을-의미하는가" class="level2">
+<h2 class="anchored" data-anchor-id="복소-응답진폭은-무엇을-의미하는가">복소 응답진폭은 무엇을 의미하는가?</h2>
+<p>해</p>
+<p><span class="math display">\[
+\boldsymbol{\xi}(\omega)
+\]</span></p>
+<p>는 복소수다.</p>
+<p>그 크기는 응답진폭을 나타내고, 위상은 조화 가진에 대한 응답의 지연 또는 선행을 나타낸다.</p>
+<p>surge, heave, pitch와 같은 강체운동에서는 이 값으로부터 자연스럽게 응답진폭연산자(response amplitude operator, RAO)를 정의할 수 있다.</p>
+<p>유연한 구조물에서는 모드진폭을 다시 물리적 변위장으로 변환할 수 있다.</p>
+<p><span class="math display">\[
+\mathbf{u}(\mathbf{X},t)
+=
+\sum_\alpha
+\mathbf{\Psi}_\alpha(\mathbf{X})
+\xi_\alpha e^{i\omega t}.
+\]</span></p>
+<p>따라서 같은 해석 틀에서 강체운동과 구조변형을 모두 다룰 수 있다.</p>
+<p>이 때문에 이 문제는 단순한 유체동역학이 아니라 <strong>유탄성(hydroelastic) 문제</strong>라고 부르는 것이 적절하다.</p>
+</section>
+<section id="왜-물속에서는-공진주파수가-달라지는가" class="level2">
+<h2 class="anchored" data-anchor-id="왜-물속에서는-공진주파수가-달라지는가">왜 물속에서는 공진주파수가 달라지는가?</h2>
+<p>건조 구조물의 단순화된 모드 공진주파수는 대략</p>
+<p><span class="math display">\[
+\omega_n
+\sim
+\sqrt{
+\frac{K}{M}
+}
+\]</span></p>
+<p>으로 생각할 수 있다.</p>
+<p>부유식 구조물에서는 이에 대응하는 연성계의 물리적 해석이</p>
+<p><span class="math display">\[
+\omega_n
+\sim
+\sqrt{
+\frac{
+K+ C^{\mathrm{hydro}}
+}{
+M+A^{\mathrm{hydro}}
+}
+}
+\]</span></p>
+<p>가 된다.</p>
+<p>물론 이것은 다차원 고유치문제를 정확하게 표현한 식이라기보다 물리를 보여주기 위한 개략식이다. 하지만 무엇이 달라지는지는 바로 보인다.</p>
+<p>주변 물은</p>
+<ul>
+<li>부가질량으로 유효관성을 증가시키고,</li>
+<li>정수력으로 복원강성을 바꾸며,</li>
+<li>파의 방사로 감쇠를 추가한다.</li>
+</ul>
+<p>따라서 부유체의 공진은 건조 구조물만의 특성이 아니라 <strong>유체와 구조물이 결합된 시스템 전체의 특성</strong>이다.</p>
+</section>
+<section id="주파수영역-해석은-왜-효율적인가" class="level2">
+<h2 class="anchored" data-anchor-id="주파수영역-해석은-왜-효율적인가">주파수영역 해석은 왜 효율적인가?</h2>
+<p>시스템을 선형화할 수 있다면 주파수영역 방법은 매우 효율적이다.</p>
+<p>각 파랑주파수에 대해</p>
+<ol type="1">
+<li>유체 경계치문제를 풀고,</li>
+<li>부가질량, 방사감쇠, 파랑 가진력을 구하고,</li>
+<li>연성 동적행렬을 조립하고,</li>
+<li>복소 응답진폭을 구한다.</li>
+</ol>
+<p>시간영역에서 수많은 진동주기를 직접 적분할 필요가 없다.</p>
+<p>그래서 이 방법은 특히</p>
+<ul>
+<li>RAO 계산,</li>
+<li>매개변수 연구,</li>
+<li>초기 설계 검토,</li>
+<li>모드별 응답 해석,</li>
+<li>주파수별 하중 평가</li>
+</ul>
+<p>에 유용하다.</p>
+<p>무엇보다 각 항의 역학적 의미가 명확하게 드러난다.</p>
+</section>
+<section id="하지만-그-효율성은-선형화에서-나온다" class="level2">
+<h2 class="anchored" data-anchor-id="하지만-그-효율성은-선형화에서-나온다">하지만 그 효율성은 선형화에서 나온다</h2>
+<p>주파수영역 해석은 선형화를 전제로 한다.</p>
+<p>일반적으로 다음을 가정한다.</p>
+<ul>
+<li>작은 파진폭,</li>
+<li>작은 구조물 운동,</li>
+<li>선형 구조거동,</li>
+<li>선형화된 정수력,</li>
+<li>선형 포텐셜 유동,</li>
+<li>조화성분으로의 분해,</li>
+<li>운동의존 풍하중의 선형화.</li>
+</ul>
+<p>이 가정 덕분에 문제를 선형 대수방정식으로 바꿀 수 있다. 동시에 이 가정들이 해석의 적용범위를 결정한다.</p>
+<p>강한 비선형성, 대변위 운동, 강한 계류 비선형성, 슬래밍, 점성 유동박리처럼 시간에 따라 크게 달라지는 현상은 시간영역 해석이 필요할 수 있다.</p>
+<p>이 차이는 자연스럽게 다음 글의 주제인 계류선 동역학으로 이어진다.</p>
+</section>
+<section id="주파수영역-모델에서도-계류-강성이-필요한-이유" class="level2">
+<h2 class="anchored" data-anchor-id="주파수영역-모델에서도-계류-강성이-필요한-이유">주파수영역 모델에서도 계류 강성이 필요한 이유</h2>
+<p>평균 또는 변동 수평하중을 받는 부유식 풍력터빈은 정해진 위치를 유지해야 한다.</p>
+<p>surge나 sway 방향에서는 정수력 복원만으로 충분한 수평강성을 얻지 못할 수 있다.</p>
+<p>그래서 계류시스템이 복원작용을 제공하고 강체 표류를 막는다.</p>
+<p>선형 주파수영역 모델에서는 보통 평형위치 부근에서 계류시스템을 등가강성으로 선형화하여 넣는다. 계류 응답을 선형화할 수 있다면 적절한 방법이다.</p>
+<p>하지만 실제 계류선에는</p>
+<ul>
+<li>질량,</li>
+<li>변화하는 형상,</li>
+<li>탄성,</li>
+<li>중력,</li>
+<li>부력,</li>
+<li>항력,</li>
+<li>동적 응답</li>
+</ul>
+<p>이 모두 존재한다.</p>
+<p>이 효과들이 중요해지면 계류시스템을 단순한 강성행렬 하나로 볼 수 없다.</p>
+<p>이 문제는 다음 글에서 다룬다.</p>
+</section>
+<section id="구조역학과-어떻게-연결되는가" class="level2">
+<h2 class="anchored" data-anchor-id="구조역학과-어떻게-연결되는가">구조역학과 어떻게 연결되는가?</h2>
+<p>주파수영역 유탄성 해석을 완전히 별개의 역학 분야로 생각할 필요는 없다.</p>
+<p>그 구조는 익숙하다.</p>
+<p><span class="math display">\[
+\text{관성}
++
+\text{감쇠}
++
+\text{복원작용}
+=
+\text{가진}.
+\]</span></p>
+<p>유체가 각 항을 수정할 뿐이다.</p>
+<p>공학적으로 중요한 것은 각 유체동역학 항이 <strong>왜</strong> 그 위치에 들어가는지를 이해하는 것이다. 계수의 이름을 외우는 것보다 이 역학적 해석이 훨씬 오래 남는다.</p>
+</section>
+<section id="결국-기억해야-할-것은" class="level2">
+<h2 class="anchored" data-anchor-id="결국-기억해야-할-것은">결국 기억해야 할 것은</h2>
+<p>부유식 구조물은 건조 구조물에 단순히 파랑하중 하나를 더한 시스템이 아니다.</p>
+<p>구조물의 운동이 유체운동을 만들고, 그 유체운동이 다시 구조물에 작용한다.</p>
+<p>그 결과 주변 물은</p>
+<ul>
+<li>부가질량을 통해 관성을,</li>
+<li>파의 방사를 통해 감쇠를,</li>
+<li>정수력을 통해 복원작용을,</li>
+<li>입사파와 회절파를 통해 가진을</li>
+</ul>
+<p>제공한다.</p>
+<p>따라서 가장 중요한 원리는 다음과 같다.</p>
+<blockquote class="blockquote">
+<p><strong>물은 단순한 외력이 아니다. 구조물이 움직이는 순간 주변 물도 동적 시스템의 일부가 된다.</strong></p>
+</blockquote>
+<p>그리고 주파수영역 방정식을 읽을 때는 이렇게 생각하면 된다.</p>
+<blockquote class="blockquote">
+<p><strong>유체동역학 계수의 이름을 외우기보다 관성, 감쇠, 복원작용, 가진이라는 역학적 역할로 읽어라.</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="다음-글" class="level2">
+<h2 class="anchored" data-anchor-id="다음-글">다음 글</h2>
+<p><strong>계류선은 왜 단순한 비선형 스프링이 아닌가?</strong></p>
+<p>다음 글에서는 선형화된 주파수영역 모델을 넘어 시간영역 계류 동역학을 살펴본다. 계류선의 형상, 장력, 항력, 관성이 어떻게 함께 변하는지가 핵심이다.</p>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further reading</h2>
+<p>Newman, J. N. (1994).<br>
+<strong>Wave effects on deformable bodies.</strong><br>
+<em>Applied Ocean Research, 16</em>(1), 47–59.</p>
+<p>Huang, L. L., &amp; Riggs, H. R. (2000).<br>
+<strong>The hydrostatic stiffness of flexible floating structures for linear hydroelasticity.</strong><br>
+<em>Marine Structures, 13</em>(2), 91–106.</p>
+<p>Pegalajar-Jurado, A., Borg, M., &amp; Bredmose, H. (2018).<br>
+<strong>An efficient frequency-domain model for quick load analysis of floating offshore wind turbines.</strong><br>
+<em>Wind Energy Science, 3</em>, 693–712.<br>
+https://doi.org/10.5194/wes-3-693-2018</p>
+<p>Riggs, H. R., Suzuki, H., Ertekin, R. C., Kim, J. W., &amp; Iijima, K. (2008).<br>
+<strong>Comparison of hydroelastic computer codes based on the ISSC VLFS benchmark.</strong><br>
+<em>Ocean Engineering, 35</em>, 589–597.</p>
+<p>Belytschko, T., Liu, W. K., &amp; Moran, B. (2000).<br>
+<strong>Nonlinear Finite Elements for Continua and Structures.</strong><br>
+John Wiley &amp; Sons.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

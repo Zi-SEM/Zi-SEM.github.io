@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Goangseup Zi">
+<meta name="dcterms.date" content="2026-09-02">
+<meta name="description" content="A mechanics-based explanation of how a nearshore oscillating-arm wave energy converter transforms local wave-induced motion into hydraulic flow and estimated electrical power.">
+
+<title>How Can Nearshore Wave Motion Be Turned into Useful Power? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research Explained</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../z-diagram.html"> 
+<span class="menu-text">Z-Diagram</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../latex-writing.html"> 
+<span class="menu-text">LaTeX &amp; Writing</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#start-with-the-energy-path" id="toc-start-with-the-energy-path" class="nav-link active" data-scroll-target="#start-with-the-energy-path">Start with the energy path</a></li>
+  <li><a href="#the-pto-does-not-see-the-global-motion" id="toc-the-pto-does-not-see-the-global-motion" class="nav-link" data-scroll-target="#the-pto-does-not-see-the-global-motion">The PTO does not see the global motion</a></li>
+  <li><a href="#from-local-motion-to-piston-motion" id="toc-from-local-motion-to-piston-motion" class="nav-link" data-scroll-target="#from-local-motion-to-piston-motion">From local motion to piston motion</a></li>
+  <li><a href="#how-reciprocating-motion-becomes-useful-flow" id="toc-how-reciprocating-motion-becomes-useful-flow" class="nav-link" data-scroll-target="#how-reciprocating-motion-becomes-useful-flow">How reciprocating motion becomes useful flow</a></li>
+  <li><a href="#from-hydraulic-flow-to-estimated-power" id="toc-from-hydraulic-flow-to-estimated-power" class="nav-link" data-scroll-target="#from-hydraulic-flow-to-estimated-power">From hydraulic flow to estimated power</a></li>
+  <li><a href="#first-shape-the-motion" id="toc-first-shape-the-motion" class="nav-link" data-scroll-target="#first-shape-the-motion">First shape the motion</a></li>
+  <li><a href="#more-curvature-gave-more-motionbut-not-necessarily-more-power" id="toc-more-curvature-gave-more-motionbut-not-necessarily-more-power" class="nav-link" data-scroll-target="#more-curvature-gave-more-motionbut-not-necessarily-more-power">More curvature gave more motion—but not necessarily more power</a></li>
+  <li><a href="#why-can-maximum-motion-fail-to-give-maximum-power" id="toc-why-can-maximum-motion-fail-to-give-maximum-power" class="nav-link" data-scroll-target="#why-can-maximum-motion-fail-to-give-maximum-power">Why can maximum motion fail to give maximum power?</a></li>
+  <li><a href="#more-ptos-give-more-flowbut-with-diminishing-returns" id="toc-more-ptos-give-more-flowbut-with-diminishing-returns" class="nav-link" data-scroll-target="#more-ptos-give-more-flowbut-with-diminishing-returns">More PTOs give more flow—but with diminishing returns</a></li>
+  <li><a href="#the-hydraulic-system-must-also-be-dynamically-matched" id="toc-the-hydraulic-system-must-also-be-dynamically-matched" class="nav-link" data-scroll-target="#the-hydraulic-system-must-also-be-dynamically-matched">The hydraulic system must also be dynamically matched</a></li>
+  <li><a href="#heavier-is-not-always-better" id="toc-heavier-is-not-always-better" class="nav-link" data-scroll-target="#heavier-is-not-always-better">Heavier is not always better</a></li>
+  <li><a href="#wave-period-matters-more-than-simply-having-a-larger-wave" id="toc-wave-period-matters-more-than-simply-having-a-larger-wave" class="nav-link" data-scroll-target="#wave-period-matters-more-than-simply-having-a-larger-wave">Wave period matters more than simply having a larger wave</a></li>
+  <li><a href="#the-wec-has-an-operating-window" id="toc-the-wec-has-an-operating-window" class="nav-link" data-scroll-target="#the-wec-has-an-operating-window">The WEC has an operating window</a></li>
+  <li><a href="#why-nearshore-deployment-is-interesting" id="toc-why-nearshore-deployment-is-interesting" class="nav-link" data-scroll-target="#why-nearshore-deployment-is-interesting">Why nearshore deployment is interesting</a></li>
+  <li><a href="#the-power-numbers-require-caution" id="toc-the-power-numbers-require-caution" class="nav-link" data-scroll-target="#the-power-numbers-require-caution">The power numbers require caution</a></li>
+  <li><a href="#what-happens-under-irregular-waves" id="toc-what-happens-under-irregular-waves" class="nav-link" data-scroll-target="#what-happens-under-irregular-waves">What happens under irregular waves?</a></li>
+  <li><a href="#the-deeper-mechanics-useful-motion-is-local" id="toc-the-deeper-mechanics-useful-motion-is-local" class="nav-link" data-scroll-target="#the-deeper-mechanics-useful-motion-is-local">The deeper mechanics: useful motion is local</a></li>
+  <li><a href="#from-waves-to-electricity" id="toc-from-waves-to-electricity" class="nav-link" data-scroll-target="#from-waves-to-electricity">From waves to electricity</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#engineering-takeaway" id="toc-engineering-takeaway" class="nav-link" data-scroll-target="#engineering-takeaway">Engineering takeaway</a></li>
+  <li><a href="#original-research" id="toc-original-research" class="nav-link" data-scroll-target="#original-research">Original research</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">How Can Nearshore Wave Motion Be Turned into Useful Power?</h1>
+<p class="subtitle lead">Why the motion that matters is the motion where energy is extracted</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Research Explained</div>
+    <div class="quarto-category">Offshore &amp; Ocean Engineering</div>
+    <div class="quarto-category">Wave Energy</div>
+    <div class="quarto-category">Offshore Engineering</div>
+    <div class="quarto-category">Structural Dynamics</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    A mechanics-based explanation of how a nearshore oscillating-arm wave energy converter transforms local wave-induced motion into hydraulic flow and estimated electrical power.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Goangseup Zi </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 2, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Ocean waves contain energy.</p>
+<p>That statement is simple.</p>
+<p>Turning that energy into useful power is not.</p>
+<p>A floating body placed in waves will move, but motion alone does not generate electricity. The motion must occur in a form and at a location where a <strong>power take-off system (PTO)</strong> can extract mechanical energy and convert it into something useful.</p>
+<p>This leads to a more precise engineering question:</p>
+<blockquote class="blockquote">
+<p><strong>Which part of the wave-induced motion should we actually try to maximize?</strong></p>
+</blockquote>
+<p>Our recent study of a nearshore oscillating-arm wave energy converter suggests an important answer:</p>
+<blockquote class="blockquote">
+<p><strong>Do not simply maximize the motion of the floating body. Create useful motion where the PTO extracts energy.</strong></p>
+</blockquote>
+<p>That distinction provides a useful way to understand how wave motion can eventually become electrical power.</p>
+<hr>
+<section id="start-with-the-energy-path" class="level2">
+<h2 class="anchored" data-anchor-id="start-with-the-energy-path">Start with the energy path</h2>
+<p>The proposed system is conceptually simple.</p>
+<p>A floating arm is connected to a fixed nearshore structure through a hinge. Waves cause the arm to oscillate. Hydraulic cylinders installed between the moving arm and the fixed support convert that relative motion into fluid flow.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig01.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Conceptual layout of the nearshore oscillating-arm wave energy converter. Incident waves move the floating arm about the hinge, while hydraulic PTO units extract energy from the resulting local motion.</figcaption>
+</figure>
+</div>
+<p>The complete energy path can be written schematically as</p>
+<p><span class="math display">\[
+\boxed{
+\text{wave}
+\rightarrow
+\text{arm motion}
+\rightarrow
+\text{local PTO motion}
+\rightarrow
+\text{piston motion}
+\rightarrow
+\text{hydraulic flow}
+\rightarrow
+\text{power}.
+}
+\]</span></p>
+<p>Every arrow matters.</p>
+<p>A design that produces large global motion but poor piston motion may be a poor energy converter.</p>
+<p>Conversely, a geometry producing favorable motion at the PTO location can be useful even if some global response measure is not maximized.</p>
+<p>This is why the <strong>local response</strong> becomes important.</p>
+<hr>
+</section>
+<section id="the-pto-does-not-see-the-global-motion" class="level2">
+<h2 class="anchored" data-anchor-id="the-pto-does-not-see-the-global-motion">The PTO does not see the global motion</h2>
+<p>Consider the floating arm as a rigid body undergoing translation and rotation.</p>
+<p>A point located at the PTO connection does not necessarily move by the same amount as the body’s center of gravity.</p>
+<p>Its displacement depends on</p>
+<ul>
+<li>translation,</li>
+<li>rotation,</li>
+<li>geometry,</li>
+<li>and its distance from the hinge.</li>
+</ul>
+<p>For a small rotation <span class="math inline">\(\theta\)</span>, the local vertical motion can be thought of schematically as</p>
+<p><span class="math display">\[
+h_{\mathrm{PTO}}
+\approx
+h_0 + r\theta,
+\]</span></p>
+<p>where <span class="math inline">\(h_0\)</span> represents translational contribution and <span class="math inline">\(r\)</span> is an appropriate geometric lever arm.</p>
+<p>This is a conceptual expression rather than the actual numerical formulation used in the study.</p>
+<p>Its physical meaning is what matters:</p>
+<blockquote class="blockquote">
+<p><strong>Where the PTO is attached determines the motion available for energy extraction.</strong></p>
+</blockquote>
+<p>That is why looking only at global heave or pitch can miss the quantity that directly drives the energy-conversion system.</p>
+<hr>
+</section>
+<section id="from-local-motion-to-piston-motion" class="level2">
+<h2 class="anchored" data-anchor-id="from-local-motion-to-piston-motion">From local motion to piston motion</h2>
+<p>In the reduced-order model, the piston displacement is approximated from the local heave displacement at the PTO location:</p>
+<p><span class="math display">\[
+d_i(t)\approx h_i(t),
+\]</span></p>
+<p>and therefore</p>
+<p><span class="math display">\[
+\dot d_i(t)\approx \dot h_i(t).
+\]</span></p>
+<p>The piston velocity then produces hydraulic flow.</p>
+<p>For a cylinder with piston area <span class="math inline">\(A_c\)</span>,</p>
+<p><span class="math display">\[
+Q_i(t)
+=
+A_c\dot d_i(t)
+\approx
+A_c\dot h_i(t).
+\]</span></p>
+<p>This equation contains an important engineering message.</p>
+<p>Power generation is not driven directly by displacement.</p>
+<p>It is strongly connected to <strong>velocity</strong>.</p>
+<p>A large displacement that occurs slowly may produce less hydraulic throughput than a somewhat smaller displacement occurring rapidly.</p>
+<p>So already we can see why</p>
+<p><span class="math display">\[
+\boxed{
+\text{maximum displacement}
+\neq
+\text{maximum useful power}.
+}
+\]</span></p>
+<hr>
+</section>
+<section id="how-reciprocating-motion-becomes-useful-flow" class="level2">
+<h2 class="anchored" data-anchor-id="how-reciprocating-motion-becomes-useful-flow">How reciprocating motion becomes useful flow</h2>
+<p>The floating arm moves back and forth.</p>
+<p>A turbine, however, benefits from a consistently directed hydraulic flow.</p>
+<p>The hydraulic circuit therefore uses check valves to rectify the reciprocating cylinder flow.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig02.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Simplified hydraulic PTO system. The oscillating arm drives the cylinder piston, check valves rectify the reciprocating flow, and the resulting hydraulic flow is directed toward the turbine-generator system.</figcaption>
+</figure>
+</div>
+<p>For the <span class="math inline">\(i\)</span>th PTO, the rectified flow is represented in the reduced-order framework as</p>
+<p><span class="math display">\[
+Q_i^*(t)
+=
+A_c
+\left|
+\dot h_i(t)
+\right|.
+\]</span></p>
+<p>With several PTO units, the contributions are combined:</p>
+<p><span class="math display">\[
+Q_T(t)
+=
+\sum_{i=1}^{N_{\mathrm{PTO}}}
+Q_i^*(t).
+\]</span></p>
+<p>Thus multiple cylinders feed a common hydraulic stream.</p>
+<p>The mechanical oscillation has now been transformed into a usable unidirectional flow.</p>
+<hr>
+</section>
+<section id="from-hydraulic-flow-to-estimated-power" class="level2">
+<h2 class="anchored" data-anchor-id="from-hydraulic-flow-to-estimated-power">From hydraulic flow to estimated power</h2>
+<p>The total flow produces an effective turbine inflow velocity,</p>
+<p><span class="math display">\[
+U_T(t)
+=
+\frac{Q_T(t)}{A_T},
+\]</span></p>
+<p>where <span class="math inline">\(A_T\)</span> is the effective turbine flow area.</p>
+<p>The reduced-order electrical-power estimate used in the study is</p>
+<p><span class="math display">\[
+P_{\mathrm{el}}(t)
+\approx
+\eta_{\mathrm{PTO}}
+\frac{1}{2}
+\rho_w A_T U_T^3(t),
+\]</span></p>
+<p>or equivalently,</p>
+<p><span class="math display">\[
+P_{\mathrm{el}}(t)
+\approx
+\eta_{\mathrm{PTO}}
+\frac{\rho_w}{2A_T^2}
+Q_T^3(t).
+\]</span></p>
+<p>The study then evaluates the estimated mean electrical power, EMEP, over the quasi-steady portion of the response.</p>
+<p>This formulation should not be interpreted as a detailed turbine-generator model.</p>
+<p>Its purpose is to provide a consistent reduced-order metric for comparing design alternatives.</p>
+<p>But it makes the energy path very clear:</p>
+<p><span class="math display">\[
+\boxed{
+\dot h_{\mathrm{PTO}}
+\rightarrow
+Q
+\rightarrow
+P.
+}
+\]</span></p>
+<p>The local velocity where the PTO is installed is therefore much closer to the energy-conversion mechanism than a general measure of floating-body motion.</p>
+<hr>
+</section>
+<section id="first-shape-the-motion" class="level2">
+<h2 class="anchored" data-anchor-id="first-shape-the-motion">First shape the motion</h2>
+<p>Before refining the hydraulic system, the floating arm itself was refined.</p>
+<p>Its upper and lower geometry was varied systematically.</p>
+<p>The purpose was not merely to create the largest possible floating body.</p>
+<p>It was to find a geometry that transferred wave-induced motion effectively toward the PTO location.</p>
+<p>This distinction matters.</p>
+<p>The wave acts over the wetted surface.</p>
+<p>The PTO acts at a particular point.</p>
+<p>Geometry determines how one becomes the other.</p>
+<p>Schematically,</p>
+<p><span class="math display">\[
+\text{wave pressure distribution}
+\rightarrow
+\text{force and moment}
+\rightarrow
+\text{arm motion}
+\rightarrow
+\text{local PTO motion}.
+\]</span></p>
+<p>Changing the arm profile therefore changes the entire mechanical transmission between the incident wave and the energy-extraction point.</p>
+<hr>
+</section>
+<section id="more-curvature-gave-more-motionbut-not-necessarily-more-power" class="level2">
+<h2 class="anchored" data-anchor-id="more-curvature-gave-more-motionbut-not-necessarily-more-power">More curvature gave more motion—but not necessarily more power</h2>
+<p>One particularly interesting result appeared when the inclined wave-contact surface was changed from a straight profile to a curved one.</p>
+<p>A quadratic profile was introduced as</p>
+<p><span class="math display">\[
+y=ax^2+bx+c,
+\]</span></p>
+<p>where <span class="math inline">\(a\)</span> controls curvature.</p>
+<p>Under the representative condition used for geometric screening, the case with</p>
+<p><span class="math display">\[
+a=+0.6
+\]</span></p>
+<p>produced the largest local maximum heave and the largest response range.</p>
+<p>Its maximum heave was about</p>
+<p><span class="math display">\[
+1.824~\mathrm{m},
+\]</span></p>
+<p>compared with</p>
+<p><span class="math display">\[
+1.646~\mathrm{m}
+\]</span></p>
+<p>for the linear profile.</p>
+<p>That is an increase of about 10.8%.</p>
+<p>If the objective were simply</p>
+<blockquote class="blockquote">
+<p>maximize motion,</p>
+</blockquote>
+<p>the nonlinear surface might appear to be the winner.</p>
+<p>But that was not the final result.</p>
+<p>When the configurations were subsequently evaluated in terms of estimated power over a broader range of wave periods, the linear geometry produced smoother and more robust performance.</p>
+<p>This is one of the most useful results in the paper:</p>
+<blockquote class="blockquote">
+<p><strong>The geometry that maximizes a local response at one wave condition does not necessarily maximize useful energy performance over the operating range.</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="why-can-maximum-motion-fail-to-give-maximum-power" class="level2">
+<h2 class="anchored" data-anchor-id="why-can-maximum-motion-fail-to-give-maximum-power">Why can maximum motion fail to give maximum power?</h2>
+<p>Because the WEC is not simply a floating object.</p>
+<p>It is a <strong>coupled hydrodynamic–mechanical–hydraulic system</strong>.</p>
+<p>Changing geometry affects</p>
+<ul>
+<li>wave excitation,</li>
+<li>added mass,</li>
+<li>radiation damping,</li>
+<li>arm inertia,</li>
+<li>local displacement,</li>
+<li>local velocity,</li>
+<li>and interaction with the PTO impedance.</li>
+</ul>
+<p>The PTO itself adds equivalent stiffness and damping.</p>
+<p>The governing hydrodynamic system can be written in frequency-domain form as</p>
+<p><span class="math display">\[
+\left[
+-\omega^2(\mathbf M+\mathbf A)
++i\omega(\mathbf B+\mathbf C_{\mathrm{PTO}})
++
+(\mathbf K_h+\mathbf K_{\mathrm{PTO}})
+\right]
+\boldsymbol{\xi}
+=
+\mathbf F_{\mathrm{exc}}.
+\]</span></p>
+<p>Thus the PTO is not simply attached after the hydrodynamic response has been determined.</p>
+<p>It becomes part of the dynamics.</p>
+<p>Extracting energy changes the motion from which the energy is being extracted.</p>
+<hr>
+</section>
+<section id="more-ptos-give-more-flowbut-with-diminishing-returns" class="level2">
+<h2 class="anchored" data-anchor-id="more-ptos-give-more-flowbut-with-diminishing-returns">More PTOs give more flow—but with diminishing returns</h2>
+<p>Another apparently simple question is:</p>
+<blockquote class="blockquote">
+<p>Why not install as many PTO cylinders as possible?</p>
+</blockquote>
+<p>The study examined one to five PTO units.</p>
+<p>As expected, total hydraulic flow increased as more PTOs were added.</p>
+<p>But the increase was not proportional to the number of units.</p>
+<p>The hydraulic-flow contribution <strong>per PTO</strong> decreased as the number increased.</p>
+<p>The four-PTO configuration retained approximately</p>
+<p><span class="math display">\[
+74\%-84\%
+\]</span></p>
+<p>of the hydraulic flow achieved by five PTOs across the investigated cases, while eliminating one PTO unit.</p>
+<p>This is a familiar engineering optimization problem:</p>
+<p><span class="math display">\[
+\text{additional component}
+\rightarrow
+\text{additional benefit},
+\]</span></p>
+<p>but</p>
+<p><span class="math display">\[
+\frac{\text{incremental benefit}}
+{\text{additional component}}
+\downarrow.
+\]</span></p>
+<p>More equipment does not automatically mean proportionally more useful energy.</p>
+<p>The four-PTO configuration was therefore selected as a favorable balance between hydraulic throughput and system simplicity within the reduced-order assessment.</p>
+<hr>
+</section>
+<section id="the-hydraulic-system-must-also-be-dynamically-matched" class="level2">
+<h2 class="anchored" data-anchor-id="the-hydraulic-system-must-also-be-dynamically-matched">The hydraulic system must also be dynamically matched</h2>
+<p>Cylinder diameter, hydraulic-line diameter, and PTO position were then varied.</p>
+<p>Changing these parameters does more than alter flow capacity.</p>
+<p>It also changes the equivalent hydraulic stiffness and damping seen by the floating arm.</p>
+<p>For example, the cylinder area is</p>
+<p><span class="math display">\[
+A_c
+=
+\frac{\pi D_c^2}{4}.
+\]</span></p>
+<p>A larger cylinder can generate more flow for a given piston velocity.</p>
+<p>But cylinder size also affects the equivalent PTO impedance.</p>
+<p>Similarly, changing hydraulic-line diameter alters hydraulic resistance.</p>
+<p>So neither</p>
+<p><span class="math display">\[
+\text{maximum flow capacity}
+\]</span></p>
+<p>nor</p>
+<p><span class="math display">\[
+\text{minimum resistance}
+\]</span></p>
+<p>alone defines the best system.</p>
+<p>The useful condition arises from a balance between the hydrodynamic response and the hydraulic PTO.</p>
+<p>Again, the design problem is one of <strong>dynamic matching</strong>.</p>
+<hr>
+</section>
+<section id="heavier-is-not-always-better" class="level2">
+<h2 class="anchored" data-anchor-id="heavier-is-not-always-better">Heavier is not always better</h2>
+<p>The floating-body mass was also varied while keeping geometry and the selected PTO configuration unchanged.</p>
+<p>One might expect a simple trend:</p>
+<p><span class="math display">\[
+\text{more mass}
+\rightarrow
+\text{less motion}
+\rightarrow
+\text{less power}.
+\]</span></p>
+<p>But coupled dynamic systems rarely behave so simply.</p>
+<p>Changing mass changes the inertia of the oscillating arm and therefore shifts its relationship with wave excitation and PTO impedance.</p>
+<p>The result was a non-monotonic energy response.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig03.png" class="img-fluid figure-img" style="width:85.0%"></p>
+<figcaption>Estimated mean electrical power as the floating-body mass is varied. The response is non-monotonic because changing mass changes the dynamic matching among wave excitation, floating-body inertia, and PTO impedance rather than simply suppressing motion.</figcaption>
+</figure>
+</div>
+<p>This is an important structural-dynamics result.</p>
+<p>Mass is not merely something that resists acceleration.</p>
+<p>It is part of the system that determines <strong>where the dynamic response occurs in frequency</strong>.</p>
+<p>Thus an intermediate mass can outperform both lighter and heavier alternatives.</p>
+<hr>
+</section>
+<section id="wave-period-matters-more-than-simply-having-a-larger-wave" class="level2">
+<h2 class="anchored" data-anchor-id="wave-period-matters-more-than-simply-having-a-larger-wave">Wave period matters more than simply having a larger wave</h2>
+<p>After refining the system, performance was examined over</p>
+<p><span class="math display">\[
+T=5\text{--}15~\mathrm{s}
+\]</span></p>
+<p>and incident-wave heights of</p>
+<p><span class="math display">\[
+H=1,\ 2,\ 3~\mathrm{m}.
+\]</span></p>
+<p>A clear pattern emerged.</p>
+<p>Changing wave height changed the magnitude of the response substantially.</p>
+<p>But the favorable period range remained concentrated around a similar region.</p>
+<p>In other words,</p>
+<p><span class="math display">\[
+H
+\rightarrow
+\text{response intensity},
+\]</span></p>
+<p>while</p>
+<p><span class="math display">\[
+T
+\rightarrow
+\text{dynamic matching}.
+\]</span></p>
+<p>That distinction is fundamental.</p>
+<p>A taller wave contains more energy.</p>
+<p>But the WEC can only exploit that energy efficiently if its dynamics allow the wave to generate useful motion at the PTO.</p>
+<hr>
+</section>
+<section id="the-wec-has-an-operating-window" class="level2">
+<h2 class="anchored" data-anchor-id="the-wec-has-an-operating-window">The WEC has an operating window</h2>
+<p>The refined system showed its strongest energy-conversion behavior over a limited wave-period range, particularly around approximately</p>
+<p><span class="math display">\[
+T=7\text{--}8~\mathrm{s}
+\]</span></p>
+<p>for the investigated configurations.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig04.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Estimated mean electrical power over the investigated wave-period range for different incident-wave heights. Increasing wave height mainly changes the magnitude of the available response, while the favorable period region remains concentrated within a similar range.</figcaption>
+</figure>
+</div>
+<p>This is closely related to resonance and frequency-response concepts familiar from structural dynamics.</p>
+<p>A simplified oscillator,</p>
+<p><span class="math display">\[
+m\ddot x+c\dot x+kx=F(t),
+\]</span></p>
+<p>does not respond only according to the magnitude of <span class="math inline">\(F\)</span>.</p>
+<p>Its response depends strongly on excitation frequency relative to its own dynamic characteristics.</p>
+<p>The WEC behaves similarly, although its real dynamics include hydrodynamic added mass, radiation damping, hydrostatic restoring effects, hinge motion, and PTO impedance.</p>
+<p>So the correct question is not:</p>
+<blockquote class="blockquote">
+<p>How energetic are the waves?</p>
+</blockquote>
+<p>It is:</p>
+<blockquote class="blockquote">
+<p><strong>How well do the waves dynamically match the energy-conversion system?</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="why-nearshore-deployment-is-interesting" class="level2">
+<h2 class="anchored" data-anchor-id="why-nearshore-deployment-is-interesting">Why nearshore deployment is interesting</h2>
+<p>The proposed device is intended conceptually for modular installation along nearshore or coastal structures.</p>
+<p>That creates an attractive possibility.</p>
+<p>Instead of one very large offshore WEC, repeated modules could potentially be arranged along infrastructure such as coastal protection structures.</p>
+<p>This could offer advantages in</p>
+<ul>
+<li>access,</li>
+<li>installation,</li>
+<li>maintenance,</li>
+<li>modularity,</li>
+<li>and proximity to electricity demand.</li>
+</ul>
+<p>It may also eventually permit wave-energy harvesting and coastal protection to be considered together.</p>
+<p>But this paper does <strong>not</strong> demonstrate those array-level or coastal-integration benefits.</p>
+<p>The analysis concerns a single module.</p>
+<p>Hydrodynamic interaction among multiple units, spacing optimization, coastal interference, and wave-attenuation performance remain outside the scope of the study.</p>
+<p>That distinction is important.</p>
+<hr>
+</section>
+<section id="the-power-numbers-require-caution" class="level2">
+<h2 class="anchored" data-anchor-id="the-power-numbers-require-caution">The power numbers require caution</h2>
+<p>Under the adopted reduced-order formulation and regular-wave conditions, the refined configurations produced estimated mean electrical powers ranging from several kilowatts to several hundred kilowatts depending on the wave condition.</p>
+<p>Those values should <strong>not</strong> be interpreted as predictions of commercially deliverable electrical power.</p>
+<p>The model deliberately simplifies the energy-conversion chain.</p>
+<p>It does not explicitly resolve all effects associated with</p>
+<ul>
+<li>transient hydraulic circuitry,</li>
+<li>valve losses,</li>
+<li>leakage,</li>
+<li>accumulator dynamics,</li>
+<li>turbine performance curves,</li>
+<li>generator dynamics,</li>
+<li>control systems,</li>
+<li>and detailed electromechanical losses.</li>
+</ul>
+<p>The EMEP is therefore best understood as a <strong>comparative preliminary-design metric</strong>.</p>
+<p>It allows one design to be compared consistently with another.</p>
+<p>It does not yet certify a generator output.</p>
+<hr>
+</section>
+<section id="what-happens-under-irregular-waves" class="level2">
+<h2 class="anchored" data-anchor-id="what-happens-under-irregular-waves">What happens under irregular waves?</h2>
+<p>Real seas do not consist of one perfectly regular sinusoidal wave.</p>
+<p>The study therefore included an additional JONSWAP irregular-wave assessment using</p>
+<p><span class="math display">\[
+H_s=3~\mathrm{m},
+\qquad
+T_p=7~\mathrm{s},
+\]</span></p>
+<p>with different spectral peak-enhancement factors.</p>
+<p>The purpose was not to establish full stochastic performance.</p>
+<p>It was to see whether the principal design trends identified under regular waves remained meaningful when wave energy was distributed over a spectrum.</p>
+<p>The results provided supplementary evidence that the main trends remained generally consistent for the investigated irregular-wave cases.</p>
+<p>But much more is required before commercial performance can be assessed.</p>
+<hr>
+</section>
+<section id="the-deeper-mechanics-useful-motion-is-local" class="level2">
+<h2 class="anchored" data-anchor-id="the-deeper-mechanics-useful-motion-is-local">The deeper mechanics: useful motion is local</h2>
+<p>Perhaps the most general idea from this study has little to do with wave energy specifically.</p>
+<p>Engineers often characterize a system using global quantities:</p>
+<ul>
+<li>center-of-mass displacement,</li>
+<li>global rotation,</li>
+<li>maximum structural displacement,</li>
+<li>overall response amplitude.</li>
+</ul>
+<p>Those quantities are useful.</p>
+<p>But a device performs its function <strong>locally</strong>.</p>
+<p>A damper works where it is connected.</p>
+<p>A bearing transfers load where it contacts the structure.</p>
+<p>A turbine extracts energy where flow passes through it.</p>
+<p>And a hydraulic PTO extracts energy from the relative motion of its piston.</p>
+<p>For this WEC,</p>
+<p><span class="math display">\[
+\boxed{
+\text{global motion}
+\neq
+\text{local useful motion}.
+}
+\]</span></p>
+<p>The local PTO response is therefore not merely another output variable.</p>
+<p>It is the mechanical bridge between hydrodynamics and energy conversion.</p>
+<hr>
+</section>
+<section id="from-waves-to-electricity" class="level2">
+<h2 class="anchored" data-anchor-id="from-waves-to-electricity">From waves to electricity</h2>
+<p>We can now return to the original question.</p>
+<p>How can nearshore wave motion become useful power?</p>
+<p>Not simply by putting a floating object in energetic waves.</p>
+<p>The conversion requires a sequence:</p>
+<p><span class="math display">\[
+\boxed{
+\begin{aligned}
+\text{wave excitation}
+&amp;\rightarrow
+\text{hydrodynamic response}\\
+&amp;\rightarrow
+\text{local PTO motion}\\
+&amp;\rightarrow
+\text{piston velocity}\\
+&amp;\rightarrow
+\text{rectified hydraulic flow}\\
+&amp;\rightarrow
+\text{turbine inflow}\\
+&amp;\rightarrow
+\text{electrical power}.
+\end{aligned}
+}
+\]</span></p>
+<p>Every stage can constrain the next one.</p>
+<p>That is why geometry, inertia, PTO number, PTO position, hydraulic parameters, and wave period cannot be designed independently.</p>
+<p>They belong to one energy-conversion system.</p>
+<hr>
+</section>
+<section id="limitations" class="level2">
+<h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
+<p>The present study is a reduced-order preliminary-design framework.</p>
+<p>The hydrodynamic analysis is based primarily on linear potential-flow assumptions and does not explicitly represent all nonlinear phenomena that may become important in energetic nearshore conditions, including strong viscous effects, slamming, overtopping, and large-amplitude motion.</p>
+<p>The hydraulic PTO is represented through equivalent stiffness and damping rather than a complete transient hydraulic circuit.</p>
+<p>The electrical-power calculation is likewise an estimated comparative metric rather than a turbine- and generator-specific prediction.</p>
+<p>The study evaluates a single WEC module. Multi-module interaction, device spacing, coastal integration, structural survivability, fatigue, hinge durability, corrosion, marine fouling, maintenance, techno-economic performance, and experimental validation remain important future steps.</p>
+<p>Therefore, the reported favorable configurations should be interpreted within the investigated parameter ranges and modeling assumptions.</p>
+<hr>
+</section>
+<section id="engineering-takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="engineering-takeaway">Engineering takeaway</h2>
+<p>Wave-energy harvesting is not a competition to produce the largest possible floating-body motion.</p>
+<p>What matters is whether wave excitation creates the <strong>right motion at the right place</strong>, and whether the PTO can convert that motion efficiently.</p>
+<p>A geometry that moves more is not necessarily better.</p>
+<p>More PTO units are not necessarily proportionally better.</p>
+<p>A larger wave is not automatically better if its period is poorly matched to the system.</p>
+<p>And changing mass can either improve or degrade performance depending on the resulting dynamics.</p>
+<p>The broader engineering principle is:</p>
+<blockquote class="blockquote">
+<p><strong>Do not simply maximize wave-induced motion. Create the right motion where energy is extracted.</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="original-research" class="level2">
+<h2 class="anchored" data-anchor-id="original-research">Original research</h2>
+<p><strong>Saghi, H., Jo, Y., Seyyedabadi, Y., &amp; Zi, G. (2026).</strong> <em>Local PTO response-based framework for a nearshore oscillating-arm wave energy converter.</em> <em>Energy, 360</em>, 141910. https://doi.org/10.1016/j.energy.2026.141910</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

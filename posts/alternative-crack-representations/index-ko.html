@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="지광습">
+<meta name="keywords" content="파괴역학, 계산파괴역학, 균열 해석, 균열 표현, 균열 성장, 변위 불연속, 확장유한요소법, XFEM, 확장무요소법, XEFG, 변위공간 확충, phantom node, cracking particle, peridynamics, phase field, 페이즈필드 파괴, 점성균열">
+<meta name="description" content="재료가 연속적인 변형 특성을 잃고 불연속적인 균열이 생성되었다는 정보를 수치해석의 어디에 담을 것인가라는 질문을 중심으로 여러 파괴해석 기법을 역학적으로 비교한다.">
+
+<title>균열을 표현하려면 반드시 변위공간을 부가적으로 확충(enrichment)해야 하는가? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research Explained</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../z-diagram.html"> 
+<span class="menu-text">Z-Diagram</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../latex-writing.html"> 
+<span class="menu-text">LaTeX &amp; Writing</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul class="collapse">
+  <li><a href="#먼저-균열애-관한-물리적인-요구사항이-무엇인지-보자" id="toc-먼저-균열애-관한-물리적인-요구사항이-무엇인지-보자" class="nav-link active" data-scroll-target="#먼저-균열애-관한-물리적인-요구사항이-무엇인지-보자">먼저 균열애 관한 물리적인 요구사항이 무엇인지 보자</a></li>
+  <li><a href="#xfem-균열-정보를-근사공간에-넣는다" id="toc-xfem-균열-정보를-근사공간에-넣는다" class="nav-link" data-scroll-target="#xfem-균열-정보를-근사공간에-넣는다">XFEM: 균열 정보를 근사공간에 넣는다</a></li>
+  <li><a href="#phantom-node-이번에는-이산화된-영역을-바꾼다" id="toc-phantom-node-이번에는-이산화된-영역을-바꾼다" class="nav-link" data-scroll-target="#phantom-node-이번에는-이산화된-영역을-바꾼다">Phantom node: 이번에는 이산화된 영역을 바꾼다</a></li>
+  <li><a href="#왜-명시적으로-부가하는-자유도-확충-대신-다른-방법을-강구하였을까" id="toc-왜-명시적으로-부가하는-자유도-확충-대신-다른-방법을-강구하였을까" class="nav-link" data-scroll-target="#왜-명시적으로-부가하는-자유도-확충-대신-다른-방법을-강구하였을까">왜 명시적으로 부가하는 자유도 확충 대신 다른 방법을 강구하였을까?</a></li>
+  <li><a href="#그렇다고-균열선단-문제가-없어지는-것은-아니다" id="toc-그렇다고-균열선단-문제가-없어지는-것은-아니다" class="nav-link" data-scroll-target="#그렇다고-균열선단-문제가-없어지는-것은-아니다">그렇다고 균열선단 문제가 없어지는 것은 아니다</a></li>
+  <li><a href="#cracking-particle-더-단순하게-표현할-수-있을까" id="toc-cracking-particle-더-단순하게-표현할-수-있을까" class="nav-link" data-scroll-target="#cracking-particle-더-단순하게-표현할-수-있을까">Cracking particle: 더 단순하게 표현할 수 있을까?</a></li>
+  <li><a href="#균열의-기하정보는-추적해야-한다" id="toc-균열의-기하정보는-추적해야-한다" class="nav-link" data-scroll-target="#균열의-기하정보는-추적해야-한다">균열의 기하정보는 추적해야 한다</a></li>
+  <li><a href="#peridynamics-근사법이-아니라-지배방정식의-기술방식을-바꾼다" id="toc-peridynamics-근사법이-아니라-지배방정식의-기술방식을-바꾼다" class="nav-link" data-scroll-target="#peridynamics-근사법이-아니라-지배방정식의-기술방식을-바꾼다">Peridynamics: 근사법이 아니라 지배방정식의 기술방식을 바꾼다</a></li>
+  <li><a href="#변위공간의-확충이-없다고해서-파괴모델링이-없어지는-것은-아니다" id="toc-변위공간의-확충이-없다고해서-파괴모델링이-없어지는-것은-아니다" class="nav-link" data-scroll-target="#변위공간의-확충이-없다고해서-파괴모델링이-없어지는-것은-아니다">변위공간의 확충이 없다고해서 파괴모델링이 없어지는 것은 아니다</a></li>
+  <li><a href="#phase-field-불연속-변위계를-만드는-균열을-하나의-장으로-바꾼다" id="toc-phase-field-불연속-변위계를-만드는-균열을-하나의-장으로-바꾼다" class="nav-link" data-scroll-target="#phase-field-불연속-변위계를-만드는-균열을-하나의-장으로-바꾼다">Phase field: 불연속 변위계를 만드는 균열을 하나의 장으로 바꾼다</a></li>
+  <li><a href="#이렇게-해서-얻은-점은" id="toc-이렇게-해서-얻은-점은" class="nav-link" data-scroll-target="#이렇게-해서-얻은-점은">이렇게 해서 얻은 점은?</a></li>
+  <li><a href="#그-대신-무엇이-소요되었는가" id="toc-그-대신-무엇이-소요되었는가" class="nav-link" data-scroll-target="#그-대신-무엇이-소요되었는가">그 대신 무엇이 소요되었는가?</a></li>
+  <li><a href="#년-나노복합재-예를-보면-차이가-잘-보인다" id="toc-년-나노복합재-예를-보면-차이가-잘-보인다" class="nav-link" data-scroll-target="#년-나노복합재-예를-보면-차이가-잘-보인다">2018년 나노복합재 예를 보면 차이가 잘 보인다</a></li>
+  <li><a href="#sharp와-diffuse의-차이는-정확하고-부정확하다는-뜻이-아니다" id="toc-sharp와-diffuse의-차이는-정확하고-부정확하다는-뜻이-아니다" class="nav-link" data-scroll-target="#sharp와-diffuse의-차이는-정확하고-부정확하다는-뜻이-아니다">Sharp와 diffuse의 차이는 정확하고 부정확하다는 뜻이 아니다</a></li>
+  <li><a href="#peridynamics는-어디에-놓아야-할까" id="toc-peridynamics는-어디에-놓아야-할까" class="nav-link" data-scroll-target="#peridynamics는-어디에-놓아야-할까">Peridynamics는 어디에 놓아야 할까?</a></li>
+  <li><a href="#공학적으로-비교하면-이렇게-볼-수-있다" id="toc-공학적으로-비교하면-이렇게-볼-수-있다" class="nav-link" data-scroll-target="#공학적으로-비교하면-이렇게-볼-수-있다">공학적으로 비교하면 이렇게 볼 수 있다</a></li>
+  <li><a href="#z-diagram과-연결해-보면" id="toc-z-diagram과-연결해-보면" class="nav-link" data-scroll-target="#z-diagram과-연결해-보면">Z-Diagram과 연결해 보면</a></li>
+  <li><a href="#더-일반적인-계산역학의-교훈" id="toc-더-일반적인-계산역학의-교훈" class="nav-link" data-scroll-target="#더-일반적인-계산역학의-교훈">더 일반적인 계산역학의 교훈</a></li>
+  <li><a href="#시리즈-계속-읽기" id="toc-시리즈-계속-읽기" class="nav-link" data-scroll-target="#시리즈-계속-읽기">시리즈 계속 읽기</a></li>
+  <li><a href="#original-research" id="toc-original-research" class="nav-link" data-scroll-target="#original-research">Original research</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">균열을 표현하려면 반드시 변위공간을 부가적으로 확충(enrichment)해야 하는가?</h1>
+<p class="subtitle lead">변위공간 확충에서부터 phantom node, cracking particle, peridynamics, phase field까지</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Research Explained</div>
+    <div class="quarto-category">Computational Mechanics &amp; Fracture</div>
+    <div class="quarto-category">Computational Fracture</div>
+    <div class="quarto-category">XFEM</div>
+    <div class="quarto-category">Phase Field</div>
+    <div class="quarto-category">Peridynamics</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    재료가 연속적인 변형 특성을 잃고 불연속적인 균열이 생성되었다는 정보를 수치해석의 어디에 담을 것인가라는 질문을 중심으로 여러 파괴해석 기법을 역학적으로 비교한다.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">저자</div>
+    <div class="quarto-title-meta-contents">
+             <p>지광습 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">공개</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">2026년 9월 4일</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+<div>
+  <div class="keywords">
+    <div class="block-title">키워드</div>
+    <p>파괴역학, 계산파괴역학, 균열 해석, 균열 표현, 균열 성장, 변위 불연속, 확장유한요소법, XFEM, 확장무요소법, XEFG, 변위공간 확충, phantom node, cracking particle, peridynamics, phase field, 페이즈필드 파괴, 점성균열</p>
+  </div>
+</div>
+
+</header>
+
+
+<div class="language-switch">
+<a href="../../posts/alternative-crack-representations/index.html">English</a> | <strong>한글</strong>
+</div>
+<p><strong>계산파괴역학 시리즈:</strong> <a href="../../posts/computational-fracture-overview/index-ko.html">← 전체 보기</a> · <a href="../multiple-cracks-fracture-network/index-ko.qmd">← 다중균열</a> · 7편 중 5편</p>
+<p>앞의 글들에서는 다음과 같은 고찰을 계속 따라왔다.</p>
+<p>균열이 생기면 일반적으로 사용하는 연속적인 변위장을 근사하는 변위계로는 표현할 수 없는 운동학이 나타난다. <strong>확장유한요소법(XFEM)</strong>과 <strong>확장무요소법(XEFG)</strong>은 이때 빠져 있는 불연속 정보를 변위공간에 부가하여 변위공간을 확충한다.</p>
+<p>그러면 자연스럽게 이런 질문이 생긴다.</p>
+<blockquote class="blockquote">
+<p><strong>균열을 표현하려면 반드시 변위공간을 부가적으로 확충(enrichment)해야만 하는가?</strong></p>
+</blockquote>
+<p>꼭 그렇지는 않다.</p>
+<p>하지만 어떤 파괴해석 기법이 가장 좋은가를 묻는 것보다 더 중요한 질문이 있다.</p>
+<blockquote class="blockquote">
+<p><strong>“여기에 균열이 있다”는 정보를 수치해석 과정의 어디에 표현할 것인가?</strong></p>
+</blockquote>
+<p>파괴해석 기법들의 차이는 상당 부분 이 질문에 대한 서로 다른 접근법으로 볼 수 있다.</p>
+<pre class="text"><code>XFEM / XEFG
+근사공간에 불연속 정보를 저장
+        ↓
+phantom node
+균열 너머까지 연장된 요소 영역을 사용하되 균열면에서 부분적으로 적분하여 불연속을 표현
+        ↓
+cracking particle
+입자의 support / 가시성(visibility)을 조절하여 불연속을 표현
+        ↓
+peridynamics
+비국소 상호작용 자체가 불연속을 허용
+        ↓
+phase field
+날카로운 균열을 정규화된 파괴장으로 이용해서 표현</code></pre>
+<p>이렇게 보면 이 방법들의 역사는 서로 무관한 알고리즘이 차례로 등장한 것이 아니다.</p>
+<p><strong>재료가 연속성을 잃었다는 사실을 어디에, 어떻게 표현할 것인가</strong>에 대한 여러 선택이다.</p>
+<section id="먼저-균열애-관한-물리적인-요구사항이-무엇인지-보자" class="level2">
+<h2 class="anchored" data-anchor-id="먼저-균열애-관한-물리적인-요구사항이-무엇인지-보자">먼저 균열애 관한 물리적인 요구사항이 무엇인지 보자</h2>
+<p>수치기법을 보기 전에 파괴가 역학적으로 어떤 조건을 의미하는지부터 생각해 보자.</p>
+<p>균열이 생기기 전에는 내부에 어떤 면을 사이에 두더라도 변위장은 연속이다.</p>
+<p><span class="math display">\[
+\llbracket \mathbf{u} \rrbracket = \mathbf{0}.
+\]</span></p>
+<p>하지만, 균열이 생긴 뒤에는 양쪽 면이 서로 독립적으로 움직일 수 있다.</p>
+<p><span class="math display">\[
+\llbracket \mathbf{u} \rrbracket \neq \mathbf{0}.
+\]</span></p>
+<p><strong>점성균열(cohesive crack)</strong>에서는 완전히 분리되기 전까지 두 면 사이에 traction–separation 관계가 남는다.</p>
+<p><span class="math display">\[
+\mathbf{t}
+=
+\mathbf{t}\!\left(\llbracket\mathbf{u}\rrbracket\right).
+\]</span></p>
+<p>따라서 수치적으로 본질적인 질문은 “균열을 어떻게 그릴 것인가?”가 아니다.</p>
+<blockquote class="blockquote">
+<p><strong>역학적으로 연속성이 사라져야 하는 곳에서 어떤 근사함수를 도입하여 불연속을 표현할 것인가?</strong></p>
+</blockquote>
+<p>XFEM에서는 근사공간에 불연속성 함수를 확충함으로써 해결하였다. 이후의 다른 방법들은 같은 정보를 다른 형태로 구현하였다.</p>
+</section>
+<section id="xfem-균열-정보를-근사공간에-넣는다" class="level2">
+<h2 class="anchored" data-anchor-id="xfem-균열-정보를-근사공간에-넣는다">XFEM: 균열 정보를 근사공간에 넣는다</h2>
+<p>균열이 유한요소망을 가로질러 지나간다고 하자. 보통의 유한요소 근사</p>
+<p><span class="math display">\[
+\mathbf{u}^h(\mathbf{x})
+=
+\sum_I N_I(\mathbf{x})\mathbf{u}_I
+\]</span></p>
+<p>는 하나의 요소 내부에서 연속이다.</p>
+<p>XFEM은 이 근사에 불연속을 표현할 수 있는 함수를 추가한다. 가장 단순하게 변위의 불연속 점프를 표현하기 위한 확충 형태는</p>
+<p><span class="math display">\[
+\mathbf{u}^h(\mathbf{x})
+=
+\sum_I N_I(\mathbf{x})\mathbf{u}_I
++
+\sum_{J\in\mathcal{N}_{\mathrm{enr}}}
+N_J(\mathbf{x})H(\mathbf{x})\mathbf{a}_J
+\]</span></p>
+<p>와 같이 쓸 수 있다.</p>
+<p>요소망은 그대로이며 변경될 필요가 없다.</p>
+<p><strong>변위계 근사공간이 부가되어 확충된다.</strong></p>
+<p>이것이 앞의 글에서 설명한 XFEM의 핵심이다.</p>
+<p>물론 변위공간의 확충을 도입하면 구현에서 새로운 문제가 생긴다. 어느 절점에서 변위공간을 확충할 것인가, 일부만 잘린 요소를 어떻게 적분할 것인가, 균열선단은 어떻게 표현할 것인가, 추가 자유도는 어떻게 조립할 것인가, 동적 문제의 질량행렬은 어떻게 다룰 것인가, 상호 연결되는 복잡한 균열의 위상은 어떻게 관리할 것인가 등의 문제다.</p>
+<p>이런 문제들이 다른 표현법을 찾게 만든 이유 중 하나였다.</p>
+</section>
+<section id="phantom-node-이번에는-이산화된-영역을-바꾼다" class="level2">
+<h2 class="anchored" data-anchor-id="phantom-node-이번에는-이산화된-영역을-바꾼다">Phantom node: 이번에는 이산화된 영역을 바꾼다</h2>
+<p>Phantom-node 방법에서도 균열면에서 확실한 불연속성(sharp crack)을 표현한다. 다만 균열 양쪽을 표현하는 방식이 다르다.</p>
+<p>원래 요소에 명시적인 불연속 확충 자유도를 붙이는 대신, 균열이 생긴 요소를 불연속의 양쪽에 대응하는 <strong>서로 겹친 요소 영역</strong>으로 표현한다.</p>
+<p>여기서 중요한 점이 있다.</p>
+<blockquote class="blockquote">
+<p><strong>Phantom node는 XFEM의 균열 운동학을 부정한 방법이 아니다. 본질적으로 같은 변위 점프를 다른 이산화 방식으로 구현한 것이다.</strong></p>
+</blockquote>
+<p>2008년 연구에서는 균열 요소에 대해 step-enriched XFEM 표현과 phantom-node 표현이 서로 등가임을 보였다.</p>
+<div id="fig-phantom-xfem" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-phantom-xfem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig01.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:84.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-phantom-xfem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;1: 표준 XFEM 표현과 phantom-node 표현의 비교. 두 방법 모두 균열면에서 변위계가 불연속적으로 변화하는 것을 표현하지만, 운동학적 자유도를 저장하는 방식이 다르다. Rabczuk et al.&nbsp;(2008), Fig. 2를 바탕으로 재구성.
+</figcaption>
+</figure>
+</div>
+<p>그림 <strong>?@fig-phantom-xfem에서</strong> 보아야 할 것은 방법의 이름이 아니다.</p>
+<p>물리적인 통찰점은 바뀌지 않았다.</p>
+<p>균열면을 중심으로 변위계에는 점프가 존재한다.</p>
+<p>달라진 것은 <strong>근사공간을 관리하는 방식</strong>, 말하자면 bookkeeping이다.</p>
+</section>
+<section id="왜-명시적으로-부가하는-자유도-확충-대신-다른-방법을-강구하였을까" class="level2">
+<h2 class="anchored" data-anchor-id="왜-명시적으로-부가하는-자유도-확충-대신-다른-방법을-강구하였을까">왜 명시적으로 부가하는 자유도 확충 대신 다른 방법을 강구하였을까?</h2>
+<p>수치기법은 올바른 함수공간을 표현할 수 있다는 것만으로 평가되지 않는다. 실제 구현이 얼마나 단순하고 안정적인지도 중요하다.</p>
+<p>특히 동적 파괴에서는 질량집중(lumped mass)을 편리하게 적용할 수 있고 새로 균열이 생긴 요소를 단순하게 처리할 수 있다면 상당한 장점이 있다.</p>
+<p>Phantom-node 방법은 일반적인 XFEM 형식으로 확충된 변위공간의 유한요소 방정식을 직접 다루는 대신, 겹쳐진 요소 표현을 활성화하여 불연속을 도입한다.</p>
+<p>여기서 계산역학 분야에서 일반적으로 잘 알려진 교훈을 다시 발견할 수 있다.</p>
+<blockquote class="blockquote">
+<p><strong>두 방법이 거의 같은 역학을 표현하더라도 계산 구현의 구조는 크게 다를 수 있다.</strong></p>
+</blockquote>
+<p>방법의 이름만 비교하면 이 차이를 놓치기 쉽다.</p>
+</section>
+<section id="그렇다고-균열선단-문제가-없어지는-것은-아니다" class="level2">
+<h2 class="anchored" data-anchor-id="그렇다고-균열선단-문제가-없어지는-것은-아니다">그렇다고 균열선단 문제가 없어지는 것은 아니다</h2>
+<p>XFEM에서 phantom node로 바꾼다고 균열선단 문제가 사라지는 것은 아니다.</p>
+<p>균열이 요소 내부에서 끝나면 선단에서 변위 점프가 적절히 영으로 닫혀야 한다. 그래서 phantom-node 연구에서도 임의의 점성균열을 위한 crack-tip element를 도입했다.</p>
+<p>앞서 XFEM에서 해결했던 것과 동일한 물리적 요구사항이다.</p>
+<pre class="text"><code>균열선단 뒤쪽:
+두 균열면이 독립적으로 움직임
+
+균열선단:
+변위 점프가 닫혀서 변위계의 불연속성이 없어져야 함
+
+균열선단 앞쪽:
+변위계가 연속적</code></pre>
+<p>수치기술은 달라졌다.</p>
+<p><strong>역학적 요구조건은 달라지지 않았다.</strong></p>
+</section>
+<section id="cracking-particle-더-단순하게-표현할-수-있을까" class="level2">
+<h2 class="anchored" data-anchor-id="cracking-particle-더-단순하게-표현할-수-있을까">Cracking particle: 더 단순하게 표현할 수 있을까?</h2>
+<p>무요소법에서는 고정된 요소의 연결성 대신 입자의 support domain으로 변위 근사함수를 구성하기 때문에 또 다른 방식으로 해결할 수 있다.</p>
+<p>후속 연구에서 개발한 cracking-particle 방법은 <strong>추가적인 확충 자유도 없이</strong> 균열의 발생과 성장을 표현하려는 것이었다.</p>
+<p>대신 균열선분이 입자의 support를 가르고, 불연속을 사이에 둔 가시성(visibility)에 따라 근사관계를 수정한다.</p>
+<p>개념적으로 보면</p>
+<pre class="text"><code>일반적인 입자 support
+        ↓
+균열이 support를 통과
+        ↓
+균열에 의해 support가 분리
+        ↓
+균열 양쪽 입자가 더 이상
+하나의 연속 근사를 통해 상호작용하지 않음</code></pre>
+<p>이 된다.</p>
+<p>불연속 정보가 다시 다른 곳으로 이동한 것이다.</p>
+<p>이제 그 정보는 주로 부가적인 확충 자유도에 들어 있는 것이 아니라 <strong>입자 사이의 support 관계</strong>에 들어 있다.</p>
+<div id="fig-cracking-particle" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cracking-particle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig02.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cracking-particle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;2: Cracking-particle 표현에서는 균열이 입자의 가시성(visibility)/support를 변화시켜 추가적인 확충 자유도를 추가하지 않고도 불연속을 사이에 두고 근사함수가 분리될 수 있게 한다. Rabczuk et al.&nbsp;(2010b)를 바탕으로 재구성.
+</figcaption>
+</figure>
+</div>
+<p>그림 <a href="#fig-cracking-particle" class="quarto-xref">그림&nbsp;2</a> 역시 같은 질문에 대한 또 하나의 답으로 읽는 것이 좋다.</p>
+<blockquote class="blockquote">
+<p>균열 정보는 어디에 저장되어 있는가?</p>
+</blockquote>
+<p>XFEM에서는 확충함수에 명시적으로 들어 있다.</p>
+<p>Cracking-particle 방법에서는 그 상당 부분이 변화하는 support와 가시성(visibility) 관계에 들어 있다.</p>
+</section>
+<section id="균열의-기하정보는-추적해야-한다" class="level2">
+<h2 class="anchored" data-anchor-id="균열의-기하정보는-추적해야-한다">균열의 기하정보는 추적해야 한다</h2>
+<p>XFEM, XEFG, phantom-node, cracking-particle 방법은 구현상 상당히 다르다.</p>
+<p>하지만 중요한 공통점이 있다.</p>
+<p>모두 식별 가능한 <strong>불연속(sharp discontinuity) 변위계</strong>를 유지한다.</p>
+<p>따라서 어떤 형태로든 균열의 기하학적 정보를 가지고 있어야 한다.</p>
+<ul>
+<li>2차원에서는 균열선분,</li>
+<li>3차원에서는 균열면,</li>
+<li>균열선단 또는 균열전면,</li>
+<li>균열의 교차,</li>
+<li>분기,</li>
+<li>접합.</li>
+</ul>
+<p>앞의 다중균열 글에서 보았듯이 균열이 여러 개 상호작용하면 이 작업은 빠르게 복잡해진다.</p>
+<p>그러면 더 근본적인 질문을 할 수 있다.</p>
+<blockquote class="blockquote">
+<p><strong>아예 변위의 불연속인 균열면을 명시적으로 표현하지 않으면 어떨까?</strong></p>
+</blockquote>
+</section>
+<section id="peridynamics-근사법이-아니라-지배방정식의-기술방식을-바꾼다" class="level2">
+<h2 class="anchored" data-anchor-id="peridynamics-근사법이-아니라-지배방정식의-기술방식을-바꾼다">Peridynamics: 근사법이 아니라 지배방정식의 기술방식을 바꾼다</h2>
+<p>Peridynamics는 다른 방향에서 파괴문제에 접근한다.</p>
+<p>고전적인 국부 연속체역학은 변위장의 공간미분을 사용한다. 그런데 변위 불연속이 생기면 바로 그 지점에서 고전적인 의미의 미분을 정의할 수 없다.</p>
+<p>Peridynamics는 국부 미분방정식 대신 유한한 이웃 영역 사이의 <strong>비국소(nonlocal) 상호작용</strong>으로 문제를 기술한다.</p>
+<p>이 글의 관점에서 중요한 결과는 다음과 같다.</p>
+<blockquote class="blockquote">
+<p><strong>지배방정식 자체가 비국소적이므로 불연속을 국부 근사공간에 XFEM과 같은 방식으로 삽입할 필요가 없다.</strong></p>
+</blockquote>
+<p>본 저자의 열가소성 재료 파괴 연구에서는 3차원 열-역학 파괴를 위해 non-ordinary state-based peridynamic formulation을 사용했다.</p>
+<p>이것은 XFEM에서 phantom node로 옮겨가는 것보다 더 큰 변화다.</p>
+<p>균열 정보가 이산 근사공간에서 <strong>진화하는 비국소 재료 상호작용의 상태</strong>로 이동했기 때문이다.</p>
+</section>
+<section id="변위공간의-확충이-없다고해서-파괴모델링이-없어지는-것은-아니다" class="level2">
+<h2 class="anchored" data-anchor-id="변위공간의-확충이-없다고해서-파괴모델링이-없어지는-것은-아니다">변위공간의 확충이 없다고해서 파괴모델링이 없어지는 것은 아니다</h2>
+<p>여기서</p>
+<pre class="text"><code>변위공간 확충 없음
+=
+균열 표현 문제 없음</code></pre>
+<p>이라고 생각하면 곤란하다.</p>
+<p>어떤 방법이든 물리적으로는 여전히 다음 질문에 답해야 한다.</p>
+<ul>
+<li>재료 분리는 언제 시작되는가?</li>
+<li>파괴에너지는 어떻게 소산되는가?</li>
+<li>어떤 길이 척도가 들어가는가?</li>
+<li>필요한 경우 인장과 압축을 어떻게 구별하는가?</li>
+<li>비가역적 변화는 어떻게 표현하는가?</li>
+<li>수치해상도와 파괴모델은 어떻게 상호작용하는가?</li>
+</ul>
+<p>Bookkeeping은 달라진다.</p>
+<p><strong>역학이 없어지는 것은 아니다.</strong></p>
+</section>
+<section id="phase-field-불연속-변위계를-만드는-균열을-하나의-장으로-바꾼다" class="level2">
+<h2 class="anchored" data-anchor-id="phase-field-불연속-변위계를-만드는-균열을-하나의-장으로-바꾼다">Phase field: 불연속 변위계를 만드는 균열을 하나의 장으로 바꾼다</h2>
+<p>Phase-field fracture는 불연속 균열이라는 그림에서 가장 분명하게 벗어나는 방법 중 하나다.</p>
+<p>균열면 <span class="math inline">\(\Gamma\)</span>를 명시적으로 기술하는 대신 스칼라장 <span class="math inline">\(\phi(\mathbf{x})\)</span>를 도입한다.</p>
+<p>본 저자의 나노복합재 연구에서 사용한 phase-field formulation에서는</p>
+<p><span class="math display">\[
+\phi=0
+\]</span></p>
+<p>재료의 건전한 상태에 해당하고,</p>
+<p><span class="math display">\[
+\phi=1
+\]</span></p>
+<p>이 완전히 파괴된 재료에 해당한다.</p>
+<p>그 사이에는 유한한 폭의 천이영역이 존재한다.</p>
+<p>따라서 이 기법에서 균열은 두께가 영인 기하학적 면이 아니라 <strong>확산된 파괴장(diffuse fracture field)</strong>으로 표현된다.</p>
+<p>정규화된 균열면 밀도는 예를 들어</p>
+<p><span class="math display">\[
+\gamma(\phi)
+=
+\frac{1}{2}
+\left(
+\ell_0 \nabla\phi\cdot\nabla\phi
++
+\frac{\phi^2}{\ell_0}
+\right)
+\]</span></p>
+<p>와 같이 쓸 수 있다. 여기서 <span class="math inline">\(\ell_0\)</span>는 정규화된 균열의 폭을 제어한다.</p>
+<p>이에 대응하는 파괴에너지는 체적적분으로</p>
+<p><span class="math display">\[
+\Psi_s
+=
+G_c
+\int_\Omega
+\gamma(\phi)\,d\Omega
+\]</span></p>
+<p>와 같이 표현된다.</p>
+<p>표현방식이 근본적으로 바뀐 것이다.</p>
+<p>변위가 불연속적인 균열의 기하학적 표면적분을 좁은 영역에 분포한 장의 체적적분으로 바꾸었다.</p>
+</section>
+<section id="이렇게-해서-얻은-점은" class="level2">
+<h2 class="anchored" data-anchor-id="이렇게-해서-얻은-점은">이렇게 해서 얻은 점은?</h2>
+<p>Phase-field formulation에서는 균열면을 명시적으로 추적할 필요가 없다.</p>
+<p>따라서 XFEM/XEFG에서 필요한 것과 같은 균열면 추적기법을 계속 유지하지 않고도 균열의 발생, 성장, 합체와 복잡한 경로를 다룰 수 있다.</p>
+<div id="fig-phase-field" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-phase-field-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig03.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:82.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-phase-field-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;3: 날카로운 균열을 유한한 폭의 정규화된 파괴장으로 바꾼다. 그 폭은 phase-field length scale에 의해 제어된다. 명시적인 균열면 추적 문제가 추가적인 장을 푸는 문제로 바뀐 것이다. Msekh et al.&nbsp;(2016), Fig. 2를 바탕으로 재구성.
+</figcaption>
+</figure>
+</div>
+<p>그림 <strong>?@fig-phase-field의</strong> 핵심적인 교환관계는 분명하다.</p>
+<p>이제</p>
+<blockquote class="blockquote">
+<p>정확한 균열면은 어디에 있는가?</p>
+</blockquote>
+<p>를 직접 묻는 대신</p>
+<blockquote class="blockquote">
+<p>대상 영역 전체를 아우르는 파괴장의 값은 얼마인가?</p>
+</blockquote>
+<p>를 푼다.</p>
+<p>같은 방식으로 균열의 위상을 명시적으로 갱신하지도 않는다. <strong>균열 형상은 장의 해에서 자연스럽게 얻어진다.</strong></p>
+</section>
+<section id="그-대신-무엇이-소요되었는가" class="level2">
+<h2 class="anchored" data-anchor-id="그-대신-무엇이-소요되었는가">그 대신 무엇이 소요되었는가?</h2>
+<p>여기서 파괴기법을 비교할 때 조심해야 한다.</p>
+<p>Phase field가 어려운 수치문제 하나를 그냥 없애 준 것은 아니다.</p>
+<p><strong>한 표현을 다른 표현으로 바꾼 것이다.</strong></p>
+<p>명시적인 균열 추적은 줄었지만 정규화 길이 <span class="math inline">\(\ell_0\)</span>가 들어왔다.</p>
+<p>2018년 나노복합재 연구에서는 이 길이척도가 균열의 확산 폭을 제어하며 관련 기하학적 치수보다 작아야 한다고 설명했다. 이후 해석에 사용할 값을 정하기 전에 <span class="math inline">\(\ell_0\)</span>의 영향도 수치적으로 조사했다.</p>
+<p>따라서 대략 다음과 같은 교환이다.</p>
+<pre class="text"><code>불연속 변위에 대한 균열 기하학
++ 명시적 균열 추적
+
+            ↓
+
+확산된 파괴장
++ 정규화 길이
++ 추가적인 장 방정식</code></pre>
+<p>어느 쪽도 공짜는 아니다.</p>
+<p><strong>서로 다른 종류의 수치정보를 필요로 할 뿐이다.</strong></p>
+</section>
+<section id="년-나노복합재-예를-보면-차이가-잘-보인다" class="level2">
+<h2 class="anchored" data-anchor-id="년-나노복합재-예를-보면-차이가-잘-보인다">2018년 나노복합재 예를 보면 차이가 잘 보인다</h2>
+<p>Phase field는 불균질한 미세구조에서 특히 매력적이다.</p>
+<p>Clay/epoxy 나노복합재 모델에서는 강성이 큰 다수의 clay platelet이 국부 균열경로를 바꾸는 가운데 matrix와 interphase zone을 통해 파괴가 진행될 수 있었다.</p>
+<p>결과적으로 균열경로는 굴곡이 심했고 inclusion 주위에서 분산된 균열이 나타났다.</p>
+<p>이 모든 기하학적 상호작용을 하나씩 미리 정하고 갱신하려면 상당히 번거롭다. Phase field에서는 결합된 에너지 문제를 풀면서 파괴 패턴이 나타나게 할 수 있다.</p>
+<p>하지만 동일한 연구에서 길이척도와 재료모델이 왜 중요한지도 보여준다.</p>
+<p>Interphase의 두께와 물성의 선택에 따라 인장강도, 전체 에너지방출률, 소산된 파괴에너지에 영향이 발생하였다.</p>
+<p>즉 명시적인 균열 추적을 피하는 방법이라도 <strong>파괴를 지배하는 실제 재료의 불균질성</strong>은 제대로 표현해야 한다.</p>
+<p>여기서 중요한 것은 바로 이것이다.</p>
+</section>
+<section id="sharp와-diffuse의-차이는-정확하고-부정확하다는-뜻이-아니다" class="level2">
+<h2 class="anchored" data-anchor-id="sharp와-diffuse의-차이는-정확하고-부정확하다는-뜻이-아니다">Sharp와 diffuse의 차이는 정확하고 부정확하다는 뜻이 아니다</h2>
+<p>파괴해석 기법을</p>
+<pre class="text"><code>옛날 → 최신
+단순 → 고급
+열등 → 우수</code></pre>
+<p>와 같은 서열로 정리하고 싶은 유혹이 있다.</p>
+<p>공학적으로는 별로 좋은 분류가 아니다.</p>
+<section id="불연속적으로-날카로운-균열을-표현" class="level3">
+<h3 class="anchored" data-anchor-id="불연속적으로-날카로운-균열을-표현">불연속적으로 날카로운 균열을 표현</h3>
+<p>XFEM, XEFG, phantom-node, cracking-particle formulation은 식별 가능한 불연속을 유지한다.</p>
+<p>장점은 문제에 따라 다음과 같다.</p>
+<ul>
+<li>기하학적으로 날카로운 균열면,</li>
+<li>균열개구변위의 직접적인 해석,</li>
+<li>점성 traction–separation 관계의 자연스러운 적용,</li>
+<li>명시적인 균열전면 정보.</li>
+</ul>
+<p>대신 다음과 같은 비용이 따른다.</p>
+<ul>
+<li>균열 기하학 관리,</li>
+<li>분기와 접합에 대한 논리,</li>
+<li>불연속을 가로지르는 수치적분,</li>
+<li>복잡해질 수 있는 위상 갱신.</li>
+</ul>
+</section>
+<section id="확산된-균열을-표현" class="level3">
+<h3 class="anchored" data-anchor-id="확산된-균열을-표현">확산된 균열을 표현</h3>
+<p>Phase-field fracture에서는 날카로운 균열면을 정규화된 장으로 바꾼다.</p>
+<p>장점은 다음과 같다.</p>
+<ul>
+<li>명시적인 균열면 추적이 필요하지 않음,</li>
+<li>균열 발생과 복잡한 위상을 자연스럽게 다룰 수 있음,</li>
+<li>분기와 합체가 장의 진화를 통해 나타날 수 있음.</li>
+</ul>
+<p>반면 다음이 필요하다.</p>
+<ul>
+<li>정규화 길이,</li>
+<li>확산 균열 부근의 충분한 해상도,</li>
+<li>추가적인 장 방정식,</li>
+<li>두께 영인 정확한 면 대신 유한 폭의 손상영역에 대한 해석.</li>
+</ul>
+<p>따라서 어떤 방법이 맞는지는 <strong>공학문제가 어떤 정보를 요구하느냐</strong>에 달려 있다.</p>
+</section>
+</section>
+<section id="peridynamics는-어디에-놓아야-할까" class="level2">
+<h2 class="anchored" data-anchor-id="peridynamics는-어디에-놓아야-할까">Peridynamics는 어디에 놓아야 할까?</h2>
+<p>Peridynamics는 sharp 대 diffuse라는 단순한 구분에 정확히 들어맞지 않는다.</p>
+<p>핵심은 국부 근사공간을 확충하거나 날카로운 균열을 phase field로 정규화하는 대신, <strong>비국소 상호작용을 통해 파괴를 허용한다</strong>는 데 있다.</p>
+<p>그래서 이 글을 읽을때 시간순으로 발전한 방법의 사다리인 것으로 받아들이면 안된다.</p>
+<p>각 방법은 서로 다른 축을 탐색한다.</p>
+<pre class="text"><code>연속성은 어떻게 사라지는가?
+균열 기하학은 어떻게 표현되는가?
+파괴 정보는 어디에 저장되는가?
+추가적인 길이척도가 들어가는가?
+파괴에너지는 어떻게 제어되는가?
+얼마나 많은 위상정보를 명시적으로 추적해야 하는가?</code></pre>
+<p>어떤 방법이 가장 최신인가보다 다음과 같은 질문들이 훨씬 유용하다.</p>
+</section>
+<section id="공학적으로-비교하면-이렇게-볼-수-있다" class="level2">
+<h2 class="anchored" data-anchor-id="공학적으로-비교하면-이렇게-볼-수-있다">공학적으로 비교하면 이렇게 볼 수 있다</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 30%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>방법</th>
+<th>불연속 정보가 주로 저장되는 곳</th>
+<th style="text-align: right;">명시적인 sharp crack?</th>
+<th>주요 계산 문제</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>XFEM / XEFG</td>
+<td>확충된 근사공간</td>
+<td style="text-align: right;">예</td>
+<td>변위공간 확충, 적분, 균열 기하학</td>
+</tr>
+<tr class="even">
+<td>Phantom node</td>
+<td>겹쳐진 이산 요소 영역</td>
+<td style="text-align: right;">예</td>
+<td>활성화와 균열선단 처리</td>
+</tr>
+<tr class="odd">
+<td>Cracking particle</td>
+<td>입자 support / 가시성(visibility)</td>
+<td style="text-align: right;">예</td>
+<td>support 수정과 균열 기하학</td>
+</tr>
+<tr class="even">
+<td>Peridynamics</td>
+<td>비국소 재료 상호작용</td>
+<td style="text-align: right;">고전적인 국부 의미에서는 불필요</td>
+<td>horizon/비국소 이산화와 파괴 구성모델</td>
+</tr>
+<tr class="odd">
+<td>Phase field</td>
+<td>정규화된 스칼라 파괴장</td>
+<td style="text-align: right;">아니오</td>
+<td>길이척도, 장의 해상도, 결합해석</td>
+</tr>
+</tbody>
+</table>
+<p>이 표를 보면 변화의 본질이 보인다.</p>
+<p>서로 다른 다섯 종류의 균열을 발견한 것이 아니다.</p>
+<p><strong>재료 연속성의 상실을 표현하는 정보를 수치해석 과정의 서로 다른 곳에 저장한 것이다.</strong></p>
+</section>
+<section id="z-diagram과-연결해-보면" class="level2">
+<h2 class="anchored" data-anchor-id="z-diagram과-연결해-보면">Z-Diagram과 연결해 보면</h2>
+<p>Z-Diagram의 기본 관계는</p>
+<p><span class="math display">\[
+F \leftrightarrow \sigma \leftrightarrow \varepsilon \leftrightarrow u
+\]</span></p>
+<p>이다.</p>
+<p>파괴는 변위장 자체가 불연속이 될 수 있다는 점에서 이 통상적인 연결에 새로운 문제를 만든다.</p>
+<p>날카로운 점성균열에서는 내부 균열면에 새로운 일-공액(work-conjugate) 관계가 나타난다.</p>
+<p><span class="math display">\[
+\mathbf{t}
+\cdot
+\llbracket \dot{\mathbf{u}} \rrbracket.
+\]</span></p>
+<p>균열개구 <span class="math inline">\(\llbracket\mathbf{u}\rrbracket\)</span>와 점성 표면력 <span class="math inline">\(\mathbf{t}\)</span>가 파괴과정의 일을 구성한다.</p>
+<p>Phase-field 표현에서는 같은 파괴과정을 다른 좌표로 표현한다. 유한한 영역에 걸쳐 파괴장과 그 gradient가 진화하면서 에너지가 소산된다.</p>
+<p><strong>물리적으로 필요한 것은 여전히 에너지의 일관성이다.</strong></p>
+<p>달라지는 것은 그 에너지 변화를 표현하는 수치적 좌표다.</p>
+<p>그래서 이 비교는 단순한 소프트웨어 알고리즘 비교가 아니라 계산역학의 문제다.</p>
+</section>
+<section id="더-일반적인-계산역학의-교훈" class="level2">
+<h2 class="anchored" data-anchor-id="더-일반적인-계산역학의-교훈">더 일반적인 계산역학의 교훈</h2>
+<p>이 논의는 파괴역학에만 해당하지 않는다.</p>
+<p>수치역학에서는 항상 두 가지를 물어야 한다.</p>
+<ol type="1">
+<li>해가 어떤 물리정보를 반드시 포함해야 하는가?</li>
+<li>그 정보를 계산모델의 어디에 표현할 것인가?</li>
+</ol>
+<p>파괴에서 반드시 필요한 물리정보는 <strong>연속성의 상실과 그에 따른 에너지 소산</strong>이다.</p>
+<p>XFEM은 그 정보를 확충함수에 넣는다.</p>
+<p>Phantom node는 겹쳐진 이산 영역에 넣는다.</p>
+<p>Cracking particle은 상당 부분을 변화하는 support 관계에 넣는다.</p>
+<p>Peridynamics는 진화하는 비국소 상호작용 안에 넣는다.</p>
+<p>Phase field는 정규화된 내부장에 넣는다.</p>
+<p>물리적 사건은 같다.</p>
+<p><strong>수학적 표현이 달라진다.</strong></p>
+<p>결국 핵심은 “변위공간 확충 기법이 더 좋은 다른 방법으로 대체되었다”가 아니다.</p>
+<blockquote class="blockquote">
+<p><strong>균열은 특정한 하나의 수치기법을 요구하지 않는다. 물리적으로 요구하는 연속성의 상실을 표현할 수 있는 수치적인 표현을 요구한다.</strong></p>
+</blockquote>
+<p>계산역학적으로는 한 문장으로 더 줄일 수 있다.</p>
+<blockquote class="blockquote">
+<p><strong>진짜 선택은 변위공간을 확충할 것인가 말 것인가가 아니라, 불연속 정보를 어디에 저장할 것인가이다.</strong></p>
+</blockquote>
+<p>이 관점으로 보면 이름이 전혀 다른 파괴기법들이 왜 같은 역학을 공유하면서도 매우 다른 알고리즘이 되는지 이해하기 쉽다.</p>
+<p>그리고 방법을 선택하는 기준도 분명해진다.</p>
+<p>수치기법의 이름에서 시작하지 말자.</p>
+<p><strong>공학문제가 요구하는 정보에서 시작하자.</strong></p>
+<hr>
+</section>
+<section id="시리즈-계속-읽기" class="level2">
+<h2 class="anchored" data-anchor-id="시리즈-계속-읽기">시리즈 계속 읽기</h2>
+<p><a href="../multiple-cracks-fracture-network/index-ko.qmd">← <strong>이전: 여러 균열은 어떻게 분기하고 만나 파괴 네트워크를 만드는가?</strong></a></p>
+<p><a href="../../posts/computational-fracture-overview/index-ko.html"><strong>시리즈 전체: 계산파괴역학은 왜 어려운가?</strong></a></p>
+<p><strong>다음 글 — 6편:</strong> <em>계산파괴역학은 어떻게 서로 다른 스케일과 구조형식으로 확장되는가?</em></p>
+</section>
+<section id="original-research" class="level2">
+<h2 class="anchored" data-anchor-id="original-research">Original research</h2>
+<p>Rabczuk, T., Zi, G., Gerstenberger, A., &amp; Wall, W. A. (2008).<br>
+<strong>A new crack tip element for the phantom-node method with arbitrary cohesive cracks.</strong><br>
+<em>International Journal for Numerical Methods in Engineering, 75</em>, 577–599.<br>
+https://doi.org/10.1002/nme.2273</p>
+<p>Rabczuk, T., Zi, G., Bordas, S., &amp; Nguyen-Xuan, H. (2010).<br>
+<strong>A simple and robust three-dimensional cracking-particle method without enrichment.</strong><br>
+<em>Computer Methods in Applied Mechanics and Engineering, 199</em>, 2437–2455.</p>
+<p>Chau-Dinh, T., Zi, G., Lee, P.-S., Rabczuk, T., &amp; Song, J.-H. (2012).<br>
+<strong>Phantom-node method for shell models with arbitrary cracks.</strong><br>
+<em>Computers &amp; Structures, 92–93</em>, 242–256.</p>
+<p>Amiri, F., Millán, D., Shen, Y., Rabczuk, T., &amp; Arroyo, M. (2016).<br>
+<strong>Phase-field modeling of fracture in thermoplastic materials using non-ordinary state-based peridynamics.</strong><br>
+<em>International Journal of Impact Engineering, 87</em>, 83–94.</p>
+<p>Msekh, M. A., Silani, M., Jamshidian, M., Areias, P., Zhuang, X., Zi, G., &amp; Rabczuk, T. (2016).<br>
+<strong>Predictions of J integral and tensile strength of clay/epoxy nanocomposites material using phase field model.</strong><br>
+<em>Composites Part B: Engineering, 93</em>, 97–114.</p>
+<p>Msekh, M. A., Cuong, N. H., Zi, G., Areias, P., Zhuang, X., &amp; Rabczuk, T. (2018).<br>
+<strong>Fracture properties prediction of clay/epoxy nanocomposites with interphase zones using a phase field model.</strong><br>
+<em>Engineering Fracture Mechanics, 188</em>, 287–299.<br>
+https://doi.org/10.1016/j.engfracmech.2017.08.002</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

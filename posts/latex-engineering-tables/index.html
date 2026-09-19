@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Goangseup Zi">
+<meta name="dcterms.date" content="2026-09-13">
+<meta name="description" content="A practical guide to building engineering tables in LaTeX, using grouped headers, multirow cells, units, numerical alignment, and modern table packages.">
+
+<title>How Should Engineers Build Tables in LaTeX? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research Explained</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../z-diagram.html"> 
+<span class="menu-text">Z-Diagram</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../latex-writing.html"> 
+<span class="menu-text">LaTeX &amp; Writing</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#what-my-existing-template-is-doing" id="toc-what-my-existing-template-is-doing" class="nav-link active" data-scroll-target="#what-my-existing-template-is-doing">What my existing template is doing</a></li>
+  <li><a href="#start-from-the-data-hierarchy" id="toc-start-from-the-data-hierarchy" class="nav-link" data-scroll-target="#start-from-the-data-hierarchy">Start from the data hierarchy</a></li>
+  <li><a href="#multicolumn-one-heading-over-several-columns" id="toc-multicolumn-one-heading-over-several-columns" class="nav-link" data-scroll-target="#multicolumn-one-heading-over-several-columns"><code>\multicolumn</code>: one heading over several columns</a></li>
+  <li><a href="#multirow-one-label-for-several-rows" id="toc-multirow-one-label-for-several-rows" class="nav-link" data-scroll-target="#multirow-one-label-for-several-rows"><code>\multirow</code>: one label for several rows</a></li>
+  <li><a href="#partial-horizontal-lines-with-cline" id="toc-partial-horizontal-lines-with-cline" class="nav-link" data-scroll-target="#partial-horizontal-lines-with-cline">Partial horizontal lines with <code>\cline</code></a></li>
+  <li><a href="#why-i-recommend-booktabs" id="toc-why-i-recommend-booktabs" class="nav-link" data-scroll-target="#why-i-recommend-booktabs">Why I recommend <code>booktabs</code></a></li>
+  <li><a href="#one-issue-in-my-existing-template-hlinewd" id="toc-one-issue-in-my-existing-template-hlinewd" class="nav-link" data-scroll-target="#one-issue-in-my-existing-template-hlinewd">One issue in my existing template: <code>\hlinewd</code></a></li>
+  <li><a href="#do-not-type-units-as-ordinary-text" id="toc-do-not-type-units-as-ordinary-text" class="nav-link" data-scroll-target="#do-not-type-units-as-ordinary-text">Do not type units as ordinary text</a></li>
+  <li><a href="#siunitx-is-even-more-useful-for-numbers" id="toc-siunitx-is-even-more-useful-for-numbers" class="nav-link" data-scroll-target="#siunitx-is-even-more-useful-for-numbers"><code>siunitx</code> is even more useful for numbers</a></li>
+  <li><a href="#makecell-cleaner-multiline-headings" id="toc-makecell-cleaner-multiline-headings" class="nav-link" data-scroll-target="#makecell-cleaner-multiline-headings"><code>makecell</code>: cleaner multiline headings</a></li>
+  <li><a href="#array-define-better-column-types" id="toc-array-define-better-column-types" class="nav-link" data-scroll-target="#array-define-better-column-types"><code>array</code>: define better column types</a></li>
+  <li><a href="#tabularx-let-one-column-absorb-the-available-width" id="toc-tabularx-let-one-column-absorb-the-available-width" class="nav-link" data-scroll-target="#tabularx-let-one-column-absorb-the-available-width"><code>tabularx</code>: let one column absorb the available width</a></li>
+  <li><a href="#longtable-when-the-data-are-longer-than-one-page" id="toc-longtable-when-the-data-are-longer-than-one-page" class="nav-link" data-scroll-target="#longtable-when-the-data-are-longer-than-one-page"><code>longtable</code>: when the data are longer than one page</a></li>
+  <li><a href="#threeparttable-notes-belong-to-the-table" id="toc-threeparttable-notes-belong-to-the-table" class="nav-link" data-scroll-target="#threeparttable-notes-belong-to-the-table"><code>threeparttable</code>: notes belong to the table</a></li>
+  <li><a href="#a-modernized-version-of-the-mix-table" id="toc-a-modernized-version-of-the-mix-table" class="nav-link" data-scroll-target="#a-modernized-version-of-the-mix-table">A modernized version of the mix table</a></li>
+  <li><a href="#a-practical-package-set-for-engineering-tables" id="toc-a-practical-package-set-for-engineering-tables" class="nav-link" data-scroll-target="#a-practical-package-set-for-engineering-tables">A practical package set for engineering tables</a></li>
+  <li><a href="#packages-i-would-use-only-when-necessary" id="toc-packages-i-would-use-only-when-necessary" class="nav-link" data-scroll-target="#packages-i-would-use-only-when-necessary">Packages I would use only when necessary</a></li>
+  <li><a href="#the-table-should-expose-the-experiment" id="toc-the-table-should-expose-the-experiment" class="nav-link" data-scroll-target="#the-table-should-expose-the-experiment">The table should expose the experiment</a></li>
+  <li><a href="#why-this-becomes-even-more-useful-with-ai" id="toc-why-this-becomes-even-more-useful-with-ai" class="nav-link" data-scroll-target="#why-this-becomes-even-more-useful-with-ai">Why this becomes even more useful with AI</a></li>
+  <li><a href="#my-preferred-table-workflow" id="toc-my-preferred-table-workflow" class="nav-link" data-scroll-target="#my-preferred-table-workflow">My preferred table workflow</a></li>
+  <li><a href="#source-example" id="toc-source-example" class="nav-link" data-scroll-target="#source-example">Source example</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">How Should Engineers Build Tables in LaTeX?</h1>
+<p class="subtitle lead">From multi-level experimental tables to cleaner, more maintainable technical documents</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">LaTeX &amp; Writing</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    A practical guide to building engineering tables in LaTeX, using grouped headers, multirow cells, units, numerical alignment, and modern table packages.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Goangseup Zi </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 13, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Tables look simple until engineering data are involved.</p>
+<p>A real engineering table may need to show:</p>
+<ul>
+<li>several levels of headings,</li>
+<li>grouped test conditions,</li>
+<li>physical units,</li>
+<li>repeated specimen classes,</li>
+<li>averages and coefficients of variation,</li>
+<li>missing data,</li>
+<li>and enough numbers that visual alignment starts to matter.</li>
+</ul>
+<p>At that point, a table is no longer just a grid.</p>
+<p>It is a compact representation of the structure of the experiment.</p>
+<p>That is why LaTeX tables are worth learning properly.</p>
+<p>The basic <code>tabular</code> environment is already powerful, but the most useful engineering tables usually depend on a small number of additional ideas:</p>
+<p><span class="math display">\[
+\boxed{
+\text{column structure}
++
+\text{grouped headings}
++
+\text{row grouping}
++
+\text{units}
++
+\text{numerical alignment}
+}
+\]</span></p>
+<p>The important question is therefore not:</p>
+<blockquote class="blockquote">
+<p>How do I draw a table in LaTeX?</p>
+</blockquote>
+<p>A better question is:</p>
+<blockquote class="blockquote">
+<p><strong>How do I make the structure of the data visible?</strong></p>
+</blockquote>
+<section id="what-my-existing-template-is-doing" class="level2">
+<h2 class="anchored" data-anchor-id="what-my-existing-template-is-doing">What my existing template is doing</h2>
+<p>My working LaTeX template already contains several fairly sophisticated examples.</p>
+<p>One table presents a concrete mix proportion with a two-level header. The first four columns contain individual variables, while four later columns are grouped under the heading <code>weight</code>. This is done with <code>\multicolumn</code>. Several heading cells extend vertically across two rows using <code>\multirow</code>, and <code>\cline{5-8}</code> draws only the horizontal rule beneath the grouped heading.</p>
+<p>The core pattern is:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">table</span>}[htb]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\centering</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\caption</span>{The mix proportion of the concretes.}</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">small</span>}</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tabular</span>}{c|c|c|c|c|c|c|c|c|c}</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\hlinewd</span>{1.5pt}</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">\multirow</span>{2}{*}{...} <span class="op">&amp;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">\multirow</span>{2}{*}{...} <span class="op">&amp;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">\multirow</span>{2}{*}{...} <span class="op">&amp;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">\multirow</span>{2}{*}{...} <span class="op">&amp;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">\multicolumn</span>{4}{|c|}{weight [kgf]} <span class="op">&amp;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">\multirow</span>{2}{*}{SP} <span class="op">&amp;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">\multirow</span>{2}{*}{AE} <span class="fu">\\</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">\cline</span>{5-8}</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="op">&amp;</span> <span class="op">&amp;</span> <span class="op">&amp;</span> <span class="op">&amp;</span> w <span class="op">&amp;</span> c <span class="op">&amp;</span> s <span class="op">&amp;</span> g <span class="op">&amp;</span> <span class="op">&amp;</span> <span class="fu">\\</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">\hline</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">\hlinewd</span>{1.5pt}</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tabular</span>}</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">small</span>}</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="kw">\label</span>{<span class="ex">st:tab.mix</span>}</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">table</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is an important pattern because the physical organization of the data is directly visible in the LaTeX source.</p>
+<p>The table is saying:</p>
+<pre class="text"><code>mix properties | constituent weights | admixtures</code></pre>
+<p>rather than simply placing ten unrelated columns next to one another.</p>
+<p>A second table in the template goes further. It groups several rows under labels such as apparent modulus, stiffness, and maximum load using <code>\multirow</code>, while <code>\cline{2-7}</code> separates the entries inside each group. Nested <code>tabular</code> environments are used to break long labels such as <code>partially removed</code> over two lines.</p>
+<p>A third example groups three biaxial-test columns and three uniaxial-test columns under separate headings using <code>\multicolumn</code>.</p>
+<p>These are exactly the kinds of structures that appear repeatedly in experimental mechanics and structural engineering.</p>
+</section>
+<section id="start-from-the-data-hierarchy" class="level2">
+<h2 class="anchored" data-anchor-id="start-from-the-data-hierarchy">Start from the data hierarchy</h2>
+<p>Before writing any LaTeX, I find it useful to sketch the logical hierarchy of the table.</p>
+<p>Suppose the data have this form:</p>
+<pre class="text"><code>Test type
+├── Biaxial
+│   ├── B3
+│   ├── B6
+│   └── B12
+└── Uniaxial
+    ├── U3
+    ├── U6
+    └── U12</code></pre>
+<p>The LaTeX table should preserve that hierarchy.</p>
+<p>That immediately suggests:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\multicolumn</span>{3}{c}{Biaxial test}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>and</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\multicolumn</span>{3}{c}{Uniaxial test}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>followed by a second header row containing the individual test labels.</p>
+<p>This is more than formatting.</p>
+<p>The table header is carrying engineering information.</p>
+</section>
+<section id="multicolumn-one-heading-over-several-columns" class="level2">
+<h2 class="anchored" data-anchor-id="multicolumn-one-heading-over-several-columns"><code>\multicolumn</code>: one heading over several columns</h2>
+<p>The first command every technical LaTeX user should understand is <code>\multicolumn</code>.</p>
+<p>Its form is</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\multicolumn</span>{number of columns}{alignment}{content}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For example,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\multicolumn</span>{3}{c}{Biaxial test}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>means that one cell occupies three columns.</p>
+<p>A grouped engineering table can therefore be written as</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tabular</span>}{c c c c c c c}</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\hline</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\multirow</span>{2}{*}{No.} <span class="op">&amp;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\multicolumn</span>{3}{c}{Biaxial test} <span class="op">&amp;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">\multicolumn</span>{3}{c}{Uniaxial test} <span class="fu">\\</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\cline</span>{2-7}</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="op">&amp;</span> B3 <span class="op">&amp;</span> B6 <span class="op">&amp;</span> B12 <span class="op">&amp;</span> U3 <span class="op">&amp;</span> U6 <span class="op">&amp;</span> U12 <span class="fu">\\</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">\hline</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tabular</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The first row tells the reader what the large groups mean.</p>
+<p>The second row resolves each group into individual variables.</p>
+</section>
+<section id="multirow-one-label-for-several-rows" class="level2">
+<h2 class="anchored" data-anchor-id="multirow-one-label-for-several-rows"><code>\multirow</code>: one label for several rows</h2>
+<p>Engineering tables often contain another hierarchy.</p>
+<p>For example:</p>
+<pre class="text"><code>Stiffness
+  specimen 1
+  specimen 2
+  specimen 3
+  average</code></pre>
+<p>Writing <code>stiffness</code> four times would obscure that these rows form one logical group.</p>
+<p>The <code>multirow</code> package solves this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\multirow</span>{4}{*}{Stiffness}</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  &amp; specimen 1 &amp; ... <span class="fu">\\</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  &amp; specimen 2 &amp; ... <span class="fu">\\</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  &amp; specimen 3 &amp; ... <span class="fu">\\</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  &amp; average    &amp; ... <span class="fu">\\</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is especially useful for:</p>
+<ul>
+<li>material properties,</li>
+<li>loading conditions,</li>
+<li>specimen groups,</li>
+<li>damage states,</li>
+<li>analysis methods,</li>
+<li>and parameter studies.</li>
+</ul>
+<p>I would regard <code>multirow</code> as an almost essential package for engineering tables.</p>
+</section>
+<section id="partial-horizontal-lines-with-cline" class="level2">
+<h2 class="anchored" data-anchor-id="partial-horizontal-lines-with-cline">Partial horizontal lines with <code>\cline</code></h2>
+<p>Once rows or columns are grouped, a full-width <code>\hline</code> is often too strong.</p>
+<p>The existing template uses commands such as</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\cline</span>{5-8}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>and</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\cline</span>{2-7}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A <code>\cline{5-8}</code> rule begins at column 5 and ends at column 8.</p>
+<p>That lets us visually separate subheadings without breaking the larger grouping.</p>
+<p>This works, but there is now a better option for many publication-quality tables: <code>booktabs</code>.</p>
+</section>
+<section id="why-i-recommend-booktabs" class="level2">
+<h2 class="anchored" data-anchor-id="why-i-recommend-booktabs">Why I recommend <code>booktabs</code></h2>
+<p>Traditional LaTeX tables often look like this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tabular</span>}{|c|c|c|}</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\hline</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>A <span class="op">&amp;</span> B <span class="op">&amp;</span> C <span class="fu">\\</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\hline</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\hline</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tabular</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>There is nothing technically wrong with that.</p>
+<p>But dense vertical and horizontal grid lines make a technical table harder to read, especially when it contains many numerical columns.</p>
+<p>The <code>booktabs</code> package provides</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\toprule</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\midrule</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\bottomrule</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>and the partial rule</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\cmidrule</span>(lr){2-4}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A grouped header can then be written as</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tabular</span>}{lcccccc}</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\toprule</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="op">&amp;</span> <span class="fu">\multicolumn</span>{3}{c}{Biaxial test}</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="op">&amp;</span> <span class="fu">\multicolumn</span>{3}{c}{Uniaxial test} <span class="fu">\\</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">\cmidrule</span>(lr){2-4}</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\cmidrule</span>(lr){5-7}</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>No. <span class="op">&amp;</span> B3 <span class="op">&amp;</span> B6 <span class="op">&amp;</span> B12 <span class="op">&amp;</span> U3 <span class="op">&amp;</span> U6 <span class="op">&amp;</span> U12 <span class="fu">\\</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">\midrule</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="fu">\bottomrule</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tabular</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The result is visually lighter and usually easier to scan.</p>
+<p>For journal papers and books, this would now be my default style unless a publisher explicitly requires grid lines.</p>
+</section>
+<section id="one-issue-in-my-existing-template-hlinewd" class="level2">
+<h2 class="anchored" data-anchor-id="one-issue-in-my-existing-template-hlinewd">One issue in my existing template: <code>\hlinewd</code></h2>
+<p>The template uses commands such as</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\hlinewd</span>{1.5pt}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>to draw a heavier top or bottom rule.</p>
+<p>That command is not defined in the uploaded template itself. The preamble imports my external files <code>zipackage</code>, <code>zicommand</code>, and <code>rgb</code>, so its exact definition must be in one of those files.</p>
+<p>That works well inside my own environment, but it has one disadvantage:</p>
+<blockquote class="blockquote">
+<p>the table is not completely portable by itself.</p>
+</blockquote>
+<p>If I send the table to someone who does not have my private command definitions, <code>\hlinewd</code> may fail.</p>
+<p>For reusable examples and public templates, I would therefore prefer either standard LaTeX commands or <code>booktabs</code>.</p>
+<p>This is an important general principle:</p>
+<blockquote class="blockquote">
+<p><strong>A personal macro is useful when it reduces repeated work. A public example is better when its dependencies are obvious.</strong></p>
+</blockquote>
+</section>
+<section id="do-not-type-units-as-ordinary-text" class="level2">
+<h2 class="anchored" data-anchor-id="do-not-type-units-as-ordinary-text">Do not type units as ordinary text</h2>
+<p>The existing tables include units such as</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$[</span><span class="sc">\rm</span><span class="ss"> MPa]$</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>and</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$</span><span class="sc">\rm</span><span class="ss"> [kg/m^3]$</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This works, but I would modernize it.</p>
+<p>For scientific and engineering documents, I strongly recommend <code>siunitx</code>.</p>
+<p>For example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">siunitx</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then write</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\si</span>{<span class="fu">\mega\pascal</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>or</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\si</span>{<span class="fu">\kilogram\per\cubic\metre</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A column heading becomes</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>Apparent modulus (<span class="fu">\si</span>{<span class="fu">\mega\pascal</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The major advantage is not merely typography.</p>
+<p>It gives one consistent representation of units throughout the entire document.</p>
+<p>If I later decide to change spacing or unit style, the document can be changed systematically rather than editing hundreds of tables manually.</p>
+<p>That is exactly the reason I like LaTeX in the first place.</p>
+</section>
+<section id="siunitx-is-even-more-useful-for-numbers" class="level2">
+<h2 class="anchored" data-anchor-id="siunitx-is-even-more-useful-for-numbers"><code>siunitx</code> is even more useful for numbers</h2>
+<p>Consider a column containing</p>
+<pre class="text"><code>0.36
+1.22
+24.6
+22033</code></pre>
+<p>A normal centered <code>c</code> column centers the character strings.</p>
+<p>It does not understand that these are numbers.</p>
+<p><code>siunitx</code> provides the <code>S</code> column type:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tabular</span>}{l S S S}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The values can then be aligned numerically, including decimal markers.</p>
+<p>For an engineering table, this is a significant improvement.</p>
+<p>Compare:</p>
+<pre class="text"><code>  1.2
+ 12.34
+  0.056</code></pre>
+<p>with numbers aligned at the decimal position.</p>
+<p>The second representation is easier to compare quantitatively because the reader’s eye does not have to reconstruct the place value.</p>
+<p>This is one of the packages I would recommend most strongly for Zi-SEM technical writing.</p>
+</section>
+<section id="makecell-cleaner-multiline-headings" class="level2">
+<h2 class="anchored" data-anchor-id="makecell-cleaner-multiline-headings"><code>makecell</code>: cleaner multiline headings</h2>
+<p>My older tables often use nested tables:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tabular</span>}{c}</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>partially <span class="fu">\\</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>removed</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tabular</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This works, but it is verbose.</p>
+<p>The <code>makecell</code> package gives a simpler alternative:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\makecell</span>{partially <span class="fu">\\</span> removed}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Likewise,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\makecell</span>{apparent modulus<span class="fu">\\</span>(<span class="fu">\si</span>{<span class="fu">\mega\pascal</span>})}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>is easier to read than inserting a miniature <code>tabular</code> environment inside a cell.</p>
+<p>For tables with many multiline headings, <code>makecell</code> noticeably improves source readability.</p>
+</section>
+<section id="array-define-better-column-types" class="level2">
+<h2 class="anchored" data-anchor-id="array-define-better-column-types"><code>array</code>: define better column types</h2>
+<p>The standard column types are</p>
+<pre class="text"><code>l   left
+c   center
+r   right</code></pre>
+<p>Engineering tables often need more control.</p>
+<p>The <code>array</code> package lets us define reusable column types.</p>
+<p>For example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">array</span>}</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\newcolumntype</span>{L}[1]{&gt;{<span class="fu">\raggedright\arraybackslash</span>}p{#1}}</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\newcolumntype</span>{C}[1]{&gt;{<span class="fu">\centering\arraybackslash</span>}p{#1}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tabular</span>}{L{3cm} C{2cm} C{2cm}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>creates fixed-width columns while preserving useful alignment.</p>
+<p>This is particularly helpful for tables containing explanations or long engineering terminology rather than only numbers.</p>
+</section>
+<section id="tabularx-let-one-column-absorb-the-available-width" class="level2">
+<h2 class="anchored" data-anchor-id="tabularx-let-one-column-absorb-the-available-width"><code>tabularx</code>: let one column absorb the available width</h2>
+<p>Sometimes a table contains one description column and several compact numerical columns.</p>
+<p>For example:</p>
+<pre class="text"><code>Failure mode | Description | Load | Displacement</code></pre>
+<p>The description should use whatever horizontal space remains.</p>
+<p><code>tabularx</code> provides the <code>X</code> column:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">tabularx</span>}</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tabularx</span>}{<span class="fu">\textwidth</span>}{l X S S}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>X</code> column expands or contracts automatically to make the table fit <code>\textwidth</code>.</p>
+<p>This is much better than repeatedly guessing widths such as <code>p{7.3cm}</code>.</p>
+</section>
+<section id="longtable-when-the-data-are-longer-than-one-page" class="level2">
+<h2 class="anchored" data-anchor-id="longtable-when-the-data-are-longer-than-one-page"><code>longtable</code>: when the data are longer than one page</h2>
+<p>The flexural-strength example in my template already contains more than thirty data rows.</p>
+<p>For still larger datasets, the ordinary <code>table</code> float cannot break across pages.</p>
+<p>That is where <code>longtable</code> is useful:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">longtable</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>It allows a table to continue over several pages and can repeat the header automatically.</p>
+<p>This is useful for:</p>
+<ul>
+<li>specimen inventories,</li>
+<li>material-property databases,</li>
+<li>parameter studies,</li>
+<li>design tables,</li>
+<li>experimental datasets,</li>
+<li>and appendices.</li>
+</ul>
+<p>I would not use <code>longtable</code> for a table that comfortably fits on one page. But once a table must genuinely span pages, it is the proper tool.</p>
+</section>
+<section id="threeparttable-notes-belong-to-the-table" class="level2">
+<h2 class="anchored" data-anchor-id="threeparttable-notes-belong-to-the-table"><code>threeparttable</code>: notes belong to the table</h2>
+<p>Engineering tables frequently need notes such as:</p>
+<pre class="text"><code>* Mean value from three specimens.
+** Specimen excluded because of instrumentation failure.</code></pre>
+<p>Putting such explanations into the main caption quickly becomes awkward.</p>
+<p>The <code>threeparttable</code> package provides a clean structure:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">threeparttable</span>}</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\caption</span>{Test results.}</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tabular</span>}{...}</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tabular</span>}</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tablenotes</span>}</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="fu">\item</span>[a] Mean of three tests.</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="fu">\item</span>[b] Sensor failure.</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tablenotes</span>}</span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">threeparttable</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This keeps the caption, table, and notes as one semantic unit.</p>
+</section>
+<section id="a-modernized-version-of-the-mix-table" class="level2">
+<h2 class="anchored" data-anchor-id="a-modernized-version-of-the-mix-table">A modernized version of the mix table</h2>
+<p>The original mix-proportion table is structurally good.</p>
+<p>I would keep the same hierarchy but modernize the typography.</p>
+<p>For example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">booktabs</span>}</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">multirow</span>}</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">makecell</span>}</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">siunitx</span>}</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">table</span>}[htbp]</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="fu">\centering</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="fu">\caption</span>{Mix proportions of the concretes.}</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="kw">\label</span>{<span class="ex">tab:mix</span>}</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tabular</span>}{</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  S[table-format=2.0]</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>  S[table-format=3.0]</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>  S[table-format=1.0]</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>  S[table-format=2.1]</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>  *{4}{S[table-format=4.1]}</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>  S[table-format=1.0]</span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>  S[table-format=1.0]</span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a><span class="fu">\toprule</span></span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>{<span class="fu">\multirow</span>{2}{*}{<span class="fu">\makecell</span>{w/c<span class="fu">\\</span>(<span class="fu">\%</span>)}}} <span class="op">&amp;</span></span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>{<span class="fu">\multirow</span>{2}{*}{<span class="fu">\makecell</span>{Slump<span class="fu">\\</span>(<span class="fu">\si</span>{<span class="fu">\milli\metre</span>})}}} <span class="op">&amp;</span></span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>{<span class="fu">\multirow</span>{2}{*}{<span class="fu">\makecell</span>{Air<span class="fu">\\</span>(<span class="fu">\%</span>)}}} <span class="op">&amp;</span></span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>{<span class="fu">\multirow</span>{2}{*}{<span class="fu">\makecell</span>{s/a<span class="fu">\\</span>(<span class="fu">\%</span>)}}} <span class="op">&amp;</span></span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a><span class="fu">\multicolumn</span>{4}{c}{Weight} <span class="op">&amp;</span></span>
+<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a>{<span class="fu">\multirow</span>{2}{*}{SP}} <span class="op">&amp;</span></span>
+<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a>{<span class="fu">\multirow</span>{2}{*}{AE}} <span class="fu">\\</span></span>
+<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a><span class="fu">\cmidrule</span>(lr){5-8}</span>
+<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a><span class="op">&amp;</span> <span class="op">&amp;</span> <span class="op">&amp;</span> <span class="op">&amp;</span></span>
+<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a>{w} <span class="op">&amp;</span> {c} <span class="op">&amp;</span> {s} <span class="op">&amp;</span> {g} <span class="op">&amp;</span> <span class="op">&amp;</span> <span class="fu">\\</span></span>
+<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a><span class="fu">\midrule</span></span>
+<span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a>35 <span class="op">&amp;</span> 120 <span class="op">&amp;</span> 5 <span class="op">&amp;</span> 39.5 <span class="op">&amp;</span> 193.9 <span class="op">&amp;</span> 553.9 <span class="op">&amp;</span> 64.0 <span class="op">&amp;</span> 1036.3 <span class="op">&amp;</span> 0 <span class="op">&amp;</span> 0 <span class="fu">\\</span></span>
+<span id="cb38-33"><a href="#cb38-33" aria-hidden="true" tabindex="-1"></a><span class="fu">\bottomrule</span></span>
+<span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tabular</span>}</span>
+<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">table</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The engineering structure is essentially unchanged.</p>
+<p>What has improved is:</p>
+<ul>
+<li>fewer heavy grid lines,</li>
+<li>clearer grouping,</li>
+<li>explicit unit handling,</li>
+<li>better multiline headings,</li>
+<li>and numerical alignment.</li>
+</ul>
+<p>That is the kind of modernization I would make without changing the information itself.</p>
+</section>
+<section id="a-practical-package-set-for-engineering-tables" class="level2">
+<h2 class="anchored" data-anchor-id="a-practical-package-set-for-engineering-tables">A practical package set for engineering tables</h2>
+<p>For most of my technical documents, I would recommend starting with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">booktabs</span>}</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">multirow</span>}</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">array</span>}</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">tabularx</span>}</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">siunitx</span>}</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">makecell</span>}</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">threeparttable</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>and adding</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">longtable</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>only when multipage tables are needed.</p>
+<p>Their roles are different:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Package</th>
+<th>Main purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>booktabs</code></td>
+<td>high-quality horizontal rules</td>
+</tr>
+<tr class="even">
+<td><code>multirow</code></td>
+<td>cells spanning several rows</td>
+</tr>
+<tr class="odd">
+<td><code>array</code></td>
+<td>custom column definitions</td>
+</tr>
+<tr class="even">
+<td><code>tabularx</code></td>
+<td>automatic width management</td>
+</tr>
+<tr class="odd">
+<td><code>siunitx</code></td>
+<td>units and numerical alignment</td>
+</tr>
+<tr class="even">
+<td><code>makecell</code></td>
+<td>multiline headings and cells</td>
+</tr>
+<tr class="odd">
+<td><code>threeparttable</code></td>
+<td>table notes</td>
+</tr>
+<tr class="even">
+<td><code>longtable</code></td>
+<td>multipage tables</td>
+</tr>
+</tbody>
+</table>
+<p>I would regard <code>booktabs</code>, <code>multirow</code>, and <code>siunitx</code> as the three most valuable additions for engineering work.</p>
+</section>
+<section id="packages-i-would-use-only-when-necessary" class="level2">
+<h2 class="anchored" data-anchor-id="packages-i-would-use-only-when-necessary">Packages I would use only when necessary</h2>
+<p>More packages are not automatically better.</p>
+<p>A complicated preamble eventually becomes another system that has to be maintained.</p>
+<p>For example, colored cells can be useful in presentations or design summaries, and <code>xcolor</code> together with table-color support can do this well. But color should communicate information, not decorate a numerical table.</p>
+<p>Landscape tables can be handled with packages such as <code>pdflscape</code>, but a table that requires landscape orientation may first deserve a structural rethink.</p>
+<p>Likewise, scaling an entire table with</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\resizebox</span>{<span class="fu">\textwidth</span>}{!}{...}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>is convenient, but it should not be the first response to an oversized table. Scaling can make the text unreadably small.</p>
+<p>A better sequence is usually:</p>
+<p><span class="math display">\[
+\boxed{
+\text{simplify}
+\rightarrow
+\text{group}
+\rightarrow
+\text{manage widths}
+\rightarrow
+\text{split if necessary}
+\rightarrow
+\text{scale only as a last resort}
+}
+\]</span></p>
+</section>
+<section id="the-table-should-expose-the-experiment" class="level2">
+<h2 class="anchored" data-anchor-id="the-table-should-expose-the-experiment">The table should expose the experiment</h2>
+<p>There is a deeper reason I prefer structured tables.</p>
+<p>Consider a table with the hierarchy</p>
+<pre class="text"><code>maximum load
+├── specimen 1
+├── specimen 2
+├── specimen 3
+├── average
+└── ratio to reference</code></pre>
+<p>That organization tells the reader how the result was constructed.</p>
+<p>The rows are not independent numbers.</p>
+<p>They belong to a measurement process:</p>
+<p><span class="math display">\[
+\text{individual tests}
+\rightarrow
+\text{summary statistic}
+\rightarrow
+\text{engineering comparison}.
+\]</span></p>
+<p>A good table makes that logic visible before the reader even studies the numbers.</p>
+<p>This is exactly the same principle that applies to equations and figures.</p>
+<p>The presentation should expose the mechanics of the argument rather than hide it.</p>
+</section>
+<section id="why-this-becomes-even-more-useful-with-ai" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-becomes-even-more-useful-with-ai">Why this becomes even more useful with AI</h2>
+<p>Tables are another place where AI and LaTeX fit naturally.</p>
+<p>If the structure is explicit, I can ask an AI to:</p>
+<ul>
+<li>add a new test series,</li>
+<li>convert units,</li>
+<li>compute and insert summary rows,</li>
+<li>reorder groups,</li>
+<li>change a table from grid style to <code>booktabs</code>,</li>
+<li>align numerical columns with <code>siunitx</code>,</li>
+<li>detect inconsistent units,</li>
+<li>or convert a CSV dataset into a LaTeX table.</li>
+</ul>
+<p>Because the result remains plain text, every change can still be inspected with Git.</p>
+<p>This is very different from asking an AI to manipulate a visually formatted table whose underlying structure is hidden inside a binary document.</p>
+<p>Again, the key principle is the same:</p>
+<blockquote class="blockquote">
+<p><strong>AI becomes more useful when the document structure is explicit.</strong></p>
+</blockquote>
+</section>
+<section id="my-preferred-table-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="my-preferred-table-workflow">My preferred table workflow</h2>
+<p>For a new engineering table, I would now use the following reasoning.</p>
+<p>First ask:</p>
+<blockquote class="blockquote">
+<p>What is the hierarchy of the data?</p>
+</blockquote>
+<p>Then decide which cells are groups and which are individual measurements.</p>
+<p>Use <code>\multicolumn</code> for horizontal grouping and <code>\multirow</code> for vertical grouping.</p>
+<p>Use <code>booktabs</code> to separate logical regions rather than drawing a box around every cell.</p>
+<p>Use <code>siunitx</code> whenever the table contains physical units or columns of numbers.</p>
+<p>Use <code>makecell</code> for compact multiline headings.</p>
+<p>Use <code>tabularx</code> when text columns must adapt to the page width.</p>
+<p>Use <code>longtable</code> only when the table genuinely extends across pages.</p>
+<p>And before adding another package, ask whether the difficulty comes from LaTeX or from the structure of the table itself.</p>
+<p>A complicated table often becomes much easier once the engineering hierarchy is made explicit.</p>
+<p>That is the real advantage of LaTeX.</p>
+<p>It does not merely draw the table.</p>
+<p>It lets us describe <strong>what the table means</strong>.</p>
+</section>
+<section id="source-example" class="level2">
+<h2 class="anchored" data-anchor-id="source-example">Source example</h2>
+<p>The examples discussed here are taken from my working LaTeX template, which uses <code>tabular</code>, <code>\multicolumn</code>, <code>\multirow</code>, <code>\cline</code>, nested <code>tabular</code> cells, and a custom <code>\hlinewd</code> command in several engineering-table examples. The template also loads my own external package and command files, so some personal macros are intentionally defined outside the template itself.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

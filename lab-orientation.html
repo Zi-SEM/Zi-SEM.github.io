@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lab Orientation – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./research.html"> 
+<span class="menu-text">Research Explained</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./z-diagram.html"> 
+<span class="menu-text">Z-Diagram</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./latex-writing.html"> 
+<span class="menu-text">LaTeX &amp; Writing</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="./about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#structural-engineering-and-mechanics-laboratory" id="toc-structural-engineering-and-mechanics-laboratory" class="nav-link active" data-scroll-target="#structural-engineering-and-mechanics-laboratory">Structural Engineering and Mechanics Laboratory</a>
+  <ul class="collapse">
+  <li><a href="#our-research-areas" id="toc-our-research-areas" class="nav-link" data-scroll-target="#our-research-areas">Our Research Areas</a>
+  <ul class="collapse">
+  <li><a href="#offshore-structures-and-offshore-wind" id="toc-offshore-structures-and-offshore-wind" class="nav-link" data-scroll-target="#offshore-structures-and-offshore-wind">Offshore Structures and Offshore Wind</a></li>
+  <li><a href="#digital-transformation-of-construction-standards" id="toc-digital-transformation-of-construction-standards" class="nav-link" data-scroll-target="#digital-transformation-of-construction-standards">Digital Transformation of Construction Standards</a></li>
+  <li><a href="#concrete-materials-and-deterioration" id="toc-concrete-materials-and-deterioration" class="nav-link" data-scroll-target="#concrete-materials-and-deterioration">Concrete, Materials, and Deterioration</a></li>
+  <li><a href="#computational-mechanics-and-fracture" id="toc-computational-mechanics-and-fracture" class="nav-link" data-scroll-target="#computational-mechanics-and-fracture">Computational Mechanics and Fracture</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#what-is-research" id="toc-what-is-research" class="nav-link" data-scroll-target="#what-is-research">What Is Research?</a>
+  <ul class="collapse">
+  <li><a href="#the-crow-and-the-pitcher" id="toc-the-crow-and-the-pitcher" class="nav-link" data-scroll-target="#the-crow-and-the-pitcher">The Crow and the Pitcher</a></li>
+  </ul></li>
+  <li><a href="#the-researcher-above-and-below-the-waterline" id="toc-the-researcher-above-and-below-the-waterline" class="nav-link" data-scroll-target="#the-researcher-above-and-below-the-waterline">The Researcher Above and Below the Waterline</a></li>
+  <li><a href="#build-a-strong-foundation" id="toc-build-a-strong-foundation" class="nav-link" data-scroll-target="#build-a-strong-foundation">Build a Strong Foundation</a>
+  <ul class="collapse">
+  <li><a href="#see-problems-through-mechanics" id="toc-see-problems-through-mechanics" class="nav-link" data-scroll-target="#see-problems-through-mechanics">See Problems Through Mechanics</a></li>
+  <li><a href="#read-papers-and-books" id="toc-read-papers-and-books" class="nav-link" data-scroll-target="#read-papers-and-books">Read Papers and Books</a></li>
+  <li><a href="#learn-from-other-people" id="toc-learn-from-other-people" class="nav-link" data-scroll-target="#learn-from-other-people">Learn from Other People</a></li>
+  </ul></li>
+  <li><a href="#learn-the-toolsbut-do-not-confuse-tools-with-research" id="toc-learn-the-toolsbut-do-not-confuse-tools-with-research" class="nav-link" data-scroll-target="#learn-the-toolsbut-do-not-confuse-tools-with-research">Learn the Tools—but Do Not Confuse Tools with Research</a></li>
+  <li><a href="#work-efficiently" id="toc-work-efficiently" class="nav-link" data-scroll-target="#work-efficiently">Work Efficiently</a></li>
+  <li><a href="#protect-your-research" id="toc-protect-your-research" class="nav-link" data-scroll-target="#protect-your-research">Protect Your Research</a>
+  <ul class="collapse">
+  <li><a href="#file-naming-keep-the-current-file-number-free" id="toc-file-naming-keep-the-current-file-number-free" class="nav-link" data-scroll-target="#file-naming-keep-the-current-file-number-free">File Naming: Keep the Current File Number-Free</a>
+  <ul class="collapse">
+  <li><a href="#why-not-use-final" id="toc-why-not-use-final" class="nav-link" data-scroll-target="#why-not-use-final">Why not use <code>final</code>?</a></li>
+  <li><a href="#why-stable-filenames-matter-in-a-large-project" id="toc-why-stable-filenames-matter-in-a-large-project" class="nav-link" data-scroll-target="#why-stable-filenames-matter-in-a-large-project">Why stable filenames matter in a large project</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#take-ownership-of-your-project" id="toc-take-ownership-of-your-project" class="nav-link" data-scroll-target="#take-ownership-of-your-project">Take Ownership of Your Project</a>
+  <ul class="collapse">
+  <li><a href="#manage-your-time" id="toc-manage-your-time" class="nav-link" data-scroll-target="#manage-your-time">Manage Your Time</a></li>
+  </ul></li>
+  <li><a href="#working-as-a-laboratory" id="toc-working-as-a-laboratory" class="nav-link" data-scroll-target="#working-as-a-laboratory">Working as a Laboratory</a>
+  <ul class="collapse">
+  <li><a href="#lab-manager" id="toc-lab-manager" class="nav-link" data-scroll-target="#lab-manager">Lab Manager</a></li>
+  <li><a href="#collaboration" id="toc-collaboration" class="nav-link" data-scroll-target="#collaboration">Collaboration</a></li>
+  </ul></li>
+  <li><a href="#writing-is-part-of-research" id="toc-writing-is-part-of-research" class="nav-link" data-scroll-target="#writing-is-part-of-research">Writing Is Part of Research</a></li>
+  <li><a href="#authorship-means-contribution-and-responsibility" id="toc-authorship-means-contribution-and-responsibility" class="nav-link" data-scroll-target="#authorship-means-contribution-and-responsibility">Authorship Means Contribution and Responsibility</a></li>
+  <li><a href="#research-support-and-responsibilities" id="toc-research-support-and-responsibilities" class="nav-link" data-scroll-target="#research-support-and-responsibilities">Research Support and Responsibilities</a></li>
+  <li><a href="#joining-sem-lab" id="toc-joining-sem-lab" class="nav-link" data-scroll-target="#joining-sem-lab">Joining SEM Lab</a></li>
+  <li><a href="#the-principle-to-remember" id="toc-the-principle-to-remember" class="nav-link" data-scroll-target="#the-principle-to-remember">The Principle to Remember</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab Orientation</h1>
+<p class="subtitle lead">How We Do Research in the Structural Engineering and Mechanics Laboratory</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="structural-engineering-and-mechanics-laboratory" class="level1">
+<h1>Structural Engineering and Mechanics Laboratory</h1>
+<p>The <strong>Structural Engineering and Mechanics Laboratory (SEM Lab)</strong> at Korea University applies <strong>applied mechanics</strong> to the development and analysis of structural systems across different length scales.</p>
+<p>The structural system of interest may therefore range from a complete structure to a structural member and further down to the material scale:</p>
+<p><span class="math display">\[
+\text{Structures}
+\;\longleftrightarrow\;
+\text{Members}
+\;\longleftrightarrow\;
+\text{Materials}.
+\]</span></p>
+<p>The scale changes, but the central habit of thought remains the same: <strong>understand the mechanics governing the system before relying on a computational or experimental result.</strong></p>
+<p>Our current research is organized around four major areas.</p>
+<section id="our-research-areas" class="level2">
+<h2 class="anchored" data-anchor-id="our-research-areas">Our Research Areas</h2>
+<section id="offshore-structures-and-offshore-wind" class="level3">
+<h3 class="anchored" data-anchor-id="offshore-structures-and-offshore-wind">Offshore Structures and Offshore Wind</h3>
+<p>We study <strong>fixed and floating offshore wind energy substructures</strong>, with particular emphasis on structural analysis, transportation and installation (T&amp;I), and the development of new structural concepts.</p>
+<p>Our interest is not limited to analyzing existing structural types. An important objective is to develop <strong>new and potentially revolutionary structural systems</strong> that respond to the engineering challenges of offshore wind energy. This requires us to consider structural mechanics together with hydrodynamics, foundations, mooring systems, fabrication, transportation, installation, and operation. We use various computational and experimental tools depending on the engineering problem rather than relying on a single analysis platform.</p>
+<p>Our work is also closely connected to the development of engineering practice in Korea. Prof.&nbsp;Goangseup Zi leads a specialized committee of the <strong>Korean Society of Civil Engineers (KSCE)</strong> for offshore wind energy and plants and has served as a principal author of Korean design and construction guidelines for offshore wind energy substructures. This interaction between research and engineering standards helps us identify problems that matter not only academically but also in actual design and construction.</p>
+<p>For us, offshore wind engineering is therefore more than the analysis of structures under environmental loads. It connects <strong>mechanics, structural innovation, analysis, construction, and engineering practice</strong>.</p>
+</section>
+<section id="digital-transformation-of-construction-standards" class="level3">
+<h3 class="anchored" data-anchor-id="digital-transformation-of-construction-standards">Digital Transformation of Construction Standards</h3>
+<p>The <strong>digital transformation of design and construction standards</strong> is becoming increasingly important as engineering enters the AI era.</p>
+<p>Conventional standards are primarily documents written for human readers. AI and computational engineering systems, however, require engineering requirements to be represented in forms that machines can retrieve, interpret, and apply reliably. Our research therefore investigates how conventional design and construction standards can be transformed into <strong>structured, machine-accessible engineering knowledge</strong> while preserving the documents required by human engineers.</p>
+<p>A central objective is to build standard-code data that allows AI to reach the correct engineering requirements <strong>without relying on unsupported generation or hallucination</strong>. In our work, we have developed structured standard-code data and an AI-accessible framework designed to provide deterministic access to the applicable provisions. The goal is not simply to ask a language model to read a standard, but to construct an information architecture in which the AI is guided to the authoritative engineering requirement.</p>
+<p>This provides a foundation for <strong>Automatic Compliance Check (ACC)</strong>, BIM-based design checking, engineering knowledge retrieval, and ultimately AI-assisted design and optimization.</p>
+<p>Our work in this area is part of a broader <strong>AX (AI Transformation)</strong> direction and is closely aligned with the digital transformation objectives of the Korean <strong>Ministry of Land, Infrastructure and Transport (MOLIT)</strong>.</p>
+<p>The broader engineering question is:</p>
+<blockquote class="blockquote">
+<p><strong>How can engineering knowledge written for humans be transformed so that both engineers and AI can use the same authoritative standards reliably?</strong></p>
+</blockquote>
+</section>
+<section id="concrete-materials-and-deterioration" class="level3">
+<h3 class="anchored" data-anchor-id="concrete-materials-and-deterioration">Concrete, Materials, and Deterioration</h3>
+<p>Our current research focuses on the <strong>combined deterioration of concrete and concrete structures</strong>.</p>
+<p>Concrete deterioration is rarely governed by a single isolated mechanism. Transport of moisture and aggressive substances, chemical reactions, changes in microstructure, mechanical damage, and cracking interact with one another. Damage may alter transport properties, which can accelerate further chemical or physical deterioration. The problem is therefore inherently coupled.</p>
+<p>We develop <strong>chemo-mechanical and computational models</strong> for quantitatively describing these interactions. Particular interests include transport and reaction processes, microstructural evolution, damage and cracking, and the mechanics associated with environmental deterioration such as carbonation.</p>
+<p>Experimental and material research complements this theoretical work. We have investigated high-performance concrete incorporating waste materials such as waste glass, including materials intended to improve resistance to aggressive environments involving deicing salts. Connecting material-scale observations with structural-scale deterioration is an important part of this research direction.</p>
+<p>The laboratory has also conducted earlier research on topics such as the <strong>biaxial strength of concrete</strong>. That work forms part of our research history rather than our present principal research direction.</p>
+<p>Our current emphasis is broader:</p>
+<blockquote class="blockquote">
+<p><strong>How do interacting chemical, transport, material, and mechanical processes determine the long-term performance of concrete structures?</strong></p>
+</blockquote>
+</section>
+<section id="computational-mechanics-and-fracture" class="level3">
+<h3 class="anchored" data-anchor-id="computational-mechanics-and-fracture">Computational Mechanics and Fracture</h3>
+<p>Computational mechanics provides methods for studying structural and material behavior that cannot be understood adequately through simple closed-form models alone.</p>
+<p>Our research has included fracture and damage mechanics, nonlinear analysis, enriched finite-element and meshfree methods, multiple-crack representation, and numerical methods for structural systems. These methods have been applied across different length scales, from material fracture to large structural systems.</p>
+<p>The objective, however, is not merely to make a numerical model more sophisticated. A computational model should contain the mechanics necessary to explain the phenomenon while remaining interpretable, verifiable, and computationally meaningful.</p>
+<p>This leads to a principle that applies throughout our computational research:</p>
+<blockquote class="blockquote">
+<p><strong>Use computation to reveal mechanics, not to hide it.</strong></p>
+</blockquote>
+</section>
+</section>
+</section>
+<section id="what-is-research" class="level1">
+<h1>What Is Research?</h1>
+<p>Research is not simply the production of papers, graphs, simulations, or experimental data. It is a repeated process of asking a meaningful question, finding what is already known, constructing an explanation or model, testing it, learning from failure, and communicating what has been learned.</p>
+<p>A useful way to think about research is as a cycle:</p>
+<p><span class="math display">\[
+\text{Question}
+\rightarrow
+\text{Study}
+\rightarrow
+\text{Model or Experiment}
+\rightarrow
+\text{Evidence}
+\rightarrow
+\text{Interpretation}
+\rightarrow
+\text{New Question}.
+\]</span></p>
+<p>The cycle rarely proceeds perfectly in one direction. Results force us to reconsider assumptions. Experiments expose weaknesses in models. Computations reveal questions that were not obvious at the beginning.</p>
+<section id="the-crow-and-the-pitcher" class="level2">
+<h2 class="anchored" data-anchor-id="the-crow-and-the-pitcher">The Crow and the Pitcher</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lab-orientation/Fig01.png" class="img-fluid figure-img" style="width:85.0%"></p>
+<figcaption><strong>The crow and the pitcher as a metaphor for research.</strong> The point is not to memorize the crow’s solution, but to learn how to transform an inaccessible problem into one that can be solved.</figcaption>
+</figure>
+</div>
+<p>A long-standing metaphor in our lab orientation is <strong>the crow and the pitcher</strong>. The crow cannot simply reach the water. It changes the problem by repeatedly dropping stones into the pitcher until the water rises.</p>
+<p>The lesson is not the particular trick used by the crow. The important lesson is that a researcher must learn how to <strong>change an apparently inaccessible problem into one that can be solved</strong>.</p>
+<p>A student may initially want to learn the final trick from an experienced researcher. Research training is different. The objective is to develop the ability to find the trick independently.</p>
+</section>
+</section>
+<section id="the-researcher-above-and-below-the-waterline" class="level1">
+<h1>The Researcher Above and Below the Waterline</h1>
+<p>Successful researchers are often seen through their visible achievements: papers, citations, expertise, confidence, leadership, and recognition.</p>
+<p>Much of the work that creates those achievements is invisible. It includes reading, programming, experiments, failed calculations, data processing, figure preparation, proposals, documentation, communication, learning small technical skills, and sometimes pursuing an approach that ultimately produces no publishable result.</p>
+<p>This is the <strong>iceberg of research</strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lab-orientation/Fig02.png" class="img-fluid figure-img" style="width:85.0%"></p>
+<figcaption><strong>The research iceberg.</strong> Visible achievements rest on a much larger body of reading, repeated work, failed attempts, technical skills, proposals, communication, and sustained thinking.</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p><strong>Research competence is built mostly below the waterline.</strong></p>
+</blockquote>
+<p>Do not judge the value of a day only by whether it produced a final result. At the same time, invisible effort must gradually accumulate into understanding, reproducible evidence, and useful research output.</p>
+</section>
+<section id="build-a-strong-foundation" class="level1">
+<h1>Build a Strong Foundation</h1>
+<section id="see-problems-through-mechanics" class="level2">
+<h2 class="anchored" data-anchor-id="see-problems-through-mechanics">See Problems Through Mechanics</h2>
+<p>A central principle of SEM Lab is simple:</p>
+<blockquote class="blockquote">
+<p><strong>Try to see every engineering problem through mechanics first.</strong></p>
+</blockquote>
+<p>Strengthen your foundation in structural mechanics, mechanics of materials, continuum mechanics, elasticity, dynamics, fracture, and the mathematical tools required by your research.</p>
+<p>Software can calculate a result. Mechanics helps you decide whether the result is plausible.</p>
+<p>When you encounter an unfamiliar problem, ask questions such as:</p>
+<ul>
+<li>What are the relevant forces and boundary conditions?</li>
+<li>What must satisfy equilibrium?</li>
+<li>What deformation is kinematically possible?</li>
+<li>What constitutive behavior connects stress and strain?</li>
+<li>Where is energy stored, dissipated, or transferred?</li>
+<li>What length and time scales govern the phenomenon?</li>
+</ul>
+<p>These questions remain useful whether the problem involves a concrete microstructure, a propagating crack, an offshore wind substructure, or a digital engineering model.</p>
+</section>
+<section id="read-papers-and-books" class="level2">
+<h2 class="anchored" data-anchor-id="read-papers-and-books">Read Papers and Books</h2>
+<p>Reading cannot be replaced by searching for isolated answers. Papers show how current research questions are framed; books provide the deeper structure that individual papers often assume.</p>
+<p>Make reading a routine part of research rather than something done only when an immediate problem appears.</p>
+</section>
+<section id="learn-from-other-people" class="level2">
+<h2 class="anchored" data-anchor-id="learn-from-other-people">Learn from Other People</h2>
+<p>Talk to researchers in your own field and in other fields. A useful idea often arrives from a person who approaches the same problem from a different direction.</p>
+<p>Your teachers are not limited to your advisor or your university.</p>
+</section>
+</section>
+<section id="learn-the-toolsbut-do-not-confuse-tools-with-research" class="level1">
+<h1>Learn the Tools—but Do Not Confuse Tools with Research</h1>
+<p>Research requires many tools: writing, data processing, experiments, literature search, drawing, communication, programming, simulation, idea development, and data management.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lab-orientation/Fig03.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption><strong>Research requires a system of tools.</strong> The particular software changes with time, but effective research depends on combining communication, writing, data processing, simulation, programming, experiments, searching, drawing, ideas, and backup.</figcaption>
+</figure>
+</div>
+<p>Become competent with them. More importantly, learn to select and combine them efficiently.</p>
+<blockquote class="blockquote">
+<p><strong>Tools make research possible. They do not decide what question is worth asking.</strong></p>
+</blockquote>
+<p>A sophisticated simulation cannot rescue a poorly posed research question, and a large dataset cannot replace physical interpretation.</p>
+</section>
+<section id="work-efficiently" class="level1">
+<h1>Work Efficiently</h1>
+<p>Research contains a surprising amount of repetitive work. Reduce unnecessary repetition whenever possible.</p>
+<p>Use scripts, functions, macros, reusable plotting routines, document templates, and automated workflows. Plan the order of tasks before starting them. Collaborate when collaboration genuinely reduces duplication or brings complementary expertise.</p>
+<p>A traditional phrase in our lab orientation was:</p>
+<blockquote class="blockquote">
+<p><strong>Use your nut, not the muscle.</strong></p>
+</blockquote>
+<p>The tools have changed—from office macros and spreadsheet functions to Python, Git, LaTeX, automated pipelines, and AI—but the principle has not. <strong>Do not repeatedly perform by hand what can be made systematic and reproducible.</strong></p>
+<p>Templates developed in the laboratory should be shared when they can save other members time. If you improve a common tool or template, make the improvement reusable by the next person.</p>
+</section>
+<section id="protect-your-research" class="level1">
+<h1>Protect Your Research</h1>
+<p>Research data are difficult or impossible to recreate once lost. Protect them accordingly.</p>
+<p>Keep multiple backups of important research material. Separate original data from processed data. Preserve the information required to reproduce figures and conclusions. Do not casually delete shared or server data.</p>
+<p>A useful modern project structure is, for example:</p>
+<pre class="text"><code>project-name/
+├── README.md
+├── references/
+├── data/
+│   ├── raw/
+│   └── processed/
+├── code/
+├── experiments/
+├── models/
+├── figures/
+├── presentations/
+└── papers/</code></pre>
+<p>The exact folders depend on the project. The principle is more important than the names: <strong>someone—including your future self—should be able to understand what the files mean.</strong></p>
+<p>Keep a short README or equivalent note in a project folder describing its purpose, important files, assumptions, and current status.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lab-orientation/Fig04.png" class="img-fluid figure-img" style="width:85.0%"></p>
+<figcaption><strong>An earlier SEM Lab directory-organization scheme.</strong> The specific folder names may evolve, but references, proposals, projects, presentations, papers, code, and experiments should remain organized so that the logic of the work is visible.</figcaption>
+</figure>
+</div>
+<section id="file-naming-keep-the-current-file-number-free" class="level2">
+<h2 class="anchored" data-anchor-id="file-naming-keep-the-current-file-number-free">File Naming: Keep the Current File Number-Free</h2>
+<p>For files that are revised repeatedly, SEM Lab has traditionally used one simple rule:</p>
+<blockquote class="blockquote">
+<p><strong>The current file keeps the base name. Older versions receive numbers.</strong></p>
+</blockquote>
+<p>For example, if the working file is <code>FRPsheet.xls</code>, the first revision does <strong>not</strong> become <code>FRPsheet1.xls</code>. Instead, the old <code>FRPsheet.xls</code> is archived as <code>FRPsheet1.xls</code>, and the new current file again takes the name <code>FRPsheet.xls</code>. The same operation is repeated at every revision.</p>
+<pre class="text"><code>Current:
+FRPsheet.xls
+
+After one revision:
+FRPsheet1.xls   &lt;- previous version
+FRPsheet.xls    &lt;- current version
+
+After three revisions:
+FRPsheet1.xls
+FRPsheet2.xls
+FRPsheet3.xls   &lt;- most recent version before the current one
+FRPsheet.xls    &lt;- current version</code></pre>
+<p>The numbering therefore belongs to the <strong>history</strong>, not to the current file. At any time, the file without a number is the file to use now, while the file with the highest number is the version immediately preceding it.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lab-orientation/Fig05.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption><strong>SEM Lab file-naming convention.</strong> The current working file always keeps the base filename without a number. Before it is revised, the existing current file is archived with the next number. The highest numbered file is therefore the most recent version immediately before the current file.</figcaption>
+</figure>
+</div>
+<section id="why-not-use-final" class="level3">
+<h3 class="anchored" data-anchor-id="why-not-use-final">Why not use <code>final</code>?</h3>
+<p>A common alternative eventually produces names such as:</p>
+<pre class="text"><code>FRPsheet-final.xls
+FRPsheet-final-real.xls
+FRPsheet-final-realfinal.xls
+FRPsheet-final-last.xls</code></pre>
+<p>Such names become ambiguous because words such as <em>final</em> no longer tell us which file is actually current or which one immediately preceded it. The number-free-current convention answers both questions immediately:</p>
+<pre class="text"><code>FRPsheet.xls     = use this file now
+FRPsheet3.xls    = the immediately previous version</code></pre>
+</section>
+<section id="why-stable-filenames-matter-in-a-large-project" class="level3">
+<h3 class="anchored" data-anchor-id="why-stable-filenames-matter-in-a-large-project">Why stable filenames matter in a large project</h3>
+<p>The convention becomes especially useful when many files form one working system. A LaTeX project, for example, may contain:</p>
+<pre class="text"><code>paper.tex
+commands.tex
+tables.tex
+references.bib</code></pre>
+<p>and a program may contain:</p>
+<pre class="text"><code>main.py
+solver.py
+material.py
+postprocess.py</code></pre>
+<p>These files refer to one another. If the name of the current file changes every time it is revised, references, imports, scripts, build commands, or other dependent files may also have to be changed. Keeping the live filename stable avoids this unnecessary propagation of version information through the project.</p>
+<p>For example, a LaTeX master file can always contain:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\input</span>{commands.tex}</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\input</span>{tables.tex}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>regardless of how many historical copies of <code>commands.tex</code> or <code>tables.tex</code> have accumulated. Similarly, a program can continue to import <code>solver.py</code> because <code>solver.py</code> always means <strong>the version currently used by the project</strong>.</p>
+<p>The underlying distinction is simple:</p>
+<pre class="text"><code>base filename      -&gt; functional identity: what the project uses now
+numbered filename  -&gt; historical identity: where an old version sits in the history</code></pre>
+<p>This convention is particularly useful for spreadsheets, CAD files, presentations, proprietary engineering files, and other files for which explicit archived copies are convenient. Git provides a more powerful history for source code and text-based documents, but the same design principle remains valuable: <strong>the working project should refer to stable current filenames rather than filenames that encode temporary ideas such as <code>final</code> or <code>real-final</code>.</strong></p>
+<blockquote class="blockquote">
+<p><strong>Keep the current filename stable. Put version information on the old files, not on the file the project currently uses.</strong></p>
+</blockquote>
+<p>Backups and version history solve different problems. Important research work may need both.</p>
+<blockquote class="blockquote">
+<p><strong>If a result cannot be reconstructed, it is not yet a reliable research result.</strong></p>
+</blockquote>
+</section>
+</section>
+</section>
+<section id="take-ownership-of-your-project" class="level1">
+<h1>Take Ownership of Your Project</h1>
+<p>The general principle of project assignment in SEM Lab is that a student should progressively become capable of working independently on an assigned research problem. Large projects may naturally require several researchers.</p>
+<p>Receiving a project means accepting responsibility for understanding it, planning the work, reporting problems, and moving it forward. Project assignments may change when the research direction changes, when another project better matches a student’s background, or when responsibilities need to be reorganized.</p>
+<p>Your advisor can define a direction, challenge an assumption, suggest a method, or help remove an obstacle. The intellectual ownership of your research should nevertheless increase as you develop.</p>
+<blockquote class="blockquote">
+<p><strong>Take ownership of the problem, not merely ownership of the assigned task.</strong></p>
+</blockquote>
+<section id="manage-your-time" class="level2">
+<h2 class="anchored" data-anchor-id="manage-your-time">Manage Your Time</h2>
+<p>Set aside protected time for research. Meetings, classes, administrative tasks, and deadlines will naturally fill a calendar. Research requiring concentrated thought rarely appears automatically in the remaining gaps.</p>
+<p>Maintain a reliable and professional working routine, but judge research commitment by sustained intellectual engagement and responsibility rather than by visible busyness alone.</p>
+<p>When you do not know something, saying so is appropriate—but it should normally be followed by investigation:</p>
+<blockquote class="blockquote">
+<p><strong>I do not know yet. I will find out.</strong></p>
+</blockquote>
+</section>
+</section>
+<section id="working-as-a-laboratory" class="level1">
+<h1>Working as a Laboratory</h1>
+<p>A laboratory also has shared work: maintaining common resources, organizing activities, communicating project information, and solving practical problems that do not belong to a single paper or thesis.</p>
+<section id="lab-manager" class="level2">
+<h2 class="anchored" data-anchor-id="lab-manager">Lab Manager</h2>
+<p>The lab manager coordinates shared laboratory responsibilities and distributes common tasks when necessary. This role does not have to belong to the most senior student.</p>
+<p>Because coordination itself requires substantial time, other members should respect the role and avoid unnecessarily increasing the manager’s workload. A well-functioning laboratory depends on members completing shared responsibilities reliably rather than leaving coordination to one person.</p>
+</section>
+<section id="collaboration" class="level2">
+<h2 class="anchored" data-anchor-id="collaboration">Collaboration</h2>
+<p>Help other members when your knowledge can save them unnecessary effort, and document solutions that are likely to be needed again.</p>
+<p>At the same time, collaboration does not mean transferring intellectual responsibility for your own research to someone else. Learn from others, but understand your own models, data, assumptions, and conclusions.</p>
+</section>
+</section>
+<section id="writing-is-part-of-research" class="level1">
+<h1>Writing Is Part of Research</h1>
+<p>Research is not complete when the computation finishes or the experiment ends. The result must be interpreted and communicated.</p>
+<p>A long-standing principle in our lab orientation is:</p>
+<blockquote class="blockquote">
+<p><strong>Publishing is the final step of research.</strong></p>
+</blockquote>
+<p>Writing forces you to identify the actual question, distinguish evidence from interpretation, expose missing logic, and decide what the result contributes.</p>
+<p>Develop the ability to write technical material independently in English. Advisors and collaborators can improve a manuscript, but they should not substitute for the researcher’s responsibility to explain the work.</p>
+<p>A useful paper should allow the reader to understand:</p>
+<ol type="1">
+<li>What engineering question was asked?</li>
+<li>Why does it matter?</li>
+<li>What was done to answer it?</li>
+<li>What evidence was obtained?</li>
+<li>Why does the result make engineering sense?</li>
+<li>What can and cannot be concluded from it?</li>
+</ol>
+</section>
+<section id="authorship-means-contribution-and-responsibility" class="level1">
+<h1>Authorship Means Contribution and Responsibility</h1>
+<p>Authorship is not automatically earned by being associated with a project. It should reflect substantial contribution to the intellectual content or execution of the research and responsibility for the resulting publication.</p>
+<p>The first author normally plays a leading role in the work and makes a major contribution to developing the paper and writing it. Corresponding authorship reflects responsibility for the research and publication process and is determined according to the actual research and supervisory roles.</p>
+<blockquote class="blockquote">
+<p><strong>Authorship reflects contribution and responsibility—not simply participation.</strong></p>
+</blockquote>
+<p>Specific authorship decisions should be discussed early when several researchers contribute to the same work.</p>
+</section>
+<section id="research-support-and-responsibilities" class="level1">
+<h1>Research Support and Responsibilities</h1>
+<p>Student support may come from funded research projects, teaching-assistant positions, scholarships, or other university arrangements. The available form and level of support can vary with projects, responsibilities, funding conditions, and university policies.</p>
+<p>Students participating in funded research are expected to contribute meaningfully to the objectives and responsibilities of the project. Teaching assistants likewise have responsibilities associated with supporting undergraduate education.</p>
+</section>
+<section id="joining-sem-lab" class="level1">
+<h1>Joining SEM Lab</h1>
+<p>Capable and motivated students and researchers are essential to all of these activities. SEM Lab is open to people who are interested in developing the ability to understand engineering problems deeply and contribute to research responsibly.</p>
+<p>Our four principal research areas are:</p>
+<ul>
+<li><strong>Offshore Structures and Offshore Wind</strong></li>
+<li><strong>Digital Transformation of Construction Standards</strong></li>
+<li><strong>Concrete, Materials, and Deterioration</strong></li>
+<li><strong>Computational Mechanics and Fracture</strong></li>
+</ul>
+<p>If you are interested in joining or working with the laboratory, please contact <strong>Goangseup Zi</strong> at <a href="mailto:g-zi@korea.ac.kr">g-zi@korea.ac.kr</a>.</p>
+<p>More information about the laboratory is available at the <a href="https://structure.korea.ac.kr">Structural Engineering and Mechanics Laboratory website</a>.</p>
+</section>
+<section id="the-principle-to-remember" class="level1">
+<h1>The Principle to Remember</h1>
+<p>Many details in this orientation will change as tools, projects, and research topics evolve. The underlying research habits should remain useful.</p>
+<blockquote class="blockquote">
+<p><strong>Learn the mechanics. Own the problem. Use the tools well. Protect your work. Explain why the result makes engineering sense.</strong></p>
+</blockquote>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

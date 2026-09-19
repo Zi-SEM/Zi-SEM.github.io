@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Goangseup Zi">
+<meta name="dcterms.date" content="2026-09-02">
+<meta name="description" content="How a collaboration between structural mechanics and chemical engineering led to a simple principle for stretchable devices: protect fragile functional components by controlling where deformation occurs.">
+
+<title>How Can Rigid Electronics Become Stretchable? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research Explained</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../z-diagram.html"> 
+<span class="menu-text">Z-Diagram</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../latex-writing.html"> 
+<span class="menu-text">LaTeX &amp; Writing</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#the-mechanics-problem-behind-stretchable-electronics" id="toc-the-mechanics-problem-behind-stretchable-electronics" class="nav-link active" data-scroll-target="#the-mechanics-problem-behind-stretchable-electronics">The mechanics problem behind stretchable electronics</a></li>
+  <li><a href="#stretchability-does-not-mean-that-everything-stretches" id="toc-stretchability-does-not-mean-that-everything-stretches" class="nav-link" data-scroll-target="#stretchability-does-not-mean-that-everything-stretches">Stretchability does not mean that everything stretches</a></li>
+  <li><a href="#our-first-approach-let-geometry-take-the-deformation" id="toc-our-first-approach-let-geometry-take-the-deformation" class="nav-link" data-scroll-target="#our-first-approach-let-geometry-take-the-deformation">Our first approach: let geometry take the deformation</a></li>
+  <li><a href="#global-deformation-and-local-strain-are-different-quantities" id="toc-global-deformation-and-local-strain-are-different-quantities" class="nav-link" data-scroll-target="#global-deformation-and-local-strain-are-different-quantities">Global deformation and local strain are different quantities</a></li>
+  <li><a href="#then-we-changed-the-question" id="toc-then-we-changed-the-question" class="nav-link" data-scroll-target="#then-we-changed-the-question">Then we changed the question</a></li>
+  <li><a href="#why-stiffness-contrast-redirects-deformation" id="toc-why-stiffness-contrast-redirects-deformation" class="nav-link" data-scroll-target="#why-stiffness-contrast-redirects-deformation">Why stiffness contrast redirects deformation</a></li>
+  <li><a href="#finite-element-analysis-showed-where-the-strain-went" id="toc-finite-element-analysis-showed-where-the-strain-went" class="nav-link" data-scroll-target="#finite-element-analysis-showed-where-the-strain-went">Finite element analysis showed where the strain went</a></li>
+  <li><a href="#in-this-problem-strain-concentration-can-be-desirable" id="toc-in-this-problem-strain-concentration-can-be-desirable" class="nav-link" data-scroll-target="#in-this-problem-strain-concentration-can-be-desirable">In this problem, strain concentration can be desirable</a></li>
+  <li><a href="#protect-the-device-by-sacrificing-deformation-elsewhere" id="toc-protect-the-device-by-sacrificing-deformation-elsewhere" class="nav-link" data-scroll-target="#protect-the-device-by-sacrificing-deformation-elsewhere">Protect the device by sacrificing deformation elsewhere</a></li>
+  <li><a href="#the-idea-became-more-extreme" id="toc-the-idea-became-more-extreme" class="nav-link" data-scroll-target="#the-idea-became-more-extreme">The idea became more extreme</a></li>
+  <li><a href="#the-interconnections-must-solve-a-different-mechanics-problem" id="toc-the-interconnections-must-solve-a-different-mechanics-problem" class="nav-link" data-scroll-target="#the-interconnections-must-solve-a-different-mechanics-problem">The interconnections must solve a different mechanics problem</a></li>
+  <li><a href="#the-devices-changed-but-the-mechanics-remained" id="toc-the-devices-changed-but-the-mechanics-remained" class="nav-link" data-scroll-target="#the-devices-changed-but-the-mechanics-remained">The devices changed, but the mechanics remained</a></li>
+  <li><a href="#integration-made-the-mechanics-more-important" id="toc-integration-made-the-mechanics-more-important" class="nav-link" data-scroll-target="#integration-made-the-mechanics-more-important">Integration made the mechanics more important</a></li>
+  <li><a href="#eventually-the-mechanics-supported-a-display" id="toc-eventually-the-mechanics-supported-a-display" class="nav-link" data-scroll-target="#eventually-the-mechanics-supported-a-display">Eventually, the mechanics supported a display</a></li>
+  <li><a href="#and-then-foldable-electronics-became-ordinary" id="toc-and-then-foldable-electronics-became-ordinary" class="nav-link" data-scroll-target="#and-then-foldable-electronics-became-ordinary">And then foldable electronics became ordinary</a></li>
+  <li><a href="#what-did-structural-mechanics-contribute" id="toc-what-did-structural-mechanics-contribute" class="nav-link" data-scroll-target="#what-did-structural-mechanics-contribute">What did structural mechanics contribute?</a></li>
+  <li><a href="#the-next-question-can-we-design-the-strain-field-itself" id="toc-the-next-question-can-we-design-the-strain-field-itself" class="nav-link" data-scroll-target="#the-next-question-can-we-design-the-strain-field-itself">The next question: can we design the strain field itself?</a></li>
+  <li><a href="#future-devices-will-require-finite-deformation-mechanics" id="toc-future-devices-will-require-finite-deformation-mechanics" class="nav-link" data-scroll-target="#future-devices-will-require-finite-deformation-mechanics">Future devices will require finite-deformation mechanics</a></li>
+  <li><a href="#surviving-once-is-not-enough" id="toc-surviving-once-is-not-enough" class="nav-link" data-scroll-target="#surviving-once-is-not-enough">Surviving once is not enough</a></li>
+  <li><a href="#mechanics-should-eventually-be-coupled-directly-to-device-physics" id="toc-mechanics-should-eventually-be-coupled-directly-to-device-physics" class="nav-link" data-scroll-target="#mechanics-should-eventually-be-coupled-directly-to-device-physics">Mechanics should eventually be coupled directly to device physics</a></li>
+  <li><a href="#from-finite-element-analysis-to-mechanics-informed-ai" id="toc-from-finite-element-analysis-to-mechanics-informed-ai" class="nav-link" data-scroll-target="#from-finite-element-analysis-to-mechanics-informed-ai">From finite element analysis to mechanics-informed AI</a></li>
+  <li><a href="#mechanics-does-not-care-about-scale" id="toc-mechanics-does-not-care-about-scale" class="nav-link" data-scroll-target="#mechanics-does-not-care-about-scale">Mechanics does not care about scale</a></li>
+  <li><a href="#engineering-takeaway" id="toc-engineering-takeaway" class="nav-link" data-scroll-target="#engineering-takeaway">Engineering takeaway</a></li>
+  <li><a href="#original-research" id="toc-original-research" class="nav-link" data-scroll-target="#original-research">Original research</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">How Can Rigid Electronics Become Stretchable?</h1>
+<p class="subtitle lead">A structural engineer’s route into stretchable electronics—and the mechanics of putting deformation where it can be tolerated</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Engineering Mechanics</div>
+    <div class="quarto-category">Stretchable Electronics</div>
+    <div class="quarto-category">Solid Mechanics</div>
+    <div class="quarto-category">Finite Element Analysis</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    How a collaboration between structural mechanics and chemical engineering led to a simple principle for stretchable devices: protect fragile functional components by controlling where deformation occurs.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Goangseup Zi </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 2, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>I did not start this research because I was working on semiconductors, batteries, or wearable electronics.</p>
+<p>My background is structural engineering and mechanics.</p>
+<p>Around 2010, Prof.&nbsp;Jeong Sook Ha in the Department of Chemical Engineering at Korea University was developing highly deformable electronic devices. Her group was interested in electronics that could bend, fold, twist, or stretch while maintaining their electrical function.</p>
+<p>That created a mechanics problem.</p>
+<p>Many of the functional materials used in electronic devices can tolerate only small strains. Yet the complete device may need to deform by tens of percent.</p>
+<p>Prof.&nbsp;Ha invited me to collaborate on this question.</p>
+<p>From my perspective, the problem looked surprisingly familiar:</p>
+<blockquote class="blockquote">
+<p><strong>How can a structure undergo large global deformation while protecting vulnerable components from large local strain?</strong></p>
+</blockquote>
+<p>That question began a collaboration that continued for more than a decade and led to around fifteen coauthored papers on deformable semiconductors, logic circuits, sensors, energy-storage devices, integrated wearable systems, and stretchable displays.</p>
+<p>The electronic technologies changed.</p>
+<p><strong>The mechanics question did not.</strong></p>
+<p>Today, foldable phones and deformable electronic devices are familiar consumer technologies. When we began this work, however, such devices were still largely research concepts.</p>
+<p>Looking back, what interests me most is not simply that the devices became stretchable.</p>
+<p>It is <strong>how mechanics made that possible</strong>.</p>
+<hr>
+<section id="the-mechanics-problem-behind-stretchable-electronics" class="level2">
+<h2 class="anchored" data-anchor-id="the-mechanics-problem-behind-stretchable-electronics">The mechanics problem behind stretchable electronics</h2>
+<p>Suppose an electronic device is attached to a substrate subjected to a macroscopic tensile strain</p>
+<p><span class="math display">\[
+\varepsilon_\mathrm{global}
+=
+\frac{L-L_0}{L_0}.
+\]</span></p>
+<p>If every part of the system followed that deformation uniformly, a 30% extension of the complete device would imply approximately 30% strain in its functional components.</p>
+<p>For many electronic materials, that would be unacceptable.</p>
+<p>But mechanics gives us another possibility.</p>
+<p>There is no requirement that strain must be uniform.</p>
+<p>Compatibility requires a connected structure to deform continuously. It does <strong>not</strong> require every material point to experience the same strain.</p>
+<p>This distinction changes the engineering question.</p>
+<p>Instead of asking</p>
+<blockquote class="blockquote">
+<p>How can we make a semiconductor survive 30% strain?</p>
+</blockquote>
+<p>we can ask</p>
+<blockquote class="blockquote">
+<p><strong>How can the complete device stretch by 30% while keeping the semiconductor strain below its allowable level?</strong></p>
+</blockquote>
+<p>That is a structural-mechanics problem.</p>
+<hr>
+</section>
+<section id="stretchability-does-not-mean-that-everything-stretches" class="level2">
+<h2 class="anchored" data-anchor-id="stretchability-does-not-mean-that-everything-stretches">Stretchability does not mean that everything stretches</h2>
+<p>This distinction is fundamental.</p>
+<p>A system can undergo a large change in overall dimensions while individual components experience only small material strains.</p>
+<p>Structural engineers encounter this idea routinely.</p>
+<p>A spring extends substantially even though the strain in the wire remains relatively small.</p>
+<p>A cable changes configuration primarily through geometry.</p>
+<p>An expansion joint accommodates movement so that the neighboring structure does not have to.</p>
+<p>A base-isolation system concentrates earthquake deformation in a deliberately compliant layer.</p>
+<p>The same philosophy can be applied to electronics.</p>
+<p>The objective is not</p>
+<p><span class="math display">\[
+\varepsilon_\mathrm{device}
+=
+\varepsilon_\mathrm{global}.
+\]</span></p>
+<p>We want</p>
+<p><span class="math display">\[
+\boxed{
+\varepsilon_\mathrm{device}
+\ll
+\varepsilon_\mathrm{global}.
+}
+\]</span></p>
+<p>The problem therefore becomes one of <strong>strain management</strong>.</p>
+<hr>
+</section>
+<section id="our-first-approach-let-geometry-take-the-deformation" class="level2">
+<h2 class="anchored" data-anchor-id="our-first-approach-let-geometry-take-the-deformation">Our first approach: let geometry take the deformation</h2>
+<p>One of the early strategies in our collaboration was to use thin interconnections on a prestrained elastomeric substrate.</p>
+<p>When the prestrain was released, the interconnections developed nonplanar, buckled configurations.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig01.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Thin interconnections can accommodate large macroscopic deformation through geometric changes rather than large material strain. The important feature is the separation between deformation of the overall substrate and strain in the active electronic region.</figcaption>
+</figure>
+</div>
+<p>This immediately provided another way to accommodate subsequent stretching.</p>
+<p>Instead of requiring the material itself to elongate by the full imposed displacement, the interconnection could change its geometry.</p>
+<p>Conceptually,</p>
+<p><span class="math display">\[
+\Delta L_\mathrm{system}
+=
+\Delta L_\mathrm{material}
++
+\Delta L_\mathrm{geometry}.
+\]</span></p>
+<p>This is not intended as a general finite-deformation identity.</p>
+<p>It is a mechanical picture.</p>
+<p>If geometric reconfiguration accounts for a large part of the imposed displacement, material strain can remain comparatively small.</p>
+<p>The same principle appears in</p>
+<ul>
+<li>springs,</li>
+<li>corrugated sheets,</li>
+<li>bellows,</li>
+<li>serpentine traces,</li>
+<li>cables,</li>
+<li>and compliant mechanisms.</li>
+</ul>
+<p>Stretchable electronics simply use it at a much smaller scale.</p>
+<hr>
+</section>
+<section id="global-deformation-and-local-strain-are-different-quantities" class="level2">
+<h2 class="anchored" data-anchor-id="global-deformation-and-local-strain-are-different-quantities">Global deformation and local strain are different quantities</h2>
+<p>This distinction became increasingly important as our work progressed.</p>
+<p>For example, in stretchable single-walled carbon nanotube logic devices, the complete system could accommodate substantial macroscopic stretching while the calculated local strains in critical channel and electrode regions remained much smaller.</p>
+<p>The device did not survive because the semiconductor suddenly became capable of sustaining the complete global deformation.</p>
+<p>It survived because the architecture prevented most of that deformation from reaching the vulnerable region.</p>
+<p>That led us toward a broader design principle:</p>
+<blockquote class="blockquote">
+<p><strong>What matters to a vulnerable component is not how much the whole system deforms, but how much local strain reaches that component.</strong></p>
+</blockquote>
+<p>This is just as true for an electronic device as it is for a bridge, offshore structure, or mechanical system.</p>
+<hr>
+</section>
+<section id="then-we-changed-the-question" class="level2">
+<h2 class="anchored" data-anchor-id="then-we-changed-the-question">Then we changed the question</h2>
+<p>Geometry can relieve strain.</p>
+<p>But we eventually arrived at a more powerful question:</p>
+<blockquote class="blockquote">
+<p><strong>Can we deliberately decide where the strain should go?</strong></p>
+</blockquote>
+<p>Suppose a deformable substrate contains regions with very different stiffnesses.</p>
+<p>Some regions are deliberately made stiff and carry the functional electronic components.</p>
+<p>The regions between them remain very soft.</p>
+<p>When the complete substrate is stretched, the strain does not distribute uniformly.</p>
+<p>The soft material accepts most of the deformation.</p>
+<p>The stiff regions remain comparatively undeformed.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig02.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>The heterogeneous substrate deliberately creates stiff regions for functional devices and soft regions for deformation. The objective is not uniform strain but controlled strain localization.</figcaption>
+</figure>
+</div>
+<p>This was an important conceptual transition.</p>
+<p>We were no longer merely making an electronic component more flexible.</p>
+<p>We were <strong>designing the deformation field of the complete system</strong>.</p>
+<hr>
+</section>
+<section id="why-stiffness-contrast-redirects-deformation" class="level2">
+<h2 class="anchored" data-anchor-id="why-stiffness-contrast-redirects-deformation">Why stiffness contrast redirects deformation</h2>
+<p>A simple one-dimensional analogy helps explain the mechanism.</p>
+<p>Consider two regions connected in series.</p>
+<p>Their total elongation is</p>
+<p><span class="math display">\[
+\Delta
+=
+\Delta_1+\Delta_2.
+\]</span></p>
+<p>For an idealized axial system carrying the same force <span class="math inline">\(F\)</span>,</p>
+<p><span class="math display">\[
+\Delta_i
+=
+\frac{F L_i}{E_i A_i}.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\frac{\Delta_1}{\Delta_2}
+=
+\frac{L_1/(E_1A_1)}
+     {L_2/(E_2A_2)}.
+\]</span></p>
+<p>If region 1 is much stiffer than region 2,</p>
+<p><span class="math display">\[
+E_1A_1 \gg E_2A_2,
+\]</span></p>
+<p>then most of the displacement occurs in region 2.</p>
+<p>The real stretchable substrate is a multidimensional finite-deformation problem, so this simple model is only a conceptual analogy.</p>
+<p>But the physical principle is correct:</p>
+<blockquote class="blockquote">
+<p><strong>Give deformation a mechanically preferable place to go.</strong></p>
+</blockquote>
+<p>This principle became central to our stretchable-device designs.</p>
+<hr>
+</section>
+<section id="finite-element-analysis-showed-where-the-strain-went" class="level2">
+<h2 class="anchored" data-anchor-id="finite-element-analysis-showed-where-the-strain-went">Finite element analysis showed where the strain went</h2>
+<p>This is where my own background in structural mechanics became particularly useful.</p>
+<p>The device may be electronic, but the question</p>
+<blockquote class="blockquote">
+<p>Where does the strain go?</p>
+</blockquote>
+<p>is exactly the kind of question computational mechanics is designed to answer.</p>
+<p>Finite element analysis allowed us to visualize the strain field rather than infer stretchability only from the imposed global deformation.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig03.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Finite element strain contours reveal the central mechanics of the design. Although the complete system is strongly stretched, deformation is concentrated in the compliant regions while the device islands remain nearly undeformed.</figcaption>
+</figure>
+</div>
+<p>In one of our stretchable microsupercapacitor systems, for example, stiff islands carried the functional devices while much softer polymer regions connected neighboring islands.</p>
+<p>Under large imposed deformation, the calculated strain on the stiff islands remained small while very large deformation developed in the compliant regions.</p>
+<p>The deformation had not disappeared.</p>
+<p>It had been <strong>redistributed</strong>.</p>
+<p>That is the essential mechanics.</p>
+<hr>
+</section>
+<section id="in-this-problem-strain-concentration-can-be-desirable" class="level2">
+<h2 class="anchored" data-anchor-id="in-this-problem-strain-concentration-can-be-desirable">In this problem, strain concentration can be desirable</h2>
+<p>Structural engineers are trained to be suspicious of stress and strain concentrations.</p>
+<p>Usually for good reason.</p>
+<p>A severe concentration can initiate yielding, fracture, fatigue, or delamination.</p>
+<p>Stretchable-device design introduces an interesting reversal.</p>
+<p>A strongly nonuniform strain field can be exactly what we want.</p>
+<p>We deliberately seek</p>
+<p><span class="math display">\[
+\varepsilon_\mathrm{device}
+\ll
+\varepsilon_\mathrm{system},
+\]</span></p>
+<p>while allowing</p>
+<p><span class="math display">\[
+\varepsilon_\mathrm{soft}
+\gg
+\varepsilon_\mathrm{device}.
+\]</span></p>
+<p>The important requirement is that the highly strained region must be made from a material and geometry capable of tolerating that deformation.</p>
+<p>So the design objective is not to eliminate strain concentration everywhere.</p>
+<p>It is to decide</p>
+<blockquote class="blockquote">
+<p><strong>where strain concentration is acceptable and where it is not.</strong></p>
+</blockquote>
+<p>That is a much more general mechanics principle.</p>
+<hr>
+</section>
+<section id="protect-the-device-by-sacrificing-deformation-elsewhere" class="level2">
+<h2 class="anchored" data-anchor-id="protect-the-device-by-sacrificing-deformation-elsewhere">Protect the device by sacrificing deformation elsewhere</h2>
+<p>This way of thinking is familiar in structural engineering.</p>
+<p>Consider seismic isolation.</p>
+<p>A conventional structure might attempt to resist earthquake-induced deformation by making its structural members stronger and stiffer.</p>
+<p>An isolated structure takes a different approach.</p>
+<p>A deliberately compliant region is introduced so that a substantial portion of the deformation occurs there rather than in vulnerable structural components.</p>
+<p>The analogy is conceptual rather than mathematically identical.</p>
+<p>But the design philosophy is remarkably similar:</p>
+<blockquote class="blockquote">
+<p><strong>Protect the functional region by giving deformation somewhere safer to go.</strong></p>
+</blockquote>
+<p>Stretchable electronics use soft polymers, geometric interconnections, stiff islands, and other mechanisms to accomplish essentially this task.</p>
+<hr>
+</section>
+<section id="the-idea-became-more-extreme" class="level2">
+<h2 class="anchored" data-anchor-id="the-idea-became-more-extreme">The idea became more extreme</h2>
+<p>As the collaboration continued, the stiffness contrast between protected and deformable regions became increasingly deliberate.</p>
+<p>In later microsupercapacitor systems, stiff polymer films could be locally implanted inside very soft elastomeric substrates.</p>
+<p>The functional device then occupied the mechanically protected region.</p>
+<p>Under large uniaxial or biaxial stretching, finite element analysis showed that the strain in the protected device region could remain extremely small while the surrounding elastomer underwent very large deformation.</p>
+<p>At first this seems paradoxical:</p>
+<blockquote class="blockquote">
+<p>How can a system stretch enormously if an important part of it hardly stretches at all?</p>
+</blockquote>
+<p>But there is no paradox.</p>
+<p>The system is highly stretchable <strong>because its deformation is nonuniform</strong>.</p>
+<hr>
+</section>
+<section id="the-interconnections-must-solve-a-different-mechanics-problem" class="level2">
+<h2 class="anchored" data-anchor-id="the-interconnections-must-solve-a-different-mechanics-problem">The interconnections must solve a different mechanics problem</h2>
+<p>Once the functional devices are placed on nearly rigid islands, another problem appears.</p>
+<p>The islands move relative to one another.</p>
+<p>They still need electrical connections.</p>
+<p>A conventional straight metallic wire may not tolerate the required relative displacement.</p>
+<p>So the interconnection must itself be mechanically designed.</p>
+<p>Two important strategies appeared repeatedly in our work.</p>
+<p>One was a long, thin serpentine metallic interconnection.</p>
+<p>The serpentine geometry converts imposed extension into bending, rotation, and out-of-plane motion.</p>
+<p>Another was the use of liquid-metal interconnections embedded inside soft polymers.</p>
+<p>A liquid conductor can change shape with its surrounding channel without accumulating strain in the same way as a conventional solid metallic line.</p>
+<p>The complete stretchable system therefore becomes mechanically heterogeneous:</p>
+<p><span class="math display">\[
+\boxed{
+\begin{aligned}
+\text{stiff islands}
+&amp;\rightarrow
+\text{protect functional devices},\\
+\text{soft substrate}
+&amp;\rightarrow
+\text{accommodate deformation},\\
+\text{compliant interconnections}
+&amp;\rightarrow
+\text{maintain electrical continuity}.
+\end{aligned}
+}
+\]</span></p>
+<p>Stretchability is an <strong>architectural property</strong>.</p>
+<hr>
+</section>
+<section id="the-devices-changed-but-the-mechanics-remained" class="level2">
+<h2 class="anchored" data-anchor-id="the-devices-changed-but-the-mechanics-remained">The devices changed, but the mechanics remained</h2>
+<p>Over more than a decade of collaboration, Prof.&nbsp;Ha’s group developed increasingly sophisticated devices.</p>
+<p>We worked together on systems involving</p>
+<ul>
+<li>nanowire electronics,</li>
+<li>logic devices,</li>
+<li>microsupercapacitors,</li>
+<li>pressure and strain sensors,</li>
+<li>gas sensors,</li>
+<li>integrated energy-storage and sensing systems,</li>
+<li>wearable devices,</li>
+<li>and stretchable displays.</li>
+</ul>
+<p>The materials changed.</p>
+<p>The fabrication methods changed.</p>
+<p>The electronic functions changed.</p>
+<p>But the mechanical question remained almost unchanged:</p>
+<p><span class="math display">\[
+\boxed{
+\text{Where should the deformation go?}
+}
+\]</span></p>
+<p>That continuity is what I find most interesting in retrospect.</p>
+<p>The mechanics was not specific to one semiconductor, one sensor, or one battery technology.</p>
+<p>It provided a general way to integrate mechanically vulnerable functional components into highly deformable systems.</p>
+<hr>
+</section>
+<section id="integration-made-the-mechanics-more-important" class="level2">
+<h2 class="anchored" data-anchor-id="integration-made-the-mechanics-more-important">Integration made the mechanics more important</h2>
+<p>A single stretchable component is already a challenging problem.</p>
+<p>A complete device system is harder.</p>
+<p>Consider a wearable system containing</p>
+<ul>
+<li>a sensor,</li>
+<li>an energy-storage device,</li>
+<li>electrical interconnections,</li>
+<li>and possibly an energy-harvesting component.</li>
+</ul>
+<p>Each may have different allowable strains.</p>
+<p>Each may have different stiffness.</p>
+<p>Each may fail by a different mechanism.</p>
+<p>Our integrated systems therefore required the substrate itself to become a mechanical architecture.</p>
+<p>For example, in the integrated graphene gas-sensor and micro-supercapacitor system, stiff SU-8 platforms were inserted beneath the sensitive functional components while long serpentine interconnections accommodated the surrounding deformation.</p>
+<p>The system could operate while subjected to large macroscopic stretching.</p>
+<p>The important point is not simply the percentage strain achieved.</p>
+<p>It is <strong>how the strain field was engineered so that different components could coexist on the same deformable substrate</strong>.</p>
+<hr>
+</section>
+<section id="eventually-the-mechanics-supported-a-display" class="level2">
+<h2 class="anchored" data-anchor-id="eventually-the-mechanics-supported-a-display">Eventually, the mechanics supported a display</h2>
+<p>A particularly satisfying later development was a stretchable array of quantum-dot light-emitting diodes.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig04.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>The later QD-LED array shows the maturation of the concept: functional display pixels remain on protected islands while the surrounding elastomer and compliant interconnections accommodate the macroscopic deformation.</figcaption>
+</figure>
+</div>
+<p>The application looks very different from the early nanowire devices.</p>
+<p>Yet mechanically the architecture is recognizable.</p>
+<p>Functional elements occupy protected regions.</p>
+<p>A soft surrounding material accommodates macroscopic deformation.</p>
+<p>Compliant interconnections maintain connectivity between moving regions.</p>
+<p>The same principle that began as a way of protecting individual electronic components had become an architecture for an integrated stretchable display.</p>
+<hr>
+</section>
+<section id="and-then-foldable-electronics-became-ordinary" class="level2">
+<h2 class="anchored" data-anchor-id="and-then-foldable-electronics-became-ordinary">And then foldable electronics became ordinary</h2>
+<p>When we began this collaboration around 2010, highly deformable electronics still felt futuristic.</p>
+<p>Today, in 2026, foldable smartphones are common consumer products.</p>
+<p>Stretchable displays, electronic skin, wearable health-monitoring systems, and deformable energy-storage devices remain active research and development areas.</p>
+<p>Our work should not be interpreted as a direct technological lineage to today’s commercial foldable phones.</p>
+<p>Commercial devices involve many materials, architectures, manufacturing technologies, and contributions from a much broader research community.</p>
+<p>But the underlying mechanics problem is closely related.</p>
+<p>A foldable or stretchable electronic system must somehow reconcile</p>
+<p><span class="math display">\[
+\text{large device-scale deformation}
+\]</span></p>
+<p>with</p>
+<p><span class="math display">\[
+\text{small allowable strain in vulnerable components}.
+\]</span></p>
+<p>That is the problem we had been studying from the beginning.</p>
+<hr>
+</section>
+<section id="what-did-structural-mechanics-contribute" class="level2">
+<h2 class="anchored" data-anchor-id="what-did-structural-mechanics-contribute">What did structural mechanics contribute?</h2>
+<p>This collaboration also changed how I think about the role of mechanics in multidisciplinary research.</p>
+<p>Mechanics can be used after a device has been designed:</p>
+<blockquote class="blockquote">
+<p>Calculate the strain.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Calculate the stress.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Explain why it failed.</p>
+</blockquote>
+<p>But that is only one role.</p>
+<p>A more powerful role is to ask before fabrication:</p>
+<blockquote class="blockquote">
+<p>Where should the stiff material go?</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Where should the soft material go?</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Which geometry should accommodate deformation?</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Where should a device be positioned?</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>How should neighboring islands be connected?</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>What strain field do we actually want?</p>
+</blockquote>
+<p>Then mechanics is no longer merely an analysis tool.</p>
+<p>It becomes a <strong>design tool</strong>.</p>
+<p>That, in my view, was one of the most important contributions of structural mechanics to our collaboration.</p>
+<hr>
+</section>
+<section id="the-next-question-can-we-design-the-strain-field-itself" class="level2">
+<h2 class="anchored" data-anchor-id="the-next-question-can-we-design-the-strain-field-itself">The next question: can we design the strain field itself?</h2>
+<p>Our earlier finite element analyses generally answered a forward problem:</p>
+<blockquote class="blockquote">
+<p>Given this geometry and these materials, where will the strain go?</p>
+</blockquote>
+<p>Today we can formulate a more ambitious inverse problem:</p>
+<blockquote class="blockquote">
+<p><strong>Given the strain field we want, what structure should we build?</strong></p>
+</blockquote>
+<p>Suppose the active electronic region occupies a domain <span class="math inline">\(\Omega_d\)</span>.</p>
+<p>One possible mechanics objective is</p>
+<p><span class="math display">\[
+\min
+\left[
+\max_{\mathbf{x}\in\Omega_d}
+\varepsilon_\mathrm{eq}(\mathbf{x})
+\right],
+\]</span></p>
+<p>while requiring the complete system to achieve a prescribed global deformation.</p>
+<p>The design variables could include</p>
+<ul>
+<li>island geometry,</li>
+<li>island spacing,</li>
+<li>local substrate thickness,</li>
+<li>material stiffness,</li>
+<li>interconnection geometry,</li>
+<li>interface geometry,</li>
+<li>and spatial stiffness distribution.</li>
+</ul>
+<p>This naturally connects stretchable electronics with topology optimization and inverse structural design.</p>
+<hr>
+</section>
+<section id="future-devices-will-require-finite-deformation-mechanics" class="level2">
+<h2 class="anchored" data-anchor-id="future-devices-will-require-finite-deformation-mechanics">Future devices will require finite-deformation mechanics</h2>
+<p>Simple uniaxial stretching is only the beginning.</p>
+<p>Real devices experience combinations of</p>
+<ul>
+<li>stretching,</li>
+<li>bending,</li>
+<li>twisting,</li>
+<li>biaxial deformation,</li>
+<li>contact,</li>
+<li>wrinkling,</li>
+<li>and repeated folding.</li>
+</ul>
+<p>Human skin is particularly complicated.</p>
+<p>A wearable device attached to the body experiences a continuously changing multiaxial deformation field.</p>
+<p>Future mechanics models therefore need to address</p>
+<p><span class="math display">\[
+\text{large deformation}
++
+\text{material nonlinearity}
++
+\text{contact}
++
+\text{multiaxial loading}.
+\]</span></p>
+<p>These are standard subjects in nonlinear solid mechanics.</p>
+<p>Their application to deformable electronics remains rich with possibilities.</p>
+<hr>
+</section>
+<section id="surviving-once-is-not-enough" class="level2">
+<h2 class="anchored" data-anchor-id="surviving-once-is-not-enough">Surviving once is not enough</h2>
+<p>Another important shift concerns durability.</p>
+<p>Demonstrating that a device survives one large stretch establishes feasibility.</p>
+<p>A commercial device may have to survive thousands or millions of deformation cycles.</p>
+<p>The problem then moves from elasticity toward</p>
+<ul>
+<li>fatigue,</li>
+<li>fracture,</li>
+<li>interface debonding,</li>
+<li>delamination,</li>
+<li>progressive damage,</li>
+<li>and cyclic degradation.</li>
+</ul>
+<p>This may become particularly important near the edges of stiff islands.</p>
+<p>Strain is suppressed inside the island, but large gradients can develop near the transition between stiff and soft materials.</p>
+<p>Protecting one region can move the mechanical problem somewhere else.</p>
+<p>So future designs must consider not only</p>
+<p><span class="math display">\[
+\varepsilon_\mathrm{device},
+\]</span></p>
+<p>but also</p>
+<p><span class="math display">\[
+\text{interface durability}.
+\]</span></p>
+<hr>
+</section>
+<section id="mechanics-should-eventually-be-coupled-directly-to-device-physics" class="level2">
+<h2 class="anchored" data-anchor-id="mechanics-should-eventually-be-coupled-directly-to-device-physics">Mechanics should eventually be coupled directly to device physics</h2>
+<p>The ultimate design quantity may not even be strain.</p>
+<p>Different functional materials respond differently to mechanical deformation.</p>
+<p>For one semiconductor, a certain strain may change mobility.</p>
+<p>For another device, strain may change contact resistance.</p>
+<p>For a battery, repeated deformation may damage interfaces or alter transport pathways.</p>
+<p>For a display, deformation may change optical or electrical performance.</p>
+<p>The more complete design chain is therefore</p>
+<p><span class="math display">\[
+\boxed{
+\text{global deformation}
+\rightarrow
+\text{local mechanics}
+\rightarrow
+\text{device physics}
+\rightarrow
+\text{functional performance}.
+}
+\]</span></p>
+<p>Future computational design should increasingly connect these levels rather than treating mechanical strain as an isolated output.</p>
+<hr>
+</section>
+<section id="from-finite-element-analysis-to-mechanics-informed-ai" class="level2">
+<h2 class="anchored" data-anchor-id="from-finite-element-analysis-to-mechanics-informed-ai">From finite element analysis to mechanics-informed AI</h2>
+<p>There is also an interesting opportunity for AI-assisted design.</p>
+<p>A conventional finite element model answers:</p>
+<p><span class="math display">\[
+\text{design}
+\rightarrow
+\text{response}.
+\]</span></p>
+<p>But if thousands or millions of possible island shapes, stiffness distributions, and interconnection geometries are available, direct trial-and-error design becomes inefficient.</p>
+<p>Reduced-order models, surrogate models, topology optimization, and machine learning could instead help solve</p>
+<p><span class="math display">\[
+\text{desired response}
+\rightarrow
+\text{design}.
+\]</span></p>
+<p>The important point is that AI should not replace mechanics.</p>
+<p>Mechanics defines</p>
+<ul>
+<li>equilibrium,</li>
+<li>compatibility,</li>
+<li>constitutive behavior,</li>
+<li>admissible deformation modes,</li>
+<li>failure constraints,</li>
+<li>and meaningful design variables.</li>
+</ul>
+<p>AI can then help explore the enormous design space efficiently.</p>
+<p>That combination may allow the next generation of stretchable devices to move from intuitive strain isolation toward <strong>systematic deformation-field design</strong>.</p>
+<hr>
+</section>
+<section id="mechanics-does-not-care-about-scale" class="level2">
+<h2 class="anchored" data-anchor-id="mechanics-does-not-care-about-scale">Mechanics does not care about scale</h2>
+<p>Perhaps the most satisfying lesson from this collaboration is that mechanics is remarkably indifferent to the scale of the object.</p>
+<p>A civil engineer may normally think about</p>
+<ul>
+<li>bridges,</li>
+<li>buildings,</li>
+<li>offshore platforms,</li>
+<li>concrete structures,</li>
+<li>or large structural systems.</li>
+</ul>
+<p>Stretchable electronics may be only millimeters or micrometers in scale.</p>
+<p>But the questions remain familiar:</p>
+<p><span class="math display">\[
+F
+\rightarrow
+\sigma
+\rightarrow
+\varepsilon
+\rightarrow
+u.
+\]</span></p>
+<p>Where does deformation occur?</p>
+<p>What controls the strain field?</p>
+<p>How does stiffness affect load transfer?</p>
+<p>Where will damage initiate?</p>
+<p>How can a vulnerable component be mechanically protected?</p>
+<p>The scale and materials change.</p>
+<p>The mechanics does not.</p>
+<hr>
+</section>
+<section id="engineering-takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="engineering-takeaway">Engineering takeaway</h2>
+<p>A stretchable electronic system does not require every component to become stretchable.</p>
+<p>It requires us to understand the deformation field and deliberately control where deformation occurs.</p>
+<p>Geometry can absorb displacement.</p>
+<p>Stiffness contrast can redirect strain.</p>
+<p>Soft regions can protect stiff functional components.</p>
+<p>Compliant interconnections can preserve connectivity while those components move relative to one another.</p>
+<p>The principle that emerged repeatedly from our collaboration can therefore be stated very simply:</p>
+<blockquote class="blockquote">
+<p><strong>A stretchable structure does not require every component to stretch. It requires deformation to occur in the right places.</strong></p>
+</blockquote>
+<p>And perhaps the next generation of this research should ask an even more ambitious question:</p>
+<blockquote class="blockquote">
+<p><strong>Instead of calculating where the strain goes, can we design exactly where we want it to go?</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="original-research" class="level2">
+<h2 class="anchored" data-anchor-id="original-research">Original research</h2>
+<p>This article reflects a long-running collaboration with Prof.&nbsp;Jeong Sook Ha and her research group at Korea University. Selected papers illustrating the evolution of the mechanics concepts discussed here include:</p>
+<p>Shin, G., Bae, M. Y., Lee, H. J., Hong, S. K., Yoon, C. H., Zi, G., Rogers, J. A., &amp; Ha, J. S. (2011).<br>
+<strong>SnO2 Nanowire Logic Devices on Deformable Nonplanar Substrates.</strong><br>
+<em>ACS Nano, 5</em>(12), 10009–10016.<br>
+DOI: 10.1021/nn203790a</p>
+<p>Yoon, J., Shin, G., Kim, J., Moon, Y. S., Lee, S.-J., Zi, G., &amp; Ha, J. S. (2014).<br>
+<strong>Fabrication of Stretchable Single-Walled Carbon Nanotube Logic Devices.</strong><br>
+<em>Small, 10</em>(14), 2910–2917.<br>
+DOI: 10.1002/smll.201303779</p>
+<p>Yoon, J., Hong, S. Y., Lim, Y., Lee, S.-J., Zi, G., &amp; Ha, J. S. (2014).<br>
+<strong>Design and Fabrication of Novel Stretchable Device Arrays on a Deformable Polymer Substrate with Embedded Liquid-Metal Interconnections.</strong><br>
+<em>Advanced Materials, 26</em>, 6580–6586.<br>
+DOI: 10.1002/adma.201402588</p>
+<p>Lim, Y., Yoon, J., Yun, J., Kim, D., Hong, S. Y., Lee, S.-J., Zi, G., &amp; Ha, J. S. (2014).<br>
+<strong>Biaxially Stretchable, Integrated Array of High Performance Microsupercapacitors.</strong><br>
+<em>ACS Nano, 8</em>(11), 11639–11650.<br>
+DOI: 10.1021/nn504925s</p>
+<p>Yun, J., Lim, Y., Jang, G. N., Kim, D., Lee, S.-J., Park, H., Hong, S. Y., Lee, G., Zi, G., &amp; Ha, J. S. (2016).<br>
+<strong>Stretchable Patterned Graphene Gas Sensor Driven by Integrated Micro-Supercapacitor Array.</strong><br>
+<em>Nano Energy, 19</em>, 401–414.<br>
+DOI: 10.1016/j.nanoen.2015.11.023</p>
+<p>Kim, H., Yoon, J., Lee, G., Paik, S.-H., Choi, G., Kim, D., Kim, B.-M., Zi, G., &amp; Ha, J. S. (2016).<br>
+<strong>Encapsulated, High-Performance, Stretchable Array of Stacked Planar Micro-Supercapacitors as Waterproof Wearable Energy Storage Devices.</strong><br>
+<em>ACS Applied Materials &amp; Interfaces, 8</em>, 16016–16025.<br>
+DOI: 10.1021/acsami.6b03504</p>
+<p>Yun, J., Song, C., Lee, H., Park, H., Jeong, Y. R., Kim, J. W., Jin, S. W., Oh, S. Y., Sun, L., Zi, G., &amp; Ha, J. S. (2018).<br>
+<strong>Stretchable Array of High-Performance Micro-Supercapacitors Charged with Solar Cells for Wireless Powering of an Integrated Strain Sensor.</strong><br>
+<em>Nano Energy, 49</em>, 644–654.<br>
+DOI: 10.1016/j.nanoen.2018.05.017</p>
+<p>Lee, Y., Kim, D. S., Jin, S. W., Lee, H., Jeong, Y. R., You, I., Zi, G., &amp; Ha, J. S. (2022).<br>
+<strong>Stretchable Array of CdSe/ZnS Quantum-Dot Light Emitting Diodes for Visual Display of Bio-Signals.</strong><br>
+<em>Chemical Engineering Journal, 427</em>, 130858.<br>
+DOI: 10.1016/j.cej.2021.130858</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
