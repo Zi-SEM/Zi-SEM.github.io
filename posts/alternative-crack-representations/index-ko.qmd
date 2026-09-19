@@ -154,7 +154,7 @@ Phantom-node 방법에서도 균열면에서 확실한 불연속성(sharp crack)
 
 ![표준 XFEM 표현과 phantom-node 표현의 비교. 두 방법 모두 균열면에서 변위계가 불연속적으로 변화하는 것을 표현하지만, 운동학적 자유도를 저장하는 방식이 다르다. Rabczuk et al. (2008), Fig. 2를 바탕으로 재구성.](Fig01.png){#fig-phantom-xfem fig-align="center" width="84%"}
 
-그림 @fig-phantom-xfem 을 보면, 여기서 중요한 것은 방법의 이름이 아니다.
+그림 [-@fig-phantom-xfem]을 보면, 여기서 중요한 것은 방법의 이름이 아니다.
 
 물리적인 통찰점은 바뀌지 않았다.
 
@@ -228,7 +228,7 @@ XFEM에서 phantom node로 바꾼다고 균열선단 문제가 사라지는 것�
 
 ![Cracking-particle 표현에서는 균열이 입자의 가시성(visibility)/support를 변화시켜 추가적인 확충 자유도를 추가하지 않고도 불연속을 사이에 두고 근사함수가 분리될 수 있게 한다. Rabczuk et al. (2010b)를 바탕으로 재구성.](Fig02.png){#fig-cracking-particle fig-align="center" width="80%"}
 
-그림 @fig-cracking-particle 역시 같은 질문에 대한 또 하나의 답으로 읽는 것이 좋다.
+그림 [-@fig-cracking-particle] 역시 같은 질문에 대한 또 하나의 답으로 읽는 것이 좋다.
 
 > 균열 정보는 어디에 저장되어 있는가?
 
@@ -365,7 +365,7 @@ Phase-field formulation에서는 균열면을 명시적으로 추적할 필요�
 
 ![날카로운 균열을 유한한 폭의 정규화된 파괴장으로 바꾼다. 그 폭은 phase-field length scale에 의해 제어된다. 명시적인 균열면 추적 문제가 추가적인 장을 푸는 문제로 바뀐 것이다. Msekh et al. (2016), Fig. 2를 바탕으로 재구성.](Fig03.png){#fig-phase-field fig-align="center" width="82%"}
 
-그림 @fig-phase-field 에서 중요한 것은 이 방법이 만드는 교환관계다.
+그림 [-@fig-phase-field]에서 중요한 것은 이 방법이 만드는 교환관계다.
 
 이제
 
