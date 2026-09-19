@@ -3,15 +3,28 @@ title: "The Z-Diagram: Connecting Force, Stress, Strain, and Displacement"
 subtitle: "A unified view of equilibrium, compatibility, constitutive behavior, and energy in structural mechanics"
 author: "Goangseup Zi"
 date: "2026-08-30"
+lang: en
 categories:
   - Z-Diagram
   - Engineering Mechanics
   - Structural Mechanics
   - Mechanics of Materials
 description: "An introduction to the Z-Diagram as a unified framework connecting force equilibrium, constitutive behavior, displacement compatibility, and energy across structural and material-point scales."
+keywords:
+  - Z-Diagram
+  - force stress strain displacement
+  - equilibrium compatibility constitutive law
+  - principle of virtual work
+  - energy conjugate variables
+  - structural mechanics
+  - mechanics of materials
+  - stress strain relationship
+  - force displacement relationship
 toc: true
 toc-depth: 2
 ---
+
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
 
 Structural mechanics is usually taught as a sequence of separate topics:
 
