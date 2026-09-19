@@ -32,6 +32,7 @@ toc: true
 toc-depth: 2
 ---
 
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
 ## An industrial byproduct with considerable potential
 
 Basic oxygen furnace (BOF) slag is produced during steelmaking. It is available in large quantities and has considerable potential as a construction material.
@@ -83,7 +84,7 @@ In the experimental/modeling study, the observed threshold particle sizes for ab
 - 0.6 mm at 20%, and
 - 0.6 mm at 30%.
 
-The threshold therefore depends not only on particle size but also on the **amount of slag present in the material**. :contentReference[oaicite:2]{index=2}
+The threshold therefore depends not only on particle size but also on the **amount of slag present in the material**.
 
 ![Particle-size-dependent expansion of cement composites containing steel slag. Fine particles remain in the stable-expansion region, whereas larger particles exhibit abrupt expansion and fracture.](Fig01.png){fig-align="center" width="75%"}
 
@@ -131,7 +132,7 @@ Thus, particle size does not simply change the amount of CaO available for react
 
 It changes **how the chemical reaction interacts mechanically with the surrounding material**.
 
-The modeling study interprets this through the interaction of reaction-front progression, available pore volume, internal pressure, and fracture. :contentReference[oaicite:3]{index=3}
+The modeling study interprets this through the interaction of reaction-front progression, available pore volume, internal pressure, and fracture.
 
 ---
 
@@ -183,7 +184,7 @@ can accommodate much of the reaction product and little macroscopic damage occur
 
 If that capacity is exhausted, the excess reaction volume must be accommodated increasingly through deformation and fracture.
 
-The chemical problem therefore becomes a **volume-compatibility problem** and ultimately a **fracture-mechanics problem**. :contentReference[oaicite:4]{index=4}
+The chemical problem therefore becomes a **volume-compatibility problem** and ultimately a **fracture-mechanics problem**.
 
 ---
 
@@ -223,7 +224,7 @@ $$
 
 The homogenization model reproduced the observed transition from stable behavior to abrupt expansion reasonably well across different slag contents.
 
-More importantly, the model provides a physical explanation for why a threshold particle size should exist. :contentReference[oaicite:5]{index=5}
+More importantly, the model provides a physical explanation for why a threshold particle size should exist.
 
 ---
 
@@ -247,7 +248,7 @@ Fine particles behaved quite differently. Their reactions were distributed more 
 
 Under the investigated conditions, all fractions of 600 $\mu$m and above fractured at 20% incorporation, and the 600 $\mu$m fraction exhibited particularly severe deterioration.
 
-By contrast, controlling the particle size below approximately 300 $\mu$m substantially reduced expansion-induced cracking. :contentReference[oaicite:6]{index=6}
+By contrast, controlling the particle size below approximately 300 $\mu$m substantially reduced expansion-induced cracking.
 
 This confirms an important point:
 
@@ -261,7 +262,7 @@ The second study also helps separate the chemical and mechanical roles.
 
 After all size fractions were ground to a common size for measurement, the free CaO content remained approximately constant across the original particle-size fractions.
 
-Yet the expansion and cracking behavior varied strongly with particle size. :contentReference[oaicite:7]{index=7}
+Yet the expansion and cracking behavior varied strongly with particle size.
 
 This suggests a useful distinction:
 
@@ -281,7 +282,7 @@ Reducing particle size also affected mechanical performance.
 
 The 28-day compressive strength increased as BOF slag particle size decreased, with a pronounced improvement for particle sizes below approximately 300 $\mu$m.
 
-This size range is particularly interesting because it coincides approximately with the range in which expansion-induced damage becomes much easier to control. :contentReference[oaicite:8]{index=8}
+This size range is particularly interesting because it coincides approximately with the range in which expansion-induced damage becomes much easier to control.
 
 Particle-size reduction can therefore provide two benefits simultaneously:
 
@@ -318,7 +319,7 @@ This curve reveals why the particle-size threshold matters economically.
 
 For the Bond-law estimate used in the BOF slag study, reducing a representative 50 mm feed to approximately 300 $\mu$m requires only about **15% of the normalized grinding energy** needed to grind it all the way to 45 $\mu$m.
 
-Equivalently, stopping near 300 $\mu$m corresponds to an approximately **85% reduction in grinding-energy demand** relative to ultrafine grinding to 45 $\mu$m under this estimate. :contentReference[oaicite:9]{index=9}
+Equivalently, stopping near 300 $\mu$m corresponds to an approximately **85% reduction in grinding-energy demand** relative to ultrafine grinding to 45 $\mu$m under this estimate.
 
 Therefore, grinding BOF slag much more finely than necessary can consume considerable additional energy while producing only a limited additional benefit in expansion mitigation.
 
@@ -345,7 +346,7 @@ In the BOF slag study, a practical interpretation under the investigated conditi
 | about 10% | below 300 $\mu$m |
 | approaching 20% | about 75 $\mu$m or finer |
 
-The 10% mixtures showed stable behavior without macroscopic damage when the particle size was controlled below about 300 $\mu$m, whereas the higher incorporation level required finer control. :contentReference[oaicite:10]{index=10}
+The 10% mixtures showed stable behavior without macroscopic damage when the particle size was controlled below about 300 $\mu$m, whereas the higher incorporation level required finer control.
 
 Why does increasing the slag content require finer particles?
 
@@ -377,7 +378,7 @@ Extremely fine particles can suppress expansion effectively but require substant
 
 Between these extremes lies a useful engineering range.
 
-For the BOF slag and mixture conditions investigated in our studies, particle sizes below approximately 300 $\mu$m provide an important practical range for moderate incorporation, while higher slag contents may require considerably finer particles. :contentReference[oaicite:11]{index=11}
+For the BOF slag and mixture conditions investigated in our studies, particle sizes below approximately 300 $\mu$m provide an important practical range for moderate incorporation, while higher slag contents may require considerably finer particles.
 
 This distinction is essential.
 
@@ -393,7 +394,7 @@ The threshold can change with
 - moisture conditions, and
 - other material characteristics.
 
-The experimental studies themselves were conducted under prescribed accelerated curing conditions, so the identified thresholds should be understood within that context. :contentReference[oaicite:12]{index=12} :contentReference[oaicite:13]{index=13}
+The experimental studies themselves were conducted under prescribed accelerated curing conditions, so the identified thresholds should be understood within that context.
 
 ---
 
