@@ -9,6 +9,27 @@ categories:
   - Computational Fracture
   - Computational Mechanics
   - XFEM
+keywords:
+  - "computational mechanics"
+  - "computational fracture mechanics"
+  - "enriched methods"
+  - "enriched finite element method"
+  - "XFEM"
+  - "extended finite element method"
+  - "XEFG"
+  - "extended meshfree method"
+  - "partition of unity"
+  - "approximation space"
+  - "displacement discontinuity"
+  - "crack representation"
+  - "crack propagation"
+  - "mesh independent crack"
+  - "phantom node method"
+  - "cracking particle method"
+  - "phase-field fracture"
+  - "peridynamics"
+  - "multiscale fracture"
+  - "continuum atomistic coupling"
 image: Fig01.png
 ---
 
