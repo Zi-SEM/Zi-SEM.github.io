@@ -1,0 +1,25 @@
+---
+title: "연구 글쓰기를 위한 재사용 가능한 LaTeX 시스템을 어떻게 만들었는가"
+subtitle: "안정적인 템플릿, 공용 패키지와 명령어, 모든 참고문헌을 연결하는 하나의 식별자, 재사용 가능한 기술 콘텐츠를 중심으로 구축한 장기 연구 글쓰기 체계"
+author: "지광습"
+date: "2026-09-03"
+categories:
+  - LaTeX & Writing
+  - Scientific Writing
+  - LaTeX
+  - BibTeX
+keywords:
+  - LaTeX 논문 작성
+  - LaTeX 연구논문
+  - LaTeX 논문 템플릿
+  - 연구논문 작성 시스템
+  - BibTeX 참고문헌 관리
+  - BibTeX key
+  - 논문 PDF 관리
+  - 연구자료 관리
+  - 연구문헌 관리
+  - LaTeX 사용자 명령
+  - LaTeX 공용 패키지
+  - LaTeX Beamer 재사용
+  - 연구 지식관리
+  - AI 연구자료 관리

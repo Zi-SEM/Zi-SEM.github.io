@@ -10,6 +10,8 @@ categories:
   - BibTeX
 ---
 
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
+
 For me, LaTeX is not simply a typesetting program.
 
 It is the **infrastructure of research writing**.
