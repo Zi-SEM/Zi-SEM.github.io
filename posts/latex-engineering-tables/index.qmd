@@ -5,10 +5,29 @@ author: "Goangseup Zi"
 date: "2026-09-13"
 categories:
   - LaTeX & Writing
+keywords:
+  - engineering research paper writing
+  - how to write a research paper
+  - scientific writing for engineers
+  - engineering paper structure
+  - research paper structure
+  - how to write an abstract
+  - how to write an introduction
+  - results and discussion
+  - engineering research question
+  - scientific paper figures and tables
+  - journal paper writing
+  - manuscript submission
+  - peer review response
+  - research paper revision
+  - technical writing for engineers
+  - scientific publication
 description: "A practical guide to building engineering tables in LaTeX, using grouped headers, multirow cells, units, numerical alignment, and modern table packages."
 toc: true
 toc-depth: 2
 ---
+
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
 
 Tables look simple until engineering data are involved.
 
