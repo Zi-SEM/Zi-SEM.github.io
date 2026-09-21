@@ -44,6 +44,8 @@ listing:
     filter-ui: false
 ---
 
+<div class="language-switch">**English** | [한글](research-ko.qmd)</div>
+
 Academic papers are necessarily compact and specialized. Important engineering ideas can therefore be difficult to see behind the equations, methodology, and technical details.
 
 **Research Explained** revisits published research and ongoing research directions from a broader perspective: the engineering problem, the underlying physical or conceptual idea, the method used to address it, and what the results mean in practice.

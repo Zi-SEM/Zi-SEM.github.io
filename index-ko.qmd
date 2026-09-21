@@ -1,0 +1,90 @@
+---
+title: Zi의 구조공학과 역학
+page-layout: full
+title-block-banner: true
+toc: false
+lang: ko
+---
+
+<div class="language-switch>[English](index.qmd) | **한글**</div>
+
+연구 · 교육 · 역학 · 기술 글쓰기
+
+이 사이트는 연구, 교육, 기술 커뮤니케이션을 통해 구조공학과 역학을 설명한다.
+
+## 둘러보기
+
+:::: {.grid}
+
+::: {.g-col-12 .g-col-md-6}
+
+### [연구 해설](research-ko.qmd)
+논문을 요약하는 데 그치지 않고, 공학적 문제와 물리적 해석, 방법, 결과, 실제 의미를 중심으로 설명한다.
+
+:::
+
+::: {.g-col-12 .g-col-md-6}
+
+### [공학역학](mechanics-ko.qmd)
+구조역학, 재료역학, 파괴, 피로, 수치해석과 관련 주제를 다룬다.
+
+:::
+
+::: {.g-col-12 .g-col-md-6}
+
+### [Z Diagram](z-diagram-ko.qmd)
+힘, 응력, 변형률, 변위를 평형, 구성관계, 적합조건, 일과 에너지의 관점에서 연결한다.
+
+:::
+
+::: {.g-col-12 .g-col-md-6}
+
+### [LaTeX와 글쓰기](latex-writing-ko.qmd)
+공학자와 연구자를 위한 LaTeX, 연구논문 작성, AI 보조 글쓰기 방법을 다룬다.
+
+:::
+
+::::
+
+## Zi의 구조공학과 역학
+
+### [힘·응력·변형률·변위는 어떻게 연결되는가? — Z 다이어그램](posts/z-diagram-introduction/index-ko.qmd)
+
+Z Diagram은 이 사이트의 역학적 출발점이다. 힘, 응력, 변형률, 변위를 평형, 구성관계, 적합조건, 일과 에너지로 연결한다.
+
+## 해상풍력
+
+[해상풍력 연구 해설 보기 →](research/offshore-wind-energy-ko.qmd)
+
+- [여러 평가기준이 서로 얽혀 있으면 의사결정은 왜 편향되는가?](posts/biased-decision-making/index-ko.qmd)
+- [해상풍력 재킷 구조에서 왜 접합부 유연성을 따로 보아야 하는가?](posts/jacket-flexibility/index-ko.qmd)
+
+## 디지털전환과 AI
+
+[디지털전환과 AI 연구 해설 보기 →](research/digital-transformation-ai-ko.qmd)
+
+- [건설 엔지니어링 실무에서 AI를 환각 없이 믿고 사용할 수 있을까?](posts/ai-construction-standards-without-hallucination/index-ko.qmd)
+
+## 콘크리트와 재료
+
+[콘크리트와 재료 연구 해설 보기 →](research/concrete-materials-ko.qmd)
+
+- [제강슬래그의 입자 크기는 왜 반응성과 팽창 거동을 바꾸는가?](posts/bof-slag-particle-size/index-ko.qmd)
+- [콘크리트 내구성 문제는 왜 서로 독립적으로 볼 수 없는가?](posts/coupled-concrete-durability/index-ko.qmd)
+
+## 계산역학과 파괴
+
+[계산역학과 파괴 연구 해설 보기 →](research/computational-mechanics-fracture-ko.qmd)
+
+- [균열은 꼭 하나의 방법으로 표현해야 하는가?](posts/alternative-crack-representations/index-ko.qmd)
+- [계산파괴역학은 균열을 어떻게 표현하는가?](posts/computational-fracture-overview/index-ko.qmd)
+- [균열 모델에는 얼마나 많은 물리가 필요한가?](posts/how-much-physics-does-a-crack-need/index-ko.qmd)
+- [확충기법에서 무엇을 배울 수 있는가?](posts/lessons-from-enriched-methods/index-ko.qmd)
+
+## 공학역학
+
+[공학역학 글 보기 →](mechanics-ko.qmd)
+
+- [부유구조물의 주파수영역 해석](posts/floating-structure-frequency-domain/index-ko.qmd)
+- [계류선 동역학](posts/mooring-line-dynamics/index-ko.qmd)
+- [힘·응력·변형률·변위는 어떻게 연결되는가? — Z 다이어그램](posts/z-diagram-introduction/index-ko.qmd)

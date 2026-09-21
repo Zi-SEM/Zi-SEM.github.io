@@ -36,7 +36,7 @@ toc-depth: 2
 
 <div class="language-switch">[English](index.qmd) | **한글**</div>
 
-**계산파괴역학 시리즈:** [← 전체 보기](../computational-fracture-overview/index-ko.qmd) · [← 다중균열](../multiple-cracks-fracture-network/index-ko.qmd) · 7편 중 5편
+**계산파괴역학 시리즈:** [← 전체 보기](../computational-fracture-overview/index-ko.qmd) · [← 다중균열](../multiple-cracks-fracture-network/) · 7편 중 5편
 
 앞의 글들에서는 다음과 같은 고찰을 계속 따라왔다.
 
@@ -589,7 +589,7 @@ Phase field는 정규화된 내부장에 넣는다.
 
 ## 시리즈 계속 읽기
 
-[← **이전: 여러 균열은 어떻게 분기하고 만나 파괴 네트워크를 만드는가?**](../multiple-cracks-fracture-network/index-ko.qmd)
+[← **이전: 여러 균열은 어떻게 분기하고 만나 파괴 네트워크를 만드는가?**](../multiple-cracks-fracture-network/)
 
 [**시리즈 전체: 계산파괴역학은 왜 어려운가?**](../computational-fracture-overview/index-ko.qmd)
 

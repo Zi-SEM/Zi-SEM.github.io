@@ -126,6 +126,10 @@ My publications and citation records can be found through:
 - [Scopus](https://www.scopus.com/authid/detail.uri?authorId=6701704145)
 - [Web of Science](https://www.webofscience.com/wos/author/record/399496)
 
+## Lab Orientation
+
+New and prospective members can read the [SEM Lab Orientation](lab-orientation.qmd), which introduces our research areas, research philosophy, working practices, data management, project responsibility, writing, collaboration, and authorship principles.
+
 ## Other Links
 
 - [Structural Engineering and Mechanics Laboratory](https://structure.korea.ac.kr)

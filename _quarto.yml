@@ -32,6 +32,8 @@ website:
             text: Lab Orientation
 
     right:
+      - href: index-ko.qmd
+        text: 한글
       - icon: youtube
         href: https://www.youtube.com/@semlabtv4824
         aria-label: SEMLAB YouTube

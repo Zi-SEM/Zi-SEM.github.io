@@ -1,0 +1,29 @@
+---
+title: 계산역학과 파괴
+lang: ko
+toc: false
+---
+
+<div class="language-switch>[English](computational-mechanics-fracture.qmd) | **한글**</div>
+
+계산파괴역학과 손상역학, XFEM, XEFG, 무요소법, 다중균열 표현, 다양한 파괴 표현법과 멀티스케일 모델링을 다룬다.
+
+반복해서 묻는 질문은 하나다. 수치적 표현이 물리를 이산화 방식에 억지로 맞추지 않으면서도 핵심 역학을 어떻게 포착할 수 있는가?
+
+## 글 목록
+
+### [균열은 꼭 하나의 방법으로 표현해야 하는가?](../posts/alternative-crack-representations/index-ko.qmd)
+
+균열과 같은 불연속을 서로 다른 수치기법이 어디에, 어떤 방식으로 저장하고 표현하는지를 비교한다.
+
+### [계산파괴역학은 균열을 어떻게 표현하는가?](../posts/computational-fracture-overview/index-ko.qmd)
+
+균열을 수치적으로 표현할 때 필요한 핵심 개념과 계산파괴역학의 여러 접근법이 어떤 물리적 문제를 해결하려는 것인지 설명한다.
+
+### [균열 모델에는 얼마나 많은 물리가 필요한가?](../posts/how-much-physics-does-a-crack-need/index-ko.qmd)
+
+균열 모델을 복잡하게 만드는 것이 항상 더 좋은 것은 아니다. 어떤 물리적 메커니즘을 명시적으로 표현해야 하고 무엇을 단순화할 수 있는지를 살펴본다.
+
+### [확충기법에서 무엇을 배울 수 있는가?](../posts/lessons-from-enriched-methods/index-ko.qmd)
+
+XFEM과 XEFG 같은 확충기법이 불연속을 표현하는 방식을 통해, 수치적 이산화와 실제 물리현상을 분리해서 생각해야 하는 이유를 설명한다.

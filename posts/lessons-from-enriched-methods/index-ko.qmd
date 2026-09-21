@@ -579,8 +579,8 @@ Phase-field 모델은 파괴정보를 다른 방식으로 저장한다.
 ## 계산파괴역학 시리즈
 
 1. [**계산파괴역학은 왜 어려운가?**](../computational-fracture-overview/index-ko.qmd)
-2. [**XFEM은 어떻게 균열이 요소망을 가로질러 지나가게 하는가?**](../xfem-crack-through-mesh/index-ko.qmd)
-3. [**왜 XFEM을 무요소법으로 확장하는가?**](../xefg-why-meshfree/index-ko.qmd)
+2. [**XFEM은 어떻게 균열이 요소망을 가로질러 지나가게 하는가?**](../xfem-crack-through-mesh/)
+3. [**왜 XFEM을 무요소법으로 확장하는가?**](../xefg-why-meshfree/)
 4. **다중균열은 어떻게 분기하고 합쳐져 파괴 네트워크를 만드는가?**
 5. [**균열을 표현하려면 반드시 변위공간을 부가적으로 확충(enrichment)해야 하는가?**](../alternative-crack-representations/index-ko.qmd)
 6. [**균열에는 얼마나 여러 종류의 물리적 요소가 필요한가?**](../how-much-physics-does-a-crack-need/index-ko.qmd)

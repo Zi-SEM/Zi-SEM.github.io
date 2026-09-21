@@ -1,0 +1,36 @@
+---
+title: 연구 해설
+toc: false
+page-layout: full
+lang: ko
+---
+
+<div class="language-switch>[English](research.qmd) | **한글**</div>
+
+논문은 압축되어 있다. 그래서 중요한 공학적 생각이 식과 방법론, 세부 기술 뒤에 가려지기 쉽다.
+
+**연구 해설**에서는 논문을 단순히 요약하지 않는다. 어떤 공학적 문제에서 출발했는지, 어떤 물리적·개념적 메커니즘이 작동하는지, 어떤 방법으로 문제를 풀었는지, 그리고 그 결과가 실제 공학에서 무엇을 의미하는지를 다시 살펴본다.
+
+## 해상풍력
+
+[해상풍력 연구 해설 보기 →](research/offshore-wind-energy-ko.qmd)
+
+해상풍력 구조물, 지지구조, 부유식 시스템과 관련된 연구를 공학적 문제와 메커니즘 중심으로 설명한다.
+
+## 디지털전환과 AI
+
+[디지털전환과 AI 연구 해설 보기 →](research/digital-transformation-ai-ko.qmd)
+
+디지털 건설기준, 공학 AI, 지식구조화와 자동화가 실제 엔지니어링 문제를 어떻게 바꾸는지 다룬다.
+
+## 콘크리트와 재료
+
+[콘크리트와 재료 연구 해설 보기 →](research/concrete-materials-ko.qmd)
+
+콘크리트, 내구성, 산업부산물과 재료 거동을 미세구조와 공학적 성능의 연결 관점에서 설명한다.
+
+## 계산역학과 파괴
+
+[계산역학과 파괴 연구 해설 보기 →](research/computational-mechanics-fracture-ko.qmd)
+
+균열, 파괴, XFEM, XEFG와 계산역학 연구를 수치기법 자체보다 물리적 의미와 표현 방식의 관점에서 설명한다.

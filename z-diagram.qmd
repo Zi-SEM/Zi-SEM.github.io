@@ -1,15 +1,18 @@
 ---
 title: "Z Diagram"
 listing:
-  contents: posts
+  contents:
+    - "posts/*/index.qmd"
   type: default
   sort: "date desc"
   include:
-    categories: "Z Diagram"
+    categories: "Z-Diagram"
   sort-ui: false
   filter-ui: false
 toc: false
 ---
+
+<div class="language-switch">**English** | [한글](z-diagram-ko.qmd)</div>
 
 The **Z Diagram** is a framework for connecting the fundamental concepts of engineering mechanics through equilibrium, compatibility, constitutive behavior, and energy.
 

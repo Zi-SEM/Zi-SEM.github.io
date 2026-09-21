@@ -1,0 +1,17 @@
+---
+title: Z Diagram
+lang: ko
+toc: false
+---
+
+<div class="language-switch>[English](z-diagram.qmd) | **한글**</div>
+
+**Z Diagram**은 공학역학의 기본 개념을 평형, 적합조건, 구성관계, 에너지를 통해 연결해서 보는 틀이다.
+
+구조물 수준의 힘과 변위, 재료점 수준의 응력과 변형률을 서로 연결하면서 각각의 관계가 어떤 물리 법칙에서 나오는지를 구분한다.
+
+## 글 목록
+
+### [힘·응력·변형률·변위는 어떻게 연결되는가? — Z 다이어그램](posts/z-diagram-introduction/index-ko.qmd)
+
+평형, 적합조건, 구성관계, 가상일과 에너지 공액을 통해 힘, 응력, 변형률, 변위를 하나의 역학적 흐름으로 연결한다.

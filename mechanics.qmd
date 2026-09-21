@@ -1,7 +1,8 @@
 ---
 title: "Engineering Mechanics"
 listing:
-  contents: posts
+  contents:
+    - "posts/*/index.qmd"
   type: default
   sort: "date desc"
   include:
@@ -10,6 +11,8 @@ listing:
   filter-ui: false
 toc: false
 ---
+
+<div class="language-switch">**English** | [한글](mechanics-ko.qmd)</div>
 
 Notes and explanations on structural mechanics, mechanics of materials, fracture mechanics, fatigue, continuum mechanics, and computational mechanics.
 

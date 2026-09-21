@@ -1,0 +1,19 @@
+---
+title: 콘크리트와 재료
+lang: ko
+toc: false
+---
+
+<div class="language-switch>[English](concrete-materials.qmd) | **한글**</div>
+
+콘크리트 내구성, 연성 열화, 반응성 입자, 산업부산물, 지속가능 건설재료와 재료 수준의 변화가 구조 성능으로 이어지는 역학을 다룬다.
+
+## 글 목록
+
+### [제강슬래그의 입자 크기는 왜 반응성과 팽창 거동을 바꾸는가?](../posts/bof-slag-particle-size/index-ko.qmd)
+
+제강슬래그 입자 크기가 수화반응, 팽창, 미세구조와 재료 성능에 어떤 영향을 주는지 공학적으로 설명한다.
+
+### [콘크리트 내구성 문제는 왜 서로 독립적으로 볼 수 없는가?](../posts/coupled-concrete-durability/index-ko.qmd)
+
+탄산화, 염화물 침투, 균열과 ASR이 서로 영향을 주면서 장기 열화를 어떻게 가속하거나 변화시키는지 설명한다.

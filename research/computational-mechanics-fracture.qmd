@@ -12,6 +12,8 @@ listing:
 toc: false
 ---
 
+<div class="language-switch">**English** | [한글](computational-mechanics-fracture-ko.qmd)</div>
+
 This research area covers computational fracture and damage mechanics, XFEM, XEFG, meshfree methods, multiple-crack representation, alternative fracture descriptions, and multiscale modeling.
 
 The recurring question is how a numerical representation can capture the essential mechanics without forcing the physics to conform to the discretization.

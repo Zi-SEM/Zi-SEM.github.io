@@ -1,0 +1,19 @@
+---
+title: 디지털전환과 AI
+lang: ko
+toc: false
+---
+
+<div class="language-switch>[English](digital-transformation-ai.qmd) | **한글**</div>
+
+공학 AI의 신뢰성을 높이려면 AI에게 추론시키기 전에 권위 있는 공학 지식을 먼저 구조화해야 한다.
+
+디지털 건설기준, 기계가독형 공학 지식, RuleUnit, 온톨로지, 자동 기준검토, BIM 연계, 디지털 예제와 AI 보조 공학을 다룬다.
+
+> **AI에게 추론시키기 전에 공학 지식부터 구조화하자.**
+
+## 글 목록
+
+### [건설 엔지니어링 실무에서 AI를 환각 없이 믿고 사용할 수 있을까?](../posts/ai-construction-standards-without-hallucination/index-ko.qmd)
+
+디지털 건설기준, RuleUnit, 온톨로지와 기계가독형 지식구조를 이용해 AI가 공학 기준을 더 신뢰성 있게 다루도록 만드는 방법을 설명한다.

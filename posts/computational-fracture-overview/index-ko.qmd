@@ -38,7 +38,7 @@ toc-depth: 2
 
 <div class="language-switch">[English](index.qmd) | **한글**</div>
 
-**계산파괴역학 시리즈:** 7편 중 1편 · [다음: XFEM →](../xfem-crack-through-mesh/index-ko.qmd)
+**계산파괴역학 시리즈:** 7편 중 1편 · [다음: XFEM →](../xfem-crack-through-mesh/)
 
 균열은 계산역학에서 상당히 특이한 문제를 만든다.
 
@@ -278,13 +278,13 @@ Phantom node, cracking particle, peridynamics, phase field는 계산파괴역학
 **1. 계산파괴역학은 왜 어려운가?**  
 *이 글.* 불연속, 진화하는 기하형상, 재요소망 생성, 변위공간 확충, XFEM에서 XEFG와 후속 파괴표현으로 이어지는 전체적인 흐름을 설명한다.
 
-**2. [XFEM은 어떻게 균열이 요소망을 가로질러 지나가게 하는가?](../xfem-crack-through-mesh/index-ko.qmd)**  
+**2. [XFEM은 어떻게 균열이 요소망을 가로질러 지나가게 하는가?](../xfem-crack-through-mesh/)**  
 일반 유한요소로 표현할 수 없는 변위 점프와 균열선단 운동학을 어떻게 표현하는지 설명한다.
 
-**3. [왜 XFEM을 무요소법으로 확장했는가?](../xefg-why-meshfree/index-ko.qmd)**  
+**3. [왜 XFEM을 무요소법으로 확장했는가?](../xefg-why-meshfree/)**  
 같은 확충 개념이 유한요소에서 입자의 영향영역으로 어떻게 옮겨가는지 설명한다.
 
-**4. [여러 균열은 어떻게 분기하고 만나 파괴 네트워크를 만드는가?](../multiple-cracks-fracture-network/index-ko.qmd)**  
+**4. [여러 균열은 어떻게 분기하고 만나 파괴 네트워크를 만드는가?](../multiple-cracks-fracture-network/)**  
 다중균열 성장, 피로, 경쟁, 분기, 합체, 접합, 위상 진화와 3차원 균열 추적을 다룬다.
 
 **5. [균열을 표현하려면 반드시 변위공간을 부가적으로 확충해야 하는가?](../alternative-crack-representations/index-ko.qmd)**  

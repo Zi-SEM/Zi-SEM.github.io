@@ -1,0 +1,29 @@
+---
+title: LaTeX와 글쓰기
+lang: ko
+toc: false
+---
+
+<div class="language-switch>[English](latex-writing.qmd) | **한글**</div>
+
+연구논문, LaTeX 작업 흐름, 기술문서, 발표자료, AI 보조 글쓰기를 포함해 과학·공학 글쓰기에 실제로 필요한 방법을 다룬다.
+
+핵심은 공학 연구를 명확하고 효율적으로 전달할 수 있는 체계적이고 재사용 가능한 방법을 만드는 것이다.
+
+## 글 목록
+
+### [AI 시대에도 한글 LaTeX가 필요한 이유](posts/hangul-latex-ai-era/index-ko.qmd)
+
+한글 LaTeX 환경이 연구논문, 기술문서, 수식, 자동화와 AI 기반 글쓰기에서 어떤 장점을 갖는지 설명한다.
+
+### [연구논문은 어떻게 쓰는가?](posts/how-to-write-research-paper/index-ko.qmd)
+
+연구 질문에서 시작해 논리 구조, 그림, 수식, 문장, 참고문헌을 어떻게 연결해 논문을 완성하는지 설명한다.
+
+### [LaTeX에서 공학 표를 어떻게 효율적으로 만드는가?](posts/latex-engineering-tables/index-ko.qmd)
+
+반복되는 공학 표를 일관되고 재사용 가능한 방식으로 만드는 LaTeX 작성 원리를 설명한다.
+
+### [논문을 쓸 때마다 LaTeX 환경을 새로 만들 필요가 있을까?](posts/latex-research-workflow/index-ko.qmd)
+
+템플릿, 공통 패키지, 사용자 정의 명령어, BibTeX와 원문 PDF를 연결해 장기적으로 재사용 가능한 연구 글쓰기 시스템을 만드는 방법을 설명한다.

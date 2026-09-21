@@ -12,6 +12,8 @@ listing:
 toc: false
 ---
 
+<div class="language-switch">**English** | [한글](concrete-materials-ko.qmd)</div>
+
 This research area focuses on concrete durability, coupled deterioration, reactive particles, industrial by-products, sustainable construction materials, and the mechanics linking material-scale processes to structural performance.
 
 ## Articles in this category

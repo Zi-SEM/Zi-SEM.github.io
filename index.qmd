@@ -55,6 +55,8 @@ listing:
     filter-ui: false
 ---
 
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
+
 Research · Education · Mechanics · Technical Writing
 
 This site explains structural engineering and mechanics through research, education, and technical communication.

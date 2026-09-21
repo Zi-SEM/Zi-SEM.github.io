@@ -12,6 +12,8 @@ listing:
 toc: false
 ---
 
+<div class="language-switch">**English** | [한글](digital-transformation-ai-ko.qmd)</div>
+
 Engineering AI becomes more reliable when authoritative engineering knowledge is structured before the AI uses it.
 
 This research area covers digital construction standards, machine-readable engineering knowledge, rule units, ontology, automatic compliance checking, BIM-linked applications, digital engineering examples, and AI-assisted engineering.

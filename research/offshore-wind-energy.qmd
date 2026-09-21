@@ -12,6 +12,8 @@ listing:
 toc: false
 ---
 
+<div class="language-switch">**English** | [한글](offshore-wind-energy-ko.qmd)</div>
+
 Fixed and floating offshore wind energy substructures are studied through structural mechanics, hydrodynamics, transportation and installation, new structural concepts, and engineering decision-making.
 
 The common question is not only whether an offshore system works, but **why its structural and physical behavior makes engineering sense**.
