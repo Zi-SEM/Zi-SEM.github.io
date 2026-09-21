@@ -6,9 +6,26 @@ date: "2026-09-13"
 categories:
   - Offshore Wind Energy
 description: "Offshore wind is usually introduced as an energy technology. From an engineering perspective, however, it is also a marine infrastructure system in which geotechnical engineering, structures, construction, ports, regulation, and O&M must work together."
+keywords:
+  - offshore wind civil engineering
+  - offshore wind infrastructure
+  - offshore wind support structures
+  - offshore wind foundations
+  - offshore wind ports
+  - offshore wind installation
+  - offshore wind construction
+  - offshore wind operations and maintenance
+  - floating offshore wind
+  - fixed-bottom offshore wind
+  - marine infrastructure engineering
+  - offshore wind certification
+  - offshore wind supply chain
+  - offshore wind engineering
 toc: true
 toc-depth: 2
 ---
+
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
 
 When people see an offshore wind farm, they usually see the turbine first.
 
