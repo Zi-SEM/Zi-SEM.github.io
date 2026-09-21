@@ -13,9 +13,28 @@ categories:
 description: "Floating wind turbine motion can be reduced without active control by changing the floater geometry,
 exploiting internal liquid motion, and modifying wave–structure interaction. Several studies reveal the mechanics
 behind these passive strategies."
+keywords:
+  - floating offshore wind turbine
+  - passive motion control
+  - floating wind platform
+  - tuned liquid damper
+  - bidirectional tuned liquid damper
+  - BTLD
+  - hydrodynamic skirt
+  - pitch motion reduction
+  - heave motion reduction
+  - floating platform optimization
+  - hydroelastic response
+  - added mass
+  - radiation damping
+  - fluid-structure interaction
+  - FOWT motion control
 toc: true
 toc-depth: 2
 ---
+
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
+
 
 A floating offshore wind turbine has an unavoidable problem.
 
