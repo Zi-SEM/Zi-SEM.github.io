@@ -10,11 +10,30 @@ categories:
   - Waste Materials
   - Fracture Mechanics
   - Sustainable Construction
+keywords:
+  - reactive waste particle size
+  - waste glass concrete
+  - waste glass particle size
+  - alkali-silica reaction
+  - ASR pessimum size
+  - fracture mechanics of ASR
+  - waste glass powder
+  - LCD glass powder concrete
+  - BOF slag particle size
+  - basic oxygen furnace slag
+  - steel slag concrete
+  - reactive industrial waste
+  - supplementary cementitious materials
+  - particle size effect
+  - grinding energy
+  - sustainable concrete
 description: "A mechanics-based story connecting waste-glass research beginning with alkali-silica reaction in 2000 to
 the particle-size-controlled use of BOF slag in concrete."
 toc: true
 toc-depth: 2
 ---
+
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
 
 A waste material can be chemically reactive.
 
