@@ -10,11 +10,33 @@ categories:
   - XFEM
   - XEFG
   - Fatigue
+keywords:
+  - "multiple crack growth"
+  - "fracture network"
+  - "computational fracture mechanics"
+  - "fracture mechanics"
+  - "fatigue crack growth"
+  - "crack interaction"
+  - "crack coalescence"
+  - "crack branching"
+  - "crack junction"
+  - "crack topology"
+  - "fracture connectivity"
+  - "XFEM"
+  - "XEFG"
+  - "extended finite element method"
+  - "extended meshfree method"
+  - "mesh independent crack growth"
+  - "3D crack propagation"
+  - "three-dimensional fracture"
+  - "Paris law"
+  - "quasibrittle fracture"
 description: "A mechanics-oriented explanation of multiple-crack growth, fatigue, crack interaction, coalescence, branching, junctions, and three-dimensional fracture-network evolution."
 toc: true
 toc-depth: 2
 ---
 
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
 **Computational Fracture Series:** [← Overview](../computational-fracture-overview/) · [← XFEM](../xfem-crack-through-mesh/) · [← XEFG](../xefg-why-meshfree/) · Article 4 of 7
 
 A single crack is already a difficult numerical object.
