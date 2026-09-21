@@ -11,9 +11,26 @@ categories:
   - Structural Dynamics
 description: "A mechanics-based explanation of how a nearshore oscillating-arm wave energy converter transforms local
 wave-induced motion into hydraulic flow and estimated electrical power."
+keywords:
+  - nearshore wave energy converter
+  - wave energy converter
+  - oscillating arm wave energy converter
+  - hydraulic power take-off
+  - wave energy PTO
+  - local PTO response
+  - wave energy conversion
+  - hydrodynamic response
+  - PTO impedance
+  - wave energy device optimization
+  - wave period response
+  - nearshore renewable energy
+  - floating body dynamics
+  - JONSWAP wave spectrum
 toc: true
 toc-depth: 2
 ---
+
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
 
 Ocean waves contain energy.
 
