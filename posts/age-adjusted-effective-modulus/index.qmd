@@ -27,6 +27,8 @@ toc: true
 toc-depth: 2
 ---
 
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
+
 ## A bridge keeps deforming after construction is finished
 
 A prestressed concrete box-girder bridge does not stop moving when construction ends.
