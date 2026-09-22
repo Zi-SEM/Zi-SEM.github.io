@@ -1,0 +1,700 @@
+---
+title: "Why Does Concrete Need an Age-Adjusted Effective Modulus?"
+subtitle: "From creep and relaxation to long-term deflection of concrete box-girder bridges"
+author: "Goangseup Zi"
+date: "2026-09-22"
+categories:
+  - Engineering Mechanics
+  - Concrete & Materials
+  - Concrete
+  - Creep
+  - Bridge Engineering
+keywords:
+  - age-adjusted effective modulus method
+  - AAEM concrete creep
+  - concrete creep analysis
+  - long-term bridge deflection
+  - box girder bridge creep
+  - prestressed concrete bridge deflection
+  - concrete relaxation
+  - creep compliance
+  - aging coefficient
+  - effective modulus method
+  - time-dependent concrete analysis
+  - staged construction concrete
+description: "Why is the ordinary effective modulus not enough for long-term concrete bridge analysis? This article develops AAEM from creep and relaxation and explains its meaning for box-girder bridge deflection."
+toc: true
+toc-depth: 2
+---
+
+## A bridge keeps deforming after construction is finished
+
+A prestressed concrete box-girder bridge does not stop moving when construction ends.
+
+Its dead load remains. Prestress changes with time. Concrete creeps and shrinks. Different segments may have been cast and loaded at different ages. Continuity introduced during construction changes the structural system. Support movements or later corrective actions can impose additional deformations.
+
+The result may be a deflection that continues to evolve for years or decades.
+
+The first instinct is often:
+
+> **Concrete creeps, so use an effective modulus.**
+
+For constant stress $\sigma_0$ applied at age $t'$, creep compliance gives
+
+$$
+\varepsilon(t)=J(t,t')\sigma_0.
+$$
+
+Thus
+
+$$
+E_{\mathrm{eff}}(t,t')=\frac{1}{J(t,t')}.
+$$
+
+A viscoelastic problem has apparently become elastic.
+
+The problem is that concrete stress in a real bridge generally does **not** remain constant. This is precisely where the Age-Adjusted Effective Modulus Method (AAEM) becomes useful.
+
+---
+
+## Why is the ordinary effective modulus not enough?
+
+The linear-viscoelastic relation may be written schematically as
+
+$$
+\varepsilon(t)
+=
+\varepsilon^0(t)
++
+J(t,t_0)\sigma(t_0)
++
+\int_{t_0}^{t}J(t,\tau)\,d\sigma(\tau),
+$$
+
+where $\varepsilon^0(t)$ represents stress-independent strains such as shrinkage and thermal strain.
+
+The first stress term is easy: it is the response to stress already present at $t_0$.
+
+The integral is the difficult part.
+
+Every increment $d\sigma(\tau)$ occurs at a different concrete age. Each therefore has a different remaining creep history.
+
+This is the real difficulty:
+
+$$
+\boxed{
+\text{creep changes deformation}
+\quad\text{while}\quad
+\text{deformation and restraint change stress}.
+}
+$$
+
+In a statically indeterminate structure, stress history is part of the solution.
+
+Bažant's 1972 formulation refined the ordinary effective-modulus method specifically to account for concrete aging while retaining an elastic-looking structural calculation. The original paper notes that neglect of aging can cause substantial analytical error and formulates the result in an incremental Hooke-law form. [^bazant1972]
+
+---
+
+## Start with two experiments we already understand
+
+Before introducing $\chi$, consider two limiting experiments.
+
+### Constant stress: creep
+
+Apply a stress $\beta$ at age $t'$ and maintain it:
+
+$$
+\sigma(t)=\beta.
+$$
+
+Then
+
+$$
+\varepsilon(t)=\beta J(t,t'),
+$$
+
+and
+
+$$
+\boxed{
+(\varepsilon,\sigma)_\beta
+=
+\left(\beta J(t,t'),\beta\right).
+}
+$$
+
+Stress is fixed; strain evolves. This is the **creep mode**.
+
+### Constant strain: relaxation
+
+Impose a strain $\alpha$ at age $t'$ and maintain it:
+
+$$
+\varepsilon(t)=\alpha.
+$$
+
+Then
+
+$$
+\sigma(t)=\alpha R(t,t'),
+$$
+
+and
+
+$$
+\boxed{
+(\varepsilon,\sigma)_\alpha
+=
+\left(\alpha,\alpha R(t,t')\right).
+}
+$$
+
+Strain is fixed; stress evolves. This is the **relaxation mode**.
+
+---
+
+## What do $\alpha$ and $\beta$ mean?
+
+If we write
+
+$$
+\varepsilon(t)=\alpha+\beta J(t,t'),
+$$
+
+$$
+\sigma(t)=\alpha R(t,t')+\beta,
+$$
+
+it is tempting to interpret $\alpha$ as an elastic strain and $\beta$ as its corresponding elastic stress.
+
+That would suggest
+
+$$
+\beta=E\alpha.
+$$
+
+That is **not** the useful interpretation.
+
+Instead,
+
+$$
+\boxed{
+\alpha=\text{amplitude of the constant-strain relaxation mode}
+}
+$$
+
+and
+
+$$
+\boxed{
+\beta=\text{amplitude of the constant-stress creep mode}.
+}
+$$
+
+Their dimensions are
+
+$$
+[\alpha]=[\text{strain}],
+\qquad
+[\beta]=[\text{stress}].
+$$
+
+They are independent weights of two elementary viscoelastic responses.
+
+This decomposition is a useful **physical interpretation** of a general response between two limiting modes. It should not be confused with the exact notation of Bažant's 1972 theorem.
+
+---
+
+## Why are these the right limiting pictures?
+
+A bridge follows neither pure mode:
+
+$$
+\sigma=\sigma(t),
+\qquad
+\varepsilon=\varepsilon(t).
+$$
+
+At one extreme,
+
+$$
+d\sigma=0,
+$$
+
+and time dependence appears as creep strain.
+
+At the other,
+
+$$
+d\varepsilon=0,
+$$
+
+and time dependence appears as stress relaxation.
+
+A restrained concrete member, prestressed section, or continuous bridge lies between them.
+
+Relaxation is therefore not a side issue. It describes what happens when compatibility prevents concrete from developing its free creep deformation.
+
+---
+
+## The bridge problem is fundamentally a compatibility problem
+
+For a free member under sustained bending moment,
+
+$$
+M=\text{constant}
+\quad\Rightarrow\quad
+\kappa(t)\uparrow.
+$$
+
+A real bridge is constrained. Prestressing steel does not creep like concrete. Reinforcement restrains deformation. Adjacent segments have different ages. Continuity restrains rotations. Bearings and piers impose compatibility. Shrinkage creates deformation without directly applying stress.
+
+Thus,
+
+$$
+\boxed{
+\text{creep}
+\rightarrow
+\text{deformation}
+\rightarrow
+\text{compatibility}
+\rightarrow
+\text{stress redistribution}
+\rightarrow
+\text{more creep}.
+}
+$$
+
+This is why long-term box-girder deflection cannot generally be obtained by multiplying the initial elastic deflection by $1+\phi$.
+
+---
+
+## What does the age-adjusted modulus actually adjust?
+
+Define
+
+$$
+\phi(t,t_0)=E(t_0)J(t,t_0)-1.
+$$
+
+The ordinary effective modulus is
+
+$$
+E_{\mathrm{eff}}(t,t_0)
+=
+\frac{E(t_0)}{1+\phi(t,t_0)}.
+$$
+
+AAEM instead uses
+
+$$
+\boxed{
+E''(t,t_0)
+=
+\frac{E(t_0)}
+{1+\chi(t,t_0)\phi(t,t_0)}.
+}
+$$
+
+Here $\chi(t,t_0)$ is the **aging coefficient**.
+
+The equivalent relaxation-function relation is
+
+$$
+\boxed{
+E''(t,t_0)
+=
+\frac{E(t_0)-R(t,t_0)}
+{\phi(t,t_0)}.
+}
+$$
+
+Hence,
+
+$$
+\boxed{
+\chi(t,t_0)
+=
+\frac{E(t_0)}
+{E(t_0)-R(t,t_0)}
+-
+\frac{1}{\phi(t,t_0)}.
+}
+$$
+
+AAEM is therefore connected directly to relaxation, not merely to the creep coefficient. [^relaxation]
+
+---
+
+## Why is $\chi$ an aging coefficient?
+
+The name matters.
+
+For a nonaging material, the classical effective-modulus method is recovered with
+
+$$
+\chi=1.
+$$
+
+Bažant pointed out that the correction represented by $\chi$ arises mainly from concrete aging and therefore preferred **aging coefficient** to the earlier term **relaxation coefficient**. [^bazant1972]
+
+Physically,
+
+> **$\chi$ corrects the effective-modulus idea because stress changes occurring later do not creep as though they had been present since the original loading age.**
+
+That is the essence of the age adjustment.
+
+---
+
+## A stress increment applied later has a different memory
+
+Suppose a bridge is first loaded at $t_0$.
+
+A stress increment present at $t_0$ has the entire interval $t-t_0$ available for creep.
+
+A new increment introduced at $\tau$ has only
+
+$$
+t-\tau
+$$
+
+available and acts on older concrete.
+
+Treating both with the same ordinary effective modulus loses this distinction.
+
+AAEM does not reconstruct every possible history exactly. It compresses the dominant aging and redistribution effects into a practical constitutive relation.
+
+---
+
+## The remarkable result: the hereditary problem looks elastic again
+
+For the class of strain histories in Bažant's theorem, the relation can be written as
+
+$$
+\boxed{
+\Delta\sigma(t)
+=
+E''(t,t_0)
+\left[
+\Delta\varepsilon(t)
+-
+\Delta\varepsilon''(t)
+\right],
+}
+$$
+
+where $\Delta\varepsilon''$ is the fictitious inelastic strain increment of the formulation. Bažant emphasized that this has the form of Hooke's law, reducing the creep problem to an elastic analysis in the same computational spirit as the ordinary effective-modulus method. [^bazant1972]
+
+That is the computational achievement of AAEM.
+
+The hereditary term
+
+$$
+\int_{t_0}^{t}J(t,\tau)\,d\sigma(\tau)
+$$
+
+is replaced, for structural calculation, by an elastic-looking relation using
+
+$$
+E''(t,t_0)
+$$
+
+and appropriate imposed/inelastic strains.
+
+---
+
+## From material modulus to box-girder stiffness
+
+For an uncracked section,
+
+$$
+\begin{bmatrix}
+N\\
+M
+\end{bmatrix}
+=
+\begin{bmatrix}
+EA & ES\\
+ES & EI
+\end{bmatrix}
+\begin{bmatrix}
+\varepsilon_0\\
+\kappa
+\end{bmatrix}.
+$$
+
+In AAEM, the concrete contribution can be constructed using
+
+$$
+E\longrightarrow E''(t,t_0).
+$$
+
+Schematically,
+
+$$
+\begin{bmatrix}
+\Delta N\\
+\Delta M
+\end{bmatrix}
+=
+\mathbf K_{\mathrm{AAEM}}(t,t_0)
+\left[
+\begin{bmatrix}
+\Delta\varepsilon_0\\
+\Delta\kappa
+\end{bmatrix}
+-
+\begin{bmatrix}
+\Delta\varepsilon^{0}\\
+\Delta\kappa^{0}
+\end{bmatrix}
+\right].
+$$
+
+Shrinkage, temperature, prestressing effects, and other imposed strains must of course be treated consistently.
+
+Once the sectional relation has this form, it can be assembled into familiar structural stiffness equations.
+
+AAEM is therefore a bridge between **aging viscoelasticity** and **ordinary structural analysis**.
+
+---
+
+## Why box-girder bridges make the issue visible
+
+Prestressed concrete box girders combine nearly every ingredient that makes creep history important:
+
+- sustained dead load,
+- prestressing,
+- staged construction,
+- concrete loaded at different ages,
+- changing structural systems,
+- shrinkage,
+- redistribution between concrete and prestressing steel,
+- continuity moments,
+- and long service periods.
+
+Balanced-cantilever construction is especially revealing. A segment cast today and one cast weeks later do not have the same creep history. When continuity is established, subsequent deformation is restrained by a structural system that did not exist when the early segments were loaded.
+
+Recent bridge studies continue to emphasize AAEM for staged methods such as balanced-cantilever construction and incremental launching because aging matters strongly when concrete is loaded young. [^bridge]
+
+---
+
+## A useful thought experiment: lift the bridge after creep has developed
+
+Now suppose the bridge is loaded at $t_0$ and creeps until $t_{\mathrm{up}}$.
+
+At that age, it is lifted by an imposed displacement
+
+$$
+\delta_{\mathrm{up}}.
+$$
+
+The response naturally divides into
+
+$$
+t_0<t<t_{\mathrm{up}}
+$$
+
+and
+
+$$
+t>t_{\mathrm{up}}.
+$$
+
+Before lifting, creep, shrinkage, prestress effects, and redistribution accumulate.
+
+At $t_{\mathrm{up}}$, the imposed displacement changes compatibility and creates a new stress state.
+
+The lift is therefore not merely a vertical translation added to the old deflection curve.
+
+It creates a **new stress increment at age $t_{\mathrm{up}}$**.
+
+---
+
+## Why lifting reveals the meaning of AAEM
+
+Suppose lifting produces
+
+$$
+\Delta\sigma_{\mathrm{up}}.
+$$
+
+It would be wrong to treat this stress as though it had existed since $t_0$.
+
+The original sustained-load stress has elapsed time
+
+$$
+t-t_0,
+$$
+
+whereas the lift-induced stress has elapsed time
+
+$$
+t-t_{\mathrm{up}}.
+$$
+
+They have different memories.
+
+Schematically,
+
+$$
+\sigma(t)
+=
+\sigma^{(0)}(t;t_0)
++
+\Delta\sigma^{(\mathrm{up})}(t;t_{\mathrm{up}}),
+$$
+
+and
+
+$$
+w(t)
+=
+w^{(0)}(t;t_0)
++
+H(t-t_{\mathrm{up}})
+w^{(\mathrm{up})}(t;t_{\mathrm{up}},\delta_{\mathrm{up}}).
+$$
+
+Each significant event starts another time-dependent response.
+
+Bažant's 1972 paper explicitly notes that sudden load changes after first loading may be handled as superposed step histories. [^bazant1972]
+
+---
+
+## Creep before lifting, relaxation after lifting?
+
+There is useful intuition here, with one qualification.
+
+Before lifting, sustained gravity loading looks strongly creep-like:
+
+$$
+\text{sustained load}
+\rightarrow
+\text{increasing deformation}.
+$$
+
+The imposed lift is deformation-controlled, so its subsequent response has a strongly relaxation-like character:
+
+$$
+\text{imposed deformation}
+\rightarrow
+\text{changing stress}.
+$$
+
+But a real bridge after lifting is neither a pure creep test nor a pure relaxation test.
+
+Internal forces redistribute while deformation continues to evolve.
+
+That is precisely why the two limiting modes are useful: AAEM works in the coupled region between them.
+
+---
+
+## What AAEM does not solve automatically
+
+AAEM is a constitutive simplification, not a complete bridge model.
+
+A realistic calculation still needs
+
+- a creep compliance or creep-coefficient model,
+- concrete aging,
+- shrinkage,
+- prestress losses,
+- construction sequence,
+- section changes,
+- reinforcement and tendon compatibility,
+- cracking where relevant,
+- support conditions,
+- and temperature where relevant.
+
+For very long predictions, uncertainty in the underlying creep model may become more important than the structural simplification.
+
+AAEM makes the **history calculation** manageable. It does not make uncertain long-term concrete behavior certain.
+
+---
+
+## When is AAEM exact, and when is it an approximation?
+
+This distinction is important.
+
+Bažant's 1972 theorem establishes exactness for the family of strain histories assumed in the derivation. The paper highlights three important limiting cases: constant stress, constant strain, and strain varying proportionally with creep coefficient. For general histories AAEM is an approximation, designed to improve substantially on the ordinary effective-modulus method without losing its simplicity. [^bazant1972]
+
+So it is better not to say:
+
+> AAEM replaces the exact hereditary integral.
+
+Instead:
+
+> **AAEM represents the hereditary response by an elastic-looking relation that is exact for important classes of histories and provides a practical approximation for many others.**
+
+---
+
+## Why this makes engineering sense
+
+Long-term bridge deformation is often called a creep problem.
+
+That is incomplete.
+
+The structural problem is
+
+$$
+\boxed{
+\text{creep}
++
+\text{aging}
++
+\text{compatibility}
++
+\text{stress redistribution}.
+}
+$$
+
+Creep compliance describes deformation when stress is maintained.
+
+Relaxation describes stress change when deformation is restrained.
+
+A bridge does both.
+
+The memorable engineering principle is therefore not merely
+
+> concrete becomes softer with time.
+
+It is:
+
+> **The stiffness we should use depends not only on how long concrete has been creeping, but also on when the stress being analyzed entered the structure.**
+
+That is why **age-adjusted** matters.
+
+And that is why AAEM is useful for long-term deflection of prestressed concrete box-girder bridges.
+
+---
+
+## Where we go next
+
+The next useful problem is:
+
+> **If a box-girder bridge is lifted by $\delta_{\mathrm{up}}$ at age $t_{\mathrm{up}}$, what is its deflection for $t<t_{\mathrm{up}}$ and $t>t_{\mathrm{up}}$?**
+
+That problem forces us to distinguish the original loading history from the deformation imposed later in service.
+
+It is where AAEM changes from a creep formula into a structural-analysis tool.
+
+---
+
+## Further reading
+
+**Bažant, Z. P. (1972).**  
+*Prediction of Concrete Creep Effects Using Age-Adjusted Effective Modulus Method.*  
+ACI Journal Proceedings, 69(4), 212–219.  
+DOI: 10.14359/11265.
+
+**Bažant, Z. P., Hubler, M. H., & Jirásek, M. (2013).**  
+*Improved Estimation of Long-Term Relaxation Function of Aging Concrete from Its Compliance Function.*  
+In *Mechanics and Physics of Creep, Shrinkage, and Durability of Concrete*, 437–442.  
+DOI: 10.1061/9780784413111.052.
+
+[^bazant1972]: Source-supported points are from Bažant (1972): the rigorous AAEM formulation, the aging coefficient, age-adjusted modulus, incremental Hooke-law form, important exact cases, and superposition of later step changes.
+
+[^relaxation]: The relaxation function and creep compliance are linked through the linear-viscoelastic integral relation; later Bažant work discusses practical estimation of $R(t,t')$ from $J(t,t')$.
+
+[^bridge]: Modern bridge applications emphasize that aging is particularly relevant when concrete is loaded at young ages in staged construction such as balanced cantilever and incremental launching.
