@@ -32,7 +32,7 @@ or
 $$
 \mathbf t^{(\mathbf n)}
 =
-\boldsymbol{\sigma}\mathbf n.
+\boldsymbol{\sigma}\cdot \mathbf n.
 $$
 
 The stress tensor therefore tells us how internal force is transmitted across an arbitrarily oriented surface.
@@ -83,7 +83,7 @@ From Cauchy's traction law,
 $$
 \mathbf t
 =
-\boldsymbol{\sigma}\mathbf n,
+\boldsymbol{\sigma}\cdot \mathbf n,
 $$
 
 where $\mathbf n$ is the outward unit normal to the boundary.
@@ -94,7 +94,7 @@ $$
 \delta W_t
 =
 \int_{\partial\Omega}
-(\boldsymbol{\sigma}\mathbf n)
+(\boldsymbol{\sigma}\cdot \mathbf n)
 \cdot
 \delta\mathbf u
 \,dA.
@@ -700,7 +700,7 @@ The First Piola--Kirchhoff stress is
 $$
 \mathbf P
 =
-J\boldsymbol{\sigma}\mathbf F^{-T}.
+J\boldsymbol{\sigma}\cdot\mathbf F^{-T}.
 $$
 
 The power expression referred to the reference configuration can be written as
@@ -732,7 +732,7 @@ $$
 =
 \frac12
 \left(
-\mathbf F^T\mathbf F-\mathbf I
+\mathbf F^T \mathbf F-\mathbf I
 \right).
 $$
 

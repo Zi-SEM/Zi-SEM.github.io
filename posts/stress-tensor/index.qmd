@@ -312,7 +312,7 @@ $$
 \boxed{
 \mathbf t^{(\mathbf n)}
 =
-\boldsymbol{\sigma}\mathbf n
+\boldsymbol{\sigma} \cdot \mathbf n
 }
 $$
 
@@ -367,7 +367,7 @@ Once $\boldsymbol{\sigma}$ is known, the traction vector on a surface with unit 
 $$
 \mathbf t^{(\mathbf n)}
 =
-\boldsymbol{\sigma}\mathbf n.
+\boldsymbol{\sigma} \cdot \mathbf n.
 $$
 
 We can now decompose this traction into normal and tangential parts.
@@ -386,7 +386,7 @@ $$
 \boxed{
 \sigma_n
 =
-\mathbf n\cdot\boldsymbol{\sigma}\mathbf n
+\mathbf n\cdot\boldsymbol{\sigma}\cdot \mathbf n
 }
 $$
 
@@ -406,9 +406,9 @@ $$
 \boxed{
 \boldsymbol{\tau}
 =
-\boldsymbol{\sigma}\mathbf n
+\boldsymbol{\sigma}\cdot \mathbf n
 -
-(\mathbf n\cdot\boldsymbol{\sigma}\mathbf n)\mathbf n
+(\mathbf n\cdot\boldsymbol{\sigma}\cdot \mathbf n)\mathbf n
 }
 $$
 
@@ -473,7 +473,7 @@ Starting from the equilibrium of forces acting on an infinitesimal body, we arri
 $$
 \mathbf t^{(\mathbf n)}
 =
-\boldsymbol{\sigma}\mathbf n.
+\boldsymbol{\sigma}\cdot \mathbf n.
 $$
 
 The stress tensor can therefore be understood as the local representation of internal force transmission within a continuum.
@@ -495,7 +495,7 @@ If there is one idea to remember, it is not merely the formula
 $$
 \mathbf t^{(\mathbf n)}
 =
-\boldsymbol{\sigma}\mathbf n.
+\boldsymbol{\sigma}\cdot \mathbf n.
 $$
 
 Instead, remember how we arrived at it.
@@ -514,7 +514,7 @@ $$
 \boxed{
 \mathbf t^{(\mathbf n)}
 =
-\boldsymbol{\sigma}\mathbf n
+\boldsymbol{\sigma}\cdot \mathbf n
 }
 $$
 
