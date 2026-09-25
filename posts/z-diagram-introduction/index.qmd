@@ -6,10 +6,12 @@ date: "2026-08-30"
 lang: en
 categories:
   - Z-Diagram
+  - Z Diagram mechanics
+  - mechanics navigation map
   - Engineering Mechanics
   - Structural Mechanics
   - Mechanics of Materials
-description: "An introduction to the Z-Diagram as a unified framework connecting force equilibrium, constitutive behavior, displacement compatibility, and energy across structural and material-point scales."
+description: "The Z-Diagram, developed by Goangseup Zi in 2004 as a navigation map for mechanics problems, connects force, stress, strain, and displacement through equilibrium, constitutive behavior, compatibility, work, and energy."
 keywords:
   - Z-Diagram
   - force stress strain displacement
@@ -24,7 +26,33 @@ toc: true
 toc-depth: 2
 ---
 
-<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
+<div class="language-switch">
+  <strong>English</strong> | <a href="index-ko.html">한글</a>
+</div>
+
+## Why I developed the Z-Diagram
+
+I developed the **Z-Diagram in 2004**, when I joined Korea University, as a way to teach students how to navigate mechanics problems systematically.
+
+Mechanics courses contain many equations, variables, and specialized methods. The difficulty for students is often not solving an individual equation. It is knowing **where they are in the mechanics problem, which physical relation should come next, and why**.
+
+I therefore began using the Z-Diagram as a kind of **navigation map for mechanics**. Its four basic quantities,
+
+$$
+F,\qquad \sigma,\qquad \varepsilon,\qquad u,
+$$
+
+locate the major stages of a mechanics problem, while equilibrium, constitutive behavior, and compatibility tell us how to move between them. Work and energy provide another way to check whether the different descriptions remain mechanically consistent.
+
+Since then, I have used this map in **almost all of the mechanics-related courses that I teach**. The details change from mechanics of materials to structural mechanics, finite element analysis, plasticity, fracture mechanics, and other subjects, but the same map helps identify what each equation is doing and how it fits into the larger mechanical system.
+
+I also use the Z-Diagram in my **research**. It is useful not only for explaining established mechanics but also for organizing a new problem: identifying the relevant force, stress, strain, and displacement measures; separating equilibrium, kinematics, and constitutive assumptions; and checking work or energy consistency.
+
+So the Z-Diagram is not intended as another formula to memorize. It is a map for asking:
+
+> **Where am I in this mechanics problem, and what physical principle lets me move to the next quantity?**
+
+## Why a navigation map is useful
 
 Structural mechanics is usually taught as a sequence of separate topics:
 
