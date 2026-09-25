@@ -8,11 +8,31 @@ categories:
   - Mechanics of Materials
   - Strain
   - Continuum Mechanics
-description: "Why is strain the symmetric part of the displacement gradient? Starting from boundary traction work, we
-derive the strain tensor through equilibrium and energy considerations."
+description: "Why is strain the symmetric part of the displacement gradient? Starting from boundary traction work, we derive the strain tensor through equilibrium, virtual work, and energy conjugacy."
+keywords:
+  - strain tensor
+  - small strain tensor
+  - displacement gradient
+  - stress strain energy
+  - strain energy density
+  - internal virtual work
+  - principle of virtual work
+  - energy conjugate stress and strain
+  - tensor contraction
+  - double contraction
+  - Cauchy stress
+  - continuum mechanics
+  - finite deformation
+  - Green-Lagrange strain
+  - Piola-Kirchhoff stress
+  - Z Diagram
 toc: true
 toc-depth: 2
 ---
+
+<div class="language-switch">
+  <strong>English</strong> | <a href="index-ko.html">한글</a>
+</div>
 
 ## From stress to strain
 
@@ -51,6 +71,18 @@ $$
 \delta\boldsymbol{\varepsilon}
 \,dV.
 $$
+
+Here and throughout this article, the tensor-operation symbols are written explicitly when they help distinguish the operation:
+
+$$
+\otimes:\;\text{tensor product (no contraction)},
+\qquad
+\cdot:\;\text{single contraction},
+\qquad
+::\;\text{double contraction}.
+$$
+
+Thus $\boldsymbol{\sigma}\cdot\mathbf n$ is a single contraction, whereas $\boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}$ is a double contraction. The symbols are a notation convention used here for clarity; the underlying operation is best checked from the repeated and free indices.
 
 This formula is fundamental in solid mechanics and finite element analysis.
 
@@ -703,6 +735,8 @@ $$
 J\boldsymbol{\sigma}\cdot\mathbf F^{-T}.
 $$
 
+The dot is shown explicitly here because $\boldsymbol{\sigma}\cdot\mathbf F^{-T}$ is a single contraction between two second-order tensors. In matrix notation the same operation is often written simply as $J\boldsymbol{\sigma}\mathbf F^{-T}$.
+
 The power expression referred to the reference configuration can be written as
 
 $$
@@ -732,7 +766,7 @@ $$
 =
 \frac12
 \left(
-\mathbf F^T \mathbf F-\mathbf I
+\mathbf F^T\cdot\mathbf F-\mathbf I
 \right).
 $$
 

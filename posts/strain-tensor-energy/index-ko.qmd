@@ -1,0 +1,653 @@
+---
+title: "변형률 텐서는 어디에서 나타나는가?"
+subtitle: "표면력의 일에서 내부 변형에너지까지"
+author: "지광습"
+date: "2026-09-01"
+categories:
+  - 공학역학
+  - 재료역학
+  - 변형률
+  - 연속체역학
+description: "왜 변형률은 변위구배의 대칭 부분일까? 표면력의 일에서 출발하여 평형, 가상일, 에너지 공액 관계를 통해 변형률 텐서가 자연스럽게 나타나는 과정을 설명한다."
+keywords:
+  - 변형률 텐서
+  - 미소변형률
+  - 변위구배
+  - 응력 변형률 관계
+  - 변형에너지
+  - 변형에너지 밀도
+  - 내부 가상일
+  - 가상일의 원리
+  - 응력 변형률 에너지 공액
+  - 텐서 축약
+  - 이중 축약
+  - 코시 응력
+  - 연속체역학
+  - 유한변형
+  - Green-Lagrange 변형률
+  - Piola-Kirchhoff 응력
+  - Z Diagram
+toc: true
+toc-depth: 2
+---
+
+<div class="language-switch">
+  <a href="index.html">English</a> | <strong>한글</strong>
+</div>
+
+## 응력에서 변형률로
+
+앞 글에서는 응력 텐서가 실제로 무엇을 나타내는지 살펴보았다.
+
+물체 내부에 가상의 절단면을 만들면 Cauchy 응력 텐서는 그 면의 법선벡터를 면력벡터로 대응시킨다.
+
+$$
+\mathbf n
+\quad\xrightarrow{\;\boldsymbol{\sigma}\;}
+\quad
+\mathbf t^{(\mathbf n)},
+$$
+
+즉,
+
+$$
+\mathbf t^{(\mathbf n)}
+=
+\boldsymbol{\sigma}\cdot\mathbf n.
+$$
+
+응력 텐서는 임의 방향의 내부 면을 통해 힘이 어떻게 전달되는지를 나타낸다.
+
+그런데 여기서 다음 질문이 자연스럽게 생긴다.
+
+**기계적인 일을 생각할 때 응력과 자연스럽게 짝을 이루는 변형량은 무엇인가?**
+
+고체역학과 유한요소법에서는 내부 가상일을 흔히
+
+$$
+\delta W_{\mathrm{int}}
+=
+\int_\Omega
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\varepsilon}
+\,dV
+$$
+
+로 쓴다. 그런데 왜 여기에 변형률 텐서 $\boldsymbol{\varepsilon}$가 등장하는가? 왜 단순히 변위구배 $\nabla\mathbf u$를 쓰지 않는가?
+
+이 글에서는 이 식을 출발점으로 받아들이지 않는다. **표면력이 하는 일에서 시작하여 평형과 응력 텐서의 대칭성을 적용하면 변형률 텐서가 스스로 나타나는 과정**을 따라가 본다.
+
+### 이 글에서 사용하는 텐서 표기
+
+텐서 연산기호 때문에 역학의 핵심을 놓치지 않도록 이 글에서는 필요한 경우 연산을 명시한다.
+
+$$
+\otimes:\;\text{tensor product, 축약 0회},
+\qquad
+\cdot:\;\text{single contraction, 축약 1회},
+\qquad
+::\;\text{double contraction, 축약 2회}.
+$$
+
+따라서 $\boldsymbol{\sigma}\cdot\mathbf n$은 한 번의 축약이고, $\boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}$는 두 번의 축약이다. 다만 이것은 Zi-SEM에서 연산구조를 분명하게 보여주기 위해 사용하는 표기 규칙이다. 문헌마다 기호 사용은 다를 수 있으므로, 결국 가장 확실한 방법은 **반복지수와 남아 있는 자유지수의 수를 확인하는 것**이다.
+
+## 표면력이 하는 일에서 시작하자
+
+영역 $\Omega$와 경계 $\partial\Omega$를 갖는 물체를 생각하자. 경계에 작용하는 면력을 $\mathbf t$, 허용되는 가상변위를 $\delta\mathbf u$라 하면 표면력이 하는 가상일은
+
+$$
+\delta W_t
+=
+\int_{\partial\Omega}
+\mathbf t\cdot\delta\mathbf u
+\,dA.
+$$
+
+Cauchy의 면력법칙
+
+$$
+\mathbf t=\boldsymbol{\sigma}\cdot\mathbf n
+$$
+
+을 대입하면
+
+$$
+\delta W_t
+=
+\int_{\partial\Omega}
+(\boldsymbol{\sigma}\cdot\mathbf n)
+\cdot\delta\mathbf u
+\,dA.
+$$
+
+이제 경계에서 정의된 일을 물체 내부 전체에 정의된 양으로 바꾸어 보자.
+
+## 경계에서 체적으로
+
+지수표기법으로 쓰면
+
+$$
+\delta W_t
+=
+\int_{\partial\Omega}
+\sigma_{ij}n_j\delta u_i
+\,dA.
+$$
+
+발산정리를 적용하면
+
+$$
+\delta W_t
+=
+\int_\Omega
+(\sigma_{ij}\delta u_i)_{,j}
+\,dV,
+$$
+
+따라서
+
+$$
+\delta W_t
+=
+\int_\Omega
+\sigma_{ij,j}\delta u_i
+\,dV
++
+\int_\Omega
+\sigma_{ij}\delta u_{i,j}
+\,dV.
+$$
+
+첫 번째 항에는 응력의 발산이, 두 번째 항에는 변위구배가 들어 있다. 첫 번째 항은 평형방정식이 처리해 준다.
+
+## 평형을 적용하면 체적력 항이 사라진다
+
+국소 평형방정식은
+
+$$
+\sigma_{ij,j}+b_i=0
+$$
+
+이므로
+
+$$
+\sigma_{ij,j}=-b_i.
+$$
+
+따라서
+
+$$
+\delta W_t
+=-
+\int_\Omega b_i\delta u_i\,dV
++
+\int_\Omega \sigma_{ij}\delta u_{i,j}\,dV.
+$$
+
+전체 외부 가상일에는 표면력뿐 아니라 체적력의 일도 포함된다.
+
+$$
+\delta W_{\mathrm{ext}}
+=
+\delta W_t
++
+\int_\Omega b_i\delta u_i\,dV.
+$$
+
+두 체적력 항이 상쇄되어
+
+$$
+\boxed{
+\delta W_{\mathrm{ext}}
+=
+\int_\Omega
+\sigma_{ij}\delta u_{i,j}\,dV
+}
+$$
+
+를 얻는다. 텐서 표기로는
+
+$$
+\boxed{
+\delta W_{\mathrm{ext}}
+=
+\int_\Omega
+\boldsymbol{\sigma}:
+\delta\nabla\mathbf u
+\,dV
+}.
+$$
+
+여기서 중요한 것은 아직 변형률을 가정하지 않았다는 점이다. 힘이 경계에서 하는 일에 평형을 적용했더니 **응력과 변위구배의 이중 축약**이 자연스럽게 나타났다.
+
+## 변위구배에는 서로 다른 두 운동이 들어 있다
+
+변위구배는 대칭 부분과 반대칭 부분으로 나눌 수 있다.
+
+$$
+\delta u_{i,j}
+=
+\delta\varepsilon_{ij}
++
+\delta\omega_{ij},
+$$
+
+여기서
+
+$$
+\delta\varepsilon_{ij}
+=
+\frac12(\delta u_{i,j}+\delta u_{j,i})
+$$
+
+이고
+
+$$
+\delta\omega_{ij}
+=
+\frac12(\delta u_{i,j}-\delta u_{j,i}).
+$$
+
+텐서 표기로는
+
+$$
+\delta\nabla\mathbf u
+=
+\delta\boldsymbol{\varepsilon}
++
+\delta\boldsymbol{\omega}.
+$$
+
+대칭 부분
+
+$$
+\boxed{
+\boldsymbol{\varepsilon}
+=
+\frac12(\nabla\mathbf u+\nabla\mathbf u^T)
+}
+$$
+
+이 우리가 익숙한 **미소변형률 텐서**이고, 반대칭 부분
+
+$$
+\boldsymbol{\omega}
+=
+\frac12(\nabla\mathbf u-\nabla\mathbf u^T)
+$$
+
+은 미소회전을 나타낸다.
+
+이제 질문은 훨씬 명확하다. **응력 텐서와 실제로 내부 일을 하는 것은 어느 부분인가?**
+
+## 왜 회전은 일에서 사라지는가?
+
+분해식을 일의 표현에 대입하면
+
+$$
+\boldsymbol{\sigma}:\delta\nabla\mathbf u
+=
+\boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}
++
+\boldsymbol{\sigma}:\delta\boldsymbol{\omega}.
+$$
+
+고전적인 Cauchy 연속체에서 응력 텐서는 대칭이다.
+
+$$
+\sigma_{ij}=\sigma_{ji}.
+$$
+
+반면 미소회전 텐서는 반대칭이다.
+
+$$
+\delta\omega_{ij}=-\delta\omega_{ji}.
+$$
+
+대칭 텐서와 반대칭 텐서의 이중 축약은 0이므로
+
+$$
+\boldsymbol{\sigma}:\delta\boldsymbol{\omega}=0.
+$$
+
+결국
+
+$$
+\boldsymbol{\sigma}:\delta\nabla\mathbf u
+=
+\boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon},
+$$
+
+따라서 평형상태에서는
+
+$$
+\boxed{
+\delta W_{\mathrm{int}}
+=
+\int_\Omega
+\boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}
+\,dV
+}.
+$$
+
+이제 변형률 텐서가 나타났다.
+
+## 변형률 텐서는 왜 나타나는가?
+
+이 유도에서 변형률을 먼저 정의한 뒤 용도를 찾은 것이 아니다. 실제 표면력이 하는 일에서 출발했다. Cauchy의 면력법칙, 발산정리, 평형을 차례로 적용하면
+
+$$
+\boldsymbol{\sigma}:\delta\nabla\mathbf u
+$$
+
+가 나타난다. 변위구배에는 변형과 회전이 함께 들어 있지만, 응력 텐서가 대칭이기 때문에 회전 부분은 일을 하지 않는다.
+
+$$
+\boldsymbol{\sigma}:\delta\boldsymbol{\omega}=0.
+$$
+
+결국 남는 것은
+
+$$
+\boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}.
+$$
+
+따라서 미소변형률 텐서
+
+$$
+\boxed{
+\boldsymbol{\varepsilon}
+=
+\frac12(\nabla\mathbf u+\nabla\mathbf u^T)
+}
+$$
+
+는 단순히 변위구배를 보기 좋게 대칭화한 양이 아니다. **미소변형 이론에서 Cauchy 응력과 일-공액(work-conjugate)을 이루는 변형척도**로 자연스럽게 등장한다.
+
+## 내부 일에서 변형에너지로
+
+증분 내부 일의 밀도는
+
+$$
+dU
+=
+\boldsymbol{\sigma}:d\boldsymbol{\varepsilon}.
+$$
+
+선형탄성에서는
+
+$$
+\boldsymbol{\sigma}
+=
+\mathbb C:\boldsymbol{\varepsilon},
+$$
+
+여기서 $\mathbb C$는 4차 탄성 텐서이다. 변형에너지 밀도는
+
+$$
+U
+=
+\int \boldsymbol{\sigma}:d\boldsymbol{\varepsilon}
+$$
+
+이고, 선형탄성에서는
+
+$$
+\boxed{
+U=\frac12\boldsymbol{\sigma}:\boldsymbol{\varepsilon}
+}
+$$
+
+또는
+
+$$
+\boxed{
+U=\frac12\boldsymbol{\varepsilon}:\mathbb C:\boldsymbol{\varepsilon}
+}.
+$$
+
+응력과 변형률은 단순히 구성방정식으로 연결된 두 물리량이 아니다. 둘은 **에너지 공액쌍**이다. 두 텐서의 이중 축약은 단위체적당 일 또는 에너지의 의미를 갖는다.
+
+## Z Diagram과의 연결
+
+이제 Z Diagram의 가운데 부분을 더 깊게 볼 수 있다.
+
+$$
+F\longleftrightarrow\sigma\longleftrightarrow\varepsilon\longleftrightarrow u.
+$$
+
+앞 글에서는
+
+$$
+F\longleftrightarrow\sigma
+$$
+
+를 중심으로 평형이 구조물의 힘과 국소 응력상태를 어떻게 연결하는지 살펴보았다. 이 글에서는
+
+$$
+\boxed{\sigma\longleftrightarrow\varepsilon}
+$$
+
+에 집중한다. 이 연결의 핵심은 에너지다.
+
+$$
+dU=\boldsymbol{\sigma}:d\boldsymbol{\varepsilon}.
+$$
+
+재료점 수준에서는 응력과 변형률이 에너지 공액이고, 구조물 수준에서는 힘과 변위가 일의 공액쌍이다.
+
+$$
+\boxed{
+\mathbf F\cdot d\mathbf u
+\quad\longleftrightarrow\quad
+\boldsymbol{\sigma}:d\boldsymbol{\varepsilon}
+}
+$$
+
+여기서도 표기상의 차이가 물리적 의미를 잘 보여준다. $\mathbf F\cdot d\mathbf u$는 두 벡터의 한 번 축약으로 스칼라 일을 만들고, $\boldsymbol{\sigma}:d\boldsymbol{\varepsilon}$는 두 2차 텐서의 두 번 축약으로 역시 스칼라 에너지 밀도를 만든다.
+
+## 미소변형을 넘어서
+
+같은 생각은 유한변형에서도 계속된다. 다만 어느 configuration을 사용하는가에 따라 적절한 응력과 변형척도가 달라진다.
+
+### 현재 배치
+
+변형된 물체가 $\Omega_t$를 차지한다고 하자. 표면력이 하는 외부 power는
+
+$$
+P_{\mathrm{ext}}
+=
+\int_{\partial\Omega_t}\mathbf t\cdot\mathbf v\,da.
+$$
+
+Cauchy의 면력법칙과 발산정리를 적용하면
+
+$$
+P_{\mathrm{ext}}
+=
+\int_{\Omega_t}\boldsymbol{\sigma}:\nabla\mathbf v\,dv.
+$$
+
+속도구배를
+
+$$
+\nabla\mathbf v=\mathbf d+\mathbf w
+$$
+
+로 나누면
+
+$$
+\mathbf d=\frac12(\nabla\mathbf v+\nabla\mathbf v^T),
+\qquad
+\mathbf w=\frac12(\nabla\mathbf v-\nabla\mathbf v^T).
+$$
+
+응력이 대칭이므로
+
+$$
+\boldsymbol{\sigma}:\mathbf w=0,
+$$
+
+따라서
+
+$$
+\boxed{
+P_{\mathrm{ext}}
+=
+\int_{\Omega_t}\boldsymbol{\sigma}:\mathbf d\,dv
+}.
+$$
+
+현재 배치에서는 Cauchy 응력 $\boldsymbol{\sigma}$와 rate-of-deformation tensor $\mathbf d$가 power-conjugate pair를 이룬다.
+
+## 기준 배치
+
+유한변형에서는 변형구배
+
+$$
+\mathbf F=\frac{\partial\mathbf x}{\partial\mathbf X},
+\qquad
+J=\det\mathbf F
+$$
+
+를 도입한다. 제1 Piola--Kirchhoff 응력은
+
+$$
+\mathbf P
+=
+J\boldsymbol{\sigma}\cdot\mathbf F^{-T}.
+$$
+
+여기서 $\boldsymbol{\sigma}\cdot\mathbf F^{-T}$ 사이의 점은 두 2차 텐서 사이의 **single contraction**을 명시한 것이다. 행렬곱 관례를 따르는 문헌에서는 같은 연산을 $J\boldsymbol{\sigma}\mathbf F^{-T}$처럼 점 없이 쓰기도 한다.
+
+기준 배치에서 power는
+
+$$
+\boxed{
+P_{\mathrm{ext}}
+=
+\int_{\Omega_0}\mathbf P:\dot{\mathbf F}\,dV
+}
+$$
+
+로 쓸 수 있으므로 $\mathbf P$와 $\dot{\mathbf F}$가 하나의 일-공액쌍이다.
+
+한편 Green--Lagrange 변형률을
+
+$$
+\mathbf E
+=
+\frac12(\mathbf F^T\cdot\mathbf F-\mathbf I)
+$$
+
+로 정의할 수 있다. 여기서도 $\mathbf F^T\cdot\mathbf F$의 점은 두 2차 텐서 사이의 single contraction을 명시한다. 성분으로 보면
+
+$$
+C_{IJ}=F_{iI}F_{iJ}
+$$
+
+처럼 반복지수 $i$에 대해 한 번 축약된다. 많은 교재에서 $\mathbf F^T\mathbf F$라고 쓰는 것은 행렬곱 표기에서 점을 생략하기 때문이다. 연산 자체가 다른 것은 아니다.
+
+$\mathbf E$와 일-공액인 응력은 제2 Piola--Kirchhoff 응력 $\mathbf S$이고,
+
+$$
+\boxed{
+P_{\mathrm{ext}}
+=
+\int_{\Omega_0}\mathbf S:\dot{\mathbf E}\,dV
+}
+$$
+
+를 얻는다.
+
+결국 formulation이 달라지면 응력과 변형척도는 달라질 수 있지만 요구조건은 같다. **응력과 변형척도는 서로 일-공액을 이루어야 한다.**
+
+## 하나의 원리, 여러 표현
+
+미소변형에서는
+
+$$
+\boxed{
+\int_{\partial\Omega}\mathbf t\cdot\delta\mathbf u\,dA
+=
+\int_\Omega\boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}\,dV
+}.
+$$
+
+유한변형의 현재 배치에서는
+
+$$
+\boxed{
+\int_{\partial\Omega_t}\mathbf t\cdot\mathbf v\,da
+=
+\int_{\Omega_t}\boldsymbol{\sigma}:\mathbf d\,dv
+}.
+$$
+
+기준 배치에서는
+
+$$
+\boxed{
+\int_{\Omega_0}\mathbf P:\dot{\mathbf F}\,dV
+=
+\int_{\Omega_0}\mathbf S:\dot{\mathbf E}\,dV
+}.
+$$
+
+수학적인 양은 달라져도 외부 작용과 내부 변형을 연결하는 에너지 원리는 그대로 남는다.
+
+## 강의 영상
+
+이 유도는 재료역학 강의에서도 설명한다.
+
+{{< video https://youtu.be/i3yDGYlKvQk >}}
+
+## 결국 핵심은
+
+왜 변형률 텐서가 역학에 나타나는가?
+
+표면력이 하는 일
+
+$$
+\mathbf t\cdot\delta\mathbf u
+$$
+
+에서 출발한다. Cauchy의 면력법칙, 평형, 발산정리를 적용하면 체적 내부의 양은
+
+$$
+\boldsymbol{\sigma}:\delta\nabla\mathbf u
+$$
+
+가 된다. 그리고 변위구배를
+
+$$
+\delta\nabla\mathbf u
+=
+\delta\boldsymbol{\varepsilon}+\delta\boldsymbol{\omega}
+$$
+
+로 나누면, 응력 텐서의 대칭성 때문에
+
+$$
+\boldsymbol{\sigma}:\delta\boldsymbol{\omega}=0
+$$
+
+이 되어 결국
+
+$$
+\boxed{
+\boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}
+}
+$$
+
+만 남는다.
+
+따라서 변형률 텐서는 단순히 변위구배를 대칭화해서 만든 편리한 정의가 아니다. **내부 일의 구조를 따라가면 자연스럽게 남는 변형척도**이다.
+
+그리고 그 결과가 고체역학의 가장 중요한 에너지 관계 가운데 하나로 이어진다.
+
+$$
+\boxed{
+dU=\boldsymbol{\sigma}:d\boldsymbol{\varepsilon}.
+}
+$$
