@@ -10,10 +10,33 @@ categories:
   - XEFG
   - XFEM
   - Meshfree Methods
+keywords:
+  - "XEFG"
+  - "extended element-free Galerkin method"
+  - "meshfree fracture mechanics"
+  - "meshfree methods"
+  - "computational fracture mechanics"
+  - "XFEM"
+  - "extended finite element method"
+  - "cohesive crack"
+  - "cohesive fracture"
+  - "partition of unity"
+  - "enrichment methods"
+  - "crack propagation"
+  - "crack-tip enrichment"
+  - "branch enrichment"
+  - "moving least squares"
+  - "domain of influence"
+  - "3D crack propagation"
+  - "three-dimensional fracture"
+  - "crack branching"
+  - "crack junction"
 description: "Why the enrichment idea behind XFEM was extended to the element-free Galerkin method, and what particle supports, crack-tip closure, cohesive fracture, and three-dimensional crack growth reveal about XEFG."
 toc: true
 toc-depth: 2
 ---
+
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
 
 **Computational Fracture Series:** [← Overview](../computational-fracture-overview/) · [← XFEM](../xfem-crack-through-mesh/) · Article 3 of 7 · [Next: Multiple cracks →](../multiple-cracks-fracture-network/)
 
