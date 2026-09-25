@@ -5,6 +5,8 @@ toc: true
 page-layout: article
 ---
 
+<div class="language-switch">**English** | [한글](lab-orientation-ko.qmd)</div>
+
 # Structural Engineering and Mechanics Laboratory
 
 The **Structural Engineering and Mechanics Laboratory (SEM Lab)** at Korea University applies **applied mechanics** to the development and analysis of structural systems across different length scales.
