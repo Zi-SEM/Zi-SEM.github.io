@@ -1,0 +1,20 @@
+---
+title: "해양구조물과 해상풍력"
+lang: ko
+toc: false
+---
+
+<div class="language-switch">[English](offshore-ocean-engineering.qmd) | **한글**</div>
+
+해양구조물의 거동은 구조역학만으로 설명되지 않는다. 파랑과 유체의 운동, 구조물의 동적 응답, 계류계, 하부구조의 유연성, 그리고 실제 설계조건이 서로 연결되어 있다.
+
+이 분야에서는 **해양 및 해상풍력 구조물이 왜 그런 응답을 보이는지**를 물리적 거동, 구조역학, 유체역학과 설계 관점에서 설명한다. 계산 결과 자체보다 그 결과를 만드는 메커니즘과 실제 설계에서 무엇이 달라지는지를 이해하는 것이 핵심이다.
+
+[← **Research Explained**로 돌아가기](../research-ko.qmd)
+
+## 글
+
+- [고정식 해상풍력 하부구조물의 의사결정](../posts/biased-decision-making/index-ko.qmd)
+- [해상풍력 재킷 구조의 국부 유연성](../posts/jacket-flexibility/index-ko.qmd)
+- [부유식 구조물의 주파수영역 해석](../posts/floating-structure-frequency-domain/index-ko.qmd)
+- [계류선 동역학](../posts/mooring-line-dynamics/index-ko.qmd)

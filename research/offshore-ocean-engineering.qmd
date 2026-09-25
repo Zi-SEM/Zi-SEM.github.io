@@ -12,6 +12,8 @@ listing:
 toc: false
 ---
 
+<div class="language-switch">**English** | [한글](offshore-ocean-engineering-ko.qmd)</div>
+
 Research on offshore and ocean structures explained through physical response, structural mechanics, hydrodynamics, and design implications.
 
 [← Back to **Research Explained**](../research.qmd)

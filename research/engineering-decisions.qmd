@@ -12,6 +12,8 @@ listing:
 toc: false
 ---
 
+<div class="language-switch">**English** | [한글](engineering-decisions-ko.qmd)</div>
+
 Research on how engineering decisions can be made more consistently by separating evidence, latent structure, weighting, and judgment.
 
 [← Back to **Research Explained**](../research.qmd)

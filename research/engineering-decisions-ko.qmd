@@ -1,0 +1,17 @@
+---
+title: "공학적 의사결정"
+lang: ko
+toc: false
+---
+
+<div class="language-switch">[English](engineering-decisions.qmd) | **한글**</div>
+
+공학적 의사결정은 단순히 여러 대안에 점수를 매겨 순위를 정하는 문제가 아니다. 어떤 증거를 사용할 것인지, 서로 겹치는 정보를 어떻게 구분할 것인지, 무엇에 얼마만큼의 가중치를 줄 것인지, 그리고 마지막 판단을 어떻게 내릴 것인지가 서로 얽혀 있다.
+
+이 분야에서는 **증거, 잠재구조, 가중치와 판단을 가능한 한 분리해서 다룸으로써 공학적 의사결정을 더 일관되고 설명 가능하게 만드는 방법**을 연구한다.
+
+[← **Research Explained**로 돌아가기](../research-ko.qmd)
+
+## 글
+
+- [상관된 평가기준은 의사결정을 어떻게 왜곡하는가?](../posts/biased-decision-making/index-ko.qmd)
