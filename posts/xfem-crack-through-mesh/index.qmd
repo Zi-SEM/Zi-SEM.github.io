@@ -8,10 +8,33 @@ categories:
   - Computational Mechanics & Fracture
   - Computational Fracture
   - XFEM
+keywords:
+  - "XFEM"
+  - "extended finite element method"
+  - "computational fracture mechanics"
+  - "fracture mechanics"
+  - "partition of unity"
+  - "enrichment method"
+  - "approximation space enrichment"
+  - "displacement discontinuity"
+  - "cohesive crack"
+  - "cohesive fracture"
+  - "crack-tip enrichment"
+  - "crack tip element"
+  - "branch enrichment"
+  - "crack propagation"
+  - "dynamic fracture"
+  - "level set method"
+  - "remeshing"
+  - "mesh independent crack growth"
+  - "multiple crack growth"
+  - "superimposed finite element method"
 description: "A mechanics-oriented explanation of XFEM: partition-of-unity enrichment, displacement jumps, cohesive crack-tip treatment, evolving crack geometry, and dynamic fracture without remeshing."
 toc: true
 toc-depth: 2
 ---
+
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
 
 **Computational Fracture Series:** [← Overview](../computational-fracture-overview/) · Article 2 of 7 · [Next: XEFG →](../xefg-why-meshfree/)
 
