@@ -8,10 +8,34 @@ categories:
   - Stretchable Electronics
   - Solid Mechanics
   - Finite Element Analysis
-description: "How a collaboration between structural mechanics and chemical engineering led to a simple principle for stretchable devices: protect fragile functional components by controlling where deformation occurs."
+description: "How structural mechanics makes stretchable electronics possible by separating global deformation from local strain through buckling, stiffness contrast, compliant interconnections, and strain-field design."
+keywords:
+  - stretchable electronics
+  - stretchable devices
+  - mechanics of stretchable electronics
+  - flexible electronics
+  - wearable electronics
+  - strain engineering
+  - strain isolation
+  - strain localization
+  - deformation field design
+  - stiff island soft substrate
+  - serpentine interconnects
+  - liquid metal interconnects
+  - finite element analysis
+  - finite deformation mechanics
+  - structural mechanics
+  - compliant mechanisms
+  - stretchable display
+  - electronic skin
+  - inverse structural design
 toc: true
 toc-depth: 2
 ---
+
+<div class="language-switch">
+  <strong>English</strong> | <a href="index-ko.html">한글</a>
+</div>
 
 I did not start this research because I was working on semiconductors, batteries, or wearable electronics.
 
