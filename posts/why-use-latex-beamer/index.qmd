@@ -9,7 +9,29 @@ categories:
   - Beamer
   - Engineering Education
 image: Fig01.png
+description: "Why use LaTeX Beamer for engineering lectures? This article explains a reusable presentation workflow for equations, mechanics, TikZ figures, notation, and technical reasoning, and why persistent technical source is more valuable than isolated slides."
+keywords:
+  - LaTeX Beamer
+  - Beamer engineering lectures
+  - LaTeX presentation
+  - engineering lecture slides
+  - technical presentation workflow
+  - reusable lecture materials
+  - LaTeX Beamer template
+  - engineering education
+  - mechanics lecture slides
+  - equations in presentations
+  - TikZ Beamer
+  - LaTeX equations slides
+  - scientific presentation
+  - technical lecture design
+  - reusable technical content
+  - research to teaching workflow
+  - Beamer theme
+  - engineering mechanics teaching
 ---
+
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
 
 PowerPoint is easier for many presentations.
 
