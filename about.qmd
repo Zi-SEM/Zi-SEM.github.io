@@ -4,6 +4,8 @@ toc: false
 page-layout: article
 ---
 
+<div class="language-switch">**English** | [한글](about-ko.qmd)</div>
+
 # Goangseup Zi
 
 ![Goangseup Zi](profile.jpg){width=240 fig-align="right"}
@@ -61,9 +63,11 @@ Explanations of structural mechanics, mechanics of materials, fracture, fatigue,
 
 Equations are important, but an equation becomes much more useful when we understand **why it has that form and what it means physically**.
 
-### Z Diagram
+### Z-Diagram
 
-The **Z Diagram** is my framework for organizing mechanics around
+The **Z Diagram** is a framework I developed when I joined Korea University in 2004. I wanted a systematic way to teach students how to navigate mechanics problems rather than treating each problem as a new collection of formulas.
+
+At its core is a simple map:
 
 $$
 F
@@ -75,9 +79,25 @@ F
 u.
 $$
 
-It connects force, stress, strain, and displacement through equilibrium, constitutive behavior, compatibility, and energy.
+I think of the Z Diagram as a **navigation map for mechanics**. Force, stress, strain, and displacement are not separate quantities. They are connected through **equilibrium, constitutive behavior, and compatibility**. Depending on what is known and what is sought, we can navigate the map in either direction:
 
-The purpose is to help students see mechanics as one connected system rather than as a collection of separate formulas.
+$$
+F \rightarrow \sigma \rightarrow \varepsilon \rightarrow u
+$$
+
+or
+
+$$
+u \rightarrow \varepsilon \rightarrow \sigma \rightarrow F.
+$$
+
+Energy provides another way of understanding why these quantities belong together. Force and displacement, and stress and strain, form **energy-conjugate pairs**. Work and energy therefore connect different parts of the map and often provide an alternative route through a mechanics problem.
+
+Since developing the Z Diagram, I have used it in **most of the courses I teach**, from basic mechanics to more advanced subjects. I also use the same map in my research, although the quantities, constitutive models, and computational methods may become much more sophisticated.
+
+That continuity is important to me. The mechanics used in research is not fundamentally disconnected from the mechanics taught in the classroom. The problems become harder, but the underlying relationships remain.
+
+The purpose of the Z Diagram is therefore not to provide another formula to memorize. It is to provide a **map for deciding where you are in a mechanics problem, where you need to go, and which physical relationship takes you there.**
 
 ### LaTeX & Writing
 
