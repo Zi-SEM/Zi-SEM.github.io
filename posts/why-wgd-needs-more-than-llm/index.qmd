@@ -1,5 +1,5 @@
 ---
-title: "What Does It Mean to Digitize Engineering Standards in the Age of AI?"
+title: "What Does It Mean to Digitalize Engineering Standards in the Age of AI?"
 subtitle: "From How LLMs Work to RuleUnits, Ontologies, Knowledge Graphs, and WGD"
 author: "Goangseup Zi"
 date: "2026-09-26"
