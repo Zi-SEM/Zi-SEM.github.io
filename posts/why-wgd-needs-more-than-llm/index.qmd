@@ -1,0 +1,688 @@
+---
+title: "What Does It Mean to Digitize Engineering Standards in the Age of AI?"
+subtitle: "From How LLMs Work to RuleUnits, Ontologies, Knowledge Graphs, and WGD"
+author: "Goangseup Zi"
+date: "2026-09-26"
+categories:
+  - Research Explained
+  - Digital Transformation & AI
+  - Digital Construction Standards
+keywords:
+  - "digital construction standards"
+  - "construction code digitization"
+  - "machine-readable standards"
+  - "machine-actionable standards"
+  - "computable standards"
+  - "engineering AI"
+  - "AI for structural engineering"
+  - "large language models"
+  - "LLM"
+  - "Transformer"
+  - "attention mechanism"
+  - "structured engineering knowledge"
+  - "RuleUnit"
+  - "ontology"
+  - "knowledge graph"
+  - "automated compliance checking"
+  - "automatic compliance checking"
+  - "ACC"
+  - "BIM compliance checking"
+  - "finite element analysis"
+  - "FEM"
+  - "design automation"
+  - "construction codes"
+  - "WGD"
+  - "We Go Digital"
+---
+
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
+
+These days, we ask AI almost anything. It summarizes papers, writes code, and explains design standards. I now use AI in one form or another almost every day.
+
+This creates two almost opposite reactions when I explain **WGD — We Go Digital**, a project we are working on in our research group.
+
+One reaction is:
+
+> "AI is already this smart. Why not just let it read all of KDS and KCS?"
+
+The other is:
+
+> "Does digitizing construction standards simply mean building an AI chatbot?"
+
+There is some truth in both questions, but neither captures what WGD is trying to do.
+
+The first does not distinguish what an AI model learns from what it can reliably retrieve, verify, and trace. The second makes the opposite mistake: it reduces the possible uses of digital engineering knowledge to AI.
+
+To understand WGD, we therefore need some understanding of AI itself—particularly the large language models (LLMs) behind today's generative AI.
+
+Then comes a more important question:
+
+**If AI works this way, where should engineering knowledge live when accuracy, provenance, and version control matter?**
+
+And one more question follows:
+
+**Once an engineering standard has been converted into knowledge that a computer can use directly, what else can we do with it?**
+
+This article connects these three questions from the perspective of a structural engineer.
+
+## Think of an LLM as a very large function
+
+For an engineer, a useful first abstraction is to think of an LLM as a highly complex function,
+
+$$
+y=F_{\theta}(x),
+$$
+
+where $x$ is the input, $y$ is the output, and $\theta$ denotes a very large set of internal parameters determined through training.
+
+In linear finite element analysis, we solve
+
+$$
+\mathbf K\mathbf u=\mathbf f
+$$
+
+to obtain
+
+$$
+\mathbf u=\mathbf K^{-1}\mathbf f.
+$$
+
+An LLM is obviously not a finite element model. In fact, the difference is more useful than the analogy.
+
+In FEM, we begin with physical principles such as equilibrium, compatibility, and constitutive behavior:
+
+$$
+\text{Physics}
+\rightarrow
+\text{Mathematical Model}
+\rightarrow
+\text{Computation}.
+$$
+
+An LLM is not built by programming every linguistic rule and every knowledge relationship explicitly. Instead, it is trained on large amounts of data, fundamentally by learning to predict the next token more accurately.
+
+That sounds almost too simple. But good next-token prediction requires more than grammar.
+
+Consider:
+
+> Reinforced concrete beams may fail in shear when ...
+
+To predict what is likely to follow, it helps to capture recurring relationships among concepts such as `reinforced concrete`, `beam`, `shear`, and `failure`.
+
+As next-token prediction becomes increasingly capable, the model develops internal representations that can handle not only linguistic structure but also relationships among concepts and many recurring reasoning patterns.
+
+The important point is this:
+
+> **Those relationships were not entered one by one by a human. Internal structures capable of handling them emerged through training for prediction.**
+
+The Transformer architecture underlying modern LLMs was introduced by Vaswani et al. in 2017.[^vaswani]
+
+## What does attention do?
+
+Consider the sentence:
+
+> The beam failed because it was overloaded.
+
+To interpret `it`, the model needs to connect it with `beam`.
+
+A Transformer divides text into tokens and represents each token numerically. Let $X$ collect the states of all tokens at the current layer:
+
+$$
+X=
+\begin{bmatrix}
+x_1^T\\
+x_2^T\\
+\vdots\\
+x_n^T
+\end{bmatrix}.
+$$
+
+A structural engineer might loosely compare this with collecting the state of a system into a global vector. The analogy should not be pushed too far: a token is not a scalar degree of freedom but a high-dimensional vector.
+
+Attention forms three representations from the current state $X$:
+
+$$
+Q=XW_Q,\qquad
+K=XW_K,\qquad
+V=XW_V.
+$$
+
+A useful intuition is:
+
+- $Q$: What information am I looking for?
+- $K$: What kind of information can I be associated with?
+- $V$: What information do I actually provide if selected?
+
+In index notation,
+
+$$
+Q_{i\alpha}=X_{ij}(W_Q)_{j\alpha}.
+$$
+
+Here, $i$ is the token index, $j$ indexes the features of the current token state, and $\alpha$ indexes the features of the query representation.
+
+The same state $X$ is therefore projected into different representations through different learned operators:
+
+$$
+X\xrightarrow{W_Q}Q,\qquad
+X\xrightarrow{W_K}K,\qquad
+X\xrightarrow{W_V}V.
+$$
+
+In applied mechanics, we also apply different operators to a state to obtain different derived quantities. The comparison is useful up to this point.
+
+The decisive difference is that operators in mechanics are usually derived from theory and physical laws, whereas $W_Q$, $W_K$, and $W_V$ are learned from data.
+
+Query and Key are used to determine relationships among tokens:
+
+$$
+A=
+\operatorname{softmax}
+\left(
+\frac{QK^T}{\sqrt{d_k}}
+\right).
+$$
+
+Then
+
+$$
+H=AV
+$$
+
+brings in information from the tokens according to those attention weights.
+
+Scaled dot-product attention of this form is a central component of the original Transformer architecture.[^vaswani]
+
+## Who determines $W_Q$, $W_K$, and $W_V$?
+
+Not a human.
+
+Initially, they are simply numerical matrices. When the model predicts the next token poorly, it incurs a loss. Conceptually, if $P$ is the probability assigned to the correct token, we may write
+
+$$
+\mathcal L=-\log P(\text{correct token}).
+$$
+
+Backpropagation provides gradients such as
+
+$$
+\frac{\partial\mathcal L}{\partial W_Q},\qquad
+\frac{\partial\mathcal L}{\partial W_K},\qquad
+\frac{\partial\mathcal L}{\partial W_V},
+$$
+
+and the parameters are updated in directions that reduce the loss.
+
+This is repeated over enormous amounts of data:
+
+$$
+\theta^*=\arg\min_{\theta}\mathcal L(\theta).
+$$
+
+Anyone familiar with parameter identification or inverse problems in mechanics can see a conceptual resemblance.
+
+One distinction, however, is essential.
+
+**The quantities learned during training are model parameters such as $W_Q$, $W_K$, and $W_V$, not the $Q$, $K$, and $V$ of a particular sentence.**
+
+When a new sentence is processed, its current state $X$ is used to compute the corresponding $Q$, $K$, and $V$.
+
+This distinction leads directly to another one that matters greatly in engineering AI: **parameters are not context**.
+
+## Training data, parameters, and context are different things
+
+These three concepts should not be mixed when we use AI for engineering.
+
+Let the training data be $D_{\rm train}$. Then, schematically,
+
+$$
+D_{\rm train}
+\rightarrow
+\text{Training}
+\rightarrow
+\theta.
+$$
+
+After training, the original documents do not simply sit inside the model parameters as records in a database. Patterns and relationships found across the data are distributed over a very large number of parameters.
+
+Therefore,
+
+$$
+D_{\rm train}\neq\theta.
+$$
+
+If training data are analogous to experience, $\theta$ is closer to the **capability formed through that experience**.
+
+Context is different again.
+
+The current question, previous conversation, design conditions for the current structure, retrieved code clauses, and project-specific input values can all be part of the context.
+
+Conceptually, a response can be written as
+
+$$
+P(y\mid x,C;\theta),
+$$
+
+where $\theta$ is the already-trained model and $C$ is the working context supplied for the present problem.
+
+Using a structural-analysis analogy, $\theta$ is closer to the capability already embodied in a general-purpose solver. Context is closer to the geometry, loading, boundary conditions, material data, and other information defining the current analysis.
+
+The same solver gives different results for different problems.
+
+So does an LLM.
+
+## Then where should engineering standards live?
+
+This is where the discussion connects directly to WGD.
+
+Should the exact equations, coefficients, applicability conditions, exceptions, clause numbers, dependencies, and revision history of KDS and KCS all be left inside an LLM's parameters?
+
+There is a problem.
+
+Knowledge represented in LLM parameters can be powerful, but it is **implicit and distributed**. We cannot point to a particular parameter and say, "This is the KDS shear-design provision."
+
+Nor can we revise a standard by locating a few corresponding parameters and editing them.
+
+Lewis et al., in their work on retrieval-augmented generation, noted that although pretrained language models can store factual knowledge in their parameters, important problems remain in accessing and modifying that knowledge precisely and in providing provenance for generated answers.[^lewis] This does not mean that RAG itself is the WGD solution. The important point here is the distinction between **parametric knowledge and explicit external knowledge**.
+
+For engineering standards, we often need explicit control of:
+
+- source,
+- version,
+- clause,
+- requirement,
+- applicability,
+- condition,
+- exception,
+- variable definition,
+- equation,
+- dependency, and
+- revision history.
+
+Engineers must be able to inspect this information, and computers must be able to use it with the same intended meaning.
+
+WGD therefore does not leave authoritative engineering knowledge, where reliability and traceability matter, solely to the implicit memory of an LLM.
+
+## A PDF is not yet a digital standard
+
+Suppose an engineering standard has been published as a PDF.
+
+Has it been digitized?
+
+It is certainly a digital document. We can search it, copy text from it, and let an AI system read it.
+
+But that does not mean a computer can directly understand and execute the requirements, conditions, exceptions, equations, variables, and dependencies contained in the standard.
+
+The progression we are interested in is
+
+$$
+\text{Document}
+\rightarrow
+\text{Digital Text}
+\rightarrow
+\text{Structured Knowledge}
+\rightarrow
+\text{Machine-actionable Engineering Knowledge}.
+$$
+
+buildingSMART's Information Delivery Specification (IDS) illustrates a related idea. IDS expresses information requirements in a computer-interpretable form and supports automated checking of IFC models.[^ids]
+
+Turning human-readable requirements into something a computer can interpret is therefore already an important issue in BIM and digital construction.
+
+WGD extends that problem to the **engineering knowledge contained in construction standards themselves**.
+
+## RuleUnit: turning a code statement into an engineering rule
+
+Consider a natural-language provision such as:
+
+> Under specified conditions, the minimum reinforcement shall be calculated using the following equation, except when ...
+
+An engineer reads this and interprets the requirement, applicability, equation, and exception.
+
+For a computer to use the same provision directly, those components must be represented explicitly.
+
+Conceptually, a RuleUnit in WGD may contain information such as:
+
+```text
+RuleUnit
+ ├─ Rule ID
+ ├─ Source / Clause
+ ├─ Requirement
+ ├─ Applicability
+ ├─ Variables
+ ├─ Equation
+ ├─ Conditions
+ ├─ Exceptions
+ ├─ Dependencies
+ └─ Version
+```
+
+The purpose is not to eliminate natural language.
+
+It is to **make the engineering meaning that is implicit in natural language explicit enough for a computer to use**.
+
+This has long been a central issue in automated compliance checking (ACC). Solihin et al. discussed the formalization of normative provisions into computable rules as a major challenge in ACC,[^solihin] while Zhang et al. identified **rule capture** as an important bottleneck in the process.[^zhang]
+
+A RuleUnit is therefore not simply a convenient text chunk to feed to an AI model.
+
+It is intended as a unit of engineering knowledge that can be **executed, verified, and traced**.
+
+## Are thousands of RuleUnits enough?
+
+No.
+
+This becomes obvious if we think in terms of FEM.
+
+Owning thousands of excellent finite element formulations does not give us a structural model.
+
+We still need **connectivity**.
+
+Engineering knowledge has the same problem.
+
+Which RuleUnit applies to which structural component?
+
+Which failure mode does it address?
+
+Which material properties does it require?
+
+Does another RuleUnit need to be evaluated first?
+
+Do different standards use different terms for the same concept?
+
+Those relationships matter.
+
+This is where ontologies and knowledge graphs become useful.
+
+W3C's OWL provides a language for representing rich knowledge about things, groups of things, and relationships among them in a form that computers can process.[^owl]
+
+For WGD, a simple working distinction is:
+
+$$
+\boxed{
+\text{Ontology}:
+\text{What exists in this domain, and what relationships are possible?}
+}
+$$
+
+$$
+\boxed{
+\text{Knowledge Graph}:
+\text{What is actually connected to what?}
+}
+$$
+
+$$
+\boxed{
+\text{RuleUnit}:
+\text{What must be done under particular conditions?}
+}
+$$
+
+Ontology, Knowledge Graph, and RuleUnit are not competing concepts.
+
+They have different jobs.
+
+## A structural-analysis analogy helps reveal the whole system
+
+The following is not a strict one-to-one mapping, but it is a useful way for a structural engineer to organize the concepts.
+
+| Structural analysis system | WGD / Engineering AI system |
+|---|---|
+| Capability of a general-purpose solver | Learned parameters of an LLM |
+| Current analysis input | Context |
+| Design standard | Structured domain knowledge |
+| Element library | RuleUnit library |
+| Admissible element/DOF system | Ontology |
+| Connectivity | Knowledge Graph |
+| Solver | Rule / calculation engine |
+| Verification | Compliance engine |
+| Results report | LLM-generated explanation |
+
+The important point in this table is that the LLM is **one component of the system**.
+
+It is a very powerful component.
+
+But there is no engineering reason to force it to perform every role.
+
+## Digital standards are not only for AI
+
+This point is especially important when explaining WGD.
+
+The purpose of converting construction standards into machine-actionable engineering knowledge should **not be limited to AI**.
+
+Once a standard is structured and executable, the same knowledge asset can be reused in many applications.
+
+### Automated compliance checking
+
+The most direct application is ACC:
+
+$$
+\text{Design Information}
+\rightarrow
+\text{Applicable Rules}
+\rightarrow
+\text{Calculation}
+\rightarrow
+\text{Compliance Check}.
+$$
+
+Design information can be connected directly to applicable rules to determine whether requirements are satisfied.
+
+ACC already has a long research history. More recent work has also explored semantic-web and ontology-based compliance checking integrated with finite element analysis.[^patlakas]
+
+### Connecting BIM and FEM to design standards
+
+Results from finite element analysis such as
+
+$$
+N,\quad V,\quad M,\quad \sigma,\quad u
+$$
+
+can be connected to the code checks for which they are required:
+
+$$
+\text{FEM Results}
+\rightarrow
+\text{Design Variables}
+\rightarrow
+\text{RuleUnits}
+\rightarrow
+\text{Code Check}.
+$$
+
+Analysis software and design standards no longer have to remain isolated software islands.
+
+### Design automation and optimization
+
+If the standards are executable, design variables can be changed while analysis and code checking are repeated:
+
+$$
+\text{Design Variables}
+\rightarrow
+\text{Analysis}
+\rightarrow
+\text{Code Check}
+\rightarrow
+\text{Update}.
+$$
+
+This connects naturally to parametric design and optimization.
+
+### Design calculations and review reports
+
+If an execution trace records which clauses were applied, which inputs were used, and which equations were evaluated in what order, much of a design calculation sheet or review report can be assembled automatically.
+
+More importantly, we retain not only the final answer but also a trace of **why that answer was obtained**.
+
+### Impact analysis when standards are revised
+
+I see this as another important application.
+
+Suppose one clause of a standard changes.
+
+If relationships and dependencies have been structured, we can potentially trace
+
+$$
+\text{Changed Clause}
+\rightarrow
+\text{Affected RuleUnits}
+\rightarrow
+\text{Affected Calculations}
+\rightarrow
+\text{Affected Designs}.
+$$
+
+This is fundamentally different from asking engineers to reread PDF documents and manually identify the consequences of a revision.
+
+### Comparing standards and checking their internal quality
+
+KDS and KCS—or Korean and international standards—can be compared not merely sentence by sentence but at the level of requirements, applicability, variables, equations, coefficients, and exceptions.
+
+In the longer term, this may also help identify duplication, inconsistency, and missing relationships within the standards themselves.
+
+### Project-specific specifications and requirements
+
+Once project conditions such as structural system, material, environmental conditions, and construction method are known, relevant standards and requirements can be selected and organized into project-specific specifications.
+
+### Engineering education
+
+Instead of giving students only fixed numerical design examples, structured standards and computational logic can let them vary cross-sections, material strengths, and loads while observing which provisions become applicable and why the results change.
+
+Engineering knowledge then moves from a document to a **reusable computational asset**.
+
+## So where does AI fit?
+
+AI is one application of this digital knowledge, but it can also become a particularly powerful interface through which people access many of the other applications.
+
+Suppose an engineer asks:
+
+> "Is this amount of shear reinforcement sufficient for this beam?"
+
+An LLM is very good at recognizing the intent embedded in that natural-language question:
+
+$$
+\text{RC Beam}
++
+\text{Shear Reinforcement}
++
+\text{Compliance Check}.
+$$
+
+The system can then use structured knowledge to locate the relevant RuleUnits, evaluate applicability and exceptions, let a deterministic calculation engine perform the required calculations, and let a compliance engine determine whether the requirements are satisfied.
+
+Finally, the LLM can explain the result back to the engineer in natural language.
+
+$$
+\text{Human Language}
+\longleftrightarrow
+\text{LLM}
+\longleftrightarrow
+\text{Machine-actionable Engineering Knowledge}.
+$$
+
+This is an important part of what I mean by Engineering AI.
+
+It does not mean assigning everything to the LLM.
+
+Instead, we combine what LLMs do well—**language, context, semantic interpretation, connection, and explanation**—with what explicit engineering knowledge does well—**provenance, conditions, versioning, dependencies, and traceability**—and what deterministic engines do well—**calculation and verification**.
+
+$$
+\boxed{
+\text{Engineering AI}
+=
+\text{LLM Flexibility}
++
+\text{Explicit Engineering Knowledge}
++
+\text{Deterministic Computation}
++
+\text{Verification}
+}
+$$
+
+## Looking again at WGD
+
+We can now see WGD somewhat differently.
+
+WGD is neither a project for putting PDFs into a database nor a project for building a construction-code chatbot.
+
+The basic progression we want is
+
+$$
+\text{KDS/KCS}
+\rightarrow
+\text{Structured Engineering Knowledge}
+\rightarrow
+\text{Machine-actionable Engineering Knowledge}.
+$$
+
+RuleUnits, ontologies, and knowledge graphs play different roles in this process.
+
+Once created, this engineering knowledge can be reused across
+
+$$
+\begin{cases}
+\text{Automated Compliance Checking}\\
+\text{BIM/FEM Integration}\\
+\text{Design Automation}\\
+\text{Specification Generation}\\
+\text{Change Impact Analysis}\\
+\text{Code Comparison and Quality Control}\\
+\text{Digital Engineering Education}\\
+\text{Engineering AI}.
+\end{cases}
+$$
+
+The important question is not whether AI or digital standards are more important.
+
+They perform different functions.
+
+AI is highly flexible, but the knowledge embedded in it is implicit.
+
+Digitized engineering knowledge can be explicit, inspectable, version-controlled, and executable.
+
+The point is therefore not to make them compete, but to **assign the right role to each and connect them properly**.
+
+So the central WGD question is not
+
+> "How much of the construction standards should we make the LLM memorize?"
+
+A better question is:
+
+> **"How should we structure engineering knowledge so that humans and computers can use it together, and how should AI be connected with established engineering computation on top of that knowledge?"**
+
+That, to me, is the engineering meaning of digitizing construction standards in the age of AI.
+
+## What comes from existing research, and what is WGD?
+
+This distinction matters.
+
+The discussion of Transformers and attention follows Vaswani et al.[^vaswani] The distinction between parametric knowledge and external retrieval is informed by Lewis et al.[^lewis]
+
+The discussion of ontology is grounded in W3C OWL,[^owl] while buildingSMART IDS provides a real standardization example of computer-interpretable information requirements and automated checking.[^ids]
+
+Formalization and rule capture have long been discussed in ACC research,[^solihin] [^zhang] and recent work has also connected semantic-web approaches with finite element analysis for structural compliance checking.[^patlakas]
+
+By contrast, **the overall WGD architecture—building KDS/KCS knowledge around a RuleUnit library and connecting it with ontologies, knowledge graphs, deterministic engines, and AI—is the direction we are developing in our project**.
+
+This article therefore does not claim that the complete WGD architecture has already been validated by the existing literature.
+
+The work ahead is more concrete than that.
+
+We need to test how accurately each knowledge representation captures real standards, how reliably dependencies can be connected, how knowledge relationships can be expanded while preserving the large body of existing RuleUnits, and what performance and limitations emerge in each application.
+
+## References
+
+[^vaswani]: Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L., & Polosukhin, I. (2017). *Attention Is All You Need*. Advances in Neural Information Processing Systems, 30. https://arxiv.org/abs/1706.03762
+
+[^lewis]: Lewis, P., Perez, E., Piktus, A., et al. (2020). *Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks*. Advances in Neural Information Processing Systems, 33. https://arxiv.org/abs/2005.11401
+
+[^owl]: W3C. (2012). *OWL 2 Web Ontology Language Primer (Second Edition)*. https://www.w3.org/TR/owl-primer/
+
+[^ids]: buildingSMART International. *Information Delivery Specification (IDS)*. IDS defines information requirements in a computer-interpretable form and supports automated compliance checking of IFC models. https://www.buildingsmart.org/standards/bsi-standards/information-delivery-specification-ids/
+
+[^solihin]: Solihin, W., Eastman, C., & Lee, Y.-C. (2021). *The promise of automated compliance checking*. Developments in the Built Environment, 5, 100039. https://doi.org/10.1016/j.dibe.2020.100039
+
+[^zhang]: Zhang, Z., Ma, L., & Broyd, T. (2023). *Rule capture of automated compliance checking of building requirements: a review*. Proceedings of the Institution of Civil Engineers - Smart Infrastructure and Construction, 176(4), 224–238. https://doi.org/10.1680/jsmic.23.00005
+
+[^patlakas]: Patlakas, P., Christovasilis, I., Riparbelli, L., Cheung, F. K. T., & Vakaj, E. (2024). *Semantic web-based automated compliance checking with integration of Finite Element analysis*. Advanced Engineering Informatics, 61, 102448. https://doi.org/10.1016/j.aei.2024.102448
