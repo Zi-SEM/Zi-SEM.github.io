@@ -6,7 +6,6 @@ date: "2026-09-26"
 categories:
   - Research Explained
   - Digital Transformation & AI
-  - Digital Construction Standards
 keywords:
   - "digital construction standards"
   - "construction code digitization"
