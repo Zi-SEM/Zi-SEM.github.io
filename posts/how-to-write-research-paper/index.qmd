@@ -7,8 +7,31 @@ categories:
   - LaTeX & Writing
   - Scientific Writing
   - Research Writing
-description: "A practical engineering approach to journal writing built around the CCC rule: Creativity, Consistency, and Completeness."
+keywords:
+  - how to write a research paper
+  - engineering research paper
+  - how to write an engineering paper
+  - scientific paper writing
+  - journal paper writing
+  - research paper structure
+  - engineering paper structure
+  - how to write a journal article
+  - research paper abstract
+  - research paper introduction
+  - results and discussion
+  - engineering discussion section
+  - research paper conclusion
+  - research paper figures and tables
+  - research paper methodology
+  - peer review response
+  - journal submission
+  - scientific writing for engineers
+  - research novelty
+  - CCC writing principle
+description: "How should an engineer write a research paper? A practical guide to research novelty, paper structure, abstracts, introductions, methods, results, discussion, conclusions, figures, journal submission, and peer review using the CCC principles of Creativity, Consistency, and Completeness."
 ---
+
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
 
 A research paper is not simply a record of what we did.
 
