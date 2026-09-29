@@ -159,7 +159,7 @@ $$
 \sigma_{3j}\mathbf e_3,
 $$
 
-the three traction vectors can be assembled as the columns of a matrix:
+the three traction vectors can be assembled as the columns of a matrix.
 
 $$
 \boldsymbol{\sigma}
