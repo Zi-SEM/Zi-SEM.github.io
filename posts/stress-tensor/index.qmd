@@ -1,6 +1,6 @@
 ---
 title: "What Is a Stress Tensor, Really?"
-subtitle: "From an internal cut to Cauchy’s stress formula"
+subtitle: "From an internal cut to Cauchy's stress formula"
 author: "Goangseup Zi"
 date: "2026-08-31"
 categories:
