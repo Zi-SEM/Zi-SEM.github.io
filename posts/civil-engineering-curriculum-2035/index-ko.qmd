@@ -1,0 +1,518 @@
+---
+title: "토목공학은 무엇을 가르쳐야 하는가?"
+subtitle: "전문화의 시대를 넘어 다시 종합공학으로"
+author: "지광습"
+date: "2026-09-29"
+categories:
+  - 공학역학
+  - 디지털전환과 AI
+keywords:
+  - 토목공학
+  - 토목공학 교육
+  - 토목공학 교육과정
+  - 토목공학 커리큘럼
+  - 토목공학과 교육과정
+  - 토목공학과 커리큘럼
+  - 토목공학의 미래
+  - 미래 토목공학
+  - 토목공학과 미래
+  - 건설환경공학
+  - 건설환경공학 교육과정
+  - 사회기반시설
+  - 사회기반시설 교육
+  - 공학교육
+  - 공학교육 혁신
+  - 공학 교육과정
+  - AI 시대 공학교육
+  - 인공지능과 토목공학
+  - AI와 토목공학
+  - 토목공학 AI
+  - 디지털 토목공학
+  - 토목공학과 인공지능
+  - 공학역학 교육
+  - Engineering Science
+  - Civil Engineering
+  - Civil Engineering 교육
+description: "토목공학 교육과정은 AI 시대에 어떻게 바뀌어야 할까? Civil Engineering의 역사, Engineering Science와 전문화의 발전, 토목공학과 건설공학의 차이, 그리고 AI·에너지·기후변화를 통합하는 미래 토목공학 커리큘럼을 살펴본다."
+toc: true
+toc-depth: 2
+---
+
+<div class="language-switch">[English](index.qmd) | **한글**</div>
+
+토목공학 교육과정에 대해서는 오래전부터 마음에 걸리는 것이 있었다.
+
+우리나라에서는 토목공학을 이야기하다 보면 어느 순간 ‘건설’을 이야기하고 있다. 토목공학과의 미래를 이야기하다가 건설산업의 미래를 이야기하고, Civil Engineering 교육을 이야기하다가 건설기술 교육을 이야기한다.
+
+물론 건설은 토목공학에서 매우 중요하다. 우리가 계획하고 설계한 교량, 터널, 댐, 항만을 실제로 만들지 못한다면 공학적으로 별 의미가 없다.
+
+그런데 **Civil Engineering과 Construction Engineering은 같은 것인가?**
+
+그렇지 않다.
+
+이것은 용어에 대한 취향의 문제가 아니다. 현재 ASCE는 transportation, coastal, structural, environmental, geotechnical, construction, architectural, engineering mechanics 등을 Civil Engineering의 여러 전문분야로 나란히 열거한다. 즉 construction은 Civil Engineering을 구성하는 중요한 분야 중 하나이지 Civil Engineering 전체가 아니다.
+
+ABET의 2026–2027 공학교육 인증기준을 보면 더 명확하다. *Civil and Similarly Named Engineering Programs*와 *Construction and Similarly Named Engineering Programs*가 별도의 program criteria로 되어 있다. Civil Engineering에는 미분방정식, 확률·통계, 물리, 화학, computer/data science, mechanics, materials, numerical methods, sustainability, risk, resilience 등이 요구되고, 최소 네 개의 civil specialty area에서 complex engineering problems를 다루도록 한다. 반면 Construction Engineering은 construction methods, materials, equipment, planning, scheduling, safety, cost analysis와 construction processes and systems 등에 보다 직접적으로 초점을 둔다.
+
+그렇다면 질문을 조금 바꾸어 볼 필요가 있다.
+
+**Civil Engineering은 원래 무엇을 하기 위해 생긴 학문인가?**
+
+그리고 그 답을 찾고 나면 더 어려운 질문이 남는다.
+
+**앞으로의 Civil Engineer에게 우리는 무엇을 가르쳐야 하는가?**
+
+# Civil Engineering에서 ‘Civil’은 무엇인가?
+
+Civil Engineering이라는 이름부터 다시 생각해 볼 필요가 있다.
+
+ICE는 John Smeaton을 자신을 *civil engineer*라고 표현한 최초의 기록된 인물로 소개한다. 당시 military engineer와 구별되는 활동을 설명하기 위한 표현이었다. Smeaton은 등대뿐 아니라 교량, 운하, 항만, 수력시설 등 당시 사회가 필요로 하던 여러 infrastructure를 다루었다.
+
+따라서 여기서 civil은 construction이라는 특정 행위를 뜻한다고 보기 어렵다. 오히려 출발점부터 Civil Engineering은 **사회를 위해 필요한 물리적 환경과 infrastructure를 만드는 공학**에 가까웠다.
+
+오늘날 ASCE의 설명도 크게 다르지 않다. Civil engineers가 다루는 대상으로 buildings, roads and bridges뿐 아니라 drinking water, energy systems, seaports, airports, environmental infrastructure까지 포함한다.
+
+공학의 대상이 구조물 하나가 아니라 **society를 작동시키는 infrastructure system**인 셈이다.
+
+# 처음에는 실제로 만드는 것이 중요했다
+
+19세기 후반에서 20세기 전반의 Civil Engineering 교육은 지금보다 practice와 훨씬 가까웠다. Surveying, engineering drawing, strength of materials, hydraulics, construction materials, bridge design, route location, field and laboratory work 등이 중요한 교육내용이었다.
+
+당시의 질문을 한 문장으로 표현한다면 이렇다.
+
+> **How do we build it?**
+
+그렇다고 당시 Civil Engineering이 지금 말하는 Construction Engineering이었다는 뜻은 아니다. Surveying에서 analysis, design, construction으로 이어지는 전문적 분업이 지금만큼 세분화되지 않았기 때문에 한 engineer가 훨씬 넓은 문제를 연속적으로 다루었다고 보는 것이 더 정확하다.
+
+# 전쟁 이후, Engineering Science가 들어왔다
+
+제2차 세계대전 이후 radar, aircraft, electronics, nuclear technology, advanced materials와 같은 기술이 급속하게 발전하면서 경험과 축적된 know-how만으로 새로운 문제를 해결하기 어려워졌다.
+
+1955년 ASEE의 이른바 **Grinter Report**는 이러한 변화를 대표하는 문서다. 그 이후 engineering curriculum에서 mathematics, physics와 engineering science가 훨씬 강한 기반을 차지하게 되었다.
+
+```text
+Mathematics
+     ↓
+Basic Science
+     ↓
+Engineering Mechanics
+     ↓
+Solid / Fluid / Materials
+     ↓
+Analysis
+     ↓
+Design
+```
+
+질문도 달라졌다.
+
+> **How do we build it?**
+
+에서
+
+> **Why does it work?**
+
+로 이동한 것이다.
+
+Engineering Science는 개별적인 설계법과 시공법 뒤에 숨어 있는 **transferable principles**를 공학교육의 중심으로 끌어왔다. 그 덕분에 Civil Engineering은 엄청나게 발전했다.
+
+그런데 성공은 새로운 문제를 만들었다.
+
+# 전문화가 토목공학을 발전시켰다
+
+구조공학만 생각해 보자.
+
+```text
+Structural Analysis
+        ↓
+Structural Mechanics
+        ↓
+RC / Steel
+        ↓
+FEM
+        ↓
+Structural Dynamics
+        ↓
+Earthquake Engineering
+        ↓
+Reliability
+        ↓
+Computational Mechanics
+```
+
+지반공학도, 수공학도, 교통공학도, 환경공학도 마찬가지다. 각 분야가 깊어지면서 이제 한 사람이 Civil Engineering 전체의 최신 지식을 전문적으로 이해하는 것은 사실상 불가능해졌다.
+
+이것은 실패가 아니다. 오히려 **specialization은 현대 Civil Engineering의 성공 결과**다.
+
+문제는 그 다음이다.
+
+대학에서는 구조, 지반, 수공, 교통을 서로 다른 시간에 서로 다른 교수에게 배운다. 그러나 교량은 그렇게 존재하지 않는다. 교량 하나에도 구조가 있고, 기초와 지반이 있고, 하천이 있고, 교통이 있고, 시공이 있고, 유지관리가 있고, 경제성과 환경문제가 있다.
+
+**대학의 학과와 과목은 지식을 나누지만, infrastructure는 그렇게 나뉘어 존재하지 않는다.**
+
+# Biot는 이미 60여 년 전에 이 문제를 말했다
+
+1962년 Timoshenko Medal을 받은 Maurice A. Biot는 수상 연설 *Science and the Engineer*에서 전문화의 문제를 강하게 지적했다. 이 연설은 1963년 Caltech의 *Engineering and Science*에 게재되었다.
+
+그가 한 말 가운데 나는 다음 대목을 특히 좋아한다.
+
+> *“Modern engineering, by its very nature, must be synthetic.”*
+
+그리고 그는 specialization이 극단으로 가는 것을 “death and decay”라는 매우 강한 표현으로 경고했다.
+
+Biot의 말을 전문화를 하지 말자는 뜻으로 읽으면 곤란하다. 현대의 교량공학도, 지반공학도, computational mechanics도 전문화가 없었다면 지금 수준에 도달할 수 없었다.
+
+핵심은 **synthesis**다.
+
+깊게 나누어 연구하되, 실제 engineering problem을 해결할 때는 다시 합칠 수 있어야 한다.
+
+> **전문화가 토목공학을 발전시켰다면, 이제 교육의 과제는 다시 연결하는 것이다.**
+
+# 그런데 새로운 것은 계속 들어온다
+
+기존 Civil Engineering 분야는 거의 없어지지 않았는데 새로운 요구는 계속 들어오고 있다.
+
+```text
+Traditional Civil Engineering
+        +
+Sustainability
+Climate Change
+Resilience
+Risk
+Energy
+BIM
+Digital Twin
+Sensors
+Data Science
+Artificial Intelligence
+Robotics
+Cybersecurity
+```
+
+AI 과목을 하나 만들고, Digital Twin 과목을 하나 만들고, Energy 과목을 하나 만드는 식으로 대응하면 curriculum은 언젠가 견딜 수 없게 된다.
+
+반대로 모든 것을 조금씩 가르치면 **다 배웠는데 아무것도 제대로 할 줄 모르는 학생**을 만들 수 있다.
+
+결국 문제는 어떤 과목을 더 추가할 것인가가 아니다.
+
+> **Curriculum architecture의 문제다.**
+
+# ABET도 모든 것을 별도 과목으로 가르치라고 하지 않는다
+
+2026–2027 Civil Engineering Program Criteria는 mathematics through differential equations, probability and statistics, calculus-based physics, chemistry, computer/data science, engineering mechanics, materials science, numerical methods 등을 요구한다. 여기에 sustainability, risk, resilience, engineering design, ethics가 들어가고, 최소 네 개의 Civil Engineering specialty area에서 complex engineering problems를 해결하는 경험도 요구한다.
+
+그런데 ABET General Criterion 5는 curriculum requirement가 필요한 **subject areas**를 규정하지만 특정 **courses**를 규정하지 않는다고 밝힌다.
+
+이 차이가 중요하다.
+
+AI라는 새로운 역량이 필요하다고 해서 반드시 `Introduction to AI for Civil Engineers`라는 3학점짜리 과목을 하나 더 만들어야 한다는 뜻은 아니다. Risk도 sustainability도 기존 과목과 project 안에서 여러 번 만나게 할 수 있다.
+
+# 학부 4년에 모든 것을 완성할 필요도 없다
+
+또 하나 버려야 할 생각이 있다.
+
+**학부 4년 동안 완성된 Civil Engineer를 만들어야 한다는 생각이다.**
+
+ASCE의 *Civil Engineering Body of Knowledge, Third Edition*, 즉 CEBOK3는 미래 Civil Engineer에게 필요한 21개의 foundational, technical, professional practice learning outcomes를 제시하지만, 이를 undergraduate curriculum 하나에서 모두 완성한다고 보지 않는다.
+
+```text
+Undergraduate Education
+        +
+Postgraduate Education
+        +
+Mentored Experience
+        +
+Self-Development
+        ↓
+Professional Civil Engineer
+```
+
+따라서 질문은 “무엇을 빼야 할까?”보다 먼저 **“학부에서 반드시 만들어 놓아야 할 능력은 무엇인가?”**가 되어야 한다.
+
+# 나는 Fundamentals를 줄이는 쪽에는 동의하기 어렵다
+
+새로운 기술이 들어올 때 가장 쉬운 방법은 오래된 과목을 줄이는 것이다.
+
+Mechanics를 줄이고 AI를 넣는다. 수학을 줄이고 software를 넣는다. 직접 계산을 줄이고 simulation을 넣는다.
+
+얼핏 보면 합리적이다. 계산은 이제 컴퓨터가 훨씬 잘하기 때문이다.
+
+그런데 나는 오히려 반대로 생각한다.
+
+AI가 계산을 대신할수록 **결과가 맞는지를 판단할 수 있는 사람**이 더 중요해진다.
+
+예를 들어 AI가 `Maximum stress = 230 MPa`라고 답했다고 하자.
+
+```text
+230 MPa가 물리적으로 가능한가?
+Load path는 맞는가?
+Boundary condition은 맞는가?
+Constitutive model은 적절한가?
+Numerical model은 충분한가?
+어떤 uncertainty가 있는가?
+Code와 일치하는가?
+그래서 어떤 engineering decision을 내려야 하는가?
+```
+
+이 질문을 하려면 mechanics를 알아야 한다. Physics와 materials를 알아야 하고 probability와 numerical methods도 알아야 한다.
+
+결국 AI 시대에는 다음 전체 과정을 이해해야 한다.
+
+```text
+Reality
+   ↓
+Idealization
+   ↓
+Physical Model
+   ↓
+Mathematical Model
+   ↓
+Computational / AI Model
+   ↓
+Result
+   ↓
+Verification & Validation
+   ↓
+Engineering Judgment
+   ↓
+Decision
+```
+
+AI가 중간 계산을 아무리 잘해도 **Reality에서 Model로 가는 과정과 Result에서 Decision으로 돌아오는 과정은 사라지지 않는다.** 오히려 더 중요해진다.
+
+# AI를 한 과목으로 가르치는 것도 이상하다
+
+2026년 9월 ASCE는 *AI Roadmap for Application in Civil Engineering*, 즉 **AI RACE**를 발표했다. Civil engineers가 AI의 변화를 수동적으로 따라갈 것인지, 효과적이고 책임 있는 적용을 주도할 것인지를 질문한다.
+
+교육도 같은 질문을 해야 한다.
+
+AI는 별도의 섬이 아니라 기존 Civil Engineering의 **computational layer**가 되어야 한다.
+
+```text
+Mechanics → computation → surrogate modeling
+Structures → sensing → SHM → digital twin
+Surveying → spatial data → computer vision
+Water → monitoring → forecasting
+Transportation → mobility data → prediction and control
+Construction → BIM → automation → AI
+```
+
+Energy와 Climate도 비슷하다.
+
+# 해상풍력 하나만 놓고 봐도 그렇다
+
+내가 연구하는 해상풍력을 예로 들어 보자.
+
+```text
+Ocean Environment
+        +
+Structural Mechanics
+        +
+Geotechnical Engineering
+        +
+Dynamics
+        +
+Fatigue
+        +
+Materials
+        +
+Construction
+        +
+Environment
+        +
+Economics
+        +
+Energy Systems
+```
+
+어느 하나가 없어도 실제 system을 제대로 설명하기 어렵다.
+
+그래서 Energy를 curriculum에 넣는다는 것이 반드시 `Energy Engineering`이라는 과목 하나를 더 만드는 것을 의미할 필요는 없다. Energy transition이라는 실제 문제를 통해 여러 Civil Engineering 지식을 **다시 연결할 수 있다.**
+
+# 그렇다면 curriculum을 어떻게 다시 짤 것인가?
+
+여기부터는 공식 기준의 설명이 아니라 **앞의 역사와 현재 기준으로부터 내가 도출하는 제안**이다.
+
+## 1. Mathematical & Scientific Foundation
+
+Calculus, linear algebra, differential equations, probability and statistics, physics, chemistry.
+
+여기는 쉽게 흔들어서는 안 된다.
+
+## 2. Engineering Science
+
+Solid mechanics, fluid mechanics, material behavior, numerical methods, computational methods, experimental methods.
+
+Civil Engineering의 여러 분야가 서로 대화할 수 있게 하는 공통 언어다.
+
+## 3. Civil Infrastructure Systems
+
+Structures, geotechnics, water, transportation, environment, construction을 없애자는 이야기가 아니다.
+
+학생에게 이 분야들이 **하나의 functioning infrastructure system 안에서 어떻게 만나는지** 보여주자는 것이다.
+
+## 4. Selected Professional Depth
+
+통합만 강조하면 또 다른 겉핥기가 된다.
+
+학생은 적어도 한 분야에서는 실제로 계산하고, 모델을 만들고, 분석하고, 설계할 수 있을 정도로 깊게 들어가야 한다.
+
+**Breadth는 문제 전체를 보게 한다. Depth는 문제를 실제로 풀 수 있게 한다.**
+
+## 5. Integrating Themes
+
+AI/Data, Energy, Climate, Sustainability, Risk, Resilience를 별도의 수직적 silo로 계속 추가하기보다 curriculum 전체를 관통시키는 것이다.
+
+```text
+        AI       ENERGY       CLIMATE
+         ↓          ↓            ↓
+ ─────────────────────────────────────
+        Integrating Themes
+ ─────────────────────────────────────
+        Professional Depth
+ ─────────────────────────────────────
+     Civil Infrastructure Systems
+ ─────────────────────────────────────
+        Engineering Science
+ ─────────────────────────────────────
+      Math & Basic Science
+```
+
+아래쪽이 없으면 위쪽은 떠 있을 수밖에 없다.
+
+# Project가 과목 사이를 연결할 수 있다
+
+서로 다른 분야를 어디서 만나게 할 것인가?
+
+나는 **complex infrastructure project**가 좋은 방법이라고 생각한다.
+
+```text
+Year 1
+What is the system?
+        ↓
+Year 2
+What physics governs it?
+        ↓
+Year 3
+How do we analyze and design it?
+        ↓
+Year 4
+How do we integrate and make decisions?
+```
+
+같은 infrastructure를 여러 학년에서 반복해서 보되 보는 수준을 바꾸는 것이다.
+
+이런 **Project Spine**이 curriculum fragmentation을 줄이는 한 가지 방법이 될 수 있다. 새로운 과목을 열 개 만드는 것보다 훨씬 토목공학답다.
+
+# 우리나라에서는 왜 ‘건설’이라는 말이 이렇게 강할까?
+
+한국의 상황도 생각해 볼 필요가 있다.
+
+연세대학교의 경우 토목공학과에서 사회환경시스템공학부, 토목환경공학과 등을 거쳐 2018년 건설환경공학전공으로 명칭이 변경되었다. 한양대학교 역시 토목공학과에서 여러 조직개편을 거쳐 2009년 건설환경공학과로 명칭을 변경했다.
+
+물론 이 사례만으로 한국의 Civil Engineering이 Construction Engineering으로 축소되었다고 말할 수는 없다.
+
+그래서 오히려 질문하고 싶다.
+
+> **왜 우리는 이토록 넓은 학문을 설명하면서 자꾸 ‘건설’이라는 단어에 의존하게 되었을까?**
+
+우리나라의 산업화 과정에서 도로, 교량, 댐, 항만, 도시를 빠르게 건설해야 했던 역사와 무관하지 않을 것이다. 하지만 이제 노후 infrastructure를 유지하고, 기후변화에 대응하고, 에너지 system을 바꾸고, physical infrastructure 위에 data와 AI라는 digital layer까지 다루어야 한다.
+
+**Construction은 여전히 중요하지만 Civil Engineering의 목적 전체를 설명하기에는 너무 좁다.**
+
+# 결국 다시 Civil Engineering이다
+
+Civil Engineering은 오랫동안 분화해 왔다. 그 분화 덕분에 각 분야는 깊어졌다.
+
+이제 그 깊이를 포기할 이유는 없다. 다만 학생에게 그 조각들을 다시 연결해서 볼 수 있는 눈을 만들어 주어야 한다.
+
+```text
+Natural Environment
+        ↕
+Physical Infrastructure
+        ↕
+Human Society
+        ↕
+Economy / Policy
+        ↕
+Information / Data
+```
+
+종합학문이라는 말은 **많은 과목을 가르친다는 뜻이 아니다.**
+
+많은 지식을 다시 연결하여 실제 문제를 이해하고 engineering decision을 내릴 수 있다는 뜻이어야 한다.
+
+60여 년 전 Biot가 걱정했던 것도 결국 이것이었다.
+
+전문화가 필요 없다는 것이 아니다.
+
+전문화된 지식을 **synthesize할 능력을 잃어서는 안 된다는 것**이다.
+
+# 무엇을 더 가르칠 것인가보다 중요한 질문
+
+앞으로도 새로운 기술은 계속 등장할 것이다.
+
+오늘은 AI다. 내일은 무엇인지 모른다.
+
+그때마다 새로운 과목을 하나씩 추가하는 방식으로는 curriculum을 유지할 수 없다.
+
+그래서 미래의 Civil Engineering curriculum을 설계할 때 세 가지 질문을 먼저 해야 한다.
+
+**무엇이 변해도 남아 있어야 하는가?**
+
+Fundamentals와 Engineering Science다.
+
+**무엇을 깊게 배워야 하는가?**
+
+학생이 선택한 professional domain이다.
+
+**무엇을 새롭게 연결해야 하는가?**
+
+Infrastructure systems와 AI, data, energy, climate, sustainability, risk다.
+
+```text
+FOUNDATION
+     +
+ENGINEERING SCIENCE
+     +
+SYSTEMS BREADTH
+     +
+SELECTED DEPTH
+     +
+AI / ENERGY / CLIMATE INTEGRATION
+     +
+ENGINEERING JUDGMENT
+```
+
+그리고 그 끝에는 결국 하나의 능력이 남는다.
+
+> **이 결과가 공학적으로 말이 되는가?**
+
+AI가 계산을 해주더라도 이 질문은 사라지지 않는다. 오히려 더 중요해질 것이다.
+
+Civil Engineering 교육의 미래도 결국 여기에 있다고 생각한다.
+
+**전문화가 토목공학을 발전시켰다면, 이제 교육의 과제는 다시 연결하는 것이다.**
+
+---
+
+## Further reading
+
+1. ABET. *Criteria for Accrediting Engineering Programs, 2026–2027*.  
+   https://www.abet.org/accreditation/accreditation-criteria/criteria-for-accrediting-engineering-programs-2026-2027/
+
+2. American Society of Civil Engineers. *About Civil Engineering*.  
+   https://www.asce.org/about-civil-engineering
+
+3. American Society of Civil Engineers. *Civil Engineering Body of Knowledge: Preparing the Future Civil Engineer, Third Edition (CEBOK3)*.  
+   https://www.asce.org/career-growth/cebok
+
+4. American Society for Engineering Education. *Report on Evaluation of Engineering Education, 1952–1955* (Grinter Report).
+
+5. Biot, M. A. (1963). “Science and the Engineer.” *Engineering and Science*, 26(4), 30–36. 1962 Timoshenko Medal acceptance address.
+
+6. ASCE (2023). “Higher Learning: The State of Civil Engineering Education.”
+
+7. ASCE (2026). “ASCE Leads AI Vision in Civil Engineering with ‘AI RACE’ Roadmap.”
+
+8. Institution of Civil Engineers. *John Smeaton*.

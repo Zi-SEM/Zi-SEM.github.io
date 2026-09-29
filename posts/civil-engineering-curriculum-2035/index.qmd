@@ -1,0 +1,656 @@
+---
+title: "What Should We Teach Civil Engineers?"
+subtitle: "Rethinking the Civil Engineering Curriculum Beyond Specialization"
+author: "Goangseup Zi"
+date: "2026-09-29"
+categories:
+  - Engineering Mechanics
+  - Digital Transformation & AI
+keywords:
+  - civil engineering curriculum
+  - civil engineering education
+  - future of civil engineering education
+  - civil engineering curriculum reform
+  - AI in civil engineering education
+  - engineering science education
+  - civil engineering systems thinking
+  - infrastructure systems education
+  - civil engineering specialization
+  - civil engineering fundamentals
+  - civil engineering and artificial intelligence
+  - future civil engineer
+  - engineering education reform
+  - systems engineering in civil engineering
+  - civil engineering body of knowledge
+  - ABET civil engineering criteria
+description: "What should civil engineers learn in the AI era? This article traces the evolution of civil engineering education from practice and engineering science to specialization, and proposes a curriculum architecture that reconnects fundamentals, infrastructure systems, professional depth, AI, energy, climate, and engineering judgment."
+toc: true
+toc-depth: 2
+---
+
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
+
+I have been thinking about the civil engineering curriculum for a long time.
+
+One question keeps coming back: **What exactly are we trying to educate a civil engineer to do?**
+
+The question sounds simple, but it becomes difficult as soon as we look at a modern curriculum. Structural engineering, geotechnical engineering, water resources, transportation, environmental engineering, construction, sustainability, resilience, energy, data science, digital twins, and now AI all compete for limited space.
+
+The usual response is to add another course.
+
+That cannot continue indefinitely.
+
+Before asking what new subject should be added, I think we need to ask a more fundamental question:
+
+> **What is Civil Engineering, and what kind of curriculum follows from that identity?**
+
+A useful place to begin is with a distinction that is sometimes blurred in everyday discussion.
+
+**Civil Engineering and Construction Engineering are not the same field.**
+
+Construction is essential to civil engineering. A bridge, tunnel, dam, or port that cannot actually be built has little engineering value. But construction is one part of a much broader discipline.
+
+ASCE lists construction alongside transportation, coastal, structural, environmental, geotechnical, architectural engineering, engineering mechanics, and other civil engineering specialties. ABET makes the distinction even more explicit: its 2026–2027 criteria provide separate program criteria for *Civil and Similarly Named Engineering Programs* and *Construction and Similarly Named Engineering Programs*.
+
+Civil Engineering is therefore not simply the engineering of construction. Its scope is much broader.
+
+That distinction matters when we design a curriculum.
+
+# What Does “Civil” in Civil Engineering Mean?
+
+It is worth going back to the name itself.
+
+The Institution of Civil Engineers identifies John Smeaton as the first person known to have described himself as a *civil engineer*. The term distinguished his work from military engineering. Smeaton's work was not confined to one type of construction: it included lighthouses, bridges, canals, harbors, drainage works, dams, and water-powered machinery.
+
+From the beginning, Civil Engineering was therefore associated with a broad class of engineered works needed by society.
+
+The modern scope is even wider. Civil engineers deal with buildings, roads and bridges, drinking-water systems, energy systems, ports, airports, environmental infrastructure, and the systems required to keep them functioning.
+
+The object of Civil Engineering is not simply a structure.
+
+It is increasingly an **infrastructure system that allows society to function**.
+
+That difference becomes important when we ask what students should learn.
+
+# When Building It Was the Central Problem
+
+Civil engineering education in the late nineteenth and early twentieth centuries was much closer to professional practice than most curricula are today.
+
+Surveying, engineering drawing, strength of materials, hydraulics, construction materials, bridge design, route location, and field and laboratory work were central parts of the education.
+
+If I reduce the educational question of that period to one sentence—admittedly an oversimplification—it would be:
+
+> **How do we build it?**
+
+This does not mean that early Civil Engineering was equivalent to what we now call Construction Engineering. The professional division among surveying, analysis, design, and construction was less fragmented. A civil engineer often followed a much larger portion of the problem from beginning to end.
+
+Then engineering education changed profoundly.
+
+# After World War II: The Rise of Engineering Science
+
+World War II accelerated developments in radar, aircraft, electronics, nuclear technology, advanced materials, and many other technologies. Experience and accumulated know-how were no longer enough to address the new class of engineering problems.
+
+The 1955 ASEE report commonly known as the **Grinter Report** is one of the landmark documents associated with this transformation of engineering education.
+
+Mathematics, physics, and engineering science took a much stronger position in engineering curricula.
+
+For Civil Engineering, the intellectual structure increasingly looked something like this:
+
+```text
+Mathematics
+     ↓
+Basic Science
+     ↓
+Engineering Mechanics
+     ↓
+Solid / Fluid / Materials
+     ↓
+Analysis
+     ↓
+Design
+```
+
+The central question shifted.
+
+From
+
+> **How do we build it?**
+
+we increasingly moved toward
+
+> **Why does it work?**
+
+This was a major advance.
+
+Learning how to calculate a particular bridge is very different from learning mechanics well enough to analyze a bridge configuration that one has never seen before.
+
+Engineering Science brought **transferable principles** behind individual design and construction practices into the center of engineering education.
+
+Civil Engineering advanced enormously as a result.
+
+But that success produced another problem.
+
+# Specialization Made Civil Engineering Powerful
+
+Consider structural engineering alone.
+
+```text
+Structural Analysis
+        ↓
+Structural Mechanics
+        ↓
+RC / Steel
+        ↓
+FEM
+        ↓
+Structural Dynamics
+        ↓
+Earthquake Engineering
+        ↓
+Reliability
+        ↓
+Computational Mechanics
+```
+
+The same development occurred in geotechnical engineering, water resources, transportation, environmental engineering, and other areas.
+
+As each field became deeper, it became increasingly unrealistic for one person to master the current technical knowledge of all Civil Engineering specialties.
+
+This is not a failure.
+
+**Specialization is one of the consequences of the success of modern Civil Engineering.**
+
+The problem comes next.
+
+Universities also organized this specialized knowledge into separate courses and subdisciplines. Students learn structures, geotechnics, hydraulics, transportation, environmental engineering, and construction at different times, often from different faculty members.
+
+But a bridge does not exist that way.
+
+A bridge has a structural system, foundations and soil, hydrology, transportation demand, construction constraints, maintenance requirements, environmental consequences, risk, and economics—all at the same time.
+
+**Universities divide knowledge into subjects. Infrastructure does not.**
+
+# Biot Saw the Problem More Than Sixty Years Ago
+
+Maurice A. Biot addressed this problem forcefully in his 1962 Timoshenko Medal acceptance address, *Science and the Engineer*, later published in *Engineering and Science* in 1963.
+
+One sentence is particularly relevant:
+
+> *“Modern engineering, by its very nature, must be synthetic.”*
+
+Biot went further, warning that specialization carried to an extreme becomes a form of “death and decay.”
+
+It would be a mistake to read this as an argument against specialization.
+
+Modern bridge engineering, geotechnical engineering, computational mechanics, and every other advanced engineering field could not have reached their present levels without specialization.
+
+The key word is **synthetic**.
+
+We must be able to divide a problem deeply enough to develop specialized knowledge—and then put the pieces back together when solving a real engineering problem.
+
+This, to me, captures one of the central problems facing Civil Engineering education today:
+
+> **Specialization made Civil Engineering powerful. The next educational challenge is learning how to put it back together.**
+
+# And New Subjects Keep Arriving
+
+The traditional Civil Engineering disciplines have not disappeared. At the same time, new expectations continue to enter the curriculum.
+
+```text
+Traditional Civil Engineering
+        +
+Sustainability
+Climate Change
+Resilience
+Risk
+Energy
+BIM
+Digital Twin
+Sensors
+Data Science
+Artificial Intelligence
+Robotics
+Cybersecurity
+```
+
+What should we do?
+
+Add an AI course.
+
+Add a digital-twin course.
+
+Add an energy course.
+
+Add a climate course.
+
+If we continue this way, the curriculum eventually becomes impossible to sustain.
+
+The opposite strategy is not much better. If students receive a shallow introduction to everything, we risk producing graduates who have studied many subjects but cannot actually solve a difficult problem in any of them.
+
+The real problem is therefore not simply which course to add or remove.
+
+> **It is a problem of curriculum architecture.**
+
+# ABET Does Not Require One Course for Every New Competency
+
+The current ABET criteria are useful here.
+
+The 2026–2027 Civil Engineering Program Criteria include mathematics through differential equations, probability and statistics, calculus-based physics, chemistry, computer or data science, engineering mechanics, materials science, numerical methods, sustainability, risk, resilience, engineering design, and ethics. Students must also solve complex engineering problems in at least four civil engineering specialty areas.
+
+That is already a broad intellectual territory.
+
+But an important point appears in ABET General Criterion 5: the curriculum requirements specify **subject areas**, not prescribed **courses**.
+
+The distinction matters.
+
+If AI becomes an essential competency, it does not automatically follow that every program needs another three-credit course called *Introduction to AI for Civil Engineers*.
+
+The same applies to risk, sustainability, resilience, and other cross-cutting competencies. They can appear repeatedly inside existing courses, design projects, laboratories, and integrated problems.
+
+In many cases, that may be closer to the way engineering actually works.
+
+# We Do Not Need to Finish a Civil Engineer in Four Years
+
+There is another assumption worth questioning:
+
+**that an undergraduate program must produce a finished Civil Engineer.**
+
+ASCE's *Civil Engineering Body of Knowledge, Third Edition* identifies 21 foundational, technical, and professional-practice learning outcomes. But the Body of Knowledge does not treat the undergraduate curriculum as the place where every professional capability must be completed.
+
+The development of a professional civil engineer extends beyond the bachelor's degree:
+
+```text
+Undergraduate Education
+        +
+Postgraduate Education
+        +
+Mentored Experience
+        +
+Self-Development
+        ↓
+Professional Civil Engineer
+```
+
+That makes sense.
+
+It is impossible to teach structures, geotechnics, water resources, transportation, environmental engineering, construction, AI, energy, and every emerging specialty in serious depth within four undergraduate years.
+
+So perhaps the first question should not be
+
+> What can we remove?
+
+but
+
+> **What capabilities must an undergraduate curriculum establish before specialization continues?**
+
+# I Would Be Very Careful About Reducing the Fundamentals
+
+When new technologies enter a curriculum, one tempting solution is to reduce older subjects.
+
+Reduce mechanics and add AI.
+
+Reduce mathematics and add software.
+
+Reduce hand calculation and add simulation.
+
+At first glance, this sounds reasonable. Computers are already far better at calculation than we are.
+
+But I tend to reach the opposite conclusion.
+
+The more computation AI performs for us, the more important it becomes to have engineers who can decide **whether the result makes engineering sense**.
+
+Suppose an AI-assisted analysis reports:
+
+> Maximum stress = 230 MPa.
+
+The important questions are no longer limited to reproducing the arithmetic that produced 230 MPa.
+
+```text
+Is 230 MPa physically plausible?
+Is the load path correct?
+Are the boundary conditions correct?
+Is the constitutive model appropriate?
+Is the numerical model adequate?
+What uncertainty is involved?
+Is the result consistent with the design code?
+What engineering decision follows?
+```
+
+To ask those questions, one needs mechanics.
+
+One needs physics and materials.
+
+One also needs probability, numerical methods, and an understanding of modeling assumptions.
+
+Engineering education in the AI era therefore cannot end with
+
+```text
+Equation
+   ↓
+Calculation
+   ↓
+Answer
+```
+
+Students need to understand the much longer chain:
+
+```text
+Reality
+   ↓
+Idealization
+   ↓
+Physical Model
+   ↓
+Mathematical Model
+   ↓
+Computational / AI Model
+   ↓
+Result
+   ↓
+Verification & Validation
+   ↓
+Engineering Judgment
+   ↓
+Decision
+```
+
+No matter how well AI performs the calculations in the middle, **the path from Reality to Model and the path from Result back to Decision do not disappear.**
+
+If anything, they become more important.
+
+# AI Should Not Become Another Isolated Course
+
+In September 2026, ASCE released its *AI Roadmap for Application in Civil Engineering*, or **AI RACE**. The roadmap asks how civil engineers can lead the effective and responsible adoption of AI rather than merely follow changes introduced elsewhere.
+
+Engineering education should ask the same question.
+
+Teaching students how to use ChatGPT or exposing them to several machine-learning algorithms is not enough.
+
+AI should increasingly become a **computational layer** across Civil Engineering rather than another isolated island in the curriculum.
+
+```text
+Mechanics → computation → surrogate modeling
+Structures → sensing → SHM → digital twin
+Surveying → spatial data → computer vision
+Water → monitoring → forecasting
+Transportation → mobility data → prediction and control
+Construction → BIM → automation → AI
+```
+
+Energy and climate can be treated in a similar way.
+
+# Offshore Wind Is a Good Example
+
+Consider offshore wind, one of my own research areas.
+
+What specialty does an offshore wind support structure belong to?
+
+Structural engineering?
+
+Certainly.
+
+But that is only the beginning.
+
+```text
+Ocean Environment
+        +
+Structural Mechanics
+        +
+Geotechnical Engineering
+        +
+Dynamics
+        +
+Fatigue
+        +
+Materials
+        +
+Construction
+        +
+Environment
+        +
+Economics
+        +
+Energy Systems
+```
+
+Remove any one of these perspectives and it becomes difficult to understand the actual system properly.
+
+So bringing energy into a Civil Engineering curriculum does not necessarily mean adding a stand-alone course called *Energy Engineering*.
+
+The energy transition itself can become a class of engineering problems through which students reconnect multiple areas of Civil Engineering.
+
+That is much closer to Biot's idea of synthetic engineering.
+
+# So How Should We Rebuild the Curriculum?
+
+From this point onward, I am no longer describing accreditation requirements or historical facts. What follows is my interpretation of what the preceding history and current requirements imply for curriculum design.
+
+I find it more useful to think of a future Civil Engineering curriculum as a set of layers rather than as an ever-growing list of courses.
+
+## 1. Mathematical & Scientific Foundation
+
+```text
+Calculus
+Linear Algebra
+Differential Equations
+Probability & Statistics
+Physics
+Chemistry
+```
+
+I would be reluctant to weaken this layer.
+
+Tools change. The need to understand governing principles does not.
+
+## 2. Engineering Science
+
+```text
+Solid Mechanics
+Fluid Mechanics
+Material Behavior
+Numerical Methods
+Computational Methods
+Experimental Methods
+```
+
+This is the common language that allows different areas of Civil Engineering to communicate.
+
+The Engineering Science foundation that emerged so strongly in the postwar curriculum is not obsolete. In the AI era, it may become even more important—not because engineers must outperform computers at calculation, but because they must understand what the calculation means.
+
+## 3. Civil Infrastructure Systems
+
+This layer needs more attention.
+
+```text
+Structures
+     ↕
+Geotechnics
+     ↕
+Water
+     ↕
+Transportation
+     ↕
+Environment
+     ↕
+Construction
+```
+
+The point is not to eliminate the disciplines.
+
+The point is to show students **how those disciplines meet inside a functioning infrastructure system**.
+
+## 4. Selected Professional Depth
+
+Integration without depth simply produces another form of superficiality.
+
+A student should go deeply enough into at least one area to calculate, model, analyze, and design something that is genuinely difficult.
+
+Breadth and depth are not alternatives.
+
+**Breadth allows an engineer to see the whole problem. Depth allows the engineer to solve part of it properly.**
+
+## 5. Integrating Themes
+
+AI and data, energy, climate, sustainability, risk, and resilience should increasingly cut across the curriculum rather than continuously forming new vertical silos.
+
+```text
+        AI       ENERGY       CLIMATE
+         ↓          ↓            ↓
+ ─────────────────────────────────────
+        Integrating Themes
+ ─────────────────────────────────────
+        Professional Depth
+ ─────────────────────────────────────
+     Civil Infrastructure Systems
+ ─────────────────────────────────────
+        Engineering Science
+ ─────────────────────────────────────
+      Math & Basic Science
+```
+
+The upper layers are not more important than the lower ones.
+
+Without the lower layers, the upper ones have nothing solid to stand on.
+
+# Projects Can Reconnect the Courses
+
+Where, then, should the disciplines meet?
+
+I think **complex infrastructure projects** can provide one answer.
+
+Take a bridge and transportation corridor as an example. The same project can reappear throughout the curriculum, but the questions change as students mature.
+
+```text
+Year 1
+What is the system?
+        ↓
+Year 2
+What physics governs it?
+        ↓
+Year 3
+How do we analyze and design it?
+        ↓
+Year 4
+How do we integrate and make decisions?
+```
+
+Students revisit the same infrastructure at increasing levels of sophistication.
+
+I think such a **Project Spine** could reduce curriculum fragmentation far more effectively than creating ten additional stand-alone courses.
+
+It also feels much more like Civil Engineering.
+
+# Civil Engineering Is Broader Than Construction
+
+The terminology used for the field varies across countries and universities, and construction remains one of its essential professional activities. But the curriculum itself makes the broader identity clear.
+
+Civil engineers must increasingly deal not only with creating new infrastructure but also with maintaining aging infrastructure, adapting systems to climate change, supporting energy transition, monitoring performance, managing risk, and integrating physical infrastructure with data and AI.
+
+**Construction remains essential, but it is too narrow to describe the full purpose of Civil Engineering.**
+
+That broader identity should be visible in the curriculum.
+
+# In the End, We Come Back to Civil Engineering
+
+Civil Engineering has spent more than a century differentiating itself into increasingly sophisticated specialties.
+
+That differentiation gave the profession depth.
+
+There is no reason to give that depth up.
+
+But students also need to learn how to reconnect the pieces.
+
+```text
+Natural Environment
+        ↕
+Physical Infrastructure
+        ↕
+Human Society
+        ↕
+Economy / Policy
+        ↕
+Information / Data
+```
+
+Calling Civil Engineering a broad or synthetic discipline should not mean that students simply take many courses.
+
+It should mean that they can connect different bodies of knowledge to understand a real infrastructure problem and make a defensible engineering decision.
+
+That, I think, is the point behind Biot's warning more than sixty years ago.
+
+The answer is not less specialization.
+
+The answer is **not losing the ability to synthesize specialized knowledge**.
+
+# A More Important Question Than “What Else Should We Teach?”
+
+New technologies will continue to arrive.
+
+Today it is AI. Tomorrow it will be something else.
+
+A curriculum cannot remain coherent if every new development automatically becomes another course.
+
+I would therefore begin curriculum design with three questions.
+
+**What must remain even when technology changes?**
+
+Fundamentals and Engineering Science.
+
+**Where must students develop real depth?**
+
+In a selected professional domain.
+
+**What must be reconnected?**
+
+Infrastructure systems with AI, data, energy, climate, sustainability, and risk.
+
+The curriculum can then be summarized as
+
+```text
+FOUNDATION
+     +
+ENGINEERING SCIENCE
+     +
+SYSTEMS BREADTH
+     +
+SELECTED DEPTH
+     +
+AI / ENERGY / CLIMATE INTEGRATION
+     +
+ENGINEERING JUDGMENT
+```
+
+And at the end of that sequence, one capability remains fundamental:
+
+> **Does this result make engineering sense?**
+
+AI may perform more and more of the calculation, but that question will not disappear.
+
+It will become more important.
+
+That is where I believe the future of Civil Engineering education lies.
+
+**Specialization made Civil Engineering powerful. The next educational challenge is learning how to put it back together.**
+
+---
+
+## Further reading
+
+1. ABET. *Criteria for Accrediting Engineering Programs, 2026–2027*.  
+   https://www.abet.org/accreditation/accreditation-criteria/criteria-for-accrediting-engineering-programs-2026-2027/
+
+2. American Society of Civil Engineers. *About Civil Engineering*.  
+   https://www.asce.org/about-civil-engineering
+
+3. American Society of Civil Engineers. *Civil Engineering Body of Knowledge: Preparing the Future Civil Engineer, Third Edition (CEBOK3)*.  
+   https://www.asce.org/career-growth/cebok
+
+4. American Society for Engineering Education. *Report on Evaluation of Engineering Education, 1952–1955* (Grinter Report).
+
+5. Biot, M. A. (1963). “Science and the Engineer.” *Engineering and Science*, 26(4), 30–36. 1962 Timoshenko Medal acceptance address.
+
+6. ASCE (2023). “Higher Learning: The State of Civil Engineering Education.”
+
+7. ASCE (2026). “ASCE Leads AI Vision in Civil Engineering with ‘AI RACE’ Roadmap.”
+
+8. Institution of Civil Engineers. *John Smeaton*.
