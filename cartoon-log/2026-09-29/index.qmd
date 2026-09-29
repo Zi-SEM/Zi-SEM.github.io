@@ -1,0 +1,10 @@
+---
+title: "Is Civil Engineering the Same as Construction Engineering?"
+author: "Goangseup Zi"
+date: 2026-09-29
+page-layout: article
+---
+
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
+
+![](Fig20260929.png)

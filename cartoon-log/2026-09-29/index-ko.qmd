@@ -1,0 +1,11 @@
+---
+title: "토목공학은 건설공학인가?"
+author: "지광습"
+date: 2026-09-29
+lang: ko
+page-layout: article
+---
+
+<div class="language-switch">[English](index.qmd) | **한글**</div>
+
+![](Fig20260929.png)
