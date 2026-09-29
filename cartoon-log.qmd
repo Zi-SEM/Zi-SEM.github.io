@@ -1,0 +1,12 @@
+---
+title: "Cartoon Log"
+subtitle: "Scenes from teaching, research, and everyday life"
+toc: false
+page-layout: article
+---
+
+<div class="language-switch">**English** | [한글](cartoon-log-ko.qmd)</div>
+
+## Cartoon Log
+
+- [Shoulder Pain Is One Thing, but...](cartoon-log/2026-09-28/index.qmd)

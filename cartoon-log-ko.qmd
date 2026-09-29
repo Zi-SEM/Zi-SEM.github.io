@@ -1,0 +1,14 @@
+---
+title: "카툰로그"
+subtitle: "강의, 연구 그리고 일상의 장면들"
+author: "지광습"
+lang: ko
+toc: false
+page-layout: article
+---
+
+<div class="language-switch">[English](cartoon-log.qmd) | **한글**</div>
+
+## 카툰로그
+
+- [어깨 아픈 거는 아픈 거고...](cartoon-log/2026-09-28/index-ko.qmd)

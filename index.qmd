@@ -89,6 +89,12 @@ A framework for understanding and teaching engineering mechanics through connect
 Practical LaTeX, scientific writing, and AI-assisted workflows for engineers and researchers.
 :::
 
+::: {.g-col-12 .g-col-md-6}
+### [Cartoon Log](cartoon-log.qmd)
+
+Teaching, research, engineering, and everyday life in cartoons.
+:::
+
 ::::
 
 ## Zi’s Structural Engineering & Mechanics

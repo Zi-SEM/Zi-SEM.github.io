@@ -1,0 +1,11 @@
+---
+title: "어깨 아픈 거는 아픈 거고..."
+author: "지광습"
+date: 2026-09-28
+lang: ko
+page-layout: article
+---
+
+<div class="language-switch">[English](index.qmd) | **한글**</div>
+
+![](20260928.png)

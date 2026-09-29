@@ -6,7 +6,7 @@ toc: false
 lang: ko
 ---
 
-<div class="language-switch>[English](index.qmd) | **한글**</div>
+<div class="language-switch">[English](index.qmd) | **한글**</div>
 
 연구 · 교육 · 역학 · 기술 글쓰기
 
@@ -41,6 +41,13 @@ lang: ko
 
 ### [LaTeX와 글쓰기](latex-writing-ko.qmd)
 공학자와 연구자를 위한 LaTeX, 연구논문 작성, AI 보조 글쓰기 방법을 다룬다.
+
+:::
+
+::: {.g-col-12 .g-col-md-6}
+
+### [카툰로그](cartoon-log-ko.qmd)
+강의와 연구, 공학, 그리고 일상의 장면을 카툰으로 기록한다.
 
 :::
 
