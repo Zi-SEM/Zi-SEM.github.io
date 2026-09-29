@@ -423,122 +423,243 @@ That is much closer to Biot's idea of synthetic engineering.
 
 # So How Should We Rebuild the Curriculum?
 
-From this point onward, I am no longer describing accreditation requirements or historical facts. What follows is my interpretation of what the preceding history and current requirements imply for curriculum design.
+From this point onward, I am no longer describing an accreditation requirement or a historical fact. What follows is **a proposed curriculum architecture derived from the history and constraints discussed above**.
 
-I find it more useful to think of a future Civil Engineering curriculum as a set of layers rather than as an ever-growing list of courses.
+The first question should not be which new course to add. We should first decide what must remain common to all civil engineers, where breadth should be created, where genuine depth should be developed, and how emerging topics should connect to existing engineering knowledge.
 
-## 1. Mathematical & Scientific Foundation
-
-```text
-Calculus
-Linear Algebra
-Differential Equations
-Probability & Statistics
-Physics
-Chemistry
-```
-
-I would be reluctant to weaken this layer.
-
-Tools change. The need to understand governing principles does not.
-
-## 2. Engineering Science
+I find it useful to think of the curriculum in five layers.
 
 ```text
-Solid Mechanics
-Fluid Mechanics
-Material Behavior
-Numerical Methods
-Computational Methods
-Experimental Methods
+          ENERGY     CLIMATE     AI / DATA
+             ↓          ↓           ↓
+ ┌─────────────────────────────────────────┐
+ │ Layer 5: INTEGRATING THEMES             │
+ │ Energy · Climate · AI · Sustainability │
+ │ Risk · Resilience · Digital Engineering│
+ └─────────────────────────────────────────┘
+                     ↓
+ ┌─────────────────────────────────────────┐
+ │ Layer 4: PROFESSIONAL DEPTH             │
+ │ One or more selected specialty tracks  │
+ └─────────────────────────────────────────┘
+                     ↓
+ ┌─────────────────────────────────────────┐
+ │ Layer 3: CIVIL INFRASTRUCTURE SYSTEMS   │
+ │ Structure · Geo · Water · Transport    │
+ │ Environment · Construction · Energy    │
+ └─────────────────────────────────────────┘
+                     ↓
+ ┌─────────────────────────────────────────┐
+ │ Layer 2: ENGINEERING SCIENCE            │
+ │ Solid · Fluid · Materials · Numerical  │
+ │ Experiment · Computation               │
+ └─────────────────────────────────────────┘
+                     ↓
+ ┌─────────────────────────────────────────┐
+ │ Layer 1: FOUNDATIONS                    │
+ │ Math · Physics · Chemistry · Statistics│
+ │ Computing                              │
+ └─────────────────────────────────────────┘
 ```
 
-This is the common language that allows different areas of Civil Engineering to communicate.
+This is not a hierarchy of importance. The lower layers make the upper layers possible. More importantly, **Layer 5 should not become another bundle of isolated courses. It is a horizontal axis that cuts across all the layers below it.**
 
-The Engineering Science foundation that emerged so strongly in the postwar curriculum is not obsolete. In the AI era, it may become even more important—not because engineers must outperform computers at calculation, but because they must understand what the calculation means.
+## Layer 1 — Mathematical and Scientific Foundation
 
-## 3. Civil Infrastructure Systems
+This is the part of the curriculum that should remain deepest and most stable.
 
-This layer needs more attention.
+| Area | Possible courses |
+|---|---|
+| Mathematics | Calculus I–II, Linear Algebra, Differential Equations |
+| Probability | Probability and Statistics |
+| Basic science | Physics, Chemistry |
+| Computing foundation | Programming / Scientific Computing |
+
+Programming here does not mean learning a particular AI tool. It is better understood as a basic language for numerical methods, data analysis, simulation, and modern engineering computation.
+
+The rise of AI does not make the fundamentals less important. If machines perform more of the calculation and information retrieval, the engineer becomes even more responsible for deciding whether the result is physically plausible.
+
+## Layer 2 — Engineering Science
+
+Engineering science provides a common language across civil engineering specialties.
+
+| Area | Possible courses |
+|---|---|
+| Solid mechanics | Statics, Dynamics, Mechanics of Materials |
+| Fluid mechanics | Fluid Mechanics |
+| Materials | Engineering Materials / Material Behavior |
+| Computation | Numerical Methods, Computational Methods |
+| Experiment | Experimental Methods / Measurement |
+
+One of the great achievements of the postwar engineering-science curriculum was to move **transferable principles** to the center of engineering education rather than teaching only procedures for particular structures or established designs.
+
+That layer is not obsolete. What should change is that numerical and computational thinking should now be recognized more explicitly as part of modern engineering science.
+
+## Layer 3 — Civil Infrastructure Systems
+
+Civil engineering breadth has often been created by requiring introductory exposure to Structures, Geotechnical Engineering, Water Resources, Transportation, Environmental Engineering, and Construction.
+
+The difficulty is that as the field expands, adding another small introductory course for every new area simply reproduces fragmentation inside the curriculum.
+
+A different approach is to retain the disciplines but teach students more explicitly **how they interact inside functioning infrastructure systems**.
+
+| Infrastructure system | Examples of domains involved |
+|---|---|
+| Structural Systems | structures, loads, structural behavior |
+| Ground and Underground Systems | soil, foundations, underground infrastructure |
+| Water and Environmental Systems | hydraulics, hydrology, water, environment |
+| Transportation and Urban Systems | transportation, mobility, urban infrastructure |
+| Construction and Infrastructure Management | construction, cost, scheduling, safety, maintenance |
+| Coastal and Energy Infrastructure | coastal systems, offshore structures, energy infrastructure |
+
+A city, for example, does not arrive divided into academic departments.
+
+```text
+                     CITY / REGION
+                          │
+         ┌────────────────┼────────────────┐
+         │                │                │
+       Water        Transportation       Energy
+         │                │                │
+        Dam ── River ── Bridge ── Tunnel ── Grid
+                         │
+                    Buildings
+                         │
+                  Underground
+                         │
+                 Waste / Environment
+```
+
+The purpose at this layer is not to teach every specialty in depth. It is to make students ask:
+
+> **How do these subsystems connect to form a functioning infrastructure system?**
+
+## Layer 4 — Selected Professional Depth
+
+Systems thinking alone is not enough. If integration is emphasized without depth, we simply create a different form of superficial education.
+
+Every student should go deep enough in at least one area to **calculate, model, analyze, and design real engineering problems**.
+
+| Depth track | Examples of advanced courses |
+|---|---|
+| Structures and Mechanics | Structural Analysis, Reinforced Concrete, Steel Structures, FEM, Structural Dynamics |
+| Geotechnical and Underground | Soil Mechanics, Foundation Engineering, Underground Engineering |
+| Water and Environment | Hydrology, Hydraulic Engineering, Environmental Engineering |
+| Transportation and Urban Systems | Transportation Engineering, Traffic Systems, Urban Infrastructure |
+| Construction and Infrastructure Management | Construction Engineering, Project Management, Infrastructure Management |
+| Coastal and Energy Infrastructure | Coastal Engineering, Offshore Engineering, Energy Infrastructure |
+
+These are **implementation examples, not accreditation requirements**. Universities can organize the tracks differently according to their mission, faculty, region, and students.
+
+The principle matters more than the exact list.
+
+**Breadth allows an engineer to see the whole problem. Depth allows an engineer to actually solve part of it.**
+
+We cannot teach everything deeply. But we should not graduate students who have never gone deeply into anything.
+
+## Layer 5 — Integrating Themes
+
+This is perhaps the easiest layer to misunderstand.
+
+If AI, energy, and climate matter, the immediate reaction is often to create a new vertical silo for each of them. I do not think that is the right architecture.
+
+| Theme | Examples of curriculum integration |
+|---|---|
+| AI and Data | sensing, prediction, surrogate modeling, SHM, digital twins |
+| Energy | offshore wind, hydropower, nuclear infrastructure, energy storage |
+| Climate | flooding, coastal hazards, adaptation |
+| Sustainability | materials, life cycle, embodied carbon |
+| Risk and Resilience | uncertainty, reliability, hazards, recovery |
+| Digital Engineering | BIM, simulation, digital twins, automation |
+
+AI can appear in mechanics through computation and surrogate modeling, in structures through sensing and SHM, in surveying through spatial data and computer vision, and in construction through BIM and automation.
+
+Energy similarly cuts across structural, geotechnical, hydraulic, coastal, and environmental engineering.
+
+Layer 5 should therefore be understood as **a horizontal mechanism for reconnecting established civil engineering knowledge to new societal and technological problems**, not as another collection of stand-alone courses.
+
+# A Project Spine Can Connect the Layers Vertically
+
+Where, then, do the five layers meet in a student's education?
+
+One possibility is to use a small number of **complex infrastructure projects repeatedly across the four undergraduate years**. I call this a Project Spine.
+
+For example:
+
+### Project A — City Infrastructure
+
+```text
+Water
+Transportation
+Structures
+Underground
+Environment
+Energy
+```
+
+### Project B — Bridge / Transportation Corridor
 
 ```text
 Structures
-     ↕
 Geotechnics
-     ↕
-Water
-     ↕
 Transportation
-     ↕
-Environment
-     ↕
+Hydrology
 Construction
+Maintenance
+Risk
 ```
 
-The point is not to eliminate the disciplines.
-
-The point is to show students **how those disciplines meet inside a functioning infrastructure system**.
-
-## 4. Selected Professional Depth
-
-Integration without depth simply produces another form of superficiality.
-
-A student should go deeply enough into at least one area to calculate, model, analyze, and design something that is genuinely difficult.
-
-Breadth and depth are not alternatives.
-
-**Breadth allows an engineer to see the whole problem. Depth allows the engineer to solve part of it properly.**
-
-## 5. Integrating Themes
-
-AI and data, energy, climate, sustainability, risk, and resilience should increasingly cut across the curriculum rather than continuously forming new vertical silos.
+### Project C — Offshore Renewable Energy System
 
 ```text
-        AI       ENERGY       CLIMATE
-         ↓          ↓            ↓
- ─────────────────────────────────────
-        Integrating Themes
- ─────────────────────────────────────
-        Professional Depth
- ─────────────────────────────────────
-     Civil Infrastructure Systems
- ─────────────────────────────────────
-        Engineering Science
- ─────────────────────────────────────
-      Math & Basic Science
+Ocean Environment
+Structural Mechanics
+Geotechnics
+Dynamics
+Fatigue
+Construction
+Energy
+Environment
+Economics
+AI / Digital Twin
 ```
 
-The upper layers are not more important than the lower ones.
-
-Without the lower layers, the upper ones have nothing solid to stand on.
-
-# Projects Can Reconnect the Courses
-
-Where, then, should the disciplines meet?
-
-I think **complex infrastructure projects** can provide one answer.
-
-Take a bridge and transportation corridor as an example. The same project can reappear throughout the curriculum, but the questions change as students mature.
+The important point is not to complete a project once and move on. **The same infrastructure system should be revisited at increasing levels of sophistication.**
 
 ```text
-Year 1
-What is the system?
-        ↓
-Year 2
-What physics governs it?
-        ↓
-Year 3
-How do we analyze and design it?
-        ↓
-Year 4
-How do we integrate and make decisions?
+Year 1 → What is the system?
+Year 2 → What physics governs it?
+Year 3 → How do we analyze and design it?
+Year 4 → How do we integrate, optimize, and make decisions?
 ```
 
-Students revisit the same infrastructure at increasing levels of sophistication.
+In the first year, students learn to see the system. In the second, they encounter the governing physics. In the third, they move into analysis and design. In the fourth, they put the subsystems back together and make decisions under uncertainty and competing requirements.
 
-I think such a **Project Spine** could reduce curriculum fragmentation far more effectively than creating ten additional stand-alone courses.
+The Project Spine therefore cuts vertically through the five-layer architecture.
 
-It also feels much more like Civil Engineering.
+```text
+        INTEGRATING THEMES
+               │
+        PROFESSIONAL DEPTH
+               │
+    CIVIL INFRASTRUCTURE SYSTEMS
+               │
+        ENGINEERING SCIENCE
+               │
+            FOUNDATION
+               │
+          PROJECT SPINE
+               ↓
+       ENGINEERING JUDGMENT
+```
+
+That seems much more like civil engineering than responding to every new technology by adding another course.
+
+The goal of this architecture is not to produce a student who knows a little about everything.
+
+> **It is to develop an engineer with strong fundamentals, an understanding of infrastructure as a system, genuine depth in at least one professional domain, and the ability to connect AI, energy, climate, and other emerging changes back to established engineering knowledge.**
+
+That is how breadth and depth can coexist without turning the curriculum into an ever-growing list of courses.
 
 # Civil Engineering Is Broader Than Construction
 

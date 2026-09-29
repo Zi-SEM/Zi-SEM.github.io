@@ -331,78 +331,245 @@ Energy Systems
 
 # 그렇다면 curriculum을 어떻게 다시 짤 것인가?
 
-여기부터는 공식 기준의 설명이 아니라 **앞의 역사와 현재 기준으로부터 내가 도출하는 제안**이다.
+여기부터는 공식 기준의 설명이 아니라 **앞의 역사와 현재 기준으로부터 내가 도출하는 curriculum architecture의 제안**이다.
 
-## 1. Mathematical & Scientific Foundation
+핵심은 과목을 계속 더하는 것이 아니다. 무엇을 공통 기반으로 남기고, 어디에서 breadth를 만들고, 어디에서 depth를 확보하며, 새롭게 등장하는 주제를 기존 지식과 어떻게 연결할 것인가를 먼저 정해야 한다.
 
-Calculus, linear algebra, differential equations, probability and statistics, physics, chemistry.
+나는 이를 다섯 개의 layer로 생각하는 것이 유용하다고 본다.
 
-여기는 쉽게 흔들어서는 안 된다.
+```text
+          ENERGY     CLIMATE     AI / DATA
+             ↓          ↓           ↓
+ ┌─────────────────────────────────────────┐
+ │ Layer 5: INTEGRATING THEMES             │
+ │ Energy · Climate · AI · Sustainability │
+ │ Risk · Resilience · Digital Engineering│
+ └─────────────────────────────────────────┘
+                     ↓
+ ┌─────────────────────────────────────────┐
+ │ Layer 4: PROFESSIONAL DEPTH             │
+ │ One or more selected specialty tracks  │
+ └─────────────────────────────────────────┘
+                     ↓
+ ┌─────────────────────────────────────────┐
+ │ Layer 3: CIVIL INFRASTRUCTURE SYSTEMS   │
+ │ Structure · Geo · Water · Transport    │
+ │ Environment · Construction · Energy    │
+ └─────────────────────────────────────────┘
+                     ↓
+ ┌─────────────────────────────────────────┐
+ │ Layer 2: ENGINEERING SCIENCE            │
+ │ Solid · Fluid · Materials · Numerical  │
+ │ Experiment · Computation               │
+ └─────────────────────────────────────────┘
+                     ↓
+ ┌─────────────────────────────────────────┐
+ │ Layer 1: FOUNDATIONS                    │
+ │ Math · Physics · Chemistry · Statistics│
+ │ Computing                              │
+ └─────────────────────────────────────────┘
+```
 
-## 2. Engineering Science
+여기서 중요한 것은 위아래의 서열이 아니다. 아래 layer는 위 layer를 가능하게 하는 기반이고, **Layer 5는 맨 위에 따로 얹는 과목 묶음이 아니라 아래 모든 layer를 관통하는 horizontal axis**다.
 
-Solid mechanics, fluid mechanics, material behavior, numerical methods, computational methods, experimental methods.
+## Layer 1 — Mathematical & Scientific Foundation
+
+가장 깊고 견고하게 유지해야 할 영역이다.
+
+| 영역 | 교과목 예시 |
+|---|---|
+| Mathematics | Calculus I–II, Linear Algebra, Differential Equations |
+| Probability | Probability & Statistics |
+| Basic Science | Physics, Chemistry |
+| Computing foundation | Programming / Scientific Computing |
+
+여기서 programming은 AI software를 사용하는 법을 가르치기 위한 과목이라는 의미가 아니다. 이후 numerical methods, data analysis, simulation을 수행하기 위한 **공학적 계산의 기본 언어**로 보는 편이 맞다.
+
+AI 시대라고 해서 fundamentals의 중요성이 줄어드는 것이 아니다. 오히려 계산과 정보검색을 기계가 담당할수록 engineer에게 중요한 것은 **결과가 물리적으로 가능한가를 판단하는 능력**이다.
+
+## Layer 2 — Engineering Science
 
 Civil Engineering의 여러 분야가 서로 대화할 수 있게 하는 공통 언어다.
 
-## 3. Civil Infrastructure Systems
+| 영역 | 교과목 예시 |
+|---|---|
+| Solid mechanics | Statics, Dynamics, Mechanics of Materials |
+| Fluid mechanics | Fluid Mechanics |
+| Materials | Engineering Materials / Material Behavior |
+| Computation | Numerical Methods, Computational Methods |
+| Experiment | Experimental Methods / Measurement |
 
-Structures, geotechnics, water, transportation, environment, construction을 없애자는 이야기가 아니다.
+Grinter 이후 강화된 engineering science의 중요한 성과는 특정 구조물이나 특정 설계법을 넘어서는 **transferable principles**를 교육과정의 중심에 놓았다는 데 있다.
 
-학생에게 이 분야들이 **하나의 functioning infrastructure system 안에서 어떻게 만나는지** 보여주자는 것이다.
+이 layer는 낡은 것이 아니다. 다만 현대에는 numerical and computational thinking을 engineering science의 일부로 보다 명확하게 포함시킬 필요가 있다.
 
-## 4. Selected Professional Depth
+## Layer 3 — Civil Infrastructure Systems
 
-통합만 강조하면 또 다른 겉핥기가 된다.
+기존에는 breadth를 확보하기 위해 Structural, Geotechnical, Water, Transportation, Environmental, Construction을 각각 introductory discipline으로 가르치는 경향이 강했다.
 
-학생은 적어도 한 분야에서는 실제로 계산하고, 모델을 만들고, 분석하고, 설계할 수 있을 정도로 깊게 들어가야 한다.
+문제는 분야가 늘어날 때마다 작은 입문과목을 계속 추가하면 curriculum 자체가 fragmentation을 재생산한다는 것이다.
+
+그래서 이 layer에서는 개별 분야를 없애는 대신 **실제 infrastructure system 안에서 서로 어떻게 연결되는가**를 먼저 보여주는 편이 좋다고 생각한다.
+
+| Infrastructure system | 다루는 영역의 예 |
+|---|---|
+| Structural Systems | structures, loads, structural behavior |
+| Ground & Underground Systems | soil, foundations, underground infrastructure |
+| Water & Environmental Systems | hydraulics, hydrology, water, environment |
+| Transportation & Urban Systems | transportation, mobility, urban infrastructure |
+| Construction & Infrastructure Management | construction, cost, scheduling, safety, maintenance |
+| Coastal & Energy Infrastructure | coastal systems, offshore structures, energy infrastructure |
+
+예를 들어 도시 하나를 보면 다음과 같다.
+
+```text
+                     CITY / REGION
+                          │
+         ┌────────────────┼────────────────┐
+         │                │                │
+       Water        Transportation       Energy
+         │                │                │
+        Dam ── River ── Bridge ── Tunnel ── Grid
+                         │
+                    Buildings
+                         │
+                  Underground
+                         │
+                 Waste / Environment
+```
+
+학생이 이 단계에서 모든 specialty의 세부지식을 깊게 배우라는 뜻이 아니다.
+
+> **각 subsystem이 어떻게 연결되어 하나의 functioning infrastructure system을 구성하는가?**
+
+이 질문을 이해하는 것이 목적이다.
+
+## Layer 4 — Selected Professional Depth
+
+그렇다고 integration만 강조해서는 안 된다. 그러면 또 다른 종류의 겉핥기가 된다.
+
+학생은 적어도 한 영역에서는 **실제로 계산하고, 모델을 만들고, 해석하고, 설계할 수 있을 정도의 depth**를 가져야 한다.
+
+| Depth track | Advanced courses 예시 |
+|---|---|
+| Structures & Mechanics | Structural Analysis, Reinforced Concrete, Steel Structures, FEM, Structural Dynamics |
+| Geotechnical & Underground | Soil Mechanics, Foundation Engineering, Underground Engineering |
+| Water & Environment | Hydrology, Hydraulic Engineering, Environmental Engineering |
+| Transportation & Urban Systems | Transportation Engineering, Traffic Systems, Urban Infrastructure |
+| Construction & Infrastructure Management | Construction Engineering, Project Management, Infrastructure Management |
+| Coastal & Energy Infrastructure | Coastal Engineering, Offshore Engineering, Energy Infrastructure |
+
+여기서 표의 과목들은 accreditation requirement가 아니라 **구현의 예**다. 대학의 여건과 교육목표에 따라 track과 과목은 달라질 수 있다.
+
+중요한 것은 원칙이다.
 
 **Breadth는 문제 전체를 보게 한다. Depth는 문제를 실제로 풀 수 있게 한다.**
 
-## 5. Integrating Themes
+모든 것을 깊게 가르칠 수는 없지만, 아무것도 깊게 가르치지 않아서는 안 된다.
 
-AI/Data, Energy, Climate, Sustainability, Risk, Resilience를 별도의 수직적 silo로 계속 추가하기보다 curriculum 전체를 관통시키는 것이다.
+## Layer 5 — Integrating Themes
+
+마지막 layer가 오히려 가장 쉽게 오해될 수 있다.
+
+AI, Energy, Climate가 중요하다고 해서 각각을 새로운 vertical silo로 만들자는 뜻이 아니다.
+
+| Theme | Curriculum integration의 예 |
+|---|---|
+| AI & Data | sensing, prediction, surrogate modeling, SHM, digital twin |
+| Energy | offshore wind, hydropower, nuclear infrastructure, energy storage |
+| Climate | flooding, coastal hazards, adaptation |
+| Sustainability | materials, lifecycle, embodied carbon |
+| Risk & Resilience | uncertainty, reliability, hazards, recovery |
+| Digital Engineering | BIM, simulation, digital twin, automation |
+
+예를 들어 AI는 mechanics에서는 computation과 surrogate modeling으로, structures에서는 sensing과 SHM으로, surveying에서는 spatial data와 computer vision으로, construction에서는 BIM과 automation으로 나타날 수 있다.
+
+Energy도 structural, geotechnical, hydraulic, coastal, environmental engineering을 가로지른다.
+
+따라서 Layer 5는 독립된 과목 묶음이라기보다 **기존 Civil Engineering knowledge를 새로운 societal and technological problems와 연결하는 수평축**이어야 한다.
+
+# Project가 Layer들을 세로로 연결할 수 있다
+
+그렇다면 이 다섯 layer를 학생의 머릿속에서 어디서 다시 만나게 할 것인가?
+
+나는 몇 개의 **complex infrastructure project를 학부 4년 동안 반복해서 사용하는 Project Spine**이 한 가지 대안이 될 수 있다고 생각한다.
+
+예를 들어 다음과 같은 project를 생각할 수 있다.
+
+### Project A — City Infrastructure
 
 ```text
-        AI       ENERGY       CLIMATE
-         ↓          ↓            ↓
- ─────────────────────────────────────
-        Integrating Themes
- ─────────────────────────────────────
-        Professional Depth
- ─────────────────────────────────────
-     Civil Infrastructure Systems
- ─────────────────────────────────────
-        Engineering Science
- ─────────────────────────────────────
-      Math & Basic Science
+Water
+Transportation
+Structures
+Underground
+Environment
+Energy
 ```
 
-아래쪽이 없으면 위쪽은 떠 있을 수밖에 없다.
-
-# Project가 과목 사이를 연결할 수 있다
-
-서로 다른 분야를 어디서 만나게 할 것인가?
-
-나는 **complex infrastructure project**가 좋은 방법이라고 생각한다.
+### Project B — Bridge / Transportation Corridor
 
 ```text
-Year 1
-What is the system?
-        ↓
-Year 2
-What physics governs it?
-        ↓
-Year 3
-How do we analyze and design it?
-        ↓
-Year 4
-How do we integrate and make decisions?
+Structures
+Geotechnics
+Transportation
+Hydrology
+Construction
+Maintenance
+Risk
 ```
 
-같은 infrastructure를 여러 학년에서 반복해서 보되 보는 수준을 바꾸는 것이다.
+### Project C — Offshore Renewable Energy System
 
-이런 **Project Spine**이 curriculum fragmentation을 줄이는 한 가지 방법이 될 수 있다. 새로운 과목을 열 개 만드는 것보다 훨씬 토목공학답다.
+```text
+Ocean Environment
+Structural Mechanics
+Geotechnics
+Dynamics
+Fatigue
+Construction
+Energy
+Environment
+Economics
+AI / Digital Twin
+```
+
+중요한 것은 project를 한 번 하고 끝내는 것이 아니다. **같은 infrastructure를 학년에 따라 다른 수준에서 다시 보는 것**이다.
+
+```text
+Year 1 → What is the system?
+Year 2 → What physics governs it?
+Year 3 → How do we analyze and design it?
+Year 4 → How do we integrate, optimize and make decisions?
+```
+
+1학년에는 system을 본다. 2학년에는 그 system을 지배하는 physics를 배운다. 3학년에는 analysis와 design으로 들어간다. 4학년에는 여러 subsystem을 다시 합치고, uncertainty와 conflicting requirements까지 고려하여 decision을 내린다.
+
+그러면 Project Spine은 다음과 같이 다섯 layer를 세로로 관통한다.
+
+```text
+        INTEGRATING THEMES
+               │
+        PROFESSIONAL DEPTH
+               │
+    CIVIL INFRASTRUCTURE SYSTEMS
+               │
+        ENGINEERING SCIENCE
+               │
+            FOUNDATION
+               │
+          PROJECT SPINE
+               ↓
+       ENGINEERING JUDGMENT
+```
+
+새로운 과목을 열 개 만드는 것보다 훨씬 Civil Engineering답다.
+
+결국 이 curriculum architecture의 목적은 모든 분야를 조금씩 아는 학생을 만드는 것이 아니다.
+
+> **강한 fundamentals를 바탕으로 infrastructure system 전체를 이해하고, 적어도 한 영역에서는 깊이 있는 engineering analysis와 design을 수행하며, AI·Energy·Climate와 같은 새로운 변화를 기존 engineering knowledge와 연결할 수 있는 engineer를 교육하는 것.**
+
+그것이 breadth와 depth를 동시에 확보하는 방법이라고 생각한다.
 
 # 우리나라에서는 왜 ‘건설’이라는 말이 이렇게 강할까?
 
