@@ -10,3 +10,4 @@ page-layout: article
 ## Cartoon Log
 
 - [Shoulder Pain Is One Thing, but...](cartoon-log/2026-09-28/index.qmd)
+- [Is Civil Engineering the Same as Construction Engineering?](cartoon-log/2026-09-29/index.qmd)

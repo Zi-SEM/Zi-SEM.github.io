@@ -12,3 +12,4 @@ page-layout: article
 ## 카툰로그
 
 - [어깨 아픈 거는 아픈 거고...](cartoon-log/2026-09-28/index-ko.qmd)
+- [토목공학이 건설공학인가?](cartoon-log/2026-09-29/index-ko.qmd)
