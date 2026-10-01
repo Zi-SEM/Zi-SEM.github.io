@@ -13,3 +13,4 @@ page-layout: article
 
 - [어깨 아픈 거는 아픈 거고...](cartoon-log/2026-09-28/index-ko.qmd)
 - [토목공학이 건설공학인가?](cartoon-log/2026-09-29/index-ko.qmd)
+- [기술도, 사람도, 결국 연결이다](cartoon-log/2026-09-30/index-ko.qmd)

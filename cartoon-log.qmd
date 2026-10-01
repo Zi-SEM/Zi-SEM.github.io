@@ -11,3 +11,4 @@ page-layout: article
 
 - [Shoulder Pain Is One Thing, but...](cartoon-log/2026-09-28/index.qmd)
 - [Is Civil Engineering the Same as Construction Engineering?](cartoon-log/2026-09-29/index.qmd)
+- [In the End, It’s All About Connections](cartoon-log/2026-09-30/index.qmd)

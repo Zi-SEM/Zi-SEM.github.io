@@ -1,0 +1,11 @@
+---
+title: "기술도, 사람도, 결국 연결이다"
+author: "지광습"
+date: 2026-09-30
+lang: ko
+page-layout: article
+---
+
+<div class="language-switch">[English](index.qmd) | **한글**</div>
+
+![](Fig20260930.png)

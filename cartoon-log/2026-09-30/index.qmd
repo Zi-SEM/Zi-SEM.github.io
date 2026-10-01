@@ -1,0 +1,10 @@
+---
+title: "In the End, It’s All About Connections"
+author: "Goangseup Zi"
+date: 2026-09-30
+page-layout: article
+---
+
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
+
+![](Fig20260930.png)
