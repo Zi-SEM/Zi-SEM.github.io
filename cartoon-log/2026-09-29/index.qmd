@@ -8,3 +8,9 @@ page-layout: article
 <div class="language-switch">**English** | [한글](index-ko.qmd)</div>
 
 ![](Fig20260929.png)
+
+::: {.cartoon-nav}
+[← Previous](../2026-09-28/index.qmd)
+
+[Next →](../2026-09-30/index.qmd)
+:::
