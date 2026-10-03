@@ -11,4 +11,6 @@ page-layout: article
 
 ::: {.cartoon-nav}
 [← Previous](../2026-09-29/index.qmd)
+
+[Next →](../2026-10-03/index.qmd)
 :::

@@ -1,0 +1,15 @@
+---
+title: "지난 5년, 토목학회 테니스동호회와 함께 한 시간"
+author: "지광습"
+date: 2026-10-03
+lang: ko
+page-layout: article
+---
+
+<div class="language-switch">[English](index.qmd) | **한글**</div>
+
+![](Fig20261003.png)
+
+::: {.cartoon-nav}
+[← 이전](../2026-09-30/index-ko.qmd)
+:::

@@ -12,4 +12,6 @@ page-layout: article
 
 ::: {.cartoon-nav}
 [← 이전](../2026-09-29/index-ko.qmd)
+
+[다음 →](../2026-10-03/index-ko.qmd)
 :::

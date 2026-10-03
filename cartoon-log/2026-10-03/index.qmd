@@ -1,0 +1,14 @@
+---
+title: "Five Years with the KSCE Tennis Club"
+author: "Goangseup Zi"
+date: 2026-10-03
+page-layout: article
+---
+
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
+
+![](Fig20261003.png)
+
+::: {.cartoon-nav}
+[← Previous](../2026-09-30/index.qmd)
+:::
