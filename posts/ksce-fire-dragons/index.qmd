@@ -1,0 +1,192 @@
+---
+title: "KSCE FIRE DRAGONS: How Tennis Connects Civil Engineers Across Generations"
+subtitle: "The Korean Society of Civil Engineers Tennis Club since 2012"
+author: "Goangseup Zi"
+date: "2026-10-03"
+categories:
+  - About
+  - KSCE
+  - Civil Engineering Community
+  - Tennis
+image: Fig08.jpg
+description: "The story of KSCE FIRE DRAGONS, the Korean Society of Civil Engineers Tennis Club: monthly tennis, cross-generational friendships, institutional exchanges, and a civil engineering community built since 2012."
+keywords:
+  - Korean Society of Civil Engineers
+  - KSCE
+  - KSCE FIRE DRAGONS
+  - civil engineering tennis club
+  - civil engineering community
+  - professional networking for civil engineers
+  - tennis club Korea
+  - civil engineers Korea
+  - KSCE tennis
+lang: en
+---
+
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
+
+> **We play tennis for health and competition, but what lasts is the people we meet along the way.**
+
+The **Korean Society of Civil Engineers (KSCE) Tennis Club** began in 2012.
+
+Professor Sanghyun Han of Seoil University served as the first president, and I started as the club secretary. Looking back at the early records, we had 21 members in 2013 and 31 registered members by 2014. The club grew faster than I remember.
+
+From 2012 to 2021, Professor Han and I served as president and secretary, respectively. In 2022, I became president, with Executive Director Jin-I Kwak of Yooshin Engineering serving as secretary. Today, **34 dues-paying members** belong to the club.
+
+The number, however, is not what interests me most.
+
+For nearly fifteen years we have met every month, played tournaments, shared meals, and visited other organizations for friendly matches. Somewhere along the way, a more interesting question became clear: **What kind of club do we actually want this to be?**
+
+![The KSCE Tennis Club in 2014. The early years of what would become a long-running community of civil engineers connected through tennis.](Fig01.jpg){#fig-2014}
+
+## Good players are welcome. Good people matter more.
+
+Of course this is a tennis club. We like tennis, and when a match begins, people want to win.
+
+But after running the club for many years, I have come to think that playing ability is not the most important ingredient of a good club.
+
+**The more important question is who you want to play with again next month.**
+
+Our members range from their twenties to their seventies. Some compete at a very high amateur level; others are still learning the game. We include professors, government officials, public-corporation employees, engineers from consulting firms, and engineers from construction companies.
+
+That diversity did not happen entirely by accident. Since becoming president, I have tried to keep the club from becoming dominated by one generation, one level of play, one profession, or one organization.
+
+![Monthly meeting at Korea University in October 2018. Regular monthly tennis became the backbone of the club.](Fig02.jpg){#fig-2018}
+
+Titles do not help much on a tennis court.
+
+A senior executive may partner with a young engineer. People from a university, a public agency, an engineering company, and a contractor may spend the morning hitting balls at one another across the same net. Nobody gives a professor an easier ball simply because he is a professor.
+
+After several hours of tennis, we sit down for a meal. That is when relationships develop that are difficult to create by exchanging business cards at a formal meeting.
+
+To me, that is one of the club's greatest values.
+
+![Monthly meeting in March 2023. Different generations, organizations, and levels of play share the same court.](Fig03.jpg){#fig-2023}
+
+## The first Saturday of every month
+
+The center of the club is not a large annual event. It is the **monthly meeting**.
+
+Except for January and August, our rule is simple: we meet on the first Saturday morning of each month. We also hold tournaments such as the Club President's Cup, the KSCE President's Cup, and the Club Advisor's Cup.
+
+A club survives through regularity more than spectacle. Members need to know that if they go to the court on the first Saturday morning, familiar faces will be there.
+
+All 34 members cannot attend every time. There are business trips, family events, and all the other things that fill a calendar. Someone may disappear for a few months and then return. We pick up a racket and play again as if we met yesterday.
+
+That is what a club is.
+
+![The trophy for the 2024 KSCE President's Cup tennis tournament.](Fig04.jpg){#fig-trophy-2024}
+
+Since 2024, we have also acquired a new tradition: **group warm-up exercises before we play**.
+
+Professor Seungjun Ahn of Hongik University is in charge. Curiously, the exercises change every time. He says this is because he has designed a diverse program to warm up the whole body.
+
+Well.
+
+I am not entirely sure every member interprets the variation in quite the same way.
+
+In any case, a monthly meeting now begins with Professor Ahn's instructions and a group of civil engineers trying to follow them.
+
+![Warming up together before tennis. Since 2024, Professor Seungjun Ahn has led the exercises. The routine changes every time. He calls it “variety.”](Fig05.jpg){#fig-warmup}
+
+## Tennis is only half the meeting
+
+The monthly gathering does not end when the tennis ends. In some ways, what comes next may be just as important.
+
+![After the 2024 KSCE President's Cup. Time around the table matters almost as much as time on the court.](Fig06.jpg){#fig-afterparty}
+
+Over a meal, conversations move from tennis to universities, companies, civil engineering, families, and life in general. You discover sides of people that are difficult to see during formal professional meetings.
+
+This creates a different kind of professional network. **We do not first meet because we need something from one another. We first meet because we enjoy the same sport.**
+
+That difference matters.
+
+## Why does a prospective member play with us three times first?
+
+Joining the club is deliberately not immediate.
+
+A prospective member first attends at least **three monthly meetings as a guest**. After that, the person needs recommendations from at least two existing members and approval by two-thirds of the operating committee.
+
+It may sound rather formal for a tennis club. There is a reason.
+
+Three meetings are enough for the guest to decide whether this is a club he or she actually enjoys. They also give existing members time to play, eat, talk, and get to know the person naturally.
+
+Tennis ability matters, but we care at least as much about **character, consideration for others, and the ability to build healthy relationships within the group**.
+
+A club made entirely of top-level players might be a formidable tennis team. That is not quite what we are trying to build.
+
+Strong and developing players should be able to enjoy the same meeting. A member in his seventies and one in his twenties should be able to become doubles partners. We should not become a professors' club, nor should one company or institution dominate the membership.
+
+Keeping different people comfortably mixed together is itself part of running the club.
+
+Recently, looking at some of our younger new members, another possible membership criterion has been suggested.
+
+**“Do you also screen for good looks?”**
+
+For the record, that one is not in the bylaws.
+
+![With some of our newer members. Good looks are not a membership requirement—at least not officially.](Fig07.jpg){#fig-newmembers}
+
+## Tennis as a bridge between civil engineering organizations
+
+In recent years, we have placed more emphasis on **inter-organizational exchange matches**.
+
+We have played with civil engineering tennis groups in the Jeonnam region and expanded friendly matches with clubs at other organizations. In June 2026, for example, we visited the Korea Expressway Corporation headquarters for an exchange match. Our side included members from universities, engineering firms, construction companies, and public organizations, while engineers from several departments of the Korea Expressway Corporation joined from their side.
+
+It would be dishonest to say that winning does not matter. Once people walk onto a court, they want to win.
+
+**The interesting part comes afterward.**
+
+After the match we shake hands, eat together, and talk. Something lasts longer than the score: you now know the person on the other side of the net.
+
+Civil engineers already have many formal networks—conferences, technical committees, clients, designers, contractors, and joint projects. Tennis creates a different connection. We often get to know the person first and only later learn the title, university, company, or institution attached to the name.
+
+I think this kind of **natural and healthy network among civil engineers** is an important role for the club.
+
+## From a president-and-secretary club to a shared organization
+
+As membership and activities expanded, the way we ran the club also had to change.
+
+In the early years, the president and secretary handled most things. Once membership exceeded thirty and the number of events and exchange matches increased, I did not think that model was sustainable.
+
+After becoming president, I therefore strengthened an **operating committee system**. Members now share responsibilities such as communications, external relations, and membership management, and important matters are discussed together.
+
+This is more than distributing work.
+
+If a club works only because one president or one secretary works very hard, it becomes fragile the moment that person leaves.
+
+**People change. The culture should remain.**
+
+## And now, 2026
+
+On October 3, 2026, we held the KSCE President's Cup at the Seoul National University of Science and Technology faculty tennis courts.
+
+![The 2026 KSCE President's Cup on October 3, 2026. Different generations, organizations, and levels of play—but on the court, everyone is simply a tennis player. This is KSCE FIRE DRAGONS today.](Fig08.jpg){#fig-presidents-cup-2026}
+
+Friendship is important, but we are still tennis players. Once the match starts, things become serious.
+
+![Friendship matters. Once the match starts, however, that is a different story. Awards at the 2026 KSCE President's Cup.](Fig09.jpg){#fig-awards-2026}
+
+And tennis has one very important fundamental.
+
+**Watch the ball all the way.**
+
+![**One of the fundamentals of tennis is to watch the ball all the way.** Follow that advice too faithfully, however, and your eyes may look as if they are about to pop out.](Fig10.jpg){#fig-watch-ball}
+
+## What I hope remains for the next generation of FIRE DRAGONS
+
+Our nickname is **KSCE FIRE DRAGONS**.
+
+What began with a few people in 2012 has become a club of 34 dues-paying members. But I do not think membership count is the best measure of what we have built.
+
+The real asset accumulated over nearly fifteen years is **people**.
+
+People who can play together across age and rank. People who can take care of a less experienced partner. People from different organizations who can meet comfortably because they share civil engineering—and tennis.
+
+When I became president in 2022, I wanted to make the character of the club a little clearer: diversity in generation and playing level; balance among professions and organizations; a culture of character and consideration; shared operation through the committee; and a wider, healthy network of civil engineers through institutional exchanges.
+
+My term as president is coming to an end.
+
+Presidents change. I hope that culture does not.
+
+A tennis ball crosses the net, people become closer, and those relationships in turn connect our civil engineering community. I hope **KSCE FIRE DRAGONS** continues to connect senior and junior engineers, universities and industry, public agencies and private companies, regions and institutions—for many years to come.
