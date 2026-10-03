@@ -138,6 +138,13 @@ That distinction is important.
 
 Engineering understanding grows not only from obtaining a result, but from asking what the result means, where it applies, and where it does not.
 
+
+## Beyond Research
+
+Engineering is done by people, and not all of the connections that matter are made in laboratories, classrooms, or conference rooms. I occasionally write about the communities and activities that have shaped my life as a civil engineer.
+
+- [**KSCE FIRE DRAGONS: How Tennis Connects Civil Engineers Across Generations**](posts/ksce-fire-dragons/index.qmd) — The story of the Korean Society of Civil Engineers Tennis Club, from its beginnings in 2012 to a community that now connects civil engineers across generations, organizations, and professions.
+
 ## Academic Profiles
 
 My publications and citation records can be found through:

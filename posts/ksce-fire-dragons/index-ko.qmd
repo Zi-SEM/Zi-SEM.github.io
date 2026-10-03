@@ -4,10 +4,11 @@ subtitle: "대한토목학회 테니스회, 세대와 직역을 넘어"
 author: "지광습"
 date: "2026-10-03"
 categories:
-  - About
   - 대한토목학회
   - 테니스
   - 토목인
+  - 토목인 네트워크
+  - 학회 활동
 image: Fig08.jpg
 description: "대한토목학회 테니스회 KSCE FIRE DRAGONS의 2012년 창립부터 2026년까지의 이야기. 월례회, 회장배, 기관교류전과 세대를 잇는 토목인 테니스 모임의 문화를 소개한다."
 keywords:

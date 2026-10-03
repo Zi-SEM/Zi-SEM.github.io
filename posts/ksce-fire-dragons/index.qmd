@@ -4,10 +4,11 @@ subtitle: "The Korean Society of Civil Engineers Tennis Club since 2012"
 author: "Goangseup Zi"
 date: "2026-10-03"
 categories:
-  - About
   - KSCE
   - Civil Engineering Community
   - Tennis
+  - Professional Network
+  - Engineering Community
 image: Fig08.jpg
 description: "The story of KSCE FIRE DRAGONS, the Korean Society of Civil Engineers Tennis Club: monthly tennis, cross-generational friendships, institutional exchanges, and a civil engineering community built since 2012."
 keywords:
