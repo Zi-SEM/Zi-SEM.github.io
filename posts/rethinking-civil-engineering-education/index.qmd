@@ -1,0 +1,340 @@
+---
+title: "What Should a Civil Engineer Learn over a Career?"
+subtitle: "From University Education to Continuing Professional Development"
+author: "Goangseup Zi"
+date: 2026-10-05
+categories:
+  - Engineering Mechanics
+description: "Civil engineering education should not end at graduation. This article connects university fundamentals, professional formation, practice, continuing professional development (CPD), and professional leadership, and asks why civil engineering should not be reduced to construction training."
+keywords:
+  - civil engineering education
+  - civil engineering curriculum
+  - continuing professional development
+  - CPD for civil engineers
+  - lifelong learning for engineers
+  - engineering competency
+  - professional development for civil engineers
+  - civil engineer
+  - construction engineer
+  - engineering education
+  - AI in civil engineering education
+page-layout: article
+---
+
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
+
+A discussion about continuing education for engineers can easily become a discussion about hours, approved courses, training providers, and compliance.
+
+Those details matter. But they are not the first question.
+
+The first question is more fundamental:
+
+**What kind of civil engineer are we trying to develop?**
+
+I returned to this question while preparing for a February 3 seminar in Korea on the education and training system for construction engineers. The seminar focused on real weaknesses in the current system: duplicated content, limited recognition of external learning, insufficient connection to practice, and long gaps in professional development after initial training.
+
+Yet these problems point to something larger than the design of a continuing-education scheme.
+
+If we define the profession too narrowly, we will also define its education too narrowly.
+
+A civil engineer is not simply a construction engineer who needs periodic construction training. Civil engineering is concerned with the infrastructure systems on which society depends: how they are conceived, analyzed, designed, constructed, operated, maintained, adapted, and eventually renewed.
+
+Once the profession is viewed in that broader way, university education and continuing professional development are no longer separate problems. They become different stages of the same process.
+
+## Civil engineering is broader than construction engineering
+
+Construction is essential to civil engineering. A bridge that cannot be built is not a successful bridge design.
+
+But civil engineering and construction engineering are not synonymous.
+
+The distinction is visible even in formal accreditation criteria. ABET maintains separate program criteria for Civil and Similarly Named Engineering Programs and for Construction and Similarly Named Engineering Programs.
+
+The current civil engineering criteria include mathematics through differential equations, probability and statistics, physics, chemistry, computing or data science, engineering mechanics, materials science, numerical methods, sustainability, risk, resilience, design, ethics, and complex engineering problems across at least four civil engineering specialty areas.
+
+The construction engineering criteria, by comparison, focus more directly on construction methods, materials, equipment, planning, scheduling, safety, cost analysis, and the analysis and design of construction processes and systems.
+
+Both are engineering. Both are important. But they are not the same educational domain.
+
+This distinction matters because civil engineering itself is expanding.
+
+Civil engineers work with structures and soils, water and transportation, environmental systems and construction. Increasingly, they also work with renewable energy infrastructure, offshore systems, climate adaptation and resilience, decarbonization, sensing, digital twins, data, and artificial intelligence.
+
+These should not simply be treated as new boxes to add beside the traditional subdisciplines.
+
+**The engineering problems themselves are changing.**
+
+## How much can a university curriculum contain?
+
+A broader profession creates an educational problem.
+
+We cannot respond to every new development by adding another course.
+
+AI becomes important, so we add an AI course. Offshore wind expands, so we add an offshore wind course. Climate adaptation becomes urgent, so we add another course. This process has no natural end.
+
+Students may eventually encounter many subjects without developing enough depth to reason through an unfamiliar engineering problem.
+
+The opposite approach is also inadequate. If structural, geotechnical, hydraulic, environmental, transportation, and construction engineering remain isolated educational silos, students may miss the system-level connections that define real infrastructure problems.
+
+I therefore see three requirements for university civil engineering education:
+
+**deep fundamentals, structured breadth, and professional depth.**
+
+Mathematics, physics, mechanics, materials, fluids, probability, and computation are not merely early-year hurdles. They are durable tools for reasoning when a new problem does not look like one in a textbook.
+
+Students also need a map of the broader civil infrastructure system. And within that map, they need enough depth in at least one area to solve real engineering problems rather than merely recognize terminology.
+
+Civil engineering has always required both breadth and depth. The challenge is to make the relationship between them explicit.
+
+## AI makes fundamentals more important, not less
+
+If AI can perform calculations, generate code, search standards, and draft technical reports, why should students still study mechanics and mathematics deeply?
+
+Because as the cost of producing an answer falls, the value of judging that answer rises.
+
+An AI system may generate a finite element model. But are the boundary conditions physically meaningful?
+
+Is the load path plausible?
+
+Is a stress concentration a structural mechanism or a numerical artifact?
+
+Does the code provision retrieved by the system actually apply to the structure and limit state being considered?
+
+Software literacy alone cannot answer these questions.
+
+They require mechanics, physics, materials knowledge, mathematical reasoning, and engineering judgment.
+
+AI literacy and fundamentals are therefore not competing educational priorities.
+
+**The more readily engineers can generate answers, the more important it becomes to understand why an answer makes engineering sense.**
+
+## Graduation is not the end of civil engineering education
+
+Even an excellent university education cannot provide everything an engineer will need over a 30- or 40-year career.
+
+Codes change. Materials and construction methods change. Computational tools change. Expectations concerning safety, sustainability, ethics, and public responsibility change. Technologies that did not exist when an engineer graduated may later become central to practice.
+
+Civil engineering education therefore needs a longer time scale:
+
+$$
+\boxed{
+\text{University Education}
+\rightarrow
+\text{Professional Formation}
+\rightarrow
+\text{Practice}
+\rightarrow
+\text{CPD}
+\rightarrow
+\text{Professional Leadership}
+}
+$$
+
+Graduation is not the end of engineering education. It is closer to the beginning of professional formation.
+
+University education and continuing professional development should therefore answer different parts of the same question.
+
+Universities should emphasize durable knowledge and ways of reasoning. Practice should connect that knowledge to real systems, constraints, risks, and responsibilities. CPD should allow engineers to update and extend their professional map as technology and society change.
+
+## When continuing education becomes a training market
+
+The Korean seminar that prompted this article concerned a statutory education and training system for construction engineers.
+
+Such systems have legitimate purposes. Safety requirements change. Regulations change. Engineers need opportunities to maintain and extend their competence.
+
+But a mature mandatory-training system can develop its own institutional logic.
+
+There are approved providers, approved curricula, required hours, administrative records, and a market built around supplying those hours.
+
+The danger is not that a training market exists. The danger is that maintaining the training system becomes more important than developing the engineer.
+
+Then providers tend to supply familiar courses, engineers focus on satisfying required hours, and government focuses on verifying completion.
+
+The question gradually changes from
+
+> What does this engineer need to learn next?
+
+into
+
+> Has this engineer completed the required training?
+
+Those are not equivalent questions.
+
+## Managing training hours is not managing engineering competence
+
+Hours are easy to count.
+
+Competence is not.
+
+Consider an engineer who encounters an unfamiliar problem in a project, studies technical papers, learns a new analysis method, reviews standards, discusses the problem with specialists, and applies the new knowledge successfully.
+
+Has that engineer developed professionally?
+
+Almost certainly.
+
+But a system organized primarily around approved classroom hours may have difficulty recognizing that development.
+
+This is why Continuing Professional Development, or CPD, is a more useful concept than continuing education alone.
+
+The distinction is important:
+
+**managing educational attendance is not the same as managing professional competence.**
+
+## What can be learned from international CPD systems?
+
+International systems should not be reduced to a comparison of required hours.
+
+The more interesting question is what they recognize as professional development and who is expected to take responsibility for it.
+
+Engineers Australia requires Chartered engineers and engineers on the National Engineering Register to complete 150 hours of CPD over three years. Yet its conception of CPD is much broader than attendance at formal courses. Recognized activities include tertiary study, short courses, workshops, seminars, technical meetings, workplace learning that extends competence, private study, service to the engineering profession, preparation and presentation of technical material, and other structured activities. Engineering academics must also demonstrate at least 40 hours of industry involvement over three years.
+
+This is significant. Reviewing technical publications, mentoring, participating in standards activities, studying technical literature, and developing new knowledge in practice can all contribute to professional development when they genuinely extend competence.
+
+ASCE takes a different institutional approach but reaches a related conclusion about the need for continuing competence. Its current policy supports at least 15 documented professional development hours per year, including ethics training, as a condition for maintaining licensed Professional Engineer status. The stated reason is straightforward: practicing civil engineers must remain current with advances in technology, understanding of the world, and societal expectations.
+
+The lesson is not that one national model should simply be copied.
+
+Some systems prescribe hours. Others place greater emphasis on individually planned development. Professional and licensing bodies still audit, document, or regulate important requirements.
+
+The deeper lesson is this:
+
+**professional development is broader than consuming courses.**
+
+## Move the center from the provider to the engineer
+
+A provider-centered system asks:
+
+> What courses should we offer?
+
+A professional-development system starts with a different question:
+
+> **What does this engineer need to learn to become a better engineer?**
+
+The difference is subtle in wording but fundamental in system design.
+
+In the first question, the provider is the principal actor.
+
+In the second, the engineer is.
+
+Government still has an important role. Safety, ethics, public responsibility, and minimum professional requirements cannot simply be left to personal preference.
+
+But government does not need to prescribe every useful learning activity. Its role can shift toward defining essential professional expectations, ensuring credible records and quality, and verifying that engineers continue to develop competence appropriate to their responsibilities.
+
+Training providers then compete not merely to sell recognized hours but to provide knowledge that engineers actually need.
+
+## Professional societies should connect knowledge producers and knowledge users
+
+This change also suggests a different role for professional societies.
+
+A society should not simply become another training vendor in an established mandatory-education market.
+
+Its greatest assets are not classrooms.
+
+They are **people and knowledge**.
+
+Universities produce research. Design firms and construction sites accumulate experience. Failures sometimes produce particularly expensive knowledge. Codes evolve. New materials, methods, and computational technologies emerge.
+
+Professional societies bring together many of the people who create, test, and interpret that knowledge.
+
+Practicing engineers, meanwhile, encounter problems that require it.
+
+The role of the professional society can therefore be understood as a connection:
+
+$$
+\boxed{
+\text{Knowledge Producers}
+\longleftrightarrow
+\text{Professional Engineers}
+}
+$$
+
+No single civil engineering society needs to produce every specialist course itself.
+
+Structural engineering, geotechnical engineering, concrete, water resources, coastal and ocean engineering, tunneling, transportation, and construction management already have specialist communities with deep knowledge.
+
+A consortium of professional societies could form a knowledge ecosystem in which specialist communities retain their depth while engineers gain access to credible knowledge across disciplinary boundaries.
+
+That is a more valuable role than simply adding another provider to a regulated training market.
+
+## Engineers at different career stages should not learn the same things
+
+Professional development should also change with responsibility.
+
+An engineer entering practice may need safety, ethics, regulations, contracts, and the practical organization of engineering work that university education cannot fully reproduce.
+
+Later, technical specialization becomes more important.
+
+At senior levels, the challenge changes again. The central skill is no longer the speed with which one calculation can be performed. Senior engineers must integrate results from several disciplines, reason under incomplete information, manage risk, make decisions, and accept responsibility for those decisions.
+
+A career-long learning trajectory may therefore look more like
+
+$$
+\text{Fundamentals}
+\rightarrow
+\text{Professional Practice}
+\rightarrow
+\text{Specialization}
+\rightarrow
+\text{Integration and Judgment}
+\rightarrow
+\text{Leadership}.
+$$
+
+As responsibility increases, the ability to identify what one needs to learn becomes increasingly important.
+
+## University education and CPD are the same problem at different times
+
+University civil engineering education and continuing professional development are usually administered as separate systems.
+
+Educationally, however, they are different stages of the same question:
+
+**What kind of civil engineer are we trying to develop?**
+
+Universities should provide deep and durable fundamentals, a structured view of the wider infrastructure system, and enough technical depth for students to begin solving genuine engineering problems.
+
+Practice then develops the ability to work with real constraints, uncertainty, institutions, people, and consequences.
+
+CPD keeps professional knowledge current and expands it as technology and societal needs change.
+
+At senior levels, integration, judgment, ethics, risk, and leadership become increasingly important.
+
+All of this is civil engineering education.
+
+It is therefore too narrow to define civil engineering education only as a university curriculum.
+
+It is equally narrow to define continuing education only as mandatory training.
+
+## Start with the engineer we want to develop
+
+Adding an AI course to a mandatory training program will not solve this problem. Neither will adding more BIM hours or moving more lectures online.
+
+Those may be useful changes, but they come later.
+
+First, we need a clear idea of the engineer we are trying to develop.
+
+A civil engineer is not merely someone who executes a predetermined construction task. A civil engineer understands natural and human systems; plans, analyzes, designs, constructs, operates, and maintains infrastructure; and adapts engineering practice as technology, environmental conditions, and societal needs change.
+
+If civil engineering is reduced to construction engineering, its educational system will inherit the same narrow boundary.
+
+If engineers are treated primarily as people whose training hours must be administratively verified, the training market may function efficiently without guaranteeing continuing professional growth.
+
+The principle I took away from the February discussion is therefore simple:
+
+> **Do not design the education system before deciding what kind of engineer the system is meant to develop.**
+
+Universities should teach durable principles deeply.
+
+Practice should connect those principles to real engineering problems.
+
+CPD should enable engineers to keep updating their professional map throughout their careers.
+
+When these stages are connected, continuing education becomes more than a compliance requirement.
+
+It becomes **infrastructure for the lifelong development of civil engineers**.
+
+## Further reading
+
+- [Rethinking the Civil Engineering Curriculum for 2035](../civil-engineering-curriculum-2035/index.qmd)
+- [ABET, Criteria for Accrediting Engineering Programs, 2025–2026](https://www.abet.org/accreditation/accreditation-criteria/criteria-for-accrediting-engineering-programs-2025-2026/)
+- [Institution of Civil Engineers, Continuing Professional Development](https://www.ice.org.uk/your-career/continuing-professional-development)
+- [Engineers Australia, CPD Requirements](https://www.engineersaustralia.org.au/membership/cpd-requirements)
+- [ASCE Policy Statement 425, Continuing Professional Development for Licensure](https://www.asce.org/advocacy/policy-statements/ps425---continuing-professional-development-for-licensure)

@@ -1,0 +1,351 @@
+---
+title: "우리는 어떤 토목공학자를 키우려고 하는가?"
+subtitle: "대학의 토목공학 교육에서 건설기술인 교육훈련과 CPD까지"
+author: "지광습"
+date: 2026-10-05
+lang: ko
+categories:
+  - Engineering Mechanics
+description: "토목공학 교육의 범위를 대학 교육에 한정하지 않고 건설기술인 교육훈련과 계속전문교육(CPD)까지 연결해 살펴본다. Civil engineer를 construction engineer로 좁게 보는 시각과 공급자 중심의 교육체계를 넘어 미래 토목공학자가 평생 성장하기 위한 교육의 방향을 논의한다."
+keywords:
+  - 토목공학 교육
+  - 토목공학 교육과정
+  - 건설기술인 교육
+  - 건설기술인 교육훈련
+  - 건설기술인 교육제도
+  - 건설기술자 교육
+  - 계속전문교육
+  - CPD
+  - 엔지니어 평생교육
+  - 토목기술자 역량
+  - AI 시대 토목공학 교육
+  - civil engineer
+  - construction engineer
+page-layout: article
+---
+
+<div class="language-switch">[English](index.qmd) | **한글**</div>
+
+지난 2월 3일 건설기술인정책연구원이 주최한 건설기술인 교육훈련제도 개선 세미나에 토론자로 참석했다.
+
+발제에서는 우리나라 건설기술인 교육의 여러 문제와 개선방안이 제시되었다. 교육 인정범위를 넓히고, 수요자에게 필요한 교육을 제공하며, 교육에 참여할 동기를 만들자는 내용이었다.
+
+대체로 공감했다.
+
+그런데 토론을 준비하면서 조금 더 근본적인 질문이 생겼다.
+
+**우리는 어떤 토목공학자를 키우려고 하는가?**
+
+이 질문에 먼저 답하지 않고 교육시간, 교육기관, 교육과정을 논의하면 아무리 제도를 개선해도 다시 비슷한 문제가 생길 수 있다.
+
+35시간을 무엇으로 채울 것인가보다 먼저 물어야 한다.
+
+우리가 교육하려는 사람은 건설사업을 수행하는 **construction engineer**인가?
+
+아니면 사회가 필요로 하는 infrastructure를 계획하고, 분석하고, 설계하고, 건설하고, 운영하며 새로운 문제를 해결하는 **civil engineer**인가?
+
+나는 후자라고 생각한다.
+
+그리고 이 차이는 단순한 영어 번역의 문제가 아니다. 토목공학 대학 교육의 범위부터 건설기술인 교육훈련, 그리고 엔지니어가 평생 무엇을 공부해야 하는가까지 달라지는 문제다.
+
+## Civil engineering은 construction engineering보다 넓다
+
+우리나라에서는 civil engineering을 설명할 때 '건설'이라는 말을 많이 쓴다. 틀린 말은 아니다. Construction은 civil engineering에서 대단히 중요한 부분이다. 설계된 infrastructure는 결국 실제로 만들어져야 한다.
+
+그러나 **civil engineering과 construction engineering은 같은 것은 아니다.**
+
+미국 ABET의 engineering accreditation criteria를 보면 이 차이가 상당히 명확하다. Civil engineering curriculum에는 미분방정식, 확률과 통계, 물리와 화학, computer science 또는 data science와 같은 기초와 함께 engineering mechanics, materials science, numerical methods가 요구된다. 여기에 sustainability, risk, resilience, engineering design, ethics가 들어가며, 적어도 네 개의 civil engineering specialty에서 complex engineering problem을 다루도록 요구한다.
+
+반면 construction engineering의 기준은 construction methods, materials, equipment, planning, scheduling, safety, cost analysis와 construction process and systems에 보다 직접적으로 초점을 맞춘다.
+
+둘 다 중요한 engineering이다. **하지만 둘은 같지 않다.**
+
+내가 [토목공학 교육과정 2035](../civil-engineering-curriculum-2035/index-ko.qmd)에서 고민했던 것도 바로 이 문제였다.
+
+토목공학은 구조, 지반, 수공, 환경, 교통, 건설을 각각 따로 배우는 학문으로 끝나지 않는다. 우리가 실제로 다루는 것은 **infrastructure system**이다.
+
+도로와 철도, 교량과 터널, 항만과 공항, 댐과 상하수도, 도시와 환경을 계획하고 설계하고 건설하고 운영한다. 자연재해로부터 사회를 보호하고, 물질과 에너지의 흐름을 다루며, infrastructure가 오랜 시간 안전하게 기능하도록 만든다.
+
+그리고 그 범위는 계속 변한다. 해상풍력과 같은 에너지 infrastructure가 들어오고, 기후변화와 resilience가 중요해진다. 탄소중립이 설계조건이 되고, 센싱과 모니터링, BIM과 digital twin, 데이터와 AI가 infrastructure의 설계와 운영방식을 바꾼다.
+
+이것들은 토목공학 바깥에 새로운 과목 몇 개를 붙이는 문제가 아니다.
+
+**Civil engineering이 해결해야 할 문제가 변하고 있는 것이다.**
+
+## 그렇다면 대학에서는 어디까지 가르쳐야 할까?
+
+토목공학의 영역이 넓어진다고 해서 대학 교육과정을 계속 늘릴 수는 없다.
+
+AI가 중요하다고 AI 과목을 하나 추가하고, 해상풍력이 중요하다고 해상풍력 과목을 하나 추가하고, 기후변화가 중요하다고 또 하나 추가하는 식으로 가면 끝이 없다.
+
+학생들은 많은 것을 조금씩 배우지만 정작 새로운 engineering problem을 스스로 풀 수 있는 능력을 갖지 못할 수도 있다.
+
+반대도 문제다. 전통적인 구조·지반·수공·교통·환경의 경계를 그대로 유지하면 실제 infrastructure problem의 연결성을 놓치기 쉽다.
+
+그래서 내가 생각하는 대학의 토목공학 교육에는 세 가지가 필요하다.
+
+**깊은 기초, 구조화된 폭, 그리고 전문적인 깊이.**
+
+수학, 물리, 역학, 재료, 유체, 확률, 계산과 같은 fundamentals는 쉽게 변하지 않는다. 이것들은 단순히 1, 2학년 때 시험을 보고 지나가는 과목이 아니다. 새로운 문제가 생겼을 때 다시 돌아가 생각할 수 있는 토대다.
+
+그 위에서 구조, 지반, 물, 환경, 교통, 건설을 포함한 civil infrastructure의 전체 지도를 이해해야 한다. 그리고 적어도 하나의 분야에서는 실제 engineering problem을 스스로 풀 수 있을 만큼 깊이 들어가야 한다.
+
+나는 이것이 **breadth와 depth를 동시에 요구하는 토목공학의 특징**이라고 생각한다.
+
+## AI 시대에는 오히려 fundamentals가 중요하다
+
+요즘은 무엇이든 AI에게 물어본다. 건설기준도 예외는 아니다.
+
+AI가 계산하고, 코드를 만들고, 기준을 검색하고, 보고서까지 작성하는 시대라면 학생들에게 역학과 수학을 예전처럼 가르쳐야 하는가?
+
+나는 오히려 더 중요해진다고 생각한다.
+
+**계산하는 비용이 낮아질수록 계산 결과를 판단하는 능력의 가치는 커진다.**
+
+AI가 유한요소 모델을 만들었다고 하자.
+
+경계조건은 맞는가?
+
+하중경로는 물리적으로 가능한가?
+
+응력집중은 실제 구조거동인가, mesh가 만든 numerical artifact인가?
+
+AI가 찾아온 기준 조항은 지금 검토하는 구조물과 limit state에 정말 적용되는가?
+
+이 질문에 답하는 능력은 software 사용법에서 나오지 않는다. 역학과 물리, 재료와 수학에 대한 이해, 그리고 engineering judgment에서 나온다.
+
+따라서 AI literacy와 fundamentals는 경쟁관계가 아니다.
+
+**AI를 많이 사용할수록 그 답이 공학적으로 말이 되는지를 판단할 수 있어야 한다.**
+
+## 그런데 대학을 졸업하면 교육은 끝나는가?
+
+여기까지는 대학 교육의 문제다. 문제는 그 다음이다.
+
+대학에서 잘 교육받은 engineer도 졸업할 때 가지고 있던 지식으로 30년, 40년을 일할 수는 없다.
+
+설계기준이 바뀌고 새로운 재료와 공법이 등장한다. 계산기술이 바뀌고 안전, 환경, 윤리에 대한 사회의 요구도 달라진다. 대학 시절에는 존재하지 않았던 기술이 20년 뒤에는 업무의 핵심이 될 수도 있다.
+
+따라서 토목공학 교육을 대학 4년으로 한정해서 보는 것부터 문제가 있다.
+
+내가 생각하는 전체 구조는 오히려 다음에 가깝다.
+
+$$
+\boxed{
+\text{University Education}
+\rightarrow
+\text{Professional Formation}
+\rightarrow
+\text{Practice}
+\rightarrow
+\text{CPD}
+\rightarrow
+\text{Professional Leadership}
+}
+$$
+
+**대학 졸업은 토목공학 교육의 끝이 아니다.** Professional engineer로 성장하는 긴 과정의 시작에 가깝다.
+
+## 우리 건설기술인 교육훈련제도는 어디에 있는가?
+
+이 관점에서 지난 2월 3일 논의했던 건설기술인 교육훈련제도를 다시 보면 문제가 조금 다르게 보인다.
+
+우리나라에는 오랫동안 상당한 규모의 건설기술인 교육시장이 형성되어 있다. 교육기관이 있고, 정해진 교육과정이 있고, 법정 이수시간이 있고, 이를 관리하는 행정체계가 있다.
+
+물론 그동안 필요한 역할을 해왔다.
+
+문제는 제도가 오래 지속되면서 **교육의 목적보다 교육제도 자체가 하나의 시장과 행정체계로 고착될 가능성**이다.
+
+2월 3일 발제자료에서도 공급자 위주의 교육서비스, 교육내용의 중복, 획일적 curriculum, 지속적인 역량관리의 부재를 문제로 진단했다. 교육과정이 적절하지 않은 이유로 직무 관련성이 낮다는 응답이 37%, 실무 적용성이 부족하다는 응답이 20%였다. 대학 전공교육과의 중복성 역시 기본·최초교육 이수자 가운데 '보통 이상'이라는 응답이 57.8%였다.
+
+결국 이런 구조에서는 쉽게 다음과 같은 일이 생긴다.
+
+교육 공급자는 정해진 교육을 반복해서 공급한다.
+
+기술자는 자신에게 무엇이 필요한지를 생각하기보다 필요한 시간을 채운다.
+
+관은 engineer가 무엇을 배우고 어떻게 성장했는가보다 교육을 이수했는가를 관리한다.
+
+여기서 중요한 것은 개별 교육기관을 비판하는 것이 아니다.
+
+**시스템의 목적과 incentive가 어디를 향하고 있는가**이다.
+
+교육시장이 존재하는 것이 문제가 아니다. 교육시장을 유지하는 논리가 engineer의 professional development보다 앞서기 시작하면 문제가 된다.
+
+## 교육시간을 관리하는 것과 엔지니어의 역량을 관리하는 것은 다르다
+
+시간은 관리하기 쉽다.
+
+35시간을 들었는가? 출석했는가? 수료증이 있는가?
+
+확인하면 된다.
+
+하지만 engineering competency는 그렇게 간단히 측정되지 않는다.
+
+실제 프로젝트에서 처음 보는 문제를 해결하기 위해 논문을 읽고, 새로운 해석방법을 공부하고, 설계기준을 검토하고, 전문가와 토론한 engineer가 있다고 하자.
+
+이 사람이 35시간짜리 정규 강의를 들은 사람보다 덜 공부했다고 할 수 있을까?
+
+알 수 없다.
+
+그래서 **교육시간을 관리하는 것과 엔지니어의 역량을 관리하는 것은 같은 일이 아니다.**
+
+여기에서 Continuing Professional Development, 즉 **CPD**를 다시 볼 필요가 있다.
+
+## 해외의 CPD에서 배워야 할 것은 '몇 시간'이 아니다
+
+선진국 제도를 볼 때 흔히 의무교육이 몇 시간인지부터 비교한다. 그런데 자세히 보면 나라별 방식은 상당히 다르다.
+
+영국 Institution of Civil Engineers(ICE)는 CPD를 자신의 역할과 경력에 필요한 지식, 기술과 professional qualities를 지속적으로 발전시키는 과정으로 본다. 핵심은 단순한 수강이 아니라 자신의 development를 계획하고, 실행하고, 평가하고, 다시 검토하는 순환이다.
+
+호주의 Engineers Australia는 Chartered 또는 National Engineering Register의 credential을 유지하기 위해 3년 동안 150시간의 CPD를 요구한다. 하지만 무엇을 CPD로 인정하는지를 보면 범위가 매우 넓다. 정규 대학과정과 short course뿐 아니라 seminar와 technical meeting, 직장에서 새로운 지식을 습득한 활동, 전문서적과 journal을 통한 자기학습도 포함한다.
+
+더 흥미로운 것은 학회 위원회 활동, mentoring, technical publication review, engineering standards 작성과 같은 profession에 대한 봉사도 professional development로 인정한다는 점이다. 논문을 준비하고 발표하는 것도 포함된다. 대학에서 교육과 연구를 하는 engineering academic에게는 3년 동안 최소 40시간의 industry involvement도 요구한다.
+
+미국 ASCE 역시 practicing civil engineer가 기술의 발전과 사회적 요구의 변화에 맞추어 professional competency를 유지해야 한다는 이유로, Professional Engineer의 자격 유지에 연간 최소 15 PDH를 요구하는 정책을 지지한다.
+
+여기서 중요한 것은 어느 나라 제도가 더 좋다는 것이 아니다.
+
+영국도 관리하고, 호주도 시간을 요구하며, 미국도 continuing professional development를 요구한다.
+
+차이는 보다 근본적인 곳에 있다.
+
+**무엇을 engineer의 성장으로 인정하는가?**
+
+그리고 **그 성장의 주체를 누구로 보는가?**
+
+## 교육 공급자에서 engineer로 중심을 옮겨야 한다
+
+현재 우리가 흔히 하는 질문은 이렇다.
+
+> 어떤 교육과정을 제공할 것인가?
+
+나는 질문을 바꾸어야 한다고 생각한다.
+
+> **이 engineer가 앞으로 더 나은 engineer가 되기 위해 무엇을 배워야 하는가?**
+
+비슷하게 들리지만 두 질문은 전혀 다르다.
+
+첫 번째 질문의 주어는 **교육 공급자**다.
+
+두 번째 질문의 주어는 **engineer**다.
+
+정부의 역할도 달라진다. 모든 engineer가 들어야 할 교육과정을 세세하게 정하는 것보다 safety, ethics, public responsibility와 같이 professional engineer라면 반드시 유지해야 할 최소 요구사항을 설정하고, engineer가 자신의 분야에서 전문성을 계속 발전시키고 있는지를 확인하는 쪽이 더 중요해진다.
+
+교육기관 역시 정해진 시간을 판매하는 곳이 아니라 engineer에게 필요한 지식을 경쟁력 있게 제공해야 한다.
+
+## 학회는 또 하나의 교육업체가 되어서는 안 된다
+
+여기에서 학회의 역할을 생각해 볼 필요가 있다.
+
+나는 학회가 기존 법정교육시장에 또 하나의 교육 공급자로 들어가는 것만으로는 충분하지 않다고 생각한다.
+
+학회의 가장 중요한 자산은 강의실이 아니다.
+
+**사람과 지식이다.**
+
+대학에서는 새로운 연구결과가 만들어진다. 설계회사와 현장에서는 새로운 경험이 쌓인다. 때로는 실패에서 매우 값비싼 지식이 만들어진다. 설계기준과 법규가 바뀌고 새로운 재료와 공법, 계산기술이 등장한다.
+
+그리고 학회에는 바로 이 지식을 만드는 사람들이 모여 있다.
+
+반면 현장의 engineer에게는 해결해야 할 문제가 있다.
+
+한쪽에는 **지식 생산자**가 있고 다른 쪽에는 **지식 수요자**가 있다.
+
+학회가 해야 할 중요한 일은 이 둘을 연결하는 것이다.
+
+$$
+\boxed{
+\text{Knowledge Producers}
+\longleftrightarrow
+\text{Professional Engineers}
+}
+$$
+
+대한토목학회 하나가 모든 전문교육을 직접 만들 필요도 없다. 구조, 지반, 콘크리트, 수자원, 해안·항만, 터널, 교통, 건설관리 등에는 이미 깊은 전문성을 가진 여러 학회와 전문조직이 있다.
+
+이들이 각자의 전문성을 유지하면서 필요한 지식을 공유하는 **학회 컨소시엄형 knowledge ecosystem**을 생각할 수 있다.
+
+정부가 모든 교육내용을 결정하는 것도 아니고, 하나의 교육기관이 모든 것을 가르치는 것도 아니며, engineer가 인터넷에서 각자 알아서 공부하라는 것도 아니다.
+
+**전문가 공동체가 지식을 생산하고 검증하며, 필요한 engineer가 그 지식에 접근할 수 있는 구조**다.
+
+나는 이것이 학회가 건설기술인 교육에서 할 수 있는 훨씬 중요한 역할이라고 생각한다.
+
+## 초급기술자와 책임기술자가 같은 것을 배울 이유도 없다
+
+Engineer에게 필요한 것은 경력에 따라 달라진다.
+
+처음 실무에 들어가는 사람에게는 대학에서 충분히 배우기 어려운 안전, 윤리, 법규, 계약, 현장의 업무체계가 중요하다.
+
+경력이 쌓이면 자신의 전문분야를 더 깊게 공부해야 한다.
+
+책임기술자가 되면 문제가 다시 달라진다. 하나의 계산을 얼마나 빨리 하는가보다 여러 전문분야의 결과를 연결하고, 불완전한 정보 속에서 판단하고, risk를 관리하며, 자신의 engineering decision에 책임지는 능력이 중요해진다.
+
+따라서 professional development 역시 경력에 따라 달라져야 한다.
+
+$$
+\text{Fundamentals}
+\rightarrow
+\text{Professional Practice}
+\rightarrow
+\text{Specialization}
+\rightarrow
+\text{Integration and Judgment}
+\rightarrow
+\text{Leadership}
+$$
+
+경력이 높아질수록 지식을 전달받는 교육보다 **스스로 필요한 지식을 찾고 판단하는 능력**의 중요성이 커진다.
+
+## 결국 대학 교육과 건설기술인 교육은 같은 문제다
+
+대학의 토목공학 교육과 건설기술인 교육훈련제도는 서로 다른 제도로 운영된다.
+
+하지만 교육이라는 관점에서 보면 같은 질문의 서로 다른 시간대다.
+
+**어떤 civil engineer를 키우려고 하는가?**
+
+대학에서는 쉽게 변하지 않는 fundamentals를 깊게 가르쳐야 한다. 동시에 civil engineering의 넓은 지도를 보여주어야 한다. 그 위에서 학생은 적어도 하나의 전문분야를 깊이 공부해야 한다.
+
+졸업 후에는 실제 infrastructure를 다루면서 professional practice를 배우고, 변화하는 기술과 사회의 요구에 맞추어 자신의 전문성을 계속 갱신한다. 경력이 높아질수록 integration, judgment, ethics, risk와 leadership의 중요성이 커진다.
+
+이 모든 과정이 **civil engineering education**이다.
+
+따라서 토목공학 교육을 대학의 curriculum으로만 보는 것도 너무 좁고, 건설기술인 교육을 법정교육으로만 보는 것도 너무 좁다.
+
+## 다시, 어떤 토목공학자를 키우려고 하는가?
+
+건설기술인 교육훈련제도를 개선한다고 AI 과목 몇 개를 추가하고 BIM 교육시간을 늘리는 것으로는 충분하지 않다. 온라인 교육을 확대한다고 해결되는 것도 아니다.
+
+그보다 먼저 우리가 어떤 engineer를 키우려는지를 정해야 한다.
+
+Civil engineer는 이미 결정된 구조물을 잘 시공하는 사람만을 의미하지 않는다.
+
+자연과 사회를 이해하고, infrastructure를 계획하고, 분석하고, 설계하고, 건설하고, 운영하고, 유지하며, 새로운 기술과 사회적 요구 속에서 더 나은 infrastructure system을 만들어가는 engineer다.
+
+Civil engineer를 construction engineer로 좁혀 놓은 채 교육과정만 현대화하면 교육 역시 그 좁은 틀을 벗어나기 어렵다.
+
+마찬가지로 engineer를 정해진 교육시간을 이수해야 하는 관리대상으로만 보면 교육시장은 잘 돌아갈 수 있어도 engineer가 계속 성장한다고 보장할 수는 없다.
+
+그래서 지난 2월 3일 토론을 하면서 다시 확인한 결론은 오히려 단순하다.
+
+> **교육제도를 먼저 설계할 것이 아니라, 어떤 engineer를 키울 것인지 먼저 생각해야 한다.**
+
+대학은 오래가는 것을 깊게 가르쳐야 한다.
+
+실무는 그 지식을 현실의 문제와 연결해야 한다.
+
+그리고 CPD는 변화하는 기술과 사회 속에서 engineer가 자신의 지도를 계속 갱신할 수 있게 해야 한다.
+
+이 세 가지가 연결되어야 한다.
+
+그렇게 될 때 건설기술인 교육훈련은 의무적으로 시간을 채우는 제도에서 벗어나, **civil engineer가 평생 성장하기 위한 infrastructure**가 될 수 있다.
+
+## Further reading
+
+- [토목공학 교육과정 2035 — 미래의 토목공학자는 무엇을 배워야 하는가?](../civil-engineering-curriculum-2035/index-ko.qmd)
+- [ABET, Criteria for Accrediting Engineering Programs, 2025–2026](https://www.abet.org/accreditation/accreditation-criteria/criteria-for-accrediting-engineering-programs-2025-2026/)
+- [Institution of Civil Engineers, Continuing Professional Development](https://www.ice.org.uk/your-career/continuing-professional-development)
+- [Engineers Australia, CPD Requirements](https://www.engineersaustralia.org.au/membership/cpd-requirements)
+- [American Society of Civil Engineers, Continuing Professional Development for Licensure](https://www.asce.org/advocacy/policy-statements/ps425---continuing-professional-development-for-licensure)
