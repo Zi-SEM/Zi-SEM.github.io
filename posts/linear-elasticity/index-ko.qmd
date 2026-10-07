@@ -1,0 +1,833 @@
+---
+title: "등방성 선형탄성체에는 왜 재료상수가 두 개만 필요한가?"
+subtitle: "체적변형과 형상변형에서 탄성 텐서와 강성행렬까지"
+author: "지광습"
+date: "2026-10-07"
+categories:
+  - Engineering Mechanics
+keywords:
+  - 선형탄성
+  - 선형 탄성
+  - 등방성 탄성체
+  - 등방성 선형탄성
+  - 구성방정식
+  - 훅의 법칙
+  - 탄성 텐서
+  - 4차 탄성 텐서
+  - 체적변형률
+  - 편차변형률
+  - 체적탄성계수
+  - 전단탄성계수
+  - 라메 상수
+  - 영률
+  - 푸아송비
+  - 보이트 표기법
+  - 탄성계수 행렬
+  - 평면응력
+  - 평면변형률
+description: "등방성 선형탄성체에는 왜 독립적인 재료상수가 두 개만 필요한가? 체적변형과 형상변형에서 출발해 훅의 법칙, 4차 탄성 텐서, 보이트 표기법, 평면응력과 평면변형률 강성행렬까지 물리적으로 유도한다."
+toc: true
+---
+
+<div class="language-switch">
+  <a href="index.html">English</a> | <strong>한글</strong>
+</div>
+
+앞의 글에서 응력 텐서와 변형률 텐서를 살펴보았다. 응력은 재료 내부에서 힘이 어떻게 전달되는지를 나타내고, 변형률은 한 점 주변이 어떻게 변형되는지를 나타낸다.
+
+그런데 둘을 정의했다고 해서 역학문제가 끝나는 것은 아니다. 오히려 중요한 질문이 하나 남는다.
+
+> **이만큼 변형된 재료에는 도대체 얼마의 응력이 생기는가?**
+
+이 질문에 답하는 것이 **구성관계(constitutive relation)**다. Z 다이어그램으로 보면 바로
+
+$$
+F \leftrightarrow \sigma
+\underbrace{\leftrightarrow}_{\text{구성관계}}
+\varepsilon \leftrightarrow u
+$$
+
+의 가운데 연결이다.
+
+선형탄성을 배울 때 흔히 훅의 법칙이나 $6\times6$ 탄성계수 행렬부터 제시한다. 계산에는 편하지만, 그렇게 시작하면 왜 등방성 재료에 재료상수가 두 개만 필요한지가 잘 보이지 않는다.
+
+조금 다르게 생각해 보자. 작은 재료요소를 변형시키면 실제로 무엇이 변하는가?
+
+결국 두 가지다. **부피가 변하거나, 형상이 변한다.** 이 두 변형을 분리해서 보면 선형탄성의 구조가 상당히 자연스럽게 드러난다.
+
+## 변형률에는 서로 다른 두 종류의 변형이 들어 있다
+
+미소변형률 텐서는
+
+$$
+\boxed{
+\boldsymbol{\varepsilon}
+=
+\boldsymbol{\varepsilon}^{\mathrm{vol}}
++
+\boldsymbol{\varepsilon}^{\mathrm{dev}}
+}
+$$
+
+처럼 체적 성분과 편차 성분으로 나눌 수 있다.
+
+체적변형률 텐서는
+
+$$
+\boldsymbol{\varepsilon}^{\mathrm{vol}}
+=
+\frac{1}{3}\operatorname{tr}(\boldsymbol{\varepsilon})\mathbf I
+=
+\frac{1}{3}\varepsilon_{kk}\mathbf I
+$$
+
+이고, 편차변형률 텐서는
+
+$$
+\boldsymbol{\varepsilon}^{\mathrm{dev}}
+=
+\boldsymbol{\varepsilon}
+-
+\frac{1}{3}\varepsilon_{kk}\mathbf I
+$$
+
+이다. 따라서
+
+$$
+\boxed{
+\varepsilon_{ij}
+=
+\frac{1}{3}\varepsilon_{kk}\delta_{ij}
++
+\left(
+\varepsilon_{ij}-\frac{1}{3}\varepsilon_{kk}\delta_{ij}
+\right)
+}
+$$
+
+이고
+
+$$
+\varepsilon^{\mathrm{dev}}_{ii}=0
+$$
+
+이다.
+
+체적변형률은
+
+$$
+\varepsilon_v
+=\operatorname{tr}(\boldsymbol{\varepsilon})
+=\varepsilon_{kk}
+$$
+
+이다.
+
+여기서 중요한 것은 식보다 물리적 의미다.
+
+- $\boldsymbol{\varepsilon}^{\mathrm{vol}}$은 **형상은 그대로 두고 부피를 바꾸는 변형**이다.
+- $\boldsymbol{\varepsilon}^{\mathrm{dev}}$은 **부피는 그대로 두고 형상을 바꾸는 변형**이다.
+
+작은 고무 정육면체를 모든 방향으로 똑같이 팽창시키는 경우를 생각하면 첫 번째가 된다. 이번에는 부피를 거의 바꾸지 않고 옆으로 밀어 찌그러뜨리면 두 번째다.
+
+둘 다 변형이지만 재료가 저항해야 하는 물리적 메커니즘은 다르다.
+
+## 응력도 같은 방식으로 나눌 수 있다
+
+코시 응력 텐서 역시
+
+$$
+\boxed{
+\boldsymbol{\sigma}
+=
+\boldsymbol{\sigma}^{\mathrm{vol}}
++
+\boldsymbol{s}
+}
+$$
+
+로 쓸 수 있다. 여기서
+
+$$
+\boldsymbol{\sigma}^{\mathrm{vol}}
+=\sigma_m\mathbf I,
+\qquad
+\sigma_m=\frac{1}{3}\sigma_{kk}
+$$
+
+이고 편차응력은
+
+$$
+\boldsymbol{s}
+=
+\boldsymbol{\sigma}
+-
+\frac{1}{3}\sigma_{kk}\mathbf I
+$$
+
+이다. 즉,
+
+$$
+s_{ij}
+=\sigma_{ij}-\frac{1}{3}\sigma_{kk}\delta_{ij},
+\qquad
+s_{ii}=0.
+$$
+
+압축을 양으로 정의하는 압력 $p$를 사용하면
+
+$$
+p=-\frac{1}{3}\sigma_{kk}=-\sigma_m
+$$
+
+이다.
+
+응력에도 부피변화와 관련된 평균응력과 형상변화와 관련된 편차응력이 따로 있다는 뜻이다.
+
+## 왜 재료상수가 두 개면 충분한가?
+
+등방성 재료에는 특별한 재료방향이 없다. 시편을 돌려 놓았다고 해서 구성거동이 달라지지 않는다.
+
+미소변형 선형탄성에서는 체적변형과 편차변형에 대한 응답을 각각 선형적으로 둘 수 있다.
+
+$$
+\boxed{
+\boldsymbol{\sigma}^{\mathrm{vol}}
+=3K\boldsymbol{\varepsilon}^{\mathrm{vol}}
+}
+$$
+
+그리고
+
+$$
+\boxed{
+\boldsymbol{s}
+=2G\boldsymbol{\varepsilon}^{\mathrm{dev}}.
+}
+$$
+
+따라서
+
+$$
+\boxed{
+\boldsymbol{\sigma}
+=
+3K\boldsymbol{\varepsilon}^{\mathrm{vol}}
++
+2G\boldsymbol{\varepsilon}^{\mathrm{dev}}.
+}
+$$
+
+바로 이 식에 **등방성 선형탄성체에는 독립적인 탄성상수가 두 개만 필요하다**는 이유가 들어 있다.
+
+재료에게 물어야 할 독립적인 질문이 두 개이기 때문이다.
+
+> 부피를 바꾸려면 얼마나 힘든가?
+>
+> 형상을 바꾸려면 얼마나 힘든가?
+
+첫 번째에 답하는 것이 체적탄성계수 $K$, 두 번째에 답하는 것이 전단탄성계수 $G$다.
+
+### 체적탄성계수 $K$: 부피변화에 대한 저항
+
+순수한 체적변형이라면
+
+$$
+\boldsymbol{\varepsilon}
+=\frac{1}{3}\varepsilon_v\mathbf I
+$$
+
+이고
+
+$$
+\boldsymbol{\sigma}=K\varepsilon_v\mathbf I.
+$$
+
+따라서
+
+$$
+\boxed{K=\frac{\sigma_m}{\varepsilon_v}.}
+$$
+
+즉 $K$는 부피를 바꾸기 어려운 정도를 나타낸다.
+
+### 전단탄성계수 $G$: 형상변화에 대한 저항
+
+단순전단에서는
+
+$$
+\gamma_{12}=2\varepsilon_{12},
+\qquad
+\tau_{12}=\sigma_{12}.
+$$
+
+편차 성분의 구성관계로부터
+
+$$
+\sigma_{12}=2G\varepsilon_{12}
+$$
+
+이므로
+
+$$
+\boxed{\tau_{12}=G\gamma_{12}}
+$$
+
+가 된다.
+
+따라서 $G$는 형상을 찌그러뜨리기 어려운 정도를 나타낸다.
+
+$K$와 $G$는 단순히 식을 완성하기 위해 필요한 두 숫자가 아니다. **재료가 서로 다른 두 변형모드에 얼마나 저항하는지를 나타내는 두 물리량**이다.
+
+## 훅의 법칙은 여기서 나온다
+
+체적변형률과 편차변형률을 성분으로 쓰면
+
+$$
+\varepsilon_{ij}^{\mathrm{vol}}
+=\frac{1}{3}\varepsilon_{kk}\delta_{ij},
+$$
+
+$$
+\varepsilon_{ij}^{\mathrm{dev}}
+=\varepsilon_{ij}-\frac{1}{3}\varepsilon_{kk}\delta_{ij}.
+$$
+
+이를 앞의 구성관계에 넣으면
+
+$$
+\sigma_{ij}
+=K\varepsilon_{kk}\delta_{ij}
++2G\left(
+\varepsilon_{ij}-\frac{1}{3}\varepsilon_{kk}\delta_{ij}
+\right)
+$$
+
+이고, 정리하면
+
+$$
+\sigma_{ij}
+=2G\varepsilon_{ij}
++\left(K-\frac{2}{3}G\right)
+\varepsilon_{kk}\delta_{ij}.
+$$
+
+라메 상수를
+
+$$
+\boxed{
+\lambda=K-\frac{2}{3}G,
+\qquad
+\mu=G
+}
+$$
+
+로 정의하면
+
+$$
+\boxed{
+\sigma_{ij}
+=\lambda\varepsilon_{kk}\delta_{ij}
++2\mu\varepsilon_{ij}.
+}
+$$
+
+익숙한 등방성 훅의 법칙이다.
+
+여기서 순서가 중요하다. $\lambda$와 $\mu$를 먼저 외운 것이 아니다. **부피변형과 형상변형이라는 물리적 분해에서 출발했더니 라메 형태가 자연스럽게 나온 것**이다.
+
+## 그러면 $E$와 $\nu$는 무엇인가?
+
+공학에서는 체적탄성계수와 전단탄성계수보다 영률 $E$와 푸아송비 $\nu$가 더 익숙하다. 이유는 간단하다. 일축시험에서 직접 이해하기 쉽기 때문이다.
+
+$$
+\sigma_{11}=\sigma,
+\qquad
+\sigma_{22}=\sigma_{33}=0
+$$
+
+인 일축응력을 생각하면
+
+$$
+\varepsilon_{11}=\frac{\sigma}{E}
+$$
+
+이고
+
+$$
+\varepsilon_{22}=\varepsilon_{33}
+=-\nu\frac{\sigma}{E}.
+$$
+
+따라서
+
+$$
+\varepsilon_v
+=\varepsilon_{kk}
+=\frac{\sigma}{E}(1-2\nu)
+$$
+
+이며 평균응력은
+
+$$
+\sigma_m=\frac{\sigma}{3}
+$$
+
+이다. $\sigma_m=K\varepsilon_v$를 사용하면
+
+$$
+\boxed{
+K=\frac{E}{3(1-2\nu)}
+}
+$$
+
+를 얻는다. 또한
+
+$$
+\boxed{
+G=\frac{E}{2(1+\nu)}.
+}
+$$
+
+따라서
+
+$$
+\boxed{
+\lambda
+=\frac{E\nu}{(1+\nu)(1-2\nu)},
+\qquad
+\mu=\frac{E}{2(1+\nu)}.
+}
+$$
+
+결국
+
+$$
+\boxed{
+(E,\nu)
+\Longleftrightarrow
+(K,G)
+\Longleftrightarrow
+(\lambda,\mu)
+}
+$$
+
+이다.
+
+서로 다른 세 재료모델이 아니다. 같은 등방성 선형탄성 거동을 서로 다른 두 개의 재료상수로 표현했을 뿐이다.
+
+이 관계에는 물리적으로 재미있는 내용도 들어 있다. $\nu\rightarrow0.5$이면 $K\rightarrow\infty$가 된다. 즉 거의 비압축성인 재료는 부피변화에는 극단적으로 강하게 저항하지만, 그렇다고 형상변화에 대한 저항 $G$까지 무한대가 되는 것은 아니다.
+
+## 4차 탄성 텐서는 왜 필요한가?
+
+이제
+
+$$
+\varepsilon_{kk}=\delta_{kl}\varepsilon_{kl}
+$$
+
+로 쓰면
+
+$$
+\lambda\varepsilon_{kk}\delta_{ij}
+=\lambda\delta_{ij}\delta_{kl}\varepsilon_{kl}.
+$$
+
+변형률 텐서가 대칭이므로
+
+$$
+2\mu\varepsilon_{ij}
+=
+\mu(\delta_{ik}\delta_{jl}+\delta_{il}\delta_{jk})\varepsilon_{kl}.
+$$
+
+따라서
+
+$$
+\sigma_{ij}
+=
+\left[
+\lambda\delta_{ij}\delta_{kl}
++
+\mu(\delta_{ik}\delta_{jl}+\delta_{il}\delta_{jk})
+\right]\varepsilon_{kl}.
+$$
+
+이를
+
+$$
+\boxed{
+\sigma_{ij}=C_{ijkl}\varepsilon_{kl}
+}
+$$
+
+와 비교하면
+
+$$
+\boxed{
+C_{ijkl}
+=
+\lambda\delta_{ij}\delta_{kl}
++
+\mu(\delta_{ik}\delta_{jl}+\delta_{il}\delta_{jk}).
+}
+$$
+
+이렇게 보면 4차 탄성 텐서가 갑자기 등장한 것이 아니다. 변형률이라는 2차 텐서를 응력이라는 또 다른 2차 텐서로 보내야 하므로 그 사이의 선형사상이 4차 텐서가 되는 것이다.
+
+축약표기로는
+
+$$
+\boldsymbol{\sigma}=\mathsf C:\boldsymbol{\varepsilon}
+$$
+
+라고 쓸 수 있다. 여기서 `:`는 이 글에서 이중축약(double contraction)을 나타낸다.
+
+기호가 헷갈리면 성분표현으로 돌아가면 된다.
+
+$$
+\sigma_{ij}=C_{ijkl}\varepsilon_{kl}.
+$$
+
+$k,l$은 축약되고 $i,j$가 자유첨자로 남는다. 따라서 결과가 2차 텐서라는 것을 바로 알 수 있다. 결국 핵심은 기호 자체보다 **free index가 몇 개 남는가**를 보는 것이다.
+
+## 대칭성, 등방성, 균질성은 서로 다른 말이다
+
+이 세 개념은 같이 등장하는 경우가 많지만 의미는 다르다.
+
+변형률의 대칭성
+
+$$
+\varepsilon_{ij}=\varepsilon_{ji}
+$$
+
+과 우력응력이 없는 고전 연속체에서 각운동량 평형으로 얻는
+
+$$
+\sigma_{ij}=\sigma_{ji}
+$$
+
+때문에 탄성 텐서에는
+
+$$
+\boxed{
+C_{ijkl}=C_{jikl}=C_{ijlk}
+}
+$$
+
+의 minor symmetry가 있다.
+
+또 변형에너지 포텐셜이 존재하는 탄성재료에서는
+
+$$
+\boxed{C_{ijkl}=C_{klij}}
+$$
+
+의 major symmetry가 생긴다. 이 대칭성을 갖는 일반적인 3차원 선형탄성체에는 독립적인 탄성상수가 21개 있다.
+
+**등방성(isotropy)**은 방향에 관한 조건이다. 재료축을 회전해도 구성응답이 변하지 않는다. 이 조건이 21개의 독립상수를 단 두 개로 줄인다.
+
+반면 **균질성(homogeneity)**은 위치에 관한 조건이다.
+
+$$
+\boxed{C_{ijkl}(\mathbf x)=C_{ijkl}.}
+$$
+
+따라서 등방성이면서 비균질한 재료도 가능하고, 균질하면서 이방성인 재료도 가능하다. 예를 들어 재료물성이 위치에 따라 변하는 등방성 경사재료와, 한 방향으로 정렬된 균질 복합재료를 생각하면 차이가 분명하다.
+
+## 텐서를 왜 행렬로 바꾸는가?
+
+유한요소해석이나 실제 수치계산에서는 결국 숫자의 배열을 다뤄야 한다. 응력과 변형률 텐서는 대칭이므로 독립성분 여섯 개를 벡터로 모을 수 있다.
+
+여기서는 다음 순서를 사용한다.
+
+$$
+\boxed{11,\;22,\;33,\;23,\;13,\;12.}
+$$
+
+즉,
+
+$$
+\boldsymbol{\sigma}^{\mathrm V}
+=
+\begin{bmatrix}
+\sigma_{11}\\
+\sigma_{22}\\
+\sigma_{33}\\
+\sigma_{23}\\
+\sigma_{13}\\
+\sigma_{12}
+\end{bmatrix},
+\qquad
+\boldsymbol{\varepsilon}^{\mathrm V}
+=
+\begin{bmatrix}
+\varepsilon_{11}\\
+\varepsilon_{22}\\
+\varepsilon_{33}\\
+\gamma_{23}\\
+\gamma_{13}\\
+\gamma_{12}
+\end{bmatrix}
+$$
+
+로 둔다. 여기서 공학전단변형률을 사용하여
+
+$$
+\gamma_{23}=2\varepsilon_{23},\qquad
+\gamma_{13}=2\varepsilon_{13},\qquad
+\gamma_{12}=2\varepsilon_{12}
+$$
+
+이다.
+
+그러면 구성관계는
+
+$$
+\boxed{
+\boldsymbol{\sigma}^{\mathrm V}
+=\mathbf D\boldsymbol{\varepsilon}^{\mathrm V}
+}
+$$
+
+가 된다.
+
+등방성 선형탄성체에서는
+
+$$
+\boxed{
+\begin{bmatrix}
+\sigma_{11}\\
+\sigma_{22}\\
+\sigma_{33}\\
+\sigma_{23}\\
+\sigma_{13}\\
+\sigma_{12}
+\end{bmatrix}
+=
+\frac{E}{(1+\nu)(1-2\nu)}
+\begin{bmatrix}
+1-\nu & \nu & \nu & 0 & 0 & 0\\
+\nu & 1-\nu & \nu & 0 & 0 & 0\\
+\nu & \nu & 1-\nu & 0 & 0 & 0\\
+0 & 0 & \dfrac{1-2\nu}{2} & 0 & 0\\
+0 & 0 & 0 & 0 & \dfrac{1-2\nu}{2} & 0\\
+0 & 0 & 0 & 0 & 0 & \dfrac{1-2\nu}{2}
+\end{bmatrix}
+\begin{bmatrix}
+\varepsilon_{11}\\
+\varepsilon_{22}\\
+\varepsilon_{33}\\
+\gamma_{23}\\
+\gamma_{13}\\
+\gamma_{12}
+\end{bmatrix}.
+}
+$$
+
+$\mathbf D$는 새로운 역학이 아니다. 4차 텐서 $\mathsf C$로 표현했던 같은 구성관계를 계산하기 편하도록 행렬로 옮긴 것이다.
+
+여기서 공학전단변형률의 2배 계수는 반드시 확인해야 한다. Voigt 벡터에 $\varepsilon_{12}$를 쓰는지 $\gamma_{12}=2\varepsilon_{12}$를 쓰는지 혼동하면 구성행렬에서 아주 쉽게 2배 오차가 생긴다.
+
+## 평면변형률: 변형을 구속한다
+
+2차원에서는
+
+$$
+\boxed{11,\;22,\;12}
+$$
+
+순서를 사용한다.
+
+평면변형률은
+
+$$
+\boxed{
+\varepsilon_{33}=\gamma_{23}=\gamma_{13}=0
+}
+$$
+
+이라는 **운동학적 구속조건**이다.
+
+그러나 일반적으로
+
+$$
+\sigma_{33}\neq0
+$$
+
+이다. 면외변형을 막기 위해 필요한 응력이 생기기 때문이다.
+
+면내 구성관계는
+
+$$
+\boxed{
+\begin{bmatrix}
+\sigma_{11}\\
+\sigma_{22}\\
+\sigma_{12}
+\end{bmatrix}
+=
+\frac{E}{(1+\nu)(1-2\nu)}
+\begin{bmatrix}
+1-\nu & \nu & 0\\
+\nu & 1-\nu & 0\\
+0 & 0 & \dfrac{1-2\nu}{2}
+\end{bmatrix}
+\begin{bmatrix}
+\varepsilon_{11}\\
+\varepsilon_{22}\\
+\gamma_{12}
+\end{bmatrix}.
+}
+$$
+
+따라서
+
+$$
+\boxed{
+\mathbf D_{\mathrm{plane\ strain}}
+=
+\frac{E}{(1+\nu)(1-2\nu)}
+\begin{bmatrix}
+1-\nu & \nu & 0\\
+\nu & 1-\nu & 0\\
+0 & 0 & \dfrac{1-2\nu}{2}
+\end{bmatrix}.
+}
+$$
+
+면외응력은
+
+$$
+\boxed{
+\sigma_{33}
+=
+\frac{E\nu}{(1+\nu)(1-2\nu)}
+(\varepsilon_{11}+\varepsilon_{22}).
+}
+$$
+
+공학적으로 보면 평면변형률의 의미는 명확하다. **변형을 막았기 때문에 그 구속을 유지하는 응력이 생긴다.**
+
+## 평면응력: 응력을 구속한다
+
+평면응력에서는 반대로
+
+$$
+\boxed{
+\sigma_{33}=\sigma_{23}=\sigma_{13}=0
+}
+$$
+
+을 둔다.
+
+하지만 일반적으로
+
+$$
+\varepsilon_{33}\neq0
+$$
+
+이다. 면외응력이 없다고 해서 면외변형까지 없는 것은 아니다. 푸아송 효과 때문에 두께방향 변형이 생긴다.
+
+3차원 구성식에서 $\sigma_{33}=0$을 적용하면
+
+$$
+\boxed{
+\varepsilon_{33}
+=-\frac{\nu}{1-\nu}
+(\varepsilon_{11}+\varepsilon_{22})
+}
+$$
+
+를 얻는다.
+
+이를 제거하면 면내 구성관계는
+
+$$
+\boxed{
+\begin{bmatrix}
+\sigma_{11}\\
+\sigma_{22}\\
+\sigma_{12}
+\end{bmatrix}
+=
+\frac{E}{1-\nu^2}
+\begin{bmatrix}
+1 & \nu & 0\\
+\nu & 1 & 0\\
+0 & 0 & \dfrac{1-\nu}{2}
+\end{bmatrix}
+\begin{bmatrix}
+\varepsilon_{11}\\
+\varepsilon_{22}\\
+\gamma_{12}
+\end{bmatrix}.
+}
+$$
+
+따라서
+
+$$
+\boxed{
+\mathbf D_{\mathrm{plane\ stress}}
+=
+\frac{E}{1-\nu^2}
+\begin{bmatrix}
+1 & \nu & 0\\
+\nu & 1 & 0\\
+0 & 0 & \dfrac{1-\nu}{2}
+\end{bmatrix}.
+}
+$$
+
+여기서 중요한 것은 **3차원 강성행렬에서 세 번째 행과 열을 그냥 지운다고 평면응력 행렬이 되는 것이 아니라는 점**이다.
+
+$\varepsilon_{33}$은 미지수이고, $\sigma_{33}=0$이 되도록 스스로 조정되어야 한다. 그 변수를 먼저 제거한 뒤에야 평면응력 구성행렬을 얻는다. 행렬 관점에서는 Schur complement, 즉 구성관계 수준의 static condensation과 같은 연산이다.
+
+그래서 같은 3차원 재료에서 출발했는데도 평면응력과 평면변형률의 $\mathbf D$ 행렬이 서로 다르다.
+
+## 평면응력과 평면변형률은 행렬 두 개를 외우는 문제가 아니다
+
+둘의 차이는 결국
+
+$$
+\boxed{
+\begin{array}{c}
+\text{평면변형률: }\varepsilon_{33}=0,
+\quad \sigma_{33}\neq0\ \text{(일반적으로)},
+\\[2mm]
+\text{평면응력: }\sigma_{33}=0,
+\quad \varepsilon_{33}\neq0\ \text{(일반적으로)}.
+\end{array}
+}
+$$
+
+이다.
+
+평면변형률은 **운동학적 구속**이고, 평면응력은 **응력에 대한 구속**이다.
+
+이렇게 이해하면 어떤 구조물에 어떤 2차원 가정을 적용해야 하는지도 훨씬 명확해진다. 행렬을 외우는 것보다 이 차이를 이해하는 편이 실제 해석에서는 훨씬 중요하다.
+
+## 다시 Z 다이어그램으로
+
+앞의 응력 텐서 글에서는 내부 힘이 어떻게 응력으로 표현되는지를 보았다. 변형률 텐서에서는 변위를 국소적인 변형으로 어떻게 표현하는지를 보았다. 이제 선형탄성이 그 둘 사이를 연결한다.
+
+$$
+\boxed{
+F
+\leftrightarrow
+\boldsymbol{\sigma}
+\underbrace{\leftrightarrow}_{\text{재료의 구성거동}}
+\boldsymbol{\varepsilon}
+\leftrightarrow
+\mathbf u
+}
+$$
+
+Z 다이어그램에서 $\sigma\leftrightarrow\varepsilon$은 **재료의 성질이 역학문제에 들어오는 자리**다. 평형조건만으로는 변형을 알 수 없고, 적합조건만으로는 응력을 알 수 없다. 둘 사이에 재료의 구성관계가 필요하다.
+
+결국 핵심은 의외로 단순하다.
+
+> **작은 변형은 부피를 바꾸거나 형상을 바꾼다. 등방성 선형탄성체에는 이 두 변형모드에 대한 강성 하나씩이면 충분하다.**
+
+여기서 $K$와 $G$가 나오고, 라메 상수와 $E,\nu$가 연결되며, 4차 탄성 텐서가 나오고, 다시 보이트 표기와 탄성계수 행렬로 이어진다. 평면응력과 평면변형률도 별개의 공식이 아니라 같은 3차원 구성관계를 서로 다른 물리적 조건 아래 줄인 결과다.

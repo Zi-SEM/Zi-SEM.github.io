@@ -1,0 +1,816 @@
+---
+title: "Why Does Linear Elasticity Need Only Two Material Constants?"
+subtitle: "From volumetric and distortional deformation to the elasticity tensor"
+author: "Goangseup Zi"
+date: "2026-10-07"
+categories:
+  - Engineering Mechanics
+keywords:
+  - linear elasticity
+  - isotropic elasticity
+  - elasticity tensor
+  - constitutive law
+  - Hooke's law tensor form
+  - bulk modulus
+  - shear modulus
+  - Lame constants
+  - Young's modulus
+  - Poisson's ratio
+  - volumetric strain
+  - deviatoric strain
+  - Voigt notation
+  - plane stress
+  - plane strain
+  - elastic stiffness matrix
+description: "Why does isotropic linear elasticity require only two independent material constants? Starting from volumetric and deviatoric strain, this article derives Hooke's law, the fourth-order elasticity tensor, Voigt notation, and the plane-stress and plane-strain stiffness matrices."
+toc: true
+---
+
+<div class="language-switch">
+  <strong>English</strong> | <a href="index-ko.html">한글</a>
+</div>
+
+We have already introduced two objects that are central to continuum mechanics: the **stress tensor** and the **strain tensor**. Stress tells us about internal force, while strain tells us about local deformation.
+
+But knowing both tensors still leaves the most important material question unanswered:
+
+> **If a material deforms by a certain amount, how much stress does it develop?**
+
+This is the constitutive question. In the Z Diagram, it is the connection
+
+$$
+F \leftrightarrow \sigma
+\underbrace{\leftrightarrow}_{\text{constitutive law}}
+\varepsilon \leftrightarrow u.
+$$
+
+For linear isotropic elasticity, we often jump immediately to Hooke's law or a $6\times6$ elastic stiffness matrix. That is convenient computationally, but it hides the mechanics.
+
+A more physical route begins by asking what a small deformation can actually do to a material element.
+
+There are two fundamentally different possibilities: it can **change volume**, or it can **change shape**. Once this distinction is made, the reason an isotropic linear elastic material needs only two independent elastic constants becomes almost unavoidable.
+
+## A strain tensor contains two different kinds of deformation
+
+Consider the infinitesimal strain tensor $\boldsymbol{\varepsilon}$. It can always be decomposed as
+
+$$
+\boxed{
+\boldsymbol{\varepsilon}
+=
+\boldsymbol{\varepsilon}^{\mathrm{vol}}
++
+\boldsymbol{\varepsilon}^{\mathrm{dev}}
+}
+$$
+
+where
+
+$$
+\boldsymbol{\varepsilon}^{\mathrm{vol}}
+=
+\frac{1}{3}\operatorname{tr}(\boldsymbol{\varepsilon})\mathbf I
+=
+\frac{1}{3}\varepsilon_{kk}\mathbf I,
+$$
+
+and
+
+$$
+\boldsymbol{\varepsilon}^{\mathrm{dev}}
+=
+\boldsymbol{\varepsilon}
+-
+\frac{1}{3}\varepsilon_{kk}\mathbf I.
+$$
+
+In index notation,
+
+$$
+\boxed{
+\varepsilon_{ij}
+=
+\frac{1}{3}\varepsilon_{kk}\delta_{ij}
++
+\left(
+\varepsilon_{ij}-\frac{1}{3}\varepsilon_{kk}\delta_{ij}
+\right)
+}
+$$
+
+with
+
+$$
+\varepsilon^{\mathrm{dev}}_{ii}=0.
+$$
+
+The trace
+
+$$
+\varepsilon_v=\operatorname{tr}(\boldsymbol{\varepsilon})=\varepsilon_{kk}
+$$
+
+is the infinitesimal volumetric strain.
+
+The physical distinction matters more than the algebra:
+
+- $\boldsymbol{\varepsilon}^{\mathrm{vol}}$ changes **volume without changing shape**;
+- $\boldsymbol{\varepsilon}^{\mathrm{dev}}$ changes **shape without changing volume**.
+
+Imagine first inflating a tiny rubber cube uniformly. Its shape remains a cube, but its volume changes. Now imagine shearing it into a parallelepiped while keeping its volume essentially unchanged. These are mechanically different deformation modes.
+
+That observation is the key to the constitutive law.
+
+## Stress can be decomposed in the same way
+
+The Cauchy stress tensor can be written as
+
+$$
+\boxed{
+\boldsymbol{\sigma}
+=
+\boldsymbol{\sigma}^{\mathrm{vol}}
++
+\boldsymbol{s}
+}
+$$
+
+where
+
+$$
+\boldsymbol{\sigma}^{\mathrm{vol}}
+=
+\sigma_m\mathbf I,
+\qquad
+\sigma_m=\frac{1}{3}\sigma_{kk},
+$$
+
+and the deviatoric stress is
+
+$$
+\boldsymbol{s}
+=
+\boldsymbol{\sigma}
+-
+\frac{1}{3}\sigma_{kk}\mathbf I.
+$$
+
+Thus,
+
+$$
+s_{ij}=\sigma_{ij}-\frac{1}{3}\sigma_{kk}\delta_{ij},
+\qquad
+s_{ii}=0.
+$$
+
+If pressure $p$ is defined positive in compression,
+
+$$
+p=-\frac{1}{3}\sigma_{kk}=-\sigma_m.
+$$
+
+Again there are two physical parts: a mean normal stress associated with volumetric response, and a deviatoric stress associated with distortion.
+
+## Why does isotropic elasticity need only two constants?
+
+An isotropic material has no preferred material direction. Rotate the specimen and its constitutive response does not change.
+
+For small-strain linear elasticity, the volumetric and deviatoric modes can therefore be related independently and linearly to their corresponding stresses:
+
+$$
+\boxed{
+\boldsymbol{\sigma}^{\mathrm{vol}}
+=3K\boldsymbol{\varepsilon}^{\mathrm{vol}}
+}
+$$
+
+and
+
+$$
+\boxed{
+\boldsymbol{s}
+=2G\boldsymbol{\varepsilon}^{\mathrm{dev}}.
+}
+$$
+
+Combining them,
+
+$$
+\boxed{
+\boldsymbol{\sigma}
+=
+3K\boldsymbol{\varepsilon}^{\mathrm{vol}}
++
+2G\boldsymbol{\varepsilon}^{\mathrm{dev}}.
+}
+$$
+
+This equation contains the physical reason for the famous result that an isotropic linear elastic solid has only **two independent elastic constants**.
+
+It must answer only two independent stiffness questions:
+
+> How strongly does the material resist **change of volume**?
+>
+> How strongly does the material resist **change of shape**?
+
+The answers are the bulk modulus $K$ and shear modulus $G$.
+
+### Bulk modulus: resistance to volume change
+
+For purely volumetric deformation,
+
+$$
+\boldsymbol{\varepsilon}
+=
+\frac{1}{3}\varepsilon_v\mathbf I.
+$$
+
+Then
+
+$$
+\boldsymbol{\sigma}=K\varepsilon_v\mathbf I,
+$$
+
+so that
+
+$$
+\boxed{K=\frac{\sigma_m}{\varepsilon_v}}.
+$$
+
+Thus $K$ measures resistance to volume change.
+
+### Shear modulus: resistance to shape change
+
+For simple shear,
+
+$$
+\gamma_{12}=2\varepsilon_{12},
+\qquad
+\tau_{12}=\sigma_{12}.
+$$
+
+The deviatoric constitutive relation gives
+
+$$
+\sigma_{12}=2G\varepsilon_{12},
+$$
+
+or
+
+$$
+\boxed{\tau_{12}=G\gamma_{12}}.
+$$
+
+Thus $G$ measures resistance to distortion.
+
+The two constants are not merely two numbers required to complete an equation. They describe two different ways in which a solid can resist deformation.
+
+## Hooke's law emerges from this decomposition
+
+Substituting
+
+$$
+\varepsilon_{ij}^{\mathrm{vol}}
+=\frac{1}{3}\varepsilon_{kk}\delta_{ij}
+$$
+
+and
+
+$$
+\varepsilon_{ij}^{\mathrm{dev}}
+=\varepsilon_{ij}-\frac{1}{3}\varepsilon_{kk}\delta_{ij}
+$$
+
+into the constitutive relation gives
+
+$$
+\sigma_{ij}
+=K\varepsilon_{kk}\delta_{ij}
++2G\left(
+\varepsilon_{ij}-\frac{1}{3}\varepsilon_{kk}\delta_{ij}
+\right).
+$$
+
+Therefore,
+
+$$
+\sigma_{ij}
+=2G\varepsilon_{ij}
++\left(K-\frac{2}{3}G\right)\varepsilon_{kk}\delta_{ij}.
+$$
+
+Define the Lamé constants
+
+$$
+\boxed{
+\lambda=K-\frac{2}{3}G,
+\qquad
+\mu=G.
+}
+$$
+
+Then
+
+$$
+\boxed{
+\sigma_{ij}
+=
+\lambda\varepsilon_{kk}\delta_{ij}
++2\mu\varepsilon_{ij}.
+}
+$$
+
+This is the tensor form of Hooke's law for an isotropic linear elastic material.
+
+The important point is the direction of the reasoning. We did not begin with $\lambda$ and $\mu$. We began with two physical deformation mechanisms and obtained the Lamé form from them.
+
+## Where do $E$ and $\nu$ fit?
+
+In engineering, Young's modulus $E$ and Poisson's ratio $\nu$ are usually more familiar because they arise naturally from a uniaxial test.
+
+For
+
+$$
+\sigma_{11}=\sigma,
+\qquad
+\sigma_{22}=\sigma_{33}=0,
+$$
+
+we define
+
+$$
+\varepsilon_{11}=\frac{\sigma}{E},
+$$
+
+and
+
+$$
+\varepsilon_{22}=\varepsilon_{33}
+=-\nu\frac{\sigma}{E}.
+$$
+
+Therefore,
+
+$$
+\varepsilon_v
+=\varepsilon_{kk}
+=\frac{\sigma}{E}(1-2\nu),
+$$
+
+while
+
+$$
+\sigma_m=\frac{\sigma}{3}.
+$$
+
+Using $\sigma_m=K\varepsilon_v$ gives
+
+$$
+\boxed{
+K=\frac{E}{3(1-2\nu)}.
+}
+$$
+
+Similarly,
+
+$$
+\boxed{
+G=\frac{E}{2(1+\nu)}.
+}
+$$
+
+Hence
+
+$$
+\boxed{
+\lambda
+=\frac{E\nu}{(1+\nu)(1-2\nu)},
+\qquad
+\mu=\frac{E}{2(1+\nu)}.
+}
+$$
+
+Thus
+
+$$
+\boxed{
+(E,\nu)
+\Longleftrightarrow
+(K,G)
+\Longleftrightarrow
+(\lambda,\mu).
+}
+$$
+
+These are not three different material models. They are three different coordinate systems, so to speak, for describing the same two-parameter isotropic elastic response.
+
+There is also useful physical information hidden in these conversions. As $\nu\rightarrow 0.5$, $K\rightarrow\infty$ while $G$ can remain finite. The material becomes increasingly resistant to volume change without necessarily becoming infinitely resistant to distortion. This is the mechanics behind near-incompressibility.
+
+## Why does a fourth-order elasticity tensor appear?
+
+Now write
+
+$$
+\varepsilon_{kk}=\delta_{kl}\varepsilon_{kl}.
+$$
+
+Then
+
+$$
+\lambda\varepsilon_{kk}\delta_{ij}
+=
+\lambda\delta_{ij}\delta_{kl}\varepsilon_{kl}.
+$$
+
+Because the strain tensor is symmetric,
+
+$$
+2\mu\varepsilon_{ij}
+=
+\mu(\delta_{ik}\delta_{jl}+\delta_{il}\delta_{jk})\varepsilon_{kl}.
+$$
+
+Therefore,
+
+$$
+\sigma_{ij}
+=
+\left[
+\lambda\delta_{ij}\delta_{kl}
++
+\mu(\delta_{ik}\delta_{jl}+\delta_{il}\delta_{jk})
+\right]\varepsilon_{kl}.
+$$
+
+Comparing this with
+
+$$
+\boxed{
+\sigma_{ij}=C_{ijkl}\varepsilon_{kl},
+}
+$$
+
+we identify
+
+$$
+\boxed{
+C_{ijkl}
+=
+\lambda\delta_{ij}\delta_{kl}
++
+\mu(\delta_{ik}\delta_{jl}+\delta_{il}\delta_{jk}).
+}
+$$
+
+The fourth-order elasticity tensor is therefore not an abstract mathematical object added to the problem. Its order follows from what it must do: it maps one second-order tensor, strain, into another second-order tensor, stress.
+
+In compact tensor notation we may write
+
+$$
+\boldsymbol{\sigma}=\mathsf C:\boldsymbol{\varepsilon}.
+$$
+
+Here the double contraction removes two index pairs and leaves a second-order tensor. As always, the safest way to understand the operation is to inspect the free indices:
+
+$$
+\sigma_{ij}=C_{ijkl}\varepsilon_{kl}.
+$$
+
+The free indices $i,j$ remain, so the result is a second-order tensor.
+
+## Symmetry, isotropy, and homogeneity are different ideas
+
+These words are often placed close together, but they answer different questions.
+
+Because
+
+$$
+\varepsilon_{ij}=\varepsilon_{ji}
+$$
+
+and, in a classical continuum without couple stresses,
+
+$$
+\sigma_{ij}=\sigma_{ji},
+$$
+
+the elasticity tensor has the minor symmetries
+
+$$
+\boxed{
+C_{ijkl}=C_{jikl}=C_{ijlk}.
+}
+$$
+
+For an elastic material derived from a strain-energy potential,
+
+$$
+\boxed{C_{ijkl}=C_{klij},}
+$$
+
+which is the major symmetry. A general three-dimensional linear elastic material with these symmetries has 21 independent elastic constants.
+
+**Isotropy** is a statement about direction. The constitutive response is unchanged by rotation of the material axes. That additional restriction reduces the 21 constants to two.
+
+**Homogeneity**, by contrast, is a statement about position:
+
+$$
+\boxed{C_{ijkl}(\mathbf x)=C_{ijkl}.}
+$$
+
+An isotropic material need not be homogeneous, and a homogeneous material need not be isotropic. A functionally graded isotropic material is an obvious example of the first case; a homogeneous unidirectional composite illustrates the second.
+
+## Why do we replace the tensor by a matrix?
+
+Finite-element codes and engineering calculations eventually need arrays of numbers. Because stress and strain are symmetric, their six independent components can be collected into vectors.
+
+Here we use the ordering
+
+$$
+\boxed{11,\;22,\;33,\;23,\;13,\;12.}
+$$
+
+Define
+
+$$
+\boldsymbol{\sigma}^{\mathrm V}
+=
+\begin{bmatrix}
+\sigma_{11}\\
+\sigma_{22}\\
+\sigma_{33}\\
+\sigma_{23}\\
+\sigma_{13}\\
+\sigma_{12}
+\end{bmatrix},
+\qquad
+\boldsymbol{\varepsilon}^{\mathrm V}
+=
+\begin{bmatrix}
+\varepsilon_{11}\\
+\varepsilon_{22}\\
+\varepsilon_{33}\\
+\gamma_{23}\\
+\gamma_{13}\\
+\gamma_{12}
+\end{bmatrix},
+$$
+
+where
+
+$$
+\gamma_{23}=2\varepsilon_{23},\qquad
+\gamma_{13}=2\varepsilon_{13},\qquad
+\gamma_{12}=2\varepsilon_{12}.
+$$
+
+Then
+
+$$
+\boxed{
+\boldsymbol{\sigma}^{\mathrm V}
+=\mathbf D\boldsymbol{\varepsilon}^{\mathrm V}.
+}
+$$
+
+For isotropic linear elasticity,
+
+$$
+\boxed{
+\begin{bmatrix}
+\sigma_{11}\\
+\sigma_{22}\\
+\sigma_{33}\\
+\sigma_{23}\\
+\sigma_{13}\\
+\sigma_{12}
+\end{bmatrix}
+=
+\frac{E}{(1+\nu)(1-2\nu)}
+\begin{bmatrix}
+1-\nu & \nu & \nu & 0 & 0 & 0\\
+\nu & 1-\nu & \nu & 0 & 0 & 0\\
+\nu & \nu & 1-\nu & 0 & 0 & 0\\
+0 & 0 & 0 & \dfrac{1-2\nu}{2} & 0 & 0\\
+0 & 0 & 0 & 0 & \dfrac{1-2\nu}{2} & 0\\
+0 & 0 & 0 & 0 & 0 & \dfrac{1-2\nu}{2}
+\end{bmatrix}
+\begin{bmatrix}
+\varepsilon_{11}\\
+\varepsilon_{22}\\
+\varepsilon_{33}\\
+\gamma_{23}\\
+\gamma_{13}\\
+\gamma_{12}
+\end{bmatrix}.
+}
+$$
+
+The matrix $\mathbf D$ is not new mechanics. It is a computational representation of the same fourth-order constitutive mapping $\mathsf C$.
+
+The factor of two in the engineering shear strains is important. Forgetting whether a Voigt vector uses $\varepsilon_{12}$ or $\gamma_{12}=2\varepsilon_{12}$ is one of the easiest ways to introduce a factor-of-two error into constitutive calculations.
+
+## Plane strain: constrain deformation
+
+For two-dimensional work we use the in-plane ordering
+
+$$
+\boxed{11,\;22,\;12.}
+$$
+
+Plane strain imposes the kinematic constraints
+
+$$
+\boxed{
+\varepsilon_{33}=\gamma_{23}=\gamma_{13}=0.
+}
+$$
+
+But generally
+
+$$
+\sigma_{33}\neq0.
+$$
+
+The material develops whatever out-of-plane stress is required to prevent out-of-plane strain.
+
+The in-plane constitutive relation becomes
+
+$$
+\boxed{
+\begin{bmatrix}
+\sigma_{11}\\
+\sigma_{22}\\
+\sigma_{12}
+\end{bmatrix}
+=
+\frac{E}{(1+\nu)(1-2\nu)}
+\begin{bmatrix}
+1-\nu & \nu & 0\\
+\nu & 1-\nu & 0\\
+0 & 0 & \dfrac{1-2\nu}{2}
+\end{bmatrix}
+\begin{bmatrix}
+\varepsilon_{11}\\
+\varepsilon_{22}\\
+\gamma_{12}
+\end{bmatrix}.
+}
+$$
+
+Thus
+
+$$
+\boxed{
+\mathbf D_{\mathrm{plane\ strain}}
+=
+\frac{E}{(1+\nu)(1-2\nu)}
+\begin{bmatrix}
+1-\nu & \nu & 0\\
+\nu & 1-\nu & 0\\
+0 & 0 & \dfrac{1-2\nu}{2}
+\end{bmatrix}.
+}
+$$
+
+The out-of-plane stress is
+
+$$
+\boxed{
+\sigma_{33}
+=
+\frac{E\nu}{(1+\nu)(1-2\nu)}
+(\varepsilon_{11}+\varepsilon_{22}).
+}
+$$
+
+This is the physical meaning of plane strain: **the deformation is constrained, and stress appears to enforce that constraint.**
+
+## Plane stress: constrain stress
+
+Plane stress imposes instead
+
+$$
+\boxed{
+\sigma_{33}=\sigma_{23}=\sigma_{13}=0.
+}
+$$
+
+But generally
+
+$$
+\varepsilon_{33}\neq0.
+$$
+
+From the three-dimensional constitutive law, imposing $\sigma_{33}=0$ gives
+
+$$
+\boxed{
+\varepsilon_{33}
+=-\frac{\nu}{1-\nu}
+(\varepsilon_{11}+\varepsilon_{22}).
+}
+$$
+
+The in-plane law is therefore
+
+$$
+\boxed{
+\begin{bmatrix}
+\sigma_{11}\\
+\sigma_{22}\\
+\sigma_{12}
+\end{bmatrix}
+=
+\frac{E}{1-\nu^2}
+\begin{bmatrix}
+1 & \nu & 0\\
+\nu & 1 & 0\\
+0 & 0 & \dfrac{1-\nu}{2}
+\end{bmatrix}
+\begin{bmatrix}
+\varepsilon_{11}\\
+\varepsilon_{22}\\
+\gamma_{12}
+\end{bmatrix}.
+}
+$$
+
+Thus
+
+$$
+\boxed{
+\mathbf D_{\mathrm{plane\ stress}}
+=
+\frac{E}{1-\nu^2}
+\begin{bmatrix}
+1 & \nu & 0\\
+\nu & 1 & 0\\
+0 & 0 & \dfrac{1-\nu}{2}
+\end{bmatrix}.
+}
+$$
+
+Here is an important computational point: **plane stress is not obtained by simply deleting the third row and column of the three-dimensional stiffness matrix.**
+
+The out-of-plane strain $\varepsilon_{33}$ is unknown. It must first adjust so that $\sigma_{33}=0$. Only after eliminating that unknown do we obtain the plane-stress matrix. In matrix language, the operation is a Schur complement, or constitutive static condensation.
+
+That is why the plane-stress and plane-strain matrices look different even though both describe the same three-dimensional material.
+
+## Plane stress and plane strain are different physical assumptions
+
+The distinction can be summarized as
+
+$$
+\boxed{
+\begin{array}{c}
+\text{Plane strain: }\varepsilon_{33}=0,
+\quad \sigma_{33}\neq0\ \text{in general},
+\\[2mm]
+\text{Plane stress: }\sigma_{33}=0,
+\quad \varepsilon_{33}\neq0\ \text{in general}.
+\end{array}
+}
+$$
+
+Plane strain is a **kinematic constraint**. Plane stress is a **stress constraint**.
+
+This distinction is more useful than memorizing two stiffness matrices. It tells us which approximation is physically appropriate for a particular structure.
+
+## Back to the Z Diagram
+
+The stress-tensor article explained how internal force becomes stress. The strain-tensor discussion explained how deformation is represented locally. Linear elasticity now supplies the constitutive bridge between them:
+
+$$
+\boxed{
+F
+\leftrightarrow
+\sigma
+\underbrace{\leftrightarrow}_{\text{material behavior}}
+\varepsilon
+\leftrightarrow
+u
+}
+$$
+
+where the final symbol represents displacement $\mathbf u$; more explicitly,
+
+$$
+\boxed{
+F
+\leftrightarrow
+\boldsymbol{\sigma}
+\leftrightarrow
+\boldsymbol{\varepsilon}
+\leftrightarrow
+\mathbf u.
+}
+$$
+
+The constitutive relation is the part of the Z Diagram where **material behavior enters mechanics**. Equilibrium alone cannot determine deformation, and compatibility alone cannot determine stress. We need a material law to connect the two.
+
+For isotropic linear elasticity, that law becomes especially transparent when we begin not with a matrix, but with a physical observation:
+
+> **A small deformation can change volume or change shape. An isotropic elastic material therefore needs one stiffness for each mode.**
+
+From that simple statement come $K$ and $G$, the Lamé constants, $E$ and $\nu$, the fourth-order elasticity tensor, the Voigt stiffness matrix, and finally the plane-stress and plane-strain forms used every day in finite-element analysis.
