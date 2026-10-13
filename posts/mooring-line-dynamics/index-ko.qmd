@@ -4,7 +4,7 @@ subtitle: "시간영역에서 이해하는 계류선 동역학의 구조역학�
 author: "지광습"
 date: "2026-09-04"
 categories:
-  - Engineering Mechanics
+  - 공학역학
   - Mooring
   - Offshore Engineering
   - Structural Dynamics

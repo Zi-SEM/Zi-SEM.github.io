@@ -5,7 +5,7 @@ author: "지광습"
 date: 2026-10-05
 lang: ko
 categories:
-  - Engineering Mechanics
+  - 공학 이야기
 description: "토목공학 교육의 범위를 대학 교육에 한정하지 않고 건설기술인 교육훈련과 계속전문교육(CPD)까지 연결해 살펴본다. Civil engineer를 construction engineer로 좁게 보는 시각과 공급자 중심의 교육체계를 넘어 미래 토목공학자가 평생 성장하기 위한 교육의 방향을 논의한다."
 keywords:
   - 토목공학 교육

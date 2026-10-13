@@ -4,7 +4,7 @@ subtitle: "내부 절단면에서 코시 응력 공식까지"
 author: "지광습"
 date: "2026-08-31"
 categories:
-  - Engineering Mechanics
+  - 공학역학
   - 재료역학
   - 응력
   - 연속체역학

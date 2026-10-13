@@ -66,33 +66,23 @@ This site explains structural engineering and mechanics through research, educat
 :::: {.grid}
 
 ::: {.g-col-12 .g-col-md-6}
-### [Research Explained](research.qmd)
-
-Published research explained through engineering problems, physical interpretation, methods, results, and practical implications.
+### [Research & Innovation](research.qmd)
 :::
 
 ::: {.g-col-12 .g-col-md-6}
 ### [Engineering Mechanics](mechanics.qmd)
-
-Structural mechanics, mechanics of materials, fracture, fatigue, numerical methods, and related topics.
 :::
 
 ::: {.g-col-12 .g-col-md-6}
-### [Z-Diagram](z-diagram.qmd)
-
-A framework for understanding and teaching engineering mechanics through connected physical and mathematical concepts.
+### [Engineering Perspectives](perspectives.qmd)
 :::
 
 ::: {.g-col-12 .g-col-md-6}
-### [LaTeX & Writing](latex-writing.qmd)
-
-Practical LaTeX, scientific writing, and AI-assisted workflows for engineers and researchers.
+### [Cartoon Logs](cartoon-log.qmd)
 :::
 
 ::: {.g-col-12 .g-col-md-6}
-### [Cartoon Log](cartoon-log.qmd)
-
-Teaching, research, engineering, and everyday life in cartoons.
+### [Beyond Engineering](beyond-engineering.qmd)
 :::
 
 ::::

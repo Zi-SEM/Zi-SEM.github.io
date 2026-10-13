@@ -4,7 +4,7 @@ subtitle: "더 좋은 프롬프트보다, 더 필요한 것은 건설기준 지�
 author: "지광습"
 date: "2026-06-26"
 categories:
-  - Research Explained
+  - 연구와 기술
   - Digital Transformation & AI
   - Digital Construction Standards
 lang: ko

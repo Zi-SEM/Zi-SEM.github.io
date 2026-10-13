@@ -1,0 +1,22 @@
+---
+title: "Engineering Perspectives"
+lang: en
+toc: false
+listing:
+  contents:
+    - "posts/*/index.qmd"
+  type: default
+  sort: "date desc"
+  include:
+    categories: "Engineering Perspectives"
+  sort-ui: false
+  filter-ui: false
+---
+
+<div class="language-switch">**English** | [한글](perspectives-ko.qmd)</div>
+
+Perspectives on engineering education, technology policy, and the changing practice of engineering.
+
+
+
+## Articles

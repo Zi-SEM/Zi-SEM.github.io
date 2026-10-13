@@ -3,8 +3,10 @@ title: Z Diagram
 lang: ko
 toc: false
 ---
+> 이 시리즈는 이제 [공학역학](mechanics-ko.qmd).
 
-<div class="language-switch>[English](z-diagram.qmd) | **한글**</div>
+
+<div class="language-switch">[English](z-diagram.qmd) | **한글**</div>
 
 **Z Diagram**은 공학역학의 기본 개념을 평형, 적합조건, 구성관계, 에너지를 통해 연결해서 보는 틀이다.
 

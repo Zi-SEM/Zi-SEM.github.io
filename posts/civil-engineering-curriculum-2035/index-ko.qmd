@@ -4,7 +4,7 @@ subtitle: "전문화의 시대를 넘어 다시 종합공학으로"
 author: "지광습"
 date: "2026-09-29"
 categories:
-  - 공학역학
+  - 공학 이야기
   - 디지털전환과 AI
 keywords:
   - 토목공학

@@ -4,9 +4,8 @@ subtitle: "Why transition pieces, tubular joints, and foundations matter as much
 author: "Goangseup Zi"
 date: "2026-09-02"
 categories:
-  - Research Explained
+  - Research & Innovation
   - Offshore & Ocean Engineering
-  - Offshore Wind Energy
   - Structural Engineering
   - Structural Dynamics
 description: "A jacket offshore wind turbine may look like a simple frame, but its global stiffness depends strongly on

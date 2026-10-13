@@ -4,7 +4,7 @@ subtitle: "요소의 확충에서 XEFG까지: 입자와 영향영역으로 근�
 author: "지광습"
 date: "2026-09-04"
 categories:
-  - Research Explained
+  - 연구와 기술
   - Computational Mechanics & Fracture
   - Computational Fracture
   - XEFG

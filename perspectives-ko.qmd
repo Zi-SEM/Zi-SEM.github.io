@@ -1,0 +1,22 @@
+---
+title: "공학 이야기"
+lang: ko
+toc: false
+listing:
+  contents:
+    - "posts/*/index-ko.qmd"
+  type: table
+  sort: "date desc"
+  include:
+    categories: "공학 이야기"
+  sort-ui: false
+  filter-ui: false
+---
+
+<div class="language-switch">[English](perspectives.qmd) | **한글**</div>
+
+공학교육, 기술정책, 디지털 전환과 공학자의 관점을 다룬다.
+
+
+
+## 글 목록

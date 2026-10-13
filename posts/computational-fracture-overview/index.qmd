@@ -4,7 +4,7 @@ subtitle: "From remeshing to XFEM and XEFG: representing a discontinuity that mo
 author: "Goangseup Zi"
 date: "2026-09-03"
 categories:
-  - Research Explained
+  - Research & Innovation
   - Computational Mechanics & Fracture
   - Computational Fracture
   - XFEM

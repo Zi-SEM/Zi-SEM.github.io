@@ -18,25 +18,38 @@ website:
       - href: index.qmd
         text: Home
       - href: research.qmd
-        text: Research Explained
+        text: Research & Innovation
       - href: mechanics.qmd
         text: Engineering Mechanics
-      - href: z-diagram.qmd
-        text: Z-Diagram
-      - href: latex-writing.qmd
-        text: LaTeX & Writing
+      - href: perspectives.qmd
+        text: Engineering Perspectives
       - href: cartoon-log.qmd
-        text: Cartoon Log
+        text: Cartoon Logs
+      - href: beyond-engineering.qmd
+        text: Beyond Engineering
       - text: About
         menu:
           - href: about.qmd
             text: About Zi-SEM
           - href: lab-orientation.qmd
             text: Lab Orientation
-
     right:
-      - href: index-ko.qmd
-        text: 한글
+      - text: 한국어
+        menu:
+          - href: index-ko.qmd
+            text: 홈
+          - href: research-ko.qmd
+            text: 연구와 기술
+          - href: mechanics-ko.qmd
+            text: 공학역학
+          - href: perspectives-ko.qmd
+            text: 공학 이야기
+          - href: cartoon-log-ko.qmd
+            text: 카툰 일기
+          - href: beyond-engineering-ko.qmd
+            text: 공학 밖의 이야기
+          - href: about-ko.qmd
+            text: 소개
       - icon: youtube
         href: https://www.youtube.com/@semlabtv4824
         aria-label: SEMLAB YouTube

@@ -3,8 +3,10 @@ title: LaTeX와 글쓰기
 lang: ko
 toc: false
 ---
+> 이 시리즈는 이제 [공학 밖의 이야기](beyond-engineering-ko.qmd).
 
-<div class="language-switch>[English](latex-writing.qmd) | **한글**</div>
+
+<div class="language-switch">[English](latex-writing.qmd) | **한글**</div>
 
 연구논문, LaTeX 작업 흐름, 기술문서, 발표자료, AI 보조 글쓰기를 포함해 과학·공학 글쓰기에 실제로 필요한 방법을 다룬다.
 

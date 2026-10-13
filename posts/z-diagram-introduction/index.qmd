@@ -5,10 +5,9 @@ author: "Goangseup Zi"
 date: "2026-08-30"
 lang: en
 categories:
-  - Z-Diagram
+  - Engineering Mechanics
   - Z Diagram mechanics
   - mechanics navigation map
-  - Engineering Mechanics
   - Structural Mechanics
   - Mechanics of Materials
 description: "The Z-Diagram, developed by Goangseup Zi in 2004 as a navigation map for mechanics problems, connects force, stress, strain, and displacement through equilibrium, constitutive behavior, compatibility, work, and energy."

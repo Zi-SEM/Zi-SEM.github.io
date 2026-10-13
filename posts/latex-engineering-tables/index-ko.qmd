@@ -4,7 +4,7 @@ subtitle: "다단계 실험 데이터에서 읽기 쉽고 관리하기 좋은 �
 author: "지광습"
 date: "2026-09-13"
 categories:
-  - LaTeX & Writing
+  - 공학 밖의 이야기
 keywords:
   - LaTeX 표 만들기
   - 라텍 표 만들기

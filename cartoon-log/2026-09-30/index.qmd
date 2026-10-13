@@ -3,6 +3,8 @@ title: "In the End, It’s All About Connections"
 author: "Goangseup Zi"
 date: 2026-09-30
 page-layout: article
+categories:
+  - Cartoon Logs
 ---
 
 <div class="language-switch">**English** | [한글](index-ko.qmd)</div>

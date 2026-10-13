@@ -4,7 +4,7 @@ subtitle: "입자크기에 따른 팽창과 균열, 그리고 분쇄에너지"
 author: "지광습"
 date: "2026-09-01"
 categories:
-  - Research Explained
+  - 연구와 기술
   - Concrete & Materials
   - Concrete
   - Steel Slag

@@ -1,5 +1,7 @@
 ---
 title: "Engineering Mechanics"
+lang: en
+toc: false
 listing:
   contents:
     - "posts/*/index.qmd"
@@ -9,13 +11,14 @@ listing:
     categories: "Engineering Mechanics"
   sort-ui: false
   filter-ui: false
-toc: false
 ---
 
 <div class="language-switch">**English** | [한글](mechanics-ko.qmd)</div>
 
-Notes and explanations on structural mechanics, mechanics of materials, fracture mechanics, fatigue, continuum mechanics, and computational mechanics.
+Mechanics explained from physical problems to equations and their engineering meaning.
 
-The emphasis is on connecting equations with their physical and engineering meaning.
+### Z Diagram
+
+[Explore the Z Diagram series](z-diagram.qmd). Connect force, stress, strain, and displacement through equilibrium, constitutive behavior, compatibility, and energy.
 
 ## Articles

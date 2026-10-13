@@ -4,7 +4,7 @@ subtitle: "From element enrichment to XEFG: what changes when the approximation 
 author: "Goangseup Zi"
 date: "2026-09-04"
 categories:
-  - Research Explained
+  - Research & Innovation
   - Computational Mechanics & Fracture
   - Computational Fracture
   - XEFG

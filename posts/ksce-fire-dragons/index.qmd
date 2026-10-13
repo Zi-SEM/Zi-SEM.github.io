@@ -4,7 +4,7 @@ subtitle: "The Korean Society of Civil Engineers Tennis Club since 2012"
 author: "Goangseup Zi"
 date: "2026-10-03"
 categories:
-  - KSCE
+  - Beyond Engineering
   - Civil Engineering Community
   - Tennis
   - Professional Network

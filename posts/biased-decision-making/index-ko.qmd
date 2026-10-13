@@ -4,8 +4,7 @@ subtitle: "서로 상관된 기준이 같은 정보를 반복해서 반영하는
 author: "지광습"
 date: "2026-08-30"
 categories:
-  - Research Explained
-  - Offshore Wind Energy
+  - 연구와 기술
   - Decision Making
   - EFA
   - AHP

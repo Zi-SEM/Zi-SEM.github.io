@@ -4,7 +4,7 @@ subtitle: "수식, 그림, 역학적 추론을 재사용할 수 있는 기술 �
 author: "지광습"
 date: "2026-09-04"
 categories:
-  - LaTeX & Writing
+  - 공학 밖의 이야기
   - LaTeX
   - Beamer
   - Engineering Education

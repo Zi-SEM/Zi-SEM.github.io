@@ -4,7 +4,7 @@ subtitle: "어려운 것은 하나의 균열경로가 아니라 서로 상호작
 author: "지광습"
 date: "2026-09-04"
 categories:
-  - Research Explained
+  - 연구와 기술
   - Computational Mechanics & Fracture
   - Computational Fracture
   - XFEM

@@ -11,6 +11,8 @@ listing:
   filter-ui: false
 toc: false
 ---
+> This series is now part of [Engineering Mechanics](mechanics.qmd).
+
 
 <div class="language-switch">**English** | [한글](z-diagram-ko.qmd)</div>
 

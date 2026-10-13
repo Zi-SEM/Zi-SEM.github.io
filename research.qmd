@@ -1,5 +1,5 @@
 ---
-title: "Research Explained"
+title: "Research & Innovation"
 toc: false
 page-layout: full
 listing:
@@ -48,7 +48,7 @@ listing:
 
 Academic papers are necessarily compact and specialized. Important engineering ideas can therefore be difficult to see behind the equations, methodology, and technical details.
 
-**Research Explained** revisits published research and ongoing research directions from a broader perspective: the engineering problem, the underlying physical or conceptual idea, the method used to address it, and what the results mean in practice.
+**Research & Innovation** revisits published research and ongoing research directions from a broader perspective: the engineering problem, the underlying physical or conceptual idea, the method used to address it, and what the results mean in practice.
 
 The articles are organized around four research directions.
 

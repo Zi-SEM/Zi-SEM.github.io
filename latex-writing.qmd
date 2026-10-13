@@ -11,6 +11,8 @@ listing:
   filter-ui: false
 toc: false
 ---
+> This series is now part of [Beyond Engineering](beyond-engineering.qmd).
+
 
 <div class="language-switch">**English** | [한글](latex-writing-ko.qmd)</div>
 

@@ -4,7 +4,7 @@ subtitle: "체계적인 문자, 구조화된 문서, 그리고 우리가 만들�
 author: "지광습"
 date: "2026-09-13"
 categories:
-  - LaTeX & Writing
+  - 공학 밖의 이야기
 keywords:
   - 한글 LaTeX
   - 한글 라텍

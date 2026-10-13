@@ -4,7 +4,7 @@ lang: ko
 toc: false
 ---
 
-<div class="language-switch>[English](computational-mechanics-fracture.qmd) | **한글**</div>
+<div class="language-switch">[English](computational-mechanics-fracture.qmd) | **한글**</div>
 
 계산파괴역학과 손상역학, XFEM, XEFG, 무요소법, 다중균열 표현, 다양한 파괴 표현법과 멀티스케일 모델링을 다룬다.
 

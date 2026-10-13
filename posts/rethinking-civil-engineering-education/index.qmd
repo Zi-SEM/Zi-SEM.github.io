@@ -4,7 +4,7 @@ subtitle: "From University Education to Continuing Professional Development"
 author: "Goangseup Zi"
 date: 2026-10-05
 categories:
-  - Engineering Mechanics
+  - Engineering Perspectives
 description: "Civil engineering education should not end at graduation. This article connects university fundamentals, professional formation, practice, continuing professional development (CPD), and professional leadership, and asks why civil engineering should not be reduced to construction training."
 keywords:
   - civil engineering education

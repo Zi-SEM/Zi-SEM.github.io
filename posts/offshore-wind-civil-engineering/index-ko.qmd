@@ -4,7 +4,7 @@ subtitle: "전기는 터빈이 만들지만, 사업은 기초·구조물·항만
 author: "지광습"
 date: "2026-09-13"
 categories:
-  - Offshore Wind Energy
+  - 연구와 기술
 description: "해상풍력을 터빈만의 에너지 기술이 아니라 지반, 구조, 항만, 해상시공, 인증, 유지관리가 결합된 해양 인프라 시스템으로 인식하고 토목공학의 역할을 설명한다."
 keywords:
   - 해상풍력 토목

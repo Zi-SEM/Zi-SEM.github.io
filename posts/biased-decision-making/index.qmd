@@ -4,8 +4,7 @@ subtitle: "Why correlated criteria can distort engineering decisions—and how f
 author: "Goangseup Zi"
 date: "2026-08-30"
 categories:
-  - Research Explained
-  - Offshore Wind Energy
+  - Research & Innovation
   - Decision Making
   - EFA
   - AHP

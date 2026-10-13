@@ -4,7 +4,7 @@ lang: ko
 toc: false
 ---
 
-<div class="language-switch>[English](concrete-materials.qmd) | **한글**</div>
+<div class="language-switch">[English](concrete-materials.qmd) | **한글**</div>
 
 콘크리트 내구성, 연성 열화, 반응성 입자, 산업부산물, 지속가능 건설재료와 재료 수준의 변화가 구조 성능으로 이어지는 역학을 다룬다.
 

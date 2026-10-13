@@ -3,6 +3,8 @@ title: "Shoulder Pain Is One Thing, but..."
 author: "Goangseup Zi"
 date: 2026-09-28
 page-layout: article
+categories:
+  - Cartoon Logs
 ---
 
 <div class="language-switch">**English** | [한글](index-ko.qmd)</div>

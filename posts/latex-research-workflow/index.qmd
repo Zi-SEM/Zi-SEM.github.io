@@ -4,7 +4,7 @@ subtitle: "A long-term workflow built around a stable template, shared packages 
 author: "Goangseup Zi"
 date: "2026-09-03"
 categories:
-  - LaTeX & Writing
+  - Beyond Engineering
   - Scientific Writing
   - LaTeX
   - BibTeX

@@ -4,7 +4,7 @@ subtitle: "재요소망 생성에서 XFEM과 XEFG까지: 수치 근사와 독립
 author: "지광습"
 date: "2026-09-03"
 categories:
-  - Research Explained
+  - 연구와 기술
   - Computational Mechanics & Fracture
   - Computational Fracture
   - XFEM

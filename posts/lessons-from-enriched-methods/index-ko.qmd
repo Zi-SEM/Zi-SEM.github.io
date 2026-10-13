@@ -4,7 +4,7 @@ subtitle: "균열, 근사공간, 진화하는 기하형상과 다중스케일 �
 author: "지광습"
 date: 2026-09-04
 categories:
-  - Research Explained
+  - 연구와 기술
   - Computational Mechanics & Fracture
   - Computational Fracture
   - Computational Mechanics

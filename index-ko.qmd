@@ -17,38 +17,23 @@ lang: ko
 :::: {.grid}
 
 ::: {.g-col-12 .g-col-md-6}
-
-### [연구 해설](research-ko.qmd)
-논문을 요약하는 데 그치지 않고, 공학적 문제와 물리적 해석, 방법, 결과, 실제 의미를 중심으로 설명한다.
-
+### [연구와 기술](research-ko.qmd)
 :::
 
 ::: {.g-col-12 .g-col-md-6}
-
 ### [공학역학](mechanics-ko.qmd)
-구조역학, 재료역학, 파괴, 피로, 수치해석과 관련 주제를 다룬다.
-
 :::
 
 ::: {.g-col-12 .g-col-md-6}
-
-### [Z Diagram](z-diagram-ko.qmd)
-힘, 응력, 변형률, 변위를 평형, 구성관계, 적합조건, 일과 에너지의 관점에서 연결한다.
-
+### [공학 이야기](perspectives-ko.qmd)
 :::
 
 ::: {.g-col-12 .g-col-md-6}
-
-### [LaTeX와 글쓰기](latex-writing-ko.qmd)
-공학자와 연구자를 위한 LaTeX, 연구논문 작성, AI 보조 글쓰기 방법을 다룬다.
-
+### [카툰 일기](cartoon-log-ko.qmd)
 :::
 
 ::: {.g-col-12 .g-col-md-6}
-
-### [카툰로그](cartoon-log-ko.qmd)
-강의와 연구, 공학, 그리고 일상의 장면을 카툰으로 기록한다.
-
+### [공학 밖의 이야기](beyond-engineering-ko.qmd)
 :::
 
 ::::
@@ -61,27 +46,27 @@ Z Diagram은 이 사이트의 역학적 출발점이다. 힘, 응력, 변형률,
 
 ## 해상풍력
 
-[해상풍력 연구 해설 보기 →](research/offshore-wind-energy-ko.qmd)
+[해상풍력 연구와 기술 보기 →](research/offshore-wind-energy-ko.qmd)
 
 - [여러 평가기준이 서로 얽혀 있으면 의사결정은 왜 편향되는가?](posts/biased-decision-making/index-ko.qmd)
 - [해상풍력 재킷 구조에서 왜 접합부 유연성을 따로 보아야 하는가?](posts/jacket-flexibility/index-ko.qmd)
 
 ## 디지털전환과 AI
 
-[디지털전환과 AI 연구 해설 보기 →](research/digital-transformation-ai-ko.qmd)
+[디지털전환과 AI 연구와 기술 보기 →](research/digital-transformation-ai-ko.qmd)
 
 - [건설 엔지니어링 실무에서 AI를 환각 없이 믿고 사용할 수 있을까?](posts/ai-construction-standards-without-hallucination/index-ko.qmd)
 
 ## 콘크리트와 재료
 
-[콘크리트와 재료 연구 해설 보기 →](research/concrete-materials-ko.qmd)
+[콘크리트와 재료 연구와 기술 보기 →](research/concrete-materials-ko.qmd)
 
 - [제강슬래그의 입자 크기는 왜 반응성과 팽창 거동을 바꾸는가?](posts/bof-slag-particle-size/index-ko.qmd)
 - [콘크리트 내구성 문제는 왜 서로 독립적으로 볼 수 없는가?](posts/coupled-concrete-durability/index-ko.qmd)
 
 ## 계산역학과 파괴
 
-[계산역학과 파괴 연구 해설 보기 →](research/computational-mechanics-fracture-ko.qmd)
+[계산역학과 파괴 연구와 기술 보기 →](research/computational-mechanics-fracture-ko.qmd)
 
 - [균열은 꼭 하나의 방법으로 표현해야 하는가?](posts/alternative-crack-representations/index-ko.qmd)
 - [계산파괴역학은 균열을 어떻게 표현하는가?](posts/computational-fracture-overview/index-ko.qmd)

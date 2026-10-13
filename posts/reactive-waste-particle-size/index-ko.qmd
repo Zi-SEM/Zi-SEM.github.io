@@ -4,7 +4,7 @@ subtitle: "폐유리의 알칼리-실리카 반응에서 BOF 슬래그의 입자
 author: "지광습"
 date: "2026-09-02"
 categories:
-  - Research Explained
+  - 연구와 기술
   - Concrete & Materials
   - Concrete
   - Waste Materials

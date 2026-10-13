@@ -4,7 +4,7 @@ subtitle: "체적변형과 형상변형에서 탄성 텐서와 강성행렬까�
 author: "지광습"
 date: "2026-10-07"
 categories:
-  - Engineering Mechanics
+  - 공학역학
 keywords:
   - 선형탄성
   - 선형 탄성

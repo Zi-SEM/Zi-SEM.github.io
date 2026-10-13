@@ -4,7 +4,7 @@ subtitle: "안정적인 템플릿, 공용 패키지와 명령어, 모든 참고�
 author: "지광습"
 date: "2026-09-03"
 categories:
-  - LaTeX & Writing
+  - 공학 밖의 이야기
   - Scientific Writing
   - LaTeX
   - BibTeX

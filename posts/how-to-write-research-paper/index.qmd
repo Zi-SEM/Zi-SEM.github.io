@@ -4,7 +4,7 @@ subtitle: "Creativity, consistency, and completeness—from the research questio
 author: "Goangseup Zi"
 date: "2026-09-03"
 categories:
-  - LaTeX & Writing
+  - Beyond Engineering
   - Scientific Writing
   - Research Writing
 keywords:

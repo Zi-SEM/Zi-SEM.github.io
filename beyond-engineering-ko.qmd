@@ -1,0 +1,24 @@
+---
+title: "공학 밖의 이야기"
+lang: ko
+toc: false
+listing:
+  contents:
+    - "posts/*/index-ko.qmd"
+  type: table
+  sort: "date desc"
+  include:
+    categories: "공학 밖의 이야기"
+  sort-ui: false
+  filter-ui: false
+---
+
+<div class="language-switch">[English](beyond-engineering.qmd) | **한글**</div>
+
+테니스, 사람과 인연, LaTeX와 연구 글쓰기 등 공학자의 일상과 도구를 기록한다.
+
+### LaTeX와 글쓰기
+
+[기존 글 모음 보기](latex-writing-ko.qmd)
+
+## 글 목록

@@ -4,7 +4,7 @@ subtitle: "A systematic writing system, a structured document system, and an eco
 author: "Goangseup Zi"
 date: "2026-09-13"
 categories:
-  - LaTeX & Writing
+  - Beyond Engineering
 description: "Why do Hangul and LaTeX work so well for technical writing in the AI era? A Korean engineering textbook experience shows how structured LaTeX source can support AI-assisted scientific writing, reproducible documents, and a stronger Korean LaTeX ecosystem."
 keywords:
   - Hangul LaTeX

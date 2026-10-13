@@ -4,7 +4,7 @@ subtitle: "주파수영역에서 보면 구조물이 움직이는 순간, 주변
 author: "지광습"
 date: "2026-09-04"
 categories:
-  - Engineering Mechanics
+  - 공학역학
   - Fluid-Structure Interaction
   - Offshore Engineering
   - Hydroelasticity

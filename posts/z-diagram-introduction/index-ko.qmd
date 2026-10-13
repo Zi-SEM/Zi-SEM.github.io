@@ -5,8 +5,7 @@ author: "지광습"
 date: "2026-08-30"
 lang: ko
 categories:
-  - Z-Diagram
-  - Engineering Mechanics
+  - 공학역학
   - Structural Mechanics
   - Mechanics of Materials
 description: "2004년 역학 교육을 위해 개발한 역학문제 내비게이션 맵인 Z 다이어그램. 힘, 응력, 변형률, 변위를 평형, 구성관계, 적합조건, 일과 에너지로 연결한다."

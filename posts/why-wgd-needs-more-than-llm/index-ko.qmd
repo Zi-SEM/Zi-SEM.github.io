@@ -4,7 +4,7 @@ subtitle: "LLM의 작동 원리에서 RuleUnit, Ontology, Knowledge Graph와 WGD
 author: "지광습"
 date: "2026-09-26"
 categories:
-  - Research Explained
+  - 연구와 기술
   - Digital Transformation & AI
 keywords:
   - "디지털 건설기준"

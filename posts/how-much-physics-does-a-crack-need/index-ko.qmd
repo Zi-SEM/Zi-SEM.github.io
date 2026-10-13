@@ -4,7 +4,7 @@ subtitle: "파괴를 필요로 하는 곳에만 상세한 물리적 요소를 �
 author: "지광습"
 date: 2026-09-04
 categories:
-  - Research Explained
+  - 연구와 기술
   - Computational Mechanics & Fracture
   - Computational Fracture
   - Multiscale Mechanics

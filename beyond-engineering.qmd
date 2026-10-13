@@ -1,0 +1,24 @@
+---
+title: "Beyond Engineering"
+lang: en
+toc: false
+listing:
+  contents:
+    - "posts/*/index.qmd"
+  type: default
+  sort: "date desc"
+  include:
+    categories: "Beyond Engineering"
+  sort-ui: false
+  filter-ui: false
+---
+
+<div class="language-switch">**English** | [한글](beyond-engineering-ko.qmd)</div>
+
+People, tennis, academic writing, LaTeX, and the practical tools and experiences surrounding engineering.
+
+### LaTeX & Writing
+
+[Browse the existing series](latex-writing.qmd)
+
+## Articles

@@ -4,7 +4,7 @@ subtitle: "From multi-level experimental tables to cleaner, more maintainable te
 author: "Goangseup Zi"
 date: "2026-09-13"
 categories:
-  - LaTeX & Writing
+  - Beyond Engineering
 keywords:
   - engineering research paper writing
   - how to write a research paper

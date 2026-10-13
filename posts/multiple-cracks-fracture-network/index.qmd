@@ -4,7 +4,7 @@ subtitle: "The difficult part is no longer one crack path—it is the evolving t
 author: "Goangseup Zi"
 date: "2026-09-04"
 categories:
-  - Research Explained
+  - Research & Innovation
   - Computational Mechanics & Fracture
   - Computational Fracture
   - XFEM

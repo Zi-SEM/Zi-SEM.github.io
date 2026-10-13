@@ -4,7 +4,7 @@ subtitle: "크리프와 응력이완에서 콘크리트 박스거더 교량의 �
 author: "지광습"
 date: "2026-09-22"
 categories:
-  - Engineering Mechanics
+  - 공학역학
   - Concrete & Materials
   - Concrete
   - Creep

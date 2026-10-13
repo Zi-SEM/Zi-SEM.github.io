@@ -4,7 +4,7 @@ subtitle: "질량, 형상, 내부 유체운동과 외부 유체력을 이용한 
 author: "지광습"
 date: "2026-09-21"
 categories:
-  - Offshore Wind Energy
+  - 연구와 기술
 description: "부유식 해상풍력터빈의 운동을 능동제어장치 없이 줄일 수 있는 이유를 동조액체감쇠기, 수평 스커트, 부유체 형상 최적화와 유탄성 응답을 통해 설명한다."
 keywords:
   - 부유식 해상풍력

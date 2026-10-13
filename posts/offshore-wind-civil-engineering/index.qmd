@@ -4,7 +4,7 @@ subtitle: "The turbine generates electricity, but the project succeeds through f
 author: "Goangseup Zi"
 date: "2026-09-13"
 categories:
-  - Offshore Wind Energy
+  - Research & Innovation
 description: "Offshore wind is usually introduced as an energy technology. From an engineering perspective, however, it is also a marine infrastructure system in which geotechnical engineering, structures, construction, ports, regulation, and O&M must work together."
 keywords:
   - offshore wind civil engineering
