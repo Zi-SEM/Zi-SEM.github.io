@@ -22,6 +22,8 @@ keywords:
 toc: true
 ---
 
+**English**  [한국어](index-ko.html){.btn .btn-outline-primary .btn-sm}
+
 Offshore wind is usually described as a renewable power business. Yet constructing a wind farm requires site investigation, foundations, marine transportation, heavy lifting, cable installation, grid connection, and decades of structural integrity management. It is also a major offshore construction project.
 
 At the Korean Society for Shipbuilding Finance, Law and Policy's autumn conference scheduled for October 15, 2026, attorney Hyunho Cho (HA Energy) is to present *Legal Issues in Offshore Wind and Financing Policy for Specialized Vessels*. This article examines the engineering implications of the legal and financial questions identified in the presentation materials. The discussion distinguishes those reported issues from the author's engineering interpretation.

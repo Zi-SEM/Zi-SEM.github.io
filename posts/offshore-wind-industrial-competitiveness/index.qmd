@@ -22,6 +22,8 @@ keywords:
 toc: true
 ---
 
+**English**  [한국어](index-ko.html){.btn .btn-outline-primary .btn-sm}
+
 Offshore wind connects shipbuilding, offshore engineering, civil construction, power systems, manufacturing, and maritime services. Yet expanding the development pipeline is not the same as building a competitive industry. A permit does not fabricate a foundation, secure an installation vessel, or connect a completed wind farm to the grid.
 
 At the Korean Society for Shipbuilding Finance, Law and Policy's autumn conference scheduled for October 15, 2026, Jinki Sung, Executive Vice President of the Korea Wind Energy Industry Association, is to present *Policy Issues and Recommendations for Revitalizing the Offshore Wind Industry*. This article considers the presentation's policy questions through offshore structural engineering and project delivery. Reported figures and engineering interpretations are distinguished below.
