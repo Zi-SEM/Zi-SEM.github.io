@@ -1,0 +1,108 @@
+---
+title: "Where Does Offshore Wind Industry Competitiveness Really Come From?"
+subtitle: "Deployment targets, LCOE reduction, engineering innovation, and the industrial ecosystem"
+description: "Why offshore wind capacity targets alone do not ensure competitiveness: constructability, substructure optimization, LCOE, ports, vessels, and domestic engineering capability."
+author: "Goangseup Zi"
+date: 2026-10-15
+date-modified: 2026-10-15
+lang: en
+categories:
+  - "Engineering Perspectives"
+  - "Offshore Wind Energy"
+keywords:
+  - "offshore wind industry competitiveness"
+  - "offshore wind LCOE reduction"
+  - "offshore wind supply chain"
+  - "offshore wind substructure optimization"
+  - "fixed bottom versus floating offshore wind"
+  - "offshore wind port infrastructure"
+  - "offshore wind industrial policy"
+  - "offshore wind technology localization"
+  - "offshore wind project readiness"
+toc: true
+---
+
+Offshore wind connects shipbuilding, offshore engineering, civil construction, power systems, manufacturing, and maritime services. Yet expanding the development pipeline is not the same as building a competitive industry. A permit does not fabricate a foundation, secure an installation vessel, or connect a completed wind farm to the grid.
+
+At the Korean Society for Shipbuilding Finance, Law and Policy's autumn conference scheduled for October 15, 2026, Jinki Sung, Executive Vice President of the Korea Wind Energy Industry Association, is to present *Policy Issues and Recommendations for Revitalizing the Offshore Wind Industry*. This article considers the presentation's policy questions through offshore structural engineering and project delivery. Reported figures and engineering interpretations are distinguished below.
+
+## Permitted capacity is not installed capacity
+
+The presentation materials report the following Korean wind-power figures for year-end 2025:
+
+| Measure | Reported capacity |
+|---|---:|
+| All wind-power generation business permits | Approximately 46.6 GW |
+| Offshore wind business permits | Approximately 33.7 GW |
+| Total installed wind capacity | Approximately 2.45 GW |
+| Installed offshore wind capacity | Approximately 0.33 GW |
+
+The offshore permit pipeline is roughly 100 times the installed offshore capacity. Not every permitted project is expected to start construction immediately, so this is not a direct completion-rate metric. It nevertheless highlights the importance of converting development rights into executable projects.
+
+A credible deployment plan should distinguish permitted, construction-ready, under-construction, and expected-to-commission capacity, and assess the maturity of site investigations, designs, ports, vessels, and grid connections.
+
+## Constructability is a better measure of readiness than gigawatts alone
+
+Two 1 GW wind farms can have very different costs and schedules because of water depth, ground conditions, distance offshore, port access, and vessel availability. Fixed-bottom projects require offshore foundations and heavy lifts; floating projects place greater emphasis on port-side assembly, towing, mooring, and dynamic cables.
+
+These differences make project-level constructability a necessary complement to national capacity targets.
+
+## Can offshore wind LCOE fall by more than half?
+
+The presentation cites the following cost targets:
+
+| Year | Target cited in presentation |
+|---|---:|
+| 2026 | KRW 330/kWh |
+| 2030 | KRW 250/kWh |
+| 2035 | KRW 150/kWh or below |
+
+It also reports a sensitivity example in which a one-percentage-point change in weighted average cost of capital (WACC) changes levelized cost of energy (LCOE) by about KRW 22/kWh. This is a scenario-dependent result, not a universal conversion factor. Financing terms and project delays matter greatly for capital-intensive projects, but sustained cost reduction also requires improvements across design, fabrication, installation, and operation.
+
+## Substructure optimization is not minimum-weight design
+
+Monopiles, jackets, and gravity-based foundations have different advantages depending on water depth, soil, metocean loading, and turbine size. A lighter jacket may require more complex joints, longer fabrication, or a specialized lift. A slightly heavier solution can be cheaper if it simplifies manufacturing and installation.
+
+The correct engineering objective is therefore not minimum steel tonnage in isolation. It is **minimum life-cycle cost subject to safety, serviceability, constructability, and durability requirements**.
+
+## Floating wind requires system-level optimization
+
+Changing a floating platform's geometry affects added mass, restoring stiffness, natural periods, and hydrodynamic response. Reducing one motion component may amplify another. Mooring stiffness also changes platform motion and can interact with turbine dynamics and control.
+
+The floater, mooring system, turbine, controls, and dynamic cable should be analyzed as an interacting system. Port assembly, towing, installation, and maintenance must also enter the economic assessment. Component-by-component improvements do not automatically yield an optimal wind farm.
+
+## Ports, vessels, and the grid form one delivery system
+
+Larger turbines are of little value if a port cannot assemble or load them efficiently. Limited crane capacity can force a different foundation segmentation or installation sequence. A completed wind farm cannot begin commercial operation without grid connection.
+
+Port upgrades, installation fleet investment, and transmission development therefore need coordinated schedules anchored to real projects, not independent capacity announcements.
+
+## What should technology localization mean?
+
+Domestic fabrication is valuable, but it differs from the ability to make independent design and engineering decisions. Offshore wind involves repeated production and installation of many similar structures, with long-term fatigue, corrosion, and maintenance constraints.
+
+A durable industrial capability requires repeatable structural design, standardized fabrication, efficient installation, validated analysis methods, and operation-informed engineering. **The deeper form of localization is the ability to choose, verify, and improve technology independently.**
+
+## Demonstration projects should generate design evidence
+
+Measured structural responses, fatigue histories, corrosion observations, mooring tensions, cable performance, and maintenance records can help validate models and refine technical standards for local conditions. Better evidence may reduce unnecessary conservatism, but only when the data are sufficiently reliable and translated into validated design procedures.
+
+Demonstration should therefore support both electricity production and a long-term engineering knowledge base.
+
+## Education must connect disciplines without erasing depth
+
+Offshore wind combines aerodynamics, hydrodynamics, structural dynamics, geotechnics, power engineering, control, and construction management. Industry needs specialists who understand their own discipline deeply and can connect its assumptions to neighboring fields. Civil and structural engineering provide a strong base for foundations, dynamic response, and structural integrity; cross-disciplinary training can build on that foundation.
+
+## Offshore wind hubs are a long-term systems question
+
+The presentation also discusses large offshore wind hubs, regional supergrids, and green hydrogen integration. These ideas involve substantial infrastructure and depend on transmission, storage, environmental assessments, economics, and cross-border institutions. They should be evaluated as staged research and policy pathways rather than assumed near-term construction programs.
+
+## Engineering implication
+
+An offshore wind industry becomes competitive when it can repeatedly deliver safe, economical projects and operate them reliably for decades. Permits and gigawatt targets are necessary planning indicators, but **the decisive capability is integrated engineering and industrial execution**.
+
+## Source and scope
+
+Jinki Sung, *Policy Issues and Recommendations for Revitalizing the Offshore Wind Industry*, Korean Society for Shipbuilding Finance, Law and Policy, autumn conference, October 15, 2026. Capacity, cost targets, and WACC sensitivity are reported from the presentation materials and require verification against the final source before publication. Engineering judgments are the author's interpretation.
+
+**Related:** [What Holds Offshore Wind Construction Back?](../offshore-wind-legal-contract-vessel-finance/index.qmd)
