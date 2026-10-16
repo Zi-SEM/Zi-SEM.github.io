@@ -63,29 +63,34 @@ This site explains structural engineering and mechanics through research, educat
 
 ## Explore
 
-:::: {.grid}
+<style>
+/* English homepage Explore: independent compact grid, no Quarto row sizing. */
+.zi-explore-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 2rem;
+  row-gap: 0.65rem;
+  margin: 1rem 0 1.4rem;
+  align-items: start;
+}
+.zi-explore-links a {
+  display: block;
+  font-size: 1.12rem;
+  line-height: 1.5;
+  padding: 0.15rem 0;
+}
+@media (max-width: 650px) {
+  .zi-explore-links { grid-template-columns: 1fr; }
+}
+</style>
 
-::: {.g-col-12 .g-col-md-6}
-### [Research & Innovation](research.qmd)
-:::
-
-::: {.g-col-12 .g-col-md-6}
-### [Engineering Mechanics](mechanics.qmd)
-:::
-
-::: {.g-col-12 .g-col-md-6}
-### [Engineering Perspectives](perspectives.qmd)
-:::
-
-::: {.g-col-12 .g-col-md-6}
-### [Cartoon Logs](cartoon-log.qmd)
-:::
-
-::: {.g-col-12 .g-col-md-6}
-### [Beyond Engineering](beyond-engineering.qmd)
-:::
-
-::::
+<div class="zi-explore-links">
+  <a href="research.qmd">Research &amp; Innovation</a>
+  <a href="mechanics.qmd">Engineering Mechanics</a>
+  <a href="perspectives.qmd">Engineering Perspectives</a>
+  <a href="cartoon-log.qmd">Cartoon Logs</a>
+  <a href="beyond-engineering.qmd">Beyond Engineering</a>
+</div>
 
 ## Zi’s Structural Engineering & Mechanics
 
