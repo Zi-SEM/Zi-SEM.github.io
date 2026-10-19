@@ -139,19 +139,23 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./research.html"> 
-<span class="menu-text">Research Explained</span></a>
+<span class="menu-text">Research &amp; Innovation</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./mechanics.html"> 
 <span class="menu-text">Engineering Mechanics</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./z-diagram.html"> 
-<span class="menu-text">Z-Diagram</span></a>
+    <a class="nav-link" href="./perspectives.html"> 
+<span class="menu-text">Engineering Perspectives</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./latex-writing.html"> 
-<span class="menu-text">LaTeX &amp; Writing</span></a>
+    <a class="nav-link" href="./cartoon-log.html"> 
+<span class="menu-text">Cartoon Logs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./beyond-engineering.html"> 
+<span class="menu-text">Beyond Engineering</span></a>
   </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -170,6 +174,41 @@ window.Quarto = {
   </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">한국어</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="./index-ko.html">
+ <span class="dropdown-text">홈</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./research-ko.html">
+ <span class="dropdown-text">연구와 기술</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./mechanics-ko.html">
+ <span class="dropdown-text">공학역학</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./perspectives-ko.html">
+ <span class="dropdown-text">공학 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./cartoon-log-ko.html">
+ <span class="dropdown-text">카툰 일기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./beyond-engineering-ko.html">
+ <span class="dropdown-text">공학 밖의 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./about-ko.html">
+ <span class="dropdown-text">소개</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
 </i> 
@@ -209,6 +248,9 @@ window.Quarto = {
 </header>
 
 
+<div class="language-switch">
+<strong>English</strong> | <a href="./about-ko.html">한글</a>
+</div>
 <section id="goangseup-zi" class="level1">
 <h1>Goangseup Zi</h1>
 <div class="quarto-figure quarto-figure-right">
@@ -261,8 +303,9 @@ window.Quarto = {
 <p>Equations are important, but an equation becomes much more useful when we understand <strong>why it has that form and what it means physically</strong>.</p>
 </section>
 <section id="z-diagram" class="level3">
-<h3 class="anchored" data-anchor-id="z-diagram">Z Diagram</h3>
-<p>The <strong>Z Diagram</strong> is my framework for organizing mechanics around</p>
+<h3 class="anchored" data-anchor-id="z-diagram">Z-Diagram</h3>
+<p>The <strong>Z Diagram</strong> is a framework I developed when I joined Korea University in 2004. I wanted a systematic way to teach students how to navigate mechanics problems rather than treating each problem as a new collection of formulas.</p>
+<p>At its core is a simple map:</p>
 <p><span class="math display">\[
 F
 \;\longleftrightarrow\;
@@ -272,8 +315,18 @@ F
 \;\longleftrightarrow\;
 u.
 \]</span></p>
-<p>It connects force, stress, strain, and displacement through equilibrium, constitutive behavior, compatibility, and energy.</p>
-<p>The purpose is to help students see mechanics as one connected system rather than as a collection of separate formulas.</p>
+<p>I think of the Z Diagram as a <strong>navigation map for mechanics</strong>. Force, stress, strain, and displacement are not separate quantities. They are connected through <strong>equilibrium, constitutive behavior, and compatibility</strong>. Depending on what is known and what is sought, we can navigate the map in either direction:</p>
+<p><span class="math display">\[
+F \rightarrow \sigma \rightarrow \varepsilon \rightarrow u
+\]</span></p>
+<p>or</p>
+<p><span class="math display">\[
+u \rightarrow \varepsilon \rightarrow \sigma \rightarrow F.
+\]</span></p>
+<p>Energy provides another way of understanding why these quantities belong together. Force and displacement, and stress and strain, form <strong>energy-conjugate pairs</strong>. Work and energy therefore connect different parts of the map and often provide an alternative route through a mechanics problem.</p>
+<p>Since developing the Z Diagram, I have used it in <strong>most of the courses I teach</strong>, from basic mechanics to more advanced subjects. I also use the same map in my research, although the quantities, constitutive models, and computational methods may become much more sophisticated.</p>
+<p>That continuity is important to me. The mechanics used in research is not fundamentally disconnected from the mechanics taught in the classroom. The problems become harder, but the underlying relationships remain.</p>
+<p>The purpose of the Z Diagram is therefore not to provide another formula to memorize. It is to provide a <strong>map for deciding where you are in a mechanics problem, where you need to go, and which physical relationship takes you there.</strong></p>
 </section>
 <section id="latex-writing" class="level3">
 <h3 class="anchored" data-anchor-id="latex-writing">LaTeX &amp; Writing</h3>
@@ -310,6 +363,13 @@ u.
 </ul>
 <p>That distinction is important.</p>
 <p>Engineering understanding grows not only from obtaining a result, but from asking what the result means, where it applies, and where it does not.</p>
+</section>
+<section id="beyond-research" class="level2">
+<h2 class="anchored" data-anchor-id="beyond-research">Beyond Research</h2>
+<p>Engineering is done by people, and not all of the connections that matter are made in laboratories, classrooms, or conference rooms. I occasionally write about the communities and activities that have shaped my life as a civil engineer.</p>
+<ul>
+<li><a href="./posts/ksce-fire-dragons/index.html"><strong>KSCE FIRE DRAGONS: How Tennis Connects Civil Engineers Across Generations</strong></a> — The story of the Korean Society of Civil Engineers Tennis Club, from its beginnings in 2012 to a community that now connects civil engineers across generations, organizations, and professions.</li>
+</ul>
 </section>
 <section id="academic-profiles" class="level2">
 <h2 class="anchored" data-anchor-id="academic-profiles">Academic Profiles</h2>

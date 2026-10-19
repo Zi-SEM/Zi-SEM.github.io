@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="지광습">
+<meta name="dcterms.date" content="2026-09-22">
+<meta name="keywords" content="재령보정 유효탄성계수법, AAEM, 콘크리트 크리프, 콘크리트 크리프 해석, 콘크리트 응력이완, 교량 장기처짐, 박스거더 장기처짐, PSC 박스거더 장기처짐, 프리스트레스트 콘크리트 교량, 콘크리트 유효탄성계수, 재령계수, 콘크리트 장기거동, 단계시공 크리프, 교량 크리프 해석">
+<meta name="description" content="콘크리트 교량의 장기처짐을 계산할 때 왜 단순 유효탄성계수만으로는 부족할까? 크리프와 응력이완에서 출발해 재령보정 유효탄성계수법(AAEM)의 물리적 의미와 박스거더 교량 해석에서의 역할을 설명한다.">
+
+<title>콘크리트에는 왜 재령보정 유효탄성계수가 필요한가? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research &amp; Innovation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../perspectives.html"> 
+<span class="menu-text">Engineering Perspectives</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../cartoon-log.html"> 
+<span class="menu-text">Cartoon Logs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../beyond-engineering.html"> 
+<span class="menu-text">Beyond Engineering</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">한국어</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../index-ko.html">
+ <span class="dropdown-text">홈</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research-ko.html">
+ <span class="dropdown-text">연구와 기술</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../mechanics-ko.html">
+ <span class="dropdown-text">공학역학</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../perspectives-ko.html">
+ <span class="dropdown-text">공학 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../cartoon-log-ko.html">
+ <span class="dropdown-text">카툰 일기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../beyond-engineering-ko.html">
+ <span class="dropdown-text">공학 밖의 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about-ko.html">
+ <span class="dropdown-text">소개</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#공사가-끝나도-교량의-처짐은-끝나지-않는다" id="toc-공사가-끝나도-교량의-처짐은-끝나지-않는다" class="nav-link active" data-scroll-target="#공사가-끝나도-교량의-처짐은-끝나지-않는다">공사가 끝나도 교량의 처짐은 끝나지 않는다</a></li>
+  <li><a href="#왜-보통의-유효탄성계수만으로는-부족한가" id="toc-왜-보통의-유효탄성계수만으로는-부족한가" class="nav-link" data-scroll-target="#왜-보통의-유효탄성계수만으로는-부족한가">왜 보통의 유효탄성계수만으로는 부족한가?</a></li>
+  <li><a href="#먼저-우리가-잘-아는-두-실험에서-시작해-보자" id="toc-먼저-우리가-잘-아는-두-실험에서-시작해-보자" class="nav-link" data-scroll-target="#먼저-우리가-잘-아는-두-실험에서-시작해-보자">먼저 우리가 잘 아는 두 실험에서 시작해 보자</a></li>
+  <li><a href="#alpha와-beta는-무엇인가" id="toc-alpha와-beta는-무엇인가" class="nav-link" data-scroll-target="#alpha와-beta는-무엇인가"><span class="math inline">\(\alpha\)</span>와 <span class="math inline">\(\beta\)</span>는 무엇인가?</a></li>
+  <li><a href="#왜-하필-크리프와-응력이완인가" id="toc-왜-하필-크리프와-응력이완인가" class="nav-link" data-scroll-target="#왜-하필-크리프와-응력이완인가">왜 하필 크리프와 응력이완인가?</a></li>
+  <li><a href="#교량의-장기거동은-결국-적합조건의-문제다" id="toc-교량의-장기거동은-결국-적합조건의-문제다" class="nav-link" data-scroll-target="#교량의-장기거동은-결국-적합조건의-문제다">교량의 장기거동은 결국 적합조건의 문제다</a></li>
+  <li><a href="#재령보정-유효탄성계수는-무엇을-보정하는가" id="toc-재령보정-유효탄성계수는-무엇을-보정하는가" class="nav-link" data-scroll-target="#재령보정-유효탄성계수는-무엇을-보정하는가">재령보정 유효탄성계수는 무엇을 ’보정’하는가?</a></li>
+  <li><a href="#왜-chi를-재령계수라고-부르는가" id="toc-왜-chi를-재령계수라고-부르는가" class="nav-link" data-scroll-target="#왜-chi를-재령계수라고-부르는가">왜 <span class="math inline">\(\chi\)</span>를 재령계수라고 부르는가?</a></li>
+  <li><a href="#나중에-생긴-응력은-기억이-다르다" id="toc-나중에-생긴-응력은-기억이-다르다" class="nav-link" data-scroll-target="#나중에-생긴-응력은-기억이-다르다">나중에 생긴 응력은 기억이 다르다</a></li>
+  <li><a href="#놀라운-점은-다시-탄성문제처럼-보인다는-것이다" id="toc-놀라운-점은-다시-탄성문제처럼-보인다는-것이다" class="nav-link" data-scroll-target="#놀라운-점은-다시-탄성문제처럼-보인다는-것이다">놀라운 점은 다시 탄성문제처럼 보인다는 것이다</a></li>
+  <li><a href="#재료의-탄성계수에서-박스거더의-강성으로" id="toc-재료의-탄성계수에서-박스거더의-강성으로" class="nav-link" data-scroll-target="#재료의-탄성계수에서-박스거더의-강성으로">재료의 탄성계수에서 박스거더의 강성으로</a></li>
+  <li><a href="#박스거더-교량에서-이-문제가-특히-잘-보이는-이유" id="toc-박스거더-교량에서-이-문제가-특히-잘-보이는-이유" class="nav-link" data-scroll-target="#박스거더-교량에서-이-문제가-특히-잘-보이는-이유">박스거더 교량에서 이 문제가 특히 잘 보이는 이유</a></li>
+  <li><a href="#크리프가-진행된-교량을-나중에-들어-올린다면" id="toc-크리프가-진행된-교량을-나중에-들어-올린다면" class="nav-link" data-scroll-target="#크리프가-진행된-교량을-나중에-들어-올린다면">크리프가 진행된 교량을 나중에 들어 올린다면?</a></li>
+  <li><a href="#교량을-들어-올려-보면-aaem의-의미가-더-분명해진다" id="toc-교량을-들어-올려-보면-aaem의-의미가-더-분명해진다" class="nav-link" data-scroll-target="#교량을-들어-올려-보면-aaem의-의미가-더-분명해진다">교량을 들어 올려 보면 AAEM의 의미가 더 분명해진다</a></li>
+  <li><a href="#인상-전에는-크리프-인상-후에는-응력이완인가" id="toc-인상-전에는-크리프-인상-후에는-응력이완인가" class="nav-link" data-scroll-target="#인상-전에는-크리프-인상-후에는-응력이완인가">인상 전에는 크리프, 인상 후에는 응력이완인가?</a></li>
+  <li><a href="#aaem만으로-교량-장기처짐이-모두-해결되는-것은-아니다" id="toc-aaem만으로-교량-장기처짐이-모두-해결되는-것은-아니다" class="nav-link" data-scroll-target="#aaem만으로-교량-장기처짐이-모두-해결되는-것은-아니다">AAEM만으로 교량 장기처짐이 모두 해결되는 것은 아니다</a></li>
+  <li><a href="#aaem은-언제-정확하고-언제-근사인가" id="toc-aaem은-언제-정확하고-언제-근사인가" class="nav-link" data-scroll-target="#aaem은-언제-정확하고-언제-근사인가">AAEM은 언제 정확하고 언제 근사인가?</a></li>
+  <li><a href="#공학적으로-보면-왜-말이-되는가" id="toc-공학적으로-보면-왜-말이-되는가" class="nav-link" data-scroll-target="#공학적으로-보면-왜-말이-되는가">공학적으로 보면 왜 말이 되는가?</a></li>
+  <li><a href="#다음-문제" id="toc-다음-문제" class="nav-link" data-scroll-target="#다음-문제">다음 문제</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">콘크리트에는 왜 재령보정 유효탄성계수가 필요한가?</h1>
+<p class="subtitle lead">크리프와 응력이완에서 콘크리트 박스거더 교량의 장기처짐까지</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">공학역학</div>
+    <div class="quarto-category">Concrete &amp; Materials</div>
+    <div class="quarto-category">Concrete</div>
+    <div class="quarto-category">Creep</div>
+    <div class="quarto-category">Bridge Engineering</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    콘크리트 교량의 장기처짐을 계산할 때 왜 단순 유효탄성계수만으로는 부족할까? 크리프와 응력이완에서 출발해 재령보정 유효탄성계수법(AAEM)의 물리적 의미와 박스거더 교량 해석에서의 역할을 설명한다.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>지광습 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 22, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+<div>
+  <div class="keywords">
+    <div class="block-title">Keywords</div>
+    <p>재령보정 유효탄성계수법, AAEM, 콘크리트 크리프, 콘크리트 크리프 해석, 콘크리트 응력이완, 교량 장기처짐, 박스거더 장기처짐, PSC 박스거더 장기처짐, 프리스트레스트 콘크리트 교량, 콘크리트 유효탄성계수, 재령계수, 콘크리트 장기거동, 단계시공 크리프, 교량 크리프 해석</p>
+  </div>
+</div>
+
+</header>
+
+
+<div class="language-switch">
+<a href="../../posts/age-adjusted-effective-modulus/index.html">English</a> | <strong>한글</strong>
+</div>
+<section id="공사가-끝나도-교량의-처짐은-끝나지-않는다" class="level2">
+<h2 class="anchored" data-anchor-id="공사가-끝나도-교량의-처짐은-끝나지-않는다">공사가 끝나도 교량의 처짐은 끝나지 않는다</h2>
+<p>프리스트레스트 콘크리트 박스거더 교량은 공사가 끝났다고 해서 변형도 끝나는 것이 아니다.</p>
+<p>고정하중은 계속 작용한다. 프리스트레스는 시간에 따라 변한다. 콘크리트에는 크리프와 수축이 발생한다. 세그먼트마다 타설 시기와 하중을 받기 시작한 시점도 다르다. 시공 중 연속화가 이루어지면 구조계 자체가 바뀐다. 이후 받침이 이동하거나 교량을 들어 올리는 보정 작업을 하면 새로운 강제변위까지 생긴다.</p>
+<p>그래서 교량의 처짐은 수년, 경우에 따라서는 수십 년 동안 계속 변할 수 있다.</p>
+<p>이 문제를 처음 보면 대개 이렇게 생각한다.</p>
+<blockquote class="blockquote">
+<p><strong>콘크리트가 크리프하니까 유효탄성계수를 쓰면 되지 않을까?</strong></p>
+</blockquote>
+<p>응력이 일정하다면 맞는 말이다.</p>
+<p>재령 <span class="math inline">\(t'\)</span>에서 일정한 응력 <span class="math inline">\(\sigma_0\)</span>를 가하면 크리프 컴플라이언스 <span class="math inline">\(J(t,t')\)</span>로부터</p>
+<p><span class="math display">\[
+\varepsilon(t)=J(t,t')\sigma_0
+\]</span></p>
+<p>이고, 따라서</p>
+<p><span class="math display">\[
+E_{\mathrm{eff}}(t,t')=\frac{1}{J(t,t')}
+\]</span></p>
+<p>로 둘 수 있다.</p>
+<p>복잡한 점탄성 문제가 마치 탄성문제처럼 보인다.</p>
+<p>문제는 실제 교량의 콘크리트 응력이 일반적으로 <strong>일정하지 않다</strong>는 데 있다.</p>
+<p>바로 여기서 재령보정 유효탄성계수법(Age-Adjusted Effective Modulus Method, AAEM)이 필요해진다.</p>
+<hr>
+</section>
+<section id="왜-보통의-유효탄성계수만으로는-부족한가" class="level2">
+<h2 class="anchored" data-anchor-id="왜-보통의-유효탄성계수만으로는-부족한가">왜 보통의 유효탄성계수만으로는 부족한가?</h2>
+<p>선형 점탄성 콘크리트의 변형률 관계를 개념적으로 쓰면</p>
+<p><span class="math display">\[
+\varepsilon(t)
+=
+\varepsilon^0(t)
++
+J(t,t_0)\sigma(t_0)
++
+\int_{t_0}^{t}J(t,\tau)\,d\sigma(\tau)
+\]</span></p>
+<p>가 된다.</p>
+<p>여기서 <span class="math inline">\(\varepsilon^0(t)\)</span>는 수축이나 온도변형처럼 응력과 직접 관계없이 발생하는 변형률이다.</p>
+<p>첫 번째 응력항은 어렵지 않다. <span class="math inline">\(t_0\)</span>에 이미 존재하던 응력의 효과다.</p>
+<p>문제는 적분항이다.</p>
+<p>각 응력증분 <span class="math inline">\(d\sigma(\tau)\)</span>는 서로 다른 재령 <span class="math inline">\(\tau\)</span>에서 발생한다. 따라서 각 응력증분이 이후 경험하는 크리프 이력도 서로 다르다.</p>
+<p>장기 교량해석의 어려움은 결국 여기에 있다.</p>
+<p><span class="math display">\[
+\boxed{
+\text{크리프가 변형을 바꾸고}
+\quad\text{동시에}\quad
+\text{변형과 구속이 다시 응력을 바꾼다}.
+}
+\]</span></p>
+<p>부정정 구조에서는 응력이력 자체가 미리 주어져 있지 않다. 응력이력도 해의 일부다.</p>
+<p>Bažant의 1972년 AAEM은 콘크리트의 재령효과를 고려하면서도 구조해석은 탄성해석과 비슷한 형태로 수행할 수 있도록 기존 유효탄성계수법을 개선한 방법이다. 원 논문에서는 재령효과를 무시할 경우 상당한 해석오차가 생길 수 있음을 지적하고, 결과를 증분형 Hooke 법칙과 같은 형태로 정리한다. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<hr>
+</section>
+<section id="먼저-우리가-잘-아는-두-실험에서-시작해-보자" class="level2">
+<h2 class="anchored" data-anchor-id="먼저-우리가-잘-아는-두-실험에서-시작해-보자">먼저 우리가 잘 아는 두 실험에서 시작해 보자</h2>
+<p><span class="math inline">\(\chi\)</span>부터 도입하기 전에 선형 점탄성의 두 극한 실험을 생각해 보는 것이 훨씬 이해하기 쉽다.</p>
+<section id="일정-응력-크리프" class="level3">
+<h3 class="anchored" data-anchor-id="일정-응력-크리프">일정 응력: 크리프</h3>
+<p>재령 <span class="math inline">\(t'\)</span>에서 응력 <span class="math inline">\(\beta\)</span>를 가하고 계속 일정하게 유지한다고 하자.</p>
+<p><span class="math display">\[
+\sigma(t)=\beta.
+\]</span></p>
+<p>그러면</p>
+<p><span class="math display">\[
+\varepsilon(t)=\beta J(t,t')
+\]</span></p>
+<p>이고,</p>
+<p><span class="math display">\[
+\boxed{
+(\varepsilon,\sigma)_\beta
+=
+\left(\beta J(t,t'),\beta\right)
+}
+\]</span></p>
+<p>로 쓸 수 있다.</p>
+<p>응력은 그대로인데 변형률이 시간에 따라 증가한다.</p>
+<p>이것을 <strong>크리프 모드</strong>라고 생각할 수 있다.</p>
+</section>
+<section id="일정-변형률-응력이완" class="level3">
+<h3 class="anchored" data-anchor-id="일정-변형률-응력이완">일정 변형률: 응력이완</h3>
+<p>이번에는 재령 <span class="math inline">\(t'\)</span>에서 변형률 <span class="math inline">\(\alpha\)</span>를 가한 뒤 그대로 유지한다고 하자.</p>
+<p><span class="math display">\[
+\varepsilon(t)=\alpha.
+\]</span></p>
+<p>그러면 응력은 응력이완 함수 <span class="math inline">\(R(t,t')\)</span>에 따라 감소하여</p>
+<p><span class="math display">\[
+\sigma(t)=\alpha R(t,t')
+\]</span></p>
+<p>가 된다.</p>
+<p>따라서</p>
+<p><span class="math display">\[
+\boxed{
+(\varepsilon,\sigma)_\alpha
+=
+\left(\alpha,\alpha R(t,t')\right)
+}
+\]</span></p>
+<p>이다.</p>
+<p>변형률은 그대로인데 응력이 시간에 따라 변한다.</p>
+<p>이것을 <strong>응력이완 모드</strong>라고 생각할 수 있다.</p>
+<hr>
+</section>
+</section>
+<section id="alpha와-beta는-무엇인가" class="level2">
+<h2 class="anchored" data-anchor-id="alpha와-beta는-무엇인가"><span class="math inline">\(\alpha\)</span>와 <span class="math inline">\(\beta\)</span>는 무엇인가?</h2>
+<p>여기서 가장 헷갈리기 쉬운 부분이 하나 있다.</p>
+<p><span class="math display">\[
+\varepsilon(t)=\alpha+\beta J(t,t')
+\]</span></p>
+<p><span class="math display">\[
+\sigma(t)=\alpha R(t,t')+\beta
+\]</span></p>
+<p>라고 쓰면, 얼핏 <span class="math inline">\(\alpha\)</span>가 탄성변형률이고 <span class="math inline">\(\beta\)</span>가 그에 대응하는 탄성응력처럼 보인다.</p>
+<p>그러면 자연스럽게</p>
+<p><span class="math display">\[
+\beta=E\alpha
+\]</span></p>
+<p>라고 생각하기 쉽다.</p>
+<p>하지만 여기서 그렇게 해석하면 안 된다.</p>
+<p><span class="math inline">\(\alpha\)</span>는</p>
+<p><span class="math display">\[
+\boxed{
+\alpha
+=
+\text{일정 변형률 응력이완 모드의 크기}
+}
+\]</span></p>
+<p>이고, <span class="math inline">\(\beta\)</span>는</p>
+<p><span class="math display">\[
+\boxed{
+\beta
+=
+\text{일정 응력 크리프 모드의 크기}
+}
+\]</span></p>
+<p>이다.</p>
+<p>차원부터 다르다.</p>
+<p><span class="math display">\[
+[\alpha]=[\text{strain}],
+\qquad
+[\beta]=[\text{stress}].
+\]</span></p>
+<p>즉 두 값은 하나의 탄성 응력-변형률 쌍이 아니라 서로 독립적인 두 점탄성 기본응답의 가중치다.</p>
+<p>여기서 중요한 것은 이 크리프-응력이완 분해가 일반적인 거동을 두 극한응답 사이에서 이해하기 위한 <strong>물리적 해석</strong>이라는 점이다. Bažant의 1972년 정리에서 사용한 원래의 기호체계와 동일한 것으로 이해해서는 안 된다.</p>
+<hr>
+</section>
+<section id="왜-하필-크리프와-응력이완인가" class="level2">
+<h2 class="anchored" data-anchor-id="왜-하필-크리프와-응력이완인가">왜 하필 크리프와 응력이완인가?</h2>
+<p>실제 교량에서는 둘 다 변한다.</p>
+<p><span class="math display">\[
+\sigma=\sigma(t),
+\qquad
+\varepsilon=\varepsilon(t).
+\]</span></p>
+<p>한 극한에서는</p>
+<p><span class="math display">\[
+d\sigma=0
+\]</span></p>
+<p>이고 시간효과가 모두 크리프 변형으로 나타난다.</p>
+<p>반대 극한에서는</p>
+<p><span class="math display">\[
+d\varepsilon=0
+\]</span></p>
+<p>이고 시간효과가 응력이완으로 나타난다.</p>
+<p>구속된 콘크리트 부재, 프리스트레스트 단면, 연속교량은 대개 이 두 극한 사이 어딘가에 있다.</p>
+<p>따라서 크리프를 이해할 때 응력이완은 별개의 문제가 아니다.</p>
+<p>콘크리트가 크리프 때문에 변형하려고 하는데 구조적 적합조건이 그 변형을 자유롭게 허용하지 않을 때 응력이 어떻게 변하는지를 보여주는 것이 응력이완이다.</p>
+<hr>
+</section>
+<section id="교량의-장기거동은-결국-적합조건의-문제다" class="level2">
+<h2 class="anchored" data-anchor-id="교량의-장기거동은-결국-적합조건의-문제다">교량의 장기거동은 결국 적합조건의 문제다</h2>
+<p>일정한 휨모멘트를 받는 자유로운 콘크리트 부재라면</p>
+<p><span class="math display">\[
+M=\text{constant}
+\quad\Rightarrow\quad
+\kappa(t)\uparrow
+\]</span></p>
+<p>라고 생각할 수 있다.</p>
+<p>하지만 실제 교량은 자유롭지 않다.</p>
+<p>프리스트레싱 강재는 콘크리트와 같은 방식으로 크리프하지 않는다. 철근은 콘크리트 변형을 구속한다. 서로 다른 시기에 타설한 세그먼트는 재령도 다르다. 연속화된 구조는 회전을 구속한다. 받침과 교각도 적합조건을 만든다. 수축은 외력이 없어도 변형을 발생시킨다.</p>
+<p>결국 과정은</p>
+<p><span class="math display">\[
+\boxed{
+\text{크리프}
+\rightarrow
+\text{변형}
+\rightarrow
+\text{적합조건}
+\rightarrow
+\text{응력재분배}
+\rightarrow
+\text{추가 크리프}
+}
+\]</span></p>
+<p>가 된다.</p>
+<p>그래서 박스거더의 장기처짐을 단순히 초기 탄성처짐에 <span class="math inline">\(1+\phi\)</span>를 곱해서 구할 수 없는 경우가 많다.</p>
+<hr>
+</section>
+<section id="재령보정-유효탄성계수는-무엇을-보정하는가" class="level2">
+<h2 class="anchored" data-anchor-id="재령보정-유효탄성계수는-무엇을-보정하는가">재령보정 유효탄성계수는 무엇을 ’보정’하는가?</h2>
+<p>크리프계수를</p>
+<p><span class="math display">\[
+\phi(t,t_0)=E(t_0)J(t,t_0)-1
+\]</span></p>
+<p>로 정의하자.</p>
+<p>일반적인 유효탄성계수는</p>
+<p><span class="math display">\[
+E_{\mathrm{eff}}(t,t_0)
+=
+\frac{E(t_0)}{1+\phi(t,t_0)}
+\]</span></p>
+<p>이다.</p>
+<p>AAEM에서는 이를</p>
+<p><span class="math display">\[
+\boxed{
+E''(t,t_0)
+=
+\frac{E(t_0)}
+{1+\chi(t,t_0)\phi(t,t_0)}
+}
+\]</span></p>
+<p>로 바꾼다.</p>
+<p>여기서 <span class="math inline">\(\chi(t,t_0)\)</span>가 <strong>재령계수(aging coefficient)</strong>다.</p>
+<p>응력이완 함수와 연결하면</p>
+<p><span class="math display">\[
+\boxed{
+E''(t,t_0)
+=
+\frac{E(t_0)-R(t,t_0)}
+{\phi(t,t_0)}
+}
+\]</span></p>
+<p>이고, 따라서</p>
+<p><span class="math display">\[
+\boxed{
+\chi(t,t_0)
+=
+\frac{E(t_0)}
+{E(t_0)-R(t,t_0)}
+-
+\frac{1}{\phi(t,t_0)}
+}
+\]</span></p>
+<p>가 된다.</p>
+<p>여기서 한 가지가 분명해진다.</p>
+<p>AAEM은 단순히 크리프계수 <span class="math inline">\(\phi\)</span>에 보정계수 하나를 붙인 경험식이 아니다. <strong>응력이완과 직접 연결되어 있다.</strong> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<hr>
+</section>
+<section id="왜-chi를-재령계수라고-부르는가" class="level2">
+<h2 class="anchored" data-anchor-id="왜-chi를-재령계수라고-부르는가">왜 <span class="math inline">\(\chi\)</span>를 재령계수라고 부르는가?</h2>
+<p>이름에도 의미가 있다.</p>
+<p>재령효과가 없는 재료라면 고전적인 유효탄성계수법으로 돌아가고</p>
+<p><span class="math display">\[
+\chi=1
+\]</span></p>
+<p>이 된다.</p>
+<p>Bažant는 <span class="math inline">\(\chi\)</span>의 보정효과가 주로 콘크리트의 재령효과에서 발생하기 때문에 이전에 사용하던 <strong>relaxation coefficient</strong>보다 <strong>aging coefficient</strong>라는 명칭이 더 적절하다고 설명했다. <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>공학적으로 말하면,</p>
+<blockquote class="blockquote">
+<p><strong>나중에 생긴 응력변화는 처음 하중이 작용한 순간부터 계속 존재했던 응력과 같은 크리프 이력을 가질 수 없다. <span class="math inline">\(\chi\)</span>는 바로 이 차이를 보정한다.</strong></p>
+</blockquote>
+<p>이것이 age-adjusted의 핵심이다.</p>
+<hr>
+</section>
+<section id="나중에-생긴-응력은-기억이-다르다" class="level2">
+<h2 class="anchored" data-anchor-id="나중에-생긴-응력은-기억이-다르다">나중에 생긴 응력은 기억이 다르다</h2>
+<p>교량에 처음 하중이 작용한 시점을 <span class="math inline">\(t_0\)</span>라고 하자.</p>
+<p><span class="math inline">\(t_0\)</span>부터 존재한 응력은 <span class="math inline">\(t\)</span>까지</p>
+<p><span class="math display">\[
+t-t_0
+\]</span></p>
+<p>동안 크리프할 수 있다.</p>
+<p>그런데 적합조건 때문에 훨씬 나중인 <span class="math inline">\(\tau\)</span>에서 새로운 응력증분이 생겼다면, 그 응력에는</p>
+<p><span class="math display">\[
+t-\tau
+\]</span></p>
+<p>의 시간밖에 없다.</p>
+<p>게다가 그때의 콘크리트는 이미 더 늙은 콘크리트다.</p>
+<p>이 두 응력을 같은 유효탄성계수로 처리하면 이 차이가 사라진다.</p>
+<p>AAEM이 모든 가능한 응력이력을 정확하게 복원하는 것은 아니다. 대신 재령과 응력재분배의 주요 효과를 하나의 실용적인 구성관계 안에 압축한다.</p>
+<hr>
+</section>
+<section id="놀라운-점은-다시-탄성문제처럼-보인다는-것이다" class="level2">
+<h2 class="anchored" data-anchor-id="놀라운-점은-다시-탄성문제처럼-보인다는-것이다">놀라운 점은 다시 탄성문제처럼 보인다는 것이다</h2>
+<p>Bažant의 정리가 적용되는 변형률 이력에서는 관계를</p>
+<p><span class="math display">\[
+\boxed{
+\Delta\sigma(t)
+=
+E''(t,t_0)
+\left[
+\Delta\varepsilon(t)
+-
+\Delta\varepsilon''(t)
+\right]
+}
+\]</span></p>
+<p>와 같이 쓸 수 있다.</p>
+<p>여기서 <span class="math inline">\(\Delta\varepsilon''\)</span>는 이 정식화에서 정의되는 가상의 비탄성 변형률 증분이다.</p>
+<p>Bažant는 이 관계가 Hooke 법칙과 같은 형태가 되어, 일반 유효탄성계수법과 마찬가지로 크리프 문제를 탄성해석의 형태로 계산할 수 있다는 점을 강조했다. <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>이것이 AAEM의 계산상 핵심이다.</p>
+<p>원래 문제에는</p>
+<p><span class="math display">\[
+\int_{t_0}^{t}J(t,\tau)\,d\sigma(\tau)
+\]</span></p>
+<p>와 같은 이력이 포함되어 있다.</p>
+<p>AAEM에서는 구조해석을 위해 이 복잡한 이력효과를</p>
+<p><span class="math display">\[
+E''(t,t_0)
+\]</span></p>
+<p>와 적절한 강제변형 또는 비탄성 변형률 항을 사용하는 탄성해석과 유사한 관계로 바꾼다.</p>
+<hr>
+</section>
+<section id="재료의-탄성계수에서-박스거더의-강성으로" class="level2">
+<h2 class="anchored" data-anchor-id="재료의-탄성계수에서-박스거더의-강성으로">재료의 탄성계수에서 박스거더의 강성으로</h2>
+<p>균열이 없는 단면의 탄성 단면관계를 생각하면</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+N\\
+M
+\end{bmatrix}
+=
+\begin{bmatrix}
+EA &amp; ES\\
+ES &amp; EI
+\end{bmatrix}
+\begin{bmatrix}
+\varepsilon_0\\
+\kappa
+\end{bmatrix}
+\]</span></p>
+<p>로 쓸 수 있다.</p>
+<p>시간의존 해석에서는 콘크리트 부분에</p>
+<p><span class="math display">\[
+E
+\longrightarrow
+E''(t,t_0)
+\]</span></p>
+<p>를 적용할 수 있다.</p>
+<p>개념적으로는</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+\Delta N\\
+\Delta M
+\end{bmatrix}
+=
+\mathbf K_{\mathrm{AAEM}}(t,t_0)
+\left[
+\begin{bmatrix}
+\Delta\varepsilon_0\\
+\Delta\kappa
+\end{bmatrix}
+-
+\begin{bmatrix}
+\Delta\varepsilon^{0}\\
+\Delta\kappa^{0}
+\end{bmatrix}
+\right]
+\]</span></p>
+<p>와 같은 형태가 된다.</p>
+<p>물론 수축, 온도변형, 프리스트레스 효과와 기타 강제변형도 일관되게 처리해야 한다.</p>
+<p>단면관계가 이런 형태가 되면 익숙한 구조 강성방정식에 조립할 수 있다.</p>
+<p>AAEM은 결국 <strong>재령을 갖는 점탄성 재료</strong>와 <strong>일반적인 구조해석</strong>을 연결하는 방법이다.</p>
+<hr>
+</section>
+<section id="박스거더-교량에서-이-문제가-특히-잘-보이는-이유" class="level2">
+<h2 class="anchored" data-anchor-id="박스거더-교량에서-이-문제가-특히-잘-보이는-이유">박스거더 교량에서 이 문제가 특히 잘 보이는 이유</h2>
+<p>프리스트레스트 콘크리트 박스거더에는 크리프 이력이 중요해지는 요소가 거의 모두 들어 있다.</p>
+<ul>
+<li>큰 고정하중</li>
+<li>프리스트레스</li>
+<li>단계시공</li>
+<li>서로 다른 재령에서 하중을 받는 콘크리트</li>
+<li>시공 중 변화하는 구조계</li>
+<li>수축</li>
+<li>콘크리트와 프리스트레싱 강재 사이의 응력재분배</li>
+<li>연속화 모멘트</li>
+<li>긴 공용기간</li>
+</ul>
+<p>특히 캔틸레버 공법을 생각하면 쉽게 이해할 수 있다.</p>
+<p>오늘 타설한 세그먼트와 몇 주 뒤 타설한 세그먼트는 같은 크리프 이력을 가질 수 없다. 연속화가 이루어지면 초기 세그먼트가 처음 하중을 받을 당시에는 존재하지 않았던 새로운 구조계가 이후 변형을 구속한다.</p>
+<p>최근의 교량 적용에서도 캔틸레버 시공이나 압출가설처럼 어린 재령의 콘크리트에 하중이 작용하는 단계시공에서 재령효과가 중요하기 때문에 AAEM이 계속 활용되고 있다. <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<hr>
+</section>
+<section id="크리프가-진행된-교량을-나중에-들어-올린다면" class="level2">
+<h2 class="anchored" data-anchor-id="크리프가-진행된-교량을-나중에-들어-올린다면">크리프가 진행된 교량을 나중에 들어 올린다면?</h2>
+<p>이제 조금 더 흥미로운 문제를 생각해 보자.</p>
+<p>교량에 <span class="math inline">\(t_0\)</span>부터 하중이 작용하여 크리프가 진행되고 있다고 하자.</p>
+<p>재령 <span class="math inline">\(t_{\mathrm{up}}\)</span>에서 교량을</p>
+<p><span class="math display">\[
+\delta_{\mathrm{up}}
+\]</span></p>
+<p>만큼 들어 올린다.</p>
+<p>그러면 문제는 자연스럽게 두 구간으로 나뉜다.</p>
+<p><span class="math display">\[
+t_0&lt;t&lt;t_{\mathrm{up}}
+\]</span></p>
+<p>그리고</p>
+<p><span class="math display">\[
+t&gt;t_{\mathrm{up}}.
+\]</span></p>
+<p>들어 올리기 전에는 크리프, 수축, 프리스트레스 변화와 응력재분배가 누적된다.</p>
+<p><span class="math inline">\(t_{\mathrm{up}}\)</span>에서 강제변위를 주면 구조의 적합조건이 바뀌고 새로운 응력상태가 만들어진다.</p>
+<p>따라서 교량을 들어 올리는 것은 기존 처짐곡선에 단순히 수직변위 하나를 더하는 문제가 아니다.</p>
+<p><strong><span class="math inline">\(t_{\mathrm{up}}\)</span>라는 새로운 재령에서 새로운 응력증분을 발생시키는 사건</strong>이다.</p>
+<hr>
+</section>
+<section id="교량을-들어-올려-보면-aaem의-의미가-더-분명해진다" class="level2">
+<h2 class="anchored" data-anchor-id="교량을-들어-올려-보면-aaem의-의미가-더-분명해진다">교량을 들어 올려 보면 AAEM의 의미가 더 분명해진다</h2>
+<p>교량을 들어 올려</p>
+<p><span class="math display">\[
+\Delta\sigma_{\mathrm{up}}
+\]</span></p>
+<p>이라는 응력증분이 생겼다고 하자.</p>
+<p>이 응력이 <span class="math inline">\(t_0\)</span>부터 존재했다고 계산하면 안 된다.</p>
+<p>원래 지속하중에 의한 응력은</p>
+<p><span class="math display">\[
+t-t_0
+\]</span></p>
+<p>의 시간을 경험했지만, 인상에 의해 새로 생긴 응력은</p>
+<p><span class="math display">\[
+t-t_{\mathrm{up}}
+\]</span></p>
+<p>의 시간만 경험한다.</p>
+<p>둘은 <strong>기억이 다르다.</strong></p>
+<p>개념적으로</p>
+<p><span class="math display">\[
+\sigma(t)
+=
+\sigma^{(0)}(t;t_0)
++
+\Delta\sigma^{(\mathrm{up})}(t;t_{\mathrm{up}})
+\]</span></p>
+<p>로 나눌 수 있고, 처짐도</p>
+<p><span class="math display">\[
+w(t)
+=
+w^{(0)}(t;t_0)
++
+H(t-t_{\mathrm{up}})
+w^{(\mathrm{up})}(t;t_{\mathrm{up}},\delta_{\mathrm{up}})
+\]</span></p>
+<p>와 같이 생각할 수 있다.</p>
+<p>중요한 사건이 발생할 때마다 새로운 시간의존 응답이 시작되는 셈이다.</p>
+<p>Bažant의 1972년 논문에서도 최초 하중 이후 갑작스러운 하중변화가 발생하면 이를 단계하중 이력으로 중첩하여 처리할 수 있음을 설명한다. <a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
+<hr>
+</section>
+<section id="인상-전에는-크리프-인상-후에는-응력이완인가" class="level2">
+<h2 class="anchored" data-anchor-id="인상-전에는-크리프-인상-후에는-응력이완인가">인상 전에는 크리프, 인상 후에는 응력이완인가?</h2>
+<p>직관적으로는 상당히 유용한 그림이다. 다만 한 가지 주의가 필요하다.</p>
+<p>인상 전의 지속 고정하중은 전형적인 크리프 거동에 가깝다.</p>
+<p><span class="math display">\[
+\text{지속하중}
+\rightarrow
+\text{변형 증가}.
+\]</span></p>
+<p>반면 교량 인상은 변위를 강제로 주는 것이므로 이후의 거동에는 응력이완의 성격이 강하다.</p>
+<p><span class="math display">\[
+\text{강제변위}
+\rightarrow
+\text{응력 변화}.
+\]</span></p>
+<p>하지만 실제 교량은 인상 후에도 순수한 응력이완 실험이 아니다.</p>
+<p>내부력이 재분배되는 동안 변형도 계속 변한다.</p>
+<p>결국 중요한 것은 바로 이것이다. 크리프와 응력이완은 두 극한이고, 실제 구조물은 그 사이에서 거동한다. AAEM은 그 중간 영역을 실용적으로 계산할 수 있게 해준다.</p>
+<hr>
+</section>
+<section id="aaem만으로-교량-장기처짐이-모두-해결되는-것은-아니다" class="level2">
+<h2 class="anchored" data-anchor-id="aaem만으로-교량-장기처짐이-모두-해결되는-것은-아니다">AAEM만으로 교량 장기처짐이 모두 해결되는 것은 아니다</h2>
+<p>AAEM은 구성관계를 단순화하는 방법이지 완전한 교량 모델 자체는 아니다.</p>
+<p>실제 박스거더의 장기거동을 계산하려면 여전히 다음을 적절히 모델링해야 한다.</p>
+<ul>
+<li>크리프 컴플라이언스 또는 크리프계수</li>
+<li>콘크리트 재령효과</li>
+<li>수축</li>
+<li>프리스트레스 손실</li>
+<li>시공순서</li>
+<li>단면 변화</li>
+<li>철근 및 텐던과의 적합조건</li>
+<li>필요한 경우 균열</li>
+<li>지점조건</li>
+<li>필요한 경우 온도효과</li>
+</ul>
+<p>특히 아주 긴 기간을 예측한다면 구조해석 방법 자체보다 기초가 되는 크리프 모델의 불확실성이 더 중요해질 수도 있다.</p>
+<p>AAEM은 <strong>이력 계산을 다루기 쉽게 만드는 방법</strong>이다. 장기 콘크리트 거동 자체의 불확실성을 없애주는 방법은 아니다.</p>
+<hr>
+</section>
+<section id="aaem은-언제-정확하고-언제-근사인가" class="level2">
+<h2 class="anchored" data-anchor-id="aaem은-언제-정확하고-언제-근사인가">AAEM은 언제 정확하고 언제 근사인가?</h2>
+<p>이 구분은 중요하다.</p>
+<p>Bažant의 1972년 정리는 유도에서 가정한 특정 변형률 이력군에 대해 정확하다. 원 논문에서는 일정 응력, 일정 변형률, 그리고 크리프계수에 비례하여 변형률이 변하는 경우를 중요한 특수 경우로 제시한다.</p>
+<p>일반적인 이력에 대해서는 AAEM이 근사법이다. 다만 일반 유효탄성계수법의 단순성은 유지하면서 정확도를 크게 개선하는 것이 목적이다. <a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
+<p>따라서</p>
+<blockquote class="blockquote">
+<p>AAEM이 정확한 이력적분을 대체한다.</p>
+</blockquote>
+<p>라고 말하는 것보다는</p>
+<blockquote class="blockquote">
+<p><strong>AAEM은 중요한 이력군에서는 정확하고, 일반적인 경우에는 실용적인 근사로서 이력거동을 탄성해석과 유사한 형태로 표현한다.</strong></p>
+</blockquote>
+<p>라고 이해하는 것이 더 정확하다.</p>
+<hr>
+</section>
+<section id="공학적으로-보면-왜-말이-되는가" class="level2">
+<h2 class="anchored" data-anchor-id="공학적으로-보면-왜-말이-되는가">공학적으로 보면 왜 말이 되는가?</h2>
+<p>교량의 장기변형을 흔히 ’크리프 문제’라고 부른다.</p>
+<p>하지만 그것만으로는 부족하다.</p>
+<p>실제 구조문제는</p>
+<p><span class="math display">\[
+\boxed{
+\text{크리프}
++
+\text{재령}
++
+\text{적합조건}
++
+\text{응력재분배}
+}
+\]</span></p>
+<p>의 문제다.</p>
+<p>크리프 컴플라이언스는 응력이 유지될 때 콘크리트가 어떻게 변형하는지를 알려준다.</p>
+<p>응력이완은 변형이 구속될 때 응력이 어떻게 바뀌는지를 알려준다.</p>
+<p>실제 교량에서는 둘이 동시에 일어난다.</p>
+<p>그래서 기억해야 할 핵심은 단순히</p>
+<blockquote class="blockquote">
+<p>콘크리트의 강성은 시간이 지나면 작아진다.</p>
+</blockquote>
+<p>가 아니다.</p>
+<blockquote class="blockquote">
+<p><strong>사용해야 할 강성은 콘크리트가 얼마나 오랫동안 크리프했는지만으로 정해지지 않는다. 지금 계산하는 응력이 언제 구조물에 들어왔는지도 중요하다.</strong></p>
+</blockquote>
+<p>그래서 <strong>age-adjusted</strong>, 즉 재령보정이라는 말이 중요하다.</p>
+<p>그리고 바로 그 이유 때문에 AAEM은 프리스트레스트 콘크리트 박스거더 교량의 장기처짐을 이해하고 계산하는 데 유용하다.</p>
+<hr>
+</section>
+<section id="다음-문제" class="level2">
+<h2 class="anchored" data-anchor-id="다음-문제">다음 문제</h2>
+<p>다음에는 일반론보다 실제 문제를 하나 풀어보는 것이 좋다.</p>
+<blockquote class="blockquote">
+<p><strong>박스거더 교량을 재령 <span class="math inline">\(t_{\mathrm{up}}\)</span>에서 <span class="math inline">\(\delta_{\mathrm{up}}\)</span>만큼 들어 올리면, <span class="math inline">\(t&lt;t_{\mathrm{up}}\)</span>와 <span class="math inline">\(t&gt;t_{\mathrm{up}}\)</span>에서 처짐은 어떻게 달라질까?</strong></p>
+</blockquote>
+<p>이 문제를 풀려면 처음 하중이 작용한 이력과 공용 중 새롭게 가해진 강제변위의 이력을 구분해야 한다.</p>
+<p>바로 여기서 AAEM은 단순한 크리프 공식이 아니라 실제 구조해석 도구가 된다.</p>
+<hr>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further reading</h2>
+<p><strong>Bažant, Z. P. (1972).</strong><br>
+<em>Prediction of Concrete Creep Effects Using Age-Adjusted Effective Modulus Method.</em><br>
+ACI Journal Proceedings, 69(4), 212–219.<br>
+DOI: 10.14359/11265.</p>
+<p><strong>Bažant, Z. P., Hubler, M. H., &amp; Jirásek, M. (2013).</strong><br>
+<em>Improved Estimation of Long-Term Relaxation Function of Aging Concrete from Its Compliance Function.</em><br>
+In <em>Mechanics and Physics of Creep, Shrinkage, and Durability of Concrete</em>, 437–442.<br>
+DOI: 10.1061/9780784413111.052.</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Bažant(1972)의 원 논문에서 AAEM의 엄밀한 정식화, 재령계수, 재령보정 유효탄성계수, 증분형 Hooke 법칙 형태, 주요 정확해와 이후 단계하중의 중첩을 설명한다.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>응력이완 함수와 크리프 컴플라이언스는 선형 점탄성 적분관계로 연결된다. 이후 Bažant의 연구에서는 <span class="math inline">\(J(t,t')\)</span>로부터 <span class="math inline">\(R(t,t')\)</span>를 구하는 실용적인 방법도 다룬다.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Bažant(1972)의 원 논문에서 AAEM의 엄밀한 정식화, 재령계수, 재령보정 유효탄성계수, 증분형 Hooke 법칙 형태, 주요 정확해와 이후 단계하중의 중첩을 설명한다.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Bažant(1972)의 원 논문에서 AAEM의 엄밀한 정식화, 재령계수, 재령보정 유효탄성계수, 증분형 Hooke 법칙 형태, 주요 정확해와 이후 단계하중의 중첩을 설명한다.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>현대의 교량 적용에서도 캔틸레버 및 압출가설과 같이 어린 재령의 콘크리트에 하중이 작용하는 단계시공에서는 재령효과를 중요하게 다룬다.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Bažant(1972)의 원 논문에서 AAEM의 엄밀한 정식화, 재령계수, 재령보정 유효탄성계수, 증분형 Hooke 법칙 형태, 주요 정확해와 이후 단계하중의 중첩을 설명한다.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Bažant(1972)의 원 논문에서 AAEM의 엄밀한 정식화, 재령계수, 재령보정 유효탄성계수, 증분형 Hooke 법칙 형태, 주요 정확해와 이후 단계하중의 중첩을 설명한다.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -282,19 +282,23 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./research.html"> 
-<span class="menu-text">Research Explained</span></a>
+<span class="menu-text">Research &amp; Innovation</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./mechanics.html"> 
 <span class="menu-text">Engineering Mechanics</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./z-diagram.html"> 
-<span class="menu-text">Z-Diagram</span></a>
+    <a class="nav-link" href="./perspectives.html"> 
+<span class="menu-text">Engineering Perspectives</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./latex-writing.html"> 
-<span class="menu-text">LaTeX &amp; Writing</span></a>
+    <a class="nav-link" href="./cartoon-log.html"> 
+<span class="menu-text">Cartoon Logs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./beyond-engineering.html"> 
+<span class="menu-text">Beyond Engineering</span></a>
   </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -313,6 +317,41 @@ window.Quarto = {
   </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">한국어</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="./index-ko.html">
+ <span class="dropdown-text">홈</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./research-ko.html">
+ <span class="dropdown-text">연구와 기술</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./mechanics-ko.html">
+ <span class="dropdown-text">공학역학</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./perspectives-ko.html">
+ <span class="dropdown-text">공학 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./cartoon-log-ko.html">
+ <span class="dropdown-text">카툰 일기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./beyond-engineering-ko.html">
+ <span class="dropdown-text">공학 밖의 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./about-ko.html">
+ <span class="dropdown-text">소개</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
 </i> 
@@ -353,27 +392,35 @@ window.Quarto = {
 
 
 
+<div class="language-switch">
+<strong>English</strong> | <a href="./index-ko.html">한글</a>
+</div>
 <p>Research · Education · Mechanics · Technical Writing</p>
 <p>This site explains structural engineering and mechanics through research, education, and technical communication.</p>
 <section id="explore" class="level2">
 <h2 class="anchored" data-anchor-id="explore">Explore</h2>
-<div class="grid">
-<section id="research-explained" class="level3 g-col-12 g-col-md-6">
-<h3 class="anchored" data-anchor-id="research-explained"><a href="./research.html">Research Explained</a></h3>
-<p>Published research explained through engineering problems, physical interpretation, methods, results, and practical implications.</p>
-</section>
-<section id="engineering-mechanics" class="level3 g-col-12 g-col-md-6">
-<h3 class="anchored" data-anchor-id="engineering-mechanics"><a href="./mechanics.html">Engineering Mechanics</a></h3>
-<p>Structural mechanics, mechanics of materials, fracture, fatigue, numerical methods, and related topics.</p>
-</section>
-<section id="z-diagram" class="level3 g-col-12 g-col-md-6">
-<h3 class="anchored" data-anchor-id="z-diagram"><a href="./z-diagram.html">Z-Diagram</a></h3>
-<p>A framework for understanding and teaching engineering mechanics through connected physical and mathematical concepts.</p>
-</section>
-<section id="latex-writing" class="level3 g-col-12 g-col-md-6">
-<h3 class="anchored" data-anchor-id="latex-writing"><a href="./latex-writing.html">LaTeX &amp; Writing</a></h3>
-<p>Practical LaTeX, scientific writing, and AI-assisted workflows for engineers and researchers.</p>
-</section>
+<style>
+/* English homepage Explore: independent compact grid, no Quarto row sizing. */
+.zi-explore-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 2rem;
+  row-gap: 0.65rem;
+  margin: 1rem 0 1.4rem;
+  align-items: start;
+}
+.zi-explore-links a {
+  display: block;
+  font-size: 1.12rem;
+  line-height: 1.5;
+  padding: 0.15rem 0;
+}
+@media (max-width: 650px) {
+  .zi-explore-links { grid-template-columns: 1fr; }
+}
+</style>
+<div class="zi-explore-links">
+<p><a href="./research.html">Research &amp; Innovation</a> <a href="./mechanics.html">Engineering Mechanics</a> <a href="./perspectives.html">Engineering Perspectives</a> <a href="./cartoon-log.html">Cartoon Logs</a> <a href="./beyond-engineering.html">Beyond Engineering</a></p>
 </div>
 </section>
 <section id="zis-structural-engineering-mechanics" class="level2">
@@ -387,27 +434,27 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="offshore-wind-energy">Offshore Wind Energy</h2>
 <div id="listing-offshore" class="quarto-listing quarto-listing-container-default">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="T2Zmc2hvcmUlMjBXaW5kJTIwRW5lcmd5" data-listing-date-sort="1789225200000" data-listing-file-modified-sort="1789786752469" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2209">
-<div class="thumbnail"><a href="./posts/offshore-wind-civil-engineering/index.html" class="no-external">
+<div class="quarto-post image-right" data-index="0" data-categories="RW5naW5lZXJpbmclMjBQZXJzcGVjdGl2ZXMlMkNPZmZzaG9yZSUyMFdpbmQlMjBFbmVyZ3k=" data-listing-date-sort="1791990000000" data-listing-file-modified-sort="1791931554000" data-listing-date-modified-sort="1791990000000" data-listing-reading-time-sort="5" data-listing-word-count-sort="958">
+<div class="thumbnail"><a href="./posts/offshore-wind-industrial-competitiveness/index.html" class="no-external">
 
-<p class="card-img-top"><img loading='lazy' src="posts\offshore-wind-civil-engineering\Fig01.png"  class="thumbnail-image card-img"/></p>
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="./posts/offshore-wind-civil-engineering/index.html" class="no-external">Why Is Offshore Wind a Civil Engineering Industry?</a>
+<a href="./posts/offshore-wind-industrial-competitiveness/index.html" class="no-external">Where Does Offshore Wind Industry Competitiveness Really Come From?</a>
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/offshore-wind-civil-engineering/index.html" class="no-external">The turbine generates electricity, but the project succeeds through foundations, structures, ports, installation, regulation, and maintenance</a>
+<a href="./posts/offshore-wind-industrial-competitiveness/index.html" class="no-external">Deployment targets, LCOE reduction, engineering innovation, and the industrial ecosystem</a>
 </div>
-<div class="delink listing-description"><a href="./posts/offshore-wind-civil-engineering/index.html" class="no-external">
-<p>Offshore wind is usually introduced as an energy technology. From an engineering perspective, however, it is also a marine infrastructure system in which geotechnical engineering, structures, construction, ports, regulation, and O&amp;M must work together.</p>
+<div class="delink listing-description"><a href="./posts/offshore-wind-industrial-competitiveness/index.html" class="no-external">
+<p>Why offshore wind capacity targets alone do not ensure competitiveness: constructability, substructure optimization, LCOE, ports, vessels, and domestic engineering capability.</p>
 </a></div>
 </div>
 <div class="metadata">
-<a href="./posts/offshore-wind-civil-engineering/index.html" class="no-external">
+<a href="./posts/offshore-wind-industrial-competitiveness/index.html" class="no-external">
 <div class="listing-date">
-Sep 13, 2026
+Oct 15, 2026
 </div>
 <div class="listing-author">
 Goangseup Zi
@@ -415,83 +462,27 @@ Goangseup Zi
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="UmVzZWFyY2glMjBFeHBsYWluZWQlMkNPZmZzaG9yZSUyMCUyNiUyME9jZWFuJTIwRW5naW5lZXJpbmclMkNPZmZzaG9yZSUyMFdpbmQlMjBFbmVyZ3klMkNTdHJ1Y3R1cmFsJTIwRW5naW5lZXJpbmclMkNTdHJ1Y3R1cmFsJTIwRHluYW1pY3M=" data-listing-date-sort="1788274800000" data-listing-file-modified-sort="1789786752401" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2559">
-<div class="thumbnail"><a href="./posts/jacket-flexibility/index.html" class="no-external">
+<div class="quarto-post image-right" data-index="1" data-categories="RW5naW5lZXJpbmclMjBQZXJzcGVjdGl2ZXMlMkNPZmZzaG9yZSUyMFdpbmQlMjBFbmVyZ3k=" data-listing-date-sort="1791990000000" data-listing-file-modified-sort="1791963985950" data-listing-date-modified-sort="1791990000000" data-listing-reading-time-sort="5" data-listing-word-count-sort="951">
+<div class="thumbnail"><a href="./posts/offshore-wind-legal-contract-vessel-finance/index.html" class="no-external">
 
-<p class="card-img-top"><img loading='lazy' src="posts\jacket-flexibility\Fig01.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/jacket-flexibility/index.html" class="no-external">Where Does the Flexibility of a Jacket-Supported Offshore Wind Turbine Really Come From?</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/jacket-flexibility/index.html" class="no-external">Why transition pieces, tubular joints, and foundations matter as much as the jacket members</a>
-</div>
-<div class="delink listing-description"><a href="./posts/jacket-flexibility/index.html" class="no-external">
-<p>A jacket offshore wind turbine may look like a simple frame, but its global stiffness depends strongly on load transfer through the transition piece, local deformation of tubular joints, and pile-soil interaction.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/jacket-flexibility/index.html" class="no-external">
-<div class="listing-date">
-Sep 2, 2026
-</div>
-<div class="listing-author">
-Goangseup Zi
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="UmVzZWFyY2glMjBFeHBsYWluZWQlMkNPZmZzaG9yZSUyMCUyNiUyME9jZWFuJTIwRW5naW5lZXJpbmclMkNPZmZzaG9yZSUyMFdpbmQlMjBFbmVyZ3klMkNGbG9hdGluZyUyME9mZnNob3JlJTIwV2luZCUyQ1N0cnVjdHVyYWwlMjBEeW5hbWljcw==" data-listing-date-sort="1788274800000" data-listing-file-modified-sort="1789786752481" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2469">
-<div class="thumbnail"><a href="./posts/passive-fowt-motion-control/index.html" class="no-external">
-
-<p class="card-img-top"><img loading='lazy' src="posts\passive-fowt-motion-control\Fig01.png"  class="thumbnail-image card-img"/></p>
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="./posts/passive-fowt-motion-control/index.html" class="no-external">Can We Reduce the Motion of a Floating Wind Turbine Passively?</a>
+<a href="./posts/offshore-wind-legal-contract-vessel-finance/index.html" class="no-external">What Holds Offshore Wind Construction Back? Contracts, Risk Allocation, and Installation Vessel Finance</a>
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/passive-fowt-motion-control/index.html" class="no-external">How geometry, liquid sloshing, and hydrodynamic appendages can control platform motion without active actuation</a>
+<a href="./posts/offshore-wind-legal-contract-vessel-finance/index.html" class="no-external">Connecting offshore engineering with law, contracting, and maritime finance</a>
 </div>
-<div class="delink listing-description"><a href="./posts/passive-fowt-motion-control/index.html" class="no-external">
-<p>Floating wind turbine motion can be reduced without active control by changing the floater geometry, exploiting internal liquid motion, and modifying wave–structure interaction. Several studies reveal the mechanics behind these passive strategies.</p>
+<div class="delink listing-description"><a href="./posts/offshore-wind-legal-contract-vessel-finance/index.html" class="no-external">
+<p>Why offshore wind construction depends on workable contracts, marine installation risk allocation, and finance for specialized vessels.</p>
 </a></div>
 </div>
 <div class="metadata">
-<a href="./posts/passive-fowt-motion-control/index.html" class="no-external">
+<a href="./posts/offshore-wind-legal-contract-vessel-finance/index.html" class="no-external">
 <div class="listing-date">
-Sep 2, 2026
-</div>
-<div class="listing-author">
-Goangseup Zi
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="UmVzZWFyY2glMjBFeHBsYWluZWQlMkNPZmZzaG9yZSUyMFdpbmQlMjBFbmVyZ3klMkNEZWNpc2lvbiUyME1ha2luZyUyQ0VGQSUyQ0FIUA==" data-listing-date-sort="1788015600000" data-listing-file-modified-sort="1789786751954" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1801">
-<div class="thumbnail"><a href="./posts/biased-decision-making/index.html" class="no-external">
-
-<p class="card-img-top"><img loading='lazy' src="posts\biased-decision-making\Fig03.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/biased-decision-making/index.html" class="no-external">How to Fix Biased Decision Making?</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/biased-decision-making/index.html" class="no-external">Why correlated criteria can distort engineering decisions—and how factor analysis can help</a>
-</div>
-<div class="delink listing-description"><a href="./posts/biased-decision-making/index.html" class="no-external">
-<p>A practical explanation of how correlated evaluation criteria can bias multicriteria engineering decisions, and how an integrated EFA–AHP framework can reduce redundancy and improve decision reliability.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/biased-decision-making/index.html" class="no-external">
-<div class="listing-date">
-Aug 30, 2026
+Oct 15, 2026
 </div>
 <div class="listing-author">
 Goangseup Zi
@@ -507,7 +498,63 @@ Goangseup Zi
 <h2 class="anchored" data-anchor-id="digital-transformation-ai">Digital Transformation &amp; AI</h2>
 <div id="listing-digital" class="quarto-listing quarto-listing-container-default">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="UmVzZWFyY2glMjBFeHBsYWluZWQlMkNEaWdpdGFsJTIwVHJhbnNmb3JtYXRpb24lMjAlMjYlMjBBSSUyQ0RpZ2l0YWwlMjBDb25zdHJ1Y3Rpb24lMjBTdGFuZGFyZHM=" data-listing-date-sort="1782399600000" data-listing-file-modified-sort="1789786751909" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1776">
+<div class="quarto-post image-right" data-index="0" data-categories="RW5naW5lZXJpbmclMjBQZXJzcGVjdGl2ZXMlMkNEaWdpdGFsJTIwVHJhbnNmb3JtYXRpb24lMjAlMjYlMjBBSQ==" data-listing-date-sort="1790607600000" data-listing-file-modified-sort="1791830478000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="23" data-listing-word-count-sort="4475">
+<div class="thumbnail"><a href="./posts/civil-engineering-curriculum-2035/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/civil-engineering-curriculum-2035/index.html" class="no-external">What Should We Teach Civil Engineers?</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/civil-engineering-curriculum-2035/index.html" class="no-external">Rethinking the Civil Engineering Curriculum Beyond Specialization</a>
+</div>
+<div class="delink listing-description"><a href="./posts/civil-engineering-curriculum-2035/index.html" class="no-external">
+<p>What should civil engineers learn in the AI era? This article traces the evolution of civil engineering education from practice and engineering science to specialization, and proposes a curriculum architecture that reconnects fundamentals, infrastructure systems, professional depth, AI, energy, climate, and engineering judgment.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/civil-engineering-curriculum-2035/index.html" class="no-external">
+<div class="listing-date">
+Sep 29, 2026
+</div>
+<div class="listing-author">
+Goangseup Zi
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="UmVzZWFyY2glMjAlMjYlMjBJbm5vdmF0aW9uJTJDRGlnaXRhbCUyMFRyYW5zZm9ybWF0aW9uJTIwJTI2JTIwQUk=" data-listing-date-sort="1790348400000" data-listing-file-modified-sort="1791830478000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2889">
+<div class="thumbnail"><a href="./posts/why-wgd-needs-more-than-llm/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/why-wgd-needs-more-than-llm/index.html" class="no-external">What Does It Mean to Digitalize Engineering Standards in the Age of AI?</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/why-wgd-needs-more-than-llm/index.html" class="no-external">From How LLMs Work to RuleUnits, Ontologies, Knowledge Graphs, and WGD</a>
+</div>
+<div class="delink listing-description"><a href="./posts/why-wgd-needs-more-than-llm/index.html" class="no-external">
+These days, we ask AI almost anything. It summarizes papers, writes code, and explains design standards. I now use AI in one form or another almost every day.
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/why-wgd-needs-more-than-llm/index.html" class="no-external">
+<div class="listing-date">
+Sep 26, 2026
+</div>
+<div class="listing-author">
+Goangseup Zi
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="UmVzZWFyY2glMjAlMjYlMjBJbm5vdmF0aW9uJTJDRGlnaXRhbCUyMFRyYW5zZm9ybWF0aW9uJTIwJTI2JTIwQUklMkNEaWdpdGFsJTIwQ29uc3RydWN0aW9uJTIwU3RhbmRhcmRz" data-listing-date-sort="1782399600000" data-listing-file-modified-sort="1791830478000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1776">
 <div class="thumbnail"><a href="./posts/ai-construction-standards-without-hallucination/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/ai-construction-standards-without-hallucination/Fig02.png" class="thumbnail-image">
@@ -543,7 +590,35 @@ Goangseup Zi
 <h2 class="anchored" data-anchor-id="concrete-materials">Concrete &amp; Materials</h2>
 <div id="listing-concrete" class="quarto-listing quarto-listing-container-default">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="UmVzZWFyY2glMjBFeHBsYWluZWQlMkNDb25jcmV0ZSUyMCUyNiUyME1hdGVyaWFscyUyQ0NvbmNyZXRlJTIwRHVyYWJpbGl0eSUyQ011bHRpcGh5c2ljcyUyQ0NvcnJvc2lvbiUyQ0Fsa2FsaS1TaWxpY2ElMjBSZWFjdGlvbg==" data-listing-date-sort="1788361200000" data-listing-file-modified-sort="1789786752125" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2841">
+<div class="quarto-post image-right" data-index="0" data-categories="RW5naW5lZXJpbmclMjBNZWNoYW5pY3MlMkNDb25jcmV0ZSUyMCUyNiUyME1hdGVyaWFscyUyQ0NvbmNyZXRlJTJDQ3JlZXAlMkNCcmlkZ2UlMjBFbmdpbmVlcmluZw==" data-listing-date-sort="1790002800000" data-listing-file-modified-sort="1791830478000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1637">
+<div class="thumbnail"><a href="./posts/age-adjusted-effective-modulus/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/age-adjusted-effective-modulus/index.html" class="no-external">Why Does Concrete Need an Age-Adjusted Effective Modulus?</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/age-adjusted-effective-modulus/index.html" class="no-external">From creep and relaxation to long-term deflection of concrete box-girder bridges</a>
+</div>
+<div class="delink listing-description"><a href="./posts/age-adjusted-effective-modulus/index.html" class="no-external">
+<p>Why is the ordinary effective modulus not enough for long-term concrete bridge analysis? This article develops AAEM from creep and relaxation and explains its meaning for box-girder bridge deflection.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/age-adjusted-effective-modulus/index.html" class="no-external">
+<div class="listing-date">
+Sep 22, 2026
+</div>
+<div class="listing-author">
+Goangseup Zi
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="UmVzZWFyY2glMjAlMjYlMjBJbm5vdmF0aW9uJTJDQ29uY3JldGUlMjAlMjYlMjBNYXRlcmlhbHMlMkNDb25jcmV0ZSUyMER1cmFiaWxpdHklMkNNdWx0aXBoeXNpY3MlMkNDb3Jyb3Npb24lMkNBbGthbGktU2lsaWNhJTIwUmVhY3Rpb24=" data-listing-date-sort="1788361200000" data-listing-file-modified-sort="1791830478000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2841">
 <div class="thumbnail"><a href="./posts/coupled-concrete-durability/index.html" class="no-external">
 
 <p class="card-img-top"><img loading='lazy' src="posts\coupled-concrete-durability\Fig01.png"  class="thumbnail-image card-img"/></p>
@@ -571,7 +646,7 @@ Goangseup Zi
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="UmVzZWFyY2glMjBFeHBsYWluZWQlMkNDb25jcmV0ZSUyMCUyNiUyME1hdGVyaWFscyUyQ0NvbmNyZXRlJTJDV2FzdGUlMjBNYXRlcmlhbHMlMkNGcmFjdHVyZSUyME1lY2hhbmljcyUyQ1N1c3RhaW5hYmxlJTIwQ29uc3RydWN0aW9u" data-listing-date-sort="1788274800000" data-listing-file-modified-sort="1789786752528" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3207">
+<div class="quarto-post image-right" data-index="2" data-categories="UmVzZWFyY2glMjAlMjYlMjBJbm5vdmF0aW9uJTJDQ29uY3JldGUlMjAlMjYlMjBNYXRlcmlhbHMlMkNDb25jcmV0ZSUyQ1dhc3RlJTIwTWF0ZXJpYWxzJTJDRnJhY3R1cmUlMjBNZWNoYW5pY3MlMkNTdXN0YWluYWJsZSUyMENvbnN0cnVjdGlvbg==" data-listing-date-sort="1788274800000" data-listing-file-modified-sort="1791830478000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3210">
 <div class="thumbnail"><a href="./posts/reactive-waste-particle-size/index.html" class="no-external">
 
 <p class="card-img-top"><img loading='lazy' src="posts\reactive-waste-particle-size\Fig01.png"  class="thumbnail-image card-img"/></p>
@@ -599,7 +674,7 @@ Goangseup Zi
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="UmVzZWFyY2glMjBFeHBsYWluZWQlMkNDb25jcmV0ZSUyMCUyNiUyME1hdGVyaWFscyUyQ0NvbmNyZXRlJTJDU3RlZWwlMjBTbGFnJTJDU3VzdGFpbmFibGUlMjBDb25zdHJ1Y3Rpb24=" data-listing-date-sort="1788188400000" data-listing-file-modified-sort="1789786751968" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2007">
+<div class="quarto-post image-right" data-index="3" data-categories="UmVzZWFyY2glMjAlMjYlMjBJbm5vdmF0aW9uJTJDQ29uY3JldGUlMjAlMjYlMjBNYXRlcmlhbHMlMkNDb25jcmV0ZSUyQ1N0ZWVsJTIwU2xhZyUyQ1N1c3RhaW5hYmxlJTIwQ29uc3RydWN0aW9u" data-listing-date-sort="1788188400000" data-listing-file-modified-sort="1791830478000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1998">
 <div class="thumbnail"><a href="./posts/bof-slag-particle-size/index.html" class="no-external">
 
 <p class="card-img-top"><img loading='lazy' src="posts\bof-slag-particle-size\Fig01.png"  class="thumbnail-image card-img"/></p>
@@ -635,7 +710,7 @@ Goangseup Zi
 <h2 class="anchored" data-anchor-id="computational-mechanics-fracture">Computational Mechanics &amp; Fracture</h2>
 <div id="listing-computational" class="quarto-listing quarto-listing-container-default">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="UmVzZWFyY2glMjBFeHBsYWluZWQlMkNDb21wdXRhdGlvbmFsJTIwTWVjaGFuaWNzJTIwJTI2JTIwRnJhY3R1cmUlMkNDb21wdXRhdGlvbmFsJTIwRnJhY3R1cmUlMkNYRkVNJTJDUGhhc2UlMjBGaWVsZCUyQ1BlcmlkeW5hbWljcw==" data-listing-date-sort="1788447600000" data-listing-file-modified-sort="1789786751927" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2589">
+<div class="quarto-post image-right" data-index="0" data-categories="UmVzZWFyY2glMjAlMjYlMjBJbm5vdmF0aW9uJTJDQ29tcHV0YXRpb25hbCUyME1lY2hhbmljcyUyMCUyNiUyMEZyYWN0dXJlJTJDQ29tcHV0YXRpb25hbCUyMEZyYWN0dXJlJTJDWEZFTSUyQ1BoYXNlJTIwRmllbGQlMkNQZXJpZHluYW1pY3M=" data-listing-date-sort="1788447600000" data-listing-file-modified-sort="1791830478000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2589">
 <div class="thumbnail"><a href="./posts/alternative-crack-representations/index.html" class="no-external">
 
 <p class="card-img-top"><img loading='lazy' src="posts\alternative-crack-representations\Fig01.png"  class="thumbnail-image card-img"/></p>
@@ -663,7 +738,7 @@ Goangseup Zi
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="UmVzZWFyY2glMjBFeHBsYWluZWQlMkNDb21wdXRhdGlvbmFsJTIwTWVjaGFuaWNzJTIwJTI2JTIwRnJhY3R1cmUlMkNDb21wdXRhdGlvbmFsJTIwRnJhY3R1cmUlMkNNdWx0aXNjYWxlJTIwTWVjaGFuaWNz" data-listing-date-sort="1788447600000" data-listing-file-modified-sort="1789786752384" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2549">
+<div class="quarto-post image-right" data-index="1" data-categories="UmVzZWFyY2glMjAlMjYlMjBJbm5vdmF0aW9uJTJDQ29tcHV0YXRpb25hbCUyME1lY2hhbmljcyUyMCUyNiUyMEZyYWN0dXJlJTJDQ29tcHV0YXRpb25hbCUyMEZyYWN0dXJlJTJDTXVsdGlzY2FsZSUyME1lY2hhbmljcw==" data-listing-date-sort="1788447600000" data-listing-file-modified-sort="1791830478000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2549">
 <div class="thumbnail"><a href="./posts/how-much-physics-does-a-crack-need/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/how-much-physics-does-a-crack-need/Fig01.png" class="thumbnail-image">
@@ -691,7 +766,7 @@ Goangseup Zi
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="UmVzZWFyY2glMjBFeHBsYWluZWQlMkNDb21wdXRhdGlvbmFsJTIwTWVjaGFuaWNzJTIwJTI2JTIwRnJhY3R1cmUlMkNDb21wdXRhdGlvbmFsJTIwRnJhY3R1cmUlMkNDb21wdXRhdGlvbmFsJTIwTWVjaGFuaWNzJTJDWEZFTQ==" data-listing-date-sort="1788447600000" data-listing-file-modified-sort="1789786752417" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2561">
+<div class="quarto-post image-right" data-index="2" data-categories="UmVzZWFyY2glMjAlMjYlMjBJbm5vdmF0aW9uJTJDQ29tcHV0YXRpb25hbCUyME1lY2hhbmljcyUyMCUyNiUyMEZyYWN0dXJlJTJDQ29tcHV0YXRpb25hbCUyMEZyYWN0dXJlJTJDQ29tcHV0YXRpb25hbCUyME1lY2hhbmljcyUyQ1hGRU0=" data-listing-date-sort="1788447600000" data-listing-file-modified-sort="1791830478000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2561">
 <div class="thumbnail"><a href="./posts/lessons-from-enriched-methods/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/lessons-from-enriched-methods/Fig01.png" class="thumbnail-image">
@@ -719,7 +794,7 @@ Goangseup Zi
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="UmVzZWFyY2glMjBFeHBsYWluZWQlMkNDb21wdXRhdGlvbmFsJTIwTWVjaGFuaWNzJTIwJTI2JTIwRnJhY3R1cmUlMkNDb21wdXRhdGlvbmFsJTIwRnJhY3R1cmUlMkNYRkVNJTJDWEVGRyUyQ0ZhdGlndWU=" data-listing-date-sort="1788447600000" data-listing-file-modified-sort="1789786752452" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2703">
+<div class="quarto-post image-right" data-index="3" data-categories="UmVzZWFyY2glMjAlMjYlMjBJbm5vdmF0aW9uJTJDQ29tcHV0YXRpb25hbCUyME1lY2hhbmljcyUyMCUyNiUyMEZyYWN0dXJlJTJDQ29tcHV0YXRpb25hbCUyMEZyYWN0dXJlJTJDWEZFTSUyQ1hFRkclMkNGYXRpZ3Vl" data-listing-date-sort="1788447600000" data-listing-file-modified-sort="1791830478000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2706">
 <div class="thumbnail"><a href="./posts/multiple-cracks-fracture-network/index.html" class="no-external">
 
 <p class="card-img-top"><img loading='lazy' src="posts\multiple-cracks-fracture-network\Fig01.png"  class="thumbnail-image card-img"/></p>
@@ -747,7 +822,7 @@ Goangseup Zi
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="UmVzZWFyY2glMjBFeHBsYWluZWQlMkNDb21wdXRhdGlvbmFsJTIwTWVjaGFuaWNzJTIwJTI2JTIwRnJhY3R1cmUlMkNDb21wdXRhdGlvbmFsJTIwRnJhY3R1cmUlMkNYRUZHJTJDWEZFTSUyQ01lc2hmcmVlJTIwTWV0aG9kcw==" data-listing-date-sort="1788447600000" data-listing-file-modified-sort="1789786752623" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2315">
+<div class="quarto-post image-right" data-index="4" data-categories="UmVzZWFyY2glMjAlMjYlMjBJbm5vdmF0aW9uJTJDQ29tcHV0YXRpb25hbCUyME1lY2hhbmljcyUyMCUyNiUyMEZyYWN0dXJlJTJDQ29tcHV0YXRpb25hbCUyMEZyYWN0dXJlJTJDWEVGRyUyQ1hGRU0lMkNNZXNoZnJlZSUyME1ldGhvZHM=" data-listing-date-sort="1788447600000" data-listing-file-modified-sort="1791830478000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2318">
 <div class="thumbnail"><a href="./posts/xefg-why-meshfree/index.html" class="no-external">
 
 <p class="card-img-top"><img loading='lazy' src="posts\xefg-why-meshfree\Fig01.png"  class="thumbnail-image card-img"/></p>
@@ -775,7 +850,7 @@ Goangseup Zi
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="UmVzZWFyY2glMjBFeHBsYWluZWQlMkNDb21wdXRhdGlvbmFsJTIwTWVjaGFuaWNzJTIwJTI2JTIwRnJhY3R1cmUlMkNDb21wdXRhdGlvbmFsJTIwRnJhY3R1cmUlMkNYRkVN" data-listing-date-sort="1788447600000" data-listing-file-modified-sort="1789786752634" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2747">
+<div class="quarto-post image-right" data-index="5" data-categories="UmVzZWFyY2glMjAlMjYlMjBJbm5vdmF0aW9uJTJDQ29tcHV0YXRpb25hbCUyME1lY2hhbmljcyUyMCUyNiUyMEZyYWN0dXJlJTJDQ29tcHV0YXRpb25hbCUyMEZyYWN0dXJlJTJDWEZFTQ==" data-listing-date-sort="1788447600000" data-listing-file-modified-sort="1791830478000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2750">
 <div class="thumbnail"><a href="./posts/xfem-crack-through-mesh/index.html" class="no-external">
 
 <p class="card-img-top"><img loading='lazy' src="posts\xfem-crack-through-mesh\Fig01.png"  class="thumbnail-image card-img"/></p>
@@ -803,7 +878,7 @@ Goangseup Zi
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="UmVzZWFyY2glMjBFeHBsYWluZWQlMkNDb21wdXRhdGlvbmFsJTIwTWVjaGFuaWNzJTIwJTI2JTIwRnJhY3R1cmUlMkNDb21wdXRhdGlvbmFsJTIwRnJhY3R1cmUlMkNYRkVNJTJDWEVGRw==" data-listing-date-sort="1788361200000" data-listing-file-modified-sort="1789786752094" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2583">
+<div class="quarto-post image-right" data-index="6" data-categories="UmVzZWFyY2glMjAlMjYlMjBJbm5vdmF0aW9uJTJDQ29tcHV0YXRpb25hbCUyME1lY2hhbmljcyUyMCUyNiUyMEZyYWN0dXJlJTJDQ29tcHV0YXRpb25hbCUyMEZyYWN0dXJlJTJDWEZFTSUyQ1hFRkc=" data-listing-date-sort="1788361200000" data-listing-file-modified-sort="1791830478000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2583">
 <div class="thumbnail"><a href="./posts/computational-fracture-overview/index.html" class="no-external">
 
 <p class="card-img-top"><img loading='lazy' src="posts\computational-fracture-overview\Fig01.png"  class="thumbnail-image card-img"/></p>
@@ -835,11 +910,67 @@ Goangseup Zi
 <div class="listing-no-matching d-none">No matching items</div>
 </div>
 </section>
-<section id="engineering-mechanics-1" class="level2">
-<h2 class="anchored" data-anchor-id="engineering-mechanics-1">Engineering Mechanics</h2>
+<section id="engineering-mechanics" class="level2">
+<h2 class="anchored" data-anchor-id="engineering-mechanics">Engineering Mechanics</h2>
 <div id="listing-mechanics" class="quarto-listing quarto-listing-container-default">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="RW5naW5lZXJpbmclMjBNZWNoYW5pY3MlMkNGbHVpZC1TdHJ1Y3R1cmUlMjBJbnRlcmFjdGlvbiUyQ09mZnNob3JlJTIwRW5naW5lZXJpbmclMkNIeWRyb2VsYXN0aWNpdHk=" data-listing-date-sort="1788447600000" data-listing-file-modified-sort="1789786752184" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1867">
+<div class="quarto-post image-right" data-index="0" data-categories="RW5naW5lZXJpbmclMjBNZWNoYW5pY3M=" data-listing-date-sort="1791298800000" data-listing-file-modified-sort="1791830478000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1377">
+<div class="thumbnail"><a href="./posts/linear-elasticity/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/linear-elasticity/index.html" class="no-external">Why Does Linear Elasticity Need Only Two Material Constants?</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/linear-elasticity/index.html" class="no-external">From volumetric and distortional deformation to the elasticity tensor</a>
+</div>
+<div class="delink listing-description"><a href="./posts/linear-elasticity/index.html" class="no-external">
+<p>Why does isotropic linear elasticity require only two independent material constants? Starting from volumetric and deviatoric strain, this article derives Hooke’s law, the fourth-order elasticity tensor, Voigt notation, and the plane-stress and plane-strain stiffness matrices.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/linear-elasticity/index.html" class="no-external">
+<div class="listing-date">
+Oct 7, 2026
+</div>
+<div class="listing-author">
+Goangseup Zi
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="RW5naW5lZXJpbmclMjBNZWNoYW5pY3MlMkNDb25jcmV0ZSUyMCUyNiUyME1hdGVyaWFscyUyQ0NvbmNyZXRlJTJDQ3JlZXAlMkNCcmlkZ2UlMjBFbmdpbmVlcmluZw==" data-listing-date-sort="1790002800000" data-listing-file-modified-sort="1791830478000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1637">
+<div class="thumbnail"><a href="./posts/age-adjusted-effective-modulus/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/age-adjusted-effective-modulus/index.html" class="no-external">Why Does Concrete Need an Age-Adjusted Effective Modulus?</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/age-adjusted-effective-modulus/index.html" class="no-external">From creep and relaxation to long-term deflection of concrete box-girder bridges</a>
+</div>
+<div class="delink listing-description"><a href="./posts/age-adjusted-effective-modulus/index.html" class="no-external">
+<p>Why is the ordinary effective modulus not enough for long-term concrete bridge analysis? This article develops AAEM from creep and relaxation and explains its meaning for box-girder bridge deflection.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/age-adjusted-effective-modulus/index.html" class="no-external">
+<div class="listing-date">
+Sep 22, 2026
+</div>
+<div class="listing-author">
+Goangseup Zi
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="RW5naW5lZXJpbmclMjBNZWNoYW5pY3MlMkNGbHVpZC1TdHJ1Y3R1cmUlMjBJbnRlcmFjdGlvbiUyQ09mZnNob3JlJTIwRW5naW5lZXJpbmclMkNIeWRyb2VsYXN0aWNpdHk=" data-listing-date-sort="1788447600000" data-listing-file-modified-sort="1791830478000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1867">
 <div class="thumbnail"><a href="./posts/floating-structure-frequency-domain/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/floating-structure-frequency-domain/Fig01.png" class="thumbnail-image">
@@ -867,7 +998,7 @@ Goangseup Zi
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="RW5naW5lZXJpbmclMjBNZWNoYW5pY3MlMkNNb29yaW5nJTJDT2Zmc2hvcmUlMjBFbmdpbmVlcmluZyUyQ1N0cnVjdHVyYWwlMjBEeW5hbWljcw==" data-listing-date-sort="1788447600000" data-listing-file-modified-sort="1789786752423" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2072">
+<div class="quarto-post image-right" data-index="3" data-categories="RW5naW5lZXJpbmclMjBNZWNoYW5pY3MlMkNNb29yaW5nJTJDT2Zmc2hvcmUlMjBFbmdpbmVlcmluZyUyQ1N0cnVjdHVyYWwlMjBEeW5hbWljcw==" data-listing-date-sort="1788447600000" data-listing-file-modified-sort="1791830478000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2075">
 <div class="thumbnail"><a href="./posts/mooring-line-dynamics/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/mooring-line-dynamics/Fig01.png" class="thumbnail-image">
@@ -895,7 +1026,7 @@ Goangseup Zi
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="RW5naW5lZXJpbmclMjBNZWNoYW5pY3MlMkNTdHJldGNoYWJsZSUyMEVsZWN0cm9uaWNzJTJDU29saWQlMjBNZWNoYW5pY3MlMkNGaW5pdGUlMjBFbGVtZW50JTIwQW5hbHlzaXM=" data-listing-date-sort="1788274800000" data-listing-file-modified-sort="1789786752582" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3029">
+<div class="quarto-post image-right" data-index="4" data-categories="RW5naW5lZXJpbmclMjBNZWNoYW5pY3MlMkNTdHJldGNoYWJsZSUyMEVsZWN0cm9uaWNzJTJDU29saWQlMjBNZWNoYW5pY3MlMkNGaW5pdGUlMjBFbGVtZW50JTIwQW5hbHlzaXM=" data-listing-date-sort="1788274800000" data-listing-file-modified-sort="1791830478000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3035">
 <div class="thumbnail"><a href="./posts/stretchable-device-mechanics/index.html" class="no-external">
 
 <p class="card-img-top"><img loading='lazy' src="posts\stretchable-device-mechanics\Fig01.png"  class="thumbnail-image card-img"/></p>
@@ -909,7 +1040,7 @@ Goangseup Zi
 <a href="./posts/stretchable-device-mechanics/index.html" class="no-external">A structural engineer’s route into stretchable electronics—and the mechanics of putting deformation where it can be tolerated</a>
 </div>
 <div class="delink listing-description"><a href="./posts/stretchable-device-mechanics/index.html" class="no-external">
-<p>How a collaboration between structural mechanics and chemical engineering led to a simple principle for stretchable devices: protect fragile functional components by controlling where deformation occurs.</p>
+<p>How structural mechanics makes stretchable electronics possible by separating global deformation from local strain through buckling, stiffness contrast, compliant interconnections, and strain-field design.</p>
 </a></div>
 </div>
 <div class="metadata">
@@ -923,7 +1054,7 @@ Goangseup Zi
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="RW5naW5lZXJpbmclMjBNZWNoYW5pY3MlMkNNZWNoYW5pY3MlMjBvZiUyME1hdGVyaWFscyUyQ1N0cmFpbiUyQ0NvbnRpbnV1bSUyME1lY2hhbmljcw==" data-listing-date-sort="1788188400000" data-listing-file-modified-sort="1789786752529" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="994">
+<div class="quarto-post image-right" data-index="5" data-categories="RW5naW5lZXJpbmclMjBNZWNoYW5pY3MlMkNNZWNoYW5pY3MlMjBvZiUyME1hdGVyaWFscyUyQ1N0cmFpbiUyQ0NvbnRpbnV1bSUyME1lY2hhbmljcw==" data-listing-date-sort="1788188400000" data-listing-file-modified-sort="1791830478000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1087">
 <div class="thumbnail"><a href="./posts/strain-tensor-energy/index.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -937,7 +1068,7 @@ Goangseup Zi
 <a href="./posts/strain-tensor-energy/index.html" class="no-external">From traction work to internal strain energy</a>
 </div>
 <div class="delink listing-description"><a href="./posts/strain-tensor-energy/index.html" class="no-external">
-<p>Why is strain the symmetric part of the displacement gradient? Starting from boundary traction work, we derive the strain tensor through equilibrium and energy considerations.</p>
+<p>Why is strain the symmetric part of the displacement gradient? Starting from boundary traction work, we derive the strain tensor through equilibrium, virtual work, and energy conjugacy.</p>
 </a></div>
 </div>
 <div class="metadata">
@@ -951,7 +1082,7 @@ Goangseup Zi
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="RW5naW5lZXJpbmclMjBNZWNoYW5pY3MlMkNNZWNoYW5pY3MlMjBvZiUyME1hdGVyaWFscyUyQ1N0cmVzcyUyQ0NvbnRpbnV1bSUyME1lY2hhbmljcw==" data-listing-date-sort="1788102000000" data-listing-file-modified-sort="1789786752554" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1134">
+<div class="quarto-post image-right" data-index="6" data-categories="RW5naW5lZXJpbmclMjBNZWNoYW5pY3MlMkNNZWNoYW5pY3MlMjBvZiUyME1hdGVyaWFscyUyQ1N0cmVzcyUyQ0NvbnRpbnV1bSUyME1lY2hhbmljcw==" data-listing-date-sort="1788102000000" data-listing-file-modified-sort="1791830478000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1140">
 <div class="thumbnail"><a href="./posts/stress-tensor/index.html" class="no-external">
 
 <p class="card-img-top"><img loading='lazy' src="posts\stress-tensor\Fig01.png"  class="thumbnail-image card-img"/></p>
@@ -965,7 +1096,7 @@ Goangseup Zi
 <a href="./posts/stress-tensor/index.html" class="no-external">From an internal cut to Cauchy’s stress formula</a>
 </div>
 <div class="delink listing-description"><a href="./posts/stress-tensor/index.html" class="no-external">
-<p>A physical introduction to the Cauchy stress tensor, beginning with traction on an internal cut and leading to Cauchy’s stress formula.</p>
+<p>A physical introduction to the Cauchy stress tensor, traction vector, Cauchy tetrahedron, and stress on an arbitrary plane, beginning with an internal cut and leading to Cauchy’s stress formula.</p>
 </a></div>
 </div>
 <div class="metadata">
@@ -979,7 +1110,7 @@ Goangseup Zi
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="Wi1EaWFncmFtJTJDRW5naW5lZXJpbmclMjBNZWNoYW5pY3MlMkNTdHJ1Y3R1cmFsJTIwTWVjaGFuaWNzJTJDTWVjaGFuaWNzJTIwb2YlMjBNYXRlcmlhbHM=" data-listing-date-sort="1788015600000" data-listing-file-modified-sort="1789786752635" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1589">
+<div class="quarto-post image-right" data-index="7" data-categories="RW5naW5lZXJpbmclMjBNZWNoYW5pY3MlMkNaJTIwRGlhZ3JhbSUyMG1lY2hhbmljcyUyQ21lY2hhbmljcyUyMG5hdmlnYXRpb24lMjBtYXAlMkNTdHJ1Y3R1cmFsJTIwTWVjaGFuaWNzJTJDTWVjaGFuaWNzJTIwb2YlMjBNYXRlcmlhbHM=" data-listing-date-sort="1788015600000" data-listing-file-modified-sort="1792402905356" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2141">
 <div class="thumbnail"><a href="./posts/z-diagram-introduction/index.html" class="no-external">
 
 <p class="card-img-top"><img loading='lazy' src="posts\z-diagram-introduction\z-diagram-standard.png"  class="thumbnail-image card-img"/></p>
@@ -993,7 +1124,7 @@ Goangseup Zi
 <a href="./posts/z-diagram-introduction/index.html" class="no-external">A unified view of equilibrium, compatibility, constitutive behavior, and energy in structural mechanics</a>
 </div>
 <div class="delink listing-description"><a href="./posts/z-diagram-introduction/index.html" class="no-external">
-<p>An introduction to the Z-Diagram as a unified framework connecting force equilibrium, constitutive behavior, displacement compatibility, and energy across structural and material-point scales.</p>
+<p>The Z-Diagram, developed by Goangseup Zi in 2004 as a navigation map for mechanics problems, connects force, stress, strain, and displacement through equilibrium, constitutive behavior, compatibility, work, and energy.</p>
 </a></div>
 </div>
 <div class="metadata">

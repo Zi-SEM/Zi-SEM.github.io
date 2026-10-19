@@ -142,19 +142,23 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../research.html"> 
-<span class="menu-text">Research Explained</span></a>
+<span class="menu-text">Research &amp; Innovation</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../mechanics.html"> 
 <span class="menu-text">Engineering Mechanics</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../z-diagram.html"> 
-<span class="menu-text">Z-Diagram</span></a>
+    <a class="nav-link" href="../../perspectives.html"> 
+<span class="menu-text">Engineering Perspectives</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../latex-writing.html"> 
-<span class="menu-text">LaTeX &amp; Writing</span></a>
+    <a class="nav-link" href="../../cartoon-log.html"> 
+<span class="menu-text">Cartoon Logs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../beyond-engineering.html"> 
+<span class="menu-text">Beyond Engineering</span></a>
   </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -173,6 +177,41 @@ window.Quarto = {
   </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">한국어</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../index-ko.html">
+ <span class="dropdown-text">홈</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research-ko.html">
+ <span class="dropdown-text">연구와 기술</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../mechanics-ko.html">
+ <span class="dropdown-text">공학역학</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../perspectives-ko.html">
+ <span class="dropdown-text">공학 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../cartoon-log-ko.html">
+ <span class="dropdown-text">카툰 일기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../beyond-engineering-ko.html">
+ <span class="dropdown-text">공학 밖의 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about-ko.html">
+ <span class="dropdown-text">소개</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
 </i> 
@@ -194,7 +233,7 @@ window.Quarto = {
     <h2 id="toc-title">목차</h2>
    
   <ul class="collapse">
-  <li><a href="#먼저-균열애-관한-물리적인-요구사항이-무엇인지-보자" id="toc-먼저-균열애-관한-물리적인-요구사항이-무엇인지-보자" class="nav-link active" data-scroll-target="#먼저-균열애-관한-물리적인-요구사항이-무엇인지-보자">먼저 균열애 관한 물리적인 요구사항이 무엇인지 보자</a></li>
+  <li><a href="#먼저-균열에-필요한-물리적인-요구사항이-무엇인지-보자" id="toc-먼저-균열에-필요한-물리적인-요구사항이-무엇인지-보자" class="nav-link active" data-scroll-target="#먼저-균열에-필요한-물리적인-요구사항이-무엇인지-보자">먼저 균열에 필요한 물리적인 요구사항이 무엇인지 보자</a></li>
   <li><a href="#xfem-균열-정보를-근사공간에-넣는다" id="toc-xfem-균열-정보를-근사공간에-넣는다" class="nav-link" data-scroll-target="#xfem-균열-정보를-근사공간에-넣는다">XFEM: 균열 정보를 근사공간에 넣는다</a></li>
   <li><a href="#phantom-node-이번에는-이산화된-영역을-바꾼다" id="toc-phantom-node-이번에는-이산화된-영역을-바꾼다" class="nav-link" data-scroll-target="#phantom-node-이번에는-이산화된-영역을-바꾼다">Phantom node: 이번에는 이산화된 영역을 바꾼다</a></li>
   <li><a href="#왜-명시적으로-부가하는-자유도-확충-대신-다른-방법을-강구하였을까" id="toc-왜-명시적으로-부가하는-자유도-확충-대신-다른-방법을-강구하였을까" class="nav-link" data-scroll-target="#왜-명시적으로-부가하는-자유도-확충-대신-다른-방법을-강구하였을까">왜 명시적으로 부가하는 자유도 확충 대신 다른 방법을 강구하였을까?</a></li>
@@ -225,7 +264,7 @@ window.Quarto = {
 <h1 class="title">균열을 표현하려면 반드시 변위공간을 부가적으로 확충(enrichment)해야 하는가?</h1>
 <p class="subtitle lead">변위공간 확충에서부터 phantom node, cracking particle, peridynamics, phase field까지</p>
   <div class="quarto-categories">
-    <div class="quarto-category">Research Explained</div>
+    <div class="quarto-category">연구와 기술</div>
     <div class="quarto-category">Computational Mechanics &amp; Fracture</div>
     <div class="quarto-category">Computational Fracture</div>
     <div class="quarto-category">XFEM</div>
@@ -274,7 +313,7 @@ window.Quarto = {
 <div class="language-switch">
 <a href="../../posts/alternative-crack-representations/index.html">English</a> | <strong>한글</strong>
 </div>
-<p><strong>계산파괴역학 시리즈:</strong> <a href="../../posts/computational-fracture-overview/index-ko.html">← 전체 보기</a> · <a href="../multiple-cracks-fracture-network/index-ko.qmd">← 다중균열</a> · 7편 중 5편</p>
+<p><strong>계산파괴역학 시리즈:</strong> <a href="../../posts/computational-fracture-overview/index-ko.html">← 전체 보기</a> · <a href="../multiple-cracks-fracture-network/">← 다중균열</a> · 7편 중 5편</p>
 <p>앞의 글들에서는 다음과 같은 고찰을 계속 따라왔다.</p>
 <p>균열이 생기면 일반적으로 사용하는 연속적인 변위장을 근사하는 변위계로는 표현할 수 없는 운동학이 나타난다. <strong>확장유한요소법(XFEM)</strong>과 <strong>확장무요소법(XEFG)</strong>은 이때 빠져 있는 불연속 정보를 변위공간에 부가하여 변위공간을 확충한다.</p>
 <p>그러면 자연스럽게 이런 질문이 생긴다.</p>
@@ -303,8 +342,8 @@ phase field
 날카로운 균열을 정규화된 파괴장으로 이용해서 표현</code></pre>
 <p>이렇게 보면 이 방법들의 역사는 서로 무관한 알고리즘이 차례로 등장한 것이 아니다.</p>
 <p><strong>재료가 연속성을 잃었다는 사실을 어디에, 어떻게 표현할 것인가</strong>에 대한 여러 선택이다.</p>
-<section id="먼저-균열애-관한-물리적인-요구사항이-무엇인지-보자" class="level2">
-<h2 class="anchored" data-anchor-id="먼저-균열애-관한-물리적인-요구사항이-무엇인지-보자">먼저 균열애 관한 물리적인 요구사항이 무엇인지 보자</h2>
+<section id="먼저-균열에-필요한-물리적인-요구사항이-무엇인지-보자" class="level2">
+<h2 class="anchored" data-anchor-id="먼저-균열에-필요한-물리적인-요구사항이-무엇인지-보자">먼저 균열에 필요한 물리적인 요구사항이 무엇인지 보자</h2>
 <p>수치기법을 보기 전에 파괴가 역학적으로 어떤 조건을 의미하는지부터 생각해 보자.</p>
 <p>균열이 생기기 전에는 내부에 어떤 면을 사이에 두더라도 변위장은 연속이다.</p>
 <p><span class="math display">\[
@@ -370,7 +409,7 @@ N_J(\mathbf{x})H(\mathbf{x})\mathbf{a}_J
 </figcaption>
 </figure>
 </div>
-<p>그림 <strong>?@fig-phantom-xfem에서</strong> 보아야 할 것은 방법의 이름이 아니다.</p>
+<p>그림 <a href="#fig-phantom-xfem" class="quarto-xref">1</a>을 보면, 여기서 중요한 것은 방법의 이름이 아니다.</p>
 <p>물리적인 통찰점은 바뀌지 않았다.</p>
 <p>균열면을 중심으로 변위계에는 점프가 존재한다.</p>
 <p>달라진 것은 <strong>근사공간을 관리하는 방식</strong>, 말하자면 bookkeeping이다.</p>
@@ -429,7 +468,7 @@ N_J(\mathbf{x})H(\mathbf{x})\mathbf{a}_J
 </figcaption>
 </figure>
 </div>
-<p>그림 <a href="#fig-cracking-particle" class="quarto-xref">그림&nbsp;2</a> 역시 같은 질문에 대한 또 하나의 답으로 읽는 것이 좋다.</p>
+<p>그림 <a href="#fig-cracking-particle" class="quarto-xref">2</a> 역시 같은 질문에 대한 또 하나의 답으로 읽는 것이 좋다.</p>
 <blockquote class="blockquote">
 <p>균열 정보는 어디에 저장되어 있는가?</p>
 </blockquote>
@@ -541,7 +580,7 @@ G_c
 </figcaption>
 </figure>
 </div>
-<p>그림 <strong>?@fig-phase-field의</strong> 핵심적인 교환관계는 분명하다.</p>
+<p>그림 <a href="#fig-phase-field" class="quarto-xref">3</a>에서 중요한 것은 이 방법이 만드는 교환관계다.</p>
 <p>이제</p>
 <blockquote class="blockquote">
 <p>정확한 균열면은 어디에 있는가?</p>
@@ -748,7 +787,7 @@ F \leftrightarrow \sigma \leftrightarrow \varepsilon \leftrightarrow u
 </section>
 <section id="시리즈-계속-읽기" class="level2">
 <h2 class="anchored" data-anchor-id="시리즈-계속-읽기">시리즈 계속 읽기</h2>
-<p><a href="../multiple-cracks-fracture-network/index-ko.qmd">← <strong>이전: 여러 균열은 어떻게 분기하고 만나 파괴 네트워크를 만드는가?</strong></a></p>
+<p><a href="../multiple-cracks-fracture-network/">← <strong>이전: 여러 균열은 어떻게 분기하고 만나 파괴 네트워크를 만드는가?</strong></a></p>
 <p><a href="../../posts/computational-fracture-overview/index-ko.html"><strong>시리즈 전체: 계산파괴역학은 왜 어려운가?</strong></a></p>
 <p><strong>다음 글 — 6편:</strong> <em>계산파괴역학은 어떻게 서로 다른 스케일과 구조형식으로 확장되는가?</em></p>
 </section>

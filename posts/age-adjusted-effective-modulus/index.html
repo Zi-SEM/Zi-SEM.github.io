@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Goangseup Zi">
+<meta name="dcterms.date" content="2026-09-22">
+<meta name="keywords" content="age-adjusted effective modulus method, AAEM concrete creep, concrete creep analysis, long-term bridge deflection, box girder bridge creep, prestressed concrete bridge deflection, concrete relaxation, creep compliance, aging coefficient, effective modulus method, time-dependent concrete analysis, staged construction concrete">
+<meta name="description" content="Why is the ordinary effective modulus not enough for long-term concrete bridge analysis? This article develops AAEM from creep and relaxation and explains its meaning for box-girder bridge deflection.">
+
+<title>Why Does Concrete Need an Age-Adjusted Effective Modulus? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research &amp; Innovation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../perspectives.html"> 
+<span class="menu-text">Engineering Perspectives</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../cartoon-log.html"> 
+<span class="menu-text">Cartoon Logs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../beyond-engineering.html"> 
+<span class="menu-text">Beyond Engineering</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">한국어</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../index-ko.html">
+ <span class="dropdown-text">홈</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research-ko.html">
+ <span class="dropdown-text">연구와 기술</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../mechanics-ko.html">
+ <span class="dropdown-text">공학역학</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../perspectives-ko.html">
+ <span class="dropdown-text">공학 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../cartoon-log-ko.html">
+ <span class="dropdown-text">카툰 일기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../beyond-engineering-ko.html">
+ <span class="dropdown-text">공학 밖의 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about-ko.html">
+ <span class="dropdown-text">소개</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#a-bridge-keeps-deforming-after-construction-is-finished" id="toc-a-bridge-keeps-deforming-after-construction-is-finished" class="nav-link active" data-scroll-target="#a-bridge-keeps-deforming-after-construction-is-finished">A bridge keeps deforming after construction is finished</a></li>
+  <li><a href="#why-is-the-ordinary-effective-modulus-not-enough" id="toc-why-is-the-ordinary-effective-modulus-not-enough" class="nav-link" data-scroll-target="#why-is-the-ordinary-effective-modulus-not-enough">Why is the ordinary effective modulus not enough?</a></li>
+  <li><a href="#start-with-two-experiments-we-already-understand" id="toc-start-with-two-experiments-we-already-understand" class="nav-link" data-scroll-target="#start-with-two-experiments-we-already-understand">Start with two experiments we already understand</a></li>
+  <li><a href="#what-do-alpha-and-beta-mean" id="toc-what-do-alpha-and-beta-mean" class="nav-link" data-scroll-target="#what-do-alpha-and-beta-mean">What do <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> mean?</a></li>
+  <li><a href="#why-are-these-the-right-limiting-pictures" id="toc-why-are-these-the-right-limiting-pictures" class="nav-link" data-scroll-target="#why-are-these-the-right-limiting-pictures">Why are these the right limiting pictures?</a></li>
+  <li><a href="#the-bridge-problem-is-fundamentally-a-compatibility-problem" id="toc-the-bridge-problem-is-fundamentally-a-compatibility-problem" class="nav-link" data-scroll-target="#the-bridge-problem-is-fundamentally-a-compatibility-problem">The bridge problem is fundamentally a compatibility problem</a></li>
+  <li><a href="#what-does-the-age-adjusted-modulus-actually-adjust" id="toc-what-does-the-age-adjusted-modulus-actually-adjust" class="nav-link" data-scroll-target="#what-does-the-age-adjusted-modulus-actually-adjust">What does the age-adjusted modulus actually adjust?</a></li>
+  <li><a href="#why-is-chi-an-aging-coefficient" id="toc-why-is-chi-an-aging-coefficient" class="nav-link" data-scroll-target="#why-is-chi-an-aging-coefficient">Why is <span class="math inline">\(\chi\)</span> an aging coefficient?</a></li>
+  <li><a href="#a-stress-increment-applied-later-has-a-different-memory" id="toc-a-stress-increment-applied-later-has-a-different-memory" class="nav-link" data-scroll-target="#a-stress-increment-applied-later-has-a-different-memory">A stress increment applied later has a different memory</a></li>
+  <li><a href="#the-remarkable-result-the-hereditary-problem-looks-elastic-again" id="toc-the-remarkable-result-the-hereditary-problem-looks-elastic-again" class="nav-link" data-scroll-target="#the-remarkable-result-the-hereditary-problem-looks-elastic-again">The remarkable result: the hereditary problem looks elastic again</a></li>
+  <li><a href="#from-material-modulus-to-box-girder-stiffness" id="toc-from-material-modulus-to-box-girder-stiffness" class="nav-link" data-scroll-target="#from-material-modulus-to-box-girder-stiffness">From material modulus to box-girder stiffness</a></li>
+  <li><a href="#why-box-girder-bridges-make-the-issue-visible" id="toc-why-box-girder-bridges-make-the-issue-visible" class="nav-link" data-scroll-target="#why-box-girder-bridges-make-the-issue-visible">Why box-girder bridges make the issue visible</a></li>
+  <li><a href="#a-useful-thought-experiment-lift-the-bridge-after-creep-has-developed" id="toc-a-useful-thought-experiment-lift-the-bridge-after-creep-has-developed" class="nav-link" data-scroll-target="#a-useful-thought-experiment-lift-the-bridge-after-creep-has-developed">A useful thought experiment: lift the bridge after creep has developed</a></li>
+  <li><a href="#why-lifting-reveals-the-meaning-of-aaem" id="toc-why-lifting-reveals-the-meaning-of-aaem" class="nav-link" data-scroll-target="#why-lifting-reveals-the-meaning-of-aaem">Why lifting reveals the meaning of AAEM</a></li>
+  <li><a href="#creep-before-lifting-relaxation-after-lifting" id="toc-creep-before-lifting-relaxation-after-lifting" class="nav-link" data-scroll-target="#creep-before-lifting-relaxation-after-lifting">Creep before lifting, relaxation after lifting?</a></li>
+  <li><a href="#what-aaem-does-not-solve-automatically" id="toc-what-aaem-does-not-solve-automatically" class="nav-link" data-scroll-target="#what-aaem-does-not-solve-automatically">What AAEM does not solve automatically</a></li>
+  <li><a href="#when-is-aaem-exact-and-when-is-it-an-approximation" id="toc-when-is-aaem-exact-and-when-is-it-an-approximation" class="nav-link" data-scroll-target="#when-is-aaem-exact-and-when-is-it-an-approximation">When is AAEM exact, and when is it an approximation?</a></li>
+  <li><a href="#why-this-makes-engineering-sense" id="toc-why-this-makes-engineering-sense" class="nav-link" data-scroll-target="#why-this-makes-engineering-sense">Why this makes engineering sense</a></li>
+  <li><a href="#where-we-go-next" id="toc-where-we-go-next" class="nav-link" data-scroll-target="#where-we-go-next">Where we go next</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Why Does Concrete Need an Age-Adjusted Effective Modulus?</h1>
+<p class="subtitle lead">From creep and relaxation to long-term deflection of concrete box-girder bridges</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Engineering Mechanics</div>
+    <div class="quarto-category">Concrete &amp; Materials</div>
+    <div class="quarto-category">Concrete</div>
+    <div class="quarto-category">Creep</div>
+    <div class="quarto-category">Bridge Engineering</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Why is the ordinary effective modulus not enough for long-term concrete bridge analysis? This article develops AAEM from creep and relaxation and explains its meaning for box-girder bridge deflection.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Goangseup Zi </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 22, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+<div>
+  <div class="keywords">
+    <div class="block-title">Keywords</div>
+    <p>age-adjusted effective modulus method, AAEM concrete creep, concrete creep analysis, long-term bridge deflection, box girder bridge creep, prestressed concrete bridge deflection, concrete relaxation, creep compliance, aging coefficient, effective modulus method, time-dependent concrete analysis, staged construction concrete</p>
+  </div>
+</div>
+
+</header>
+
+
+<div class="language-switch">
+<strong>English</strong> | <a href="../../posts/age-adjusted-effective-modulus/index-ko.html">한글</a>
+</div>
+<section id="a-bridge-keeps-deforming-after-construction-is-finished" class="level2">
+<h2 class="anchored" data-anchor-id="a-bridge-keeps-deforming-after-construction-is-finished">A bridge keeps deforming after construction is finished</h2>
+<p>A prestressed concrete box-girder bridge does not stop moving when construction ends.</p>
+<p>Its dead load remains. Prestress changes with time. Concrete creeps and shrinks. Different segments may have been cast and loaded at different ages. Continuity introduced during construction changes the structural system. Support movements or later corrective actions can impose additional deformations.</p>
+<p>The result may be a deflection that continues to evolve for years or decades.</p>
+<p>The first instinct is often:</p>
+<blockquote class="blockquote">
+<p><strong>Concrete creeps, so use an effective modulus.</strong></p>
+</blockquote>
+<p>For constant stress <span class="math inline">\(\sigma_0\)</span> applied at age <span class="math inline">\(t'\)</span>, creep compliance gives</p>
+<p><span class="math display">\[
+\varepsilon(t)=J(t,t')\sigma_0.
+\]</span></p>
+<p>Thus</p>
+<p><span class="math display">\[
+E_{\mathrm{eff}}(t,t')=\frac{1}{J(t,t')}.
+\]</span></p>
+<p>A viscoelastic problem has apparently become elastic.</p>
+<p>The problem is that concrete stress in a real bridge generally does <strong>not</strong> remain constant. This is precisely where the Age-Adjusted Effective Modulus Method (AAEM) becomes useful.</p>
+<hr>
+</section>
+<section id="why-is-the-ordinary-effective-modulus-not-enough" class="level2">
+<h2 class="anchored" data-anchor-id="why-is-the-ordinary-effective-modulus-not-enough">Why is the ordinary effective modulus not enough?</h2>
+<p>The linear-viscoelastic relation may be written schematically as</p>
+<p><span class="math display">\[
+\varepsilon(t)
+=
+\varepsilon^0(t)
++
+J(t,t_0)\sigma(t_0)
++
+\int_{t_0}^{t}J(t,\tau)\,d\sigma(\tau),
+\]</span></p>
+<p>where <span class="math inline">\(\varepsilon^0(t)\)</span> represents stress-independent strains such as shrinkage and thermal strain.</p>
+<p>The first stress term is easy: it is the response to stress already present at <span class="math inline">\(t_0\)</span>.</p>
+<p>The integral is the difficult part.</p>
+<p>Every increment <span class="math inline">\(d\sigma(\tau)\)</span> occurs at a different concrete age. Each therefore has a different remaining creep history.</p>
+<p>This is the real difficulty:</p>
+<p><span class="math display">\[
+\boxed{
+\text{creep changes deformation}
+\quad\text{while}\quad
+\text{deformation and restraint change stress}.
+}
+\]</span></p>
+<p>In a statically indeterminate structure, stress history is part of the solution.</p>
+<p>Bažant’s 1972 formulation refined the ordinary effective-modulus method specifically to account for concrete aging while retaining an elastic-looking structural calculation. The original paper notes that neglect of aging can cause substantial analytical error and formulates the result in an incremental Hooke-law form. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<hr>
+</section>
+<section id="start-with-two-experiments-we-already-understand" class="level2">
+<h2 class="anchored" data-anchor-id="start-with-two-experiments-we-already-understand">Start with two experiments we already understand</h2>
+<p>Before introducing <span class="math inline">\(\chi\)</span>, consider two limiting experiments.</p>
+<section id="constant-stress-creep" class="level3">
+<h3 class="anchored" data-anchor-id="constant-stress-creep">Constant stress: creep</h3>
+<p>Apply a stress <span class="math inline">\(\beta\)</span> at age <span class="math inline">\(t'\)</span> and maintain it:</p>
+<p><span class="math display">\[
+\sigma(t)=\beta.
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+\varepsilon(t)=\beta J(t,t'),
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\boxed{
+(\varepsilon,\sigma)_\beta
+=
+\left(\beta J(t,t'),\beta\right).
+}
+\]</span></p>
+<p>Stress is fixed; strain evolves. This is the <strong>creep mode</strong>.</p>
+</section>
+<section id="constant-strain-relaxation" class="level3">
+<h3 class="anchored" data-anchor-id="constant-strain-relaxation">Constant strain: relaxation</h3>
+<p>Impose a strain <span class="math inline">\(\alpha\)</span> at age <span class="math inline">\(t'\)</span> and maintain it:</p>
+<p><span class="math display">\[
+\varepsilon(t)=\alpha.
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+\sigma(t)=\alpha R(t,t'),
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\boxed{
+(\varepsilon,\sigma)_\alpha
+=
+\left(\alpha,\alpha R(t,t')\right).
+}
+\]</span></p>
+<p>Strain is fixed; stress evolves. This is the <strong>relaxation mode</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="what-do-alpha-and-beta-mean" class="level2">
+<h2 class="anchored" data-anchor-id="what-do-alpha-and-beta-mean">What do <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> mean?</h2>
+<p>If we write</p>
+<p><span class="math display">\[
+\varepsilon(t)=\alpha+\beta J(t,t'),
+\]</span></p>
+<p><span class="math display">\[
+\sigma(t)=\alpha R(t,t')+\beta,
+\]</span></p>
+<p>it is tempting to interpret <span class="math inline">\(\alpha\)</span> as an elastic strain and <span class="math inline">\(\beta\)</span> as its corresponding elastic stress.</p>
+<p>That would suggest</p>
+<p><span class="math display">\[
+\beta=E\alpha.
+\]</span></p>
+<p>That is <strong>not</strong> the useful interpretation.</p>
+<p>Instead,</p>
+<p><span class="math display">\[
+\boxed{
+\alpha=\text{amplitude of the constant-strain relaxation mode}
+}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\boxed{
+\beta=\text{amplitude of the constant-stress creep mode}.
+}
+\]</span></p>
+<p>Their dimensions are</p>
+<p><span class="math display">\[
+[\alpha]=[\text{strain}],
+\qquad
+[\beta]=[\text{stress}].
+\]</span></p>
+<p>They are independent weights of two elementary viscoelastic responses.</p>
+<p>This decomposition is a useful <strong>physical interpretation</strong> of a general response between two limiting modes. It should not be confused with the exact notation of Bažant’s 1972 theorem.</p>
+<hr>
+</section>
+<section id="why-are-these-the-right-limiting-pictures" class="level2">
+<h2 class="anchored" data-anchor-id="why-are-these-the-right-limiting-pictures">Why are these the right limiting pictures?</h2>
+<p>A bridge follows neither pure mode:</p>
+<p><span class="math display">\[
+\sigma=\sigma(t),
+\qquad
+\varepsilon=\varepsilon(t).
+\]</span></p>
+<p>At one extreme,</p>
+<p><span class="math display">\[
+d\sigma=0,
+\]</span></p>
+<p>and time dependence appears as creep strain.</p>
+<p>At the other,</p>
+<p><span class="math display">\[
+d\varepsilon=0,
+\]</span></p>
+<p>and time dependence appears as stress relaxation.</p>
+<p>A restrained concrete member, prestressed section, or continuous bridge lies between them.</p>
+<p>Relaxation is therefore not a side issue. It describes what happens when compatibility prevents concrete from developing its free creep deformation.</p>
+<hr>
+</section>
+<section id="the-bridge-problem-is-fundamentally-a-compatibility-problem" class="level2">
+<h2 class="anchored" data-anchor-id="the-bridge-problem-is-fundamentally-a-compatibility-problem">The bridge problem is fundamentally a compatibility problem</h2>
+<p>For a free member under sustained bending moment,</p>
+<p><span class="math display">\[
+M=\text{constant}
+\quad\Rightarrow\quad
+\kappa(t)\uparrow.
+\]</span></p>
+<p>A real bridge is constrained. Prestressing steel does not creep like concrete. Reinforcement restrains deformation. Adjacent segments have different ages. Continuity restrains rotations. Bearings and piers impose compatibility. Shrinkage creates deformation without directly applying stress.</p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\boxed{
+\text{creep}
+\rightarrow
+\text{deformation}
+\rightarrow
+\text{compatibility}
+\rightarrow
+\text{stress redistribution}
+\rightarrow
+\text{more creep}.
+}
+\]</span></p>
+<p>This is why long-term box-girder deflection cannot generally be obtained by multiplying the initial elastic deflection by <span class="math inline">\(1+\phi\)</span>.</p>
+<hr>
+</section>
+<section id="what-does-the-age-adjusted-modulus-actually-adjust" class="level2">
+<h2 class="anchored" data-anchor-id="what-does-the-age-adjusted-modulus-actually-adjust">What does the age-adjusted modulus actually adjust?</h2>
+<p>Define</p>
+<p><span class="math display">\[
+\phi(t,t_0)=E(t_0)J(t,t_0)-1.
+\]</span></p>
+<p>The ordinary effective modulus is</p>
+<p><span class="math display">\[
+E_{\mathrm{eff}}(t,t_0)
+=
+\frac{E(t_0)}{1+\phi(t,t_0)}.
+\]</span></p>
+<p>AAEM instead uses</p>
+<p><span class="math display">\[
+\boxed{
+E''(t,t_0)
+=
+\frac{E(t_0)}
+{1+\chi(t,t_0)\phi(t,t_0)}.
+}
+\]</span></p>
+<p>Here <span class="math inline">\(\chi(t,t_0)\)</span> is the <strong>aging coefficient</strong>.</p>
+<p>The equivalent relaxation-function relation is</p>
+<p><span class="math display">\[
+\boxed{
+E''(t,t_0)
+=
+\frac{E(t_0)-R(t,t_0)}
+{\phi(t,t_0)}.
+}
+\]</span></p>
+<p>Hence,</p>
+<p><span class="math display">\[
+\boxed{
+\chi(t,t_0)
+=
+\frac{E(t_0)}
+{E(t_0)-R(t,t_0)}
+-
+\frac{1}{\phi(t,t_0)}.
+}
+\]</span></p>
+<p>AAEM is therefore connected directly to relaxation, not merely to the creep coefficient. <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<hr>
+</section>
+<section id="why-is-chi-an-aging-coefficient" class="level2">
+<h2 class="anchored" data-anchor-id="why-is-chi-an-aging-coefficient">Why is <span class="math inline">\(\chi\)</span> an aging coefficient?</h2>
+<p>The name matters.</p>
+<p>For a nonaging material, the classical effective-modulus method is recovered with</p>
+<p><span class="math display">\[
+\chi=1.
+\]</span></p>
+<p>Bažant pointed out that the correction represented by <span class="math inline">\(\chi\)</span> arises mainly from concrete aging and therefore preferred <strong>aging coefficient</strong> to the earlier term <strong>relaxation coefficient</strong>. <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>Physically,</p>
+<blockquote class="blockquote">
+<p><strong><span class="math inline">\(\chi\)</span> corrects the effective-modulus idea because stress changes occurring later do not creep as though they had been present since the original loading age.</strong></p>
+</blockquote>
+<p>That is the essence of the age adjustment.</p>
+<hr>
+</section>
+<section id="a-stress-increment-applied-later-has-a-different-memory" class="level2">
+<h2 class="anchored" data-anchor-id="a-stress-increment-applied-later-has-a-different-memory">A stress increment applied later has a different memory</h2>
+<p>Suppose a bridge is first loaded at <span class="math inline">\(t_0\)</span>.</p>
+<p>A stress increment present at <span class="math inline">\(t_0\)</span> has the entire interval <span class="math inline">\(t-t_0\)</span> available for creep.</p>
+<p>A new increment introduced at <span class="math inline">\(\tau\)</span> has only</p>
+<p><span class="math display">\[
+t-\tau
+\]</span></p>
+<p>available and acts on older concrete.</p>
+<p>Treating both with the same ordinary effective modulus loses this distinction.</p>
+<p>AAEM does not reconstruct every possible history exactly. It compresses the dominant aging and redistribution effects into a practical constitutive relation.</p>
+<hr>
+</section>
+<section id="the-remarkable-result-the-hereditary-problem-looks-elastic-again" class="level2">
+<h2 class="anchored" data-anchor-id="the-remarkable-result-the-hereditary-problem-looks-elastic-again">The remarkable result: the hereditary problem looks elastic again</h2>
+<p>For the class of strain histories in Bažant’s theorem, the relation can be written as</p>
+<p><span class="math display">\[
+\boxed{
+\Delta\sigma(t)
+=
+E''(t,t_0)
+\left[
+\Delta\varepsilon(t)
+-
+\Delta\varepsilon''(t)
+\right],
+}
+\]</span></p>
+<p>where <span class="math inline">\(\Delta\varepsilon''\)</span> is the fictitious inelastic strain increment of the formulation. Bažant emphasized that this has the form of Hooke’s law, reducing the creep problem to an elastic analysis in the same computational spirit as the ordinary effective-modulus method. <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>That is the computational achievement of AAEM.</p>
+<p>The hereditary term</p>
+<p><span class="math display">\[
+\int_{t_0}^{t}J(t,\tau)\,d\sigma(\tau)
+\]</span></p>
+<p>is replaced, for structural calculation, by an elastic-looking relation using</p>
+<p><span class="math display">\[
+E''(t,t_0)
+\]</span></p>
+<p>and appropriate imposed/inelastic strains.</p>
+<hr>
+</section>
+<section id="from-material-modulus-to-box-girder-stiffness" class="level2">
+<h2 class="anchored" data-anchor-id="from-material-modulus-to-box-girder-stiffness">From material modulus to box-girder stiffness</h2>
+<p>For an uncracked section,</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+N\\
+M
+\end{bmatrix}
+=
+\begin{bmatrix}
+EA &amp; ES\\
+ES &amp; EI
+\end{bmatrix}
+\begin{bmatrix}
+\varepsilon_0\\
+\kappa
+\end{bmatrix}.
+\]</span></p>
+<p>In AAEM, the concrete contribution can be constructed using</p>
+<p><span class="math display">\[
+E\longrightarrow E''(t,t_0).
+\]</span></p>
+<p>Schematically,</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+\Delta N\\
+\Delta M
+\end{bmatrix}
+=
+\mathbf K_{\mathrm{AAEM}}(t,t_0)
+\left[
+\begin{bmatrix}
+\Delta\varepsilon_0\\
+\Delta\kappa
+\end{bmatrix}
+-
+\begin{bmatrix}
+\Delta\varepsilon^{0}\\
+\Delta\kappa^{0}
+\end{bmatrix}
+\right].
+\]</span></p>
+<p>Shrinkage, temperature, prestressing effects, and other imposed strains must of course be treated consistently.</p>
+<p>Once the sectional relation has this form, it can be assembled into familiar structural stiffness equations.</p>
+<p>AAEM is therefore a bridge between <strong>aging viscoelasticity</strong> and <strong>ordinary structural analysis</strong>.</p>
+<hr>
+</section>
+<section id="why-box-girder-bridges-make-the-issue-visible" class="level2">
+<h2 class="anchored" data-anchor-id="why-box-girder-bridges-make-the-issue-visible">Why box-girder bridges make the issue visible</h2>
+<p>Prestressed concrete box girders combine nearly every ingredient that makes creep history important:</p>
+<ul>
+<li>sustained dead load,</li>
+<li>prestressing,</li>
+<li>staged construction,</li>
+<li>concrete loaded at different ages,</li>
+<li>changing structural systems,</li>
+<li>shrinkage,</li>
+<li>redistribution between concrete and prestressing steel,</li>
+<li>continuity moments,</li>
+<li>and long service periods.</li>
+</ul>
+<p>Balanced-cantilever construction is especially revealing. A segment cast today and one cast weeks later do not have the same creep history. When continuity is established, subsequent deformation is restrained by a structural system that did not exist when the early segments were loaded.</p>
+<p>Recent bridge studies continue to emphasize AAEM for staged methods such as balanced-cantilever construction and incremental launching because aging matters strongly when concrete is loaded young. <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<hr>
+</section>
+<section id="a-useful-thought-experiment-lift-the-bridge-after-creep-has-developed" class="level2">
+<h2 class="anchored" data-anchor-id="a-useful-thought-experiment-lift-the-bridge-after-creep-has-developed">A useful thought experiment: lift the bridge after creep has developed</h2>
+<p>Now suppose the bridge is loaded at <span class="math inline">\(t_0\)</span> and creeps until <span class="math inline">\(t_{\mathrm{up}}\)</span>.</p>
+<p>At that age, it is lifted by an imposed displacement</p>
+<p><span class="math display">\[
+\delta_{\mathrm{up}}.
+\]</span></p>
+<p>The response naturally divides into</p>
+<p><span class="math display">\[
+t_0&lt;t&lt;t_{\mathrm{up}}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+t&gt;t_{\mathrm{up}}.
+\]</span></p>
+<p>Before lifting, creep, shrinkage, prestress effects, and redistribution accumulate.</p>
+<p>At <span class="math inline">\(t_{\mathrm{up}}\)</span>, the imposed displacement changes compatibility and creates a new stress state.</p>
+<p>The lift is therefore not merely a vertical translation added to the old deflection curve.</p>
+<p>It creates a <strong>new stress increment at age <span class="math inline">\(t_{\mathrm{up}}\)</span></strong>.</p>
+<hr>
+</section>
+<section id="why-lifting-reveals-the-meaning-of-aaem" class="level2">
+<h2 class="anchored" data-anchor-id="why-lifting-reveals-the-meaning-of-aaem">Why lifting reveals the meaning of AAEM</h2>
+<p>Suppose lifting produces</p>
+<p><span class="math display">\[
+\Delta\sigma_{\mathrm{up}}.
+\]</span></p>
+<p>It would be wrong to treat this stress as though it had existed since <span class="math inline">\(t_0\)</span>.</p>
+<p>The original sustained-load stress has elapsed time</p>
+<p><span class="math display">\[
+t-t_0,
+\]</span></p>
+<p>whereas the lift-induced stress has elapsed time</p>
+<p><span class="math display">\[
+t-t_{\mathrm{up}}.
+\]</span></p>
+<p>They have different memories.</p>
+<p>Schematically,</p>
+<p><span class="math display">\[
+\sigma(t)
+=
+\sigma^{(0)}(t;t_0)
++
+\Delta\sigma^{(\mathrm{up})}(t;t_{\mathrm{up}}),
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+w(t)
+=
+w^{(0)}(t;t_0)
++
+H(t-t_{\mathrm{up}})
+w^{(\mathrm{up})}(t;t_{\mathrm{up}},\delta_{\mathrm{up}}).
+\]</span></p>
+<p>Each significant event starts another time-dependent response.</p>
+<p>Bažant’s 1972 paper explicitly notes that sudden load changes after first loading may be handled as superposed step histories. <a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
+<hr>
+</section>
+<section id="creep-before-lifting-relaxation-after-lifting" class="level2">
+<h2 class="anchored" data-anchor-id="creep-before-lifting-relaxation-after-lifting">Creep before lifting, relaxation after lifting?</h2>
+<p>There is useful intuition here, with one qualification.</p>
+<p>Before lifting, sustained gravity loading looks strongly creep-like:</p>
+<p><span class="math display">\[
+\text{sustained load}
+\rightarrow
+\text{increasing deformation}.
+\]</span></p>
+<p>The imposed lift is deformation-controlled, so its subsequent response has a strongly relaxation-like character:</p>
+<p><span class="math display">\[
+\text{imposed deformation}
+\rightarrow
+\text{changing stress}.
+\]</span></p>
+<p>But a real bridge after lifting is neither a pure creep test nor a pure relaxation test.</p>
+<p>Internal forces redistribute while deformation continues to evolve.</p>
+<p>That is precisely why the two limiting modes are useful: AAEM works in the coupled region between them.</p>
+<hr>
+</section>
+<section id="what-aaem-does-not-solve-automatically" class="level2">
+<h2 class="anchored" data-anchor-id="what-aaem-does-not-solve-automatically">What AAEM does not solve automatically</h2>
+<p>AAEM is a constitutive simplification, not a complete bridge model.</p>
+<p>A realistic calculation still needs</p>
+<ul>
+<li>a creep compliance or creep-coefficient model,</li>
+<li>concrete aging,</li>
+<li>shrinkage,</li>
+<li>prestress losses,</li>
+<li>construction sequence,</li>
+<li>section changes,</li>
+<li>reinforcement and tendon compatibility,</li>
+<li>cracking where relevant,</li>
+<li>support conditions,</li>
+<li>and temperature where relevant.</li>
+</ul>
+<p>For very long predictions, uncertainty in the underlying creep model may become more important than the structural simplification.</p>
+<p>AAEM makes the <strong>history calculation</strong> manageable. It does not make uncertain long-term concrete behavior certain.</p>
+<hr>
+</section>
+<section id="when-is-aaem-exact-and-when-is-it-an-approximation" class="level2">
+<h2 class="anchored" data-anchor-id="when-is-aaem-exact-and-when-is-it-an-approximation">When is AAEM exact, and when is it an approximation?</h2>
+<p>This distinction is important.</p>
+<p>Bažant’s 1972 theorem establishes exactness for the family of strain histories assumed in the derivation. The paper highlights three important limiting cases: constant stress, constant strain, and strain varying proportionally with creep coefficient. For general histories AAEM is an approximation, designed to improve substantially on the ordinary effective-modulus method without losing its simplicity. <a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
+<p>So it is better not to say:</p>
+<blockquote class="blockquote">
+<p>AAEM replaces the exact hereditary integral.</p>
+</blockquote>
+<p>Instead:</p>
+<blockquote class="blockquote">
+<p><strong>AAEM represents the hereditary response by an elastic-looking relation that is exact for important classes of histories and provides a practical approximation for many others.</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="why-this-makes-engineering-sense" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-makes-engineering-sense">Why this makes engineering sense</h2>
+<p>Long-term bridge deformation is often called a creep problem.</p>
+<p>That is incomplete.</p>
+<p>The structural problem is</p>
+<p><span class="math display">\[
+\boxed{
+\text{creep}
++
+\text{aging}
++
+\text{compatibility}
++
+\text{stress redistribution}.
+}
+\]</span></p>
+<p>Creep compliance describes deformation when stress is maintained.</p>
+<p>Relaxation describes stress change when deformation is restrained.</p>
+<p>A bridge does both.</p>
+<p>The memorable engineering principle is therefore not merely</p>
+<blockquote class="blockquote">
+<p>concrete becomes softer with time.</p>
+</blockquote>
+<p>It is:</p>
+<blockquote class="blockquote">
+<p><strong>The stiffness we should use depends not only on how long concrete has been creeping, but also on when the stress being analyzed entered the structure.</strong></p>
+</blockquote>
+<p>That is why <strong>age-adjusted</strong> matters.</p>
+<p>And that is why AAEM is useful for long-term deflection of prestressed concrete box-girder bridges.</p>
+<hr>
+</section>
+<section id="where-we-go-next" class="level2">
+<h2 class="anchored" data-anchor-id="where-we-go-next">Where we go next</h2>
+<p>The next useful problem is:</p>
+<blockquote class="blockquote">
+<p><strong>If a box-girder bridge is lifted by <span class="math inline">\(\delta_{\mathrm{up}}\)</span> at age <span class="math inline">\(t_{\mathrm{up}}\)</span>, what is its deflection for <span class="math inline">\(t&lt;t_{\mathrm{up}}\)</span> and <span class="math inline">\(t&gt;t_{\mathrm{up}}\)</span>?</strong></p>
+</blockquote>
+<p>That problem forces us to distinguish the original loading history from the deformation imposed later in service.</p>
+<p>It is where AAEM changes from a creep formula into a structural-analysis tool.</p>
+<hr>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further reading</h2>
+<p><strong>Bažant, Z. P. (1972).</strong><br>
+<em>Prediction of Concrete Creep Effects Using Age-Adjusted Effective Modulus Method.</em><br>
+ACI Journal Proceedings, 69(4), 212–219.<br>
+DOI: 10.14359/11265.</p>
+<p><strong>Bažant, Z. P., Hubler, M. H., &amp; Jirásek, M. (2013).</strong><br>
+<em>Improved Estimation of Long-Term Relaxation Function of Aging Concrete from Its Compliance Function.</em><br>
+In <em>Mechanics and Physics of Creep, Shrinkage, and Durability of Concrete</em>, 437–442.<br>
+DOI: 10.1061/9780784413111.052.</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Source-supported points are from Bažant (1972): the rigorous AAEM formulation, the aging coefficient, age-adjusted modulus, incremental Hooke-law form, important exact cases, and superposition of later step changes.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>The relaxation function and creep compliance are linked through the linear-viscoelastic integral relation; later Bažant work discusses practical estimation of <span class="math inline">\(R(t,t')\)</span> from <span class="math inline">\(J(t,t')\)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Source-supported points are from Bažant (1972): the rigorous AAEM formulation, the aging coefficient, age-adjusted modulus, incremental Hooke-law form, important exact cases, and superposition of later step changes.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Source-supported points are from Bažant (1972): the rigorous AAEM formulation, the aging coefficient, age-adjusted modulus, incremental Hooke-law form, important exact cases, and superposition of later step changes.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Modern bridge applications emphasize that aging is particularly relevant when concrete is loaded at young ages in staged construction such as balanced cantilever and incremental launching.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Source-supported points are from Bažant (1972): the rigorous AAEM formulation, the aging coefficient, age-adjusted modulus, incremental Hooke-law form, important exact cases, and superposition of later step changes.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Source-supported points are from Bažant (1972): the rigorous AAEM formulation, the aging coefficient, age-adjusted modulus, incremental Hooke-law form, important exact cases, and superposition of later step changes.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

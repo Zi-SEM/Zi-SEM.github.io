@@ -8,6 +8,7 @@
 
 <meta name="author" content="Goangseup Zi">
 <meta name="dcterms.date" content="2026-09-04">
+<meta name="keywords" content="XFEM, extended finite element method, computational fracture mechanics, fracture mechanics, partition of unity, enrichment method, approximation space enrichment, displacement discontinuity, cohesive crack, cohesive fracture, crack-tip enrichment, crack tip element, branch enrichment, crack propagation, dynamic fracture, level set method, remeshing, mesh independent crack growth, multiple crack growth, superimposed finite element method">
 <meta name="description" content="A mechanics-oriented explanation of XFEM: partition-of-unity enrichment, displacement jumps, cohesive crack-tip treatment, evolving crack geometry, and dynamic fracture without remeshing.">
 
 <title>How Does XFEM Let a Crack Cut Through the Mesh? – Zi’s Structural Engineering &amp; Mechanics</title>
@@ -142,19 +143,23 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../research.html"> 
-<span class="menu-text">Research Explained</span></a>
+<span class="menu-text">Research &amp; Innovation</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../mechanics.html"> 
 <span class="menu-text">Engineering Mechanics</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../z-diagram.html"> 
-<span class="menu-text">Z-Diagram</span></a>
+    <a class="nav-link" href="../../perspectives.html"> 
+<span class="menu-text">Engineering Perspectives</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../latex-writing.html"> 
-<span class="menu-text">LaTeX &amp; Writing</span></a>
+    <a class="nav-link" href="../../cartoon-log.html"> 
+<span class="menu-text">Cartoon Logs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../beyond-engineering.html"> 
+<span class="menu-text">Beyond Engineering</span></a>
   </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -173,6 +178,41 @@ window.Quarto = {
   </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">한국어</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../index-ko.html">
+ <span class="dropdown-text">홈</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research-ko.html">
+ <span class="dropdown-text">연구와 기술</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../mechanics-ko.html">
+ <span class="dropdown-text">공학역학</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../perspectives-ko.html">
+ <span class="dropdown-text">공학 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../cartoon-log-ko.html">
+ <span class="dropdown-text">카툰 일기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../beyond-engineering-ko.html">
+ <span class="dropdown-text">공학 밖의 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about-ko.html">
+ <span class="dropdown-text">소개</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
 </i> 
@@ -225,7 +265,7 @@ window.Quarto = {
 <h1 class="title">How Does XFEM Let a Crack Cut Through the Mesh?</h1>
 <p class="subtitle lead">The approximation space—not the element boundary—is given the information needed to represent fracture</p>
   <div class="quarto-categories">
-    <div class="quarto-category">Research Explained</div>
+    <div class="quarto-category">Research &amp; Innovation</div>
     <div class="quarto-category">Computational Mechanics &amp; Fracture</div>
     <div class="quarto-category">Computational Fracture</div>
     <div class="quarto-category">XFEM</div>
@@ -259,10 +299,19 @@ window.Quarto = {
   </div>
   
 
+<div>
+  <div class="keywords">
+    <div class="block-title">Keywords</div>
+    <p>XFEM, extended finite element method, computational fracture mechanics, fracture mechanics, partition of unity, enrichment method, approximation space enrichment, displacement discontinuity, cohesive crack, cohesive fracture, crack-tip enrichment, crack tip element, branch enrichment, crack propagation, dynamic fracture, level set method, remeshing, mesh independent crack growth, multiple crack growth, superimposed finite element method</p>
+  </div>
+</div>
 
 </header>
 
 
+<div class="language-switch">
+<strong>English</strong> | <a href="../../posts/xfem-crack-through-mesh/index-ko.html">한글</a>
+</div>
 <p><strong>Computational Fracture Series:</strong> <a href="../computational-fracture-overview/">← Overview</a> · Article 2 of 7 · <a href="../xefg-why-meshfree/">Next: XEFG →</a></p>
 <p>In an ordinary finite element analysis, the mesh does two jobs at once.</p>
 <p>It discretizes the body, but it also strongly constrains the functions that can be represented inside that body.</p>

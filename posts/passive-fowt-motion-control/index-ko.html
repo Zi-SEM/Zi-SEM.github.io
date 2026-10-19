@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="지광습">
+<meta name="keywords" content="부유식 해상풍력, 부유식 해상풍력터빈, 부유식 해상풍력 운동제어, 패시브 운동제어, 부유체 운동저감, 피치 운동 저감, 히브 운동 저감, 동조액체감쇠기, 양방향 동조액체감쇠기, BTLD, 수평 스커트, 부유체 형상 최적화, 부가질량, 방사감쇠, 유체-구조 상호작용, 유탄성 응답">
+<meta name="description" content="부유식 해상풍력터빈의 운동을 능동제어장치 없이 줄일 수 있는 이유를 동조액체감쇠기, 수평 스커트, 부유체 형상 최적화와 유탄성 응답을 통해 설명한다.">
+
+<title>부유식 해상풍력터빈의 운동을 패시브적으로 줄일 수 있을까? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research &amp; Innovation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../perspectives.html"> 
+<span class="menu-text">Engineering Perspectives</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../cartoon-log.html"> 
+<span class="menu-text">Cartoon Logs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../beyond-engineering.html"> 
+<span class="menu-text">Beyond Engineering</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">한국어</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../index-ko.html">
+ <span class="dropdown-text">홈</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research-ko.html">
+ <span class="dropdown-text">연구와 기술</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../mechanics-ko.html">
+ <span class="dropdown-text">공학역학</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../perspectives-ko.html">
+ <span class="dropdown-text">공학 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../cartoon-log-ko.html">
+ <span class="dropdown-text">카툰 일기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../beyond-engineering-ko.html">
+ <span class="dropdown-text">공학 밖의 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about-ko.html">
+ <span class="dropdown-text">소개</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul class="collapse">
+  <li><a href="#전략-1-다른-질량이-움직이게-한다" id="toc-전략-1-다른-질량이-움직이게-한다" class="nav-link active" data-scroll-target="#전략-1-다른-질량이-움직이게-한다">전략 1: 다른 질량이 움직이게 한다</a></li>
+  <li><a href="#왜-기계식-질량-대신-액체를-쓰는가" id="toc-왜-기계식-질량-대신-액체를-쓰는가" class="nav-link" data-scroll-target="#왜-기계식-질량-대신-액체를-쓰는가">왜 기계식 질량 대신 액체를 쓰는가?</a></li>
+  <li><a href="#핵심은-단순한-감쇠가-아니라-위상이다" id="toc-핵심은-단순한-감쇠가-아니라-위상이다" class="nav-link" data-scroll-target="#핵심은-단순한-감쇠가-아니라-위상이다">핵심은 단순한 감쇠가 아니라 위상이다</a></li>
+  <li><a href="#전략-2-부유체-자체를-바꾼다" id="toc-전략-2-부유체-자체를-바꾼다" class="nav-link" data-scroll-target="#전략-2-부유체-자체를-바꾼다">전략 2: 부유체 자체를 바꾼다</a></li>
+  <li><a href="#바지형-부유체가-반드시-단순한-상자일-필요는-없다" id="toc-바지형-부유체가-반드시-단순한-상자일-필요는-없다" class="nav-link" data-scroll-target="#바지형-부유체가-반드시-단순한-상자일-필요는-없다">바지형 부유체가 반드시 단순한 상자일 필요는 없다</a></li>
+  <li><a href="#스커트는-플랫폼과-함께-움직여야-하는-물을-바꾼다" id="toc-스커트는-플랫폼과-함께-움직여야-하는-물을-바꾼다" class="nav-link" data-scroll-target="#스커트는-플랫폼과-함께-움직여야-하는-물을-바꾼다">스커트는 플랫폼과 함께 움직여야 하는 물을 바꾼다</a></li>
+  <li><a href="#스커트는-크다고-무조건-좋은-것이-아니다" id="toc-스커트는-크다고-무조건-좋은-것이-아니다" class="nav-link" data-scroll-target="#스커트는-크다고-무조건-좋은-것이-아니다">스커트는 크다고 무조건 좋은 것이 아니다</a></li>
+  <li><a href="#문풀-안의-물도-하나의-동적-시스템이다" id="toc-문풀-안의-물도-하나의-동적-시스템이다" class="nav-link" data-scroll-target="#문풀-안의-물도-하나의-동적-시스템이다">문풀 안의 물도 하나의 동적 시스템이다</a></li>
+  <li><a href="#형상만-바꾸어도-운동은-크게-달라졌다" id="toc-형상만-바꾸어도-운동은-크게-달라졌다" class="nav-link" data-scroll-target="#형상만-바꾸어도-운동은-크게-달라졌다">형상만 바꾸어도 운동은 크게 달라졌다</a></li>
+  <li><a href="#전략-3-질량분포와-복원특성을-최적화한다" id="toc-전략-3-질량분포와-복원특성을-최적화한다" class="nav-link" data-scroll-target="#전략-3-질량분포와-복원특성을-최적화한다">전략 3: 질량분포와 복원특성을 최적화한다</a></li>
+  <li><a href="#스파에서는-질량-자체보다-어디에-놓느냐가-더-중요할-수-있다" id="toc-스파에서는-질량-자체보다-어디에-놓느냐가-더-중요할-수-있다" class="nav-link" data-scroll-target="#스파에서는-질량-자체보다-어디에-놓느냐가-더-중요할-수-있다">스파에서는 질량 자체보다 어디에 놓느냐가 더 중요할 수 있다</a></li>
+  <li><a href="#구조-유연성도-에너지를-흡수한다.-그러나-공짜는-아니다" id="toc-구조-유연성도-에너지를-흡수한다.-그러나-공짜는-아니다" class="nav-link" data-scroll-target="#구조-유연성도-에너지를-흡수한다.-그러나-공짜는-아니다">구조 유연성도 에너지를 흡수한다. 그러나 공짜는 아니다</a></li>
+  <li><a href="#전략-4-서로-다른-패시브-메커니즘을-결합한다" id="toc-전략-4-서로-다른-패시브-메커니즘을-결합한다" class="nav-link" data-scroll-target="#전략-4-서로-다른-패시브-메커니즘을-결합한다">전략 4: 서로 다른 패시브 메커니즘을 결합한다</a></li>
+  <li><a href="#내부제어와-외부제어는-역학적으로-다르다" id="toc-내부제어와-외부제어는-역학적으로-다르다" class="nav-link" data-scroll-target="#내부제어와-외부제어는-역학적으로-다르다">내부제어와 외부제어는 역학적으로 다르다</a></li>
+  <li><a href="#결합효과는-특히-피치에서-컸다" id="toc-결합효과는-특히-피치에서-컸다" class="nav-link" data-scroll-target="#결합효과는-특히-피치에서-컸다">결합효과는 특히 피치에서 컸다</a></li>
+  <li><a href="#한-운동을-줄이면-다른-운동이-커질-수도-있다" id="toc-한-운동을-줄이면-다른-운동이-커질-수도-있다" class="nav-link" data-scroll-target="#한-운동을-줄이면-다른-운동이-커질-수도-있다">한 운동을 줄이면 다른 운동이 커질 수도 있다</a></li>
+  <li><a href="#패시브제어는-결국-공진-문제다" id="toc-패시브제어는-결국-공진-문제다" class="nav-link" data-scroll-target="#패시브제어는-결국-공진-문제다">패시브제어는 결국 공진 문제다</a></li>
+  <li><a href="#세-가지-패시브-설계-철학" id="toc-세-가지-패시브-설계-철학" class="nav-link" data-scroll-target="#세-가지-패시브-설계-철학">세 가지 패시브 설계 철학</a></li>
+  <li><a href="#공통된-메커니즘은-에너지-재분배다" id="toc-공통된-메커니즘은-에너지-재분배다" class="nav-link" data-scroll-target="#공통된-메커니즘은-에너지-재분배다">공통된 메커니즘은 에너지 재분배다</a></li>
+  <li><a href="#왜-해상에서는-패시브제어가-매력적인가" id="toc-왜-해상에서는-패시브제어가-매력적인가" class="nav-link" data-scroll-target="#왜-해상에서는-패시브제어가-매력적인가">왜 해상에서는 패시브제어가 매력적인가?</a></li>
+  <li><a href="#이-연구들이-아직-증명하지-않은-것" id="toc-이-연구들이-아직-증명하지-않은-것" class="nav-link" data-scroll-target="#이-연구들이-아직-증명하지-않은-것">이 연구들이 아직 증명하지 않은 것</a></li>
+  <li><a href="#결국-무엇을-설계하는가" id="toc-결국-무엇을-설계하는가" class="nav-link" data-scroll-target="#결국-무엇을-설계하는가">결국 무엇을 설계하는가?</a></li>
+  <li><a href="#original-research" id="toc-original-research" class="nav-link" data-scroll-target="#original-research">Original research</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">부유식 해상풍력터빈의 운동을 패시브적으로 줄일 수 있을까?</h1>
+<p class="subtitle lead">질량, 형상, 내부 유체운동과 외부 유체력을 이용한 패시브 운동제어의 공학적 원리</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">연구와 기술</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    부유식 해상풍력터빈의 운동을 능동제어장치 없이 줄일 수 있는 이유를 동조액체감쇠기, 수평 스커트, 부유체 형상 최적화와 유탄성 응답을 통해 설명한다.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">저자</div>
+    <div class="quarto-title-meta-contents">
+             <p>지광습 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">공개</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">2026년 9월 21일</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+<div>
+  <div class="keywords">
+    <div class="block-title">키워드</div>
+    <p>부유식 해상풍력, 부유식 해상풍력터빈, 부유식 해상풍력 운동제어, 패시브 운동제어, 부유체 운동저감, 피치 운동 저감, 히브 운동 저감, 동조액체감쇠기, 양방향 동조액체감쇠기, BTLD, 수평 스커트, 부유체 형상 최적화, 부가질량, 방사감쇠, 유체-구조 상호작용, 유탄성 응답</p>
+  </div>
+</div>
+
+</header>
+
+
+<div class="language-switch">
+<a href="../../posts/passive-fowt-motion-control/index.html">English</a> | <strong>한글</strong>
+</div>
+<p>부유식 해상풍력터빈의 운동을 줄이는 방법을 생각하면 보통 능동제어를 먼저 떠올리기 쉽다.</p>
+<p>센서를 달고 운동을 측정한 뒤 액추에이터를 구동해서 반대 방향의 힘을 만드는 방식이다.</p>
+<p>그런데 바다에서는 이야기가 조금 달라진다.</p>
+<p>센서, 액추에이터, 전원, 제어장치와 구동부가 늘어나면 유지관리해야 할 대상도 늘어난다. 해상에서 유지관리는 곧 비용이다.</p>
+<p>그래서 자연스럽게 이런 질문이 생긴다.</p>
+<blockquote class="blockquote">
+<p><strong>구동장치 없이도 부유체의 운동을 줄일 수 있을까?</strong></p>
+</blockquote>
+<p>가능하다.</p>
+<p>핵심은 운동을 직접 억지로 막는 것이 아니라 <strong>부유체 전체의 동역학을 바꾸는 것</strong>이다.</p>
+<p>주파수영역 운동방정식을 간단히 쓰면</p>
+<p><span class="math display">\[
+\left[
+-\omega^2(\mathbf{M}+\mathbf{A})
++i\omega\mathbf{B}
++\mathbf{C}
+\right]
+\boldsymbol{\xi}
+=
+\mathbf{F}_{\mathrm{wave}}
+\]</span></p>
+<p>이다.</p>
+<p>여기서 <span class="math inline">\(\mathbf{M}\)</span>은 구조물 질량, <span class="math inline">\(\mathbf{A}\)</span>는 부가질량, <span class="math inline">\(\mathbf{B}\)</span>는 감쇠, <span class="math inline">\(\mathbf{C}\)</span>는 복원강성, <span class="math inline">\(\mathbf{F}_{\mathrm{wave}}\)</span>는 파랑 가진력이다.</p>
+<p>패시브 제어장치는 파랑을 직접 상쇄할 필요가 없다.</p>
+<p>대신</p>
+<p><span class="math display">\[
+\mathbf{A},
+\qquad
+\mathbf{B},
+\qquad
+\mathbf{C}
+\]</span></p>
+<p>를 바꾸거나, 부유체와 상호작용하는 새로운 동적 시스템을 하나 더 만들 수 있다.</p>
+<p>결국 패시브 운동제어에는 여러 경로가 있다.</p>
+<div id="fig-overview" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig01.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;1: 바지형 부유식 해상풍력터빈에 내부 양방향 동조액체감쇠기와 외부 수평 스커트를 함께 설치한 개념. 두 장치는 내부 유체운동과 외부 유체력이라는 서로 다른 패시브 메커니즘으로 작동한다.
+</figcaption>
+</figure>
+</div>
+<section id="전략-1-다른-질량이-움직이게-한다" class="level2">
+<h2 class="anchored" data-anchor-id="전략-1-다른-질량이-움직이게-한다">전략 1: 다른 질량이 움직이게 한다</h2>
+<p>가장 익숙한 패시브제어 개념은 구조진동제어에서 온다.</p>
+<p>구조물의 일반화 변위를 <span class="math inline">\(x\)</span>라고 하자.</p>
+<p>구조물에 대해 상대적으로 움직일 수 있는 보조 질량을 두면 그 질량의 관성력이 구조물 운동을 반대하는 방향으로 작용할 수 있다.</p>
+<p>동조질량감쇠기(TMD)는 고체 질량을 사용한다.</p>
+<p><strong>동조액체감쇠기(TLD)</strong> 는 물을 사용한다.</p>
+<p>플랫폼이 움직이면 액체가 출렁인다.</p>
+<p>액체운동이 잘 조율되어 있다면 그 운동이 만드는 힘 또는 모멘트가 플랫폼 운동과 유리한 위상관계를 갖게 된다.</p>
+<p>즉,</p>
+<p><span class="math display">\[
+\text{플랫폼 피치}
+\rightarrow
+\text{액체 슬로싱}
+\rightarrow
+\text{반대방향 모멘트}
+\]</span></p>
+<p>가 된다.</p>
+<p>제어력은 외부 액추에이터가 아니라 액체 자체에서 나온다.</p>
+</section>
+<section id="왜-기계식-질량-대신-액체를-쓰는가" class="level2">
+<h2 class="anchored" data-anchor-id="왜-기계식-질량-대신-액체를-쓰는가">왜 기계식 질량 대신 액체를 쓰는가?</h2>
+<p>액체는 해상환경에서 몇 가지 장점이 있다.</p>
+<p>별도의 구동장치 없이도</p>
+<ul>
+<li>관성,</li>
+<li>중력에 의한 복원력,</li>
+<li>점성에 의한 에너지 소산,</li>
+<li>충돌 및 슬로싱 손실</li>
+</ul>
+<p>을 동시에 활용할 수 있다.</p>
+<p>우리 연구에서는 두 수평방향으로 액체가 움직일 수 있는 <strong>양방향 동조액체감쇠기(BTLD)</strong> 를 검토했다.</p>
+<div id="fig-btld" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-btld-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig02.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-btld-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;2: 양방향 동조액체감쇠기의 개념. 플랫폼 운동이 내부 액체의 슬로싱을 유발하고, 적절히 조율되면 액체가 만드는 모멘트가 플랫폼 운동에 유리한 위상차를 갖는다.
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-btld" class="quarto-xref">2</a>에서 중요한 단어는 <strong>동조</strong>다.</p>
+<p>액체가 그냥 움직이면 되는 것이 아니다.</p>
+<p>줄이고 싶은 플랫폼 운동과 액체의 고유 슬로싱 거동이 적절히 상호작용해야 한다.</p>
+</section>
+<section id="핵심은-단순한-감쇠가-아니라-위상이다" class="level2">
+<h2 class="anchored" data-anchor-id="핵심은-단순한-감쇠가-아니라-위상이다">핵심은 단순한 감쇠가 아니라 위상이다</h2>
+<p>패시브 운동제어를 흔히 “감쇠를 더하는 것”이라고 설명한다.</p>
+<p>하지만 동조시스템에서는 <strong>위상관계</strong>가 핵심이다.</p>
+<p>플랫폼 피치가</p>
+<p><span class="math display">\[
+\theta(t)=\Theta\sin\omega t
+\]</span></p>
+<p>라고 하자.</p>
+<p>액체가 만드는 모멘트를</p>
+<p><span class="math display">\[
+M_{\mathrm{liq}}(t)=M_0\sin(\omega t-\phi)
+\]</span></p>
+<p>라고 하면, 위상차 <span class="math inline">\(\phi\)</span>가 적절할 때 액체가 만드는 모멘트가 피치를 유발하는 가진을 반대하는 방향으로 작용할 수 있다.</p>
+<p>그래서 액체 깊이, 탱크 크기, 내부 배플의 설계가 중요하다.</p>
+<p>초기 BTLD 연구에서는 파주기와 설정조건에 따라 최적화된 BTLD가 피치운동을 약 <strong>10–30%</strong> 줄였다.</p>
+<p>이후 BTLD와 양방향 동조액주감쇠기(BTLCD), 그리고 플랫폼 형상을 함께 비교한 연구에서는 최적 조합에서 약 <strong>20–40%</strong>의 운동저감이 나타났다.</p>
+<p>중요한 것은 숫자 자체가 아니다.</p>
+<p><strong>플랫폼과 감쇠기를 하나의 연성 동적 시스템으로 봐야 한다는 점</strong>이 핵심이다.</p>
+</section>
+<section id="전략-2-부유체-자체를-바꾼다" class="level2">
+<h2 class="anchored" data-anchor-id="전략-2-부유체-자체를-바꾼다">전략 2: 부유체 자체를 바꾼다</h2>
+<p>별도의 감쇠장치를 추가하지 않고도 운동을 줄이는 방법이 있다.</p>
+<blockquote class="blockquote">
+<p><strong>부유체의 형상을 바꾸는 것이다.</strong></p>
+</blockquote>
+<p>가장 순수한 형태의 패시브 운동제어라고 볼 수 있다.</p>
+<p>형상이 바뀌면</p>
+<ul>
+<li>배수체적,</li>
+<li>수선면 형상,</li>
+<li>부심,</li>
+<li>질량분포,</li>
+<li>관성모멘트,</li>
+<li>정수력 복원특성,</li>
+<li>부가질량,</li>
+<li>방사감쇠,</li>
+<li>파랑 회절</li>
+</ul>
+<p>이 달라진다.</p>
+<p>즉,</p>
+<p><span class="math display">\[
+\text{형상}
+\rightarrow
+\text{유체동역학 계수}
+\rightarrow
+\text{동적 응답}
+\]</span></p>
+<p>이다.</p>
+<p>구조물 자체가 제어장치가 되는 셈이다.</p>
+</section>
+<section id="바지형-부유체가-반드시-단순한-상자일-필요는-없다" class="level2">
+<h2 class="anchored" data-anchor-id="바지형-부유체가-반드시-단순한-상자일-필요는-없다">바지형 부유체가 반드시 단순한 상자일 필요는 없다</h2>
+<p>바지형 부유식 플랫폼은 형상이 단순하고 흘수가 비교적 얕다는 장점이 있다.</p>
+<p>하지만 단순한 직육면체가 유체동역학적으로 최적이라는 뜻은 아니다.</p>
+<p>그래서 우리는 다음과 같은 형상변화를 검토했다.</p>
+<ul>
+<li>팔각형 문풀,</li>
+<li>수평 스커트,</li>
+<li>사다리꼴 외벽.</li>
+</ul>
+<p>여기서 중요한 조건은 기준 플랫폼의 질량을 유지했다는 점이다.</p>
+<p>그렇지 않으면 운동저감이 단순히 재료를 더 넣은 결과인지 구분하기 어렵기 때문이다.</p>
+<p>질문은 이것이었다.</p>
+<blockquote class="blockquote">
+<p><strong>같은 정도의 구조 자원을 더 영리하게 배치할 수 있는가?</strong></p>
+</blockquote>
+</section>
+<section id="스커트는-플랫폼과-함께-움직여야-하는-물을-바꾼다" class="level2">
+<h2 class="anchored" data-anchor-id="스커트는-플랫폼과-함께-움직여야-하는-물을-바꾼다">스커트는 플랫폼과 함께 움직여야 하는 물을 바꾼다</h2>
+<p>부유체에 수평 스커트를 붙여보자.</p>
+<p>플랫폼이 움직이면 스커트는 주변의 더 많은 물을 함께 가속시켜야 한다.</p>
+<p>플랫폼 입장에서는 이것이 추가적인 관성처럼 보인다.</p>
+<p>운동방정식에서는 <strong>부가질량 증가</strong>로 나타난다.</p>
+<p><span class="math display">\[
+\mathbf{M}_{\mathrm{eff}}
+=
+\mathbf{M}
++
+\mathbf{A}
+\]</span></p>
+<p><span class="math inline">\(\mathbf{A}\)</span>가 커지면 시스템의 동특성이 바뀐다.</p>
+<p>스커트는 방사와 회절특성도 바꾼다.</p>
+<p>점성유동에서는 스커트 끝단에서</p>
+<ul>
+<li>유동박리,</li>
+<li>와류방출,</li>
+<li>점성에너지 소산</li>
+</ul>
+<p>도 발생할 수 있다.</p>
+<p>따라서 스커트는 단순히 구조면적을 추가하는 것이 아니다.</p>
+<p><strong>유체-구조 상호작용 자체를 바꾼다.</strong></p>
+</section>
+<section id="스커트는-크다고-무조건-좋은-것이-아니다" class="level2">
+<h2 class="anchored" data-anchor-id="스커트는-크다고-무조건-좋은-것이-아니다">스커트는 크다고 무조건 좋은 것이 아니다</h2>
+<p>연구에서 흥미로운 결과 중 하나는 스커트 크기를 계속 키워도 효과가 비례해서 증가하지 않는다는 점이었다.</p>
+<p>공학적으로 자연스럽다.</p>
+<p>목표는</p>
+<blockquote class="blockquote">
+<p><strong>스커트를 가능한 크게 만드는 것</strong></p>
+</blockquote>
+<p>이 아니라,</p>
+<blockquote class="blockquote">
+<p><strong>필요한 유체동역학 효과를 만들 만큼 충분히 크게 만드는 것</strong></p>
+</blockquote>
+<p>이다.</p>
+<p>지배 메커니즘이 포화되면 재료를 더 넣어도 추가효과는 점점 줄어든다.</p>
+<p>스커트의 <strong>위치</strong> 역시 중요했다.</p>
+<p>바지형 플랫폼 연구에서는 스커트 위치만 바꾸어도 운동응답이 크게 달라질 수 있었다.</p>
+<p>즉 형상설계는 구조상세가 아니라 유체동역학과 함께 결정해야 한다.</p>
+</section>
+<section id="문풀-안의-물도-하나의-동적-시스템이다" class="level2">
+<h2 class="anchored" data-anchor-id="문풀-안의-물도-하나의-동적-시스템이다">문풀 안의 물도 하나의 동적 시스템이다</h2>
+<p>문풀 내부의 물도 플랫폼에 대해 상대적으로 움직일 수 있다.</p>
+<p>이 내부 유체는</p>
+<ul>
+<li>피스톤형 수직운동,</li>
+<li>슬로싱형 수평운동</li>
+</ul>
+<p>과 같은 고유 거동을 갖는다.</p>
+<p>여기서도 다시 위상이 중요하다.</p>
+<p>내부 유체운동이 구조물 운동과 유리한 위상관계를 가지면 운동저감에 기여할 수 있다.</p>
+<p>반대로 두 시스템이 불리한 공진관계에 가까워지면 운동이 증폭될 수도 있다.</p>
+<p>즉,</p>
+<p><span class="math display">\[
+\boxed{
+\text{패시브장치는 운동을 줄일 수도 있고 키울 수도 있다}
+}
+\]</span></p>
+<p>이는 패시브제어의 근본적인 한계다.</p>
+</section>
+<section id="형상만-바꾸어도-운동은-크게-달라졌다" class="level2">
+<h2 class="anchored" data-anchor-id="형상만-바꾸어도-운동은-크게-달라졌다">형상만 바꾸어도 운동은 크게 달라졌다</h2>
+<p>스커트, 문풀, 사다리꼴 플랫폼 형상을 함께 최적화한 결과, 최적화된 바지형 플랫폼은 원래의 직사각형 플랫폼보다 운동이 크게 줄었다.</p>
+<p>연구에서는 조사한 조건에서 대략</p>
+<ul>
+<li><strong>히브 약 20% 감소</strong>,</li>
+<li><strong>피치 최대 70% 감소</strong></li>
+</ul>
+<p>를 보고했다.</p>
+<p>문풀 면적을 약</p>
+<p><span class="math display">\[
+400~\mathrm{m^2}
+\]</span></p>
+<p>까지, 즉 플랫폼 표면적의 약 10% 정도까지 늘렸을 때도 추가적인 운동저감이 나타났으며 이후에는 효과가 점차 포화되었다.</p>
+<div id="fig-barge-geometry" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-barge-geometry-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig03.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-barge-geometry-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;3: 원래의 직사각형 바지와 제안된 패시브 안정화 형상의 비교. 스커트와 사다리꼴 형상을 적용한 플랫폼에서 주요 운동응답 피크가 전반적으로 감소한다.
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-barge-geometry" class="quarto-xref">3</a>의 공학적 의미는 분명하다.</p>
+<blockquote class="blockquote">
+<p><strong>부유체 형상은 하중을 전달하는 껍데기만이 아니다. 파랑과 어떤 유체동역학 시스템을 만드는지를 결정한다.</strong></p>
+</blockquote>
+</section>
+<section id="전략-3-질량분포와-복원특성을-최적화한다" class="level2">
+<h2 class="anchored" data-anchor-id="전략-3-질량분포와-복원특성을-최적화한다">전략 3: 질량분포와 복원특성을 최적화한다</h2>
+<p>같은 원리는 전혀 다른 부유체인 스파에도 적용된다.</p>
+<p>스파는 깊은 흘수와 낮은 무게중심으로 피치 안정성을 확보한다.</p>
+<p>따라서 운동은</p>
+<ul>
+<li>직경,</li>
+<li>흘수,</li>
+<li>밸러스트 분포,</li>
+<li>무게중심,</li>
+<li>세장비</li>
+</ul>
+<p>에 민감하다.</p>
+<p>OC3 스파 최적화 연구에서는 총 부유체 질량과 배수체적을 고정한 채 형상변수만 바꾸었다.</p>
+<p>그래서 비교가 깔끔하다.</p>
+<p><span class="math display">\[
+\text{같은 질량}
+\quad+\quad
+\text{다른 형상}
+\quad\Rightarrow\quad
+\text{다른 동역학}
+\]</span></p>
+</section>
+<section id="스파에서는-질량-자체보다-어디에-놓느냐가-더-중요할-수-있다" class="level2">
+<h2 class="anchored" data-anchor-id="스파에서는-질량-자체보다-어디에-놓느냐가-더-중요할-수-있다">스파에서는 질량 자체보다 어디에 놓느냐가 더 중요할 수 있다</h2>
+<p>최적화 과정에서는 하부 원통 직경, 흘수, 벽두께, 밸러스트 배치를 바꾸었다.</p>
+<p>최종 설계에서는 하부 직경이 약</p>
+<p><span class="math display">\[
+9.4~\mathrm{m}
+\]</span></p>
+<p>에서</p>
+<p><span class="math display">\[
+12.0~\mathrm{m}
+\]</span></p>
+<p>로 증가하고, 흘수는</p>
+<p><span class="math display">\[
+120~\mathrm{m}
+\]</span></p>
+<p>에서 약</p>
+<p><span class="math display">\[
+76.9~\mathrm{m}
+\]</span></p>
+<p>로 감소했다.</p>
+<p>조사한 파랑조건에서 최적화된 강체모델의 RAO 피크는 약</p>
+<ul>
+<li><strong>surge 20.45% 감소</strong>,</li>
+<li><strong>heave 37.44% 감소</strong>,</li>
+<li><strong>pitch 34.57% 감소</strong></li>
+</ul>
+<p>를 보였다.</p>
+<p>유연체 모델에서는 약</p>
+<ul>
+<li><strong>surge 33.10% 감소</strong>,</li>
+<li><strong>heave 44.35% 감소</strong>,</li>
+<li><strong>pitch 31.85% 감소</strong></li>
+</ul>
+<p>였다.</p>
+<div id="fig-spar" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-spar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig04.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-spar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;4: 초기 OC3 스파와 최적화된 스파의 비교. 총 질량은 유지하면서 형상, 흘수와 질량분포를 바꾸면 유체동역학 및 복원특성이 크게 달라진다.
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-spar" class="quarto-xref">4</a>가 보여주는 또 하나의 원리는 이렇다.</p>
+<blockquote class="blockquote">
+<p><strong>패시브제어는 꼭 무언가를 추가하는 일이 아니다. 이미 있는 질량과 부력을 더 좋은 위치에 배치하는 것일 수도 있다.</strong></p>
+</blockquote>
+</section>
+<section id="구조-유연성도-에너지를-흡수한다.-그러나-공짜는-아니다" class="level2">
+<h2 class="anchored" data-anchor-id="구조-유연성도-에너지를-흡수한다.-그러나-공짜는-아니다">구조 유연성도 에너지를 흡수한다. 그러나 공짜는 아니다</h2>
+<p>스파 연구에서는 강체운동뿐 아니라 유탄성 응답도 검토했다.</p>
+<p>흥미롭게도 유연체 모델은 대응되는 강체모델보다 강체운동이 다소 작게 나타나는 경향을 보였다.</p>
+<p>하나의 물리적 해석은 파랑에너지가 모두 강체운동으로 가지 않고 일부가 구조변형으로 들어간다는 것이다.</p>
+<p>그러나 이것을 공짜 감쇠라고 보면 안 된다.</p>
+<p>구조변형으로 들어간 에너지는</p>
+<ul>
+<li>응력,</li>
+<li>피로손상,</li>
+<li>국부 구조수요</li>
+</ul>
+<p>를 만들 수 있다.</p>
+<p>따라서</p>
+<p><span class="math display">\[
+\text{강체운동 감소}
+\not\Rightarrow
+\text{구조성능 자동 개선}
+\]</span></p>
+<p>이다.</p>
+<p>대형 부유구조물의 최적화에서는 운동저감과 구조건전성, 피로를 결국 함께 봐야 한다.</p>
+</section>
+<section id="전략-4-서로-다른-패시브-메커니즘을-결합한다" class="level2">
+<h2 class="anchored" data-anchor-id="전략-4-서로-다른-패시브-메커니즘을-결합한다">전략 4: 서로 다른 패시브 메커니즘을 결합한다</h2>
+<p>자연스럽게 다음 질문이 나온다.</p>
+<blockquote class="blockquote">
+<p><strong>서로 다른 패시브 메커니즘을 함께 쓰면 어떨까?</strong></p>
+</blockquote>
+<p>최근 연구에서는</p>
+<ol type="1">
+<li>내부 BTLD,</li>
+<li>외부 수평 스커트</li>
+</ol>
+<p>를 결합했다.</p>
+<p>두 장치는 작동 원리가 다르다.</p>
+<p>BTLD는 주로</p>
+<p><span class="math display">\[
+\text{내부 유체동역학}
++
+\text{위상제어된 반대방향 모멘트}
++
+\text{에너지 소산}
+\]</span></p>
+<p>을 통해 작동한다.</p>
+<p>스커트는 주로</p>
+<p><span class="math display">\[
+\text{부가질량}
++
+\text{변화된 회절/방사}
++
+\text{점성 유동효과}
+\]</span></p>
+<p>를 통해 작동한다.</p>
+<p>따라서 둘은 상호보완적일 수 있다.</p>
+</section>
+<section id="내부제어와-외부제어는-역학적으로-다르다" class="level2">
+<h2 class="anchored" data-anchor-id="내부제어와-외부제어는-역학적으로-다르다">내부제어와 외부제어는 역학적으로 다르다</h2>
+<section id="플랫폼-내부" class="level3">
+<h3 class="anchored" data-anchor-id="플랫폼-내부">플랫폼 내부</h3>
+<p>BTLD는 물이 구조물에 대해 상대운동을 하도록 하여 동역학을 바꾼다.</p>
+<p>에너지는 내부 액체운동으로 전달되고 슬로싱과 점성효과를 통해 소산된다.</p>
+</section>
+<section id="플랫폼-외부" class="level3">
+<h3 class="anchored" data-anchor-id="플랫폼-외부">플랫폼 외부</h3>
+<p>스커트는 주변 바닷물이 구조물과 함께 또는 구조물 주위에서 어떻게 움직여야 하는지를 바꾼다.</p>
+<p>부가질량, 방사, 회절, 유동박리와 와류방출이 달라진다.</p>
+<p>즉 하나의 운동에 대해 두 개의 다른 물리적 경로를 동시에 건드리는 것이다.</p>
+<p><span class="math display">\[
+\boxed{
+\text{내부 슬로싱}
++
+\text{외부 유체동역학}
+}
+\]</span></p>
+</section>
+</section>
+<section id="결합효과는-특히-피치에서-컸다" class="level2">
+<h2 class="anchored" data-anchor-id="결합효과는-특히-피치에서-컸다">결합효과는 특히 피치에서 컸다</h2>
+<p>BTLD-스커트 결합 연구에서는 네 가지 구성을 비교했다.</p>
+<ul>
+<li>기본 플랫폼,</li>
+<li>BTLD만 적용,</li>
+<li>스커트만 적용,</li>
+<li>BTLD + 스커트.</li>
+</ul>
+<p>설계된 스커트는</p>
+<p><span class="math display">\[
+L=4~\mathrm{m}
+\]</span></p>
+<p>이고 잠김깊이는</p>
+<p><span class="math display">\[
+d=10~\mathrm{m}
+\]</span></p>
+<p>였다.</p>
+<p>결합시스템은 조사한 파주기 범위에서 매우 작은 피치 RAO를 보였다.</p>
+<p>최소 피치 RAO는 파주기 8 s에서 약</p>
+<p><span class="math display">\[
+0.007
+\]</span></p>
+<p>이었고, 전체 분석범위에서 피치 RAO는 대략 0.026 이하를 유지했다.</p>
+<div id="fig-combined" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-combined-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig05.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-combined-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;5: 기본 플랫폼, BTLD 단독, 스커트 단독, BTLD-스커트 결합 구성을 비교한 결과. 결합구성은 피치를 강하게 억제하지만 히브 응답은 파주기에 따라 다르게 나타난다.
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-combined" class="quarto-xref">5</a>는 이 연구 시리즈에서 패시브 운동제어 효과를 가장 분명하게 보여준다.</p>
+<p>하지만 동시에 중요한 한계도 보여준다.</p>
+</section>
+<section id="한-운동을-줄이면-다른-운동이-커질-수도-있다" class="level2">
+<h2 class="anchored" data-anchor-id="한-운동을-줄이면-다른-운동이-커질-수도-있다">한 운동을 줄이면 다른 운동이 커질 수도 있다</h2>
+<p>히브 응답은 피치처럼 단순하게 감소하지 않았다.</p>
+<p>스커트는 짧거나 중간 정도의 파주기에서는 히브를 줄였다.</p>
+<p>하지만 대략</p>
+<p><span class="math display">\[
+T=12\text{--}14~\mathrm{s}
+\]</span></p>
+<p>부근에서는 스커트 및 결합구성이 기본 플랫폼보다 더 큰 히브응답을 만들기도 했다.</p>
+<p>긴 주기에서는 BTLD가 히브에 미치는 영향이 작았다.</p>
+<p>이 결과는 매우 중요하다.</p>
+<p>패시브장치는 운동을 단순히 빼는 장치가 아니다.</p>
+<p><strong>시스템의 동역학을 바꾸는 장치다.</strong></p>
+<p>부가질량, 감쇠, 복원력 또는 내부 공진을 바꾸면 전체 주파수응답이 달라진다.</p>
+<p>따라서</p>
+<blockquote class="blockquote">
+<p><strong>어떤 운동 하나를 크게 줄이는 장치가 다른 주파수영역의 다른 운동을 키울 수도 있다.</strong></p>
+</blockquote>
+<p>그래서 패시브제어 설계는 반드시 주파수 의존성을 보아야 한다.</p>
+</section>
+<section id="패시브제어는-결국-공진-문제다" class="level2">
+<h2 class="anchored" data-anchor-id="패시브제어는-결국-공진-문제다">패시브제어는 결국 공진 문제다</h2>
+<p>단자유도 시스템을 생각해 보자.</p>
+<p><span class="math display">\[
+m\ddot{x}
++
+c\dot{x}
++
+kx
+=
+F_0\sin\omega t
+\]</span></p>
+<p>응답은 가진주파수 <span class="math inline">\(\omega\)</span>와 고유진동수</p>
+<p><span class="math display">\[
+\omega_n=\sqrt{\frac{k}{m}}
+\]</span></p>
+<p>의 관계에 크게 좌우된다.</p>
+<p>패시브적인 형상변경이나 부가장치는</p>
+<p><span class="math display">\[
+m,
+\qquad
+c,
+\qquad
+k
+\]</span></p>
+<p>를 바꾸거나 새로운 고유진동수를 추가한다.</p>
+<p>따라서</p>
+<ul>
+<li>공진피크를 낮추고,</li>
+<li>공진 위치를 이동시키고,</li>
+<li>응답대역을 넓히고,</li>
+<li>새로운 연성모드를 만들고,</li>
+<li>주파수영역별로 서로 다른 효과</li>
+</ul>
+<p>를 만들 수 있다.</p>
+<p>그러므로</p>
+<blockquote class="blockquote">
+<p>“운동을 줄이는가?”</p>
+</blockquote>
+<p>만 묻는 것은 부족하다.</p>
+<p>더 좋은 질문은</p>
+<blockquote class="blockquote">
+<p><strong>어떤 운동을, 어떤 주파수에서, 어떤 물리적 메커니즘으로 줄이는가?</strong></p>
+</blockquote>
+<p>이다.</p>
+</section>
+<section id="세-가지-패시브-설계-철학" class="level2">
+<h2 class="anchored" data-anchor-id="세-가지-패시브-설계-철학">세 가지 패시브 설계 철학</h2>
+<p>여러 연구를 역학적으로 정리하면 세 가지 전략으로 볼 수 있다.</p>
+<section id="주구조를-바꾼다" class="level3">
+<h3 class="anchored" data-anchor-id="주구조를-바꾼다">1. 주구조를 바꾼다</h3>
+<p>예:</p>
+<ul>
+<li>스파 직경,</li>
+<li>흘수,</li>
+<li>밸러스트 분포,</li>
+<li>바지 외벽 경사,</li>
+<li>문풀 크기.</li>
+</ul>
+<p>부유체 자체의 고유 동역학을 바꾼다.</p>
+</section>
+<section id="보조-동적-시스템을-추가한다" class="level3">
+<h3 class="anchored" data-anchor-id="보조-동적-시스템을-추가한다">2. 보조 동적 시스템을 추가한다</h3>
+<p>예:</p>
+<ul>
+<li>BTLD,</li>
+<li>BTLCD.</li>
+</ul>
+<p>보조시스템이 플랫폼에 대해 상대운동을 하면서 유리한 동적 반력을 만든다.</p>
+</section>
+<section id="유체-구조-상호작용을-바꾼다" class="level3">
+<h3 class="anchored" data-anchor-id="유체-구조-상호작용을-바꾼다">3. 유체-구조 상호작용을 바꾼다</h3>
+<p>예:</p>
+<ul>
+<li>스커트,</li>
+<li>유체동역학 부가물.</li>
+</ul>
+<p>주변 물이 운동에 참여하는 방식과 정도를 바꾼다.</p>
+<p>BTLD-스커트 결합개념은 두 번째와 세 번째 전략을 동시에 사용한 경우다.</p>
+</section>
+</section>
+<section id="공통된-메커니즘은-에너지-재분배다" class="level2">
+<h2 class="anchored" data-anchor-id="공통된-메커니즘은-에너지-재분배다">공통된 메커니즘은 에너지 재분배다</h2>
+<p>형상은 매우 다르다.</p>
+<p>깊은 흘수의 스파와 액체가 출렁이는 탱크는 전혀 닮지 않았다.</p>
+<p>스커트와 밸러스트도 다르다.</p>
+<p>그러나 역학적으로 보면 하나의 공통개념으로 묶을 수 있다.</p>
+<p>파랑은 부유시스템에 에너지를 공급한다.</p>
+<p>운동제어가 없으면 그 에너지의 상당부분이 플랫폼 운동으로 나타난다.</p>
+<p><span class="math display">\[
+E_{\mathrm{wave}}
+\rightarrow
+E_{\mathrm{platform\ motion}}
+\]</span></p>
+<p>패시브설계는 에너지의 경로를 바꾼다.</p>
+<p><span class="math display">\[
+E_{\mathrm{wave}}
+\rightarrow
+\begin{cases}
+E_{\mathrm{rigid\ motion}}\\
+E_{\mathrm{internal\ liquid}}\\
+E_{\mathrm{radiated\ waves}}\\
+E_{\mathrm{viscous\ dissipation}}\\
+E_{\mathrm{elastic\ deformation}}
+\end{cases}
+\]</span></p>
+<p>들어오는 파랑에너지를 없애는 것이 아니다.</p>
+<p>터빈 성능에 가장 문제가 되는 운동으로 너무 많은 에너지가 가지 않도록 다른 경로를 설계하는 것이다.</p>
+</section>
+<section id="왜-해상에서는-패시브제어가-매력적인가" class="level2">
+<h2 class="anchored" data-anchor-id="왜-해상에서는-패시브제어가-매력적인가">왜 해상에서는 패시브제어가 매력적인가?</h2>
+<p>해상에서는 검사와 보수가 비싸다.</p>
+<p>다음과 같은 시스템은 유지관리 대상이 늘어난다.</p>
+<ul>
+<li>센서,</li>
+<li>액추에이터,</li>
+<li>상시 전원,</li>
+<li>제어전자장치,</li>
+<li>복잡한 기계식 구동부.</li>
+</ul>
+<p>패시브시스템은 제어 메커니즘을</p>
+<ul>
+<li>형상,</li>
+<li>유체운동,</li>
+<li>밸러스트,</li>
+<li>유체동역학 상호작용</li>
+</ul>
+<p>안에 포함시킬 수 있다.</p>
+<p>물론 패시브시스템이 설계하기 쉽다는 뜻은 아니다.</p>
+<p>오히려 주파수, 형상과 환경조건에 민감할 수 있다.</p>
+<p>다만 잘 설계되면 지속적인 능동 개입 없이 작동한다는 장점이 있다.</p>
+</section>
+<section id="이-연구들이-아직-증명하지-않은-것" class="level2">
+<h2 class="anchored" data-anchor-id="이-연구들이-아직-증명하지-않은-것">이 연구들이 아직 증명하지 않은 것</h2>
+<p>이 결과들을 모든 부유식 해상풍력터빈에 적용되는 보편적인 성능값으로 해석해서는 안 된다.</p>
+<p>각 연구는 서로 다른 수치모델과 단순화 가정을 사용했다.</p>
+<p>초기 BTLD 연구는 주로 규칙파를 사용했고 플랫폼 유체동역학에 초점을 두었다.</p>
+<p>스커트-사다리꼴 플랫폼 연구는 등가감쇠를 포함한 선형 회절해석을 사용했고 주로 플랫폼 응답을 평가했다.</p>
+<p>스파 최적화 연구에서는 터빈과 계류시스템의 일부를 단순화했고 응력 및 피로를 포함한 완전한 최적화는 수행하지 않았다.</p>
+<p>가장 최근의 BTLD-스커트 연구는 고정밀 CFD와 불규칙 JONSWAP 조건도 검토했지만 풍하중과 완전한 공력탄성 연성은 범위 밖이었다.</p>
+<p>따라서</p>
+<p><span class="math display">\[
+70\%
+\]</span></p>
+<p>의 피치감소나</p>
+<p><span class="math display">\[
+20\text{--}40\%
+\]</span></p>
+<p>의 운동저감 같은 수치는 각 연구대상의 조건에서 얻어진 결과이지 보편적인 설계 보장값이 아니다.</p>
+<p>더 일반적인 것은 그 아래의 역학이다.</p>
+</section>
+<section id="결국-무엇을-설계하는가" class="level2">
+<h2 class="anchored" data-anchor-id="결국-무엇을-설계하는가">결국 무엇을 설계하는가?</h2>
+<p>부유식 해상풍력터빈의 운동을 줄이기 위해 반드시 능동 액추에이터가 필요한 것은 아니다.</p>
+<p>다음과 같은 것을 설계해도 운동은 달라진다.</p>
+<ul>
+<li><strong>무엇이 움직일 것인가,</strong></li>
+<li><strong>질량을 어디에 둘 것인가,</strong></li>
+<li><strong>내부 물이 어떻게 움직일 것인가,</strong></li>
+<li><strong>주변 바닷물이 어떻게 움직일 것인가,</strong></li>
+<li><strong>에너지가 어디에서 소산될 것인가.</strong></li>
+</ul>
+<p>그래서 패시브 운동제어는 단순히 감쇠를 추가하는 문제가 아니다.</p>
+<p><strong>부유시스템 전체의 동역학을 설계하는 문제</strong>다.</p>
+<p>결국 핵심은 이것이다.</p>
+<blockquote class="blockquote">
+<p><strong>운동을 억지로 막으려고만 하지 말고, 파랑에너지가 더 나은 곳으로 가게 만들어라.</strong></p>
+</blockquote>
+</section>
+<section id="original-research" class="level2">
+<h2 class="anchored" data-anchor-id="original-research">Original research</h2>
+<p><strong>Saghi, H., &amp; Zi, G. (2024).</strong><br>
+<em>Pitch motion reduction of a barge-type floating offshore wind turbine substructure using a bidirectional tuned liquid damper.</em><br>
+<em>Ocean Engineering, 304</em>, 117717.<br>
+https://doi.org/10.1016/j.oceaneng.2024.117717</p>
+<p><strong>Saghi, H., Ma, C., &amp; Zi, G. (2024).</strong><br>
+<em>Bidirectional tuned liquid dampers for stabilizing floating offshore wind turbine substructures.</em><br>
+<em>Ocean Engineering, 309</em>, 118553.<br>
+https://doi.org/10.1016/j.oceaneng.2024.118553</p>
+<p><strong>Kim, H., Saghi, H., Jeon, I., &amp; Zi, G. (2025).</strong><br>
+<em>Stabilization of floating offshore wind turbines with a passive stability-enhancing skirted trapezoidal platform.</em><br>
+<em>Journal of Marine Science and Engineering, 13</em>, 1658.<br>
+https://doi.org/10.3390/jmse13091658</p>
+<p><strong>Ma, C., Lee, S., Zhu, X., &amp; Zi, G. (2025).</strong><br>
+<em>Design optimization of OC3 spar floater based on rigid motion and hydroelastic response.</em><br>
+<em>Ocean Engineering, 334</em>, 121543.<br>
+https://doi.org/10.1016/j.oceaneng.2025.121543</p>
+<p><strong>Kim, H., Saghi, H., &amp; Zi, G. (2026).</strong><br>
+<em>Numerical investigation of motion control of a barge-type floating offshore wind turbine using a bidirectional tuned liquid damper and a horizontal skirt.</em><br>
+<em>Ocean Engineering, 355</em>, 125130.<br>
+https://doi.org/10.1016/j.oceaneng.2026.125130</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

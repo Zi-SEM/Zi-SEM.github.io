@@ -8,7 +8,8 @@
 
 <meta name="author" content="Goangseup Zi">
 <meta name="dcterms.date" content="2026-09-01">
-<meta name="description" content="Why is strain the symmetric part of the displacement gradient? Starting from boundary traction work, we derive the strain tensor through equilibrium and energy considerations.">
+<meta name="keywords" content="strain tensor, small strain tensor, displacement gradient, stress strain energy, strain energy density, internal virtual work, principle of virtual work, energy conjugate stress and strain, tensor contraction, double contraction, Cauchy stress, continuum mechanics, finite deformation, Green-Lagrange strain, Piola-Kirchhoff stress, Z Diagram">
+<meta name="description" content="Why is strain the symmetric part of the displacement gradient? Starting from boundary traction work, we derive the strain tensor through equilibrium, virtual work, and energy conjugacy.">
 
 <title>Where Does the Strain Tensor Appear? – Zi’s Structural Engineering &amp; Mechanics</title>
 <style>
@@ -142,19 +143,23 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../research.html"> 
-<span class="menu-text">Research Explained</span></a>
+<span class="menu-text">Research &amp; Innovation</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../mechanics.html"> 
 <span class="menu-text">Engineering Mechanics</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../z-diagram.html"> 
-<span class="menu-text">Z-Diagram</span></a>
+    <a class="nav-link" href="../../perspectives.html"> 
+<span class="menu-text">Engineering Perspectives</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../latex-writing.html"> 
-<span class="menu-text">LaTeX &amp; Writing</span></a>
+    <a class="nav-link" href="../../cartoon-log.html"> 
+<span class="menu-text">Cartoon Logs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../beyond-engineering.html"> 
+<span class="menu-text">Beyond Engineering</span></a>
   </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -173,6 +178,41 @@ window.Quarto = {
   </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">한국어</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../index-ko.html">
+ <span class="dropdown-text">홈</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research-ko.html">
+ <span class="dropdown-text">연구와 기술</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../mechanics-ko.html">
+ <span class="dropdown-text">공학역학</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../perspectives-ko.html">
+ <span class="dropdown-text">공학 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../cartoon-log-ko.html">
+ <span class="dropdown-text">카툰 일기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../beyond-engineering-ko.html">
+ <span class="dropdown-text">공학 밖의 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about-ko.html">
+ <span class="dropdown-text">소개</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
 </i> 
@@ -228,7 +268,7 @@ window.Quarto = {
 
 <div>
   <div class="description">
-    Why is strain the symmetric part of the displacement gradient? Starting from boundary traction work, we derive the strain tensor through equilibrium and energy considerations.
+    Why is strain the symmetric part of the displacement gradient? Starting from boundary traction work, we derive the strain tensor through equilibrium, virtual work, and energy conjugacy.
   </div>
 </div>
 
@@ -253,10 +293,19 @@ window.Quarto = {
   </div>
   
 
+<div>
+  <div class="keywords">
+    <div class="block-title">Keywords</div>
+    <p>strain tensor, small strain tensor, displacement gradient, stress strain energy, strain energy density, internal virtual work, principle of virtual work, energy conjugate stress and strain, tensor contraction, double contraction, Cauchy stress, continuum mechanics, finite deformation, Green-Lagrange strain, Piola-Kirchhoff stress, Z Diagram</p>
+  </div>
+</div>
 
 </header>
 
 
+<div class="language-switch">
+<p><strong>English</strong> | <a href="index-ko.html">한글</a></p>
+</div>
 <section id="from-stress-to-strain" class="level2">
 <h2 class="anchored" data-anchor-id="from-stress-to-strain">From stress to strain</h2>
 <p>In the previous article, we asked what the stress tensor really represents.</p>
@@ -271,7 +320,7 @@ window.Quarto = {
 <p><span class="math display">\[
 \mathbf t^{(\mathbf n)}
 =
-\boldsymbol{\sigma}\mathbf n.
+\boldsymbol{\sigma}\cdot \mathbf n.
 \]</span></p>
 <p>The stress tensor therefore tells us how internal force is transmitted across an arbitrarily oriented surface.</p>
 <p>But this immediately raises another question.</p>
@@ -285,6 +334,15 @@ window.Quarto = {
 \delta\boldsymbol{\varepsilon}
 \,dV.
 \]</span></p>
+<p>Here and throughout this article, the tensor-operation symbols are written explicitly when they help distinguish the operation:</p>
+<p><span class="math display">\[
+\otimes:\;\text{tensor product (no contraction)},
+\qquad
+\cdot:\;\text{single contraction},
+\qquad
+::\;\text{double contraction}.
+\]</span></p>
+<p>Thus <span class="math inline">\(\boldsymbol{\sigma}\cdot\mathbf n\)</span> is a single contraction, whereas <span class="math inline">\(\boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}\)</span> is a double contraction. The symbols are a notation convention used here for clarity; the underlying operation is best checked from the repeated and free indices.</p>
 <p>This formula is fundamental in solid mechanics and finite element analysis.</p>
 <p>But why does the strain tensor <span class="math inline">\(\boldsymbol{\varepsilon}\)</span> appear here?</p>
 <p>Why not simply the displacement gradient <span class="math inline">\(\nabla\mathbf u\)</span>?</p>
@@ -307,7 +365,7 @@ window.Quarto = {
 <p><span class="math display">\[
 \mathbf t
 =
-\boldsymbol{\sigma}\mathbf n,
+\boldsymbol{\sigma}\cdot \mathbf n,
 \]</span></p>
 <p>where <span class="math inline">\(\mathbf n\)</span> is the outward unit normal to the boundary.</p>
 <p>Therefore,</p>
@@ -315,7 +373,7 @@ window.Quarto = {
 \delta W_t
 =
 \int_{\partial\Omega}
-(\boldsymbol{\sigma}\mathbf n)
+(\boldsymbol{\sigma}\cdot \mathbf n)
 \cdot
 \delta\mathbf u
 \,dA.
@@ -788,8 +846,9 @@ J=\det\mathbf F.
 <p><span class="math display">\[
 \mathbf P
 =
-J\boldsymbol{\sigma}\mathbf F^{-T}.
+J\boldsymbol{\sigma}\cdot\mathbf F^{-T}.
 \]</span></p>
+<p>The dot is shown explicitly here because <span class="math inline">\(\boldsymbol{\sigma}\cdot\mathbf F^{-T}\)</span> is a single contraction between two second-order tensors. In matrix notation the same operation is often written simply as <span class="math inline">\(J\boldsymbol{\sigma}\mathbf F^{-T}\)</span>.</p>
 <p>The power expression referred to the reference configuration can be written as</p>
 <p><span class="math display">\[
 \boxed{
@@ -813,7 +872,7 @@ P_{\mathrm{ext}}
 =
 \frac12
 \left(
-\mathbf F^T\mathbf F-\mathbf I
+\mathbf F^T\cdot\mathbf F-\mathbf I
 \right).
 \]</span></p>
 <p>Its work-conjugate stress is the Second Piola–Kirchhoff stress <span class="math inline">\(\mathbf S\)</span>, giving</p>

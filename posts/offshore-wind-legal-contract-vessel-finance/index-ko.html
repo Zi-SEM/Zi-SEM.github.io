@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="지광습">
+<meta name="keywords" content="해상풍력특별법, 해상풍력 건설계약, 해상풍력 특수선박 금융, 해상풍력 설치선, WTIV, 해상풍력 위험배분, 해상운송 설치계약, 해상풍력 인허가, 해양건설">
+<meta name="description" content="해상풍력특별법, 해상풍력 건설계약, 해상풍력 설치선과 특수선박 금융의 문제를 구조공학과 해양건설의 관점에서 분석한다.">
+
+<title>해상풍력의 성공을 가로막는 보이지 않는 장벽: 법률, 계약 그리고 특수선박 금융 – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research &amp; Innovation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../perspectives.html"> 
+<span class="menu-text">Engineering Perspectives</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../cartoon-log.html"> 
+<span class="menu-text">Cartoon Logs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../beyond-engineering.html"> 
+<span class="menu-text">Beyond Engineering</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">한국어</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../index-ko.html">
+ <span class="dropdown-text">홈</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research-ko.html">
+ <span class="dropdown-text">연구와 기술</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../mechanics-ko.html">
+ <span class="dropdown-text">공학역학</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../perspectives-ko.html">
+ <span class="dropdown-text">공학 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../cartoon-log-ko.html">
+ <span class="dropdown-text">카툰 일기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../beyond-engineering-ko.html">
+ <span class="dropdown-text">공학 밖의 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about-ko.html">
+ <span class="dropdown-text">소개</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#해상풍력특별법-입지-선정은-기술적-판단이기도-하다" id="toc-해상풍력특별법-입지-선정은-기술적-판단이기도-하다" class="nav-link active" data-scroll-target="#해상풍력특별법-입지-선정은-기술적-판단이기도-하다">해상풍력특별법: 입지 선정은 기술적 판단이기도 하다</a></li>
+  <li><a href="#기존-해운업건설업-면허로-해상풍력-설치공사를-설명할-수-있는가" id="toc-기존-해운업건설업-면허로-해상풍력-설치공사를-설명할-수-있는가" class="nav-link" data-scroll-target="#기존-해운업건설업-면허로-해상풍력-설치공사를-설명할-수-있는가">기존 해운업·건설업 면허로 해상풍력 설치공사를 설명할 수 있는가?</a></li>
+  <li><a href="#해상건설계약에서-무엇을-위험으로-정의할-것인가" id="toc-해상건설계약에서-무엇을-위험으로-정의할-것인가" class="nav-link" data-scroll-target="#해상건설계약에서-무엇을-위험으로-정의할-것인가">해상건설계약에서 무엇을 위험으로 정의할 것인가?</a>
+  <ul class="collapse">
+  <li><a href="#기상대기는-파고-하나로-결정할-수-없다" id="toc-기상대기는-파고-하나로-결정할-수-없다" class="nav-link" data-scroll-target="#기상대기는-파고-하나로-결정할-수-없다">기상대기는 파고 하나로 결정할 수 없다</a></li>
+  <li><a href="#해저지반의-불확실성은-어떻게-배분하는가" id="toc-해저지반의-불확실성은-어떻게-배분하는가" class="nav-link" data-scroll-target="#해저지반의-불확실성은-어떻게-배분하는가">해저지반의 불확실성은 어떻게 배분하는가?</a></li>
+  </ul></li>
+  <li><a href="#특수선박은-운송수단이자-건설시스템이다" id="toc-특수선박은-운송수단이자-건설시스템이다" class="nav-link" data-scroll-target="#특수선박은-운송수단이자-건설시스템이다">특수선박은 운송수단이자 건설시스템이다</a></li>
+  <li><a href="#왜-특수선박-금융은-어려운가" id="toc-왜-특수선박-금융은-어려운가" class="nav-link" data-scroll-target="#왜-특수선박-금융은-어려운가">왜 특수선박 금융은 어려운가?</a></li>
+  <li><a href="#선박-확보와-계약-표준화는-함께-가야-한다" id="toc-선박-확보와-계약-표준화는-함께-가야-한다" class="nav-link" data-scroll-target="#선박-확보와-계약-표준화는-함께-가야-한다">선박 확보와 계약 표준화는 함께 가야 한다</a></li>
+  <li><a href="#기술과-제도가-함께-발전해야-한다" id="toc-기술과-제도가-함께-발전해야-한다" class="nav-link" data-scroll-target="#기술과-제도가-함께-발전해야-한다">기술과 제도가 함께 발전해야 한다</a></li>
+  <li><a href="#참고" id="toc-참고" class="nav-link" data-scroll-target="#참고">참고</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">해상풍력의 성공을 가로막는 보이지 않는 장벽: 법률, 계약 그리고 특수선박 금융</h1>
+<p class="subtitle lead">해상풍력산업의 발전을 위한 공학과 제도의 결합</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Engineering Perspectives</div>
+    <div class="quarto-category">Offshore Wind Energy</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    해상풍력특별법, 해상풍력 건설계약, 해상풍력 설치선과 특수선박 금융의 문제를 구조공학과 해양건설의 관점에서 분석한다.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">저자</div>
+    <div class="quarto-title-meta-contents">
+             <p>지광습 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">공개</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">2026년 10월 15일</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">2026년 10월 15일</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+<div>
+  <div class="keywords">
+    <div class="block-title">키워드</div>
+    <p>해상풍력특별법, 해상풍력 건설계약, 해상풍력 특수선박 금융, 해상풍력 설치선, WTIV, 해상풍력 위험배분, 해상운송 설치계약, 해상풍력 인허가, 해양건설</p>
+  </div>
+</div>
+
+</header>
+
+
+<p><a href="index.html" class="btn btn-outline-primary btn-sm">English</a> <strong>한국어</strong></p>
+<p>해상풍력은 재생에너지 발전사업으로 알려져 있다. 그러나 실제 발전단지를 건설하려면 해저지반을 조사하고, 파랑과 바람에 저항하는 하부구조물을 설계하며, 거대한 구조물을 운송·설치하고, 해저케이블로 전력을 육상에 연결해야 한다. 완공 후에는 수십 년 동안 구조물과 발전설비를 관리해야 한다.</p>
+<p>결국 <strong>해상풍력은 발전사업인 동시에 대규모 해양 인프라 건설사업</strong>이다.</p>
+<p>2026년 10월 15일 한국선박건조금융법정책학회 추계학술대회에서 조현호 변호사(HA Energy 법무팀장)는 「해상풍력 법률 쟁점과 특수선박 금융 정책」을 발표할 예정이다. 이 글은 해당 발표자료에 제시된 쟁점과 필자의 토론 관점을 바탕으로 작성한 게시용 원고이다. 법률·금융상의 사실과 공학적 해석을 구분하여 살펴본다.</p>
+<section id="해상풍력특별법-입지-선정은-기술적-판단이기도-하다" class="level2">
+<h2 class="anchored" data-anchor-id="해상풍력특별법-입지-선정은-기술적-판단이기도-하다">해상풍력특별법: 입지 선정은 기술적 판단이기도 하다</h2>
+<p>「해상풍력 보급 촉진 및 산업 육성에 관한 특별법」에 따른 계획입지 체계는 개별 사업자의 입지·인허가 추진 과정에서 발생해 온 여러 갈등을 체계적으로 다룰 수 있는 기반이다. 다만 제도의 도입 자체가 건설 가능성을 보장하지는 않는다. 기존 사업권, 하위법령, 주민수용성, 관계기관 간 역할 조정과 같은 문제가 남아 있다.</p>
+<p>공학적으로 보면 입지 선정은 행정절차만이 아니다. 같은 발전용량이라도 수심, 해저지반, 파랑, 항만 접근성, 설치선박의 가용성에 따라 공사비와 일정이 달라진다. 풍황이 좋아도 시공이 지나치게 어렵다면 경제적인 사업이 되기 어렵다.</p>
+<p><strong>어디에 설치할 것인가와 어떻게 건설·운영할 것인가는 함께 결정해야 한다.</strong></p>
+</section>
+<section id="기존-해운업건설업-면허로-해상풍력-설치공사를-설명할-수-있는가" class="level2">
+<h2 class="anchored" data-anchor-id="기존-해운업건설업-면허로-해상풍력-설치공사를-설명할-수-있는가">기존 해운업·건설업 면허로 해상풍력 설치공사를 설명할 수 있는가?</h2>
+<p>하부구조물의 해상운송은 해운업에 가깝지만, 해저지반에 고정하는 작업은 건설공사이다. 크레인선과 풍력터빈 설치선은 선박이면서 해상건설장비다. 이러한 경계 때문에 기존 면허체계가 설치공사의 특성을 충분히 반영하지 못할 수 있다.</p>
+<p>그렇다고 새로운 면허를 신설하는 것이 유일한 해법은 아니다. 실제로 필요한 것은 구조물의 동적 거동, 선박 위치유지, 크레인 성능, 해저지반, 기상조건을 종합적으로 판단할 수 있는 기술 역량이다. 기존 면허체계의 보완과 전문 자격체계의 도입을 비교할 필요가 있다.</p>
+</section>
+<section id="해상건설계약에서-무엇을-위험으로-정의할-것인가" class="level2">
+<h2 class="anchored" data-anchor-id="해상건설계약에서-무엇을-위험으로-정의할-것인가">해상건설계약에서 무엇을 위험으로 정의할 것인가?</h2>
+<p>국제 해상풍력사업에서는 FIDIC, LOGIC, BIMCO 등 여러 계약체계가 사용된다. 해양산업에서 활용되는 Knock-for-Knock 위험배분 역시 국내의 강행법규와 관계를 검토해야 한다. 국제계약의 면책·책임제한 조항이 국내에서 언제나 동일하게 적용되는 것은 아니다.</p>
+<p>발표자료는 해상운송·설치(T&amp;I) 계약에서 설치선 조달 지연, 하자·보증기간, 지체상금, 기상대기, 보험 공백, 인허가 지연, 해상보증검사기관 판단, 예측하지 못한 지반조건, 설계변경, 불가항력 등을 주요 위험배분 쟁점으로 제시한다.</p>
+<section id="기상대기는-파고-하나로-결정할-수-없다" class="level3">
+<h3 class="anchored" data-anchor-id="기상대기는-파고-하나로-결정할-수-없다">기상대기는 파고 하나로 결정할 수 없다</h3>
+<p>동일한 유의파고라도 파주기에 따라 설치선의 운동응답이 달라진다. 선박의 고유주기 부근에서는 운동이 증폭될 수 있고, 인양 중인 구조물의 동적 응답까지 고려하면 작업한계는 더욱 복잡해진다. 풍속·파고의 단일 한계값만으로 실제 작업성을 충분히 설명하기 어려운 이유다.</p>
+<p>계약의 기상대기 조항은 <strong>설치시스템의 실제 동적 작업한계</strong>와 연결되어야 한다. 그렇지 않으면 기술적으로 작업할 수 없는 날이 계약상으로는 작업 가능일이 되는 모순이 생긴다.</p>
+</section>
+<section id="해저지반의-불확실성은-어떻게-배분하는가" class="level3">
+<h3 class="anchored" data-anchor-id="해저지반의-불확실성은-어떻게-배분하는가">해저지반의 불확실성은 어떻게 배분하는가?</h3>
+<p>지반조사로 모든 위치의 조건을 완전히 알 수는 없다. 시공 중 예상하지 못한 암반, 연약층 또는 강도 차이가 발견되면 기초형식, 장비, 일정이 달라질 수 있다. 따라서 설계 기준 지반조건을 어떻게 정의하고 실제 조건과의 차이를 어떻게 판단할 것인지, 추가비용은 누가 부담할 것인지를 사전에 정해야 한다.</p>
+<p>이 문제에는 법률전문가뿐 아니라 지반·구조·시공기술 전문가가 참여해야 한다. <strong>계약의 합리성은 공학적 불확실성을 얼마나 정확하게 이해하고 배분하는가에 달려 있다.</strong></p>
+</section>
+</section>
+<section id="특수선박은-운송수단이자-건설시스템이다" class="level2">
+<h2 class="anchored" data-anchor-id="특수선박은-운송수단이자-건설시스템이다">특수선박은 운송수단이자 건설시스템이다</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>선박</th>
+<th>주요 역할</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>WTIV</td>
+<td>풍력터빈 운송 및 설치</td>
+</tr>
+<tr class="even">
+<td>HLV</td>
+<td>대형 하부구조물과 중량물 인양·설치</td>
+</tr>
+<tr class="odd">
+<td>AHTS</td>
+<td>부유체 예인·계류 작업 지원</td>
+</tr>
+<tr class="even">
+<td>CLV</td>
+<td>해저케이블 포설</td>
+</tr>
+<tr class="odd">
+<td>SOV/CSOV</td>
+<td>운영·유지관리 지원</td>
+</tr>
+<tr class="even">
+<td>CTV</td>
+<td>유지관리 인력 수송</td>
+</tr>
+</tbody>
+</table>
+<p>고정식 해상풍력은 대형 하부구조물과 터빈의 인양·설치가 핵심이다. 부유식은 항만 내 조립, 예인, 계류, 동적 케이블 연결이 중요한 공정이 된다. 따라서 두 방식은 선박의 종류와 가동계획부터 달라진다.</p>
+<p>더 중요한 점은 선박의 인양능력, 갑판면적, 작업한계가 구조물의 크기와 분할방식, 설치공법을 제약한다는 사실이다. <strong>구조물 설계와 선박 선정은 독립적인 의사결정이 아니다.</strong></p>
+</section>
+<section id="왜-특수선박-금융은-어려운가" class="level2">
+<h2 class="anchored" data-anchor-id="왜-특수선박-금융은-어려운가">왜 특수선박 금융은 어려운가?</h2>
+<p>해상풍력 설치선의 수요는 발전단지의 착공 일정에 의존한다. 고가의 장비를 탑재하더라도 실제 가동일수가 제한되고, 프로젝트 지연으로 용선계약이 연기될 수 있다. 일반 상선에 비해 중고시장이 좁아 담보가치 평가도 어렵다.</p>
+<p>발표자료는 대형 WTIV의 일일 용선료가 4억 원 이상에 이를 수 있고 연간 용선일수는 약 100~200일이라는 사례를 제시한다. 선박금융의 장기 상환구조(10~15년)와 프로젝트 단위의 상대적으로 짧은 용선계약 사이에는 구조적인 불일치가 존재한다. <em>이 수치들은 발표자료에 제시된 사례이며 시장 전체의 대표값으로 일반화할 수 없다.</em></p>
+<p>정책금융 보증, 후순위 투자, 장기용선 보장, 국적선 활용 유인, 세제지원 등이 대안으로 제안된다. 다만 공공지원의 타당성은 개별 선박의 확보 여부가 아니라 실제 수요와 건설산업 전체의 생산성 개선 효과를 기준으로 평가해야 한다.</p>
+</section>
+<section id="선박-확보와-계약-표준화는-함께-가야-한다" class="level2">
+<h2 class="anchored" data-anchor-id="선박-확보와-계약-표준화는-함께-가야-한다">선박 확보와 계약 표준화는 함께 가야 한다</h2>
+<p>특수선박 수요를 단순히 GW 보급목표에 비례시켜 추정하면 안 된다. 프로젝트 일정, 수심, 하부구조 형식, 설치공법, 항만, 기상 작업창(weather window), 고정식과 부유식의 구성비를 함께 고려해야 한다. 공동활용, 장기 수요관리, 항만 확충과 기술개발도 연계되어야 한다.</p>
+<p>계약 역시 국내 해역의 해양환경 자료, 실제 설치선의 작업성능, 지반조사 결과, 시공 이력을 바탕으로 개선할 필요가 있다. 국제계약을 그대로 가져오는 것보다 <strong>위험을 측정하고 설명할 수 있는 기술적 근거</strong>를 축적하는 일이 중요하다.</p>
+</section>
+<section id="기술과-제도가-함께-발전해야-한다" class="level2">
+<h2 class="anchored" data-anchor-id="기술과-제도가-함께-발전해야-한다">기술과 제도가 함께 발전해야 한다</h2>
+<p>해상풍력 경쟁력은 설계, 제작, 운송, 설치, 운영을 하나의 시스템으로 통합하는 능력에서 나온다. 법률과 금융은 이 시스템 밖에 있는 부수적인 문제가 아니다. 공학적 불확실성을 이해하지 못한 계약은 분쟁을 만들고, 실제 수요와 동떨어진 선박금융은 장기적인 부담을 남길 수 있다.</p>
+<p>결국 중요한 것은 <strong>기술·제도·금융·시공을 얼마나 효율적으로 연결할 수 있는가</strong>이다.</p>
+</section>
+<section id="참고" class="level2">
+<h2 class="anchored" data-anchor-id="참고">참고</h2>
+<p>조현호, 「해상풍력 법률 쟁점과 특수선박 금융 정책」, 한국선박건조금융법정책학회 추계학술대회, 2026년 10월 15일. 발표자료에 제시된 법률·금융 쟁점을 바탕으로 구조공학과 해상건설기술 관점의 해석을 추가하였다. 발표 내용과 법령 조문, 금융 수치는 게시 전 원자료 확인이 필요하다.</p>
+<p><strong>관련 글:</strong> <a href="../../posts/offshore-wind-industrial-competitiveness/index-ko.html">해상풍력산업의 진정한 경쟁력은 어디에서 오는가?</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

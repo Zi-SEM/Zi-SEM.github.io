@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Goangseup Zi">
+<meta name="dcterms.date" content="2026-09-26">
+<meta name="keywords" content="digital construction standards, construction code digitization, machine-readable standards, machine-actionable standards, computable standards, engineering AI, AI for structural engineering, large language models, LLM, Transformer, attention mechanism, structured engineering knowledge, RuleUnit, ontology, knowledge graph, automated compliance checking, automatic compliance checking, ACC, BIM compliance checking, finite element analysis, FEM, design automation, construction codes, WGD, We Go Digital">
+
+<title>What Does It Mean to Digitalize Engineering Standards in the Age of AI? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research &amp; Innovation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../perspectives.html"> 
+<span class="menu-text">Engineering Perspectives</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../cartoon-log.html"> 
+<span class="menu-text">Cartoon Logs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../beyond-engineering.html"> 
+<span class="menu-text">Beyond Engineering</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">한국어</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../index-ko.html">
+ <span class="dropdown-text">홈</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research-ko.html">
+ <span class="dropdown-text">연구와 기술</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../mechanics-ko.html">
+ <span class="dropdown-text">공학역학</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../perspectives-ko.html">
+ <span class="dropdown-text">공학 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../cartoon-log-ko.html">
+ <span class="dropdown-text">카툰 일기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../beyond-engineering-ko.html">
+ <span class="dropdown-text">공학 밖의 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about-ko.html">
+ <span class="dropdown-text">소개</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#think-of-an-llm-as-a-very-large-function" id="toc-think-of-an-llm-as-a-very-large-function" class="nav-link active" data-scroll-target="#think-of-an-llm-as-a-very-large-function">Think of an LLM as a very large function</a></li>
+  <li><a href="#what-does-attention-do" id="toc-what-does-attention-do" class="nav-link" data-scroll-target="#what-does-attention-do">What does attention do?</a></li>
+  <li><a href="#who-determines-w_q-w_k-and-w_v" id="toc-who-determines-w_q-w_k-and-w_v" class="nav-link" data-scroll-target="#who-determines-w_q-w_k-and-w_v">Who determines <span class="math inline">\(W_Q\)</span>, <span class="math inline">\(W_K\)</span>, and <span class="math inline">\(W_V\)</span>?</a></li>
+  <li><a href="#training-data-parameters-and-context-are-different-things" id="toc-training-data-parameters-and-context-are-different-things" class="nav-link" data-scroll-target="#training-data-parameters-and-context-are-different-things">Training data, parameters, and context are different things</a></li>
+  <li><a href="#then-where-should-engineering-standards-live" id="toc-then-where-should-engineering-standards-live" class="nav-link" data-scroll-target="#then-where-should-engineering-standards-live">Then where should engineering standards live?</a></li>
+  <li><a href="#a-pdf-is-not-yet-a-digital-standard" id="toc-a-pdf-is-not-yet-a-digital-standard" class="nav-link" data-scroll-target="#a-pdf-is-not-yet-a-digital-standard">A PDF is not yet a digital standard</a></li>
+  <li><a href="#ruleunit-turning-a-code-statement-into-an-engineering-rule" id="toc-ruleunit-turning-a-code-statement-into-an-engineering-rule" class="nav-link" data-scroll-target="#ruleunit-turning-a-code-statement-into-an-engineering-rule">RuleUnit: turning a code statement into an engineering rule</a></li>
+  <li><a href="#are-thousands-of-ruleunits-enough" id="toc-are-thousands-of-ruleunits-enough" class="nav-link" data-scroll-target="#are-thousands-of-ruleunits-enough">Are thousands of RuleUnits enough?</a></li>
+  <li><a href="#a-structural-analysis-analogy-helps-reveal-the-whole-system" id="toc-a-structural-analysis-analogy-helps-reveal-the-whole-system" class="nav-link" data-scroll-target="#a-structural-analysis-analogy-helps-reveal-the-whole-system">A structural-analysis analogy helps reveal the whole system</a></li>
+  <li><a href="#digital-standards-are-not-only-for-ai" id="toc-digital-standards-are-not-only-for-ai" class="nav-link" data-scroll-target="#digital-standards-are-not-only-for-ai">Digital standards are not only for AI</a>
+  <ul class="collapse">
+  <li><a href="#automated-compliance-checking" id="toc-automated-compliance-checking" class="nav-link" data-scroll-target="#automated-compliance-checking">Automated compliance checking</a></li>
+  <li><a href="#connecting-bim-and-fem-to-design-standards" id="toc-connecting-bim-and-fem-to-design-standards" class="nav-link" data-scroll-target="#connecting-bim-and-fem-to-design-standards">Connecting BIM and FEM to design standards</a></li>
+  <li><a href="#design-automation-and-optimization" id="toc-design-automation-and-optimization" class="nav-link" data-scroll-target="#design-automation-and-optimization">Design automation and optimization</a></li>
+  <li><a href="#design-calculations-and-review-reports" id="toc-design-calculations-and-review-reports" class="nav-link" data-scroll-target="#design-calculations-and-review-reports">Design calculations and review reports</a></li>
+  <li><a href="#impact-analysis-when-standards-are-revised" id="toc-impact-analysis-when-standards-are-revised" class="nav-link" data-scroll-target="#impact-analysis-when-standards-are-revised">Impact analysis when standards are revised</a></li>
+  <li><a href="#comparing-standards-and-checking-their-internal-quality" id="toc-comparing-standards-and-checking-their-internal-quality" class="nav-link" data-scroll-target="#comparing-standards-and-checking-their-internal-quality">Comparing standards and checking their internal quality</a></li>
+  <li><a href="#project-specific-specifications-and-requirements" id="toc-project-specific-specifications-and-requirements" class="nav-link" data-scroll-target="#project-specific-specifications-and-requirements">Project-specific specifications and requirements</a></li>
+  <li><a href="#engineering-education" id="toc-engineering-education" class="nav-link" data-scroll-target="#engineering-education">Engineering education</a></li>
+  </ul></li>
+  <li><a href="#so-where-does-ai-fit" id="toc-so-where-does-ai-fit" class="nav-link" data-scroll-target="#so-where-does-ai-fit">So where does AI fit?</a></li>
+  <li><a href="#looking-again-at-wgd" id="toc-looking-again-at-wgd" class="nav-link" data-scroll-target="#looking-again-at-wgd">Looking again at WGD</a></li>
+  <li><a href="#what-comes-from-existing-research-and-what-is-wgd" id="toc-what-comes-from-existing-research-and-what-is-wgd" class="nav-link" data-scroll-target="#what-comes-from-existing-research-and-what-is-wgd">What comes from existing research, and what is WGD?</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">What Does It Mean to Digitalize Engineering Standards in the Age of AI?</h1>
+<p class="subtitle lead">From How LLMs Work to RuleUnits, Ontologies, Knowledge Graphs, and WGD</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Research &amp; Innovation</div>
+    <div class="quarto-category">Digital Transformation &amp; AI</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Goangseup Zi </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 26, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+<div>
+  <div class="keywords">
+    <div class="block-title">Keywords</div>
+    <p>digital construction standards, construction code digitization, machine-readable standards, machine-actionable standards, computable standards, engineering AI, AI for structural engineering, large language models, LLM, Transformer, attention mechanism, structured engineering knowledge, RuleUnit, ontology, knowledge graph, automated compliance checking, automatic compliance checking, ACC, BIM compliance checking, finite element analysis, FEM, design automation, construction codes, WGD, We Go Digital</p>
+  </div>
+</div>
+
+</header>
+
+
+<div class="language-switch">
+<strong>English</strong> | <a href="../../posts/why-wgd-needs-more-than-llm/index-ko.html">한글</a>
+</div>
+<p>These days, we ask AI almost anything. It summarizes papers, writes code, and explains design standards. I now use AI in one form or another almost every day.</p>
+<p>This creates two almost opposite reactions when I explain <strong>WGD — We Go Digital</strong>, a project we are working on in our research group.</p>
+<p>One reaction is:</p>
+<blockquote class="blockquote">
+<p>“AI is already this smart. Why not just let it read all of KDS and KCS?”</p>
+</blockquote>
+<p>The other is:</p>
+<blockquote class="blockquote">
+<p>“Does digitizing construction standards simply mean building an AI chatbot?”</p>
+</blockquote>
+<p>There is some truth in both questions, but neither captures what WGD is trying to do.</p>
+<p>The first does not distinguish what an AI model learns from what it can reliably retrieve, verify, and trace. The second makes the opposite mistake: it reduces the possible uses of digital engineering knowledge to AI.</p>
+<p>To understand WGD, we therefore need some understanding of AI itself—particularly the large language models (LLMs) behind today’s generative AI.</p>
+<p>Then comes a more important question:</p>
+<p><strong>If AI works this way, where should engineering knowledge live when accuracy, provenance, and version control matter?</strong></p>
+<p>And one more question follows:</p>
+<p><strong>Once an engineering standard has been converted into knowledge that a computer can use directly, what else can we do with it?</strong></p>
+<p>This article connects these three questions from the perspective of a structural engineer.</p>
+<section id="think-of-an-llm-as-a-very-large-function" class="level2">
+<h2 class="anchored" data-anchor-id="think-of-an-llm-as-a-very-large-function">Think of an LLM as a very large function</h2>
+<p>For an engineer, a useful first abstraction is to think of an LLM as a highly complex function,</p>
+<p><span class="math display">\[
+y=F_{\theta}(x),
+\]</span></p>
+<p>where <span class="math inline">\(x\)</span> is the input, <span class="math inline">\(y\)</span> is the output, and <span class="math inline">\(\theta\)</span> denotes a very large set of internal parameters determined through training.</p>
+<p>In linear finite element analysis, we solve</p>
+<p><span class="math display">\[
+\mathbf K\mathbf u=\mathbf f
+\]</span></p>
+<p>to obtain</p>
+<p><span class="math display">\[
+\mathbf u=\mathbf K^{-1}\mathbf f.
+\]</span></p>
+<p>An LLM is obviously not a finite element model. In fact, the difference is more useful than the analogy.</p>
+<p>In FEM, we begin with physical principles such as equilibrium, compatibility, and constitutive behavior:</p>
+<p><span class="math display">\[
+\text{Physics}
+\rightarrow
+\text{Mathematical Model}
+\rightarrow
+\text{Computation}.
+\]</span></p>
+<p>An LLM is not built by programming every linguistic rule and every knowledge relationship explicitly. Instead, it is trained on large amounts of data, fundamentally by learning to predict the next token more accurately.</p>
+<p>That sounds almost too simple. But good next-token prediction requires more than grammar.</p>
+<p>Consider:</p>
+<blockquote class="blockquote">
+<p>Reinforced concrete beams may fail in shear when …</p>
+</blockquote>
+<p>To predict what is likely to follow, it helps to capture recurring relationships among concepts such as <code>reinforced concrete</code>, <code>beam</code>, <code>shear</code>, and <code>failure</code>.</p>
+<p>As next-token prediction becomes increasingly capable, the model develops internal representations that can handle not only linguistic structure but also relationships among concepts and many recurring reasoning patterns.</p>
+<p>The important point is this:</p>
+<blockquote class="blockquote">
+<p><strong>Those relationships were not entered one by one by a human. Internal structures capable of handling them emerged through training for prediction.</strong></p>
+</blockquote>
+<p>The Transformer architecture underlying modern LLMs was introduced by Vaswani et al.&nbsp;in 2017.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+</section>
+<section id="what-does-attention-do" class="level2">
+<h2 class="anchored" data-anchor-id="what-does-attention-do">What does attention do?</h2>
+<p>Consider the sentence:</p>
+<blockquote class="blockquote">
+<p>The beam failed because it was overloaded.</p>
+</blockquote>
+<p>To interpret <code>it</code>, the model needs to connect it with <code>beam</code>.</p>
+<p>A Transformer divides text into tokens and represents each token numerically. Let <span class="math inline">\(X\)</span> collect the states of all tokens at the current layer:</p>
+<p><span class="math display">\[
+X=
+\begin{bmatrix}
+x_1^T\\
+x_2^T\\
+\vdots\\
+x_n^T
+\end{bmatrix}.
+\]</span></p>
+<p>A structural engineer might loosely compare this with collecting the state of a system into a global vector. The analogy should not be pushed too far: a token is not a scalar degree of freedom but a high-dimensional vector.</p>
+<p>Attention forms three representations from the current state <span class="math inline">\(X\)</span>:</p>
+<p><span class="math display">\[
+Q=XW_Q,\qquad
+K=XW_K,\qquad
+V=XW_V.
+\]</span></p>
+<p>A useful intuition is:</p>
+<ul>
+<li><span class="math inline">\(Q\)</span>: What information am I looking for?</li>
+<li><span class="math inline">\(K\)</span>: What kind of information can I be associated with?</li>
+<li><span class="math inline">\(V\)</span>: What information do I actually provide if selected?</li>
+</ul>
+<p>In index notation,</p>
+<p><span class="math display">\[
+Q_{i\alpha}=X_{ij}(W_Q)_{j\alpha}.
+\]</span></p>
+<p>Here, <span class="math inline">\(i\)</span> is the token index, <span class="math inline">\(j\)</span> indexes the features of the current token state, and <span class="math inline">\(\alpha\)</span> indexes the features of the query representation.</p>
+<p>The same state <span class="math inline">\(X\)</span> is therefore projected into different representations through different learned operators:</p>
+<p><span class="math display">\[
+X\xrightarrow{W_Q}Q,\qquad
+X\xrightarrow{W_K}K,\qquad
+X\xrightarrow{W_V}V.
+\]</span></p>
+<p>In applied mechanics, we also apply different operators to a state to obtain different derived quantities. The comparison is useful up to this point.</p>
+<p>The decisive difference is that operators in mechanics are usually derived from theory and physical laws, whereas <span class="math inline">\(W_Q\)</span>, <span class="math inline">\(W_K\)</span>, and <span class="math inline">\(W_V\)</span> are learned from data.</p>
+<p>Query and Key are used to determine relationships among tokens:</p>
+<p><span class="math display">\[
+A=
+\operatorname{softmax}
+\left(
+\frac{QK^T}{\sqrt{d_k}}
+\right).
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+H=AV
+\]</span></p>
+<p>brings in information from the tokens according to those attention weights.</p>
+<p>Scaled dot-product attention of this form is a central component of the original Transformer architecture.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+</section>
+<section id="who-determines-w_q-w_k-and-w_v" class="level2">
+<h2 class="anchored" data-anchor-id="who-determines-w_q-w_k-and-w_v">Who determines <span class="math inline">\(W_Q\)</span>, <span class="math inline">\(W_K\)</span>, and <span class="math inline">\(W_V\)</span>?</h2>
+<p>Not a human.</p>
+<p>Initially, they are simply numerical matrices. When the model predicts the next token poorly, it incurs a loss. Conceptually, if <span class="math inline">\(P\)</span> is the probability assigned to the correct token, we may write</p>
+<p><span class="math display">\[
+\mathcal L=-\log P(\text{correct token}).
+\]</span></p>
+<p>Backpropagation provides gradients such as</p>
+<p><span class="math display">\[
+\frac{\partial\mathcal L}{\partial W_Q},\qquad
+\frac{\partial\mathcal L}{\partial W_K},\qquad
+\frac{\partial\mathcal L}{\partial W_V},
+\]</span></p>
+<p>and the parameters are updated in directions that reduce the loss.</p>
+<p>This is repeated over enormous amounts of data:</p>
+<p><span class="math display">\[
+\theta^*=\arg\min_{\theta}\mathcal L(\theta).
+\]</span></p>
+<p>Anyone familiar with parameter identification or inverse problems in mechanics can see a conceptual resemblance.</p>
+<p>One distinction, however, is essential.</p>
+<p><strong>The quantities learned during training are model parameters such as <span class="math inline">\(W_Q\)</span>, <span class="math inline">\(W_K\)</span>, and <span class="math inline">\(W_V\)</span>, not the <span class="math inline">\(Q\)</span>, <span class="math inline">\(K\)</span>, and <span class="math inline">\(V\)</span> of a particular sentence.</strong></p>
+<p>When a new sentence is processed, its current state <span class="math inline">\(X\)</span> is used to compute the corresponding <span class="math inline">\(Q\)</span>, <span class="math inline">\(K\)</span>, and <span class="math inline">\(V\)</span>.</p>
+<p>This distinction leads directly to another one that matters greatly in engineering AI: <strong>parameters are not context</strong>.</p>
+</section>
+<section id="training-data-parameters-and-context-are-different-things" class="level2">
+<h2 class="anchored" data-anchor-id="training-data-parameters-and-context-are-different-things">Training data, parameters, and context are different things</h2>
+<p>These three concepts should not be mixed when we use AI for engineering.</p>
+<p>Let the training data be <span class="math inline">\(D_{\rm train}\)</span>. Then, schematically,</p>
+<p><span class="math display">\[
+D_{\rm train}
+\rightarrow
+\text{Training}
+\rightarrow
+\theta.
+\]</span></p>
+<p>After training, the original documents do not simply sit inside the model parameters as records in a database. Patterns and relationships found across the data are distributed over a very large number of parameters.</p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+D_{\rm train}\neq\theta.
+\]</span></p>
+<p>If training data are analogous to experience, <span class="math inline">\(\theta\)</span> is closer to the <strong>capability formed through that experience</strong>.</p>
+<p>Context is different again.</p>
+<p>The current question, previous conversation, design conditions for the current structure, retrieved code clauses, and project-specific input values can all be part of the context.</p>
+<p>Conceptually, a response can be written as</p>
+<p><span class="math display">\[
+P(y\mid x,C;\theta),
+\]</span></p>
+<p>where <span class="math inline">\(\theta\)</span> is the already-trained model and <span class="math inline">\(C\)</span> is the working context supplied for the present problem.</p>
+<p>Using a structural-analysis analogy, <span class="math inline">\(\theta\)</span> is closer to the capability already embodied in a general-purpose solver. Context is closer to the geometry, loading, boundary conditions, material data, and other information defining the current analysis.</p>
+<p>The same solver gives different results for different problems.</p>
+<p>So does an LLM.</p>
+</section>
+<section id="then-where-should-engineering-standards-live" class="level2">
+<h2 class="anchored" data-anchor-id="then-where-should-engineering-standards-live">Then where should engineering standards live?</h2>
+<p>This is where the discussion connects directly to WGD.</p>
+<p>Should the exact equations, coefficients, applicability conditions, exceptions, clause numbers, dependencies, and revision history of KDS and KCS all be left inside an LLM’s parameters?</p>
+<p>There is a problem.</p>
+<p>Knowledge represented in LLM parameters can be powerful, but it is <strong>implicit and distributed</strong>. We cannot point to a particular parameter and say, “This is the KDS shear-design provision.”</p>
+<p>Nor can we revise a standard by locating a few corresponding parameters and editing them.</p>
+<p>Lewis et al., in their work on retrieval-augmented generation, noted that although pretrained language models can store factual knowledge in their parameters, important problems remain in accessing and modifying that knowledge precisely and in providing provenance for generated answers.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> This does not mean that RAG itself is the WGD solution. The important point here is the distinction between <strong>parametric knowledge and explicit external knowledge</strong>.</p>
+<p>For engineering standards, we often need explicit control of:</p>
+<ul>
+<li>source,</li>
+<li>version,</li>
+<li>clause,</li>
+<li>requirement,</li>
+<li>applicability,</li>
+<li>condition,</li>
+<li>exception,</li>
+<li>variable definition,</li>
+<li>equation,</li>
+<li>dependency, and</li>
+<li>revision history.</li>
+</ul>
+<p>Engineers must be able to inspect this information, and computers must be able to use it with the same intended meaning.</p>
+<p>WGD therefore does not leave authoritative engineering knowledge, where reliability and traceability matter, solely to the implicit memory of an LLM.</p>
+</section>
+<section id="a-pdf-is-not-yet-a-digital-standard" class="level2">
+<h2 class="anchored" data-anchor-id="a-pdf-is-not-yet-a-digital-standard">A PDF is not yet a digital standard</h2>
+<p>Suppose an engineering standard has been published as a PDF.</p>
+<p>Has it been digitized?</p>
+<p>It is certainly a digital document. We can search it, copy text from it, and let an AI system read it.</p>
+<p>But that does not mean a computer can directly understand and execute the requirements, conditions, exceptions, equations, variables, and dependencies contained in the standard.</p>
+<p>The progression we are interested in is</p>
+<p><span class="math display">\[
+\text{Document}
+\rightarrow
+\text{Digital Text}
+\rightarrow
+\text{Structured Knowledge}
+\rightarrow
+\text{Machine-actionable Engineering Knowledge}.
+\]</span></p>
+<p>buildingSMART’s Information Delivery Specification (IDS) illustrates a related idea. IDS expresses information requirements in a computer-interpretable form and supports automated checking of IFC models.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>Turning human-readable requirements into something a computer can interpret is therefore already an important issue in BIM and digital construction.</p>
+<p>WGD extends that problem to the <strong>engineering knowledge contained in construction standards themselves</strong>.</p>
+</section>
+<section id="ruleunit-turning-a-code-statement-into-an-engineering-rule" class="level2">
+<h2 class="anchored" data-anchor-id="ruleunit-turning-a-code-statement-into-an-engineering-rule">RuleUnit: turning a code statement into an engineering rule</h2>
+<p>Consider a natural-language provision such as:</p>
+<blockquote class="blockquote">
+<p>Under specified conditions, the minimum reinforcement shall be calculated using the following equation, except when …</p>
+</blockquote>
+<p>An engineer reads this and interprets the requirement, applicability, equation, and exception.</p>
+<p>For a computer to use the same provision directly, those components must be represented explicitly.</p>
+<p>Conceptually, a RuleUnit in WGD may contain information such as:</p>
+<pre class="text"><code>RuleUnit
+ ├─ Rule ID
+ ├─ Source / Clause
+ ├─ Requirement
+ ├─ Applicability
+ ├─ Variables
+ ├─ Equation
+ ├─ Conditions
+ ├─ Exceptions
+ ├─ Dependencies
+ └─ Version</code></pre>
+<p>The purpose is not to eliminate natural language.</p>
+<p>It is to <strong>make the engineering meaning that is implicit in natural language explicit enough for a computer to use</strong>.</p>
+<p>This has long been a central issue in automated compliance checking (ACC). Solihin et al.&nbsp;discussed the formalization of normative provisions into computable rules as a major challenge in ACC,<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> while Zhang et al.&nbsp;identified <strong>rule capture</strong> as an important bottleneck in the process.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
+<p>A RuleUnit is therefore not simply a convenient text chunk to feed to an AI model.</p>
+<p>It is intended as a unit of engineering knowledge that can be <strong>executed, verified, and traced</strong>.</p>
+</section>
+<section id="are-thousands-of-ruleunits-enough" class="level2">
+<h2 class="anchored" data-anchor-id="are-thousands-of-ruleunits-enough">Are thousands of RuleUnits enough?</h2>
+<p>No.</p>
+<p>This becomes obvious if we think in terms of FEM.</p>
+<p>Owning thousands of excellent finite element formulations does not give us a structural model.</p>
+<p>We still need <strong>connectivity</strong>.</p>
+<p>Engineering knowledge has the same problem.</p>
+<p>Which RuleUnit applies to which structural component?</p>
+<p>Which failure mode does it address?</p>
+<p>Which material properties does it require?</p>
+<p>Does another RuleUnit need to be evaluated first?</p>
+<p>Do different standards use different terms for the same concept?</p>
+<p>Those relationships matter.</p>
+<p>This is where ontologies and knowledge graphs become useful.</p>
+<p>W3C’s OWL provides a language for representing rich knowledge about things, groups of things, and relationships among them in a form that computers can process.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
+<p>For WGD, a simple working distinction is:</p>
+<p><span class="math display">\[
+\boxed{
+\text{Ontology}:
+\text{What exists in this domain, and what relationships are possible?}
+}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{
+\text{Knowledge Graph}:
+\text{What is actually connected to what?}
+}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{
+\text{RuleUnit}:
+\text{What must be done under particular conditions?}
+}
+\]</span></p>
+<p>Ontology, Knowledge Graph, and RuleUnit are not competing concepts.</p>
+<p>They have different jobs.</p>
+</section>
+<section id="a-structural-analysis-analogy-helps-reveal-the-whole-system" class="level2">
+<h2 class="anchored" data-anchor-id="a-structural-analysis-analogy-helps-reveal-the-whole-system">A structural-analysis analogy helps reveal the whole system</h2>
+<p>The following is not a strict one-to-one mapping, but it is a useful way for a structural engineer to organize the concepts.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Structural analysis system</th>
+<th>WGD / Engineering AI system</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Capability of a general-purpose solver</td>
+<td>Learned parameters of an LLM</td>
+</tr>
+<tr class="even">
+<td>Current analysis input</td>
+<td>Context</td>
+</tr>
+<tr class="odd">
+<td>Design standard</td>
+<td>Structured domain knowledge</td>
+</tr>
+<tr class="even">
+<td>Element library</td>
+<td>RuleUnit library</td>
+</tr>
+<tr class="odd">
+<td>Admissible element/DOF system</td>
+<td>Ontology</td>
+</tr>
+<tr class="even">
+<td>Connectivity</td>
+<td>Knowledge Graph</td>
+</tr>
+<tr class="odd">
+<td>Solver</td>
+<td>Rule / calculation engine</td>
+</tr>
+<tr class="even">
+<td>Verification</td>
+<td>Compliance engine</td>
+</tr>
+<tr class="odd">
+<td>Results report</td>
+<td>LLM-generated explanation</td>
+</tr>
+</tbody>
+</table>
+<p>The important point in this table is that the LLM is <strong>one component of the system</strong>.</p>
+<p>It is a very powerful component.</p>
+<p>But there is no engineering reason to force it to perform every role.</p>
+</section>
+<section id="digital-standards-are-not-only-for-ai" class="level2">
+<h2 class="anchored" data-anchor-id="digital-standards-are-not-only-for-ai">Digital standards are not only for AI</h2>
+<p>This point is especially important when explaining WGD.</p>
+<p>The purpose of converting construction standards into machine-actionable engineering knowledge should <strong>not be limited to AI</strong>.</p>
+<p>Once a standard is structured and executable, the same knowledge asset can be reused in many applications.</p>
+<section id="automated-compliance-checking" class="level3">
+<h3 class="anchored" data-anchor-id="automated-compliance-checking">Automated compliance checking</h3>
+<p>The most direct application is ACC:</p>
+<p><span class="math display">\[
+\text{Design Information}
+\rightarrow
+\text{Applicable Rules}
+\rightarrow
+\text{Calculation}
+\rightarrow
+\text{Compliance Check}.
+\]</span></p>
+<p>Design information can be connected directly to applicable rules to determine whether requirements are satisfied.</p>
+<p>ACC already has a long research history. More recent work has also explored semantic-web and ontology-based compliance checking integrated with finite element analysis.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
+</section>
+<section id="connecting-bim-and-fem-to-design-standards" class="level3">
+<h3 class="anchored" data-anchor-id="connecting-bim-and-fem-to-design-standards">Connecting BIM and FEM to design standards</h3>
+<p>Results from finite element analysis such as</p>
+<p><span class="math display">\[
+N,\quad V,\quad M,\quad \sigma,\quad u
+\]</span></p>
+<p>can be connected to the code checks for which they are required:</p>
+<p><span class="math display">\[
+\text{FEM Results}
+\rightarrow
+\text{Design Variables}
+\rightarrow
+\text{RuleUnits}
+\rightarrow
+\text{Code Check}.
+\]</span></p>
+<p>Analysis software and design standards no longer have to remain isolated software islands.</p>
+</section>
+<section id="design-automation-and-optimization" class="level3">
+<h3 class="anchored" data-anchor-id="design-automation-and-optimization">Design automation and optimization</h3>
+<p>If the standards are executable, design variables can be changed while analysis and code checking are repeated:</p>
+<p><span class="math display">\[
+\text{Design Variables}
+\rightarrow
+\text{Analysis}
+\rightarrow
+\text{Code Check}
+\rightarrow
+\text{Update}.
+\]</span></p>
+<p>This connects naturally to parametric design and optimization.</p>
+</section>
+<section id="design-calculations-and-review-reports" class="level3">
+<h3 class="anchored" data-anchor-id="design-calculations-and-review-reports">Design calculations and review reports</h3>
+<p>If an execution trace records which clauses were applied, which inputs were used, and which equations were evaluated in what order, much of a design calculation sheet or review report can be assembled automatically.</p>
+<p>More importantly, we retain not only the final answer but also a trace of <strong>why that answer was obtained</strong>.</p>
+</section>
+<section id="impact-analysis-when-standards-are-revised" class="level3">
+<h3 class="anchored" data-anchor-id="impact-analysis-when-standards-are-revised">Impact analysis when standards are revised</h3>
+<p>I see this as another important application.</p>
+<p>Suppose one clause of a standard changes.</p>
+<p>If relationships and dependencies have been structured, we can potentially trace</p>
+<p><span class="math display">\[
+\text{Changed Clause}
+\rightarrow
+\text{Affected RuleUnits}
+\rightarrow
+\text{Affected Calculations}
+\rightarrow
+\text{Affected Designs}.
+\]</span></p>
+<p>This is fundamentally different from asking engineers to reread PDF documents and manually identify the consequences of a revision.</p>
+</section>
+<section id="comparing-standards-and-checking-their-internal-quality" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-standards-and-checking-their-internal-quality">Comparing standards and checking their internal quality</h3>
+<p>KDS and KCS—or Korean and international standards—can be compared not merely sentence by sentence but at the level of requirements, applicability, variables, equations, coefficients, and exceptions.</p>
+<p>In the longer term, this may also help identify duplication, inconsistency, and missing relationships within the standards themselves.</p>
+</section>
+<section id="project-specific-specifications-and-requirements" class="level3">
+<h3 class="anchored" data-anchor-id="project-specific-specifications-and-requirements">Project-specific specifications and requirements</h3>
+<p>Once project conditions such as structural system, material, environmental conditions, and construction method are known, relevant standards and requirements can be selected and organized into project-specific specifications.</p>
+</section>
+<section id="engineering-education" class="level3">
+<h3 class="anchored" data-anchor-id="engineering-education">Engineering education</h3>
+<p>Instead of giving students only fixed numerical design examples, structured standards and computational logic can let them vary cross-sections, material strengths, and loads while observing which provisions become applicable and why the results change.</p>
+<p>Engineering knowledge then moves from a document to a <strong>reusable computational asset</strong>.</p>
+</section>
+</section>
+<section id="so-where-does-ai-fit" class="level2">
+<h2 class="anchored" data-anchor-id="so-where-does-ai-fit">So where does AI fit?</h2>
+<p>AI is one application of this digital knowledge, but it can also become a particularly powerful interface through which people access many of the other applications.</p>
+<p>Suppose an engineer asks:</p>
+<blockquote class="blockquote">
+<p>“Is this amount of shear reinforcement sufficient for this beam?”</p>
+</blockquote>
+<p>An LLM is very good at recognizing the intent embedded in that natural-language question:</p>
+<p><span class="math display">\[
+\text{RC Beam}
++
+\text{Shear Reinforcement}
++
+\text{Compliance Check}.
+\]</span></p>
+<p>The system can then use structured knowledge to locate the relevant RuleUnits, evaluate applicability and exceptions, let a deterministic calculation engine perform the required calculations, and let a compliance engine determine whether the requirements are satisfied.</p>
+<p>Finally, the LLM can explain the result back to the engineer in natural language.</p>
+<p><span class="math display">\[
+\text{Human Language}
+\longleftrightarrow
+\text{LLM}
+\longleftrightarrow
+\text{Machine-actionable Engineering Knowledge}.
+\]</span></p>
+<p>This is an important part of what I mean by Engineering AI.</p>
+<p>It does not mean assigning everything to the LLM.</p>
+<p>Instead, we combine what LLMs do well—<strong>language, context, semantic interpretation, connection, and explanation</strong>—with what explicit engineering knowledge does well—<strong>provenance, conditions, versioning, dependencies, and traceability</strong>—and what deterministic engines do well—<strong>calculation and verification</strong>.</p>
+<p><span class="math display">\[
+\boxed{
+\text{Engineering AI}
+=
+\text{LLM Flexibility}
++
+\text{Explicit Engineering Knowledge}
++
+\text{Deterministic Computation}
++
+\text{Verification}
+}
+\]</span></p>
+</section>
+<section id="looking-again-at-wgd" class="level2">
+<h2 class="anchored" data-anchor-id="looking-again-at-wgd">Looking again at WGD</h2>
+<p>We can now see WGD somewhat differently.</p>
+<p>WGD is neither a project for putting PDFs into a database nor a project for building a construction-code chatbot.</p>
+<p>The basic progression we want is</p>
+<p><span class="math display">\[
+\text{KDS/KCS}
+\rightarrow
+\text{Structured Engineering Knowledge}
+\rightarrow
+\text{Machine-actionable Engineering Knowledge}.
+\]</span></p>
+<p>RuleUnits, ontologies, and knowledge graphs play different roles in this process.</p>
+<p>Once created, this engineering knowledge can be reused across</p>
+<p><span class="math display">\[
+\begin{cases}
+\text{Automated Compliance Checking}\\
+\text{BIM/FEM Integration}\\
+\text{Design Automation}\\
+\text{Specification Generation}\\
+\text{Change Impact Analysis}\\
+\text{Code Comparison and Quality Control}\\
+\text{Digital Engineering Education}\\
+\text{Engineering AI}.
+\end{cases}
+\]</span></p>
+<p>The important question is not whether AI or digital standards are more important.</p>
+<p>They perform different functions.</p>
+<p>AI is highly flexible, but the knowledge embedded in it is implicit.</p>
+<p>Digitized engineering knowledge can be explicit, inspectable, version-controlled, and executable.</p>
+<p>The point is therefore not to make them compete, but to <strong>assign the right role to each and connect them properly</strong>.</p>
+<p>So the central WGD question is not</p>
+<blockquote class="blockquote">
+<p>“How much of the construction standards should we make the LLM memorize?”</p>
+</blockquote>
+<p>A better question is:</p>
+<blockquote class="blockquote">
+<p><strong>“How should we structure engineering knowledge so that humans and computers can use it together, and how should AI be connected with established engineering computation on top of that knowledge?”</strong></p>
+</blockquote>
+<p>That, to me, is the engineering meaning of digitizing construction standards in the age of AI.</p>
+</section>
+<section id="what-comes-from-existing-research-and-what-is-wgd" class="level2">
+<h2 class="anchored" data-anchor-id="what-comes-from-existing-research-and-what-is-wgd">What comes from existing research, and what is WGD?</h2>
+<p>This distinction matters.</p>
+<p>The discussion of Transformers and attention follows Vaswani et al.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> The distinction between parametric knowledge and external retrieval is informed by Lewis et al.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></p>
+<p>The discussion of ontology is grounded in W3C OWL,<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> while buildingSMART IDS provides a real standardization example of computer-interpretable information requirements and automated checking.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></p>
+<p>Formalization and rule capture have long been discussed in ACC research,<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> <a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> and recent work has also connected semantic-web approaches with finite element analysis for structural compliance checking.<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a></p>
+<p>By contrast, <strong>the overall WGD architecture—building KDS/KCS knowledge around a RuleUnit library and connecting it with ontologies, knowledge graphs, deterministic engines, and AI—is the direction we are developing in our project</strong>.</p>
+<p>This article therefore does not claim that the complete WGD architecture has already been validated by the existing literature.</p>
+<p>The work ahead is more concrete than that.</p>
+<p>We need to test how accurately each knowledge representation captures real standards, how reliably dependencies can be connected, how knowledge relationships can be expanded while preserving the large body of existing RuleUnits, and what performance and limitations emerge in each application.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L., &amp; Polosukhin, I. (2017). <em>Attention Is All You Need</em>. Advances in Neural Information Processing Systems, 30. https://arxiv.org/abs/1706.03762<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L., &amp; Polosukhin, I. (2017). <em>Attention Is All You Need</em>. Advances in Neural Information Processing Systems, 30. https://arxiv.org/abs/1706.03762<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Lewis, P., Perez, E., Piktus, A., et al.&nbsp;(2020). <em>Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks</em>. Advances in Neural Information Processing Systems, 33. https://arxiv.org/abs/2005.11401<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>buildingSMART International. <em>Information Delivery Specification (IDS)</em>. IDS defines information requirements in a computer-interpretable form and supports automated compliance checking of IFC models. https://www.buildingsmart.org/standards/bsi-standards/information-delivery-specification-ids/<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Solihin, W., Eastman, C., &amp; Lee, Y.-C. (2021). <em>The promise of automated compliance checking</em>. Developments in the Built Environment, 5, 100039. https://doi.org/10.1016/j.dibe.2020.100039<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Zhang, Z., Ma, L., &amp; Broyd, T. (2023). <em>Rule capture of automated compliance checking of building requirements: a review</em>. Proceedings of the Institution of Civil Engineers - Smart Infrastructure and Construction, 176(4), 224–238. https://doi.org/10.1680/jsmic.23.00005<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>W3C. (2012). <em>OWL 2 Web Ontology Language Primer (Second Edition)</em>. https://www.w3.org/TR/owl-primer/<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Patlakas, P., Christovasilis, I., Riparbelli, L., Cheung, F. K. T., &amp; Vakaj, E. (2024). <em>Semantic web-based automated compliance checking with integration of Finite Element analysis</em>. Advanced Engineering Informatics, 61, 102448. https://doi.org/10.1016/j.aei.2024.102448<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L., &amp; Polosukhin, I. (2017). <em>Attention Is All You Need</em>. Advances in Neural Information Processing Systems, 30. https://arxiv.org/abs/1706.03762<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Lewis, P., Perez, E., Piktus, A., et al.&nbsp;(2020). <em>Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks</em>. Advances in Neural Information Processing Systems, 33. https://arxiv.org/abs/2005.11401<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>W3C. (2012). <em>OWL 2 Web Ontology Language Primer (Second Edition)</em>. https://www.w3.org/TR/owl-primer/<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>buildingSMART International. <em>Information Delivery Specification (IDS)</em>. IDS defines information requirements in a computer-interpretable form and supports automated compliance checking of IFC models. https://www.buildingsmart.org/standards/bsi-standards/information-delivery-specification-ids/<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>Solihin, W., Eastman, C., &amp; Lee, Y.-C. (2021). <em>The promise of automated compliance checking</em>. Developments in the Built Environment, 5, 100039. https://doi.org/10.1016/j.dibe.2020.100039<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>Zhang, Z., Ma, L., &amp; Broyd, T. (2023). <em>Rule capture of automated compliance checking of building requirements: a review</em>. Proceedings of the Institution of Civil Engineers - Smart Infrastructure and Construction, 176(4), 224–238. https://doi.org/10.1680/jsmic.23.00005<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>Patlakas, P., Christovasilis, I., Riparbelli, L., Cheung, F. K. T., &amp; Vakaj, E. (2024). <em>Semantic web-based automated compliance checking with integration of Finite Element analysis</em>. Advanced Engineering Informatics, 61, 102448. https://doi.org/10.1016/j.aei.2024.102448<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

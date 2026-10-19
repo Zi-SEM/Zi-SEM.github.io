@@ -8,7 +8,8 @@
 
 <meta name="author" content="Goangseup Zi">
 <meta name="dcterms.date" content="2026-08-31">
-<meta name="description" content="A physical introduction to the Cauchy stress tensor, beginning with traction on an internal cut and leading to Cauchy’s stress formula.">
+<meta name="keywords" content="stress tensor, Cauchy stress tensor, Cauchy stress formula, traction vector, stress on an arbitrary plane, Cauchy tetrahedron, normal stress, shear stress, stress transformation, mechanics of materials, continuum mechanics, tensor contraction">
+<meta name="description" content="A physical introduction to the Cauchy stress tensor, traction vector, Cauchy tetrahedron, and stress on an arbitrary plane, beginning with an internal cut and leading to Cauchy’s stress formula.">
 
 <title>What Is a Stress Tensor, Really? – Zi’s Structural Engineering &amp; Mechanics</title>
 <style>
@@ -142,19 +143,23 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../research.html"> 
-<span class="menu-text">Research Explained</span></a>
+<span class="menu-text">Research &amp; Innovation</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../mechanics.html"> 
 <span class="menu-text">Engineering Mechanics</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../z-diagram.html"> 
-<span class="menu-text">Z-Diagram</span></a>
+    <a class="nav-link" href="../../perspectives.html"> 
+<span class="menu-text">Engineering Perspectives</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../latex-writing.html"> 
-<span class="menu-text">LaTeX &amp; Writing</span></a>
+    <a class="nav-link" href="../../cartoon-log.html"> 
+<span class="menu-text">Cartoon Logs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../beyond-engineering.html"> 
+<span class="menu-text">Beyond Engineering</span></a>
   </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -173,6 +178,41 @@ window.Quarto = {
   </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">한국어</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../index-ko.html">
+ <span class="dropdown-text">홈</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research-ko.html">
+ <span class="dropdown-text">연구와 기술</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../mechanics-ko.html">
+ <span class="dropdown-text">공학역학</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../perspectives-ko.html">
+ <span class="dropdown-text">공학 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../cartoon-log-ko.html">
+ <span class="dropdown-text">카툰 일기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../beyond-engineering-ko.html">
+ <span class="dropdown-text">공학 밖의 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about-ko.html">
+ <span class="dropdown-text">소개</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
 </i> 
@@ -225,7 +265,7 @@ window.Quarto = {
 
 <div>
   <div class="description">
-    A physical introduction to the Cauchy stress tensor, beginning with traction on an internal cut and leading to Cauchy’s stress formula.
+    A physical introduction to the Cauchy stress tensor, traction vector, Cauchy tetrahedron, and stress on an arbitrary plane, beginning with an internal cut and leading to Cauchy’s stress formula.
   </div>
 </div>
 
@@ -250,10 +290,19 @@ window.Quarto = {
   </div>
   
 
+<div>
+  <div class="keywords">
+    <div class="block-title">Keywords</div>
+    <p>stress tensor, Cauchy stress tensor, Cauchy stress formula, traction vector, stress on an arbitrary plane, Cauchy tetrahedron, normal stress, shear stress, stress transformation, mechanics of materials, continuum mechanics, tensor contraction</p>
+  </div>
+</div>
 
 </header>
 
 
+<div class="language-switch">
+<p><strong>English</strong> | <a href="index-ko.html">한글</a></p>
+</div>
 <section id="stress-is-more-than-force-divided-by-area" class="level2">
 <h2 class="anchored" data-anchor-id="stress-is-more-than-force-divided-by-area">Stress is more than force divided by area</h2>
 <p>One of the first equations encountered in mechanics of materials is</p>
@@ -360,7 +409,7 @@ window.Quarto = {
 +
 \sigma_{3j}\mathbf e_3,
 \]</span></p>
-<p>the three traction vectors can be assembled as the columns of a matrix:</p>
+<p>the three traction vectors can be assembled as the columns of a matrix.</p>
 <p><span class="math display">\[
 \boldsymbol{\sigma}
 =

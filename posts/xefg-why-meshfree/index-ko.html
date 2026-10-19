@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="지광습">
+<meta name="keywords" content="확장무요소법, XEFG, 무요소법, 무요소 파괴해석, 계산파괴역학, 확장유한요소법, XFEM, 점성균열, 균열 전파, 균열선단, 근사공간 확충, 단위의 분할, 이동최소제곱법, 영향영역, 3차원 균열, 균열 분기, 균열 접합, 메시프리 해석">
+<meta name="description" content="확장유한요소법(XFEM)의 근사공간 확충 개념을 왜 무요소법으로 확장했는지, XEFG의 영향영역, 점성균열, 균열선단 처리와 3차원 균열성장을 중심으로 설명한다.">
+
+<title>왜 XFEM을 무요소법으로 확장하는가? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research &amp; Innovation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../perspectives.html"> 
+<span class="menu-text">Engineering Perspectives</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../cartoon-log.html"> 
+<span class="menu-text">Cartoon Logs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../beyond-engineering.html"> 
+<span class="menu-text">Beyond Engineering</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">한국어</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../index-ko.html">
+ <span class="dropdown-text">홈</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research-ko.html">
+ <span class="dropdown-text">연구와 기술</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../mechanics-ko.html">
+ <span class="dropdown-text">공학역학</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../perspectives-ko.html">
+ <span class="dropdown-text">공학 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../cartoon-log-ko.html">
+ <span class="dropdown-text">카툰 일기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../beyond-engineering-ko.html">
+ <span class="dropdown-text">공학 밖의 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about-ko.html">
+ <span class="dropdown-text">소개</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul class="collapse">
+  <li><a href="#요소에서-영향영역으로" id="toc-요소에서-영향영역으로" class="nav-link active" data-scroll-target="#요소에서-영향영역으로">요소에서 영향영역으로</a></li>
+  <li><a href="#근사공간의-확충이라는-생각은-그대로-남는다" id="toc-근사공간의-확충이라는-생각은-그대로-남는다" class="nav-link" data-scroll-target="#근사공간의-확충이라는-생각은-그대로-남는다">근사공간의 확충이라는 생각은 그대로 남는다</a></li>
+  <li><a href="#하지만-입자의-support는-요소와-다르다" id="toc-하지만-입자의-support는-요소와-다르다" class="nav-link" data-scroll-target="#하지만-입자의-support는-요소와-다르다">하지만 입자의 support는 요소와 다르다</a></li>
+  <li><a href="#파괴문제에서-무요소법이-매력적이었던-이유" id="toc-파괴문제에서-무요소법이-매력적이었던-이유" class="nav-link" data-scroll-target="#파괴문제에서-무요소법이-매력적이었던-이유">파괴문제에서 무요소법이 매력적이었던 이유</a></li>
+  <li><a href="#점성파괴에서는-균열선단-문제가-다시-달라진다" id="toc-점성파괴에서는-균열선단-문제가-다시-달라진다" class="nav-link" data-scroll-target="#점성파괴에서는-균열선단-문제가-다시-달라진다">점성파괴에서는 균열선단 문제가 다시 달라진다</a></li>
+  <li><a href="#왜-branch-enrichment를-사용하지-않을-수-있는가" id="toc-왜-branch-enrichment를-사용하지-않을-수-있는가" class="nav-link" data-scroll-target="#왜-branch-enrichment를-사용하지-않을-수-있는가">왜 branch enrichment를 사용하지 않을 수 있는가?</a></li>
+  <li><a href="#균열은-여전히-배경-근사와-독립적이다" id="toc-균열은-여전히-배경-근사와-독립적이다" class="nav-link" data-scroll-target="#균열은-여전히-배경-근사와-독립적이다">균열은 여전히 배경 근사와 독립적이다</a></li>
+  <li><a href="#무요소법이라고-수치적분이-없어지는-것은-아니다" id="toc-무요소법이라고-수치적분이-없어지는-것은-아니다" class="nav-link" data-scroll-target="#무요소법이라고-수치적분이-없어지는-것은-아니다">무요소법이라고 수치적분이 없어지는 것은 아니다</a></li>
+  <li><a href="#차원에서-진짜-어려움이-보인다" id="toc-차원에서-진짜-어려움이-보인다" class="nav-link" data-scroll-target="#차원에서-진짜-어려움이-보인다">3차원에서 진짜 어려움이 보인다</a></li>
+  <li><a href="#균열-접합은-다음-문제로-이어진다" id="toc-균열-접합은-다음-문제로-이어진다" class="nav-link" data-scroll-target="#균열-접합은-다음-문제로-이어진다">균열 접합은 다음 문제로 이어진다</a></li>
+  <li><a href="#xefg는-xfem보다-무엇을-얻는가" id="toc-xefg는-xfem보다-무엇을-얻는가" class="nav-link" data-scroll-target="#xefg는-xfem보다-무엇을-얻는가">XEFG는 XFEM보다 무엇을 얻는가?</a></li>
+  <li><a href="#xfem에서-xefg로-가도-변하지-않는-것은-무엇인가" id="toc-xfem에서-xefg로-가도-변하지-않는-것은-무엇인가" class="nav-link" data-scroll-target="#xfem에서-xefg로-가도-변하지-않는-것은-무엇인가">XFEM에서 XEFG로 가도 변하지 않는 것은 무엇인가?</a></li>
+  <li><a href="#xefg를-근사공간-설계의-문제로-보면" id="toc-xefg를-근사공간-설계의-문제로-보면" class="nav-link" data-scroll-target="#xefg를-근사공간-설계의-문제로-보면">XEFG를 근사공간 설계의 문제로 보면</a></li>
+  <li><a href="#xefg에서-다음-문제로-여러-균열" id="toc-xefg에서-다음-문제로-여러-균열" class="nav-link" data-scroll-target="#xefg에서-다음-문제로-여러-균열">XEFG에서 다음 문제로: 여러 균열</a></li>
+  <li><a href="#결국-핵심은" id="toc-결국-핵심은" class="nav-link" data-scroll-target="#결국-핵심은">결국 핵심은</a></li>
+  <li><a href="#시리즈-계속-읽기" id="toc-시리즈-계속-읽기" class="nav-link" data-scroll-target="#시리즈-계속-읽기">시리즈 계속 읽기</a></li>
+  <li><a href="#original-research" id="toc-original-research" class="nav-link" data-scroll-target="#original-research">Original research</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">왜 XFEM을 무요소법으로 확장하는가?</h1>
+<p class="subtitle lead">요소의 확충에서 XEFG까지: 입자와 영향영역으로 근사공간을 만들면 무엇이 달라지는가?</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">연구와 기술</div>
+    <div class="quarto-category">Computational Mechanics &amp; Fracture</div>
+    <div class="quarto-category">Computational Fracture</div>
+    <div class="quarto-category">XEFG</div>
+    <div class="quarto-category">XFEM</div>
+    <div class="quarto-category">Meshfree Methods</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    확장유한요소법(XFEM)의 근사공간 확충 개념을 왜 무요소법으로 확장했는지, XEFG의 영향영역, 점성균열, 균열선단 처리와 3차원 균열성장을 중심으로 설명한다.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">저자</div>
+    <div class="quarto-title-meta-contents">
+             <p>지광습 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">공개</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">2026년 9월 4일</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+<div>
+  <div class="keywords">
+    <div class="block-title">키워드</div>
+    <p>확장무요소법, XEFG, 무요소법, 무요소 파괴해석, 계산파괴역학, 확장유한요소법, XFEM, 점성균열, 균열 전파, 균열선단, 근사공간 확충, 단위의 분할, 이동최소제곱법, 영향영역, 3차원 균열, 균열 분기, 균열 접합, 메시프리 해석</p>
+  </div>
+</div>
+
+</header>
+
+
+<div class="language-switch">
+<a href="../../posts/xefg-why-meshfree/index.html">English</a> | <strong>한글</strong>
+</div>
+<p><strong>계산파괴역학 시리즈:</strong> <a href="../../posts/computational-fracture-overview/index-ko.html">← 전체 보기</a> · <a href="../../posts/xfem-crack-through-mesh/index-ko.html">← XFEM</a> · 7편 중 3편 · <a href="../../posts/multiple-cracks-fracture-network/index-ko.html">다음: 다중균열 →</a></p>
+<p>XFEM은 계산파괴역학의 중요한 전제를 하나 바꾸었다. 균열이 더 이상 유한요소망과 일치할 필요가 없어졌다. 대신 균열 때문에 생기는 불연속을 표현할 수 있도록 근사공간을 확충하면 균열은 요소경계와 독립적으로 움직일 수 있다.</p>
+<p>그러면 자연스럽게 이런 질문이 생긴다.</p>
+<blockquote class="blockquote">
+<p><strong>핵심이 근사공간의 확충이라면 반드시 유한요소망을 사용해야 할 이유가 있을까?</strong></p>
+</blockquote>
+<p>이 질문에서 <strong>확장무요소법(extended element-free Galerkin method, XEFG)</strong>으로 이어졌다. Timon Rabczuk 교수와 공동연구자들과 함께 XFEM의 단위의 분할(partition of unity) 개념을 무요소 근사에 적용하여 점성파괴, 동적 균열전파, 나아가 3차원 균열의 발생, 분기와 접합까지 다루었다.</p>
+<section id="요소에서-영향영역으로" class="level2">
+<h2 class="anchored" data-anchor-id="요소에서-영향영역으로">요소에서 영향영역으로</h2>
+<p>유한요소법에서는 요소와 절점의 연결관계로 근사공간을 구성한다. EFG에서는 입자 또는 절점이 주변의 일정 영역에 영향을 미치며 이 영향영역을 이용해 근사공간을 만든다.</p>
+<p><span class="math display">\[
+\mathbf{u}^h(\mathbf{x})=\sum_{I=1}^{n}\Phi_I(\mathbf{x})\mathbf{u}_I
+\]</span></p>
+<p><span class="math inline">\(\Phi_I\)</span>는 보통 이동최소제곱법(moving least squares)으로 만드는 무요소 형상함수다. 고정된 요소 연결관계 대신 각 입자가 자기 <strong>영향영역(domain of influence)</strong> 안에서 근사에 기여한다.</p>
+<p>하지만 무요소법이라고 균열을 저절로 표현하는 것은 아니다.</p>
+<p><span class="math display">\[
+[\![\mathbf{u}]\!] \neq \mathbf{0}
+\]</span></p>
+<p>이라는 불연속 정보는 여전히 별도로 표현해야 한다.</p>
+</section>
+<section id="근사공간의-확충이라는-생각은-그대로-남는다" class="level2">
+<h2 class="anchored" data-anchor-id="근사공간의-확충이라는-생각은-그대로-남는다">근사공간의 확충이라는 생각은 그대로 남는다</h2>
+<p><span class="math display">\[
+\mathbf{u}^h(\mathbf{x})
+=
+\sum_I\Phi_I(\mathbf{x})\mathbf{u}_I
++
+\sum_{J\in\mathcal{N}_{\mathrm{enr}}}
+\Phi_J(\mathbf{x})\Psi_J(\mathbf{x})\mathbf{a}_J
+\]</span></p>
+<p>XFEM과 식의 구조가 비슷하다. 배경 근사가 <span class="math inline">\(N_I\)</span>에서 <span class="math inline">\(\Phi_I\)</span>로 바뀌었을 뿐이다.</p>
+<blockquote class="blockquote">
+<p><strong>XFEM과 XEFG는 같은 생각을 서로 다른 배경 근사에 구현한 것이다. 배경 이산화는 기본 근사를 제공하고, 근사공간의 확충은 그 기본 근사가 표현하지 못하는 정보를 추가한다.</strong></p>
+</blockquote>
+</section>
+<section id="하지만-입자의-support는-요소와-다르다" class="level2">
+<h2 class="anchored" data-anchor-id="하지만-입자의-support는-요소와-다르다">하지만 입자의 support는 요소와 다르다</h2>
+<p>유한요소에는 명확한 요소경계가 있지만 무요소 입자에는 영향영역이 있다. 균열은 support를 전혀 자르지 않을 수도 있고, 완전히 가를 수도 있으며, 균열선단이 support 내부에서 끝날 수도 있다.</p>
+<pre class="text"><code>균열이 지나가지 않는 support → 일반 입자
+균열이 완전히 가르는 support → 불연속 변위공간의 확충
+균열이 일부만 가르는 support → 균열선단 처리가 중요</code></pre>
+<p>따라서 XFEM에서 XEFG로 가는 것은 형상함수 기호 하나를 바꾸는 문제가 아니다.</p>
+<div id="fig-xefg-support" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-xefg-support-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig01.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:78.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-xefg-support-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;1: 균열이 무요소 영향영역과 만나는 방식은 support가 잘리지 않았는지, 완전히 잘렸는지, 또는 균열선단을 포함하는지에 따라 달라진다. 요소 연결관계가 아니라 불연속이 support를 어떻게 가르는가에 따라 근사공간의 확충이 활성화된다. Rabczuk and Zi (2007)를 바탕으로 재구성.
+</figcaption>
+</figure>
+</div>
+<p>그림 <a href="#fig-xefg-support" class="quarto-xref">1</a>에서 중요한 것은 물리적인 불연속은 같지만 그 정보를 관리하는 수치적인 방식이 달라진다는 점이다.</p>
+</section>
+<section id="파괴문제에서-무요소법이-매력적이었던-이유" class="level2">
+<h2 class="anchored" data-anchor-id="파괴문제에서-무요소법이-매력적이었던-이유">파괴문제에서 무요소법이 매력적이었던 이유</h2>
+<p>파괴가 진행되면 기하형상이 계속 바뀐다. 무요소법은 고정된 요소 연결관계에 덜 의존하므로 다중균열, 분기, 접합, 대변형, 3차원 균열면처럼 기하가 크게 변하는 문제에 매력적이다.</p>
+<p>그렇다고 흐름이 <code>FEM이 나쁘다 → 무요소법을 쓰자</code>는 것은 아니다.</p>
+<pre class="text"><code>파괴는 기하형상과 독립적인 표현이 필요하다
+        ↓
+XFEM은 유한요소의 근사공간을 확충한다
+        ↓
+무요소 근사는 또 다른 유연한 배경 근사를 제공한다
+        ↓
+XEFG는 그 근사공간도 확충한다</code></pre>
+</section>
+<section id="점성파괴에서는-균열선단-문제가-다시-달라진다" class="level2">
+<h2 class="anchored" data-anchor-id="점성파괴에서는-균열선단-문제가-다시-달라진다">점성파괴에서는 균열선단 문제가 다시 달라진다</h2>
+<p>점성균열에서는</p>
+<p><span class="math display">\[
+\mathbf{t}=\mathbf{t}\left([\![\mathbf{u}]\!]\right)
+\]</span></p>
+<p>이고 점성응력이 감소하면서 균열개구가 점진적으로 증가한다. 균열선단에서는 개구가 0으로 수렴해야 한다. 따라서 균열선단을 포함하는 support에서는 불연속이 그 안에서 끝날 수 있어야 한다.</p>
+</section>
+<section id="왜-branch-enrichment를-사용하지-않을-수-있는가" class="level2">
+<h2 class="anchored" data-anchor-id="왜-branch-enrichment를-사용하지-않을-수-있는가">왜 branch enrichment를 사용하지 않을 수 있는가?</h2>
+<p>고전적인 XFEM은 LEFM 점근해의 균열선단 branch function을 흔히 사용한다. 그러나 점성파괴에서는 cohesive zone이 균열선단장을 정규화한다.</p>
+<blockquote class="blockquote">
+<p><strong>구성모델에서 균열선단의 특이성을 요구하지 않는데 수치 근사에 굳이 특이 균열선단장을 넣어야 할까?</strong></p>
+</blockquote>
+<p>XEFG 연구에서는 점성균열에 대해 branch enrichment를 사용하지 않는 방법을 개발했다. 임의의 균열전파를 단순하게 만들면서 근사공간을 점성파괴의 역학과 더 잘 맞추기 위한 선택이었다.</p>
+<blockquote class="blockquote">
+<p><strong>근사공간의 확충에는 필요한 물리정보를 넣어야지, 필요하지 않은 수학적 구조까지 넣을 이유는 없다.</strong></p>
+</blockquote>
+<div id="fig-xefg-no-branch" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-xefg-no-branch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig02.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:78.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-xefg-no-branch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;2: 점성파괴를 XEFG로 해석할 때 고전적인 LEFM 균열선단 branch enrichment를 반드시 넣을 필요는 없다. 중요한 것은 특정 함수 하나를 빼는 것이 아니라 정규화된 점성균열 선단의 역학에 맞게 근사공간을 설계한다는 점이다. Zi, Rabczuk, and Wall (2007)를 바탕으로 재구성.
+</figcaption>
+</figure>
+</div>
+<p>그림 <a href="#fig-xefg-no-branch" class="quarto-xref">2</a>에서 중요한 것은 근사공간의 확충이 <strong>빠져 있는 운동학</strong>을 추가해야 한다는 점이다.</p>
+</section>
+<section id="균열은-여전히-배경-근사와-독립적이다" class="level2">
+<h2 class="anchored" data-anchor-id="균열은-여전히-배경-근사와-독립적이다">균열은 여전히 배경 근사와 독립적이다</h2>
+<p>XEFG에서는 입자, 영향영역, 균열기하, 근사공간의 확충, 점성 구성법칙, 균열전파 기준을 서로 분리해서 다룬다. 균열이 성장할 때마다 입자를 재배치하는 대신 균열기하와 영향을 받는 support의 확충 상태를 갱신한다.</p>
+<p>계산문제는 재요소망 생성에서 <strong>확충된 support와 진화하는 불연속 기하를 관리하는 문제</strong>로 바뀐다.</p>
+</section>
+<section id="무요소법이라고-수치적분이-없어지는-것은-아니다" class="level2">
+<h2 class="anchored" data-anchor-id="무요소법이라고-수치적분이-없어지는-것은-아니다">무요소법이라고 수치적분이 없어지는 것은 아니다</h2>
+<p>약형에는 여전히 영역적분이 있다. 균열이 support나 적분 셀을 가르면 integrand가 불연속이 될 수 있으므로 수치적분 역시 균열기하를 반영해야 한다.</p>
+<blockquote class="blockquote">
+<p><strong>근사공간이 기하형상과 독립적이라고 해서 기하형상이 중요하지 않은 것은 아니다.</strong></p>
+</blockquote>
+<p>균열의 위치는 어떤 입자를 확충할지, 불연속의 양쪽을 어떻게 구분할지, 점성응력을 어디에 적용할지, 균열을 어느 방향으로 성장시킬지를 결정한다.</p>
+</section>
+<section id="차원에서-진짜-어려움이-보인다" class="level2">
+<h2 class="anchored" data-anchor-id="차원에서-진짜-어려움이-보인다">3차원에서 진짜 어려움이 보인다</h2>
+<p>2차원에서는 균열이 선이고 그 끝이 균열선단이다. 3차원에서는 균열이 면이고 그 경계가 균열전면이다. 전면은 휘어지고 위치마다 서로 다른 방향으로 성장할 수 있으며, 균열면끼리 만나거나 분기할 수도 있다.</p>
+<pre class="text"><code>2차원
+균열선 + 균열선단
+
+3차원
+균열면 + 균열전면 + 진화하는 면의 위상</code></pre>
+<p>어려움은 변위성분이 2개에서 3개로 늘어난 데 있지 않다. <strong>추적해야 하는 기하학적 대상 자체가 달라진다.</strong></p>
+<div id="fig-xefg-3d" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-xefg-3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig03.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:82.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-xefg-3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;3: 3차원 XEFG에서는 진화하는 균열을 움직이는 균열전면을 경계로 갖는 면으로 표현할 수 있다. 곡률, 균열전파, 분기와 접합은 파괴역학의 문제이면서 동시에 진화하는 기하형상의 문제가 된다. Rabczuk, Bordas, and Zi (2007)의 3차원 XEFG 연구를 바탕으로 재구성.
+</figcaption>
+</figure>
+</div>
+<p>그림 <a href="#fig-xefg-3d" class="quarto-xref">3</a>에서 보듯 3차원에서는 물리적으로 타당한 <strong>균열면과 균열전면</strong>을 진화하는 배경 근사 안에서 계속 유지해야 한다.</p>
+</section>
+<section id="균열-접합은-다음-문제로-이어진다" class="level2">
+<h2 class="anchored" data-anchor-id="균열-접합은-다음-문제로-이어진다">균열 접합은 다음 문제로 이어진다</h2>
+<p>두 균열이 만나면 <strong>불연속 네트워크의 위상 자체가 바뀐다.</strong> XEFG에서는 전체 배경 이산화를 다시 만들지 않고 균열기하와 영향을 받는 support를 갱신할 수 있지만, 균열전면의 방향, 접합기하, 적분영역과 물리적으로 타당한 전파를 유지하는 문제는 남는다.</p>
+</section>
+<section id="xefg는-xfem보다-무엇을-얻는가" class="level2">
+<h2 class="anchored" data-anchor-id="xefg는-xfem보다-무엇을-얻는가">XEFG는 XFEM보다 무엇을 얻는가?</h2>
+<p>XEFG가 더 유연하니 항상 더 좋다고 말하면 곤란하다. XFEM은 성숙한 FE 기반구조, 기존 코드와의 연결, 효율적인 sparse topology, 잘 정립된 적분과 조립절차라는 장점이 있다.</p>
+<p>XEFG는 고정 요소 연결관계가 없고 support를 유연하게 정의할 수 있으며 대변형과 복잡하게 진화하는 기하에 매력적이다. 반면 이동최소제곱 형상함수, support 크기, 적분, 필수경계조건, 계산비용과 3차원 복잡성이라는 비용이 따른다.</p>
+<p>좋은 질문은 <code>XFEM과 XEFG 중 어느 것이 더 좋은가?</code>가 아니다.</p>
+<blockquote class="blockquote">
+<p><strong>이 파괴문제에서 가장 어려운 부분을 표현하기에 어떤 배경 근사가 더 적절한가?</strong></p>
+</blockquote>
+</section>
+<section id="xfem에서-xefg로-가도-변하지-않는-것은-무엇인가" class="level2">
+<h2 class="anchored" data-anchor-id="xfem에서-xefg로-가도-변하지-않는-것은-무엇인가">XFEM에서 XEFG로 가도 변하지 않는 것은 무엇인가?</h2>
+<p>배경 근사가 달라져도 파괴역학은 여전히 불연속 변위장, 균열선단에서의 closure, 점성파괴의 traction-opening 법칙, 균열발생 기준, 균열전파 방향, 파괴에너지 소산과 진화하는 균열기하의 일관된 처리를 요구한다.</p>
+<blockquote class="blockquote">
+<p><strong>수치적인 framework를 바꾼다고 근사공간이 만족해야 하는 물리가 바뀌는 것은 아니다.</strong></p>
+</blockquote>
+</section>
+<section id="xefg를-근사공간-설계의-문제로-보면" class="level2">
+<h2 class="anchored" data-anchor-id="xefg를-근사공간-설계의-문제로-보면">XEFG를 근사공간 설계의 문제로 보면</h2>
+<p>배경 근사</p>
+<p><span class="math display">\[
+\{\Phi_I\}
+\]</span></p>
+<p>를 선택하고, 그 근사로 표현할 수 없는</p>
+<p><span class="math display">\[
+[\![\mathbf{u}]\!] \neq 0
+\]</span></p>
+<p>이라는 정보를 찾은 뒤,</p>
+<p><span class="math display">\[
+\Phi_I\Psi
+\]</span></p>
+<p>와 같은 함수를 추가한다. 그리고 진화하는 균열기하를 보고 필요한 위치에만 활성화한다.</p>
+<pre class="text"><code>배경 근사를 선택한다
+        ↓
+빠져 있는 해의 특성을 찾는다
+        ↓
+근사공간을 확충한다
+        ↓
+필요한 곳에만 국부적으로 적용한다
+        ↓
+물리가 변함에 따라 갱신한다</code></pre>
+<p>XFEM은 이 생각을 유한요소 안에서 보여주었고, XEFG는 배경 근사가 달라져도 같은 논리가 유지될 수 있음을 보여주었다.</p>
+</section>
+<section id="xefg에서-다음-문제로-여러-균열" class="level2">
+<h2 class="anchored" data-anchor-id="xefg에서-다음-문제로-여러-균열">XEFG에서 다음 문제로: 여러 균열</h2>
+<p>요소망과 균열이 기하학적으로 독립되면 다음 자연스러운 문제는 하나의 균열이 아니라 <strong>파괴 네트워크</strong>다. 여러 균열은 발생하고, 상호작용하고, 차폐 또는 증폭하고, 분기하고, 합체하고, 접합한다.</p>
+<p>이제 어려운 것은 하나의 불연속을 표현하는 것이 아니다.</p>
+<p><strong>진화하는 불연속의 위상</strong>을 표현해야 한다.</p>
+</section>
+<section id="결국-핵심은" class="level2">
+<h2 class="anchored" data-anchor-id="결국-핵심은">결국 핵심은</h2>
+<p>XFEM에서 XEFG로 넘어간 과정이 보여주는 것은 간단하다.</p>
+<p>근사공간의 확충이라는 생각은 유한요소법의 전유물이 아니다.</p>
+<p><strong>근사이론의 문제다.</strong></p>
+<p>배경 수치기법은 매끄러운 장을 표현하기 위한 기본 근사를 제공하고, 근사공간의 확충은 그 기본 근사에 빠져 있는 특성을 추가한다. 파괴문제에서는 그것이 불연속이다.</p>
+<blockquote class="blockquote">
+<p><strong>배경 근사가 유한요소인가 무요소인가가 아니다. 균열이 요구하는 운동학이 근사공간 안에 들어 있는가가 중요하다.</strong></p>
+</blockquote>
+<p>더 일반적으로 말하면,</p>
+<blockquote class="blockquote">
+<p><strong>수치적인 scaffold는 편의에 따라 선택하되, 근사공간은 물리에 맞추어 설계하자.</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="시리즈-계속-읽기" class="level2">
+<h2 class="anchored" data-anchor-id="시리즈-계속-읽기">시리즈 계속 읽기</h2>
+<p><a href="../../posts/xfem-crack-through-mesh/index-ko.html">← <strong>이전: XFEM은 어떻게 균열이 요소망을 가로질러 지나가게 하는가?</strong></a></p>
+<p><a href="../../posts/computational-fracture-overview/index-ko.html"><strong>시리즈 전체: 계산파괴역학은 왜 어려운가?</strong></a></p>
+<p><a href="../../posts/multiple-cracks-fracture-network/index-ko.html"><strong>다음: 여러 균열은 어떻게 분기하고 만나 파괴 네트워크를 만드는가? →</strong></a></p>
+</section>
+<section id="original-research" class="level2">
+<h2 class="anchored" data-anchor-id="original-research">Original research</h2>
+<p>Rabczuk, T., &amp; Zi, G. (2007).<br>
+<strong>A meshfree method based on the local partition of unity for cohesive cracks.</strong><br>
+<em>Computational Mechanics, 39</em>, 743–760.<br>
+https://doi.org/10.1007/s00466-006-0067-4</p>
+<p>Zi, G., Rabczuk, T., &amp; Wall, W. (2007).<br>
+<strong>Extended meshfree methods without branch enrichment for cohesive cracks.</strong><br>
+<em>Computational Mechanics, 40</em>, 367–382.<br>
+https://doi.org/10.1007/s00466-006-0115-0</p>
+<p>Rabczuk, T., Bordas, S., &amp; Zi, G. (2007).<br>
+<strong>A three-dimensional meshfree method for continuous multiple-crack initiation, propagation and junction in statics and dynamics.</strong><br>
+<em>Computational Mechanics, 40</em>, 473–495.<br>
+https://doi.org/10.1007/s00466-006-0122-1</p>
+<p>Bordas, S., Rabczuk, T., &amp; Zi, G. (2008).<br>
+<strong>Three-dimensional crack initiation, propagation, branching and junction in non-linear materials by an extended meshfree method without asymptotic enrichment.</strong><br>
+<em>Engineering Fracture Mechanics, 75</em>, 943–960.</p>
+<p>Rabczuk, T., Bordas, S., &amp; Zi, G. (2010).<br>
+<strong>On three-dimensional modelling of crack growth using partition of unity methods.</strong><br>
+<em>Computers &amp; Structures, 88</em>, 1391–1411.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

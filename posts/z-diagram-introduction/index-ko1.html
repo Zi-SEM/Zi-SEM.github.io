@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="지광습">
+<meta name="keywords" content="Z 다이어그램, Z Diagram, 역학 문제 풀이, 역학 내비게이션 맵, 힘 응력 변형률 변위, 구조역학, 재료역학, 평형방정식, 적합조건, 구성방정식, 응력 변형률 관계, 힘 변위 관계, 가상일의 원리, 에너지 공액, 가상변위, 내부일 외부일, 유한요소법 기초">
+<meta name="description" content="2004년 역학 교육을 위해 개발한 역학문제 내비게이션 맵인 Z 다이어그램. 힘, 응력, 변형률, 변위를 평형, 구성관계, 적합조건, 일과 에너지로 연결한다.">
+
+<title>힘·응력·변형률·변위는 어떻게 연결되는가? — Z 다이어그램 – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research &amp; Innovation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../perspectives.html"> 
+<span class="menu-text">Engineering Perspectives</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../cartoon-log.html"> 
+<span class="menu-text">Cartoon Logs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../beyond-engineering.html"> 
+<span class="menu-text">Beyond Engineering</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">한국어</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../index-ko.html">
+ <span class="dropdown-text">홈</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research-ko.html">
+ <span class="dropdown-text">연구와 기술</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../mechanics-ko.html">
+ <span class="dropdown-text">공학역학</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../perspectives-ko.html">
+ <span class="dropdown-text">공학 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../cartoon-log-ko.html">
+ <span class="dropdown-text">카툰 일기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../beyond-engineering-ko.html">
+ <span class="dropdown-text">공학 밖의 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about-ko.html">
+ <span class="dropdown-text">소개</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul class="collapse">
+  <li><a href="#z-다이어그램을-만들게-된-이유" id="toc-z-다이어그램을-만들게-된-이유" class="nav-link active" data-scroll-target="#z-다이어그램을-만들게-된-이유">Z 다이어그램을 만들게 된 이유</a></li>
+  <li><a href="#왜-역학에는-내비게이션-맵이-필요한가" id="toc-왜-역학에는-내비게이션-맵이-필요한가" class="nav-link" data-scroll-target="#왜-역학에는-내비게이션-맵이-필요한가">왜 역학에는 내비게이션 맵이 필요한가?</a></li>
+  <li><a href="#기본-구조" id="toc-기본-구조" class="nav-link" data-scroll-target="#기본-구조">기본 구조</a></li>
+  <li><a href="#두-방향의-해석-하나의-역학-체계" id="toc-두-방향의-해석-하나의-역학-체계" class="nav-link" data-scroll-target="#두-방향의-해석-하나의-역학-체계">두 방향의 해석, 하나의 역학 체계</a></li>
+  <li><a href="#구조물-수준과-재료점-수준" id="toc-구조물-수준과-재료점-수준" class="nav-link" data-scroll-target="#구조물-수준과-재료점-수준">구조물 수준과 재료점 수준</a></li>
+  <li><a href="#에너지-공액쌍" id="toc-에너지-공액쌍" class="nav-link" data-scroll-target="#에너지-공액쌍">에너지 공액쌍</a></li>
+  <li><a href="#가상일의-원리에서는-무엇이-달라지는가" id="toc-가상일의-원리에서는-무엇이-달라지는가" class="nav-link" data-scroll-target="#가상일의-원리에서는-무엇이-달라지는가">가상일의 원리에서는 무엇이 달라지는가?</a></li>
+  <li><a href="#선형탄성은-가장-간단한-예다" id="toc-선형탄성은-가장-간단한-예다" class="nav-link" data-scroll-target="#선형탄성은-가장-간단한-예다">선형탄성은 가장 간단한 예다</a></li>
+  <li><a href="#반대-방향으로-가면" id="toc-반대-방향으로-가면" class="nav-link" data-scroll-target="#반대-방향으로-가면">반대 방향으로 가면</a></li>
+  <li><a href="#차원-봉에서의-에너지-등가성" id="toc-차원-봉에서의-에너지-등가성" class="nav-link" data-scroll-target="#차원-봉에서의-에너지-등가성">1차원 봉에서의 에너지 등가성</a></li>
+  <li><a href="#선형역학을-넘어가도-구조는-같다" id="toc-선형역학을-넘어가도-구조는-같다" class="nav-link" data-scroll-target="#선형역학을-넘어가도-구조는-같다">선형역학을 넘어가도 구조는 같다</a></li>
+  <li><a href="#z-다이어그램이-왜-유용한가" id="toc-z-다이어그램이-왜-유용한가" class="nav-link" data-scroll-target="#z-다이어그램이-왜-유용한가">Z 다이어그램이 왜 유용한가?</a></li>
+  <li><a href="#공식이-아니라-사고의-틀" id="toc-공식이-아니라-사고의-틀" class="nav-link" data-scroll-target="#공식이-아니라-사고의-틀">공식이 아니라 사고의 틀</a></li>
+  <li><a href="#정리" id="toc-정리" class="nav-link" data-scroll-target="#정리">정리</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">힘·응력·변형률·변위는 어떻게 연결되는가? — Z 다이어그램</h1>
+<p class="subtitle lead">평형, 적합조건, 구성관계, 에너지로 구조역학을 하나의 흐름으로 보기</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">공학역학</div>
+    <div class="quarto-category">Structural Mechanics</div>
+    <div class="quarto-category">Mechanics of Materials</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    2004년 역학 교육을 위해 개발한 역학문제 내비게이션 맵인 Z 다이어그램. 힘, 응력, 변형률, 변위를 평형, 구성관계, 적합조건, 일과 에너지로 연결한다.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">저자</div>
+    <div class="quarto-title-meta-contents">
+             <p>지광습 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">공개</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">2026년 8월 30일</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+<div>
+  <div class="keywords">
+    <div class="block-title">키워드</div>
+    <p>Z 다이어그램, Z Diagram, 역학 문제 풀이, 역학 내비게이션 맵, 힘 응력 변형률 변위, 구조역학, 재료역학, 평형방정식, 적합조건, 구성방정식, 응력 변형률 관계, 힘 변위 관계, 가상일의 원리, 에너지 공액, 가상변위, 내부일 외부일, 유한요소법 기초</p>
+  </div>
+</div>
+
+</header>
+
+
+<div class="language-switch">
+<p><a href="index.html">English</a> | <strong>한글</strong></p>
+</div>
+<section id="z-다이어그램을-만들게-된-이유" class="level2">
+<h2 class="anchored" data-anchor-id="z-다이어그램을-만들게-된-이유">Z 다이어그램을 만들게 된 이유</h2>
+<p>나는 <strong>2004년 고려대학교에 부임하면서</strong> 학생들에게 역학문제를 좀 더 체계적으로 설명할 방법을 고민했다.</p>
+<p>역학에는 식이 많다. 힘도 나오고, 응력도 나오고, 변형률과 변위도 나온다. 평형방정식, 구성방정식, 적합조건도 각각 배운다. 그런데 학생들이 실제 문제를 풀 때 어려워하는 것은 개별 식의 계산만이 아니었다.</p>
+<p><strong>지금 역학문제의 어디에 와 있는가? 다음에는 어떤 물리법칙을 써야 하는가? 왜 그쪽으로 가야 하는가?</strong></p>
+<p>이 질문에 답할 수 있는 지도가 필요했다.</p>
+<p>그래서 만든 것이 <strong>Z 다이어그램</strong>이다. 나는 이것을 일종의 <strong>역학문제 내비게이션 맵</strong>으로 사용해 왔다.</p>
+<p><span class="math display">\[
+F,\qquad \sigma,\qquad \varepsilon,\qquad u
+\]</span></p>
+<p>라는 네 물리량은 역학문제에서 현재 위치를 보여준다. 그리고 평형, 구성거동, 적합조건은 한 위치에서 다음 위치로 어떻게 이동하는지를 알려준다. 일과 에너지는 서로 다른 수준에서 표현한 역학이 제대로 연결되어 있는지를 확인하는 또 하나의 기준이 된다.</p>
+<p>그 이후 내가 강의하는 <strong>거의 대부분의 역학 관련 과목</strong>에서 이 맵을 사용하고 있다. 재료역학, 구조역학, 유한요소법, 소성론, 파괴역학처럼 과목이 달라지면 세부 식과 모델은 달라진다. 그래도 어떤 식이 평형을 말하는지, 어떤 식이 재료거동을 말하는지, 어떤 식이 변위와 변형을 연결하는지를 Z 다이어그램 위에 놓아 보면 전체 구조가 훨씬 잘 보인다.</p>
+<p>연구에서도 마찬가지다. 새로운 문제를 볼 때 힘, 응력, 변형률, 변위를 어떻게 정의할 것인지, 평형과 기구학과 구성가정을 어떻게 구분할 것인지, 그리고 일이나 에너지 관점에서 서로 일관되는지를 정리하는 데 이 맵을 다양하게 사용한다.</p>
+<p>따라서 Z 다이어그램은 외워야 할 공식이 아니다. 내가 이 그림을 사용하는 가장 중요한 이유는 다음 질문을 계속 던질 수 있기 때문이다.</p>
+<blockquote class="blockquote">
+<p><strong>지금 이 역학문제의 어디에 있고, 다음 물리량으로 가려면 어떤 원리를 사용해야 하는가?</strong></p>
+</blockquote>
+</section>
+<section id="왜-역학에는-내비게이션-맵이-필요한가" class="level2">
+<h2 class="anchored" data-anchor-id="왜-역학에는-내비게이션-맵이-필요한가">왜 역학에는 내비게이션 맵이 필요한가?</h2>
+<p>구조역학을 배우다 보면 이상한 일이 생긴다.</p>
+<p>평형도 배웠고, 응력도 배웠고, 변형률도 배웠다. 재료의 구성방정식도 알고 변위와 적합조건도 안다. 각각의 내용은 이해한 것 같은데, 막상 구조물 전체를 놓고 보면 이들이 <strong>왜 한 묶음의 역학 문제를 이루는지</strong>가 흐릿해질 때가 있다.</p>
+<p>Z 다이어그램은 바로 그 연결을 보기 위한 틀이다.</p>
+<p>핵심 변수는 네 개다.</p>
+<p><span class="math display">\[
+F,\qquad \sigma,\qquad \varepsilon,\qquad u
+\]</span></p>
+<p>여기서 <span class="math inline">\(F\)</span>는 구조물 수준의 힘, <span class="math inline">\(\sigma\)</span>는 재료점 수준의 응력, <span class="math inline">\(\varepsilon\)</span>은 재료점 수준의 변형률, <span class="math inline">\(u\)</span>는 구조물 수준의 변위다.</p>
+<p>중요한 것은 이 네 기호를 나열하는 데 있지 않다. <strong>힘이 어떻게 응력으로 연결되고, 응력이 어떻게 변형률과 연결되며, 다시 변형률이 어떻게 변위와 연결되는가</strong>를 하나의 기계적 체계 안에서 보는 것이 목적이다.</p>
+</section>
+<section id="기본-구조" class="level2">
+<h2 class="anchored" data-anchor-id="기본-구조">기본 구조</h2>
+<p>Z 다이어그램의 세 연결은 서로 다른 역학 원리가 담당한다.</p>
+<p>먼저 힘과 응력은</p>
+<p><span class="math display">\[
+F \longleftrightarrow \sigma
+\]</span></p>
+<p><strong>힘의 평형</strong>으로 연결된다.</p>
+<p>응력과 변형률은</p>
+<p><span class="math display">\[
+\sigma \longleftrightarrow \varepsilon
+\]</span></p>
+<p><strong>구성방정식 또는 구성법칙</strong>으로 연결된다.</p>
+<p>그리고 변형률과 변위는</p>
+<p><span class="math display">\[
+\varepsilon \longleftrightarrow u
+\]</span></p>
+<p><strong>변위의 적합조건</strong>으로 연결된다.</p>
+<p>따라서 전체 흐름은</p>
+<p><span class="math display">\[
+\boxed{
+F
+\;\longleftrightarrow\;
+\sigma
+\;\longleftrightarrow\;
+\varepsilon
+\;\longleftrightarrow\;
+u
+}
+\]</span></p>
+<p>가 된다.</p>
+<p>각 화살표가 같은 의미의 연결이 아니라는 점이 중요하다. 하나는 평형, 하나는 재료 거동, 하나는 기하학적 적합성을 뜻한다.</p>
+<div id="fig-z-diagram" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-z-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="z-diagram-standard.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-z-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;1: Z 다이어그램. 구조물 수준에서는 힘과 변위가 에너지 공액쌍을 이루고, 재료점 수준에서는 응력과 변형률이 에너지 공액쌍을 이룬다. 두 수준은 힘의 평형과 변위의 적합조건으로 연결되고, 응력과 변형률 사이에는 구성관계가 놓인다.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="두-방향의-해석-하나의-역학-체계" class="level2">
+<h2 class="anchored" data-anchor-id="두-방향의-해석-하나의-역학-체계">두 방향의 해석, 하나의 역학 체계</h2>
+<p>구조 문제는 어느 쪽에서 시작하느냐에 따라 계산 순서가 달라진다.</p>
+<p>외력이 주어졌다면 보통</p>
+<p><span class="math display">\[
+F
+\rightarrow
+\sigma
+\rightarrow
+\varepsilon
+\rightarrow
+u
+\]</span></p>
+<p>의 순서로 생각할 수 있다.</p>
+<p>주어진 힘으로부터 평형을 만족하는 내부 응력장을 찾고, 그 응력을 구성법칙을 통해 변형률로 바꾸며, 마지막으로 변형률이 적합조건을 만족하도록 변위장을 구한다.</p>
+<p>반대로 변위가 주어진 문제라면</p>
+<p><span class="math display">\[
+u
+\rightarrow
+\varepsilon
+\rightarrow
+\sigma
+\rightarrow
+F
+\]</span></p>
+<p>로 갈 수 있다.</p>
+<p>주어진 변위로부터 적합한 변형률을 구하고, 구성법칙으로 응력을 계산한 다음, 평형을 통해 그 응력장이 요구하는 힘을 얻는다.</p>
+<p>둘은 서로 다른 이론이 아니다. <strong>같은 역학 관계를 어느 방향으로 따라가느냐만 다르다.</strong></p>
+<p>따라서 Z 다이어그램에서 두 방향에 별도의 이름을 붙일 필요는 없다. 중요한 것은 어디서 시작했고, 어떤 물리 법칙을 거쳐 원하는 물리량에 도달했는가이다.</p>
+</section>
+<section id="구조물-수준과-재료점-수준" class="level2">
+<h2 class="anchored" data-anchor-id="구조물-수준과-재료점-수준">구조물 수준과 재료점 수준</h2>
+<p>네 변수는 자연스럽게 두 수준으로 나뉜다.</p>
+<p>구조물 수준에서는</p>
+<p><span class="math display">\[
+(F,u)
+\]</span></p>
+<p>가 전체적인 힘-변위 응답을 나타낸다.</p>
+<p>재료점 수준에서는</p>
+<p><span class="math display">\[
+(\sigma,\varepsilon)
+\]</span></p>
+<p>가 국부적인 응력-변형률 응답을 나타낸다.</p>
+<p>공학적으로 보면 이것이 매우 중요하다. 구조해석은 힘과 변위만의 문제가 아니고, 재료모델도 응력과 변형률만으로 독립적으로 끝나지 않는다. <strong>구조물의 전역 거동과 재료의 국부 거동이 평형과 적합조건을 통해 서로 연결되어야 한다.</strong></p>
+</section>
+<section id="에너지-공액쌍" class="level2">
+<h2 class="anchored" data-anchor-id="에너지-공액쌍">에너지 공액쌍</h2>
+<p>Z 다이어그램은 에너지 관점에서 보면 더 명확해진다.</p>
+<p>구조물 수준에서 힘과 변위는 <strong>에너지 공액쌍</strong>이다.</p>
+<p><span class="math display">\[
+(F,u)
+\]</span></p>
+<p>재료점 수준에서는 응력과 변형률이 또 하나의 에너지 공액쌍을 이룬다.</p>
+<p><span class="math display">\[
+(\sigma,\varepsilon)
+\]</span></p>
+<p>상태가 미소하게 변할 때 외부에서 한 일은</p>
+<p><span class="math display">\[
+dW_{\mathrm{external}}
+=
+F\,du
+\]</span></p>
+<p>로 쓸 수 있다.</p>
+<p>재료 내부에서의 일은</p>
+<p><span class="math display">\[
+dW_{\mathrm{internal}}
+=
+\int_V \sigma\,d\varepsilon\,dV
+\]</span></p>
+<p>로 표현된다.</p>
+<p>적절한 가정과 경계조건 아래 기계적으로 일관된 시스템이라면 두 표현은 같은 에너지 전달을 나타내야 한다.</p>
+<p><span class="math display">\[
+\boxed{
+F\,du
+=
+\int_V \sigma\,d\varepsilon\,dV
+}
+\]</span></p>
+<p>여기서 핵심은 힘-변위와 응력-변형률이 그저 비슷한 모양의 두 표현이 아니라는 점이다. <strong>둘은 에너지적으로 서로 일치해야 한다.</strong></p>
+</section>
+<section id="가상일의-원리에서는-무엇이-달라지는가" class="level2">
+<h2 class="anchored" data-anchor-id="가상일의-원리에서는-무엇이-달라지는가">가상일의 원리에서는 무엇이 달라지는가?</h2>
+<p>표준 Z 다이어그램에는 응력과 변형률 사이에 구성관계가 들어간다. 실제 구조해석에서 재료 거동을 결정하려면 보통 이 관계가 필요하기 때문이다.</p>
+<p>그런데 <strong>가상일의 원리(principle of virtual work, PVW)</strong> 자체는 다르다. 가상일의 원리를 쓰는 순간에는 <span class="math inline">\(\sigma\)</span>와 <span class="math inline">\(\varepsilon\)</span> 사이의 구성법칙이 반드시 필요하지 않다.</p>
+<div id="fig-z-diagram-pvw" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-z-diagram-pvw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="z-diagram-pvw.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-z-diagram-pvw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;2: 가상일의 원리로 본 Z 다이어그램. 응력과 변형률 사이에 구성관계 화살표를 일부러 두지 않았다. 힘과 응력은 평형으로, 변위와 변형률은 적합조건으로 연결되며, 두 쪽은 응력-변형률 구성법칙이 아니라 가상일을 통해 연결된다.
+</figcaption>
+</figure>
+</div>
+<p>그림 <a href="#fig-z-diagram-pvw" class="quarto-xref">2</a>에서 <span class="math inline">\(\sigma\)</span>와 <span class="math inline">\(\varepsilon\)</span> 사이의 화살표가 빠져 있는 것은 누락이 아니다. 바로 그것이 이 그림에서 봐야 할 부분이다.</p>
+<p>기구학적으로 허용 가능한 가상변위 <span class="math inline">\(\delta u\)</span>를 생각하면 적합조건으로부터 대응하는 가상변형률 <span class="math inline">\(\delta\varepsilon\)</span>가 생긴다. 한편 정적으로 허용 가능한 힘 <span class="math inline">\(F\)</span>는 평형을 통해 응력장 <span class="math inline">\(\sigma\)</span>와 연결된다.</p>
+<p>개략적으로 쓰면</p>
+<p><span class="math display">\[
+F \longleftrightarrow \sigma
+\qquad\text{and}\qquad
+\delta u \longleftrightarrow \delta\varepsilon
+\]</span></p>
+<p>이다.</p>
+<p>이 두 쪽은 ’일’을 통해 연결된다.</p>
+<p><span class="math display">\[
+\boxed{
+\delta W_{\mathrm{ext}}
+=
+F\,\delta u
+=
+\int_V \sigma\,\delta\varepsilon\,dV
+=
+\delta W_{\mathrm{int}}
+}
+\]</span></p>
+<p>여기서는 하나의 일반화 힘만 있는 단순한 표현을 사용했다. 일반적으로는 체적력, 표면력, 여러 일반화 힘이 외부 가상일에 포함되며, 3차원에서는 응력과 가상변형률이</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}
+\]</span></p>
+<p>의 형태로 이중수축된다.</p>
+<p>여기서 중요한 것은 <strong>평형과 적합조건은 서로 독립적인 요구조건</strong>이라는 점이다.</p>
+<p>평형은 주어진 힘과 응력장이 정적으로 허용 가능한지를 말한다. 적합조건은 주어진 변위와 변형률장이 기구학적으로 허용 가능한지를 말한다. 둘 중 어느 것도 그 자체로 재료가 어떻게 거동하는지는 말해주지 않는다.</p>
+<p>그래서 가상일의 원리 자체를 표현할 때는 <span class="math inline">\(\sigma\)</span>와 <span class="math inline">\(\varepsilon\)</span> 사이에 구성법칙 화살표가 없어도 된다. 가상변형률은 응력으로부터 얻는 것이 아니라 가상변위로부터 얻는다. 마찬가지로 응력장은 가상변형률을 재료법칙에 넣어 생성하는 것이 아니라 평형조건의 제약을 받는다.</p>
+<p>이렇게 독립적으로 허용 가능한 두 장이 외부 가상일과 내부 가상일의 같음으로 만나는 것이다.</p>
+<p>문제는 그 다음이다. 실제로 변형체의 경계값 문제를 <strong>해결</strong>하려면 평형과 적합조건만으로는 충분하지 않다. 실제 응답을 선택하려면 구성법칙이 추가로 필요하다. 그러나 가상일의 원리 그 자체는 기계적 평형과 기구학을 표현하는 원리이지, 응력-변형률 법칙은 아니다.</p>
+<section id="같은-내용을-파워로-쓰면" class="level3">
+<h3 class="anchored" data-anchor-id="같은-내용을-파워로-쓰면">같은 내용을 파워로 쓰면</h3>
+<p>같은 그림을 다른 방식으로 읽을 수도 있다. 변위와 변형률 대신 그 시간미분을 생각해보자.</p>
+<p><span class="math display">\[
+u \rightarrow \dot u,
+\qquad
+\varepsilon \rightarrow \dot\varepsilon
+\]</span></p>
+<p>힘은 속도와 파워 공액이고, 응력은 변형률 속도와 파워 공액이다. 따라서 파워 평형은</p>
+<p><span class="math display">\[
+\boxed{
+P_{\mathrm{ext}}
+=
+F\,\dot u
+=
+\int_V \sigma\,\dot\varepsilon\,dV
+=
+P_{\mathrm{int}}
+}
+\]</span></p>
+<p>로 쓸 수 있다.</p>
+<p>3차원에서는</p>
+<p><span class="math display">\[
+P_{\mathrm{int}}
+=
+\int_V
+\boldsymbol{\sigma}:\dot{\boldsymbol{\varepsilon}}\,dV
+\]</span></p>
+<p>이다.</p>
+<p>이 형태를 보면 공액관계가 더 분명해진다. <span class="math inline">\(F\)</span>와 <span class="math inline">\(u\)</span>는 <span class="math inline">\(F\,du\)</span>가 일이기 때문에 에너지 공액이다. 같은 말로, <span class="math inline">\(F\)</span>와 <span class="math inline">\(\dot u\)</span>는 <span class="math inline">\(F\dot u\)</span>가 파워이기 때문에 파워 공액이다.</p>
+<p>재료점에서도 <span class="math inline">\(\sigma\)</span>와 <span class="math inline">\(\varepsilon\)</span>는 <span class="math inline">\(\sigma\,d\varepsilon\)</span>의 의미에서 에너지 공액이고, <span class="math inline">\(\sigma\)</span>와 <span class="math inline">\(\dot\varepsilon\)</span>는 <span class="math inline">\(\sigma\dot\varepsilon\)</span>을 통해 파워 공액이다.</p>
+<p>따라서 Z 다이어그램은 다음 두 형태로 읽을 수 있다.</p>
+<p><span class="math display">\[
+(F,u)
+\quad\leftrightarrow\quad
+(\sigma,\varepsilon)
+\qquad \text{through work},
+\]</span></p>
+<p>또는</p>
+<p><span class="math display">\[
+(F,\dot u)
+\quad\leftrightarrow\quad
+(\sigma,\dot\varepsilon)
+\qquad \text{through power}.
+\]</span></p>
+<p>역학은 같다. 속도 형태는 같은 에너지 전달을 순간적인 파워로 표현한 것일 뿐이다.</p>
+</section>
+</section>
+<section id="선형탄성은-가장-간단한-예다" class="level2">
+<h2 class="anchored" data-anchor-id="선형탄성은-가장-간단한-예다">선형탄성은 가장 간단한 예다</h2>
+<p>길이 <span class="math inline">\(L\)</span>, 단면적 <span class="math inline">\(A\)</span>, 탄성계수 <span class="math inline">\(E\)</span>인 균일한 1차원 봉에 축력 <span class="math inline">\(F\)</span>가 작용한다고 하자.</p>
+<p>힘에서 시작하면</p>
+<p><span class="math display">\[
+F
+\rightarrow
+\sigma
+\rightarrow
+\varepsilon
+\rightarrow
+u
+\]</span></p>
+<p>이다.</p>
+<p>평형으로부터</p>
+<p><span class="math display">\[
+\sigma = \frac{F}{A}
+\]</span></p>
+<p>를 얻는다.</p>
+<p>선형탄성에서는</p>
+<p><span class="math display">\[
+\sigma = E\varepsilon
+\]</span></p>
+<p>이므로</p>
+<p><span class="math display">\[
+\varepsilon = \frac{\sigma}{E}
+=
+\frac{F}{AE}
+\]</span></p>
+<p>이다.</p>
+<p>적합조건으로부터</p>
+<p><span class="math display">\[
+u = \varepsilon L
+\]</span></p>
+<p>이므로 최종적으로</p>
+<p><span class="math display">\[
+\boxed{
+u = \frac{FL}{AE}
+}
+\]</span></p>
+<p>를 얻는다.</p>
+<p>익숙한 축변위 식이다. 하지만 여기서 중요한 것은 식 자체가 아니다. <strong>그 식이 어떤 역학적 연결을 거쳐 나왔는가</strong>가 중요하다.</p>
+<p><span class="math display">\[
+\boxed{
+F
+\overset{\text{평형}}{\longrightarrow}
+\sigma
+\overset{\text{구성법칙}}{\longrightarrow}
+\varepsilon
+\overset{\text{적합조건}}{\longrightarrow}
+u
+}
+\]</span></p>
+</section>
+<section id="반대-방향으로-가면" class="level2">
+<h2 class="anchored" data-anchor-id="반대-방향으로-가면">반대 방향으로 가면</h2>
+<p>이번에는 변위 <span class="math inline">\(u\)</span>가 주어졌다고 하자.</p>
+<p>적합조건으로부터</p>
+<p><span class="math display">\[
+\varepsilon = \frac{u}{L}
+\]</span></p>
+<p>을 얻는다.</p>
+<p>구성법칙은</p>
+<p><span class="math display">\[
+\sigma = E\varepsilon
+=
+E\frac{u}{L}
+\]</span></p>
+<p>을 준다.</p>
+<p>마지막으로 평형을 적용하면</p>
+<p><span class="math display">\[
+F = \sigma A
+=
+\frac{EA}{L}u
+\]</span></p>
+<p>이다.</p>
+<p>따라서</p>
+<p><span class="math display">\[
+\boxed{
+F = \frac{EA}{L}u
+}
+\]</span></p>
+<p>가 되고, 같은 역학 체계를 반대 방향으로 통과한 셈이다.</p>
+<p><span class="math display">\[
+\boxed{
+u
+\overset{\text{적합조건}}{\longrightarrow}
+\varepsilon
+\overset{\text{구성법칙}}{\longrightarrow}
+\sigma
+\overset{\text{평형}}{\longrightarrow}
+F
+}
+\]</span></p>
+</section>
+<section id="차원-봉에서의-에너지-등가성" class="level2">
+<h2 class="anchored" data-anchor-id="차원-봉에서의-에너지-등가성">1차원 봉에서의 에너지 등가성</h2>
+<p>같은 선형탄성 봉에서 구조물 수준의 변형에너지는</p>
+<p><span class="math display">\[
+U_{\mathrm{external}}
+=
+\frac{1}{2}Fu
+\]</span></p>
+<p>이다.</p>
+<p>재료 수준에서는</p>
+<p><span class="math display">\[
+U_{\mathrm{internal}}
+=
+\int_V \frac{1}{2}\sigma\varepsilon\,dV
+\]</span></p>
+<p>로 쓸 수 있다.</p>
+<p>균일한 봉이라면</p>
+<p><span class="math display">\[
+U_{\mathrm{internal}}
+=
+\frac{1}{2}\sigma\varepsilon AL
+\]</span></p>
+<p>이고,</p>
+<p><span class="math display">\[
+\sigma=\frac{F}{A}
+\]</span></p>
+<p>및</p>
+<p><span class="math display">\[
+\varepsilon=\frac{u}{L}
+\]</span></p>
+<p>을 대입하면</p>
+<p><span class="math display">\[
+U_{\mathrm{internal}}
+=
+\frac{1}{2}
+\left(\frac{F}{A}\right)
+\left(\frac{u}{L}\right)
+AL
+=
+\frac{1}{2}Fu
+\]</span></p>
+<p>가 된다.</p>
+<p>따라서</p>
+<p><span class="math display">\[
+\boxed{
+U_{\mathrm{external}}
+=
+U_{\mathrm{internal}}
+}
+\]</span></p>
+<p>이다.</p>
+<p>이 등가성은 문제를 다 푼 뒤 덧붙이는 부가적인 결과가 아니다. 구조물 수준과 재료점 수준이 같은 물리계를 설명하고 있다는 것을 보장하는 <strong>일관성 조건</strong>이다.</p>
+</section>
+<section id="선형역학을-넘어가도-구조는-같다" class="level2">
+<h2 class="anchored" data-anchor-id="선형역학을-넘어가도-구조는-같다">선형역학을 넘어가도 구조는 같다</h2>
+<p>Z 다이어그램은 선형탄성에만 적용되는 그림이 아니다.</p>
+<p>평형관계는 선형일 수도 있고 비선형일 수도 있다. 적합관계도 미소변형을 사용할 수도 있고 유한변형을 사용할 수도 있다. 구성관계에는 비선형탄성, 소성, 손상, 점탄성, 파괴와 관련된 재료모델 등 여러 형태가 들어갈 수 있다.</p>
+<p>비선형 문제에서는 익숙한 삼각형 면적</p>
+<p><span class="math display">\[
+\frac{1}{2}Fu
+\]</span></p>
+<p>로 에너지를 표현할 수 없는 경우가 많다. 이때 외부일은 보다 일반적으로</p>
+<p><span class="math display">\[
+W_{\mathrm{external}}
+=
+\int F\,du
+\]</span></p>
+<p>로 써야 한다.</p>
+<p>내부일도 마찬가지로</p>
+<p><span class="math display">\[
+W_{\mathrm{internal}}
+=
+\int_V
+\left(
+\int \sigma\,d\varepsilon
+\right)dV
+\]</span></p>
+<p>처럼 표현할 수 있다.</p>
+<p>문제의 세부 식은 달라져도 중심 구조는 변하지 않는다.</p>
+<p><span class="math display">\[
+\boxed{
+\text{평형}
+\quad+\quad
+\text{구성거동}
+\quad+\quad
+\text{적합조건}
+}
+\]</span></p>
+<p>그리고 구조물 수준과 재료점 수준 사이에는 에너지적으로 일관된 연결이 있어야 한다.</p>
+</section>
+<section id="z-다이어그램이-왜-유용한가" class="level2">
+<h2 class="anchored" data-anchor-id="z-다이어그램이-왜-유용한가">Z 다이어그램이 왜 유용한가?</h2>
+<p>구조역학에서 반복해서 나오는 질문이 있다.</p>
+<blockquote class="blockquote">
+<p>구조물에 가한 힘이 결국 어떻게 변위가 되는가?</p>
+</blockquote>
+<p>답은 하나의 식이 아니다.</p>
+<p>힘은 평형을 통해 내부 응력상태와 연결되어야 한다. 응력은 구성모델을 통해 변형률과 연결되어야 한다. 그리고 변형률은 변위장과 적합해야 한다.</p>
+<p>반대 방향도 똑같이 가능하다.</p>
+<p>그래서 Z 다이어그램은 평형방정식, 구성방정식, 적합방정식이 각각 무엇을 하는지 구분하는 데 유용하다. 동시에 구조물 수준의 전역 변수와 재료점 수준의 국부 변수, 그리고 에너지 공액 변수의 관계를 한 눈에 볼 수 있게 해준다.</p>
+<p>재료역학, 구조해석, 유한요소법, 비선형역학, 구성모델링이 처음에는 서로 다른 과목처럼 보이지만, 공학적으로 보면 결국 이 공통된 뼈대 위에서 움직인다.</p>
+</section>
+<section id="공식이-아니라-사고의-틀" class="level2">
+<h2 class="anchored" data-anchor-id="공식이-아니라-사고의-틀">공식이 아니라 사고의 틀</h2>
+<p>Z 다이어그램은 외워야 할 새로운 공식이 아니다.</p>
+<p>문제를 풀다가 어느 지점에서든 다음과 같이 물어볼 수 있게 해주는 사고의 틀이다.</p>
+<ul>
+<li>지금 알고 있는 물리량은 무엇인가?</li>
+<li>그 물리량은 구조물 수준인가, 재료점 수준인가?</li>
+<li>다음 물리량으로 넘어갈 때 어떤 법칙을 사용하고 있는가?</li>
+<li>지금 사용하는 식은 평형인가, 구성관계인가, 적합조건인가?</li>
+<li>구조물 수준과 재료점 수준에서 에너지 표현은 서로 일관되는가?</li>
+</ul>
+<p>이 질문들이 분명해지면 많은 역학 유도가 훨씬 덜 암기식으로 보인다.</p>
+<p>문제마다 수학적인 세부 내용은 달라진다.</p>
+<p>하지만 사고의 구조는 크게 달라지지 않는다.</p>
+</section>
+<section id="정리" class="level2">
+<h2 class="anchored" data-anchor-id="정리">정리</h2>
+<p>Z 다이어그램은 네 개의 기본 역학 변수</p>
+<p><span class="math display">\[
+\boxed{
+F,\quad \sigma,\quad \varepsilon,\quad u
+}
+\]</span></p>
+<p>를 <strong>힘의 평형, 구성거동, 변위의 적합조건</strong>이라는 세 관계로 연결한다.</p>
+<p>힘에서 변위로 가면</p>
+<p><span class="math display">\[
+F \rightarrow \sigma \rightarrow \varepsilon \rightarrow u
+\]</span></p>
+<p>이고, 변위에서 힘으로 가면 그 순서가 반대가 된다.</p>
+<p>동시에</p>
+<p><span class="math display">\[
+(F,u)
+\]</span></p>
+<p>와</p>
+<p><span class="math display">\[
+(\sigma,\varepsilon)
+\]</span></p>
+<p>는 각각 구조물 수준과 재료점 수준의 에너지 공액쌍이다. 두 수준에서 표현한 에너지는 서로 일관되어야 한다.</p>
+<p>가상일의 원리를 통해 보면 한 가지가 더 분명해진다. <strong>평형과 적합조건은 구성법칙과 독립적으로 진술할 수 있다.</strong> 정적으로 허용 가능한 응력장과 기구학적으로 허용 가능한 가상변위장은 <span class="math inline">\(\sigma\)</span>–<span class="math inline">\(\varepsilon\)</span> 구성관계가 아니라 가상일을 통해 만난다.</p>
+<p>속도 형태로 쓰면 같은 내용은 <span class="math inline">\((F,\dot u)\)</span>와 <span class="math inline">\((\sigma,\dot\varepsilon)\)</span> 사이의 파워 평형이 된다.</p>
+<p>결국 Z 다이어그램의 핵심은 네 개의 기호가 아니다.</p>
+<p><strong>평형, 적합조건, 구성거동, 구조물과 재료점의 스케일, 그리고 일과 파워가 하나의 역학 체계 안에서 어떻게 연결되는지를 보는 것</strong>이다.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

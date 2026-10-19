@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="지광습">
+<meta name="dcterms.date" content="2026-09-04">
+<meta name="keywords" content="계류선 동역학, 계류선 동적 해석, 부유식 해상풍력 계류, 계류선 장력, 페어리드 장력, 비선형 계류선, 시간영역 해석, 유체 항력, 상대유속, 계류선 유한요소해석, Newmark-beta, 부유구조물 계류">
+
+<title>계류선은 왜 단순한 비선형 스프링이 아닌가? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research &amp; Innovation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../perspectives.html"> 
+<span class="menu-text">Engineering Perspectives</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../cartoon-log.html"> 
+<span class="menu-text">Cartoon Logs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../beyond-engineering.html"> 
+<span class="menu-text">Beyond Engineering</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">한국어</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../index-ko.html">
+ <span class="dropdown-text">홈</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research-ko.html">
+ <span class="dropdown-text">연구와 기술</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../mechanics-ko.html">
+ <span class="dropdown-text">공학역학</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../perspectives-ko.html">
+ <span class="dropdown-text">공학 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../cartoon-log-ko.html">
+ <span class="dropdown-text">카툰 일기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../beyond-engineering-ko.html">
+ <span class="dropdown-text">공학 밖의 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about-ko.html">
+ <span class="dropdown-text">소개</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#계류선을-스프링-하나로-바꾸면-무엇이-사라지는가" id="toc-계류선을-스프링-하나로-바꾸면-무엇이-사라지는가" class="nav-link active" data-scroll-target="#계류선을-스프링-하나로-바꾸면-무엇이-사라지는가">계류선을 스프링 하나로 바꾸면 무엇이 사라지는가?</a></li>
+  <li><a href="#작은-계류선-구간부터-보자" id="toc-작은-계류선-구간부터-보자" class="nav-link" data-scroll-target="#작은-계류선-구간부터-보자">작은 계류선 구간부터 보자</a></li>
+  <li><a href="#왜-초기-형상-좌표로-방정식을-쓰는가" id="toc-왜-초기-형상-좌표로-방정식을-쓰는가" class="nav-link" data-scroll-target="#왜-초기-형상-좌표로-방정식을-쓰는가">왜 초기 형상 좌표로 방정식을 쓰는가?</a></li>
+  <li><a href="#형상과-장력은-서로-얽혀-있다" id="toc-형상과-장력은-서로-얽혀-있다" class="nav-link" data-scroll-target="#형상과-장력은-서로-얽혀-있다">형상과 장력은 서로 얽혀 있다</a></li>
+  <li><a href="#같은-역학을-가상일로-쓸-수도-있다" id="toc-같은-역학을-가상일로-쓸-수도-있다" class="nav-link" data-scroll-target="#같은-역학을-가상일로-쓸-수도-있다">같은 역학을 가상일로 쓸 수도 있다</a></li>
+  <li><a href="#연속-계류선을-유한요소로-바꾸면" id="toc-연속-계류선을-유한요소로-바꾸면" class="nav-link" data-scroll-target="#연속-계류선을-유한요소로-바꾸면">연속 계류선을 유한요소로 바꾸면</a></li>
+  <li><a href="#중력과-부력은-함께-작용한다" id="toc-중력과-부력은-함께-작용한다" class="nav-link" data-scroll-target="#중력과-부력은-함께-작용한다">중력과 부력은 함께 작용한다</a></li>
+  <li><a href="#항력은-계류선-속도가-아니라-상대속도에-의해-결정된다" id="toc-항력은-계류선-속도가-아니라-상대속도에-의해-결정된다" class="nav-link" data-scroll-target="#항력은-계류선-속도가-아니라-상대속도에-의해-결정된다">항력은 계류선 속도가 아니라 상대속도에 의해 결정된다</a></li>
+  <li><a href="#법선항력과-접선항력은-다르다" id="toc-법선항력과-접선항력은-다르다" class="nav-link" data-scroll-target="#법선항력과-접선항력은-다르다">법선항력과 접선항력은 다르다</a></li>
+  <li><a href="#외력은-계류선-전체에서-계속-갱신해야-한다" id="toc-외력은-계류선-전체에서-계속-갱신해야-한다" class="nav-link" data-scroll-target="#외력은-계류선-전체에서-계속-갱신해야-한다">외력은 계류선 전체에서 계속 갱신해야 한다</a></li>
+  <li><a href="#왜-시간영역에서-풀어야-하는가" id="toc-왜-시간영역에서-풀어야-하는가" class="nav-link" data-scroll-target="#왜-시간영역에서-풀어야-하는가">왜 시간영역에서 풀어야 하는가?</a></li>
+  <li><a href="#newmark-beta-시간적분" id="toc-newmark-beta-시간적분" class="nav-link" data-scroll-target="#newmark-beta-시간적분">Newmark-<span class="math inline">\(\beta\)</span> 시간적분</a></li>
+  <li><a href="#첫-번째-검증-정적-평형을-제대로-찾는가" id="toc-첫-번째-검증-정적-평형을-제대로-찾는가" class="nav-link" data-scroll-target="#첫-번째-검증-정적-평형을-제대로-찾는가">첫 번째 검증: 정적 평형을 제대로 찾는가?</a></li>
+  <li><a href="#두-번째-검증-페어리드를-움직여-보면" id="toc-두-번째-검증-페어리드를-움직여-보면" class="nav-link" data-scroll-target="#두-번째-검증-페어리드를-움직여-보면">두 번째 검증: 페어리드를 움직여 보면</a></li>
+  <li><a href="#부유구조물-입장에서는-무엇이-달라지는가" id="toc-부유구조물-입장에서는-무엇이-달라지는가" class="nav-link" data-scroll-target="#부유구조물-입장에서는-무엇이-달라지는가">부유구조물 입장에서는 무엇이 달라지는가?</a></li>
+  <li><a href="#언제-등가-계류강성으로-충분한가" id="toc-언제-등가-계류강성으로-충분한가" class="nav-link" data-scroll-target="#언제-등가-계류강성으로-충분한가">언제 등가 계류강성으로 충분한가?</a></li>
+  <li><a href="#주파수영역과-시간영역은-서로-다른-질문에-답한다" id="toc-주파수영역과-시간영역은-서로-다른-질문에-답한다" class="nav-link" data-scroll-target="#주파수영역과-시간영역은-서로-다른-질문에-답한다">주파수영역과 시간영역은 서로 다른 질문에 답한다</a></li>
+  <li><a href="#공학적으로-기억할-점" id="toc-공학적으로-기억할-점" class="nav-link" data-scroll-target="#공학적으로-기억할-점">공학적으로 기억할 점</a></li>
+  <li><a href="#이전-글" id="toc-이전-글" class="nav-link" data-scroll-target="#이전-글">이전 글</a></li>
+  <li><a href="#원자료-및-추가-읽을거리" id="toc-원자료-및-추가-읽을거리" class="nav-link" data-scroll-target="#원자료-및-추가-읽을거리">원자료 및 추가 읽을거리</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">계류선은 왜 단순한 비선형 스프링이 아닌가?</h1>
+<p class="subtitle lead">시간영역에서 이해하는 계류선 동역학의 구조역학적 의미</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">공학역학</div>
+    <div class="quarto-category">Mooring</div>
+    <div class="quarto-category">Offshore Engineering</div>
+    <div class="quarto-category">Structural Dynamics</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>지광습 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 4, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+<div>
+  <div class="keywords">
+    <div class="block-title">Keywords</div>
+    <p>계류선 동역학, 계류선 동적 해석, 부유식 해상풍력 계류, 계류선 장력, 페어리드 장력, 비선형 계류선, 시간영역 해석, 유체 항력, 상대유속, 계류선 유한요소해석, Newmark-beta, 부유구조물 계류</p>
+  </div>
+</div>
+
+</header>
+
+
+<div class="language-switch">
+<a href="../../posts/mooring-line-dynamics/index.html">English</a> | <strong>한글</strong>
+</div>
+<p>계류선은 부유구조물이 제자리를 유지하도록 잡아준다.</p>
+<p>부유체의 전체 운동만 보면 계류시스템을 하나의 등가 강성으로 표현하는 경우가 많다. 평형 위치 부근의 작은 운동을 다룰 때는 이 방법이 매우 유용하다.</p>
+<p>그런데 그 강성 안에는 무엇이 숨어 있을까?</p>
+<p>실제 계류선에는 질량이 있다. 형상이 변하고, 변형에 따라 장력이 달라진다. 중력과 부력을 받으며, 주변 물과 상대운동을 하기 때문에 유체 항력도 발생한다.</p>
+<p>따라서 페어리드에서 구조물로 전달되는 힘은 변위만으로 결정되지 않는다.</p>
+<p>이 글에서 다루려는 질문은 간단하다.</p>
+<blockquote class="blockquote">
+<p><strong>계류선은 언제까지 복원 스프링으로 볼 수 있고, 언제부터 하나의 동적 구조물로 해석해야 하는가?</strong></p>
+</blockquote>
+<p>핵심은 다음과 같다.</p>
+<blockquote class="blockquote">
+<p><strong>계류선은 단순히 복원강성만 제공하는 것이 아니다. 계류선 자체의 질량, 변형, 유체와의 상호작용, 그리고 운동이 부유구조물에 전달되는 힘을 결정한다.</strong></p>
+</blockquote>
+<section id="계류선을-스프링-하나로-바꾸면-무엇이-사라지는가" class="level2">
+<h2 class="anchored" data-anchor-id="계류선을-스프링-하나로-바꾸면-무엇이-사라지는가">계류선을 스프링 하나로 바꾸면 무엇이 사라지는가?</h2>
+<p>페어리드 변위를 <span class="math inline">\(u\)</span>라 하자.</p>
+<p>가장 단순한 선형화 모델은</p>
+<p><span class="math display">\[
+F_m = k_m u,
+\]</span></p>
+<p>처럼 쓸 수 있다. 여기서 <span class="math inline">\(k_m\)</span>은 등가 계류강성이다.</p>
+<p>조금 더 정교한 준정적 모델이라면</p>
+<p><span class="math display">\[
+F_m = F_m(u)
+\]</span></p>
+<p>처럼 비선형 힘-변위 관계를 사용할 수 있다.</p>
+<p>이러한 모델은 페어리드 위치가 달라질 때 평형 복원력이 어떻게 변하는지를 잘 표현한다.</p>
+<p>문제는 동적 상태다.</p>
+<p>실제 계류선의 힘은 같은 순간에도 다음과 같은 상태에 좌우될 수 있다.</p>
+<ul>
+<li>현재 형상,</li>
+<li>축변형률,</li>
+<li>계류선 속도,</li>
+<li>주변 물의 속도,</li>
+<li>계류선의 관성,</li>
+<li>중력,</li>
+<li>부력,</li>
+<li>유체 항력.</li>
+</ul>
+<p>따라서 페어리드 위치가 같더라도 페어리드 장력이 반드시 같지는 않다.</p>
+<p>이것이 동적 계류선을 일반적으로 변위만의 함수인 스프링으로 환원할 수 없는 근본적인 이유다.</p>
+</section>
+<section id="작은-계류선-구간부터-보자" class="level2">
+<h2 class="anchored" data-anchor-id="작은-계류선-구간부터-보자">작은 계류선 구간부터 보자</h2>
+<p>동역학을 이해하는 가장 깔끔한 방법은 아주 작은 선 요소를 떼어 보는 것이다.</p>
+<p>초기 형상의 좌표를 <span class="math inline">\(S\)</span>라 하자. 초기 길이가 <span class="math inline">\(dS\)</span>인 작은 구간이 변형 후에는 <span class="math inline">\(dS^*\)</span>가 된다.</p>
+<div id="fig-segment" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-segment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig01.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:82.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-segment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: 변형 전후의 계류선 미소 구간. 초기 길이 <span class="math inline">\(dS\)</span>가 <span class="math inline">\(dS^*\)</span>로 변하고, 내부 장력은 <span class="math inline">\(\mathbf{T}\)</span>에서 <span class="math inline">\(\mathbf{T}+d\mathbf{T}\)</span>로 변한다. 구간에는 분포 외력 <span class="math inline">\(\mathbf{f}\)</span>가 작용한다.
+</figcaption>
+</figure>
+</div>
+<p>변형된 형상에서 힘의 평형을 쓰면</p>
+<p><span class="math display">\[
+\rho^* \ddot{\mathbf r}\,dS^*
+=
+d\mathbf T
++
+\mathbf f\,dS^*,
+\]</span></p>
+<p>이다. 여기서</p>
+<ul>
+<li><span class="math inline">\(\rho^*\)</span>는 현재 길이당 질량,</li>
+<li><span class="math inline">\(\mathbf r\)</span>은 현재 위치,</li>
+<li><span class="math inline">\(\mathbf T\)</span>는 내부 장력 벡터,</li>
+<li><span class="math inline">\(\mathbf f\)</span>는 현재 길이당 분포 외력이다.</li>
+</ul>
+<p>외력에는 중력, 부력, 유체 항력 등이 포함될 수 있다.</p>
+<p>여기서 다루는 매우 가는 계류선의 경우에는 회절과 방사 효과를 무시하고, 주변 유체의 영향은 부력과 항력 같은 분포력으로 표현한다.</p>
+</section>
+<section id="왜-초기-형상-좌표로-방정식을-쓰는가" class="level2">
+<h2 class="anchored" data-anchor-id="왜-초기-형상-좌표로-방정식을-쓰는가">왜 초기 형상 좌표로 방정식을 쓰는가?</h2>
+<p>계류선의 형상은 계속 변하기 때문에 <span class="math inline">\(dS^*\)</span>도 일정하지 않다.</p>
+<p>적합조건으로부터</p>
+<p><span class="math display">\[
+dS^*
+=
+(1+\varepsilon)dS,
+\]</span></p>
+<p>이고, 여기서 <span class="math inline">\(\varepsilon\)</span>은 이 정식화에서 사용하는 축변형률이다.</p>
+<p>질량보존은</p>
+<p><span class="math display">\[
+\rho^*dS^*
+=
+\rho dS,
+\]</span></p>
+<p>으로 쓸 수 있다. <span class="math inline">\(\rho\)</span>는 초기 길이당 질량이다.</p>
+<p>이 두 관계를 이용하면 운동방정식을 고정된 초기좌표 <span class="math inline">\(S\)</span>에 대해</p>
+<p><span class="math display">\[
+\rho\ddot{\mathbf r}
+=
+\frac{\partial\mathbf T}{\partial S}
++
+(1+\varepsilon)\mathbf f
+\]</span></p>
+<p>로 쓸 수 있다.</p>
+<p>계산 관점에서 이 변환은 중요하다.</p>
+<p>실제 계류선은 공간에서 계속 움직이지만, 유한요소 이산화에 사용하는 재료좌표는 초기 계류선에 붙어 있기 때문이다.</p>
+</section>
+<section id="형상과-장력은-서로-얽혀-있다" class="level2">
+<h2 class="anchored" data-anchor-id="형상과-장력은-서로-얽혀-있다">형상과 장력은 서로 얽혀 있다</h2>
+<p>탄성 계류선의 장력 벡터는</p>
+<p><span class="math display">\[
+\mathbf T
+=
+E\varepsilon A\mathbf n_t,
+\]</span></p>
+<p>로 쓸 수 있다. 여기서</p>
+<ul>
+<li><span class="math inline">\(E\)</span>는 탄성계수,</li>
+<li><span class="math inline">\(A\)</span>는 기준 단면적,</li>
+<li><span class="math inline">\(\mathbf n_t\)</span>는 현재 계류선의 단위 접선벡터다.</li>
+</ul>
+<p>또한</p>
+<p><span class="math display">\[
+\mathbf n_t
+=
+\frac{\partial\mathbf r}{\partial S^*},
+\]</span></p>
+<p>이고</p>
+<p><span class="math display">\[
+dS^*
+=
+(1+\varepsilon)dS
+\]</span></p>
+<p>이므로</p>
+<p><span class="math display">\[
+\mathbf T
+=
+EA
+\frac{\varepsilon}{1+\varepsilon}
+\frac{\partial\mathbf r}{\partial S}
+\]</span></p>
+<p>를 얻는다.</p>
+<p>이를 평형방정식에 대입하면</p>
+<p><span class="math display">\[
+\rho\ddot{\mathbf r}
+=
+\frac{\partial}{\partial S}
+\left[
+EA
+\frac{\varepsilon}{1+\varepsilon}
+\frac{\partial\mathbf r}{\partial S}
+\right]
++
+(1+\varepsilon)\mathbf f
+\]</span></p>
+<p>가 된다.</p>
+<p>이 식만 보아도 계류선이 왜 비선형인지 알 수 있다.</p>
+<p>내력의 방향은 형상에 따라 바뀌고, 변형에 따라 변형률과 장력도 달라진다.</p>
+<p>형상이 힘을 결정하고, 힘은 다시 형상을 바꾼다.</p>
+<p>결국 계류선의 기하학적 비선형성은 이 되먹임에 있다.</p>
+</section>
+<section id="같은-역학을-가상일로-쓸-수도-있다" class="level2">
+<h2 class="anchored" data-anchor-id="같은-역학을-가상일로-쓸-수도-있다">같은 역학을 가상일로 쓸 수도 있다</h2>
+<p>계류선의 가상일의 원리는</p>
+<p><span class="math display">\[
+\delta W_{\mathrm{kin}}
+=
+\delta W_{\mathrm{ext}}
+-
+\delta W_{\mathrm{int}}
+\]</span></p>
+<p>로 쓸 수 있다.</p>
+<p>각 항은</p>
+<p><span class="math display">\[
+\delta W_{\mathrm{kin}}
+=
+\int_L
+\rho\,\delta\mathbf r\cdot\ddot{\mathbf r}\,dS,
+\]</span></p>
+<p><span class="math display">\[
+\delta W_{\mathrm{ext}}
+=
+\int_L
+\delta\mathbf r\cdot(1+\varepsilon)\mathbf f\,dS,
+\]</span></p>
+<p>그리고</p>
+<p><span class="math display">\[
+\delta W_{\mathrm{int}}
+=
+\int_L
+\frac{\partial\delta\mathbf r}{\partial S}
+\cdot\mathbf T\,dS
+\]</span></p>
+<p>이다.</p>
+<p>이 형태가 유용한 이유는 유한요소 이산화로 바로 이어지기 때문이다.</p>
+</section>
+<section id="연속-계류선을-유한요소로-바꾸면" class="level2">
+<h2 class="anchored" data-anchor-id="연속-계류선을-유한요소로-바꾸면">연속 계류선을 유한요소로 바꾸면</h2>
+<p>위치를 1차원 형상함수로 보간하면</p>
+<p><span class="math display">\[
+\mathbf r(S,t)
+=
+N_J(S)\mathbf r_J(t),
+\]</span></p>
+<p>가 되고, 마찬가지로</p>
+<p><span class="math display">\[
+\delta\mathbf r(S,t)
+=
+N_I(S)\delta\mathbf r_I(t)
+\]</span></p>
+<p>로 쓸 수 있다.</p>
+<p>이산화된 방정식은</p>
+<p><span class="math display">\[
+\mathbf M\ddot{\mathbf r}
++
+\mathbf C\dot{\mathbf r}
++
+\mathbf K\mathbf r
+=
+\mathbf f^{\mathrm{ext}}
+\]</span></p>
+<p>가 된다.</p>
+<p>겉으로 보면 익숙한 선형 구조동역학 방정식과 거의 같다.</p>
+<p>하지만 중요한 차이가 있다. 여기서는 강성과 외력이 계류선의 현재 상태에 따라 달라진다.</p>
+<p>요소 질량행렬은</p>
+<p><span class="math display">\[
+M_{IJ}^{e}
+=
+\int_{L_e}
+\rho N_I N_J\,dS,
+\]</span></p>
+<p>이고, 강성항은</p>
+<p><span class="math display">\[
+K_{IJ}^{e}
+=
+\int_{L_e}
+\frac{dN_I}{dS}
+EA\frac{\varepsilon}{1+\varepsilon}
+\frac{dN_J}{dS}
+\,dS
+\]</span></p>
+<p>의 형태를 갖는다.</p>
+<p>분포 외력은</p>
+<p><span class="math display">\[
+f_I^{e,\mathrm{ext}}
+=
+\int_{L_e}
+N_I(1+\varepsilon)\mathbf f\,dS
+\]</span></p>
+<p>이고, 필요한 경우 집중 절점하중이 추가된다.</p>
+<p>행렬 조립 자체는 일반적인 유한요소법과 같다.</p>
+<p>비선형성은 현재 형상, 변형률, 그리고 유체와의 상대속도에서 들어온다.</p>
+</section>
+<section id="중력과-부력은-함께-작용한다" class="level2">
+<h2 class="anchored" data-anchor-id="중력과-부력은-함께-작용한다">중력과 부력은 함께 작용한다</h2>
+<p>현재 길이당 중력은</p>
+<p><span class="math display">\[
+\mathbf f_g
+=
+-\frac{\rho g}{1+\varepsilon}\mathbf e_3
+\]</span></p>
+<p>이다.</p>
+<p>부력은 반대 방향, 즉 위쪽으로 작용한다.</p>
+<p>원 정식화의 밀도 정의를 사용하면 중력과 부력의 합은</p>
+<p><span class="math display">\[
+\mathbf f_g+\mathbf f_b
+=
+\frac{\rho_w-\rho_c}{\rho_c}
+\frac{\rho g}{1+\varepsilon}
+\mathbf e_3,
+\]</span></p>
+<p>로 쓸 수 있다. 여기서 <span class="math inline">\(\rho_w\)</span>는 물의 밀도, <span class="math inline">\(\rho_c\)</span>는 케이블 재료의 명목 밀도다.</p>
+<p>이 항은 계류선의 평형 형상을 크게 좌우하는 수중중량을 결정한다.</p>
+<p>무거운 계류선에서는 중력의 영향이 크고, 부력이 커질수록 유효 수중중량은 작아진다.</p>
+<p>따라서 동적 항력을 고려하기 전부터 계류선의 정적 형상 자체가 이미 유체와 구조의 상호작용 결과다.</p>
+</section>
+<section id="항력은-계류선-속도가-아니라-상대속도에-의해-결정된다" class="level2">
+<h2 class="anchored" data-anchor-id="항력은-계류선-속도가-아니라-상대속도에-의해-결정된다">항력은 계류선 속도가 아니라 상대속도에 의해 결정된다</h2>
+<p>이 부분이 매우 중요하다.</p>
+<p>유체가 보는 속도는</p>
+<p><span class="math display">\[
+\mathbf v_r
+=
+\dot{\mathbf r}
+-
+\mathbf v_w,
+\]</span></p>
+<p>이다. 여기서 <span class="math inline">\(\dot{\mathbf r}\)</span>은 계류선 속도, <span class="math inline">\(\mathbf v_w\)</span>는 물의 속도다.</p>
+<p>유체 입장에서 중요한 것은 계류선이 해저에 대해 얼마나 빨리 움직이는가가 아니다.</p>
+<p><strong>주변 물에 대해 얼마나 빨리 움직이는가</strong>가 중요하다.</p>
+<div id="fig-relative-velocity" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-relative-velocity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig02.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:82.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-relative-velocity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: 상대속도 <span class="math inline">\(\mathbf v_r=\dot{\mathbf r}-\mathbf v_w\)</span>를 현재 계류선 형상에 대한 접선방향과 법선방향 성분으로 분해한다. 유체 항력은 두 방향에서 각각 평가한다.
+</figcaption>
+</figure>
+</div>
+<p>현재 단위 접선벡터를 <span class="math inline">\(\mathbf n_t\)</span>라 하면 접선방향 상대속도는</p>
+<p><span class="math display">\[
+\mathbf v_{rt}
+=
+(\mathbf n_t\otimes\mathbf n_t)\cdot\mathbf v_r
+\]</span></p>
+<p>이고, 법선방향 성분은</p>
+<p><span class="math display">\[
+\mathbf v_{rn}
+=
+\mathbf v_r-\mathbf v_{rt},
+\]</span></p>
+<p>또는</p>
+<p><span class="math display">\[
+\mathbf v_{rn}
+=
+(\mathbf I-\mathbf n_t\otimes\mathbf n_t)\cdot\mathbf v_r
+\]</span></p>
+<p>로 쓸 수 있다.</p>
+<p>여기에는 작은 기계적 포인트가 하나 있다.</p>
+<p><strong>접선방향</strong>은 현재 케이블 형상으로 결정된다.</p>
+<p>반면 법선방향 상대운동의 방향은 케이블 형상만으로 정할 수 없다. 상대속도 벡터가 함께 필요하다.</p>
+<p>그래서 3차원 계류선에서는 하나의 기하학적 “법선”을 정해 놓는 것보다 벡터 투영으로 상대속도를 분해하는 편이 자연스럽다.</p>
+</section>
+<section id="법선항력과-접선항력은-다르다" class="level2">
+<h2 class="anchored" data-anchor-id="법선항력과-접선항력은-다르다">법선항력과 접선항력은 다르다</h2>
+<p>법선방향과 접선방향에는 서로 다른 항력계수를 사용할 수 있다.</p>
+<p>원 정식화에서는</p>
+<p><span class="math display">\[
+\mathbf f_d
+=
+\mathbf f_{dn}
++
+\mathbf f_{dt},
+\]</span></p>
+<p>이며</p>
+<p><span class="math display">\[
+\mathbf f_{dn}
+=
+-
+\frac{B_{wn}(\varepsilon)}{1+\varepsilon}
+\sqrt{\mathbf v_{rn}\cdot\mathbf v_{rn}}\,
+\mathbf v_{rn},
+\]</span></p>
+<p><span class="math display">\[
+\mathbf f_{dt}
+=
+-
+\frac{B_{wt}(\varepsilon)}{1+\varepsilon}
+\sqrt{\mathbf v_{rt}\cdot\mathbf v_{rt}}\,
+\mathbf v_{rt}
+\]</span></p>
+<p>로 쓴다.</p>
+<p>즉 항력은 상대속도에 대해 비선형이다.</p>
+<p>이것만으로도 왜 전체 계류선 동역학을 단순한 선형 주파수영역 모델로 표현하기 어려운지 알 수 있다.</p>
+<p>계류선 형상이 바뀌고, 속도 방향이 바뀌며, 항력은 상대속도의 제곱에 비례해 달라진다.</p>
+<p>그리고 이 세 가지가 동시에 변한다.</p>
+</section>
+<section id="외력은-계류선-전체에서-계속-갱신해야-한다" class="level2">
+<h2 class="anchored" data-anchor-id="외력은-계류선-전체에서-계속-갱신해야-한다">외력은 계류선 전체에서 계속 갱신해야 한다</h2>
+<p>요소 외력벡터에는 집중하중과 중력, 부력, 항력이 모두 들어간다.</p>
+<p><span class="math display">\[
+\mathbf f_I^{e,\mathrm{ext}}
+=
+\mathbf I_{IK}\mathbf F_K
++
+\frac{L_e}{2}
+\int_{-1}^{+1}
+N_I
+\left(
+\mathbf f_g
++
+\mathbf f_b
++
+\mathbf f_{dn}
++
+\mathbf f_{dt}
+\right)d\xi.
+\]</span></p>
+<p>이 글의 2절점 선형 요소에서는 한 요소 안의 변형률이 일정하다.</p>
+<p>하지만 항력은 보간된 속도에 따라 달라지므로 적분점마다 계산해야 한다.</p>
+<p>결국 동적 계류 해석은 하나의 정적 힘-변위 계산이 아니라, 계속 변하는 상태를 따라가는 문제다.</p>
+</section>
+<section id="왜-시간영역에서-풀어야-하는가" class="level2">
+<h2 class="anchored" data-anchor-id="왜-시간영역에서-풀어야-하는가">왜 시간영역에서 풀어야 하는가?</h2>
+<p>앞의 주파수영역 해석 글에서는 선형 조화응답 문제가 복소수 대수방정식으로 바뀌는 장점을 보았다.</p>
+<p>계류선은 상황이 다르다.</p>
+<p>각 시간단계에서</p>
+<pre class="text"><code>현재 위치
+   ↓
+현재 형상
+   ↓
+변형률과 장력
+   ↓
+상대유속
+   ↓
+유체 항력
+   ↓
+가속도
+   ↓
+새로운 위치</code></pre>
+<p>의 순환이 반복된다.</p>
+<p>상태가 힘을 바꾸고, 힘이 다시 상태를 바꾼다.</p>
+<p>시간적분은 이 되먹임을 그대로 추적하는 방법이다.</p>
+</section>
+<section id="newmark-beta-시간적분" class="level2">
+<h2 class="anchored" data-anchor-id="newmark-beta-시간적분">Newmark-<span class="math inline">\(\beta\)</span> 시간적분</h2>
+<p>원 자료에서는 Newmark-<span class="math inline">\(\beta\)</span> 방법을 사용한다.</p>
+<p>시간단계 <span class="math inline">\(k\)</span>에서의 상태가 주어졌다고 하자. 속도와 위치의 예측값은</p>
+<p><span class="math display">\[
+\widetilde{\dot{\mathbf r}}_{k+1}
+=
+\dot{\mathbf r}_k
++
+(1-\gamma)\Delta t\,\ddot{\mathbf r}_k,
+\]</span></p>
+<p><span class="math display">\[
+\widetilde{\mathbf r}_{k+1}
+=
+\mathbf r_k
++
+\Delta t\,\dot{\mathbf r}_k
++
+\left(
+\frac{1}{2}-\beta
+\right)
+\Delta t^2\ddot{\mathbf r}_k
+\]</span></p>
+<p>로 계산한다.</p>
+<p>그다음 예측 상태를 이용해 질량, 강성, 변형률, 상대유속, 외력을 평가하고, 이산화된 평형방정식에서 새로운 가속도를 얻는다.</p>
+<p>마지막으로</p>
+<p><span class="math display">\[
+\dot{\mathbf r}_{k+1}
+=
+\widetilde{\dot{\mathbf r}}_{k+1}
++
+\gamma\Delta t\,\ddot{\mathbf r}_{k+1},
+\]</span></p>
+<p><span class="math display">\[
+\mathbf r_{k+1}
+=
+\widetilde{\mathbf r}_{k+1}
++
+\beta\Delta t^2\ddot{\mathbf r}_{k+1}
+\]</span></p>
+<p>로 상태를 갱신한다.</p>
+<p>원 자료에서는 암시적 평균가속도법에 대해 <span class="math inline">\(\beta=1/4\)</span>, <span class="math inline">\(\gamma=1/2\)</span>, 선형가속도법에 대해 <span class="math inline">\(\beta=1/6\)</span>, <span class="math inline">\(\gamma=1/2\)</span>, 중앙차분법에 대해 <span class="math inline">\(\beta=0\)</span>, <span class="math inline">\(\gamma=1/2\)</span>를 제시한다.</p>
+<p>여기서 중요한 것은 특정 적분법 자체가 아니다.</p>
+<p>시간적분 과정에서 무엇을 반복해서 갱신해야 하는가가 중요하다.</p>
+<blockquote class="blockquote">
+<p><strong>계류선의 형상, 장력, 유체력은 현재 상태에 의존하기 때문에 매 시간단계마다 동적 상태를 다시 구성해야 한다.</strong></p>
+</blockquote>
+</section>
+<section id="첫-번째-검증-정적-평형을-제대로-찾는가" class="level2">
+<h2 class="anchored" data-anchor-id="첫-번째-검증-정적-평형을-제대로-찾는가">첫 번째 검증: 정적 평형을 제대로 찾는가?</h2>
+<p>동적 정식화라 하더라도 외부의 동적 가진이 없을 때 먼저 합리적인 정적 평형을 찾아야 한다.</p>
+<p>원 예제에서는</p>
+<ul>
+<li>절점 30개,</li>
+<li>초기 길이 <span class="math inline">\(L=21\)</span> m,</li>
+<li>초기 직경 <span class="math inline">\(D=0.0034\)</span> m,</li>
+<li>탄성계수 <span class="math inline">\(E=37.45\)</span> GPa,</li>
+<li>접선방향 항력계수 <span class="math inline">\(C_{dt}=0.67\)</span>,</li>
+<li>법선방향 항력계수 <span class="math inline">\(C_{dn}=1.4\)</span></li>
+</ul>
+<p>를 사용했다.</p>
+<p>파랑 하중 없이 중력과 부력만 작용시키면 계류선은 평형 형상으로 수렴한다.</p>
+<div id="fig-static-verification" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-static-verification-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig03.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:82.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-static-verification-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: 정수 중 양 끝이 고정된 계류선의 계산 및 실험 평형 형상. 두 곡선은 계류선 전체 길이에 걸쳐 거의 일치한다.
+</figcaption>
+</figure>
+</div>
+<p>원 자료에 보고된 실험 페어리드 장력은</p>
+<p><span class="math display">\[
+T_{\mathrm{exp}}=14.8\ \mathrm{N},
+\]</span></p>
+<p>이고, 해석값은</p>
+<p><span class="math display">\[
+T_{\mathrm{sim}}=14.48\ \mathrm{N}
+\]</span></p>
+<p>이다.</p>
+<p>보고된 상대오차는</p>
+<p><span class="math display">\[
+2.2\%
+\]</span></p>
+<p>이다.</p>
+<p>이 검증이 중요한 이유는 분명하다.</p>
+<p>동적 응답을 믿으려면 먼저 탄성, 형상, 중력, 부력 사이의 정적 평형을 제대로 재현해야 하기 때문이다.</p>
+</section>
+<section id="두-번째-검증-페어리드를-움직여-보면" class="level2">
+<h2 class="anchored" data-anchor-id="두-번째-검증-페어리드를-움직여-보면">두 번째 검증: 페어리드를 움직여 보면</h2>
+<p>더 흥미로운 것은 동적 시험이다.</p>
+<p>원 예제에서는 페어리드를</p>
+<p><span class="math display">\[
+T=1.58\ \mathrm{s}
+\]</span></p>
+<p>의 주기로 움직였고, 변위진폭은</p>
+<p><span class="math display">\[
+A=0.25\ \mathrm{m}
+\]</span></p>
+<p>이다.</p>
+<p>계산된 페어리드 장력의 시간이력을 실험값과 비교한다.</p>
+<div id="fig-dynamic-verification" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dynamic-verification-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig04.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:86.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dynamic-verification-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: 페어리드를 주기적으로 움직였을 때의 시간에 따른 장력. 수치해석은 반복되는 실험 장력주기를 재현하며, 계류선의 주요 동적 거동을 포착한다.
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-dynamic-verification" class="quarto-xref">4</a>에서 정적 힘-변위 곡선만으로는 볼 수 없는 것이 드러난다.</p>
+<p>페어리드 힘은 시간에 따라 진화하는 동적 응답이다.</p>
+<p>그 힘은</p>
+<ul>
+<li>계류선 관성,</li>
+<li>변화하는 형상,</li>
+<li>탄성 장력,</li>
+<li>중력과 부력,</li>
+<li>속도 의존 항력</li>
+</ul>
+<p>이 함께 만든 결과다.</p>
+<p>계류선 전체를 하나의 스프링으로 바꾸면 바로 이 부분이 사라진다.</p>
+</section>
+<section id="부유구조물-입장에서는-무엇이-달라지는가" class="level2">
+<h2 class="anchored" data-anchor-id="부유구조물-입장에서는-무엇이-달라지는가">부유구조물 입장에서는 무엇이 달라지는가?</h2>
+<p>계류선과 부유체는 페어리드에서 서로 연결된다.</p>
+<p>부유체의 운동은 계류선의 경계조건이 된다.</p>
+<p>계류선의 동역학은 페어리드 장력을 결정하고, 그 힘은 다시 부유체에 작용한다.</p>
+<p>개념적으로 보면</p>
+<pre class="text"><code>부유체 운동
+   ↓
+페어리드 운동
+   ↓
+계류선 동역학
+   ↓
+페어리드 장력
+   ↓
+부유체에 작용하는 힘</code></pre>
+<p>이 된다.</p>
+<p>이 또한 하나의 유체-구조 상호작용 고리다.</p>
+<p>계류선 자체가 물과 상호작용하는 구조물인 동시에, 전체 부유구조물과도 동적으로 연결되어 있다.</p>
+</section>
+<section id="언제-등가-계류강성으로-충분한가" class="level2">
+<h2 class="anchored" data-anchor-id="언제-등가-계류강성으로-충분한가">언제 등가 계류강성으로 충분한가?</h2>
+<p>그렇다고 상세 동적 모델을 항상 써야 하는 것은 아니다.</p>
+<p>다음과 같은 경우에는 선형화한 등가 계류강성이 매우 효과적이다.</p>
+<ul>
+<li>운동이 평형 상태 근처에 머물고,</li>
+<li>주 관심사가 부유체 전체의 운동이며,</li>
+<li>계류선 관성이 2차적이고,</li>
+<li>속도 의존 항력이 중요하지 않으며,</li>
+<li>동적 장력 증폭 자체가 관심 대상이 아닐 때.</li>
+</ul>
+<p>그래서 선형 주파수영역 부유체 모델에서는 등가 계류강성이 자연스럽게 들어간다.</p>
+<p>다만 그 근사를 무엇으로 봐야 하는지는 분명하다.</p>
+<p>등가 강성 모델은 계류선 내부에서 계속 변하는 역학을 페어리드 변위와 복원력 사이의 국부 관계로 바꾸는 것이다.</p>
+<p>계류선 자체의 동역학이 중요해지는 순간, 내부 상태를 다시 모델에 넣어야 한다.</p>
+</section>
+<section id="주파수영역과-시간영역은-서로-다른-질문에-답한다" class="level2">
+<h2 class="anchored" data-anchor-id="주파수영역과-시간영역은-서로-다른-질문에-답한다">주파수영역과 시간영역은 서로 다른 질문에 답한다</h2>
+<p>앞의 주파수영역 글에서는 선형화된 부유 시스템을</p>
+<p><span class="math display">\[
+\text{관성}
++
+\text{감쇠}
++
+\text{복원}
+=
+\text{가진}
+\]</span></p>
+<p>의 형태로 보았다.</p>
+<p>평형 상태 주변에서 필요한 효과를 선형화할 수 있기 때문에 매우 효율적이다.</p>
+<p>반면 여기서 다룬 계류선 문제는</p>
+<p><span class="math display">\[
+\text{형상}
+\rightarrow
+\text{변형률}
+\rightarrow
+\text{장력}
+\rightarrow
+\text{유체와의 상대속도}
+\rightarrow
+\text{항력}
+\rightarrow
+\text{운동}
+\]</span></p>
+<p>을 시간에 따라 추적한다.</p>
+<p>둘의 차이는 단순히 수치해석법을 무엇으로 선택했느냐의 문제가 아니다.</p>
+<p>역학 구조 자체가 다르기 때문이다.</p>
+<blockquote class="blockquote">
+<p><strong>필요한 물리를 선형화해도 괜찮다면 주파수영역이 효율적이다. 반대로 시스템의 현재 상태 자체가 힘을 결정한다면 그 상태를 시간에 따라 추적해야 한다.</strong></p>
+</blockquote>
+</section>
+<section id="공학적으로-기억할-점" class="level2">
+<h2 class="anchored" data-anchor-id="공학적으로-기억할-점">공학적으로 기억할 점</h2>
+<p>계류선은 가늘고 주로 인장만 받기 때문에 얼핏 단순해 보인다.</p>
+<p>하지만 그 동역학은 단순하지 않다.</p>
+<p>복원력은 형상, 탄성, 관성, 수중중량, 유체 항력이 함께 작용하는 시간의존 시스템에서 만들어진다.</p>
+<p>결국 기억해야 할 원리는 이것이다.</p>
+<blockquote class="blockquote">
+<p><strong>계류선은 단순히 복원강성을 제공하는 부재가 아니다. 계류선 자체의 질량, 변형, 유체와의 상호작용, 운동이 부유구조물에 전달되는 힘을 결정한다.</strong></p>
+</blockquote>
+<p>더 짧게 말하면,</p>
+<blockquote class="blockquote">
+<p><strong>계류선은 비선형 스프링이 아니라 하나의 동적 구조물이다.</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="이전-글" class="level2">
+<h2 class="anchored" data-anchor-id="이전-글">이전 글</h2>
+<p><strong>유연한 부유구조물은 파랑에 어떻게 응답하는가?</strong></p>
+<p>앞 글에서는 구조 질량과 강성이 유체 부가질량, 방사감쇠, 정수력 복원강성, 파랑 가진력과 결합되는 선형 주파수영역 정식화를 설명했다.</p>
+</section>
+<section id="원자료-및-추가-읽을거리" class="level2">
+<h2 class="anchored" data-anchor-id="원자료-및-추가-읽을거리">원자료 및 추가 읽을거리</h2>
+<p>이 글은 저자의 작업노트 <strong>Fluid-structure interaction for a floating body</strong> (2026년 9월 4일), 특히 시간영역 계류선 동역학 부분을 바탕으로 작성했다.</p>
+<p>Belytschko, T., Liu, W. K., &amp; Moran, B. (2000).<br>
+<strong>Nonlinear Finite Elements for Continua and Structures.</strong><br>
+John Wiley &amp; Sons.</p>
+<p><strong>검증자료에 대한 주의.</strong> 작업노트에는 정적 및 동적 계산을 실험결과와 비교한 내용이 있으나, 현재 초안의 참고문헌 [1] 정보가 완전하지 않다. 따라서 해당 검증 그림을 외부 출판물에 귀속하려면 먼저 정확한 실험 원출처를 확인해야 한다.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

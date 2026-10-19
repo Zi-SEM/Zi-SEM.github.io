@@ -142,19 +142,23 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../research.html"> 
-<span class="menu-text">Research Explained</span></a>
+<span class="menu-text">Research &amp; Innovation</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../mechanics.html"> 
 <span class="menu-text">Engineering Mechanics</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../z-diagram.html"> 
-<span class="menu-text">Z-Diagram</span></a>
+    <a class="nav-link" href="../../perspectives.html"> 
+<span class="menu-text">Engineering Perspectives</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../latex-writing.html"> 
-<span class="menu-text">LaTeX &amp; Writing</span></a>
+    <a class="nav-link" href="../../cartoon-log.html"> 
+<span class="menu-text">Cartoon Logs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../beyond-engineering.html"> 
+<span class="menu-text">Beyond Engineering</span></a>
   </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -173,6 +177,41 @@ window.Quarto = {
   </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">한국어</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../index-ko.html">
+ <span class="dropdown-text">홈</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research-ko.html">
+ <span class="dropdown-text">연구와 기술</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../mechanics-ko.html">
+ <span class="dropdown-text">공학역학</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../perspectives-ko.html">
+ <span class="dropdown-text">공학 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../cartoon-log-ko.html">
+ <span class="dropdown-text">카툰 일기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../beyond-engineering-ko.html">
+ <span class="dropdown-text">공학 밖의 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about-ko.html">
+ <span class="dropdown-text">소개</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
 </i> 
@@ -219,7 +258,7 @@ window.Quarto = {
 <h1 class="title">계산 파괴역학은 왜 어려운가?</h1>
 <p class="subtitle lead">재요소망 생성에서 XFEM과 XEFG까지: 수치 근사와 독립적으로 움직이는 불연속을 어떻게 표현할 것인가</p>
   <div class="quarto-categories">
-    <div class="quarto-category">Research Explained</div>
+    <div class="quarto-category">연구와 기술</div>
     <div class="quarto-category">Computational Mechanics &amp; Fracture</div>
     <div class="quarto-category">Computational Fracture</div>
     <div class="quarto-category">XFEM</div>
@@ -267,7 +306,7 @@ window.Quarto = {
 <div class="language-switch">
 <a href="../../posts/computational-fracture-overview/index.html">English</a> | <strong>한글</strong>
 </div>
-<p><strong>계산파괴역학 시리즈:</strong> 7편 중 1편 · <a href="../xfem-crack-through-mesh/index-ko.qmd">다음: XFEM →</a></p>
+<p><strong>계산파괴역학 시리즈:</strong> 7편 중 1편 · <a href="../xfem-crack-through-mesh/">다음: XFEM →</a></p>
 <p>균열은 계산역학에서 상당히 특이한 문제를 만든다.</p>
 <p>균열이 생기기 전에는 보통 물체 내부의 연속적인 변위장을 근사한다. 그런데 균열이 생기면 내부의 균열면을 사이에 두고 변위장이 불연속이 될 수 있다. 더구나 균열은 성장하면서 방향을 바꾸고, 분기하고, 다른 균열과 만나기도 하며, 애초에 균열을 포함하도록 만들어지지 않은 요소를 가로질러 지나가기도 한다.</p>
 <p><strong>실제 물체 내부의 위상은 계속 변하는데 수치해석의 요소망은 그대로 있고 싶어 한다.</strong></p>
@@ -332,7 +371,7 @@ window.Quarto = {
 </figcaption>
 </figure>
 </div>
-<p>그림 <strong>?@fig-domain-crack은</strong> 단순해 보이지만 관점의 중요한 변화를 담고 있다.</p>
+<p>그림 <a href="#fig-domain-crack" class="quarto-xref">1</a>은 단순해 보이지만 관점의 중요한 변화를 담고 있다.</p>
 <p><strong>균열은 물체 내부의 기하학적 대상이다. 요소망은 수치적인 이산화 도구다. 둘이 같은 대상일 필요는 없다.</strong></p>
 <blockquote class="blockquote">
 <p><strong>요소망이 균열을 억지로 따라가게 하지 말고, 근사함수에 균열을 요소망과 독립적으로 표현할 수 있는 정보를 주자.</strong></p>
@@ -385,7 +424,7 @@ window.Quarto = {
 </figcaption>
 </figure>
 </div>
-<p>그림 <strong>?@fig-dynamic-crack에서</strong> 계산역학적인 아이디어는 분명하다.</p>
+<p>그림 <a href="#fig-dynamic-crack" class="quarto-xref">2</a>에서 계산역학적인 아이디어는 분명하다.</p>
 <p><strong>균열은 움직이는데, 배경 요소망은 움직이지 않는다.</strong></p>
 </section>
 <section id="다중균열은-기하형상뿐-아니라-위상을-바꾼다" class="level2">
@@ -476,11 +515,11 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="계산파괴역학-시리즈">계산파괴역학 시리즈</h2>
 <p><strong>1. 계산파괴역학은 왜 어려운가?</strong><br>
 <em>이 글.</em> 불연속, 진화하는 기하형상, 재요소망 생성, 변위공간 확충, XFEM에서 XEFG와 후속 파괴표현으로 이어지는 전체적인 흐름을 설명한다.</p>
-<p><strong>2. <a href="../xfem-crack-through-mesh/index-ko.qmd">XFEM은 어떻게 균열이 요소망을 가로질러 지나가게 하는가?</a></strong><br>
+<p><strong>2. <a href="../xfem-crack-through-mesh/">XFEM은 어떻게 균열이 요소망을 가로질러 지나가게 하는가?</a></strong><br>
 일반 유한요소로 표현할 수 없는 변위 점프와 균열선단 운동학을 어떻게 표현하는지 설명한다.</p>
-<p><strong>3. <a href="../xefg-why-meshfree/index-ko.qmd">왜 XFEM을 무요소법으로 확장했는가?</a></strong><br>
+<p><strong>3. <a href="../xefg-why-meshfree/">왜 XFEM을 무요소법으로 확장했는가?</a></strong><br>
 같은 확충 개념이 유한요소에서 입자의 영향영역으로 어떻게 옮겨가는지 설명한다.</p>
-<p><strong>4. <a href="../multiple-cracks-fracture-network/index-ko.qmd">여러 균열은 어떻게 분기하고 만나 파괴 네트워크를 만드는가?</a></strong><br>
+<p><strong>4. <a href="../multiple-cracks-fracture-network/">여러 균열은 어떻게 분기하고 만나 파괴 네트워크를 만드는가?</a></strong><br>
 다중균열 성장, 피로, 경쟁, 분기, 합체, 접합, 위상 진화와 3차원 균열 추적을 다룬다.</p>
 <p><strong>5. <a href="../../posts/alternative-crack-representations/index-ko.html">균열을 표현하려면 반드시 변위공간을 부가적으로 확충해야 하는가?</a></strong><br>
 Phantom node, cracking particle, peridynamics, phase field를 통해 여러 균열 표현법을 비교한다.</p>

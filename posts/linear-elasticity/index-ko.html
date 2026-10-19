@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="지광습">
+<meta name="dcterms.date" content="2026-10-07">
+<meta name="keywords" content="선형탄성, 선형 탄성, 등방성 탄성체, 등방성 선형탄성, 구성방정식, 후크의 법칙, 탄성 텐서, 4차 탄성 텐서, 체적변형률, 편차변형률, 체적탄성계수, 전단탄성계수, 라메 상수, 영률, 푸아송비, 보이트 표기법, 탄성계수 행렬, 평면응력, 평면변형률">
+<meta name="description" content="등방성 선형탄성체에는 왜 독립적인 재료상수가 두 개만 필요한가? 체적변형과 형상변형에서 출발해 후크의 법칙, 4차 탄성 텐서, 보이트 표기법, 평면응력과 평면변형률 강성행렬까지 물리적으로 유도한다.">
+
+<title>등방성 선형탄성체에는 왜 재료상수가 두 개만 필요한가? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research &amp; Innovation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../perspectives.html"> 
+<span class="menu-text">Engineering Perspectives</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../cartoon-log.html"> 
+<span class="menu-text">Cartoon Logs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../beyond-engineering.html"> 
+<span class="menu-text">Beyond Engineering</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">한국어</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../index-ko.html">
+ <span class="dropdown-text">홈</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research-ko.html">
+ <span class="dropdown-text">연구와 기술</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../mechanics-ko.html">
+ <span class="dropdown-text">공학역학</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../perspectives-ko.html">
+ <span class="dropdown-text">공학 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../cartoon-log-ko.html">
+ <span class="dropdown-text">카툰 일기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../beyond-engineering-ko.html">
+ <span class="dropdown-text">공학 밖의 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about-ko.html">
+ <span class="dropdown-text">소개</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#변형률에는-서로-다른-두-종류의-변형이-들어-있다" id="toc-변형률에는-서로-다른-두-종류의-변형이-들어-있다" class="nav-link active" data-scroll-target="#변형률에는-서로-다른-두-종류의-변형이-들어-있다">변형률에는 서로 다른 두 종류의 변형이 들어 있다</a></li>
+  <li><a href="#응력도-같은-방식으로-나눌-수-있다" id="toc-응력도-같은-방식으로-나눌-수-있다" class="nav-link" data-scroll-target="#응력도-같은-방식으로-나눌-수-있다">응력도 같은 방식으로 나눌 수 있다</a></li>
+  <li><a href="#왜-재료상수가-두-개면-충분한가" id="toc-왜-재료상수가-두-개면-충분한가" class="nav-link" data-scroll-target="#왜-재료상수가-두-개면-충분한가">왜 재료상수가 두 개면 충분한가?</a>
+  <ul class="collapse">
+  <li><a href="#체적탄성계수-k-부피변화에-대한-저항" id="toc-체적탄성계수-k-부피변화에-대한-저항" class="nav-link" data-scroll-target="#체적탄성계수-k-부피변화에-대한-저항">체적탄성계수 <span class="math inline">\(K\)</span>: 부피변화에 대한 저항</a></li>
+  <li><a href="#전단탄성계수-g-형상변화에-대한-저항" id="toc-전단탄성계수-g-형상변화에-대한-저항" class="nav-link" data-scroll-target="#전단탄성계수-g-형상변화에-대한-저항">전단탄성계수 <span class="math inline">\(G\)</span>: 형상변화에 대한 저항</a></li>
+  </ul></li>
+  <li><a href="#후크의-법칙은-여기서-나온다" id="toc-후크의-법칙은-여기서-나온다" class="nav-link" data-scroll-target="#후크의-법칙은-여기서-나온다">후크의 법칙은 여기서 나온다</a></li>
+  <li><a href="#그러면-e와-nu는-무엇인가" id="toc-그러면-e와-nu는-무엇인가" class="nav-link" data-scroll-target="#그러면-e와-nu는-무엇인가">그러면 <span class="math inline">\(E\)</span>와 <span class="math inline">\(\nu\)</span>는 무엇인가?</a></li>
+  <li><a href="#차-탄성-텐서는-왜-필요한가" id="toc-차-탄성-텐서는-왜-필요한가" class="nav-link" data-scroll-target="#차-탄성-텐서는-왜-필요한가">4차 탄성 텐서는 왜 필요한가?</a></li>
+  <li><a href="#대칭성-등방성-균질성은-서로-다른-말이다" id="toc-대칭성-등방성-균질성은-서로-다른-말이다" class="nav-link" data-scroll-target="#대칭성-등방성-균질성은-서로-다른-말이다">대칭성, 등방성, 균질성은 서로 다른 말이다</a></li>
+  <li><a href="#텐서를-왜-행렬로-바꾸는가" id="toc-텐서를-왜-행렬로-바꾸는가" class="nav-link" data-scroll-target="#텐서를-왜-행렬로-바꾸는가">텐서를 왜 행렬로 바꾸는가?</a></li>
+  <li><a href="#평면변형률-변형을-구속한다" id="toc-평면변형률-변형을-구속한다" class="nav-link" data-scroll-target="#평면변형률-변형을-구속한다">평면변형률: 변형을 구속한다</a></li>
+  <li><a href="#평면응력-응력을-구속한다" id="toc-평면응력-응력을-구속한다" class="nav-link" data-scroll-target="#평면응력-응력을-구속한다">평면응력: 응력을 구속한다</a></li>
+  <li><a href="#평면응력과-평면변형률은-행렬-두-개를-외우는-문제가-아니다" id="toc-평면응력과-평면변형률은-행렬-두-개를-외우는-문제가-아니다" class="nav-link" data-scroll-target="#평면응력과-평면변형률은-행렬-두-개를-외우는-문제가-아니다">평면응력과 평면변형률은 행렬 두 개를 외우는 문제가 아니다</a></li>
+  <li><a href="#다시-z-다이어그램으로" id="toc-다시-z-다이어그램으로" class="nav-link" data-scroll-target="#다시-z-다이어그램으로">다시 Z 다이어그램으로</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">등방성 선형탄성체에는 왜 재료상수가 두 개만 필요한가?</h1>
+<p class="subtitle lead">체적변형과 형상변형에서 탄성 텐서와 강성행렬까지</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">공학역학</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    등방성 선형탄성체에는 왜 독립적인 재료상수가 두 개만 필요한가? 체적변형과 형상변형에서 출발해 후크의 법칙, 4차 탄성 텐서, 보이트 표기법, 평면응력과 평면변형률 강성행렬까지 물리적으로 유도한다.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>지광습 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 7, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+<div>
+  <div class="keywords">
+    <div class="block-title">Keywords</div>
+    <p>선형탄성, 선형 탄성, 등방성 탄성체, 등방성 선형탄성, 구성방정식, 후크의 법칙, 탄성 텐서, 4차 탄성 텐서, 체적변형률, 편차변형률, 체적탄성계수, 전단탄성계수, 라메 상수, 영률, 푸아송비, 보이트 표기법, 탄성계수 행렬, 평면응력, 평면변형률</p>
+  </div>
+</div>
+
+</header>
+
+
+<div class="language-switch">
+<p><a href="index.html">English</a> | <strong>한글</strong></p>
+</div>
+<p>앞의 글에서 응력 텐서와 변형률 텐서를 살펴보았다. 응력은 재료 내부에서 힘이 어떻게 전달되는지를 나타내고, 변형률은 한 점 주변이 어떻게 변형되는지를 나타낸다.</p>
+<p>그런데 둘을 정의했다고 해서 역학문제가 끝나는 것은 아니다. 오히려 중요한 질문이 하나 남는다.</p>
+<blockquote class="blockquote">
+<p><strong>이만큼 변형된 재료에는 도대체 얼마의 응력이 생기는가?</strong></p>
+</blockquote>
+<p>이 질문에 답하는 것이 <strong>구성법칙(constitutive relation)</strong>다. Z 다이어그램으로 보면 바로</p>
+<p><span class="math display">\[
+F \leftrightarrow \sigma
+\underbrace{\leftrightarrow}_{\text{구성법칙}}
+\varepsilon \leftrightarrow u
+\]</span></p>
+<p>의 가운데 연결이다.</p>
+<p>선형탄성을 배울 때 흔히 후크의 법칙이나 <span class="math inline">\(6\times6\)</span> 탄성계수 행렬부터 제시한다. 계산에는 편하지만, 그렇게 시작하면 왜 등방성 재료에 재료상수가 두 개만 필요한지가 잘 보이지 않는다.</p>
+<p>조금 다르게 생각해 보자. 작은 재료요소를 변형시키면 실제로 무엇이 변하는가?</p>
+<p>결국 두 가지다. <strong>부피가 변하거나, 형상이 변한다.</strong> 이 두 변형을 분리해서 보면 선형탄성의 구조가 상당히 자연스럽게 드러난다.</p>
+<section id="변형률에는-서로-다른-두-종류의-변형이-들어-있다" class="level2">
+<h2 class="anchored" data-anchor-id="변형률에는-서로-다른-두-종류의-변형이-들어-있다">변형률에는 서로 다른 두 종류의 변형이 들어 있다</h2>
+<p>미소변형률 텐서는</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol{\varepsilon}
+=
+\boldsymbol{\varepsilon}^{\mathrm{vol}}
++
+\boldsymbol{\varepsilon}^{\mathrm{dev}}
+}
+\]</span></p>
+<p>처럼 체적 성분과 편차 성분으로 나눌 수 있다.</p>
+<p>체적변형률 텐서는</p>
+<p><span class="math display">\[
+\boldsymbol{\varepsilon}^{\mathrm{vol}}
+=
+\frac{1}{3}\operatorname{tr}(\boldsymbol{\varepsilon})\mathbf I
+=
+\frac{1}{3}\varepsilon_{kk}\mathbf I
+\]</span></p>
+<p>이고, 편차변형률 텐서는</p>
+<p><span class="math display">\[
+\boldsymbol{\varepsilon}^{\mathrm{dev}}
+=
+\boldsymbol{\varepsilon}
+-
+\frac{1}{3}\varepsilon_{kk}\mathbf I
+\]</span></p>
+<p>이다. 따라서</p>
+<p><span class="math display">\[
+\boxed{
+\varepsilon_{ij}
+=
+\frac{1}{3}\varepsilon_{kk}\delta_{ij}
++
+\left(
+\varepsilon_{ij}-\frac{1}{3}\varepsilon_{kk}\delta_{ij}
+\right)
+}
+\]</span></p>
+<p>이고</p>
+<p><span class="math display">\[
+\varepsilon^{\mathrm{dev}}_{ii}=0
+\]</span></p>
+<p>이다.</p>
+<p>체적변형률은</p>
+<p><span class="math display">\[
+\varepsilon_v
+=\operatorname{tr}(\boldsymbol{\varepsilon})
+=\varepsilon_{kk}
+\]</span></p>
+<p>이다.</p>
+<p>여기서 중요한 것은 식보다 물리적 의미다.</p>
+<ul>
+<li><span class="math inline">\(\boldsymbol{\varepsilon}^{\mathrm{vol}}\)</span>은 <strong>형상은 그대로 두고 부피를 바꾸는 변형</strong>이다.</li>
+<li><span class="math inline">\(\boldsymbol{\varepsilon}^{\mathrm{dev}}\)</span>은 <strong>부피는 그대로 두고 형상을 바꾸는 변형</strong>이다.</li>
+</ul>
+<p>작은 고무 정육면체를 모든 방향으로 똑같이 팽창시키는 경우를 생각하면 첫 번째가 된다. 이번에는 부피를 거의 바꾸지 않고 옆으로 밀어 찌그러뜨리면 두 번째다.</p>
+<p>둘 다 변형이지만 재료가 저항해야 하는 물리적 메커니즘은 다르다.</p>
+</section>
+<section id="응력도-같은-방식으로-나눌-수-있다" class="level2">
+<h2 class="anchored" data-anchor-id="응력도-같은-방식으로-나눌-수-있다">응력도 같은 방식으로 나눌 수 있다</h2>
+<p>코시 응력 텐서 역시</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol{\sigma}
+=
+\boldsymbol{\sigma}^{\mathrm{vol}}
++
+\boldsymbol{s}
+}
+\]</span></p>
+<p>로 쓸 수 있다. 여기서</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}^{\mathrm{vol}}
+=\sigma_m\mathbf I,
+\qquad
+\sigma_m=\frac{1}{3}\sigma_{kk}
+\]</span></p>
+<p>이고 편차응력은</p>
+<p><span class="math display">\[
+\boldsymbol{s}
+=
+\boldsymbol{\sigma}
+-
+\frac{1}{3}\sigma_{kk}\mathbf I
+\]</span></p>
+<p>이다. 즉,</p>
+<p><span class="math display">\[
+s_{ij}
+=\sigma_{ij}-\frac{1}{3}\sigma_{kk}\delta_{ij},
+\qquad
+s_{ii}=0.
+\]</span></p>
+<p>압축을 양으로 정의하는 압력 <span class="math inline">\(p\)</span>를 사용하면</p>
+<p><span class="math display">\[
+p=-\frac{1}{3}\sigma_{kk}=-\sigma_m
+\]</span></p>
+<p>이다.</p>
+<p>응력에도 부피변화와 관련된 평균응력과 형상변화와 관련된 편차응력이 따로 있다는 뜻이다.</p>
+</section>
+<section id="왜-재료상수가-두-개면-충분한가" class="level2">
+<h2 class="anchored" data-anchor-id="왜-재료상수가-두-개면-충분한가">왜 재료상수가 두 개면 충분한가?</h2>
+<p>등방성 재료에는 특별한 재료방향이 없다. 시편을 돌려 놓았다고 해서 구성거동이 달라지지 않는다.</p>
+<p>미소변형 선형탄성에서는 체적변형과 편차변형에 대한 응답을 각각 선형적으로 둘 수 있다.</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol{\sigma}^{\mathrm{vol}}
+=3K\boldsymbol{\varepsilon}^{\mathrm{vol}}
+}
+\]</span></p>
+<p>그리고</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol{s}
+=2G\boldsymbol{\varepsilon}^{\mathrm{dev}}.
+}
+\]</span></p>
+<p>따라서</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol{\sigma}
+=
+3K\boldsymbol{\varepsilon}^{\mathrm{vol}}
++
+2G\boldsymbol{\varepsilon}^{\mathrm{dev}}.
+}
+\]</span></p>
+<p>바로 이 식에 <strong>등방성 선형탄성체에는 독립적인 탄성상수가 두 개만 필요하다</strong>는 이유가 들어 있다.</p>
+<p>재료에게 물어야 할 독립적인 질문이 두 개이기 때문이다.</p>
+<blockquote class="blockquote">
+<p>부피를 바꾸려면 얼마나 힘든가?</p>
+<p>형상을 바꾸려면 얼마나 힘든가?</p>
+</blockquote>
+<p>첫 번째에 답하는 것이 체적탄성계수 <span class="math inline">\(K\)</span>, 두 번째에 답하는 것이 전단탄성계수 <span class="math inline">\(G\)</span>다.</p>
+<section id="체적탄성계수-k-부피변화에-대한-저항" class="level3">
+<h3 class="anchored" data-anchor-id="체적탄성계수-k-부피변화에-대한-저항">체적탄성계수 <span class="math inline">\(K\)</span>: 부피변화에 대한 저항</h3>
+<p>순수한 체적변형이라면</p>
+<p><span class="math display">\[
+\boldsymbol{\varepsilon}
+=\frac{1}{3}\varepsilon_v\mathbf I
+\]</span></p>
+<p>이고</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}=K\varepsilon_v\mathbf I.
+\]</span></p>
+<p>따라서</p>
+<p><span class="math display">\[
+\boxed{K=\frac{\sigma_m}{\varepsilon_v}.}
+\]</span></p>
+<p>즉 <span class="math inline">\(K\)</span>는 부피를 바꾸기 어려운 정도를 나타낸다.</p>
+</section>
+<section id="전단탄성계수-g-형상변화에-대한-저항" class="level3">
+<h3 class="anchored" data-anchor-id="전단탄성계수-g-형상변화에-대한-저항">전단탄성계수 <span class="math inline">\(G\)</span>: 형상변화에 대한 저항</h3>
+<p>단순전단에서는</p>
+<p><span class="math display">\[
+\gamma_{12}=2\varepsilon_{12},
+\qquad
+\tau_{12}=\sigma_{12}.
+\]</span></p>
+<p>편차 성분의 구성법칙로부터</p>
+<p><span class="math display">\[
+\sigma_{12}=2G\varepsilon_{12}
+\]</span></p>
+<p>이므로</p>
+<p><span class="math display">\[
+\boxed{\tau_{12}=G\gamma_{12}}
+\]</span></p>
+<p>가 된다.</p>
+<p>따라서 <span class="math inline">\(G\)</span>는 형상을 찌그러뜨리기 어려운 정도를 나타낸다.</p>
+<p><span class="math inline">\(K\)</span>와 <span class="math inline">\(G\)</span>는 단순히 식을 완성하기 위해 필요한 두 숫자가 아니다. <strong>재료가 서로 다른 두 변형모드에 얼마나 저항하는지를 나타내는 두 물리량</strong>이다.</p>
+</section>
+</section>
+<section id="후크의-법칙은-여기서-나온다" class="level2">
+<h2 class="anchored" data-anchor-id="후크의-법칙은-여기서-나온다">후크의 법칙은 여기서 나온다</h2>
+<p>체적변형률과 편차변형률을 성분으로 쓰면</p>
+<p><span class="math display">\[
+\varepsilon_{ij}^{\mathrm{vol}}
+=\frac{1}{3}\varepsilon_{kk}\delta_{ij},
+\]</span></p>
+<p><span class="math display">\[
+\varepsilon_{ij}^{\mathrm{dev}}
+=\varepsilon_{ij}-\frac{1}{3}\varepsilon_{kk}\delta_{ij}.
+\]</span></p>
+<p>이를 앞의 구성법칙에 넣으면</p>
+<p><span class="math display">\[
+\sigma_{ij}
+=K\varepsilon_{kk}\delta_{ij}
++2G\left(
+\varepsilon_{ij}-\frac{1}{3}\varepsilon_{kk}\delta_{ij}
+\right)
+\]</span></p>
+<p>이고, 정리하면</p>
+<p><span class="math display">\[
+\sigma_{ij}
+=2G\varepsilon_{ij}
++\left(K-\frac{2}{3}G\right)
+\varepsilon_{kk}\delta_{ij}.
+\]</span></p>
+<p>라메 상수를</p>
+<p><span class="math display">\[
+\boxed{
+\lambda=K-\frac{2}{3}G,
+\qquad
+\mu=G
+}
+\]</span></p>
+<p>로 정의하면</p>
+<p><span class="math display">\[
+\boxed{
+\sigma_{ij}
+=\lambda\varepsilon_{kk}\delta_{ij}
++2\mu\varepsilon_{ij}.
+}
+\]</span></p>
+<p>익숙한 등방성 후크의 법칙이다.</p>
+<p>여기서 순서가 중요하다.<strong>라메 형태가 먼저 나온 것이 아니다. 부피변형과 형상변형이라는 물리적 분해에서 출발했더니 라메 형태가 자연스럽게 나온 것이다.</strong></p>
+</section>
+<section id="그러면-e와-nu는-무엇인가" class="level2">
+<h2 class="anchored" data-anchor-id="그러면-e와-nu는-무엇인가">그러면 <span class="math inline">\(E\)</span>와 <span class="math inline">\(\nu\)</span>는 무엇인가?</h2>
+<p>공학에서는 체적탄성계수와 전단탄성계수보다 영률 <span class="math inline">\(E\)</span>와 푸아송비 <span class="math inline">\(\nu\)</span>가 더 익숙하다. 이유는 간단하다. 일축시험에서 직접 이해하기 쉽기 때문이다.</p>
+<p><span class="math display">\[
+\sigma_{11}=\sigma,
+\qquad
+\sigma_{22}=\sigma_{33}=0
+\]</span></p>
+<p>인 일축응력을 생각하면</p>
+<p><span class="math display">\[
+\varepsilon_{11}=\frac{\sigma}{E}
+\]</span></p>
+<p>이고</p>
+<p><span class="math display">\[
+\varepsilon_{22}=\varepsilon_{33}
+=-\nu\frac{\sigma}{E}.
+\]</span></p>
+<p>따라서</p>
+<p><span class="math display">\[
+\varepsilon_v
+=\varepsilon_{kk}
+=\frac{\sigma}{E}(1-2\nu)
+\]</span></p>
+<p>이며 평균응력은</p>
+<p><span class="math display">\[
+\sigma_m=\frac{\sigma}{3}
+\]</span></p>
+<p>이다. <span class="math inline">\(\sigma_m=K\varepsilon_v\)</span>를 사용하면</p>
+<p><span class="math display">\[
+\boxed{
+K=\frac{E}{3(1-2\nu)}
+}
+\]</span></p>
+<p>를 얻는다. 또한</p>
+<p><span class="math display">\[
+\boxed{
+G=\frac{E}{2(1+\nu)}.
+}
+\]</span></p>
+<p>따라서</p>
+<p><span class="math display">\[
+\boxed{
+\lambda
+=\frac{E\nu}{(1+\nu)(1-2\nu)},
+\qquad
+\mu=\frac{E}{2(1+\nu)}.
+}
+\]</span></p>
+<p>결국</p>
+<p><span class="math display">\[
+\boxed{
+(E,\nu)
+\Longleftrightarrow
+(K,G)
+\Longleftrightarrow
+(\lambda,\mu)
+}
+\]</span></p>
+<p>이다.</p>
+<p>서로 다른 세 재료모델이 아니다. 같은 등방성 선형탄성 거동을 서로 다른 두 개의 재료상수로 표현했을 뿐이다.</p>
+<p>이 관계에는 물리적으로 재미있는 내용도 들어 있다. <span class="math inline">\(\nu\rightarrow0.5\)</span>이면 <span class="math inline">\(K\rightarrow\infty\)</span>가 된다. 즉 거의 비압축성인 재료는 부피변화에는 극단적으로 강하게 저항하지만, 그렇다고 형상변화에 대한 저항 <span class="math inline">\(G\)</span>까지 무한대가 되는 것은 아니다.</p>
+</section>
+<section id="차-탄성-텐서는-왜-필요한가" class="level2">
+<h2 class="anchored" data-anchor-id="차-탄성-텐서는-왜-필요한가">4차 탄성 텐서는 왜 필요한가?</h2>
+<p>이제</p>
+<p><span class="math display">\[
+\varepsilon_{kk}=\delta_{kl}\varepsilon_{kl}
+\]</span></p>
+<p>로 쓰면</p>
+<p><span class="math display">\[
+\lambda\varepsilon_{kk}\delta_{ij}
+=\lambda\delta_{ij}\delta_{kl}\varepsilon_{kl}.
+\]</span></p>
+<p>변형률 텐서가 대칭이므로</p>
+<p><span class="math display">\[
+2\mu\varepsilon_{ij}
+=
+\mu(\delta_{ik}\delta_{jl}+\delta_{il}\delta_{jk})\varepsilon_{kl}.
+\]</span></p>
+<p>따라서</p>
+<p><span class="math display">\[
+\sigma_{ij}
+=
+\left[
+\lambda\delta_{ij}\delta_{kl}
++
+\mu(\delta_{ik}\delta_{jl}+\delta_{il}\delta_{jk})
+\right]\varepsilon_{kl}.
+\]</span></p>
+<p>이를</p>
+<p><span class="math display">\[
+\boxed{
+\sigma_{ij}=C_{ijkl}\varepsilon_{kl}
+}
+\]</span></p>
+<p>와 비교하면</p>
+<p><span class="math display">\[
+\boxed{
+C_{ijkl}
+=
+\lambda\delta_{ij}\delta_{kl}
++
+\mu(\delta_{ik}\delta_{jl}+\delta_{il}\delta_{jk}).
+}
+\]</span></p>
+<p>이렇게 보면 4차 탄성 텐서가 갑자기 등장한 것이 아니다. 변형률이라는 2차 텐서를 응력이라는 또 다른 2차 텐서로 보내야 하므로 그 사이의 선형사상이 4차 텐서가 되는 것이다.</p>
+<p>축약표기로는</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}=\mathsf C:\boldsymbol{\varepsilon}
+\]</span></p>
+<p>라고 쓸 수 있다. 여기서 <code>:</code>는 이 글에서 이중축약(double contraction)을 나타낸다.</p>
+<p>기호가 헷갈리면 성분표현으로 돌아가면 된다.</p>
+<p><span class="math display">\[
+\sigma_{ij}=C_{ijkl}\varepsilon_{kl}.
+\]</span></p>
+<p><span class="math inline">\(k,l\)</span>은 축약되고 <span class="math inline">\(i,j\)</span>가 자유첨자로 남는다. 따라서 결과가 2차 텐서라는 것을 바로 알 수 있다. 결국 핵심은 기호 자체보다 <strong>free index가 몇 개 남는가</strong>를 보는 것이다.</p>
+</section>
+<section id="대칭성-등방성-균질성은-서로-다른-말이다" class="level2">
+<h2 class="anchored" data-anchor-id="대칭성-등방성-균질성은-서로-다른-말이다">대칭성, 등방성, 균질성은 서로 다른 말이다</h2>
+<p>이 세 개념은 같이 등장하는 경우가 많지만 의미는 다르다.</p>
+<p>변형률의 대칭성</p>
+<p><span class="math display">\[
+\varepsilon_{ij}=\varepsilon_{ji}
+\]</span></p>
+<p>과 우력응력이 없는 고전 연속체에서 각운동량 평형으로 얻는</p>
+<p><span class="math display">\[
+\sigma_{ij}=\sigma_{ji}
+\]</span></p>
+<p>때문에 탄성 텐서에는</p>
+<p><span class="math display">\[
+\boxed{
+C_{ijkl}=C_{jikl}=C_{ijlk}
+}
+\]</span></p>
+<p>의 minor symmetry가 있다.</p>
+<p>또 변형에너지 포텐셜이 존재하는 탄성재료에서는</p>
+<p><span class="math display">\[
+\boxed{C_{ijkl}=C_{klij}}
+\]</span></p>
+<p>의 major symmetry가 생긴다. 이 대칭성을 갖는 일반적인 3차원 선형탄성체에는 독립적인 탄성상수가 21개 있다.</p>
+<p><strong>등방성(isotropy)</strong>은 방향에 관한 조건이다. 재료축을 회전해도 구성응답이 변하지 않는다. 이 조건이 21개의 독립상수를 단 두 개로 줄인다.</p>
+<p>반면 <strong>균질성(homogeneity)</strong>은 위치에 관한 조건이다.</p>
+<p><span class="math display">\[
+\boxed{C_{ijkl}(\mathbf x)=C_{ijkl}.}
+\]</span></p>
+<p>따라서 등방성이면서 비균질한 재료도 가능하고, 균질하면서 이방성인 재료도 가능하다. 예를 들어 재료물성이 위치에 따라 변하는 등방성 경사재료와, 한 방향으로 정렬된 균질 복합재료를 생각하면 차이가 분명하다.</p>
+</section>
+<section id="텐서를-왜-행렬로-바꾸는가" class="level2">
+<h2 class="anchored" data-anchor-id="텐서를-왜-행렬로-바꾸는가">텐서를 왜 행렬로 바꾸는가?</h2>
+<p>유한요소해석이나 실제 수치계산에서는 결국 숫자의 배열을 다뤄야 한다. 응력과 변형률 텐서는 대칭이므로 독립성분 여섯 개를 벡터로 모을 수 있다.</p>
+<p>여기서는 다음 순서를 사용한다.</p>
+<p><span class="math display">\[
+\boxed{11,\;22,\;33,\;23,\;13,\;12.}
+\]</span></p>
+<p>즉,</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}^{\mathrm V}
+=
+\begin{bmatrix}
+\sigma_{11}\\
+\sigma_{22}\\
+\sigma_{33}\\
+\sigma_{23}\\
+\sigma_{13}\\
+\sigma_{12}
+\end{bmatrix},
+\qquad
+\boldsymbol{\varepsilon}^{\mathrm V}
+=
+\begin{bmatrix}
+\varepsilon_{11}\\
+\varepsilon_{22}\\
+\varepsilon_{33}\\
+\gamma_{23}\\
+\gamma_{13}\\
+\gamma_{12}
+\end{bmatrix}
+\]</span></p>
+<p>로 둔다. 여기서 공학전단변형률을 사용하여</p>
+<p><span class="math display">\[
+\gamma_{23}=2\varepsilon_{23},\qquad
+\gamma_{13}=2\varepsilon_{13},\qquad
+\gamma_{12}=2\varepsilon_{12}
+\]</span></p>
+<p>이다.</p>
+<p>그러면 구성법칙는</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol{\sigma}^{\mathrm V}
+=\mathbf D\boldsymbol{\varepsilon}^{\mathrm V}
+}
+\]</span></p>
+<p>가 된다.</p>
+<p>등방성 선형탄성체에서는</p>
+<p><span class="math display">\[
+\boxed{
+\begin{bmatrix}
+\sigma_{11}\\
+\sigma_{22}\\
+\sigma_{33}\\
+\sigma_{23}\\
+\sigma_{13}\\
+\sigma_{12}
+\end{bmatrix}
+=
+\frac{E}{(1+\nu)(1-2\nu)}
+\begin{bmatrix}
+1-\nu &amp; \nu &amp; \nu &amp; 0 &amp; 0 &amp; 0\\
+\nu &amp; 1-\nu &amp; \nu &amp; 0 &amp; 0 &amp; 0\\
+\nu &amp; \nu &amp; 1-\nu &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; \dfrac{1-2\nu}{2} &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; \dfrac{1-2\nu}{2} &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \dfrac{1-2\nu}{2}
+\end{bmatrix}
+\begin{bmatrix}
+\varepsilon_{11}\\
+\varepsilon_{22}\\
+\varepsilon_{33}\\
+\gamma_{23}\\
+\gamma_{13}\\
+\gamma_{12}
+\end{bmatrix}.
+}
+\]</span></p>
+<p><span class="math inline">\(\mathbf D\)</span>는 새로운 역학이 아니다. 4차 텐서 <span class="math inline">\(\mathsf C\)</span>로 표현했던 같은 구성법칙를 계산하기 편하도록 행렬로 옮긴 것이다.</p>
+<p>여기서 공학전단변형률의 2배 계수는 반드시 확인해야 한다. Voigt 벡터에 <span class="math inline">\(\varepsilon_{12}\)</span>를 쓰는지 <span class="math inline">\(\gamma_{12}=2\varepsilon_{12}\)</span>를 쓰는지 혼동하면 구성행렬에서 아주 쉽게 2배 오차가 생긴다.</p>
+</section>
+<section id="평면변형률-변형을-구속한다" class="level2">
+<h2 class="anchored" data-anchor-id="평면변형률-변형을-구속한다">평면변형률: 변형을 구속한다</h2>
+<p>2차원에서는</p>
+<p><span class="math display">\[
+\boxed{11,\;22,\;12}
+\]</span></p>
+<p>순서를 사용한다.</p>
+<p>평면변형률은</p>
+<p><span class="math display">\[
+\boxed{
+\varepsilon_{33}=\gamma_{23}=\gamma_{13}=0
+}
+\]</span></p>
+<p>이라는 <strong>운동학적 구속조건</strong>이다.</p>
+<p>그러나 일반적으로</p>
+<p><span class="math display">\[
+\sigma_{33}\neq0
+\]</span></p>
+<p>이다. 면외변형을 막기 위해 필요한 응력이 생기기 때문이다.</p>
+<p>면내 구성법칙는</p>
+<p><span class="math display">\[
+\boxed{
+\begin{bmatrix}
+\sigma_{11}\\
+\sigma_{22}\\
+\sigma_{12}
+\end{bmatrix}
+=
+\frac{E}{(1+\nu)(1-2\nu)}
+\begin{bmatrix}
+1-\nu &amp; \nu &amp; 0\\
+\nu &amp; 1-\nu &amp; 0\\
+0 &amp; 0 &amp; \dfrac{1-2\nu}{2}
+\end{bmatrix}
+\begin{bmatrix}
+\varepsilon_{11}\\
+\varepsilon_{22}\\
+\gamma_{12}
+\end{bmatrix}.
+}
+\]</span></p>
+<p>따라서</p>
+<p><span class="math display">\[
+\boxed{
+\mathbf D_{\mathrm{plane\ strain}}
+=
+\frac{E}{(1+\nu)(1-2\nu)}
+\begin{bmatrix}
+1-\nu &amp; \nu &amp; 0\\
+\nu &amp; 1-\nu &amp; 0\\
+0 &amp; 0 &amp; \dfrac{1-2\nu}{2}
+\end{bmatrix}.
+}
+\]</span></p>
+<p>면외응력은</p>
+<p><span class="math display">\[
+\boxed{
+\sigma_{33}
+=
+\frac{E\nu}{(1+\nu)(1-2\nu)}
+(\varepsilon_{11}+\varepsilon_{22}).
+}
+\]</span></p>
+<p>공학적으로 보면 평면변형률의 의미는 명확하다. <strong>변형을 막았기 때문에 그 구속을 유지하는 응력이 생긴다.</strong></p>
+</section>
+<section id="평면응력-응력을-구속한다" class="level2">
+<h2 class="anchored" data-anchor-id="평면응력-응력을-구속한다">평면응력: 응력을 구속한다</h2>
+<p>평면응력에서는 반대로</p>
+<p><span class="math display">\[
+\boxed{
+\sigma_{33}=\sigma_{23}=\sigma_{13}=0
+}
+\]</span></p>
+<p>을 둔다.</p>
+<p>하지만 일반적으로</p>
+<p><span class="math display">\[
+\varepsilon_{33}\neq0
+\]</span></p>
+<p>이다. 면외응력이 없다고 해서 면외변형까지 없는 것은 아니다. 푸아송 효과 때문에 두께방향 변형이 생긴다.</p>
+<p>3차원 구성식에서 <span class="math inline">\(\sigma_{33}=0\)</span>을 적용하면</p>
+<p><span class="math display">\[
+\boxed{
+\varepsilon_{33}
+=-\frac{\nu}{1-\nu}
+(\varepsilon_{11}+\varepsilon_{22})
+}
+\]</span></p>
+<p>를 얻는다.</p>
+<p>이를 제거하면 면내 구성법칙는</p>
+<p><span class="math display">\[
+\boxed{
+\begin{bmatrix}
+\sigma_{11}\\
+\sigma_{22}\\
+\sigma_{12}
+\end{bmatrix}
+=
+\frac{E}{1-\nu^2}
+\begin{bmatrix}
+1 &amp; \nu &amp; 0\\
+\nu &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; \dfrac{1-\nu}{2}
+\end{bmatrix}
+\begin{bmatrix}
+\varepsilon_{11}\\
+\varepsilon_{22}\\
+\gamma_{12}
+\end{bmatrix}.
+}
+\]</span></p>
+<p>따라서</p>
+<p><span class="math display">\[
+\boxed{
+\mathbf D_{\mathrm{plane\ stress}}
+=
+\frac{E}{1-\nu^2}
+\begin{bmatrix}
+1 &amp; \nu &amp; 0\\
+\nu &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; \dfrac{1-\nu}{2}
+\end{bmatrix}.
+}
+\]</span></p>
+<p>여기서 중요한 것은 <strong>3차원 강성행렬에서 세 번째 행과 열을 그냥 지운다고 평면응력 행렬이 되는 것이 아니라는 점</strong>이다.</p>
+<p><span class="math inline">\(\varepsilon_{33}\)</span>은 미지수이고, <span class="math inline">\(\sigma_{33}=0\)</span>이 되도록 스스로 조정되어야 한다. 그 변수를 먼저 제거한 뒤에야 평면응력 구성행렬을 얻는다. 행렬 관점에서는 Schur complement, 즉 구성법칙 수준의 static condensation과 같은 연산이다.</p>
+<p>그래서 같은 3차원 재료에서 출발했는데도 평면응력과 평면변형률의 <span class="math inline">\(\mathbf D\)</span> 행렬이 서로 다르다.</p>
+</section>
+<section id="평면응력과-평면변형률은-행렬-두-개를-외우는-문제가-아니다" class="level2">
+<h2 class="anchored" data-anchor-id="평면응력과-평면변형률은-행렬-두-개를-외우는-문제가-아니다">평면응력과 평면변형률은 행렬 두 개를 외우는 문제가 아니다</h2>
+<p>둘의 차이는 결국</p>
+<p><span class="math display">\[
+\boxed{
+\begin{array}{c}
+\text{평면변형률: }\varepsilon_{33}=0,
+\quad \sigma_{33}\neq0\ \text{(일반적으로)},
+\\[2mm]
+\text{평면응력: }\sigma_{33}=0,
+\quad \varepsilon_{33}\neq0\ \text{(일반적으로)}.
+\end{array}
+}
+\]</span></p>
+<p>이다.</p>
+<p>평면변형률은 <strong>운동학적 구속</strong>이고, 평면응력은 <strong>응력에 대한 구속</strong>이다.</p>
+<p>이렇게 이해하면 어떤 구조물에 어떤 2차원 가정을 적용해야 하는지도 훨씬 명확해진다. 행렬을 외우는 것보다 이 차이를 이해하는 편이 실제 해석에서는 훨씬 중요하다.</p>
+</section>
+<section id="다시-z-다이어그램으로" class="level2">
+<h2 class="anchored" data-anchor-id="다시-z-다이어그램으로">다시 Z 다이어그램으로</h2>
+<p>앞의 응력 텐서 글에서는 내부 힘이 어떻게 응력으로 표현되는지를 보았다. 변형률 텐서에서는 변위를 국소적인 변형으로 어떻게 표현하는지를 보았다. 이제 선형탄성이 그 둘 사이를 연결한다.</p>
+<p><span class="math display">\[
+\boxed{
+F
+\leftrightarrow
+\boldsymbol{\sigma}
+\underbrace{\leftrightarrow}_{\text{재료의 구성거동}}
+\boldsymbol{\varepsilon}
+\leftrightarrow
+\mathbf u
+}
+\]</span></p>
+<p>Z 다이어그램에서 <span class="math inline">\(\sigma\leftrightarrow\varepsilon\)</span>은 <strong>재료의 성질이 역학문제에 들어오는 자리</strong>다. 평형조건만으로는 변형을 알 수 없고, 적합조건만으로는 응력을 알 수 없다. 둘 사이에 재료의 구성법칙가 필요하다.</p>
+<p>결국 핵심은 의외로 단순하다.</p>
+<blockquote class="blockquote">
+<p><strong>작은 변형은 부피를 바꾸거나 형상을 바꾼다. 등방성 선형탄성체에는 이 두 변형모드에 대한 강성 하나씩이면 충분하다.</strong></p>
+</blockquote>
+<p>여기서 <span class="math inline">\(K\)</span>와 <span class="math inline">\(G\)</span>가 나오고, 라메 상수와 <span class="math inline">\(E,\nu\)</span>가 연결되며, 4차 탄성 텐서가 나오고, 다시 보이트 표기와 탄성계수 행렬로 이어진다. 평면응력과 평면변형률도 별개의 공식이 아니라 같은 3차원 구성법칙를 서로 다른 물리적 조건 아래 줄인 결과다.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

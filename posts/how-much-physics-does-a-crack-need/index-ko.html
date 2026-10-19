@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="지광습">
+<meta name="keywords" content="계산파괴역학, 다중스케일 파괴, 멀티스케일 해석, 균열 해석, 균열 성장, 파괴역학, 점성균열, 파괴과정영역, XFEM, 확장유한요소법, Arlequin method, 연속체 원자 결합, 분자동역학, 그래핀 파괴, 계산 균질화, adaptive multiscale method">
+<meta name="description" content="균열 주변의 작은 영역에만 상세한 파괴역학 물리적 요소를 배치하는 이유를 철근콘크리트, Arlequin 연속체 결합, 적응형 연속체-원자 다중스케일 해석과 그래핀 파괴를 통해 설명한다.">
+
+<title>균열에는 얼마나 여러 종류의 물리적 요소가 필요한가? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research &amp; Innovation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../perspectives.html"> 
+<span class="menu-text">Engineering Perspectives</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../cartoon-log.html"> 
+<span class="menu-text">Cartoon Logs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../beyond-engineering.html"> 
+<span class="menu-text">Beyond Engineering</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">한국어</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../index-ko.html">
+ <span class="dropdown-text">홈</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research-ko.html">
+ <span class="dropdown-text">연구와 기술</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../mechanics-ko.html">
+ <span class="dropdown-text">공학역학</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../perspectives-ko.html">
+ <span class="dropdown-text">공학 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../cartoon-log-ko.html">
+ <span class="dropdown-text">카툰 일기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../beyond-engineering-ko.html">
+ <span class="dropdown-text">공학 밖의 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about-ko.html">
+ <span class="dropdown-text">소개</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul class="collapse">
+  <li><a href="#균열이-있다고-구조물-전체가-똑같이-어려워지는-것은-아니다" id="toc-균열이-있다고-구조물-전체가-똑같이-어려워지는-것은-아니다" class="nav-link active" data-scroll-target="#균열이-있다고-구조물-전체가-똑같이-어려워지는-것은-아니다">균열이 있다고 구조물 전체가 똑같이 어려워지는 것은 아니다</a></li>
+  <li><a href="#첫-번째-스케일-문제는-철근콘크리트에서도-확인할-수-있다" id="toc-첫-번째-스케일-문제는-철근콘크리트에서도-확인할-수-있다" class="nav-link" data-scroll-target="#첫-번째-스케일-문제는-철근콘크리트에서도-확인할-수-있다">첫 번째 스케일 문제는 철근콘크리트에서도 확인할 수 있다</a></li>
+  <li><a href="#구조물-전체를-세분화하면-되지-않을까" id="toc-구조물-전체를-세분화하면-되지-않을까" class="nav-link" data-scroll-target="#구조물-전체를-세분화하면-되지-않을까">구조물 전체를 세분화하면 되지 않을까?</a></li>
+  <li><a href="#연속체와-연속체의-결합-파괴역학은-유지하면서-해상도만-바꾼다" id="toc-연속체와-연속체의-결합-파괴역학은-유지하면서-해상도만-바꾼다" class="nav-link" data-scroll-target="#연속체와-연속체의-결합-파괴역학은-유지하면서-해상도만-바꾼다">연속체와 연속체의 결합: 파괴역학은 유지하면서 해상도만 바꾼다</a></li>
+  <li><a href="#세밀한-영역에는-균열선단이-아니라-필요한-물리가-들어가야-한다" id="toc-세밀한-영역에는-균열선단이-아니라-필요한-물리가-들어가야-한다" class="nav-link" data-scroll-target="#세밀한-영역에는-균열선단이-아니라-필요한-물리가-들어가야-한다">세밀한 영역에는 균열선단이 아니라 필요한 물리가 들어가야 한다</a></li>
+  <li><a href="#그런데-왜-더-고해상도-연속체에서-멈춰야-할까" id="toc-그런데-왜-더-고해상도-연속체에서-멈춰야-할까" class="nav-link" data-scroll-target="#그런데-왜-더-고해상도-연속체에서-멈춰야-할까">그런데 왜 더 고해상도 연속체에서 멈춰야 할까?</a></li>
+  <li><a href="#원자모델은-연속체-법칙에서-이미-평균화된-것을-보여준다" id="toc-원자모델은-연속체-법칙에서-이미-평균화된-것을-보여준다" class="nav-link" data-scroll-target="#원자모델은-연속체-법칙에서-이미-평균화된-것을-보여준다">원자모델은 연속체 법칙에서 이미 평균화된 것을 보여준다</a></li>
+  <li><a href="#정말-필요한-것은-세밀한-물리가-균열을-따라-같이-움직이게-하는-것이다" id="toc-정말-필요한-것은-세밀한-물리가-균열을-따라-같이-움직이게-하는-것이다" class="nav-link" data-scroll-target="#정말-필요한-것은-세밀한-물리가-균열을-따라-같이-움직이게-하는-것이다">정말 필요한 것은 세밀한 물리가 균열을 따라 같이 움직이게 하는 것이다</a></li>
+  <li><a href="#스케일-경계를-넘어-정보가-전달되어야-한다" id="toc-스케일-경계를-넘어-정보가-전달되어야-한다" class="nav-link" data-scroll-target="#스케일-경계를-넘어-정보가-전달되어야-한다">스케일 경계를 넘어 정보가 전달되어야 한다</a></li>
+  <li><a href="#균질화는-비슷하지만-다른-스케일-문제를-푼다" id="toc-균질화는-비슷하지만-다른-스케일-문제를-푼다" class="nav-link" data-scroll-target="#균질화는-비슷하지만-다른-스케일-문제를-푼다">균질화는 비슷하지만 다른 스케일 문제를 푼다</a></li>
+  <li><a href="#작은-균열은-연속체적인-직관의-한계를-드러낼-수-있다" id="toc-작은-균열은-연속체적인-직관의-한계를-드러낼-수-있다" class="nav-link" data-scroll-target="#작은-균열은-연속체적인-직관의-한계를-드러낼-수-있다">작은 균열은 연속체적인 직관의 한계를 드러낼 수 있다</a></li>
+  <li><a href="#그러면-물리를-어디까지-넣어야-할까" id="toc-그러면-물리를-어디까지-넣어야-할까" class="nav-link" data-scroll-target="#그러면-물리를-어디까지-넣어야-할까">그러면 물리를 어디까지 넣어야 할까?</a></li>
+  <li><a href="#다중스케일-파괴는-결국-정보배분-문제다" id="toc-다중스케일-파괴는-결국-정보배분-문제다" class="nav-link" data-scroll-target="#다중스케일-파괴는-결국-정보배분-문제다">다중스케일 파괴는 결국 정보배분 문제다</a></li>
+  <li><a href="#에너지와-연결해서-보면" id="toc-에너지와-연결해서-보면" class="nav-link" data-scroll-target="#에너지와-연결해서-보면">에너지와 연결해서 보면</a></li>
+  <li><a href="#결국-핵심은" id="toc-결국-핵심은" class="nav-link" data-scroll-target="#결국-핵심은">결국 핵심은</a></li>
+  <li><a href="#계산파괴역학-시리즈" id="toc-계산파괴역학-시리즈" class="nav-link" data-scroll-target="#계산파괴역학-시리즈">계산파괴역학 시리즈</a></li>
+  <li><a href="#original-research" id="toc-original-research" class="nav-link" data-scroll-target="#original-research">Original research</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">균열에는 얼마나 여러 종류의 물리적 요소가 필요한가?</h1>
+<p class="subtitle lead">파괴를 필요로 하는 곳에만 상세한 물리적 요소를 사용해야 하는 이유</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">연구와 기술</div>
+    <div class="quarto-category">Computational Mechanics &amp; Fracture</div>
+    <div class="quarto-category">Computational Fracture</div>
+    <div class="quarto-category">Multiscale Mechanics</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    균열 주변의 작은 영역에만 상세한 파괴역학 물리적 요소를 배치하는 이유를 철근콘크리트, Arlequin 연속체 결합, 적응형 연속체-원자 다중스케일 해석과 그래핀 파괴를 통해 설명한다.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">저자</div>
+    <div class="quarto-title-meta-contents">
+             <p>지광습 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">공개</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">2026년 9월 4일</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+<div>
+  <div class="keywords">
+    <div class="block-title">키워드</div>
+    <p>계산파괴역학, 다중스케일 파괴, 멀티스케일 해석, 균열 해석, 균열 성장, 파괴역학, 점성균열, 파괴과정영역, XFEM, 확장유한요소법, Arlequin method, 연속체 원자 결합, 분자동역학, 그래핀 파괴, 계산 균질화, adaptive multiscale method</p>
+  </div>
+</div>
+
+</header>
+
+
+<div class="language-switch">
+<a href="../../posts/how-much-physics-does-a-crack-need/index.html">English</a> | <strong>한글</strong>
+</div>
+<p>균열은 계산문제를 조금 이상하게 만든다.</p>
+<p>구조물에 발생하는 변형 대부분은 비교적 스무스하게 거동하는데, 파괴를 지배하는 현상은 균열선단 주변의 아주 작은 영역에 집중될 수 있다.</p>
+<p>그러면 바로 이런 공학적인 질문이 생기게 된다.</p>
+<blockquote class="blockquote">
+<p><strong>분석 난이도가 높은 파괴현상은 국부적으로만 존재한다면, 왜 대상 구조물 전체에서 비싼 물리모델을 풀어야 하는가?</strong></p>
+</blockquote>
+<p>이 질문은 단순히 요소망을 얼마나 잘게 나눌 것인가보다 중요하다.</p>
+<p>균열 주변에서는 더 세밀한 연속체 이산화가 필요할 수도 있고, 다른 구성모델이 필요할 수도 있으며, 경우에 따라서는 원자모델까지 필요할 수 있다. 그러나 균열에서 멀리 떨어진 영역에서는 그런 상세한 모델을 사용해도 공학적으로 얻는 정보는 거의 늘지 않으면서 계산비용만 크게 증가할 수 있다.</p>
+<p>따라서 다중스케일(multiscale) 파괴해석의 핵심 문제는 단순히</p>
+<blockquote class="blockquote">
+<p>요소망을 얼마나 촘촘하게 해야 하는가?</p>
+</blockquote>
+<p>가 아니다.</p>
+<p>더 중요한 질문은</p>
+<blockquote class="blockquote">
+<p><strong>각 위치에서 어느 정도의 물리현상까지 직접 풀어야 하는가?</strong></p>
+</blockquote>
+<p>이다.</p>
+<p>이 글에서는 이 질문을 철근콘크리트 구조에서 시작하여 연속체-연속체 결합을 거쳐 원자수준의 파괴까지 따라가 본다.</p>
+<section id="균열이-있다고-구조물-전체가-똑같이-어려워지는-것은-아니다" class="level2">
+<h2 class="anchored" data-anchor-id="균열이-있다고-구조물-전체가-똑같이-어려워지는-것은-아니다">균열이 있다고 구조물 전체가 똑같이 어려워지는 것은 아니다</h2>
+<p>균열이 있는 큰 구조물을 생각해 보자.</p>
+<p>균열전면에서 충분히 멀리 떨어지면 변위장과 응력장은 비교적 스무스고 매끄럽게 변한다. 이런 영역은 일반적인 구조해석 모델로도 충분히 표현할 수 있는 경우가 많다.</p>
+<p>하지만 균열선단 가까이에서는 여러 현상이 동시에 일어난다.</p>
+<ul>
+<li>응력과 변형률이 국부화되고,</li>
+<li>변위의 연속성이 깨질 수 있으며,</li>
+<li>재료 비선형성이 중요해지고,</li>
+<li>파괴과정영역(fracture process zone)이 형성되고,</li>
+<li>균열이 어느 방향으로 진행할지를 결정해야 하며,</li>
+<li>충분히 작은 스케일에서는 재료의 이산적인 구조 자체가 중요해질 수 있다.</li>
+</ul>
+<p>즉 계산의 난이도는 공간적으로 매우 불균일하다.</p>
+<p>개념적으로 쓰면</p>
+<p><span class="math display">\[
+\text{구조물}
+=
+\text{대부분의 스무스하고 매끄러운 거동}
++
+\text{작은 파괴 지배영역}
+\]</span></p>
+<p>이다.</p>
+<p>그런데 두 영역에 똑같은 해상도와 똑같은 물리모델을 적용하는 것이 과연 효율적일까?</p>
+<p>다중스케일 파괴해석은 바로 이 질문에서 시작한다.</p>
+</section>
+<section id="첫-번째-스케일-문제는-철근콘크리트에서도-확인할-수-있다" class="level2">
+<h2 class="anchored" data-anchor-id="첫-번째-스케일-문제는-철근콘크리트에서도-확인할-수-있다">첫 번째 스케일 문제는 철근콘크리트에서도 확인할 수 있다</h2>
+<p>철근콘크리트는 좋은 예다. 하나의 구조모델 안에 이미 서로 다른 역학적 표현이 존재하기 때문이다.</p>
+<p>콘크리트에는 균열이 생긴다.</p>
+<p>철근은 연속성을 유지한다.</p>
+<p>그리고 콘크리트와 철근은 부착을 통해 힘을 전달한다.</p>
+<p>철근콘크리트 구조의 3차원 점성균열(cohesive crack) 해석에서는 콘크리트를 확장무요소 근사로, 철근을 트러스 또는 보 유한요소로, 두 재료 사이의 상호작용을 부착모델로 표현할 수 있다.</p>
+<p>공학적으로 중요한 것은 각각 다른 모델을 썼다는 사실 자체가 아니다.</p>
+<p>철근을 주변 콘크리트에 완전히 고정해 버리면 부착슬립에 의한 국부적인 힘의 재분배를 놓치게 된다. 콘크리트에 균열이 생기면 균열 부근에서 철근응력은 증가하고 주변 콘크리트의 응력은 감소한다. 이런 힘의 재분배가 균열간격과 최종적인 균열형상에 영향을 준다.</p>
+<p>즉 원자수준까지 내려가지 않더라도 파괴해석은 이미 중요한 사실 하나를 보여준다.</p>
+<blockquote class="blockquote">
+<p><strong>같은 구조문제 안에서도 위치와 구성요소에 따라 서로 다른 역학적 표현이 필요할 수 있다.</strong></p>
+</blockquote>
+<div id="fig-rc-multiphysics" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rc-multiphysics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig01.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:72.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rc-multiphysics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;1: 철근콘크리트 파괴모델 자체가 이미 서로 다른 역학적 표현을 결합한다. 콘크리트의 균열, 철근요소, 그리고 변형 가능한 부착계면을 각각 필요한 방식으로 표현한다. 여기서 중요한 것은 단순히 3차원 모델이라는 점이 아니라 필요한 물리를 실제로 그 현상이 일어나는 구성요소에 배치했다는 것이다. Rabczuk et al.&nbsp;(2008)를 바탕으로 재구성.
+</figcaption>
+</figure>
+</div>
+<p>그림 <a href="#fig-rc-multiphysics" class="quarto-xref">1</a>에서 보아야 할 점은 철근콘크리트 자체보다 더 일반적이다.</p>
+<p>좋은 계산모델이 모든 곳에서 하나의 보편적인 표현을 사용할 필요는 없다.</p>
+<p><strong>응답을 지배하는 역학을 놓치지 않으면 된다.</strong></p>
+</section>
+<section id="구조물-전체를-세분화하면-되지-않을까" class="level2">
+<h2 class="anchored" data-anchor-id="구조물-전체를-세분화하면-되지-않을까">구조물 전체를 세분화하면 되지 않을까?</h2>
+<p>균열전면에서 아주 작은 요소가 필요하다고 해 보자.</p>
+<p>가장 단순한 방법은 명확하다.</p>
+<pre class="text"><code>전체 요소망 세분화
+→ 균열영역 해상도 확보
+→ 구조물 전체에서 상세 계산비용 부담</code></pre>
+<p>작은 시험체라면 이렇게 해도 괜찮을 수 있다.</p>
+<p>하지만 3차원 구조물, 특히 동적해석에서는 계산비용이 급격히 증가한다. 요소를 작게 만들면 자유도만 증가하는 것이 아니다. 명시적(explicit) 시간적분에서는 안정적인 수렴하는 시간간격까지 작아질 수 있다.</p>
+<p>그런데 그렇게 증가한 자유도의 대부분은 균열에서 멀리 떨어진 곳에 있을 수도 있어서, 괜히 계산비용만 증가시킬 수 있다.</p>
+<p>다른 방법은</p>
+<pre class="text"><code>구조물 대부분은 저해상도 모델
+            ↓
+파괴가 중요한 영역만 세밀한 고해상도 모델</code></pre>
+<p>을 사용하는 것이다.</p>
+<p>얼핏 보면 단순한 국부 요소망 세분화처럼 보인다.</p>
+<p>하지만 다중스케일 방법은 한 단계 더 나아갈 수 있다.</p>
+<p>저해상도 영역과 고해상도 영역을 <strong>서로 다른 모델</strong>로 두고 그 사이에서 역학정보를 주고받게 할 수 있다.</p>
+</section>
+<section id="연속체와-연속체의-결합-파괴역학은-유지하면서-해상도만-바꾼다" class="level2">
+<h2 class="anchored" data-anchor-id="연속체와-연속체의-결합-파괴역학은-유지하면서-해상도만-바꾼다">연속체와 연속체의 결합: 파괴역학은 유지하면서 해상도만 바꾼다</h2>
+<p>한 가지 방법은 균열 주변에는 고해상도 연속체 모델을 두고 나머지 영역에는 저해상도 연속체 모델을 사용하는 것이다.</p>
+<p>Extended Arlequin 방법에서는 두 모델이 <strong>handshake domain</strong>에서 서로 겹친다. 이 중첩영역에서 가중함수를 사용하여 두 모델의 에너지를 연결한다.</p>
+<p>개념적으로</p>
+<p><span class="math display">\[
+W
+=
+w(\mathbf X)W^{\mathrm{coarse}}
++
+[1-w(\mathbf X)]W^{\mathrm{fine}}
++
+W^{\mathrm{coupling}}
+\]</span></p>
+<p>와 같이 볼 수 있다.</p>
+<p>가중함수는 중첩영역을 따라 점진적으로 변한다.</p>
+<p><span class="math display">\[
+w=1
+\qquad \text{저해상도 모델만 존재하는 영역},
+\]</span></p>
+<p><span class="math display">\[
+0&lt;w&lt;1
+\qquad \text{handshake 영역},
+\]</span></p>
+<p><span class="math display">\[
+w=0
+\qquad \text{고해상도 모델만 존재하는 영역}.
+\]</span></p>
+<p>이렇게 점진적으로 바꾸는 것은 특히 동적문제에서 중요하다. 두 모델 사이에 인위적인 급격한 경계를 만들면 응력파가 그 경계에서 반사될 수 있기 때문이다.</p>
+<p>따라서 결합은 단순한 기하학 문제가 아니다.</p>
+<p>두 모델은 변위, 힘과 에너지를 교환하면서도 두 모델의 경계가 가상의 재료경계처럼 거동하지 않아야 한다.</p>
+<div id="fig-arlequin" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-arlequin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig02.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:78.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-arlequin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;2: Extended Arlequin 방법에서는 균열 주변에 세밀한 연속체 영역을 두고 나머지 구조물은 저해상도 모델로 유지한다. 두 모델이 겹치는 영역은 두 표현을 연결하는 handshake domain으로 작동한다. 여기서 보아야 할 것은 고해상도를 구조물 전체에 적용하는 것이 아니라 파괴과정에 일어나는 부분에 집중했다는 점이다. Silani et al.&nbsp;(2015)를 바탕으로 재구성.
+</figcaption>
+</figure>
+</div>
+<p>그림 <a href="#fig-arlequin" class="quarto-xref">2</a>에는 또 하나 흥미로운 점이 있다.</p>
+<p>균열은 두 연속체 스케일 모두에서 XFEM으로 표현할 수 있다.</p>
+<p>변위근사는 개념적으로</p>
+<p><span class="math display">\[
+\mathbf u^h
+=
+\mathbf u^{\mathrm{cont}}
++
+\mathbf u^{\mathrm{discont}}
+\]</span></p>
+<p>로 볼 수 있다.</p>
+<p>즉 공간적인 해상도가 달라진다고 해서 균열의 운동학까지 바꿀 필요는 없다.</p>
+<p>여기서 흔히 섞여 있는 두 질문을 분리할 수 있다.</p>
+<ol type="1">
+<li><strong>균열을 어떻게 표현할 것인가?</strong></li>
+<li><strong>균열 주변에 얼마나 높은 해상도가 필요한가?</strong></li>
+</ol>
+<p>이 둘을 분리해서 생각하는 것이 중요하다.</p>
+</section>
+<section id="세밀한-영역에는-균열선단이-아니라-필요한-물리가-들어가야-한다" class="level2">
+<h2 class="anchored" data-anchor-id="세밀한-영역에는-균열선단이-아니라-필요한-물리가-들어가야-한다">세밀한 영역에는 균열선단이 아니라 필요한 물리가 들어가야 한다</h2>
+<p>여기서 중요한 공학적인 문제가 하나 있다.</p>
+<p>점성파괴를 사용한다면 세밀한 영역은 수학적인 균열선단 바로 주변의 극히 작은 영역만을 의미하지 않는다.</p>
+<p>파괴과정영역은 유한한 길이를 가진다.</p>
+<p>그 특성길이는 대략</p>
+<p><span class="math display">\[
+l_{\mathrm{ch}}
+\sim
+\frac{E G_f}{f_t^2}
+\]</span></p>
+<p>와 같은 형태로 생각할 수 있다. 실제 식은 가정한 응력상태 등에 따라 달라질 수 있다.</p>
+<p>여기서 <span class="math inline">\(E\)</span>는 탄성계수, <span class="math inline">\(G_f\)</span>는 파괴에너지, <span class="math inline">\(f_t\)</span>는 인장강도다.</p>
+<p>이 글에서 식의 정확한 형태보다 중요한 것은 그 공학적 의미다.</p>
+<blockquote class="blockquote">
+<p><strong>고해상도 영역은 저해상도 모델이 충분히 표현하지 못하는 물리과정을 포함할 만큼은 커야 한다.</strong></p>
+</blockquote>
+<p>이것은 다중스케일 모델링의 일반적인 원칙이다.</p>
+<p>단지 기하학적인 균열선단이 그곳에 있다는 이유로 고해상도 영역을 정하면 안 된다.</p>
+<p><strong>필요한 물리가 그곳에 있기 때문에 고해상도 영역을 정해야 한다.</strong></p>
+</section>
+<section id="그런데-왜-더-고해상도-연속체에서-멈춰야-할까" class="level2">
+<h2 class="anchored" data-anchor-id="그런데-왜-더-고해상도-연속체에서-멈춰야-할까">그런데 왜 더 고해상도 연속체에서 멈춰야 할까?</h2>
+<p>연속체 모델은 재료의 거동을 응력과 변형률 같은 연속적인 장으로 표현할 수 있다고 가정한다.</p>
+<p>하지만 충분히 작은 스케일로 내려가면 파괴는 결국 재료를 구성하는 입자 사이의 상호작용이 변하는 현상이다.</p>
+<p>예를 들어 그래핀의 균열성장은 탄소원자의 운동과 상호작용을 직접 계산하여 연구할 수 있다.</p>
+<p>균열이 있는 그래핀의 분자동역학(molecular dynamics) 해석에서는 결합의 신장과 회전, 국부에너지, 온도, 결합파괴 등을 통해 균열성장을 관찰한다.</p>
+<p>이 스케일에서는</p>
+<blockquote class="blockquote">
+<p>균열은 어디에 있는가?</p>
+</blockquote>
+<p>라는 질문의 수치적인 의미 자체가 달라진다.</p>
+<p>연속체에서처럼 변위 불연속을 반드시 별도로 삽입할 필요가 없다.</p>
+<p>원자 사이의 연결이 끊어지면서 균열이 나타난다.</p>
+<p>그러면 다음과 같은 계층을 생각할 수 있다.</p>
+<pre class="text"><code>구조 스케일
+    응력, 변형, 철근, 전체 평형
+
+연속체 파괴 스케일
+    균열면, 점성응력, 파괴과정영역
+
+원자 스케일
+    원자 상호작용, 결합변형, 결합파괴</code></pre>
+<p>어느 하나가 항상 더 “정확한” 모델인 것은 아니다.</p>
+<p>서로 다른 스케일에서 서로 다른 질문에 답하는 모델이다.</p>
+</section>
+<section id="원자모델은-연속체-법칙에서-이미-평균화된-것을-보여준다" class="level2">
+<h2 class="anchored" data-anchor-id="원자모델은-연속체-법칙에서-이미-평균화된-것을-보여준다">원자모델은 연속체 법칙에서 이미 평균화된 것을 보여준다</h2>
+<p>연속체 스케일에서 점성법칙은 개념적으로</p>
+<p><span class="math display">\[
+\mathbf t
+=
+\mathbf t(\llbracket \mathbf u \rrbracket)
+\]</span></p>
+<p>로 쓸 수 있다.</p>
+<p>여기서 <span class="math inline">\(\mathbf t\)</span>는 파괴과정영역을 통해 전달되는 응력이고, <span class="math inline">\(\llbracket \mathbf u \rrbracket\)</span>는 변위점프다.</p>
+<p>이 관계는 엄청나게 복잡한 미시적인 현상을 공학적으로 사용할 수 있는 하나의 관계로 압축한 것이다.</p>
+<p>원자 스케일로 내려가면 그동안 숨겨져 있던 복잡성의 일부가 직접 나타난다.</p>
+<p>그래핀 해석에서는 원자결합의 신장과 회전을 통해 균열성장을 조사했다. 또한 균열전파를 제대로 해석하려면 시간 해상도 자체도 중요하다는 것을 보였다.</p>
+<p>그렇다고 원자모델이 점성파괴역학을 대체한다는 뜻은 아니다.</p>
+<p>오히려 연속체 파괴법칙을 사용할 때 <strong>무엇을 이미 평균화하여 버렸는가</strong>를 보여준다.</p>
+<p>여기서 구분해야 할 것이 있다.</p>
+<blockquote class="blockquote">
+<p><strong>고해상도 모델은 공학적으로 그 정보를 필요로 하는 인과관계 때문에 사용해야 한다. 단순히 더 세밀하다는 이유로 사용하는 것이 아니다.</strong></p>
+</blockquote>
+</section>
+<section id="정말-필요한-것은-세밀한-물리가-균열을-따라-같이-움직이게-하는-것이다" class="level2">
+<h2 class="anchored" data-anchor-id="정말-필요한-것은-세밀한-물리가-균열을-따라-같이-움직이게-하는-것이다">정말 필요한 것은 세밀한 물리가 균열을 따라 같이 움직이게 하는 것이다</h2>
+<p>원자영역을 한 곳에 고정해 놓으면 또 다른 비효율이 생긴다.</p>
+<p>균열은 움직이기 때문이다.</p>
+<p>고비용의 원자영역이 고정되어 있으면 처음부터 매우 크게 만들어 놓거나, 균열이 그 영역 밖으로 나가는 문제를 감수해야 한다.</p>
+<p>적응형 다중스케일 방법은 고해상도 영역 자체를 균열과 함께 이동시킨다.</p>
+<p>Meshless adaptive multiscale formulation에서는 저해상도 영역을 연속체 무요소 모델로 표현하고 균열선단 주변에는 molecular-statistics 영역을 둔다.</p>
+<p>균열이 성장하면</p>
+<pre class="text"><code>균열선단 영역 확인
+        ↓
+균열 앞쪽 재료를 원자수준 표현으로 세분화
+        ↓
+고해상도 모델 안에서 균열 전파
+        ↓
+균열 뒤쪽에서 충분히 멀어진 영역은 다시 조대화
+        ↓
+균열을 따라 고비용 물리모델의 이동</code></pre>
+<p>한다.</p>
+<p>원자영역이 일종의 <strong>움직이는 계산 현미경</strong>이 되는 셈이다.</p>
+<div id="fig-adaptive-atomistic" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-adaptive-atomistic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig03.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:82.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-adaptive-atomistic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;3: 적응형 연속체-원자 모델에서는 고해상도 영역이 전파하는 균열을 따라 이동한다. 균열 앞쪽의 재료는 원자수준 표현으로 세분화하고, 균열 뒤쪽에서 충분히 멀어진 영역은 다시 더해상도 표현으로 되돌릴 수 있다. 핵심은 고비용 물리모델로 영역 전체를 채우는 것이 아니라 파괴과정을 따라 이동시키는 것이다. Yang et al.&nbsp;(2015)를 바탕으로 재구성.
+</figcaption>
+</figure>
+</div>
+<p>그림 <a href="#fig-adaptive-atomistic" class="quarto-xref">3</a>은 단순한 적응형 요소망 세분화와는 다르다.</p>
+<p>균열이 움직이면서 모델이 <strong>얼마나 세밀하게 계산할 것인가뿐 아니라 어떤 물리를 계산할 것인가까지 바꾼다.</strong></p>
+</section>
+<section id="스케일-경계를-넘어-정보가-전달되어야-한다" class="level2">
+<h2 class="anchored" data-anchor-id="스케일-경계를-넘어-정보가-전달되어야-한다">스케일 경계를 넘어 정보가 전달되어야 한다</h2>
+<p>서로 다른 물리모델을 동시에 사용하면 두 모델은 서로 정보를 주고받아야 한다.</p>
+<p>연속체-원자 모델에서는 ghost atom이 이 결합을 담당한다.</p>
+<p>Ghost atom의 위치는 저해상도 스케일의 변위장으로부터 얻어 고해상도 모델에 부여한다.</p>
+<p>개념적으로</p>
+<p><span class="math display">\[
+\mathbf u^{\mathrm{ghost}}
+\leftarrow
+\mathbf u^{\mathrm{coarse}}
+\]</span></p>
+<p>라고 볼 수 있다.</p>
+<p>반대로 고해상도 모델에서 계산된 국부적인 파괴의 변화는 결국 저해상도 모델에도 반영되어야 한다.</p>
+<p>따라서 다중스케일 역학에서 어려운 것은 단순히 두 모델을 가지고 있다는 것이 아니다.</p>
+<p><strong>물리적인 제한사항을 만족하면서, 동시에 필요한 정보를 두 모델 사이에 전달하는 것</strong>은 어렵다.</p>
+<p>그러면 다음과 같은 질문이 생긴다.</p>
+<ol type="1">
+<li>저해상도 모델은 고해상도 모델에서 어떤 정보를 받아야 하는가?</li>
+<li>고해상도 모델은 저해상도 모델에서 어떤 경계정보를 받아야 하는가?</li>
+<li>에너지와 힘은 결합영역을 어떻게 통과해야 하는가?</li>
+<li>어느 시점에 한 영역의 스케일을 바꿀 것인가?</li>
+<li>원자수준에서 나타난 균열을 연속체의 균열로 어떻게 넘길 것인가?</li>
+</ol>
+<p>얼핏 보면 계산방법에 관한 질문이지만 결국 모두 역학에 관한 질문이다.</p>
+</section>
+<section id="균질화는-비슷하지만-다른-스케일-문제를-푼다" class="level2">
+<h2 class="anchored" data-anchor-id="균질화는-비슷하지만-다른-스케일-문제를-푼다">균질화는 비슷하지만 다른 스케일 문제를 푼다</h2>
+<p>모든 다중스케일 문제가 균열을 따라 움직이는 고해상도 영역을 필요로 하는 것은 아니다.</p>
+<p>미세구조의 불균질성이 큰 스케일에서의 유효 구성거동에 어떤 영향을 주는지를 알고 싶은 경우도 있다.</p>
+<p>계산 균질화(computational homogenization)에서는 거시적인 변형률을 대표 미세 셀의 경계변위와 연결하고, 두 스케일 사이의 에너지 일관성을 통해 거시적인 응력을 얻을 수 있다.</p>
+<p>개념적으로</p>
+<p><span class="math display">\[
+\boldsymbol{\varepsilon}^{\mathrm{macro}}
+\longrightarrow
+\text{미시 경계값 문제}
+\longrightarrow
+\boldsymbol{\sigma}^{\mathrm{macro}}
+\]</span></p>
+<p>이다.</p>
+<p>이것은 균열선단을 직접 따라가는 concurrent multiscale coupling과는 다르다.</p>
+<p>여기서는 고해상도 모델이 움직이는 균열을 직접 표현하기보다 <strong>큰 스케일에서 사용할 유효 구성정보</strong>를 제공한다.</p>
+<p>둘의 차이는 다음과 같이 정리할 수 있다.</p>
+<pre class="text"><code>균질화
+    미세구조가 큰 스케일의 구성거동에 무엇을 의미하는가?
+
+동시 다중스케일 파괴해석
+    지금 어느 위치에서 고해상도 물리를 직접 풀어야 하는가?</code></pre>
+<p>둘 다 일종의 모델 축약이다.</p>
+<p>하지만 줄이는 정보가 다르다.</p>
+</section>
+<section id="작은-균열은-연속체적인-직관의-한계를-드러낼-수-있다" class="level2">
+<h2 class="anchored" data-anchor-id="작은-균열은-연속체적인-직관의-한계를-드러낼-수-있다">작은 균열은 연속체적인 직관의 한계를 드러낼 수 있다</h2>
+<p>그래핀 연구는 또 하나 중요한 점을 보여준다.</p>
+<p>공학적인 스케일의 파괴역학에서는 보통 균열길이, 응력확대계수, 파괴인성 같은 연속체 물리량으로 생각한다.</p>
+<p>하지만 나노미터 스케일에서는 격자의 방향과 이산적인 결합구조가 실제 응답에 드러날 수 있다.</p>
+<p>본 연구진의 분자동역학 연구에서는 서로 다른 격자방향과 균열크기를 가진 그래핀의 거동을 조사했다. 그 결과 원자수준의 파괴를 단순히 거시적인 연속체 그림을 작게 축소한 것으로만 이해해서는 곤란하다는 것을 볼 수 있다.</p>
+<p>물리적으로 생각하면 당연하다.</p>
+<p>연속체는 충분히 많은 미시 자유도가 평균화되어 매끄러운 장으로 표현될 수 있다고 가정한다.</p>
+<p>균열크기가 재료의 이산적인 구조 스케일에 가까워지면 그 평균화가 충분하지 않을 수 있다.</p>
+<p>그러면 질문도</p>
+<blockquote class="blockquote">
+<p>균열선단 주변의 연속체장은 무엇인가?</p>
+</blockquote>
+<p>에서</p>
+<blockquote class="blockquote">
+<p>어떤 결합이 하중을 전달하고 있으며, 그 결합의 방향은 어떻고, 어떻게 끊어지는가?</p>
+</blockquote>
+<p>로 바뀐다.</p>
+<p>이것은 원자모델과 파괴역학이 서로 모순된다는 뜻이 아니다.</p>
+<p><strong>어떤 모델이 그 문제에서 필요한 정보를 어느 스케일까지 담고 있는가</strong>의 문제다.</p>
+</section>
+<section id="그러면-물리를-어디까지-넣어야-할까" class="level2">
+<h2 class="anchored" data-anchor-id="그러면-물리를-어디까지-넣어야-할까">그러면 물리를 어디까지 넣어야 할까?</h2>
+<p>다음과 같은 계층을 생각할 수 있다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>영역 또는 질문</th>
+<th>가능한 표현</th>
+<th>유지되는 정보</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>전체 구조응답</td>
+<td>저해상도 연속체</td>
+<td>평형, 강성, 하중경로</td>
+</tr>
+<tr class="even">
+<td>균열 지배 구조영역</td>
+<td>확충/점성 연속체</td>
+<td>변위점프, 균열기하, 파괴에너지</td>
+</tr>
+<tr class="odd">
+<td>재료 불균질성</td>
+<td>대표 세부 셀</td>
+<td>유효 구성거동</td>
+</tr>
+<tr class="even">
+<td>고도로 국부화된 파괴영역</td>
+<td>고해상도 연속체</td>
+<td>상세 파괴과정영역</td>
+</tr>
+<tr class="odd">
+<td>원자 스케일 파괴</td>
+<td>원자모델</td>
+<td>원자결합과 이산 격자효과</td>
+</tr>
+</tbody>
+</table>
+<p>여기서 중요한 단어는 <strong>가능한</strong>이다.</p>
+<p>모든 파괴문제가 이 모든 스케일을 거쳐야 한다는 보편적인 규칙은 없다.</p>
+<p>일반적인 보 구조물을 해석하는 데 원자모델까지 사용할 필요는 거의 없다.</p>
+<p>반대로 나노스케일 재료를 연구한다면 일반적인 연속체 균열법칙이 오히려 우리가 알고 싶은 정보를 평균화해서 없애 버릴 수 있다.</p>
+<p>큰 동적 파괴문제에서 구조물 전체를 아주 고해상도 연속체 요소망으로 해석하면 정확할 수는 있어도 계산적으로 매우 비효율적일 수 있다.</p>
+<p><strong>적절한 모델은 공학적인 질문에 따라 달라진다.</strong></p>
+</section>
+<section id="다중스케일-파괴는-결국-정보배분-문제다" class="level2">
+<h2 class="anchored" data-anchor-id="다중스케일-파괴는-결국-정보배분-문제다">다중스케일 파괴는 결국 정보배분 문제다</h2>
+<p>이제 더 근본적인 관점에서 볼 수 있다.</p>
+<p>계산모델에는 사용할 수 있는 자원이 한정되어 있다.</p>
+<ul>
+<li>자유도,</li>
+<li>시간간격,</li>
+<li>구성모델의 복잡성,</li>
+<li>기하학적 복잡성,</li>
+<li>메모리,</li>
+<li>계산시간.</li>
+</ul>
+<p>다중스케일 해석의 목적은 모델을 복잡하게 만드는 것이 아니다.</p>
+<p><strong>물리적으로 중요한 정보가 생성되는 위치에 계산자원을 배분하는 것</strong>이다.</p>
+<p>파괴문제에서는</p>
+<p><span class="math display">\[
+\text{계산노력}
+\not\propto
+\text{구조물의 체적}
+\]</span></p>
+<p>이어야 한다.</p>
+<p>이상적으로는</p>
+<p><span class="math display">\[
+\text{계산노력}
+\propto
+\text{국부적인 물리현상의 난이도와 중요성}
+\]</span></p>
+<p>이어야 한다.</p>
+<p>그래서 균열과 함께 움직이는 고해상도 영역을 사용하는 매력적이다.</p>
+<p><strong>계산 해상도가 역학적인 필요성을 따라가게 할 수 있기 때문이다.</strong></p>
+</section>
+<section id="에너지와-연결해서-보면" class="level2">
+<h2 class="anchored" data-anchor-id="에너지와-연결해서-보면">에너지와 연결해서 보면</h2>
+<p>이 문제는 역학적으로 더 직접적으로 볼 수도 있다.</p>
+<p>어느 스케일에서든 모델은 역학적으로 일관된 일을 전달해야 한다.</p>
+<p>구조 스케일에서 힘과 변위는 에너지 공액이다.</p>
+<p><span class="math display">\[
+\delta W
+=
+\mathbf F\cdot\delta\mathbf u.
+\]</span></p>
+<p>연속체에서는</p>
+<p><span class="math display">\[
+\delta W_{\mathrm{int}}
+=
+\int_\Omega
+\boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}\,d\Omega.
+\]</span></p>
+<p>점성균열에서는</p>
+<p><span class="math display">\[
+\delta W_{\mathrm{coh}}
+=
+\int_{\Gamma_c}
+\mathbf t\cdot
+\delta\llbracket\mathbf u\rrbracket
+\,d\Gamma.
+\]</span></p>
+<p>다중스케일 결합에서도 서로 다른 표현 사이로 정보를 전달하면서 이 역학적인 장부가 맞아야 한다.</p>
+<p>그래서 스케일 결합을 한쪽 변위장을 다른 쪽으로 보간하는 문제 정도로 생각하면 곤란하다.</p>
+<p>핵심은 그 정보전달이</p>
+<p><span class="math display">\[
+F \leftrightarrow \sigma \leftrightarrow \varepsilon \leftrightarrow u
+\]</span></p>
+<p>를 연결하는 <strong>역학적 일을 보존하는가</strong>이다.</p>
+<p>수치적인 표현은 바뀔 수 있다.</p>
+<p><strong>역학은 바뀌지 않는다.</strong></p>
+</section>
+<section id="결국-핵심은" class="level2">
+<h2 class="anchored" data-anchor-id="결국-핵심은">결국 핵심은</h2>
+<blockquote class="blockquote">
+<p><strong>응답이 단순한 곳에서는 가장 단순한 모델을 사용하고, 파괴 때문에 문제가 어려워지는 곳에만 상세한 고해상도 물리를 사용하자.</strong></p>
+</blockquote>
+<p>이 원칙은 계산파괴역학에만 해당하지 않는다.</p>
+<p>소성영역, 접촉, 재료계면, 국부좌굴, 손상, 부식전면처럼 국부적인 현상이 훨씬 큰 시스템의 응답을 지배하는 문제에도 그대로 적용할 수 있다.</p>
+<p>가장 고해상도 모델이 항상 가장 좋은 모델은 아니다.</p>
+<p>좋은 공학모델은 질문에 답하는 데 필요한 정보는 남기고, 답에 실질적인 영향을 주지 않는 세부정보는 버린다.</p>
+<p>파괴문제에서는 <strong>균열 자체가 어디에 그 정보가 집중되어 있는지를 알려준다.</strong></p>
+<hr>
+</section>
+<section id="계산파괴역학-시리즈" class="level2">
+<h2 class="anchored" data-anchor-id="계산파괴역학-시리즈">계산파괴역학 시리즈</h2>
+<p><strong>이전 글:</strong> <a href="../../posts/alternative-crack-representations/index-ko.html">균열을 표현하려면 반드시 변위공간을 부가적으로 확충해야 하는가?</a></p>
+<p><strong>시리즈 전체 보기:</strong> <a href="../../posts/computational-fracture-overview/index-ko.html">계산파괴역학은 왜 어려운가?</a></p>
+<p><strong>다음 글:</strong> <em>확충기법은 계산역학에 무엇을 남겼는가?</em></p>
+<hr>
+</section>
+<section id="original-research" class="level2">
+<h2 class="anchored" data-anchor-id="original-research">Original research</h2>
+<p>Rabczuk, T., Zi, G., Bordas, S., &amp; Nguyen-Xuan, H. (2008).<br>
+<strong>A geometrically non-linear three-dimensional cohesive crack method for reinforced concrete structures.</strong><br>
+<em>Engineering Fracture Mechanics, 75</em>, 4740–4758.<br>
+https://doi.org/10.1016/j.engfracmech.2008.06.019</p>
+<p>Talebi, H., Zi, G., Silani, M., Samaniego, E., &amp; Rabczuk, T. (2012).<br>
+<strong>A Simple Circular Cell Method for Multilevel Finite Element Analysis.</strong><br>
+<em>Journal of Applied Mathematics, 2012</em>, Article 526846.<br>
+https://doi.org/10.1155/2012/526846</p>
+<p>Silani, M., Talebi, H., Ziaei-Rad, S., Hamouda, A. M., Zi, G., &amp; Rabczuk, T. (2015).<br>
+<strong>A three dimensional extended Arlequin method for dynamic fracture.</strong><br>
+<em>Computational Materials Science, 96</em>, 425–431.<br>
+https://doi.org/10.1016/j.commatsci.2014.07.039</p>
+<p>Yang, S.-W., Budarapu, P. R., Mahapatra, D. R., Bordas, S. P. A., Zi, G., &amp; Rabczuk, T. (2015).<br>
+<strong>A meshless adaptive multiscale method for fracture.</strong><br>
+<em>Computational Materials Science, 96</em>, 382–395.<br>
+https://doi.org/10.1016/j.commatsci.2014.08.054</p>
+<p>Budarapu, P. R., Javvaji, B., Sutrakar, V. K., Mahapatra, D. R., Zi, G., &amp; Rabczuk, T. (2015).<br>
+<strong>Crack propagation in graphene.</strong><br>
+<em>Journal of Applied Physics, 118</em>, 064307.<br>
+https://doi.org/10.1063/1.4928316</p>
+<p>Budarapu, P. R., Javvaji, B., Sutrakar, V. K., Mahapatra, D. R., Paggi, M., Zi, G., &amp; Rabczuk, T. (2016).<br>
+<strong>Lattice orientation and crack size effect on the mechanical properties of Graphene.</strong><br>
+<em>International Journal of Fracture.</em><br>
+https://doi.org/10.1007/s10704-016-0115-9</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

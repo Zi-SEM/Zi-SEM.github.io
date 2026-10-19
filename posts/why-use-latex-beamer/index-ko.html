@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="지광습">
+<meta name="dcterms.date" content="2026-09-04">
+<meta name="keywords" content="LaTeX Beamer, Beamer 강의자료, LaTeX 발표자료, 공학 강의 슬라이드, 공학 발표자료, LaTeX 수식 발표, Beamer 템플릿, LaTeX Beamer 템플릿, 역학 강의자료, 재료역학 강의, 공학 교육, 기술 프레젠테이션, TikZ Beamer, LaTeX 강의자료, 연구자료 재사용, 강의자료 재사용, 연구와 교육, 기술문서 시스템">
+<meta name="description" content="공학 강의에서 LaTeX Beamer를 계속 사용하는 이유는 예쁜 슬라이드 때문이 아니다. 수식, 기호, TikZ 그림, 역학적 유도와 참고문헌을 연구와 교육 사이에서 재사용할 수 있는 지속적인 기술문서 시스템을 만드는 방법을 설명한다.">
+
+<title>나는 왜 아직도 공학 강의에 LaTeX Beamer를 쓰는가? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research &amp; Innovation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../perspectives.html"> 
+<span class="menu-text">Engineering Perspectives</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../cartoon-log.html"> 
+<span class="menu-text">Cartoon Logs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../beyond-engineering.html"> 
+<span class="menu-text">Beyond Engineering</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">한국어</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../index-ko.html">
+ <span class="dropdown-text">홈</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research-ko.html">
+ <span class="dropdown-text">연구와 기술</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../mechanics-ko.html">
+ <span class="dropdown-text">공학역학</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../perspectives-ko.html">
+ <span class="dropdown-text">공학 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../cartoon-log-ko.html">
+ <span class="dropdown-text">카툰 일기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../beyond-engineering-ko.html">
+ <span class="dropdown-text">공학 밖의 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about-ko.html">
+ <span class="dropdown-text">소개</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#진짜-장점은-슬라이드-자체가-아니다" id="toc-진짜-장점은-슬라이드-자체가-아니다" class="nav-link active" data-scroll-target="#진짜-장점은-슬라이드-자체가-아니다">진짜 장점은 슬라이드 자체가 아니다</a></li>
+  <li><a href="#강의-내용과-시각적-정체성을-분리한다" id="toc-강의-내용과-시각적-정체성을-분리한다" class="nav-link" data-scroll-target="#강의-내용과-시각적-정체성을-분리한다">강의 내용과 시각적 정체성을 분리한다</a></li>
+  <li><a href="#beamerthemesem.sty가-발표-인프라를-담당한다" id="toc-beamerthemesem.sty가-발표-인프라를-담당한다" class="nav-link" data-scroll-target="#beamerthemesem.sty가-발표-인프라를-담당한다"><code>beamerthemeSEM.sty</code>가 발표 인프라를 담당한다</a></li>
+  <li><a href="#theme은-일을-줄여줄-때-가치가-있다" id="toc-theme은-일을-줄여줄-때-가치가-있다" class="nav-link" data-scroll-target="#theme은-일을-줄여줄-때-가치가-있다">theme은 일을 줄여줄 때 가치가 있다</a></li>
+  <li><a href="#강의-source-자체가-읽을-수-있는-기술문서여야-한다" id="toc-강의-source-자체가-읽을-수-있는-기술문서여야-한다" class="nav-link" data-scroll-target="#강의-source-자체가-읽을-수-있는-기술문서여야-한다">강의 source 자체가 읽을 수 있는 기술문서여야 한다</a></li>
+  <li><a href="#공학-강의는-이런-방식과-특히-잘-맞는다" id="toc-공학-강의는-이런-방식과-특히-잘-맞는다" class="nav-link" data-scroll-target="#공학-강의는-이런-방식과-특히-잘-맞는다">공학 강의는 이런 방식과 특히 잘 맞는다</a></li>
+  <li><a href="#실제-강의는-demo-template과-다르다" id="toc-실제-강의는-demo-template과-다르다" class="nav-link" data-scroll-target="#실제-강의는-demo-template과-다르다">실제 강의는 demo template과 다르다</a></li>
+  <li><a href="#슬라이드-순서는-software가-아니라-mechanics가-정해야-한다" id="toc-슬라이드-순서는-software가-아니라-mechanics가-정해야-한다" class="nav-link" data-scroll-target="#슬라이드-순서는-software가-아니라-mechanics가-정해야-한다">슬라이드 순서는 software가 아니라 mechanics가 정해야 한다</a></li>
+  <li><a href="#그림과-수식은-함께-일해야-한다" id="toc-그림과-수식은-함께-일해야-한다" class="nav-link" data-scroll-target="#그림과-수식은-함께-일해야-한다">그림과 수식은 함께 일해야 한다</a></li>
+  <li><a href="#beamer는-z-diagram과도-자연스럽게-연결된다" id="toc-beamer는-z-diagram과도-자연스럽게-연결된다" class="nav-link" data-scroll-target="#beamer는-z-diagram과도-자연스럽게-연결된다">Beamer는 Z Diagram과도 자연스럽게 연결된다</a></li>
+  <li><a href="#재사용은-완성된-슬라이드를-복사하는-것이-아니다" id="toc-재사용은-완성된-슬라이드를-복사하는-것이-아니다" class="nav-link" data-scroll-target="#재사용은-완성된-슬라이드를-복사하는-것이-아니다">재사용은 완성된 슬라이드를 복사하는 것이 아니다</a></li>
+  <li><a href="#연구-글쓰기-시스템과-연결된다" id="toc-연구-글쓰기-시스템과-연결된다" class="nav-link" data-scroll-target="#연구-글쓰기-시스템과-연결된다">연구 글쓰기 시스템과 연결된다</a></li>
+  <li><a href="#일관성은-단순한-미관의-문제가-아니다" id="toc-일관성은-단순한-미관의-문제가-아니다" class="nav-link" data-scroll-target="#일관성은-단순한-미관의-문제가-아니다">일관성은 단순한 미관의 문제가 아니다</a></li>
+  <li><a href="#beamer가-잘-못하는-것도-있다" id="toc-beamer가-잘-못하는-것도-있다" class="nav-link" data-scroll-target="#beamer가-잘-못하는-것도-있다">Beamer가 잘 못하는 것도 있다</a></li>
+  <li><a href="#내가-최적화하려는-것은-오늘-슬라이드-한-장의-제작시간이-아니다" id="toc-내가-최적화하려는-것은-오늘-슬라이드-한-장의-제작시간이-아니다" class="nav-link" data-scroll-target="#내가-최적화하려는-것은-오늘-슬라이드-한-장의-제작시간이-아니다">내가 최적화하려는 것은 오늘 슬라이드 한 장의 제작시간이 아니다</a></li>
+  <li><a href="#결국-왜-아직도-beamer를-쓰는가" id="toc-결국-왜-아직도-beamer를-쓰는가" class="nav-link" data-scroll-target="#결국-왜-아직도-beamer를-쓰는가">결국 왜 아직도 Beamer를 쓰는가?</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">나는 왜 아직도 공학 강의에 LaTeX Beamer를 쓰는가?</h1>
+<p class="subtitle lead">수식, 그림, 역학적 추론을 재사용할 수 있는 기술 프레젠테이션 시스템</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">공학 밖의 이야기</div>
+    <div class="quarto-category">LaTeX</div>
+    <div class="quarto-category">Beamer</div>
+    <div class="quarto-category">Engineering Education</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    공학 강의에서 LaTeX Beamer를 계속 사용하는 이유는 예쁜 슬라이드 때문이 아니다. 수식, 기호, TikZ 그림, 역학적 유도와 참고문헌을 연구와 교육 사이에서 재사용할 수 있는 지속적인 기술문서 시스템을 만드는 방법을 설명한다.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>지광습 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 4, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+<div>
+  <div class="keywords">
+    <div class="block-title">Keywords</div>
+    <p>LaTeX Beamer, Beamer 강의자료, LaTeX 발표자료, 공학 강의 슬라이드, 공학 발표자료, LaTeX 수식 발표, Beamer 템플릿, LaTeX Beamer 템플릿, 역학 강의자료, 재료역학 강의, 공학 교육, 기술 프레젠테이션, TikZ Beamer, LaTeX 강의자료, 연구자료 재사용, 강의자료 재사용, 연구와 교육, 기술문서 시스템</p>
+  </div>
+</div>
+
+</header>
+
+
+<div class="language-switch">
+<a href="../../posts/why-use-latex-beamer/index.html">English</a> | <strong>한글</strong>
+</div>
+<p>많은 발표에서는 PowerPoint가 더 편하다.</p>
+<p>그런데 나는 왜 아직도 공학 강의에 LaTeX Beamer를 사용할까?</p>
+<p>Beamer가 더 예쁜 슬라이드를 만들어 주기 때문은 아니다. 모든 발표를 LaTeX로 만들어야 한다고 생각하는 것도 아니다. 사진이나 애니메이션이 중심이고, 레이아웃이 자주 바뀌는 짧은 발표라면 다른 도구가 더 편할 수 있다.</p>
+<p>내가 Beamer를 쓰는 이유는 조금 다르다.</p>
+<p>내가 가르치는 내용의 상당 부분은 오랫동안 쌓여 온 수식, 그림, 기호, 유도과정과 기술적 논리로 이루어져 있다. 강의를 준비할 때마다 이들을 다시 만들고 싶지 않다.</p>
+<p>연구논문을 쓸 때와 강의자료를 만들 때가 <strong>같은 기술 시스템 안에 있기를 원한다.</strong></p>
+<blockquote class="blockquote">
+<p><strong>강의는 서로 떨어진 슬라이드의 모음이 아니라, 재사용할 수 있는 하나의 기술문서여야 한다.</strong></p>
+</blockquote>
+<p>그래서 나는 아직도 Beamer를 쓴다.</p>
+<section id="진짜-장점은-슬라이드-자체가-아니다" class="level2">
+<h2 class="anchored" data-anchor-id="진짜-장점은-슬라이드-자체가-아니다">진짜 장점은 슬라이드 자체가 아니다</h2>
+<p>Beamer 발표자료도 최종적으로는 PDF가 된다.</p>
+<p>목표가 단지 보기 좋은 페이지 여러 장을 만드는 것이라면 굳이 LaTeX를 고집할 이유는 많지 않다.</p>
+<p>장점은 그보다 앞단, 즉 <strong>source</strong>에서 나타난다.</p>
+<p>공학 강의에서는 계속 같은 종류의 객체를 사용한다.</p>
+<ul>
+<li>수식</li>
+<li>기호와 표기</li>
+<li>그림</li>
+<li>TikZ 도면</li>
+<li>참고문헌</li>
+<li>정의</li>
+<li>예제</li>
+<li>유도과정</li>
+<li>반복되는 시각적 구조</li>
+</ul>
+<p>이들은 연구논문, 보고서, 책, 기술노트에서도 다시 등장한다.</p>
+<p>LaTeX를 사용하면 이들을 발표자료에만 종속된 그림으로 만들어 버리지 않고 <strong>구조화된 기술 콘텐츠</strong>로 유지할 수 있다.</p>
+<p>내 작업 흐름을 개념적으로 쓰면 다음과 같다.</p>
+<pre class="text"><code>기술 지식
+      ↓
+수식 + 표기 + 그림 + 참고문헌
+      ↓
+LaTeX source
+      ├──→ 연구논문
+      ├──→ 기술노트
+      ├──→ Beamer 강의
+      └──→ 이후의 교육자료</code></pre>
+<p>이것은 내가 연구 글쓰기 시스템에서 사용하는 철학과 같다.</p>
+<p><strong>최종 문서는 바뀌더라도 내용은 지속되어야 한다.</strong></p>
+</section>
+<section id="강의-내용과-시각적-정체성을-분리한다" class="level2">
+<h2 class="anchored" data-anchor-id="강의-내용과-시각적-정체성을-분리한다">강의 내용과 시각적 정체성을 분리한다</h2>
+<p>내 Beamer 시스템은 역할을 단순하게 나눈다.</p>
+<pre class="text"><code>강의 내용
+      ↓
+lecture .tex
+      ↓
+beamerthemeSEM.sty
+      ↓
+SEM header + colors + blocks + navigation
+      ↓
+presentation PDF</code></pre>
+<p>강의 <code>.tex</code> 파일에는 실제로 가르치고 싶은 내용이 들어간다.</p>
+<p>theme은 그 내용이 어떻게 보일지를 결정한다.</p>
+<p>이 구분이 중요하다.</p>
+<p>절 제목, block, navigation, 색상이나 header의 모양을 바꾸고 싶다고 해서 모든 강의 파일을 하나씩 수정하고 싶지는 않다.</p>
+<p>새 강의를 만들 때마다 디자인부터 다시 시작하고 싶지도 않다.</p>
+<p>시각적 언어는 이미 만들어져 있어야 한다.</p>
+<div id="fig-template" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-template-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig01.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:92.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-template-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: 내 SEM Beamer 템플릿은 강의마다 같은 시각적 정체성을 유지한다. 왼쪽에는 Z Diagram과 고려대학교 표식, 오른쪽에는 Structural Engineering &amp; Mechanics, 위쪽에는 section navigation, 아래에는 일관된 frame 구조가 있다. 중요한 것은 장식이 아니라 발표 스타일과 강의 내용을 분리했다는 점이다.
+</figcaption>
+</figure>
+</div>
+<p>그림 <a href="#fig-template" class="quarto-xref">1</a>의 템플릿은 강의가 달라져도 일부러 비슷하게 보이도록 만들었다.</p>
+<p>이 일관성이 강의를 준비할 때 결정해야 할 것을 줄여준다.</p>
+<p>나는 디자인 대신 역학에 집중할 수 있다.</p>
+</section>
+<section id="beamerthemesem.sty가-발표-인프라를-담당한다" class="level2">
+<h2 class="anchored" data-anchor-id="beamerthemesem.sty가-발표-인프라를-담당한다"><code>beamerthemeSEM.sty</code>가 발표 인프라를 담당한다</h2>
+<p>시각적 계층의 중심에는 <code>beamerthemeSEM.sty</code>가 있다.</p>
+<p>연구 글쓰기 환경에서 공용 style 파일이 맡는 역할과 비슷하다.</p>
+<p>theme은 과학기술 내용을 담는 것이 아니라 반복되는 발표 동작을 규정한다.</p>
+<p>SEM header, frame title, block, navigation처럼 슬라이드마다 계속 등장하는 요소를 한 곳에서 관리한다.</p>
+<p>작은 template presentation에는 title slide, objectives, outline, ordinary block, alert block, example block, 마지막 question slide가 들어 있다.</p>
+<p>여기서 중요한 구분은 이것이다.</p>
+<pre class="text"><code>강의 내용은 매번 바뀐다
+발표 인프라는 지속된다</code></pre>
+<p>공학적으로 보면 modular design과 같은 원리다.</p>
+<p>자주 바뀌는 부분과 안정적으로 유지할 부분을 분리한다.</p>
+</section>
+<section id="theme은-일을-줄여줄-때-가치가-있다" class="level2">
+<h2 class="anchored" data-anchor-id="theme은-일을-줄여줄-때-가치가-있다">theme은 일을 줄여줄 때 가치가 있다</h2>
+<p>presentation theme을 꾸미는 데 너무 많은 시간을 쓸 수도 있다.</p>
+<p>그렇게 되면 목적이 뒤집힌다.</p>
+<p>개인 Beamer theme의 가치는 무한한 디자인 선택지를 준다는 데 있지 않다.</p>
+<p>오히려 반대다.</p>
+<p><strong>내가 해야 할 선택을 줄여준다.</strong></p>
+<p>이미 알고 있다.</p>
+<ul>
+<li>frame title이 어떻게 보일지</li>
+<li>section 정보가 어디에 나타날지</li>
+<li>일반 block이 어떤 모양일지</li>
+<li>alert는 어떻게 구분할지</li>
+<li>example은 어떻게 표시할지</li>
+<li>발표를 어떻게 끝낼지</li>
+</ul>
+<p>예를 들어 내 template에서는 standard, alert, example block이 시각적으로 구분된다.</p>
+<p>이들은 단순히 색만 다른 것이 아니다.</p>
+<p>강의에서 역할이 다르다.</p>
+<pre class="text"><code>standard block  → 핵심 기술 내용
+alert block     → 주의, 한계, 반드시 볼 내용
+example block   → 앞의 역학을 실제 문제에 적용</code></pre>
+<p>이런 반복되는 시각 문법이 있으면 학생은 모든 문장을 읽기 전에 정보의 역할을 먼저 알 수 있다.</p>
+</section>
+<section id="강의-source-자체가-읽을-수-있는-기술문서여야-한다" class="level2">
+<h2 class="anchored" data-anchor-id="강의-source-자체가-읽을-수-있는-기술문서여야-한다">강의 source 자체가 읽을 수 있는 기술문서여야 한다</h2>
+<p>Beamer를 선호하는 두 번째 이유는 presentation source 자체가 기술문서로 남기 때문이다.</p>
+<p>수식은 여전히 수식이다.</p>
+<p>예를 들어</p>
+<p><span class="math display">\[
+\sigma = E\varepsilon
+\]</span></p>
+<p>를 그림으로 바꾸어 수동으로 배치할 필요가 없다.</p>
+<p>유도과정은 수학적 문장의 연속으로 남는다.</p>
+<p>그림은 파일을 참조한 상태로 남는다.</p>
+<p>TikZ 그림은 기하학적 구성으로 남는다.</p>
+<p>즉, source 안에 강의의 논리 구조가 상당 부분 보존된다.</p>
+<p>몇 년 뒤 강의를 다시 고칠 때 이 차이가 크다.</p>
+<p>source를 검색하고, 수식을 복사하고, 기호를 바꾸고, 유도과정을 옮기고, 그림을 다른 강의에서 다시 사용할 수 있다.</p>
+<p>옛날 슬라이드 이미지를 보면서 다시 해석할 필요가 없다.</p>
+<blockquote class="blockquote">
+<p><strong>슬라이드는 출력물이다. 재사용할 자산은 기술 source다.</strong></p>
+</blockquote>
+</section>
+<section id="공학-강의는-이런-방식과-특히-잘-맞는다" class="level2">
+<h2 class="anchored" data-anchor-id="공학-강의는-이런-방식과-특히-잘-맞는다">공학 강의는 이런 방식과 특히 잘 맞는다</h2>
+<p>공학역학은 보통 서로 독립된 사실을 나열해서 가르치는 과목이 아니다.</p>
+<p>결과는 물리적인 추론의 연쇄에서 나온다.</p>
+<p>익숙한 축방향 변형식을 생각해 보자.</p>
+<p><span class="math display">\[
+u=\frac{FL}{EA}.
+\]</span></p>
+<p>이 식 하나를 슬라이드에 올리는 것은 쉽다.</p>
+<p>하지만 학생에게 그렇게 이해시키고 싶지는 않다.</p>
+<p>중요한 구조는</p>
+<p><span class="math display">\[
+F
+\rightarrow
+\sigma
+\rightarrow
+\varepsilon
+\rightarrow
+u
+\]</span></p>
+<p>이다.</p>
+<p>균일한 축하중 부재에서는 평형으로부터</p>
+<p><span class="math display">\[
+\sigma=\frac{F}{A},
+\]</span></p>
+<p>구성관계로부터</p>
+<p><span class="math display">\[
+\varepsilon=\frac{\sigma}{E},
+\]</span></p>
+<p>적합조건으로부터</p>
+<p><span class="math display">\[
+u=\varepsilon L
+\]</span></p>
+<p>을 얻는다.</p>
+<p>그 다음에야</p>
+<p><span class="math display">\[
+u=\frac{FL}{EA}
+\]</span></p>
+<p>가 나온다.</p>
+<p>식은 추론의 시작이 아니라 <strong>끝</strong>이다.</p>
+<p>기술 발표 시스템은 이런 논리를 보존하기 쉽게 만들어야 한다.</p>
+</section>
+<section id="실제-강의는-demo-template과-다르다" class="level2">
+<h2 class="anchored" data-anchor-id="실제-강의는-demo-template과-다르다">실제 강의는 demo template과 다르다</h2>
+<p>작은 Beamer template은 몇 장의 슬라이드로도 충분하다.</p>
+<p>하지만 실제 강의는 훨씬 복잡하다.</p>
+<p>예를 들어 내 축하중 부재 강의는 50장이 넘고 다음 내용이 연결되어 진행된다.</p>
+<pre class="text"><code>축방향 응답
+      ↓
+변위, 변형률, 응력장
+      ↓
+평형
+      ↓
+부정정계
+      ↓
+비역학적 변형
+      ↓
+경사면의 응력
+      ↓
+일과 변형에너지
+      ↓
+심화 주제</code></pre>
+<p>이 정도 규모가 되면 template의 가치가 더 분명해진다.</p>
+<p>section 구조가 계속 보인다.</p>
+<p>시각적 언어가 유지된다.</p>
+<p>수식은 같은 표기법을 쓴다.</p>
+<p>예제를 넣을 때마다 새 레이아웃을 발명할 필요가 없다.</p>
+<p>결국 발표자료는 안정된 틀 안에서 이어지는 하나의 긴 기술 논증이 된다.</p>
+<div id="fig-real-lecture" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-real-lecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig02.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:78.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-real-lecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: 실제 재료역학 강의에서도 같은 Beamer 인프라를 사용한다. 이 슬라이드는 거의 전부 수식으로 이루어져 있다. 발표 시스템은 뒤로 물러나고 역학 자체가 중심이 된다.
+</figcaption>
+</figure>
+</div>
+<p>그림 <a href="#fig-real-lecture" class="quarto-xref">2</a>은 내가 기술 슬라이드에서 중요하게 생각하는 점을 보여준다.</p>
+<p>모든 슬라이드가 시각적으로 화려할 필요는 없다.</p>
+<p>때로는 <strong>수식 자체가 콘텐츠</strong>다.</p>
+<p>발표 스타일은 그것을 방해하지 않고 받쳐주면 된다.</p>
+</section>
+<section id="슬라이드-순서는-software가-아니라-mechanics가-정해야-한다" class="level2">
+<h2 class="anchored" data-anchor-id="슬라이드-순서는-software가-아니라-mechanics가-정해야-한다">슬라이드 순서는 software가 아니라 mechanics가 정해야 한다</h2>
+<p>공학 강의를 만들 때 나는 문제의 물리적 논리에 따라 순서를 정하려고 한다.</p>
+<p>축하중 부재라면 먼저 형상과 경계조건을 이상화하고, 변위장을 정의하고, 적합조건에서 변형률을 얻고, 구성법칙에서 응력을 얻고, 마지막에 평형을 만족시킬 수 있다.</p>
+<p>부정정 문제에서는 이 구조가 특히 중요하다.</p>
+<p>평형만으로는 충분하지 않다.</p>
+<p>적합조건과 구성관계가 함께 들어와야 한다.</p>
+<p>따라서 발표자료는 추가 방정식이 왜 필요한지를 보여줄 수 있다.</p>
+<p>단순히 풀이 절차만 제시하는 것이 아니다.</p>
+<p>여기에는 더 일반적인 교육 원칙이 있다.</p>
+<blockquote class="blockquote">
+<p><strong>슬라이드의 흐름은 역학의 추론을 재현해야 한다.</strong></p>
+</blockquote>
+<p>software가 논증의 순서를 정하면 안 된다.</p>
+</section>
+<section id="그림과-수식은-함께-일해야-한다" class="level2">
+<h2 class="anchored" data-anchor-id="그림과-수식은-함께-일해야-한다">그림과 수식은 함께 일해야 한다</h2>
+<p>공학적 설명에서는 둘 다 필요할 때가 많다.</p>
+<p>그림은 형상과 물리적 의미를 보여준다.</p>
+<p>수식은 관계를 정확하게 표현한다.</p>
+<p>둘 중 하나가 항상 슬라이드를 지배해야 하는 것은 아니다.</p>
+<p>그래서 내 강의자료에서는 문제에 따라 여러 배치를 사용한다.</p>
+<ul>
+<li>그림 옆에 수식</li>
+<li>그림 아래 compact block</li>
+<li>유도과정이 frame 대부분을 차지하는 구성</li>
+<li>관련 그림 두 개를 나란히 배치</li>
+<li>개념도를 거의 슬라이드 전체에 배치</li>
+</ul>
+<p>학생이 무엇을 보아야 하는지에 따라 layout을 정한다.</p>
+<p>일관된 theme이 필요하지만 모든 슬라이드의 배치가 같을 필요는 없다.</p>
+<p>일관성이란 모든 슬라이드가 똑같이 생긴다는 뜻이 아니다.</p>
+<p><strong>다른 배치라도 같은 발표 언어에 속한다는 뜻이다.</strong></p>
+</section>
+<section id="beamer는-z-diagram과도-자연스럽게-연결된다" class="level2">
+<h2 class="anchored" data-anchor-id="beamer는-z-diagram과도-자연스럽게-연결된다">Beamer는 Z Diagram과도 자연스럽게 연결된다</h2>
+<p>내 재료역학 강의에서 특히 중요한 예가 하나 있다.</p>
+<p>일과 변형에너지를 설명한 뒤 구조 수준과 재료점 수준의 표현을 에너지 켤레성(energy conjugacy)으로 연결한다.</p>
+<p>구조 수준에서는</p>
+<p><span class="math display">\[
+(F,u)
+\]</span></p>
+<p>가 에너지 켤레쌍이고,</p>
+<p>재료점 수준에서는</p>
+<p><span class="math display">\[
+(\sigma,\varepsilon)
+\]</span></p>
+<p>가 또 하나의 켤레쌍이다.</p>
+<p>이들을 연결하면</p>
+<p><span class="math display">\[
+F
+\leftrightarrow
+\sigma
+\leftrightarrow
+\varepsilon
+\leftrightarrow
+u
+\]</span></p>
+<p>가 된다.</p>
+<p>평형은 힘과 응력을 연결한다.</p>
+<p>구성법칙은 응력과 변형률을 연결한다.</p>
+<p>적합조건은 변형률과 변위를 연결한다.</p>
+<p>그리고 에너지는 구조 수준과 재료점 수준을 더 깊게 연결한다.</p>
+<div id="fig-zdiagram" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-zdiagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Fig03.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:78.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zdiagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: 재료역학 강의에서 사용하는 에너지 켤레 관계 그림. 구조 수준의 힘-변위와 재료점 수준의 응력-변형률을 연결한다. Beamer 슬라이드는 단순히 공식을 보여주는 것이 아니라 여러 강의에서 반복되는 역학의 틀을 조직하는 도구가 될 수 있다.
+</figcaption>
+</figure>
+</div>
+<p>증분 외력 일은</p>
+<p><span class="math display">\[
+dW_{\mathrm{ext}} = F\,du,
+\]</span></p>
+<p>이고, 여기서 사용한 1차원 형태의 내부 일은</p>
+<p><span class="math display">\[
+dW_{\mathrm{int}}
+=
+\int_{\Omega}
+\sigma\,d\varepsilon\,d\Omega
+\]</span></p>
+<p>로 쓸 수 있다.</p>
+<p>이 관계는 나중에 내가 <strong>Z Diagram</strong>이라고 부르는 틀의 일부가 되었다.</p>
+<p>이 예가 바로 지속적인 기술 source가 중요한 이유를 보여준다.</p>
+<p>어떤 생각은 강의에서 처음 등장할 수 있다.</p>
+<p>이후 반복되는 교육의 틀이 될 수 있다.</p>
+<p>다른 강의, 기술 글, 더 넓은 역학 설명으로 이어질 수도 있다.</p>
+<p>슬라이드는 일시적이다.</p>
+<p><strong>아이디어는 그렇지 않다.</strong></p>
+</section>
+<section id="재사용은-완성된-슬라이드를-복사하는-것이-아니다" class="level2">
+<h2 class="anchored" data-anchor-id="재사용은-완성된-슬라이드를-복사하는-것이-아니다">재사용은 완성된 슬라이드를 복사하는 것이 아니다</h2>
+<p>여기서 구분해야 할 것이 있다.</p>
+<p>완성된 슬라이드를 엄청나게 많이 모아 놓고 새 강의에 그대로 복사하는 것이 목표는 아니다.</p>
+<p>그렇게 하면 기호가 서로 다르고 이야기의 흐름이 약한 발표가 되기 쉽다.</p>
+<p>내가 재사용하고 싶은 것은 <strong>기술 객체</strong>다.</p>
+<pre class="text"><code>수식
+그림
+TikZ 도면
+정의
+표기
+참고문헌
+유도과정
+개념도</code></pre>
+<p>이들은 새로운 목적에 맞게 다시 배열할 수 있다.</p>
+<p>연구논문과 강의에서 같은 수식을 쓰더라도 설명 방식은 다를 수 있다.</p>
+<p>학술대회 발표에서는 같은 그림을 쓰되 다른 결과를 강조할 수 있다.</p>
+<p>대학원 강의에서는 연구발표에서 생략한 유도과정이 필요할 수도 있다.</p>
+<p>즉, 재사용은 <strong>완성된 슬라이드보다 아래 단계</strong>에서 일어난다.</p>
+<p>그래야 더 유연하다.</p>
+</section>
+<section id="연구-글쓰기-시스템과-연결된다" class="level2">
+<h2 class="anchored" data-anchor-id="연구-글쓰기-시스템과-연결된다">연구 글쓰기 시스템과 연결된다</h2>
+<p>이 Beamer workflow는 내가 논문을 쓰는 방식과 따로 떨어져 있지 않다.</p>
+<p>연구 글쓰기 시스템도 지속적인 LaTeX 인프라를 중심으로 한다.</p>
+<p>공용 패키지, 공용 명령어, 안정된 표기, 재사용 가능한 그림, master reference system을 사용한다.</p>
+<p>그래서 연구에서 교육으로 넘어갈 때 비교적 직접적으로 연결할 수 있다.</p>
+<pre class="text"><code>연구 프로젝트
+      ↓
+논문
+      ↓
+수식 + 그림 + 표기 + 참고문헌
+      ↓
+Beamer
+      ↓
+연구발표 또는 강의</code></pre>
+<p>논문에서 정성스럽게 만든 수식을 presentation software에서 다시 만들 필요가 없다.</p>
+<p>기술 그림도 재사용할 수 있다.</p>
+<p>수학 명령어는 같은 표기법을 유지시킨다.</p>
+<p>참고문헌도 같은 bibliographic system에 연결할 수 있다.</p>
+<p>이 시스템은 오래 사용할수록 더 가치가 커진다.</p>
+<p>새로운 문서 하나하나가 같은 기술환경에 재사용 가능한 자료를 추가하기 때문이다.</p>
+</section>
+<section id="일관성은-단순한-미관의-문제가-아니다" class="level2">
+<h2 class="anchored" data-anchor-id="일관성은-단순한-미관의-문제가-아니다">일관성은 단순한 미관의 문제가 아니다</h2>
+<p>같은 Beamer theme을 쓰면 강의가 시각적으로 통일된다.</p>
+<p>하지만 공학에서는 일관성이 더 중요한 역할을 한다.</p>
+<p>기호가 일관되어야 한다.</p>
+<p>부호 규약이 일관되어야 한다.</p>
+<p>좌표계가 일관되어야 한다.</p>
+<p>같은 기호가 세 장 뒤에서 조용히 다른 뜻으로 바뀌어서는 안 된다.</p>
+<p>시각적 시스템이 이런 규율을 도와줄 수는 있지만 대신할 수는 없다.</p>
+<p>내가 강의자료를 source 형태로 유지하는 장점 중 하나는 이런 기술적 불일치를 찾고 고치기 쉽다는 것이다.</p>
+<p>연구 글쓰기에서도 같은 원칙이 적용된다.</p>
+<blockquote class="blockquote">
+<p><strong>표현의 일관성이 중요한 이유는 사고의 일관성을 지지하기 때문이다.</strong></p>
+</blockquote>
+</section>
+<section id="beamer가-잘-못하는-것도-있다" class="level2">
+<h2 class="anchored" data-anchor-id="beamer가-잘-못하는-것도-있다">Beamer가 잘 못하는 것도 있다</h2>
+<p>나는 아직 Beamer를 쓰지만 모든 발표에 이상적이라고 생각하지는 않는다.</p>
+<p>분명한 단점이 있다.</p>
+<p>그래픽 프로그램처럼 객체를 끌어다 놓는 것보다 layout 수정이 느릴 수 있다.</p>
+<p>사진 중심의 발표는 다른 도구에서 더 빨리 만들 수 있다.</p>
+<p>복잡한 animation은 Beamer의 장점이 아니다.</p>
+<p>수학이 거의 없는 일회성 발표라면 LaTeX workflow의 이득이 크지 않을 수도 있다.</p>
+<p>그리고 Beamer로 만들었다고 좋은 발표가 되는 것도 아니다.</p>
+<p>지나치게 빽빽하고 따라가기 어려운 슬라이드는 어떤 도구로도 만들 수 있다.</p>
+<p>Beamer를 쓰는 이유는 취향이나 이념이 아니다.</p>
+<p>실용적인 이유다.</p>
+<blockquote class="blockquote">
+<p><strong>발표자료가 더 큰 재사용 가능한 기술 지식체계의 일부일 때 Beamer의 가치가 커진다.</strong></p>
+</blockquote>
+<p>내 공학 강의의 상당 부분이 바로 그런 경우다.</p>
+</section>
+<section id="내가-최적화하려는-것은-오늘-슬라이드-한-장의-제작시간이-아니다" class="level2">
+<h2 class="anchored" data-anchor-id="내가-최적화하려는-것은-오늘-슬라이드-한-장의-제작시간이-아니다">내가 최적화하려는 것은 오늘 슬라이드 한 장의 제작시간이 아니다</h2>
+<p>오늘 한 장의 슬라이드를 만드는 시간만 최소화하려 한다면 다른 도구를 선택할 수도 있다.</p>
+<p>하지만 내가 최적화하는 것은 <strong>기술 콘텐츠의 수명</strong>이다.</p>
+<p>강의는 내년에 다시 할 수 있다.</p>
+<p>한 수식은 다른 과목에 다시 등장할 수 있다.</p>
+<p>한 그림은 연구발표에도 사용할 수 있다.</p>
+<p>유도과정은 나중에 Engineering Mechanics 글이 될 수 있다.</p>
+<p>하나의 개념적 관계가 나중에는 Z Diagram의 일부가 될 수도 있다.</p>
+<p>그래서 기술 내용이 그날의 발표가 끝난 뒤에도 살아남는 시스템을 선호한다.</p>
+<p>효과는 누적된다.</p>
+<pre class="text"><code>첫 강의
+    ↓
+재사용 가능한 source
+    ↓
+수정
+    ↓
+다른 강의
+    ↓
+연구발표
+    ↓
+기술 글
+    ↓
+장기 지식 시스템</code></pre>
+<p>오래 사용할수록 시스템의 가치가 커진다.</p>
+</section>
+<section id="결국-왜-아직도-beamer를-쓰는가" class="level2">
+<h2 class="anchored" data-anchor-id="결국-왜-아직도-beamer를-쓰는가">결국 왜 아직도 Beamer를 쓰는가?</h2>
+<p>내가 LaTeX Beamer를 계속 쓰는 이유를 단순히 “공학자는 수식을 많이 쓰기 때문”이라고 설명하고 싶지는 않다.</p>
+<p>더 중요한 이유는 <strong>공학 지식이 매우 재사용 가능하기 때문</strong>이다.</p>
+<p>수식, 표기, 그림, 유도과정과 개념도를 전달 형식이 바뀔 때마다 다시 만들 필요는 없다.</p>
+<p>그래서 내 Beamer 시스템은 연구 글쓰기 시스템과 같은 원칙을 따른다.</p>
+<blockquote class="blockquote">
+<p><strong>지속적으로 남아야 할 기술 콘텐츠와 일시적인 표현 형식을 분리한다.</strong></p>
+</blockquote>
+<p>그리고 역학을 가르칠 때는 한 가지 원칙을 더 붙이고 싶다.</p>
+<blockquote class="blockquote">
+<p><strong>슬라이드의 순서는 presentation software의 기능이 아니라 역학의 구조가 결정해야 한다.</strong></p>
+</blockquote>
+<p>이것이 내가 아직도 공학 강의에 LaTeX Beamer를 쓰는 이유다.</p>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further reading</h2>
+<p>이 글은 내가 실제로 사용하는 SEM Beamer template과 재료역학 강의노트를 바탕으로 작성했다.</p>
+<p>관련 연구 글쓰기 workflow는 다음 글에서 설명한다.</p>
+<p><a href="../latex-research-workflow/"><strong>연구 글쓰기를 위한 재사용 가능한 LaTeX 시스템을 어떻게 만들었는가</strong></a></p>
+<p>강의에서 사용하는 역학적 연결 구조는 Zi’s Structural Engineering &amp; Mechanics의 Z Diagram 부분과 이어진다.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

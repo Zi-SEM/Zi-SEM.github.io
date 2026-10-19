@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="지광습">
+<meta name="dcterms.date" content="2026-09-01">
+<meta name="keywords" content="변형률 텐서, 미소변형률, 변위구배, 응력 변형률 관계, 변형에너지, 변형에너지 밀도, 내부 가상일, 가상일의 원리, 응력 변형률 에너지 공액, 텐서 축약, 이중 축약, 코시 응력, 연속체역학, 유한변형, Green-Lagrange 변형률, Piola-Kirchhoff 응력, Z Diagram">
+<meta name="description" content="왜 변형률은 변위구배의 대칭 부분일까? 표면력의 일에서 출발하여 평형, 가상일, 에너지 공액 관계를 통해 변형률 텐서가 자연스럽게 나타나는 과정을 설명한다.">
+
+<title>변형률 텐서는 어디에서 나타나는가? – Zi’s Structural Engineering &amp; Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KMJ4BZJHNR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KMJ4BZJHNR', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Zi’s Structural Engineering &amp; Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research &amp; Innovation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../mechanics.html"> 
+<span class="menu-text">Engineering Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../perspectives.html"> 
+<span class="menu-text">Engineering Perspectives</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../cartoon-log.html"> 
+<span class="menu-text">Cartoon Logs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../beyond-engineering.html"> 
+<span class="menu-text">Beyond Engineering</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">About Zi-SEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lab-orientation.html">
+ <span class="dropdown-text">Lab Orientation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">한국어</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../index-ko.html">
+ <span class="dropdown-text">홈</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research-ko.html">
+ <span class="dropdown-text">연구와 기술</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../mechanics-ko.html">
+ <span class="dropdown-text">공학역학</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../perspectives-ko.html">
+ <span class="dropdown-text">공학 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../cartoon-log-ko.html">
+ <span class="dropdown-text">카툰 일기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../beyond-engineering-ko.html">
+ <span class="dropdown-text">공학 밖의 이야기</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about-ko.html">
+ <span class="dropdown-text">소개</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@semlabtv4824"> <i class="bi bi-youtube" role="img" aria-label="SEMLAB YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#응력에서-변형률로" id="toc-응력에서-변형률로" class="nav-link active" data-scroll-target="#응력에서-변형률로">응력에서 변형률로</a></li>
+  <li><a href="#표면력이-하는-일에서-시작하자" id="toc-표면력이-하는-일에서-시작하자" class="nav-link" data-scroll-target="#표면력이-하는-일에서-시작하자">표면력이 하는 일에서 시작하자</a></li>
+  <li><a href="#경계에서-체적으로" id="toc-경계에서-체적으로" class="nav-link" data-scroll-target="#경계에서-체적으로">경계에서 체적으로</a></li>
+  <li><a href="#평형을-적용하면-체적력-항이-사라진다" id="toc-평형을-적용하면-체적력-항이-사라진다" class="nav-link" data-scroll-target="#평형을-적용하면-체적력-항이-사라진다">평형을 적용하면 체적력 항이 사라진다</a></li>
+  <li><a href="#변위구배에는-서로-다른-두-운동이-들어-있다" id="toc-변위구배에는-서로-다른-두-운동이-들어-있다" class="nav-link" data-scroll-target="#변위구배에는-서로-다른-두-운동이-들어-있다">변위구배에는 서로 다른 두 운동이 들어 있다</a></li>
+  <li><a href="#왜-회전은-일에서-사라지는가" id="toc-왜-회전은-일에서-사라지는가" class="nav-link" data-scroll-target="#왜-회전은-일에서-사라지는가">왜 회전은 일에서 사라지는가?</a></li>
+  <li><a href="#변형률-텐서는-왜-나타나는가" id="toc-변형률-텐서는-왜-나타나는가" class="nav-link" data-scroll-target="#변형률-텐서는-왜-나타나는가">변형률 텐서는 왜 나타나는가?</a></li>
+  <li><a href="#내부-일에서-변형에너지로" id="toc-내부-일에서-변형에너지로" class="nav-link" data-scroll-target="#내부-일에서-변형에너지로">내부 일에서 변형에너지로</a></li>
+  <li><a href="#z-diagram과의-연결" id="toc-z-diagram과의-연결" class="nav-link" data-scroll-target="#z-diagram과의-연결">Z Diagram과의 연결</a></li>
+  <li><a href="#미소변형을-넘어서" id="toc-미소변형을-넘어서" class="nav-link" data-scroll-target="#미소변형을-넘어서">미소변형을 넘어서</a></li>
+  <li><a href="#기준-배치" id="toc-기준-배치" class="nav-link" data-scroll-target="#기준-배치">기준 배치</a></li>
+  <li><a href="#하나의-원리-여러-표현" id="toc-하나의-원리-여러-표현" class="nav-link" data-scroll-target="#하나의-원리-여러-표현">하나의 원리, 여러 표현</a></li>
+  <li><a href="#강의-영상" id="toc-강의-영상" class="nav-link" data-scroll-target="#강의-영상">강의 영상</a></li>
+  <li><a href="#결국-핵심은" id="toc-결국-핵심은" class="nav-link" data-scroll-target="#결국-핵심은">결국 핵심은</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">변형률 텐서는 어디에서 나타나는가?</h1>
+<p class="subtitle lead">표면력의 일에서 내부 변형에너지까지</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">공학역학</div>
+    <div class="quarto-category">재료역학</div>
+    <div class="quarto-category">변형률</div>
+    <div class="quarto-category">연속체역학</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    왜 변형률은 변위구배의 대칭 부분일까? 표면력의 일에서 출발하여 평형, 가상일, 에너지 공액 관계를 통해 변형률 텐서가 자연스럽게 나타나는 과정을 설명한다.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>지광습 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 1, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+<div>
+  <div class="keywords">
+    <div class="block-title">Keywords</div>
+    <p>변형률 텐서, 미소변형률, 변위구배, 응력 변형률 관계, 변형에너지, 변형에너지 밀도, 내부 가상일, 가상일의 원리, 응력 변형률 에너지 공액, 텐서 축약, 이중 축약, 코시 응력, 연속체역학, 유한변형, Green-Lagrange 변형률, Piola-Kirchhoff 응력, Z Diagram</p>
+  </div>
+</div>
+
+</header>
+
+
+<div class="language-switch">
+<p><a href="index.html">English</a> | <strong>한글</strong></p>
+</div>
+<section id="응력에서-변형률로" class="level2">
+<h2 class="anchored" data-anchor-id="응력에서-변형률로">응력에서 변형률로</h2>
+<p>앞 글에서는 응력 텐서가 실제로 무엇을 나타내는지 살펴보았다.</p>
+<p>물체 내부에 가상의 절단면을 만들면 Cauchy 응력 텐서는 그 면의 법선벡터를 표면력벡터로 대응시킨다.</p>
+<p><span class="math display">\[
+\mathbf n
+\quad\xrightarrow{\;\boldsymbol{\sigma}\;}
+\quad
+\mathbf t^{(\mathbf n)},
+\]</span></p>
+<p>즉,</p>
+<p><span class="math display">\[
+\mathbf t^{(\mathbf n)}
+=
+\boldsymbol{\sigma}\cdot\mathbf n.
+\]</span></p>
+<p>응력 텐서는 임의 방향의 내부 면을 통해 힘이 어떻게 전달되는지를 나타낸다.</p>
+<p>그런데 여기서 다음 질문이 자연스럽게 생긴다.</p>
+<p><strong>기계적인 일을 생각할 때 응력과 자연스럽게 짝을 이루는 변형량은 무엇인가?</strong></p>
+<p>고체역학과 유한요소법에서는 내부 가상일을 흔히</p>
+<p><span class="math display">\[
+\delta W_{\mathrm{int}}
+=
+\int_\Omega
+\boldsymbol{\sigma}:
+\delta\boldsymbol{\varepsilon}
+\,dV
+\]</span></p>
+<p>로 쓴다. 그런데 왜 여기에 변형률 텐서 <span class="math inline">\(\boldsymbol{\varepsilon}\)</span>가 등장하는가? 왜 단순히 변위구배 <span class="math inline">\(\nabla\mathbf u\)</span>를 쓰지 않는가?</p>
+<p>이 글에서는 이 식을 출발점으로 받아들이지 않는다. <strong>표면력이 하는 일에서 시작하여 평형과 응력 텐서의 대칭성을 적용하면 변형률 텐서가 스스로 나타나는 과정</strong>을 따라가 본다.</p>
+<section id="이-글에서-사용하는-텐서-표기" class="level3">
+<h3 class="anchored" data-anchor-id="이-글에서-사용하는-텐서-표기">이 글에서 사용하는 텐서 표기</h3>
+<p>텐서 연산기호 때문에 역학의 핵심을 놓치지 않도록 이 글에서는 필요한 경우 연산을 명시한다.</p>
+<p><span class="math display">\[
+\otimes:\;\text{tensor product, 축약 0회},
+\qquad
+\cdot:\;\text{single contraction, 축약 1회},
+\qquad
+::\;\text{double contraction, 축약 2회}.
+\]</span></p>
+<p>따라서 <span class="math inline">\(\boldsymbol{\sigma}\cdot\mathbf n\)</span>은 한 번의 축약이고, <span class="math inline">\(\boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}\)</span>는 두 번의 축약이다. 다만 이것은 Zi-SEM에서 연산구조를 분명하게 보여주기 위해 사용하는 표기 규칙이다. 문헌마다 기호 사용은 다를 수 있으므로, 결국 가장 확실한 방법은 <strong>반복지수와 남아 있는 자유지수의 수를 확인하는 것</strong>이다.</p>
+</section>
+</section>
+<section id="표면력이-하는-일에서-시작하자" class="level2">
+<h2 class="anchored" data-anchor-id="표면력이-하는-일에서-시작하자">표면력이 하는 일에서 시작하자</h2>
+<p>영역 <span class="math inline">\(\Omega\)</span>와 경계 <span class="math inline">\(\partial\Omega\)</span>를 갖는 물체를 생각하자. 경계에 작용하는 면력을 <span class="math inline">\(\mathbf t\)</span>, 허용되는 가상변위를 <span class="math inline">\(\delta\mathbf u\)</span>라 하면 표면력이 하는 가상일은</p>
+<p><span class="math display">\[
+\delta W_t
+=
+\int_{\partial\Omega}
+\mathbf t\cdot\delta\mathbf u
+\,dA.
+\]</span></p>
+<p>Cauchy의 면력법칙</p>
+<p><span class="math display">\[
+\mathbf t=\boldsymbol{\sigma}\cdot\mathbf n
+\]</span></p>
+<p>을 대입하면</p>
+<p><span class="math display">\[
+\delta W_t
+=
+\int_{\partial\Omega}
+(\boldsymbol{\sigma}\cdot\mathbf n)
+\cdot\delta\mathbf u
+\,dA.
+\]</span></p>
+<p>이제 경계에서 정의된 일을 물체 내부 전체에 정의된 양으로 바꾸어 보자.</p>
+</section>
+<section id="경계에서-체적으로" class="level2">
+<h2 class="anchored" data-anchor-id="경계에서-체적으로">경계에서 체적으로</h2>
+<p>지수표기법으로 쓰면</p>
+<p><span class="math display">\[
+\delta W_t
+=
+\int_{\partial\Omega}
+\sigma_{ij}n_j\delta u_i
+\,dA.
+\]</span></p>
+<p>발산정리를 적용하면</p>
+<p><span class="math display">\[
+\delta W_t
+=
+\int_\Omega
+(\sigma_{ij}\delta u_i)_{,j}
+\,dV,
+\]</span></p>
+<p>따라서</p>
+<p><span class="math display">\[
+\delta W_t
+=
+\int_\Omega
+\sigma_{ij,j}\delta u_i
+\,dV
++
+\int_\Omega
+\sigma_{ij}\delta u_{i,j}
+\,dV.
+\]</span></p>
+<p>첫 번째 항에는 응력의 발산이, 두 번째 항에는 변위구배가 들어 있다. 첫 번째 항은 평형방정식이 처리해 준다.</p>
+</section>
+<section id="평형을-적용하면-체적력-항이-사라진다" class="level2">
+<h2 class="anchored" data-anchor-id="평형을-적용하면-체적력-항이-사라진다">평형을 적용하면 체적력 항이 사라진다</h2>
+<p>국소 평형방정식은</p>
+<p><span class="math display">\[
+\sigma_{ij,j}+b_i=0
+\]</span></p>
+<p>이므로</p>
+<p><span class="math display">\[
+\sigma_{ij,j}=-b_i.
+\]</span></p>
+<p>따라서</p>
+<p><span class="math display">\[
+\delta W_t
+=-
+\int_\Omega b_i\delta u_i\,dV
++
+\int_\Omega \sigma_{ij}\delta u_{i,j}\,dV.
+\]</span></p>
+<p>전체 외부 가상일에는 표면력뿐 아니라 체적력의 일도 포함된다.</p>
+<p><span class="math display">\[
+\delta W_{\mathrm{ext}}
+=
+\delta W_t
++
+\int_\Omega b_i\delta u_i\,dV.
+\]</span></p>
+<p>두 체적력 항이 상쇄되어</p>
+<p><span class="math display">\[
+\boxed{
+\delta W_{\mathrm{ext}}
+=
+\int_\Omega
+\sigma_{ij}\delta u_{i,j}\,dV
+}
+\]</span></p>
+<p>를 얻는다. 텐서 표기로는</p>
+<p><span class="math display">\[
+\boxed{
+\delta W_{\mathrm{ext}}
+=
+\int_\Omega
+\boldsymbol{\sigma}:
+\delta\nabla\mathbf u
+\,dV
+}.
+\]</span></p>
+<p>여기서 중요한 것은 아직 변형률을 가정하지 않았다는 점이다. 힘이 경계에서 하는 일에 평형을 적용했더니 <strong>응력과 변위구배의 이중 축약</strong>이 자연스럽게 나타났다.</p>
+</section>
+<section id="변위구배에는-서로-다른-두-운동이-들어-있다" class="level2">
+<h2 class="anchored" data-anchor-id="변위구배에는-서로-다른-두-운동이-들어-있다">변위구배에는 서로 다른 두 운동이 들어 있다</h2>
+<p>변위구배는 대칭 부분과 반대칭 부분으로 나눌 수 있다.</p>
+<p><span class="math display">\[
+\delta u_{i,j}
+=
+\delta\varepsilon_{ij}
++
+\delta\omega_{ij},
+\]</span></p>
+<p>여기서</p>
+<p><span class="math display">\[
+\delta\varepsilon_{ij}
+=
+\frac12(\delta u_{i,j}+\delta u_{j,i})
+\]</span></p>
+<p>이고</p>
+<p><span class="math display">\[
+\delta\omega_{ij}
+=
+\frac12(\delta u_{i,j}-\delta u_{j,i}).
+\]</span></p>
+<p>텐서 표기로는</p>
+<p><span class="math display">\[
+\delta\nabla\mathbf u
+=
+\delta\boldsymbol{\varepsilon}
++
+\delta\boldsymbol{\omega}.
+\]</span></p>
+<p>대칭 부분</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol{\varepsilon}
+=
+\frac12(\nabla\mathbf u+\nabla\mathbf u^T)
+}
+\]</span></p>
+<p>이 우리가 익숙한 <strong>미소변형률 텐서</strong>이고, 반대칭 부분</p>
+<p><span class="math display">\[
+\boldsymbol{\omega}
+=
+\frac12(\nabla\mathbf u-\nabla\mathbf u^T)
+\]</span></p>
+<p>은 미소회전을 나타낸다.</p>
+<p>이제 질문은 훨씬 명확하다. <strong>응력 텐서와 실제로 내부 일을 하는 것은 어느 부분인가?</strong></p>
+</section>
+<section id="왜-회전은-일에서-사라지는가" class="level2">
+<h2 class="anchored" data-anchor-id="왜-회전은-일에서-사라지는가">왜 회전은 일에서 사라지는가?</h2>
+<p>분해식을 일의 표현에 대입하면</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}:\delta\nabla\mathbf u
+=
+\boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}
++
+\boldsymbol{\sigma}:\delta\boldsymbol{\omega}.
+\]</span></p>
+<p>고전적인 Cauchy 연속체에서 응력 텐서는 대칭이다.</p>
+<p><span class="math display">\[
+\sigma_{ij}=\sigma_{ji}.
+\]</span></p>
+<p>반면 미소회전 텐서는 반대칭이다.</p>
+<p><span class="math display">\[
+\delta\omega_{ij}=-\delta\omega_{ji}.
+\]</span></p>
+<p>대칭 텐서와 반대칭 텐서의 이중 축약은 0이므로</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}:\delta\boldsymbol{\omega}=0.
+\]</span></p>
+<p>결국</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}:\delta\nabla\mathbf u
+=
+\boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon},
+\]</span></p>
+<p>따라서 평형상태에서는</p>
+<p><span class="math display">\[
+\boxed{
+\delta W_{\mathrm{int}}
+=
+\int_\Omega
+\boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}
+\,dV
+}.
+\]</span></p>
+<p>이제 변형률 텐서가 나타났다.</p>
+</section>
+<section id="변형률-텐서는-왜-나타나는가" class="level2">
+<h2 class="anchored" data-anchor-id="변형률-텐서는-왜-나타나는가">변형률 텐서는 왜 나타나는가?</h2>
+<p>이 유도에서 변형률을 먼저 정의한 뒤 용도를 찾은 것이 아니다. 실제 표면력이 하는 일에서 출발했다. Cauchy의 면력법칙, 발산정리, 평형을 차례로 적용하면</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}:\delta\nabla\mathbf u
+\]</span></p>
+<p>가 나타난다. 변위구배에는 변형과 회전이 함께 들어 있지만, 응력 텐서가 대칭이기 때문에 회전 부분은 일을 하지 않는다.</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}:\delta\boldsymbol{\omega}=0.
+\]</span></p>
+<p>결국 남는 것은</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}.
+\]</span></p>
+<p>따라서 미소변형률 텐서</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol{\varepsilon}
+=
+\frac12(\nabla\mathbf u+\nabla\mathbf u^T)
+}
+\]</span></p>
+<p>는 단순히 변위구배를 보기 좋게 대칭화한 양이 아니다. <strong>미소변형 이론에서 Cauchy 응력과 일-공액(work-conjugate)을 이루는 변형척도</strong>로 자연스럽게 등장한다.</p>
+</section>
+<section id="내부-일에서-변형에너지로" class="level2">
+<h2 class="anchored" data-anchor-id="내부-일에서-변형에너지로">내부 일에서 변형에너지로</h2>
+<p>증분 내부 일의 밀도는</p>
+<p><span class="math display">\[
+dU
+=
+\boldsymbol{\sigma}:d\boldsymbol{\varepsilon}.
+\]</span></p>
+<p>선형탄성에서는</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}
+=
+\mathbb C:\boldsymbol{\varepsilon},
+\]</span></p>
+<p>여기서 <span class="math inline">\(\mathbb C\)</span>는 4차 탄성 텐서이다. 변형에너지 밀도는</p>
+<p><span class="math display">\[
+U
+=
+\int \boldsymbol{\sigma}:d\boldsymbol{\varepsilon}
+\]</span></p>
+<p>이고, 선형탄성에서는</p>
+<p><span class="math display">\[
+\boxed{
+U=\frac12\boldsymbol{\sigma}:\boldsymbol{\varepsilon}
+}
+\]</span></p>
+<p>또는</p>
+<p><span class="math display">\[
+\boxed{
+U=\frac12\boldsymbol{\varepsilon}:\mathbb C:\boldsymbol{\varepsilon}
+}.
+\]</span></p>
+<p>응력과 변형률은 단순히 구성방정식으로 연결된 두 물리량이 아니다. 둘은 <strong>에너지 공액쌍</strong>이다. 두 텐서의 이중 축약은 단위체적당 일 또는 에너지의 의미를 갖는다.</p>
+</section>
+<section id="z-diagram과의-연결" class="level2">
+<h2 class="anchored" data-anchor-id="z-diagram과의-연결">Z Diagram과의 연결</h2>
+<p>이제 Z Diagram의 가운데 부분을 더 깊게 볼 수 있다.</p>
+<p><span class="math display">\[
+F\longleftrightarrow\sigma\longleftrightarrow\varepsilon\longleftrightarrow u.
+\]</span></p>
+<p>앞 글에서는</p>
+<p><span class="math display">\[
+F\longleftrightarrow\sigma
+\]</span></p>
+<p>를 중심으로 평형이 구조물의 힘과 국소 응력상태를 어떻게 연결하는지 살펴보았다. 이 글에서는</p>
+<p><span class="math display">\[
+\boxed{\sigma\longleftrightarrow\varepsilon}
+\]</span></p>
+<p>에 집중한다. 이 연결의 핵심은 에너지다.</p>
+<p><span class="math display">\[
+dU=\boldsymbol{\sigma}:d\boldsymbol{\varepsilon}.
+\]</span></p>
+<p>재료점 수준에서는 응력과 변형률이 에너지 공액이고, 구조물 수준에서는 힘과 변위가 일의 공액쌍이다.</p>
+<p><span class="math display">\[
+\boxed{
+\mathbf F\cdot d\mathbf u
+\quad\longleftrightarrow\quad
+\boldsymbol{\sigma}:d\boldsymbol{\varepsilon}
+}
+\]</span></p>
+<p>여기서도 표기상의 차이가 물리적 의미를 잘 보여준다. <span class="math inline">\(\mathbf F\cdot d\mathbf u\)</span>는 두 벡터의 한 번 축약으로 스칼라 일을 만들고, <span class="math inline">\(\boldsymbol{\sigma}:d\boldsymbol{\varepsilon}\)</span>는 두 2차 텐서의 두 번 축약으로 역시 스칼라 에너지 밀도를 만든다.</p>
+</section>
+<section id="미소변형을-넘어서" class="level2">
+<h2 class="anchored" data-anchor-id="미소변형을-넘어서">미소변형을 넘어서</h2>
+<p>같은 생각은 유한변형에서도 계속된다. 다만 어느 configuration을 사용하는가에 따라 적절한 응력과 변형척도가 달라진다.</p>
+<section id="현재-배치" class="level3">
+<h3 class="anchored" data-anchor-id="현재-배치">현재 배치</h3>
+<p>변형된 물체가 <span class="math inline">\(\Omega_t\)</span>를 차지한다고 하자. 표면력이 하는 외부 power는</p>
+<p><span class="math display">\[
+P_{\mathrm{ext}}
+=
+\int_{\partial\Omega_t}\mathbf t\cdot\mathbf v\,da.
+\]</span></p>
+<p>Cauchy의 면력법칙과 발산정리를 적용하면</p>
+<p><span class="math display">\[
+P_{\mathrm{ext}}
+=
+\int_{\Omega_t}\boldsymbol{\sigma}:\nabla\mathbf v\,dv.
+\]</span></p>
+<p>속도구배를</p>
+<p><span class="math display">\[
+\nabla\mathbf v=\mathbf d+\mathbf w
+\]</span></p>
+<p>로 나누면</p>
+<p><span class="math display">\[
+\mathbf d=\frac12(\nabla\mathbf v+\nabla\mathbf v^T),
+\qquad
+\mathbf w=\frac12(\nabla\mathbf v-\nabla\mathbf v^T).
+\]</span></p>
+<p>응력이 대칭이므로</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}:\mathbf w=0,
+\]</span></p>
+<p>따라서</p>
+<p><span class="math display">\[
+\boxed{
+P_{\mathrm{ext}}
+=
+\int_{\Omega_t}\boldsymbol{\sigma}:\mathbf d\,dv
+}.
+\]</span></p>
+<p>현재 배치에서는 Cauchy 응력 <span class="math inline">\(\boldsymbol{\sigma}\)</span>와 rate-of-deformation tensor <span class="math inline">\(\mathbf d\)</span>가 power-conjugate pair를 이룬다.</p>
+</section>
+</section>
+<section id="기준-배치" class="level2">
+<h2 class="anchored" data-anchor-id="기준-배치">기준 배치</h2>
+<p>유한변형에서는 변형구배</p>
+<p><span class="math display">\[
+\mathbf F=\frac{\partial\mathbf x}{\partial\mathbf X},
+\qquad
+J=\det\mathbf F
+\]</span></p>
+<p>를 도입한다. 제1 Piola–Kirchhoff 응력은</p>
+<p><span class="math display">\[
+\mathbf P
+=
+J\boldsymbol{\sigma}\cdot\mathbf F^{-T}.
+\]</span></p>
+<p>여기서 <span class="math inline">\(\boldsymbol{\sigma}\cdot\mathbf F^{-T}\)</span> 사이의 점은 두 2차 텐서 사이의 <strong>single contraction</strong>을 명시한 것이다. 행렬곱 관례를 따르는 문헌에서는 같은 연산을 <span class="math inline">\(J\boldsymbol{\sigma}\mathbf F^{-T}\)</span>처럼 점 없이 쓰기도 한다.</p>
+<p>기준 배치에서 power는</p>
+<p><span class="math display">\[
+\boxed{
+P_{\mathrm{ext}}
+=
+\int_{\Omega_0}\mathbf P:\dot{\mathbf F}\,dV
+}
+\]</span></p>
+<p>로 쓸 수 있으므로 <span class="math inline">\(\mathbf P\)</span>와 <span class="math inline">\(\dot{\mathbf F}\)</span>가 하나의 일-공액쌍이다.</p>
+<p>한편 Green–Lagrange 변형률을</p>
+<p><span class="math display">\[
+\mathbf E
+=
+\frac12(\mathbf F^T\cdot\mathbf F-\mathbf I)
+\]</span></p>
+<p>로 정의할 수 있다. 여기서도 <span class="math inline">\(\mathbf F^T\cdot\mathbf F\)</span>의 점은 두 2차 텐서 사이의 single contraction을 명시한다. 성분으로 보면</p>
+<p><span class="math display">\[
+C_{IJ}=F_{iI}F_{iJ}
+\]</span></p>
+<p>처럼 반복지수 <span class="math inline">\(i\)</span>에 대해 한 번 축약된다. 많은 교재에서 <span class="math inline">\(\mathbf F^T\mathbf F\)</span>라고 쓰는 것은 행렬곱 표기에서 점을 생략하기 때문이다. 연산 자체가 다른 것은 아니다.</p>
+<p><span class="math inline">\(\mathbf E\)</span>와 일-공액인 응력은 제2 Piola–Kirchhoff 응력 <span class="math inline">\(\mathbf S\)</span>이고,</p>
+<p><span class="math display">\[
+\boxed{
+P_{\mathrm{ext}}
+=
+\int_{\Omega_0}\mathbf S:\dot{\mathbf E}\,dV
+}
+\]</span></p>
+<p>를 얻는다.</p>
+<p>결국 formulation이 달라지면 응력과 변형척도는 달라질 수 있지만 요구조건은 같다. <strong>응력과 변형척도는 서로 일-공액을 이루어야 한다.</strong></p>
+</section>
+<section id="하나의-원리-여러-표현" class="level2">
+<h2 class="anchored" data-anchor-id="하나의-원리-여러-표현">하나의 원리, 여러 표현</h2>
+<p>미소변형에서는</p>
+<p><span class="math display">\[
+\boxed{
+\int_{\partial\Omega}\mathbf t\cdot\delta\mathbf u\,dA
+=
+\int_\Omega\boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}\,dV
+}.
+\]</span></p>
+<p>유한변형의 현재 배치에서는</p>
+<p><span class="math display">\[
+\boxed{
+\int_{\partial\Omega_t}\mathbf t\cdot\mathbf v\,da
+=
+\int_{\Omega_t}\boldsymbol{\sigma}:\mathbf d\,dv
+}.
+\]</span></p>
+<p>기준 배치에서는</p>
+<p><span class="math display">\[
+\boxed{
+\int_{\Omega_0}\mathbf P:\dot{\mathbf F}\,dV
+=
+\int_{\Omega_0}\mathbf S:\dot{\mathbf E}\,dV
+}.
+\]</span></p>
+<p>수학적인 양은 달라져도 외부 작용과 내부 변형을 연결하는 에너지 원리는 그대로 남는다.</p>
+</section>
+<section id="강의-영상" class="level2">
+<h2 class="anchored" data-anchor-id="강의-영상">강의 영상</h2>
+<p>이 유도는 재료역학 강의에서도 설명한다.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/i3yDGYlKvQk" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</section>
+<section id="결국-핵심은" class="level2">
+<h2 class="anchored" data-anchor-id="결국-핵심은">결국 핵심은</h2>
+<p>왜 변형률 텐서가 역학에 나타나는가?</p>
+<p>표면력이 하는 일</p>
+<p><span class="math display">\[
+\mathbf t\cdot\delta\mathbf u
+\]</span></p>
+<p>에서 출발한다. Cauchy의 면력법칙, 평형, 발산정리를 적용하면 체적 내부의 양은</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}:\delta\nabla\mathbf u
+\]</span></p>
+<p>가 된다. 그리고 변위구배를</p>
+<p><span class="math display">\[
+\delta\nabla\mathbf u
+=
+\delta\boldsymbol{\varepsilon}+\delta\boldsymbol{\omega}
+\]</span></p>
+<p>로 나누면, 응력 텐서의 대칭성 때문에</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}:\delta\boldsymbol{\omega}=0
+\]</span></p>
+<p>이 되어 결국</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}
+}
+\]</span></p>
+<p>만 남는다.</p>
+<p>따라서 변형률 텐서는 단순히 변위구배를 대칭화해서 만든 편리한 정의가 아니다. <strong>내부 일의 구조를 따라가면 자연스럽게 남는 변형척도</strong>이다.</p>
+<p>그리고 그 결과가 고체역학의 가장 중요한 에너지 관계 가운데 하나로 이어진다.</p>
+<p><span class="math display">\[
+\boxed{
+dU=\boldsymbol{\sigma}:d\boldsymbol{\varepsilon}.
+}
+\]</span></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zi-sem\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
