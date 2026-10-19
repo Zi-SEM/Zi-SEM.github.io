@@ -17,6 +17,8 @@ keywords:
   - equilibrium compatibility constitutive law
   - principle of virtual work
   - energy conjugate variables
+  - Tonti diagram solid mechanics
+  - geometric formulation of continuum mechanics
   - structural mechanics
   - mechanics of materials
   - stress strain relationship
@@ -555,6 +557,18 @@ The reverse reasoning is equally valid.
 That makes the diagram useful for distinguishing clearly between equilibrium equations, constitutive equations, compatibility equations, global structural quantities, local material quantities, and energy-conjugate variables.
 
 It also provides a common framework for understanding methods that may initially appear unrelated. Classical mechanics of materials, structural analysis, finite element analysis, nonlinear mechanics, and constitutive modeling all operate within the same basic structure.
+
+## How does the Z-Diagram relate to Tonti’s diagram?
+
+There is a useful connection between the Z-Diagram and the diagrammatic framework developed by **Enzo Tonti** for organizing physical theories, including solid mechanics. Both distinguish the kinematic relationship between displacement and strain, the static relationship between stress and force, and the constitutive relationship between strain and stress. Both are also compatible with the work pairing of force with displacement and stress with strain.
+
+The similarity is not accidental: these are fundamental structures of continuum mechanics, rather than properties invented by either diagram. In particular, equilibrium and compatibility can be formulated independently of the constitutive law. The virtual-work version of the Z-Diagram (@fig-z-diagram-pvw) makes this separation visible by removing the stress–strain constitutive connection while retaining the work pairing.
+
+The **difference is primarily one of scope and purpose**. Tonti’s framework systematically associates physical variables and laws with oriented geometric elements and dual geometric structures. It distinguishes topological or balance relationships from material-dependent constitutive relationships and supports a broader geometric view of discretization. The Z-Diagram is deliberately less formal: it is a *navigation map for engineering mechanics*. It foregrounds the passage between structural quantities $(F,u)$ and material-point quantities $(\sigma,\varepsilon)$, the two directions of mechanical reasoning, and their consistency through work and power.
+
+Thus, the Z-Diagram should not be presented as an alternative theory to Tonti’s framework, nor should the separation of equilibrium, compatibility, and constitutive behavior be claimed as unique. Its value lies in making these established relationships immediately usable for explaining and checking mechanics calculations. The two frameworks are complementary: **Tonti clarifies the geometric structure of the laws; the Z-Diagram clarifies how an engineer navigates among the mechanical quantities and their energy pairings.**
+
+For further background, see Enzo Tonti, *The Mathematical Structure of Classical and Relativistic Physics* (Birkhäuser, 2013).
 
 ## A framework rather than a formula
 
