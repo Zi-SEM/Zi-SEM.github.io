@@ -8,7 +8,8 @@ listing:
   - id: offshore
     contents:
       - "posts/*/index-ko.qmd"
-    type: table
+    type: default
+    fields: [image, title, subtitle, description, author]
     sort: "date desc"
     include:
       categories: "해상풍력"
@@ -18,7 +19,8 @@ listing:
   - id: digital
     contents:
       - "posts/*/index-ko.qmd"
-    type: table
+    type: default
+    fields: [image, title, subtitle, description, author]
     sort: "date desc"
     include:
       categories: "디지털전환과 AI"
@@ -28,7 +30,8 @@ listing:
   - id: concrete
     contents:
       - "posts/*/index-ko.qmd"
-    type: table
+    type: default
+    fields: [image, title, subtitle, description, author]
     sort: "date desc"
     include:
       categories: "콘크리트와 재료"
@@ -38,7 +41,8 @@ listing:
   - id: computational
     contents:
       - "posts/*/index-ko.qmd"
-    type: table
+    type: default
+    fields: [image, title, subtitle, description, author]
     sort: "date desc"
     include:
       categories: "계산역학과 파괴"
@@ -48,7 +52,8 @@ listing:
   - id: mechanics
     contents:
       - "posts/*/index-ko.qmd"
-    type: table
+    type: default
+    fields: [image, title, subtitle, description, author]
     sort: "date desc"
     include:
       categories: "공학역학"
@@ -65,7 +70,7 @@ listing:
 ## 둘러보기
 
 <style>
-/* Match the compact English homepage navigation without nested fenced divs. */
+/* Bilingual homepage Explore: independent compact grid, no Quarto row sizing. */
 .zi-explore-links {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -97,39 +102,29 @@ listing:
 
 ### [힘·응력·변형률·변위는 어떻게 연결되는가? — Z 다이어그램](posts/z-diagram-introduction/index-ko.qmd)
 
-Z Diagram은 이 사이트의 역학적 출발점이다. 힘, 응력, 변형률, 변위를 평형, 구성관계, 적합조건, 일과 에너지로 연결한다.
+Z 다이어그램은 이 사이트의 역학적 출발점이다. 힘, 응력, 변형률, 변위를 평형, 구성관계, 적합조건, 일과 에너지로 연결한다.
 
 ## 해상풍력
-
-[해상풍력 연구와 기술 보기 →](research/offshore-wind-energy-ko.qmd)
 
 ::: {#offshore}
 :::
 
 ## 디지털전환과 AI
 
-[디지털전환과 AI 연구와 기술 보기 →](research/digital-transformation-ai-ko.qmd)
-
 ::: {#digital}
 :::
 
 ## 콘크리트와 재료
-
-[콘크리트와 재료 연구와 기술 보기 →](research/concrete-materials-ko.qmd)
 
 ::: {#concrete}
 :::
 
 ## 계산역학과 파괴
 
-[계산역학과 파괴 연구와 기술 보기 →](research/computational-mechanics-fracture-ko.qmd)
-
 ::: {#computational}
 :::
 
 ## 공학역학
-
-[공학역학 글 보기 →](mechanics-ko.qmd)
 
 ::: {#mechanics}
 :::
