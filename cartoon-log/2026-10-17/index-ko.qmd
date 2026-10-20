@@ -1,0 +1,21 @@
+---
+title: "상하이에 다녀왔다 — AI도 보고, 친구도 만나고"
+author: "지광습"
+lang: ko
+date: 2026-10-17
+categories:
+  - 카툰로그
+  - 디지털전환과 AI
+description: "상하이 DACOMA 2026 학회 발표와 오랜 친구들과의 재회를 담은 10컷 카툰로그."
+keywords: ["상하이 학회", "DACOMA 2026", "건설기준 디지털화", "건설 AI", "토목공학 인공지능", "학회 친구", "상하이 여행 만화"]
+toc: false
+page-layout: article
+---
+
+<div class="language-switch">[English](index.qmd) | **한글**</div>
+
+![상하이에 다녀왔다 — AI도 보고, 친구도 만나고: 10컷 카툰로그.](Fig01-ko.png){fig-alt="상하이 DACOMA 2026 학회 발표와 오랜 친구들과의 재회를 담은 열 컷 만화" width="100%"}
+
+상하이에 학회 발표하러 갔다. 건설기준을 AI가 단순히 읽는 것을 넘어, 공학적 의미와 논리까지 이해하도록 만드는 이야기였다. 그런데 이번 출장에서 기억에 남는 건 발표만이 아니다. Timon, Pattabhi, Xiaoying, Yong까지 오랜 친구들을 만났다.
+
+멀리 있는 오랜 친구 사이의 시계는 만날 때만 움직인다. 이번에는 상하이에서 오랜만에 움직였다.

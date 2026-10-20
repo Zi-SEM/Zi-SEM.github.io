@@ -13,3 +13,5 @@ page-layout: article
 - [Is Civil Engineering the Same as Construction Engineering?](cartoon-log/2026-09-29/index.qmd)
 - [In the End, It’s All About Connections](cartoon-log/2026-09-30/index.qmd)
 - [Five Years with the KSCE Tennis Club](cartoon-log/2026-10-03/index.qmd)
+
+- [A Trip to Shanghai — AI, Old Friends, and a Pleasant Surprise](cartoon-log/2026-10-17/index.qmd)

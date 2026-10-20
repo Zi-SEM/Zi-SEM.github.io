@@ -1,0 +1,20 @@
+---
+title: "A Trip to Shanghai — AI, Old Friends, and a Pleasant Surprise"
+author: "Gwangseup Zi"
+date: 2026-10-17
+categories:
+  - Cartoon Logs
+  - Digital Transformation & AI
+description: "A ten-panel cartoon diary of DACOMA 2026 in Shanghai, an engineering AI presentation, and reunions with old friends."
+keywords: ["DACOMA 2026", "Shanghai conference", "AI in civil engineering", "construction code digitalization", "engineering research friendships", "cartoon diary"]
+toc: false
+page-layout: article
+---
+
+<div class="language-switch">**English** | [한글](index-ko.qmd)</div>
+
+![A Trip to Shanghai — AI, Old Friends, and a Pleasant Surprise: a ten-panel cartoon diary.](Fig01.png){fig-alt="Ten-panel illustrated diary about DACOMA 2026, AI and engineering, and reunions with friends in Shanghai" width="100%"}
+
+A conference brought me to Shanghai. The presentation was about making construction codes understandable to AI—not merely readable as text, but interpretable in their engineering context. Just as memorable were the reunions with Timon, Pattabhi, Xiaoying, and Yong.
+
+The clock between faraway old friends only moves when we meet. This time, it moved again in Shanghai.
