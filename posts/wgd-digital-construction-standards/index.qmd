@@ -1,0 +1,153 @@
+---
+title: "From CATIA and BIM to Machine-Executable Construction Standards: Where Does WGD Fit?"
+subtitle: "Why digitizing engineering rules is different from digitizing geometry and facility information"
+author: "Zi"
+date: "2026-10-24"
+categories:
+  - Digital Transformation & AI
+description: "Explore the history of CATIA and BIM, machine-readable and machine-executable construction codes, AI-assisted compliance checking, and WGD (We Go Digital) for Korea's KDS and KCS standards."
+keywords:
+  - machine-executable construction standards
+  - machine-readable building codes
+  - automated code compliance checking
+  - BIM rule checking
+  - AI for construction codes
+  - construction standards digitalization
+  - digital building regulations
+  - engineering knowledge representation
+  - BIM interoperability
+  - openBIM IFC
+  - construction digital twin
+  - KDS Korean Design Standards
+  - KCS Korean Construction Specifications
+  - WGD We Go Digital
+  - CATIA BIM PLM
+---
+
+[**한국어로 읽기**](index-ko.html) | **English**
+
+## What is missing from a digital building model?
+
+A structural engineer opens a BIM model of a concrete beam. Its geometry, concrete grade, and reinforcement may all be available. But does the beam satisfy the applicable design standard? The model alone cannot answer that question. We still need to identify the governing code edition, load combinations, analysis results, resistance equations, reduction factors, exceptions, and the scope of each provision.
+
+This is the engineering question behind **WGD (We Go Digital)**, an initiative aimed at digitizing Korea's national construction design and construction standards. The long-term objective is not merely to make PDF documents searchable. It is to make engineering requirements **traceable, interpretable, and—where the rules permit—executable by verified software**.
+
+The history of CATIA and BIM helps explain why this is a natural next problem. Yet their relationship is often misunderstood.
+
+## Did CATIA come before BIM?
+
+The answer depends on whether we mean a concept or a successful industrial software platform. Charles Eastman's building-description research in the mid-1970s anticipated object-based building information models. CATIA emerged from Dassault Aviation's CATI development in the late 1970s and was commercialized in 1981. In the following decades, CATIA became a major industrial platform for complex three-dimensional product design, notably in aerospace. BIM developed through its own architectural computing lineage, including object-based building software such as ArchiCAD and later Revit.
+
+| Question | CATIA and manufacturing | BIM and construction |
+|---|---|---|
+| Initial engineering problem | How can complex parts be modeled and manufactured consistently? | How can building components and project information remain coordinated? |
+| Primary object | Product, part, assembly | Building or infrastructure asset, element, system |
+| Important extensions | Digital mock-up, manufacturing integration, PLM | Multidisciplinary coordination, construction information, asset management |
+| Long-term direction | Simulation and virtual twins | Simulation and digital twins |
+
+CATIA is a software product; BIM is an information-modeling approach. A more balanced comparison is **PLM versus BIM**, or **CATIA versus a particular BIM authoring tool**. CATIA did not invent BIM. The two traditions converged because complex physical systems demand consistent digital representations and reliable information exchange.
+
+## Geometry is not engineering compliance
+
+Consider a reinforced-concrete beam. A familiar strength requirement can be written as
+
+$$
+\phi M_n \ge M_u
+$$
+
+where $M_n$ is nominal flexural resistance, $\phi$ is the applicable resistance factor, and $M_u$ is the factored bending moment. This is an **illustrative engineering check**, not a substitute for the governing edition of a specific national code.
+
+A computer cannot apply this inequality responsibly by extracting the symbols alone. It must establish the member's applicability, the correct code edition, the assumptions behind $M_n$, the conditions governing $\phi$, the relevant load combination, and any exceptions. Missing information may mean **undetermined**, not **pass**.
+
+This distinction is central: **digitizing an equation is not the same as digitizing the engineering rule that governs its use.**
+
+## Four levels of construction-standard digitalization
+
+| Level | Capability | Example |
+|---|---|---|
+| 1. Digital documents | Store and retrieve source documents | Searchable KDS/KCS publications |
+| 2. Machine-readable | Structure clauses, quantities, units, conditions, and references | Code clauses represented as structured records |
+| 3. Machine-interpretable | Represent applicability, definitions, dependencies, and exceptions | Identify provisions relevant to a specific member |
+| 4. Machine-executable | Execute reviewed and tested rules against validated inputs | Automated, traceable design or construction checks |
+
+An LLM can explain a clause convincingly without being correct. Level 3 therefore does not automatically imply Level 4. **Approved rules, test cases, and independent computation** are necessary before the result can support engineering decisions.
+
+## How WGD should connect to BIM
+
+BIM provides information about the **asset being checked**. WGD provides the **requirements and checking logic**. Analysis software and construction-quality systems provide other essential evidence.
+
+```text
+National standards (KDS / KCS)
+        |
+Official clauses, editions, effective dates
+        |
+WGD knowledge representation
+        |
+AI-assisted retrieval and rule extraction
+        |
+Reviewed, versioned, executable rules
+        |
+BIM properties + analysis results + field evidence
+        |
+Input validation and deterministic checking
+        |
+PASS / FAIL / UNDETERMINED
+        |
+Evidence, calculations, provenance, audit trail
+        |
+BIM / common data environment integration
+```
+
+For example, a beam-checking workflow would extract dimensions and material attributes from BIM, obtain load effects from a structural analysis model, select the applicable standard and its edition, compute resistance through a verified solver, and attach the outcome and evidence to the relevant BIM object. It should never infer that a design passes simply because a BIM object exists.
+
+**Interoperability matters.** IFC and openBIM provide useful foundations for exchanging asset information, but a complete compliance system may also require dedicated schemas and APIs for analysis results, inspection evidence, rule versions, and verification records.
+
+## Why design standards and construction specifications need different checks
+
+Korea's **KDS (Korean Design Standards)** and **KCS (Korean Construction Specifications)** are related but not interchangeable.
+
+Many design checks can be organized as
+
+$$
+\text{Action}\rightarrow\text{Response}\rightarrow\text{Limit State}\rightarrow\text{Verification}.
+$$
+
+Construction requirements often concern sequences, inspection methods, tolerances, testing frequencies, acceptance records, and site conditions. These cannot all be reduced to structural limit-state equations. WGD therefore needs shared code governance but **different execution models** for numerical design checks and construction-process or quality checks.
+
+## Where AI belongs—and where it does not
+
+AI is useful for discovering relevant clauses, extracting candidate variables and conditions, proposing rule mappings, and explaining results with source references. It should not silently invent missing inputs or approve its own interpretation as authoritative.
+
+A defensible workflow is
+
+$$
+\boxed{\text{AI-assisted interpretation}\rightarrow\text{Verified rules}\rightarrow\text{Engineering computation}}
+$$
+
+The source standard, machine-readable representation, approved executable rule, and actual verification result should remain distinct and traceable. Each must carry version information. Code revisions should not require retraining an entire language model merely to change an approved design coefficient.
+
+## A national-scale architecture for WGD
+
+A practical WGD platform would separate six responsibilities: an authoritative standards repository; a structured engineering knowledge model; AI-assisted retrieval and interpretation; expert review and rule governance; deterministic execution and interfaces to BIM/solvers; and an auditable reporting layer.
+
+The difficult part is not building a chatbot. It is deciding **who approves a machine-executable interpretation, how exceptions are tested, how amendments take effect, and who is accountable when a result is wrong**. A national platform must be software-vendor neutral and must preserve both source provenance and human engineering responsibility.
+
+## What comes next?
+
+The development path could proceed from reliable document retrieval to structured clauses, reviewed executable checks, BIM-linked compliance, construction-quality integration, and eventually digital-twin-based monitoring. These are **proposed development stages**, not claims of completed WGD capabilities.
+
+A future workflow might detect a changed beam section in BIM, identify affected code checks, request updated analysis, execute validated rules, and write the result and governing provisions back to the model. That would be useful not because AI replaces the engineer, but because the engineer can see **what changed, which rule applies, and why the result makes engineering sense**.
+
+CATIA helped digitize product geometry and manufacturing relationships. BIM connected facility objects and their information. **WGD aims to connect engineering requirements to verifiable decisions.**
+
+> **WGD — We Go Digital:** From human-readable construction standards to machine-executable engineering knowledge.
+
+## Further reading
+
+- Eastman, C. M. (1975). *The Use of Computers Instead of Drawings in Building Design*. Early research on computer-based building descriptions.
+- Eastman, C. et al. *BIM Handbook*. Background on BIM concepts, workflows, and interoperability.
+- [buildingSMART International](https://www.buildingsmart.org/) — openBIM and IFC.
+- [Korea Construction Standards Center](https://www.kcsc.re.kr/) — official KDS/KCS standards and amendments.
+- [Dassault Systèmes](https://www.3ds.com/) — CATIA, PLM, and virtual-twin technology.
+
+*This article describes an engineering vision for WGD, not a claim that all proposed functions have been implemented or formally approved.*
