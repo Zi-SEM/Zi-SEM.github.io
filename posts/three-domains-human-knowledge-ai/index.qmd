@@ -1,148 +1,118 @@
 ---
-title: "What Should AI Predict, Interpret, and Verify in Engineering?"
-subtitle: "Three domains of knowledge: physical systems, regulations and codes, and socio-knowledge systems"
+title: "Three Domains of Human Knowledge in the Age of AI"
+subtitle: "Why physical systems, regulations and codes, and socio-knowledge systems require different kinds of intelligence"
 author: "Goangseup Zi"
 date: "2026-10-26"
 categories:
   - Digital Transformation & AI
-  - Engineering Knowledge
-  - Regulatory Intelligence
-description: "A conceptual framework linking physical simulation, engineering codes, and human knowledge through Physical, Regulatory, and Knowledge Intelligence."
 keywords:
-  - engineering AI
+  - artificial intelligence in engineering
+  - physical intelligence
   - regulatory intelligence
-  - automated compliance checking
-  - engineering knowledge representation
+  - engineering codes and standards
+  - knowledge representation
+  - regulatory ontology
   - neural operators
-  - computational mechanics
-  - engineering design codes
+  - automated compliance checking
   - neuro-symbolic AI
-  - digital construction standards
   - knowledge graphs
+  - large language models
+  - digital engineering standards
+description: "A conceptual framework for understanding how AI is changing physical modeling, engineering regulation, and human knowledge—and why codes and standards need domain-specific ontologies."
 format:
   html:
     toc: true
-    toc-depth: 2
+    toc-depth: 3
 ---
 
-[**English**](./index.html) | [한국어](./index-ko.html)
+[한국어로 읽기](index-ko.qmd){.btn .btn-outline-primary}
 
-## An engineering calculation can be correct—and still be unacceptable
+## A question about AI's place in human knowledge
 
-Suppose an engineer computes the response of a structural member under a prescribed load. The analysis converges, equilibrium is satisfied, and the stresses are obtained. Is the design acceptable?
+AI is advancing rapidly, but not every field needs the same kind of AI. A model that predicts the motion of a structure is solving a different problem from a system that interprets a design standard or supports a policy decision. All three systems might use machine learning, yet the knowledge they work with—and the meaning of a correct answer—are different.
 
-Not necessarily. The answer depends on more than the predicted stress. The engineer must also determine which design code applies, which load combinations and resistance factors are required, and whether the computed response satisfies the relevant criteria. Even before that, someone must have decided what level of risk society is willing to accept.
+It is useful to consider three connected domains:
 
-These are related questions, but they are not the same question. Distinguishing them helps clarify what artificial intelligence can—and cannot—do in an engineering workflow.
+1. **Physical Systems:** natural phenomena and engineered systems governed by physical laws.
+2. **Regulations & Codes:** legal requirements, technical standards, and rules through which society specifies acceptable performance and procedures.
+3. **Socio-Knowledge Systems:** human language, knowledge, institutions, economic activity, and collective decisions.
 
-I find it useful to organize the problem into three interacting domains:
+This is a **proposed conceptual framework**, not an established or exhaustive academic taxonomy. Its purpose is to ask what kind of knowledge each domain contains, how its tools have evolved, and what AI must be able to do there.
 
-1. **Physical Systems** — how physical systems behave.
-2. **Regulations & Codes** — what a system is required or permitted to do.
-3. **Socio-Knowledge Systems** — how people express, organize, evaluate, and use knowledge, objectives, and decisions.
-
-This is a **proposed conceptual framework**, not an established academic taxonomy. Its purpose is to separate different kinds of questions while showing how they must work together.
-
-## Three domains, three different questions
+## The three domains and their changing tools
 
 | | Physical Systems | Regulations & Codes | Socio-Knowledge Systems |
 |---|---|---|---|
-| **Objects** | Physical phenomena, materials, structures, engineered systems | Laws, design codes, standards, safety and performance requirements | People, organizations, economic and social processes, documents and knowledge |
-| **Professionals** | Scientists, engineers, analysts, experimentalists | Code developers, reviewers, regulators, certification and compliance specialists | Social scientists, economists, legal and policy specialists, managers, humanities scholars |
-| **Established tools** | FEM, CFD, FDM, experiments, CAD/CAE, simulation | Code documents, databases, rule engines, ontologies, engineering check procedures | Knowledge-management systems, databases, search, statistical analysis, decision-support tools |
-| **Representative AI-enabled methods** | Neural operators (e.g., FNO, DeepONet), PINNs, physics-informed ML, surrogate models | LLM-assisted code interpretation, knowledge graphs, rule-based and neuro-symbolic systems, automated compliance checking | LLMs, RAG, NLP, agents, knowledge-based systems |
-| **Core question** | *What will happen, and why?* | *What is required, and does the result comply?* | *What does it mean, and what should we do?* |
-| **Working label** | **Physical Intelligence** | **Regulatory Intelligence** | **Knowledge Intelligence** |
+| **Primary subject** | Physical behavior, natural processes, engineered structures | Requirements, permissions, procedures, compliance | People, knowledge, institutions, organizations, decisions |
+| **Typical professionals** | Scientists, engineers, experimentalists, numerical analysts | Standards developers, code specialists, reviewers, certification and permitting professionals | Social scientists, economists, policy analysts, legal scholars, managers, humanities researchers |
+| **Established tools** | Experiments, FEM, CFD, analytical models, CAD/CAE | Standards documents, checklists, reference databases, rule engines, calculation procedures | Documents, databases, statistical analysis, surveys, search and decision-support systems |
+| **Emerging AI approaches** | Neural operators, physics-informed learning, surrogate models | Regulatory ontologies, knowledge graphs, LLM-assisted interpretation, neuro-symbolic rules, automated compliance checking | LLMs, retrieval-augmented generation, language processing, AI agents |
+| **Central question** | *What happens, and why?* | *What is required, and is it satisfied?* | *What do we know, what does it mean, and what should we do?* |
+| **Convenient label** | Physical Intelligence | Regulatory Intelligence | Knowledge Intelligence |
 
-These labels identify **functions**, not mutually exclusive AI architectures. An LLM may assist with interpreting a design standard; a finite-element model may supply the demand for a compliance check; and a neural operator may accelerate that calculation. Their roles depend on the engineering task, not on which column their names appear in.
+These labels describe **functions**, not exclusive categories of algorithms. An LLM can assist with engineering documentation; a numerical solver can be invoked during a compliance check. The distinction concerns the problem being addressed and the evidence needed for a reliable answer.
 
-## Where the domains meet
+## Physical Systems: from simulation to learned operators
 
-The information flow is not simply a chain from science to regulation to society. It works in both directions.
+In mechanics, an external load does not directly determine an engineering decision. It first produces a physical response—displacement, strain, stress, instability, damage, or another observable consequence. Classical engineering approaches represent the causal relationships through governing equations, material constitutive laws, and boundary conditions.
 
-- **Society to codes:** public objectives, experience, economics, acceptable risk, and institutional decisions influence regulatory requirements.
-- **Codes to engineering:** requirements become design conditions, combinations, limits, and verification procedures.
-- **Engineering to codes:** models, test results, and observed performance provide evidence used in compliance assessments and, over time, code revisions.
-- **Engineering to society:** a verified design enables informed decisions about cost, safety, operation, and maintenance.
+Finite element and computational fluid dynamics models have become essential tools because they transform these relationships into computable systems. Neural operators and other AI surrogates introduce another possibility: learning mappings between classes of input functions and corresponding physical responses, potentially accelerating repeated analyses.
 
-Physical behavior does not change because a design code changes. A code instead changes how that behavior is *evaluated* and which designs are accepted. That distinction is essential: **prediction is a physical question; acceptance is a normative decision supported by physical evidence.**
+But faster prediction is not automatically better engineering. Engineers still need to ask whether the model respects conservation laws, boundary conditions, admissible material behavior, and the range of conditions on which it was validated. **The physical meaning of the prediction remains central.**
 
-## An example: checking a structural member
+## Socio-Knowledge Systems: from information retrieval to language-based reasoning
 
-Consider a beam subjected to a design load. A numerical analysis may produce bending moment $M_d$, shear force $V_d$, and displacement $u_d$. Those outputs do not, by themselves, establish code compliance.
+Knowledge and social systems present a different difficulty. Much of their content exists in text, records, institutions, conventions, and human choices, not in a closed set of physical equations. Language models have made it easier to search, synthesize, draft, and connect these materials. Retrieval-augmented generation and agents can add external records and operational workflows.
 
-The applicable design standard might require checks of the general form
+Yet a plausible explanation is not necessarily a verified fact, and a recommendation is not the same as an authorized decision. Sources, provenance, conflicts between documents, contextual interpretation, and human accountability remain important. The challenge is not merely producing language; it is **establishing what a statement means and why it can be trusted**.
 
-$$
-\frac{M_d}{M_R} \leq 1, \qquad
-\frac{V_d}{V_R} \leq 1, \qquad
-|u_d| \leq u_{\mathrm{lim}},
-$$
+## Regulations & Codes: the domain between what happens and what is acceptable
 
-where the resistance values, relevant factors, combinations, and serviceability limits must be determined using the applicable standard. The expressions are **illustrative**, not a substitute for a particular code's provisions.
+Consider a structural member. A mechanics model can predict its deformation and internal forces under given loads. Whether that member satisfies a design standard requires a second layer of reasoning: Which edition of which standard applies? What is the limit state? Which load combination, resistance factor, exception, and verification procedure are relevant?
 
-The workflow can be divided into three roles:
+The two questions are connected but distinct:
 
-1. **Physical Intelligence:** obtain the structural response for the specified model and loads, using FEM or a validated surrogate.
-2. **Regulatory Intelligence:** identify the applicable provisions, resolve their conditions and exceptions, perform the checks, and record the results.
-3. **Knowledge Intelligence:** find related design information, explain assumptions and outcomes, and assist human reviewers in making an informed decision.
+- **Physical question:** What response will this structure exhibit?
+- **Regulatory question:** Does the predicted response satisfy the applicable requirements?
 
-The important point is the interface. A perfectly accurate prediction of $M_d$ is not enough if the wrong load combination or resistance rule is selected. Conversely, flawless execution of a rule does not make a poor structural model reliable.
+Regulations and codes translate social objectives—including safety, reliability, serviceability, and accountability—into requirements that professionals can interpret and check. That translation is not always a single formula. A provision may include scope restrictions, definitions, exceptions, cross-references, conditional requirements, and prescribed engineering judgments.
 
-## Why Regulatory Intelligence is more than searching a PDF
+This is why introducing an LLM into code interpretation does not, by itself, create a dependable compliance system. The system needs explicit representations of *applicability*, *meaning*, *dependencies*, *computations*, and *evidence*. Some checks can be automated directly; others require engineering assessment and professional responsibility.
 
-A design standard is written for people. It contains definitions, assumptions, scopes of applicability, cross-references, exceptions, equations, and decision sequences. A search system can retrieve a relevant paragraph, but retrieval alone does not determine whether the paragraph applies to a particular structure.
+## Why domain-specific ontologies matter
 
-For machine-assisted compliance, we need to represent at least four things:
+An ontology for physical modeling might organize quantities, materials, spatial relations, and governing processes. An ontology for organizations might focus on people, documents, roles, or decisions. **An ontology for regulations and engineering codes needs additional constructs that express normative meaning.**
 
-- **Meaning:** What do the engineering terms and quantities refer to?
-- **Applicability:** Under which conditions is a provision in force?
-- **Execution:** What calculation or logical test must be performed?
-- **Traceability:** Which source provision, input, assumption, and result led to the conclusion?
+For example, it should support:
 
-LLMs can help extract and interpret candidate rules, but plausible text is not an authoritative compliance decision. Executable rules also need controlled versions, tests, verified inputs, and accountable human review—especially where codes are ambiguous or professional judgment is required.
+1. **Applicability:** what structures, conditions, jurisdictions, and code editions a provision covers.
+2. **Normative force:** whether a provision defines a requirement, permission, exception, or recommendation.
+3. **Dependencies:** how definitions, referenced clauses, formulas, and verification steps connect.
+4. **Computable meaning:** which inputs, units, assumptions, and calculation or decision rules are needed.
+5. **Traceability:** which source text and engineering evidence led to a compliance result.
+6. **Change management:** how revisions to standards affect previously formalized rules.
 
-## WGD: connecting ontology, executable rules, and engineering practice
+These are research needs rather than a claim that one universal ontology already solves them. Ontologies alone do not make every clause executable; they provide a semantic foundation that can be combined with rule engines, numerical calculations, knowledge graphs, and human review.
 
-WGD (*We Go Digital*) is an effort to make the **Regulations & Codes** domain machine-processable and practically usable. Its proposed architecture has three complementary layers.
+The key question is therefore not simply *How can AI read a standard?* It is **How can the obligations and decision logic within a standard be represented so that machines and engineers can inspect, execute, and verify them?**
 
-### Ontology — define meaning and relationships
+## Where WGD fits
 
-An ontology specifies engineering concepts, their attributes, units, and relationships. It helps connect natural-language code provisions to the quantities in engineering models and datasets. For example, a code-defined nominal resistance and an analysis-derived design demand must not be treated as interchangeable quantities simply because both are expressed in force units.
+Within this larger landscape, **We Go Digital (WGD)** is one initiative located in the **Regulations & Codes** domain. Its interest is not to replace physics models or general-purpose language models. It is to make engineering standards and associated professional procedures more structured, traceable, and usable in digital workflows.
 
-### RuleUnit — express a provision as a verifiable operation
+WGD investigates an **Ontology–RuleUnit–Library** arrangement: a semantic representation of concepts and relationships, executable or assessable units of regulatory logic, and practice-oriented connections among checks. This is one possible architecture for Regulatory Intelligence, not the organizing premise of the three-domain framework and not a universal prescription for every code system.
 
-A RuleUnit represents a bounded regulatory requirement or calculation. In the WGD architecture, a RuleUnit can include:
+Seeing WGD in this context suggests a research priority: **the ontology and digital rule structures must be developed around the distinctive logic of regulations and codes**, rather than borrowed unchanged from general document-processing AI or physical simulation.
 
-- **Metadata:** the source provision, its context, and equations (including LaTeX).
-- **Flowchart:** an explicit decision and calculation sequence, represented using Mermaid.
-- **Python executable:** the calculation or logical assessment.
-- **Tests:** cases that verify the expected behavior of the implementation.
+## The broader engineering meaning
 
-A RuleUnit may return **OK**, **NG**, or a numerical result, and RuleUnits can be linked by dependencies. Such outputs remain meaningful only when their input assumptions, code edition, and applicability conditions are preserved.
+The three domains have developed different forms of expertise and different tools. AI is now entering each of them, but it does not erase their differences.
 
-### Library — express how engineers actually conduct a review
+A numerical prediction addresses what a physical system may do. A knowledge system helps interpret available information. A regulatory system must determine which requirements apply, what evidence is needed, and whether compliance has been demonstrated. Successful integration will depend not only on stronger AI models but also on preserving these distinctions—and building trustworthy connections between them.
 
-A Library connects a real engineering task to the relevant RuleUnits. It identifies the checks required, the order in which they are performed, and the boundary of the review.
+**The nature of knowledge should shape the architecture of AI, not the other way around.**
 
-This is particularly important because engineering practice is not simply a list of equations. An experienced reviewer knows which checks can govern, which conditions activate additional checks, and which earlier results are needed before a later calculation is valid. The Library aims to capture that procedural knowledge in an inspectable, executable structure.
+### Further reading
 
-WGD can therefore be understood as a proposed implementation of **Regulatory Intelligence**: a bridge between normative knowledge and physical calculations, designed to support reproducible compliance workflows.
-
-## What this framework does—and does not—claim
-
-The three intelligence labels are useful for designing a workflow, but they should not be mistaken for three separate species of AI. FEM and CFD are established computational tools, not AI technologies in themselves. PINNs and neural operators do not automatically satisfy governing physics or engineering-code requirements; their accuracy and reliability must be established for the intended application. LLMs can assist reasoning over documents, but their outputs require verification against authoritative sources.
-
-There is also no universal rule that a regulatory decision can be reduced to an automatic yes/no check. Standards can require interpretation, domain-specific evidence, and professional responsibility. A trustworthy system should make such boundaries visible rather than conceal them.
-
-## The engineering point
-
-The practical question is not whether to use an LLM, a neural operator, or a rule engine. It is **which part of the decision each tool is qualified to support**.
-
-**Physical Intelligence predicts a response. Regulatory Intelligence evaluates that response against requirements. Knowledge Intelligence helps people interpret the evidence and decide what to do.**
-
-The value appears when these functions exchange information without losing physical meaning, regulatory context, or responsibility for the final engineering judgment.
-
-## Further reading
-
-- [WGD and the digitalization of construction standards](https://zi-sem.github.io/posts/wgd-digital-construction-standards/)
+- [Zi-SEM: Engineering mechanics and digital transformation](https://zi-sem.github.io/)
+- This article presents a conceptual perspective. The three-domain terminology and the three intelligence labels are not claimed to be established scholarly classifications.
